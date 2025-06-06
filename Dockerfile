@@ -55,6 +55,10 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
+# Fix permissions for s6 scripts
+RUN chmod -R +x /etc/s6-overlay/s6-rc.d/*/run \
+    && find /etc/s6-overlay/s6-rc.d -name "run" -type f -exec chmod +x {} \;
+    
 # Health check
 HEALTHCHECK --start-period=10m \
     CMD curl --fail http://127.0.0.1:1890 || exit 1
