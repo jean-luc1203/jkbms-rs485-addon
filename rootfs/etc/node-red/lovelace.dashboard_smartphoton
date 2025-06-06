@@ -1,0 +1,722 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.smartphoton_smartphone",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "type": "custom:vertical-layout",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:digital-clock"
+            },
+            {
+              "square": false,
+              "type": "grid",
+              "cards": [
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/smartphoton-smartphone/setup-base"
+                  },
+                  "name": "température ",
+                  "icon": "mdi:cog",
+                  "show_state": false
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/smartphoton-smartphone/onduleur"
+                  },
+                  "icon": "mdi:solar-power-variant"
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/smartphoton-smartphone/batteries"
+                  },
+                  "icon": "mdi:battery-40"
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/smartphoton-smartphone/setup-onduleur"
+                  },
+                  "icon": "mdi:cog-outline"
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/smartphoton-smartphone/graphs"
+                  },
+                  "icon": "mdi:chart-bar"
+                }
+              ],
+              "columns": 5
+            },
+            {
+              "type": "custom:sunsynk-power-flow-card",
+              "cardstyle": "lite",
+              "show_solar": true,
+              "battery": {
+                "energy": 14400,
+                "shutdown_soc": 20,
+                "show_daily": true,
+                "colour": "#33ff64"
+              },
+              "inverter": {
+                "colour": "white",
+                "modern": true,
+                "autarky": "power"
+              },
+              "solar": {
+                "show_daily": true,
+                "mppts": 1,
+                "pv1_name": "S-Ouest",
+                "pv2_name": "Est",
+                "colour": "#ffe933"
+              },
+              "load": {
+                "show_daily": true,
+                "colour": "#ff3f33"
+              },
+              "grid": {
+                "show_daily_buy": true,
+                "show_daily_sell": false,
+                "show_nonessential": true,
+                "colour": " #33fffc"
+              },
+              "entities": {
+                "non_essential_load1": "sensor.voiture_electrique_power",
+                "use_timer_248": "none",
+                "priority_load_243": "input_select.mode_onduleur",
+                "inverter_voltage_154": "sensor.ha_tension_onduleur",
+                "load_frequency_192": "sensor.ha_frequence_onduleur",
+                "inverter_current_164": "sensor.ha_courant_onduleur",
+                "inverter_power_175": "sensor.ha_onduleur_puissance",
+                "grid_connected_status_194": "none",
+                "inverter_status_59": "none",
+                "day_battery_charge_70": "sensor.ha_charge_batterie_daily",
+                "day_battery_discharge_71": "sensor.ha_decharge_batterie_jour",
+                "battery_voltage_183": "sensor.ha_tension_batterie",
+                "battery_soc_184": "sensor.soc_minimum",
+                "battery_power_190": "sensor.ha_puissance_batterie",
+                "battery_current_191": "sensor.ha_courant_batterie",
+                "grid_power_169": "sensor.linky_power_input",
+                "day_grid_import_76": "none",
+                "day_grid_export_77": "none",
+                "grid_ct_power_172": "sensor.linky_esp8266_energy_power",
+                "day_load_energy_84": "sensor.consommation_maison_jour",
+                "essential_power": "none",
+                "nonessential_power": "none",
+                "aux_power_166": "none",
+                "day_pv_energy_108": "sensor.production_solaire_pv_daily",
+                "pv1_power_186": "sensor.ha_puissance_pv1",
+                "pv2_power_187": "zero",
+                "pv1_voltage_109": "sensor.ha_tension_pv1",
+                "pv1_current_110": "sensor.ha_courant_pv1",
+                "pv2_voltage_111": "zero",
+                "pv2_current_112": "zero",
+                "radiator_temp_91": "sensor.ha_onduleur_temperature",
+                "battery_temp_182": "sensor.pyl_temp1"
+              }
+            },
+            {
+              "show_current": true,
+              "show_forecast": true,
+              "type": "weather-forecast",
+              "entity": "weather.forecast_maison",
+              "forecast_type": "daily"
+            }
+          ]
+        },
+        {
+          "subview": true,
+          "title": "graphs",
+          "path": "graphs",
+          "icon": "mdi:chart-line",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "energy-date-selection"
+                },
+                {
+                  "type": "energy-usage-graph"
+                },
+                {
+                  "type": "energy-solar-graph"
+                },
+                {
+                  "type": "energy-sources-table"
+                },
+                {
+                  "type": "energy-devices-graph"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "batteries",
+          "path": "batteries",
+          "icon": "mdi:battery-30",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "type": "picture",
+              "image": "https://www.victronenergy.com/live/_media/battery_compatibility:pylontech_battery.png",
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat1"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc1"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt1"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant1"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp1"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh1"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow1"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecycle1",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 1"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat2"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc2"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt2"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant2"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp2"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh2"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow2"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle2",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 2"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat3"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc3"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt3"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant3"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp3"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh3"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow3"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle3",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 3"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat4"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc4"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt4"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant4"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp4"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh4"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow4"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle4",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 4"
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat5"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc5"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt5"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant5"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp5"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh5"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow5"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle5",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 5"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat6"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc6"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt6"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant6"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp6"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh6"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow6"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle6",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 6"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat7"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc7"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt7"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant7"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp7"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh7"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow7"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle7",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 7"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "sensor.pyl_etat8"
+                        },
+                        {
+                          "entity": "sensor.pyl_soc8"
+                        },
+                        {
+                          "entity": "sensor.pyl_volt8"
+                        },
+                        {
+                          "entity": "sensor.pyl_courant8"
+                        },
+                        {
+                          "entity": "sensor.pyl_temp8"
+                        },
+                        {
+                          "entity": "sensor.pyl_vhigh8"
+                        },
+                        {
+                          "entity": "sensor.pyl_vlow8"
+                        },
+                        {
+                          "entity": "sensor.pyl_lifecyle8",
+                          "icon": "mdi:cards-heart-outline"
+                        }
+                      ],
+                      "title": "BATTERIE 8"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "onduleur",
+          "path": "onduleur",
+          "icon": "mdi:solar-power-variant",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ha_puissance_pv1",
+                      "secondary_info": "none",
+                      "name": "Puissance"
+                    },
+                    {
+                      "entity": "sensor.ha_tension_pv1",
+                      "name": "Tension"
+                    },
+                    {
+                      "entity": "sensor.ha_courant_pv1",
+                      "name": "Courant"
+                    }
+                  ],
+                  "title": "PV1"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ha_puissance_pv2",
+                      "name": "Puissance",
+                      "icon": "mdi:solar-power"
+                    },
+                    {
+                      "entity": "sensor.ha_tension_pv2",
+                      "name": "Tension"
+                    },
+                    {
+                      "entity": "sensor.ha_courant_pv2",
+                      "name": "Courant"
+                    }
+                  ],
+                  "title": "PV2"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.ha_puissance_batterie"
+                },
+                {
+                  "entity": "sensor.ha_courant_batterie"
+                },
+                {
+                  "entity": "sensor.ha_tension_batterie"
+                },
+                {
+                  "entity": "sensor.ha_puissance_charge_batterie"
+                },
+                {
+                  "entity": "sensor.ha_puissance_decharge_batterie"
+                }
+              ],
+              "title": "Batterie"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "select.mode_onduleur"
+                },
+                {
+                  "entity": "select.priorite_source_de_charge"
+                },
+                {
+                  "entity": "select.type_de_batterie"
+                },
+                {
+                  "entity": "select.courant_de_charge_max"
+                },
+                {
+                  "entity": "select.tension_retour_batterie"
+                },
+                {
+                  "entity": "select.tension_retour_edf"
+                },
+                {
+                  "entity": "select.tension_arret_total_batterie"
+                },
+                {
+                  "entity": "select.floating"
+                }
+              ],
+              "title": "Reglages"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.ha_onduleur_puissance"
+                },
+                {
+                  "entity": "sensor.ha_tension_onduleur"
+                },
+                {
+                  "entity": "sensor.ha_frequence_onduleur"
+                },
+                {
+                  "entity": "sensor.ha_onduleur_temperature"
+                },
+                {
+                  "entity": "sensor.ha_tension_edf"
+                },
+                {
+                  "entity": "sensor.ha_frequence_edf"
+                }
+              ],
+              "title": "Onduleur"
+            }
+          ]
+        },
+        {
+          "title": "solaire",
+          "path": "solaire",
+          "icon": "mdi:solar-power",
+          "subview": true,
+          "badges": [],
+          "cards": []
+        },
+        {
+          "title": "setup base",
+          "path": "setup-base",
+          "subview": true,
+          "icon": "mdi:cog",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "select.tension_parc_batterie"
+                },
+                {
+                  "entity": "switch.pylontech"
+                },
+                {
+                  "entity": "switch.jkbms"
+                },
+                {
+                  "entity": "switch.broker_mqtt_externe"
+                }
+              ],
+              "title": "Options",
+              "show_header_toggle": false,
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "switch.elfin_onduleur"
+                },
+                {
+                  "entity": "text.adresse_ip_elfin_onduleur"
+                },
+                {
+                  "entity": "switch.elfin_pylontech"
+                },
+                {
+                  "entity": "text.adresse_ip_elfin_pylontech"
+                }
+              ],
+              "title": "Elfin",
+              "show_header_toggle": false,
+              "state_color": true
+            }
+          ]
+        },
+        {
+          "title": "setup onduleur",
+          "path": "setup-onduleur",
+          "icon": "mdi:cog-outline",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "select.mode_onduleur"
+                },
+                {
+                  "entity": "select.easun_smx2_mode_charge_batterie"
+                },
+                {
+                  "entity": "select.tension_parc_batterie"
+                },
+                {
+                  "entity": "select.courant_de_charge_max_solaire_edf"
+                },
+                {
+                  "entity": "select.tension_retour_batterie"
+                },
+                {
+                  "entity": "select.tension_retour_edf"
+                },
+                {
+                  "entity": "select.tension_arret_total_batterie"
+                },
+                {
+                  "entity": "select.floating"
+                }
+              ],
+              "title": "Paramètres"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.ha_puissance_charge_batterie",
+                  "name": "Batt Charge (Watt)"
+                },
+                {
+                  "entity": "sensor.ha_puissance_decharge_batterie",
+                  "name": "Batt deharge (Watt)"
+                },
+                {
+                  "entity": "sensor.ha_tension_onduleur",
+                  "name": "Tension Onduleur [V]"
+                },
+                {
+                  "entity": "sensor.ha_onduleur_puissance",
+                  "name": "Conso Maison (Watt)"
+                },
+                {
+                  "entity": "sensor.ha_puissance_pv1",
+                  "name": "PV Puissance (Watt)"
+                },
+                {
+                  "entity": "sensor.ha_tension_pv1",
+                  "name": "PV Voltage (Volt)"
+                },
+                {
+                  "entity": "sensor.ha_onduleur_temperature",
+                  "name": "Temperature (°)"
+                }
+              ],
+              "title": "Valeurs actuelles"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

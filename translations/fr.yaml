@@ -1,0 +1,63 @@
+configuration:
+  licence:
+    name: Licence
+    description: >-
+      Eregistrer votre licence sur https://domosimple.eu/licence.php. (voir documentation)
+  onduleur:
+    name: Choix de l'onduleur
+    description: >-
+      Choisir votre type d'onduleur.
+  listonduleur:
+    name: Liste des onduleurs
+    description: >-
+      Choix du port usb ou ip de l'onduleur. ("false" pour ne pas l'utiliser) 
+  interval:
+    name: Intervalle pour l'onduleur (en seconde)
+    description: >-
+      Intervalle en seconde pour chaque communication avec l’onduleur (déconseillé de baisser en dessous de 2 secondes)
+  listbatterie:
+    name: Liste des Batteries
+    description: >-
+      Choix du port usb ou ip de la batterie. ("false" pour ne pas l'utiliser)
+  intervalBatt:
+    name: Intervalle pour les batteries (en seconde)
+    description: >-
+      Intervalle en seconde pour chaque communication avec les batteries (déconseillé de baisser en dessous de 7 secondes)
+  nameEntities:
+    name: Nom des entités
+    description: >-
+      Choisir des noms personnalisés
+  batterie:
+    name: Choix de la Batterie
+    description: >-
+      Choisir le type de batterie.
+  mqtt:
+    name: Paramètres MQTT
+  usbbatterie:
+    name: Choix port usb de la batterie
+    description: >-
+      Choisir le port usb de la batterie. ("false" pour ne pas l'utiliser)
+  elfinonduleur:
+    name: Activer le elfin
+    description: >-
+      Activer le elfin pour l'onduleur (usb sera désactivé)
+  elfinonduleurip:
+    name: Adresse elfin Onduleur
+    description: >-
+      Adresse ip du elfin de l'onduleur.
+  elfinonduleurport:
+    name: Port elfin Onduleur
+    description: >-
+      Port du elfin de l'onduleur.
+  elfinbatterie:
+    name: Activer le elfin
+    description: >-
+      Activer le elfin pour la batterie (usb sera désactivé)
+  elfinbatterieip:
+    name: Adresse elfin batterie
+    description: >-
+      Adresse ip du elfin de la batterie.
+  elfinbatterieport:
+    name: Port elfin batterie
+    description: >-
+      Port du elfin de la batterie.

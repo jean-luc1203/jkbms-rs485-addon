@@ -1,0 +1,6 @@
+{
+  "name": "Smartphoton JKBMS RS485 Home Assistant Addon",
+  "udev": true,
+  "url": "https://github.com/jean-luc1203/jkbms-rs485-addon/",
+  "maintainer": "Smartphoton - Jean-Luc Martinelli - JLM"
+}
