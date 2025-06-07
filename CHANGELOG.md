@@ -1,3 +1,6 @@
+## 1.0.6
+Modification config menu
+
 ## 1.0.5
 Modification config menu
 
