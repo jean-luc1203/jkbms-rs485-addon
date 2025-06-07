@@ -1,5 +1,8 @@
+## 1.0.5
+Modification config menu
+
 ## 1.0.4
-Access right ton init nodered
+Access right to init nodered
 
 ## 1.0.3
 Reconstruction from Linux machine
