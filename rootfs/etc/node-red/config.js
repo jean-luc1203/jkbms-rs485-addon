@@ -1,4 +1,4 @@
-const config = require("/config/smartphoton/settings.js");
+const config = require("/config/smartphoton/jkbms/settings.js");
 const fs = require("fs");
 const options = JSON.parse(fs.readFileSync("/data/options.json", "utf8"));
 const bcrypt = require("bcryptjs");
@@ -12,10 +12,10 @@ if ("theme" in options) {
 // Sane and required defaults for the add-on
 config.debugUseColors = false;
 config.flowFile = "flows.json";
-config.nodesDir = "/config/smartphoton/nodes";
+config.nodesDir = "/config/smartphoton/jkbms/nodes";
 //config.uiHost = "127.0.0.1";
-config.uiPort = 1890;
-config.userDir = "/config/smartphoton/";
+config.uiPort = 1891;
+config.userDir = "/config/smartphoton/jkbms/";
 
 //Set path for HTTP_Nodes to be served from avoiding lua auth
 config.httpNodeRoot = "/endpoint";
@@ -34,7 +34,7 @@ config.contextStorage = {
          default: {
              module: 'localfilesystem',
              config: {
-                 dir: '/config/smartphoton/global-variables',
+                 dir: '/config/smartphoton/jkbms/global-variables',
                  flushInterval: '5'
                }
          }

@@ -32,39 +32,25 @@ map:
   - share:rw
   - ssl
 options:
-  listbatterie:
-    - chemin: "false"
-      type: serial
-      batterie: jkbms
-      nbSlave: 1
+  nbre-batterie:
+    nbSlave: 1
   mqtt:
-    mqttadresse: ""
-    mqttport: ""
-    mqttuser: ""
-    mqttpass: ""
-
-  #lovelace: false
-  #panneaux: "panneaux"
-  batteries: "batteries"
+    mqttadresse: "core-mosquitto.local.hass.io"
+    mqttport: "1883"
+    mqttuser: "username"
+    mqttpass: "password"
   ssl: false
   certfile: fullchain.pem
   keyfile: privkey.pem
 schema:
-  #onduleur: list(voltronic|easun)
-  listbatterie:
-    - chemin: "str"
-      type: list(false|ip|serial|rs485)?
-      batterie: list(false|pylontech|jkbms)?
-      nbSlave: int?
+  nbre-batterie:
+    nbSlave: int?
   mqtt:
     mqttadresse: str?
     mqttport: port?
     mqttuser: str?
     mqttpass: password?
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
-  #lovelace: bool
-  #panneaux: str
-  batteries: str
   ssl: bool
   certfile: str
   keyfile: str
