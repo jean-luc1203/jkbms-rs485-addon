@@ -1,3 +1,5 @@
+console.log("✅ config.js is being loaded");
+
 const config = require("/config/smartphoton/jkbms/settings.js");
 const fs = require("fs");
 const options = JSON.parse(fs.readFileSync("/data/options.json", "utf8"));
