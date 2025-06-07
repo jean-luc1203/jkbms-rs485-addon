@@ -32,8 +32,9 @@ map:
   - share:rw
   - ssl
 options:
-  nbre-batterie:
-    nbSlave: 1
+  list-jkbms:
+    path: "/dev/ttyUSB0"
+    nb-jkbms: 1
   mqtt:
     mqttadresse: "core-mosquitto.local.hass.io"
     mqttport: "1883"
@@ -43,8 +44,9 @@ options:
   certfile: fullchain.pem
   keyfile: privkey.pem
 schema:
-  nbre-batterie:
-    nbSlave: int?
+  list-jkbms:
+    - chemin: str
+      nb-jkbms: int?
   mqtt:
     mqttadresse: str?
     mqttport: port?
