@@ -32,7 +32,7 @@ map:
   - share:rw
   - ssl
 options:
-  list-jkbms:
+  jkbms:
     path: "/dev/ttyUSB0"
     nb-jkbms: 1
   mqtt:
@@ -44,7 +44,7 @@ options:
   certfile: fullchain.pem
   keyfile: privkey.pem
 schema:
-  list-jkbms:
+  jkbms:
     - chemin: str
       nb-jkbms: int?
   mqtt:
