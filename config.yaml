@@ -33,8 +33,8 @@ map:
   - ssl
 options:
   jkbms:
-    path: "/dev/ttyUSB0"
-    nb-jkbms: 1
+    -  path: "/dev/ttyUSB0"
+       nb-jkbms: 1
   mqtt:
     mqttadresse: "core-mosquitto.local.hass.io"
     mqttport: "1883"
