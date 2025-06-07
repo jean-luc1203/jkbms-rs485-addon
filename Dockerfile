@@ -55,8 +55,10 @@ RUN \
 # Copy root filesystem
 # JLM COPY rootfs /
 # Garantir les droits dans l’image Docker
-COPY --chmod=755 rootfs/ /        # copie tout en conservant/exigeant 755
-RUN chmod +x /etc/s6-overlay/s6-rc.d/init-customizations/run
+RUN chmod +x \
+    /etc/s6-overlay/s6-rc.d/init-customizations/run \
+    /etc/s6-overlay/s6-rc.d/init-customizations/up \
+    /etc/s6-overlay/s6-rc.d/init-customizations/type
 
 # Health check
 HEALTHCHECK --start-period=10m \
