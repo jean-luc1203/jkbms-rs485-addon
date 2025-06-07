@@ -1,3 +1,6 @@
+## 1.0.4
+Access right ton init nodered
+
 ## 1.0.3
 Reconstruction from Linux machine
 
