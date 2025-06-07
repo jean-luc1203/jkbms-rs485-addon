@@ -45,11 +45,11 @@ options:
   keyfile: privkey.pem
 schema:
   jkbms:
-    - chemin: str
+    - path: str
       nb-jkbms: int?
   mqtt:
     mqttadresse: str?
-    mqttport: port?
+    mqttport: int?
     mqttuser: str?
     mqttpass: password?
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
