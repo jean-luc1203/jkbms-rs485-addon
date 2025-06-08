@@ -1,4 +1,5 @@
 console.log("✅ config.js is being loaded");
+console.log("✅ Node-RED is using userDir =", config.userDir);
 
 const config = require("/config/smartphoton_jkbms/settings.js");
 const fs = require("fs");
