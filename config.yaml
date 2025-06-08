@@ -1,5 +1,5 @@
 ---
-name: "Smartphoton JK-BMS RS485 management"
+name: "Smartphoton_JK-BMS RS485 management"
 version: 1.0.8
 slug: "smartphoton_jkbms"
 description: JK-BMS management via RS485 port
