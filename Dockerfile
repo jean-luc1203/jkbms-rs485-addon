@@ -60,10 +60,10 @@ RUN chmod +x \
     /etc/s6-overlay/s6-rc.d/init-customizations/run \
     /etc/s6-overlay/s6-rc.d/init-customizations/up \
     /etc/s6-overlay/s6-rc.d/init-customizations/type
-    
+
 # Health check
 HEALTHCHECK --start-period=10m \
-    CMD curl --fail http://127.0.0.1:1890 || exit 1
+    CMD curl --fail http://127.0.0.1:1891 || exit 1
 
 # Build arguments
 ARG BUILD_ARCH

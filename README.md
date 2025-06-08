@@ -1,5 +1,7 @@
 # JK-BMS Node-RED Manager
 
+#   !!!!!   Please note that this version is not yet functional  !!!!!
+
 Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 
 ## Features
@@ -62,4 +64,3 @@ To report problems or request features, use GitHub issues.
 MIT License
 
 *** Translated with www.DeepL.com/Translator (free version) ***
-

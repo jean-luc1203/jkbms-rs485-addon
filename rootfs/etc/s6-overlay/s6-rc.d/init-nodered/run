@@ -16,43 +16,43 @@ declare port
 #fi
 
 # Ensure configuration exists
-if ! bashio::fs.directory_exists '/config/smartphoton/'; then
-    mkdir -p /config/smartphoton/nodes \
+if ! bashio::fs.directory_exists '/config/smartphoton_jkbms/'; then
+    mkdir -p /config/smartphoton_jkbms/nodes \
         || bashio::exit.nok "Failed to create node-red configuration directory"
 
     # Copy in template files
-    cp /etc/node-red/flows.json /config/smartphoton/
-    cp /etc/node-red/settings.js /config/smartphoton/
-	
+    cp /etc/node-red/flows.json /config/smartphoton_jkbms/
+    cp /etc/node-red/settings.js /config/smartphoton_jkbms/
+
 
     # Create random flow id
     id=$(node -e "console.log((1+Math.random()*4294967295).toString(16));")
-    sed -i "s/%%ID%%/${id}/" "/config/smartphoton/flows.json"
+    sed -i "s/%%ID%%/${id}/" "/config/smartphoton_jkbms/flows.json"
 fi
 
 # Vérification de version
-if ! bashio::fs.file_exists '/config/smartphoton/version'; then
-  touch /config/smartphoton/version
+if ! bashio::fs.file_exists '/config/smartphoton_jkbms/version'; then
+  touch /config/smartphoton_jkbms/version
   VERSION=$(bashio::addon.version)
-  echo $VERSION >> /config/smartphoton/version
-  chmod 775 /config/smartphoton/version
+  echo $VERSION >> /config/smartphoton_jkbms/version
+  chmod 775 /config/smartphoton_jkbms/version
   bashio::log.info "${VERSION}"
-  
+
 else
 
-  VERSIONOLD=$(cat /config/smartphoton/version)
+  VERSIONOLD=$(cat /config/smartphoton_jkbms/version)
   VERSION=$(bashio::addon.version)
-  
+
   if [ $VERSIONOLD != $VERSION ]; then
-  
+
     bashio::log.info "Mise a jour de la nouvelle version"
-  
-    if bashio::fs.file_exists '/config/smartphoton/flows.backup'; then
-      rm /config/smartphoton/flows.backup
+
+    if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
+      rm /config/smartphoton_jkbms/flows.backup
     fi
-	mv /config/smartphoton/flows.json /config/smartphoton/flows.backup
-	cp /etc/node-red/flows.json /config/smartphoton/
-	
+	mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
+	cp /etc/node-red/flows.json /config/smartphoton_jkbms/
+
 	#if bashio::fs.file_exists '/config/.storage/lovelace.dashboard_smartphoton.backup'; then
     #  rm /config/.storage/lovelace.dashboard_smartphoton.backup
     #fi
@@ -60,28 +60,28 @@ else
     #  mv /config/.storage/lovelace.dashboard_smartphoton /config/.storage/lovelace.dashboard_smartphoton.backup
 	#  cp /etc/node-red/lovelace.dashboard_smartphoton /config/.storage/
     #fi
-	
+
   fi
-  
+
 fi
 
 #Remplace le fichier flows par celui d'origine
-if bashio::fs.file_exists '/config/smartphoton/flows.backup'; then
-      rm /config/smartphoton/flows.backup
+if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
+      rm /config/smartphoton_jkbms/flows.backup
 fi
-mv /config/smartphoton/flows.json /config/smartphoton/flows.backup
-cp /etc/node-red/flows.json /config/smartphoton/
+mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
+cp /etc/node-red/flows.json /config/smartphoton_jkbms/
 
 
 
 
-if bashio::fs.file_exists '/config/smartphoton/elfinOnduleur'; then
-	rm /config/smartphoton/elfinOnduleur
+if bashio::fs.file_exists '/config/smartphoton_jkbms/elfinOnduleur'; then
+	rm /config/smartphoton_jkbms/elfinOnduleur
 fi
 
 
-if bashio::fs.file_exists '/config/smartphoton/elfinBatterie'; then
-	rm /config/smartphoton/elfinBatterie
+if bashio::fs.file_exists '/config/smartphoton_jkbms/elfinBatterie'; then
+	rm /config/smartphoton_jkbms/elfinBatterie
 fi
 
 

@@ -1,5 +1,7 @@
 # Smartphoton JK-BMS-RS485 Add-on Home Assistant based on node red
 
+#   !!!!!   Please note that this version is not yet functional  !!!!!
+
 Smartphoton JK-BMS-RS485 is a BMS management add-on via RS485 port (wired) from the JKong company
 
 **BMS Type**

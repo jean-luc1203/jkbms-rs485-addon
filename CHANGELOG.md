@@ -1,3 +1,6 @@
+## 1.0.7
+Change Path working directory
+
 ## 1.0.6
 Modification config menu
 
