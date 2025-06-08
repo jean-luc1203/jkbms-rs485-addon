@@ -1,3 +1,6 @@
+## 1.0.8
+Change slug
+
 ## 1.0.7
 Change Path working directory
 
