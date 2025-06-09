@@ -1,3 +1,6 @@
+## 1.0.10
+Change Readme.md to reflect the new design of the software
+
 ## 1.0.9
 Change config.js & Installation of my flows
 
