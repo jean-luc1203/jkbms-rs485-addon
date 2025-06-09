@@ -1,3 +1,6 @@
+## 1.0.9
+Change config.js & Installation of my flows
+
 ## 1.0.8
 Change slug
 
