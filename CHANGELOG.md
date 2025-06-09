@@ -1,3 +1,6 @@
+## 1.0.11
+Change DOCS.md to reflect the new documentation of the software
+
 ## 1.0.10
 Change Readme.md to reflect the new design of the software
 
