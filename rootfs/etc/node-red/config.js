@@ -1,7 +1,7 @@
 console.log("✅ config.js is being loaded");
-console.log("✅ Node-RED is using userDir =", config.userDir);
 
 const config = require("/config/smartphoton_jkbms/settings.js");
+
 const fs = require("fs");
 const options = JSON.parse(fs.readFileSync("/data/options.json", "utf8"));
 const bcrypt = require("bcryptjs");
@@ -16,6 +16,9 @@ config.nodesDir = "/config/smartphoton_jkbms/nodes";
 config.uiPort = 1891;
 config.userDir = "/config/smartphoton_jkbms/";
 config.httpNodeRoot = "/endpoint";
+
+console.log("✅ Node-RED is using userDir =", config.userDir);
+console.log("✅ Node-RED is using uiPort =", config.uiPort);
 
 config.credentialSecret = "domosimple";
 config.flowFilePretty = true;
