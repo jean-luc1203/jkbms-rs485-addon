@@ -34,7 +34,7 @@
         "id": "dfa2ea8601dc4518",
         "type": "tab",
         "label": "Dashboard",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -481,6 +481,29 @@
         "h": 242
     },
     {
+        "id": "58578674e7f69c99",
+        "type": "group",
+        "z": "2d882136a35b2d36",
+        "name": "Récupération des variables définies dans la configuration du module depuis l'onglet configuration de HAOS",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "e3d2b4d505d7c3b1",
+            "d3a91a0be3d32cfa",
+            "6a484576febf2df9",
+            "c5b68a34de9a9c28",
+            "697f593b67e21ceb",
+            "307c4ac37254eba4"
+        ],
+        "x": 34,
+        "y": 219,
+        "w": 1032,
+        "h": 122
+    },
+    {
         "id": "8d42d70f697c6b57",
         "type": "group",
         "z": "e437f2f44495aeb9",
@@ -646,29 +669,6 @@
         "x": 374,
         "y": 379,
         "w": 562,
-        "h": 122
-    },
-    {
-        "id": "58578674e7f69c99",
-        "type": "group",
-        "z": "2d882136a35b2d36",
-        "name": "Récupération des variables définies dans la configuration du module depuis l'onglet configuration de HAOS",
-        "style": {
-            "stroke": "#000000",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "e3d2b4d505d7c3b1",
-            "d3a91a0be3d32cfa",
-            "6a484576febf2df9",
-            "c5b68a34de9a9c28",
-            "697f593b67e21ceb",
-            "307c4ac37254eba4"
-        ],
-        "x": 34,
-        "y": 219,
-        "w": 1032,
         "h": 122
     },
     {
@@ -895,103 +895,6 @@
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
-    },
-    {
-        "id": "71c0889bedeba754",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey",
-                "palette": "light"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
     },
     {
         "id": "d7bba5b6c3974417",
@@ -1234,7 +1137,7 @@
         "z": "2d882136a35b2d36",
         "g": "90972d3c7f38ea12",
         "name": "Setup USB Port",
-        "func": "// récupère le port série à utiliser\n    msg.payload = {\n    \"serialport\": global.get(\"USB_serial_port\"),\n    \"serialbaud\": 115800,\n    \"databits\": 8,\n    \"parity\": \"none\",\n    \"stopbits\": 1,\n    \"enabled\": true\n    }\n\n    node.send(msg)",
+        "func": "// récupère le port série à utiliser\n    msg.payload = {\n    \"serialport\": global.get(\"path\"),\n    \"serialbaud\": 115800,\n    \"databits\": 8,\n    \"parity\": \"none\",\n    \"stopbits\": 1,\n    \"enabled\": true\n    }\n\n    node.send(msg)",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1463,7 +1366,7 @@
         "z": "2d882136a35b2d36",
         "g": "44faab0d8759f989",
         "name": "Défiition du Broker",
-        "func": "msg.action = \"connect\";\nmsg.broker = '{\"broker\":\"' + global.get(\"Broker_IP\")+'\",'\n    + '\"port\":\"' + global.get(\"Broker_Port\")+'\",'\n    + '\"username\":\"' + global.get(\"Broker_User\")+'\",'\n    + '\"password\":\"' + global.get(\"Broker_Password\")+'\"'\n    +'}';\nreturn msg\n\n\n",
+        "func": "msg.action = \"connect\";\nmsg.broker = '{\"broker\":\"' + global.get(\"mqttadresse\")+'\",'\n    + '\"port\":\"' + global.get(\"mqttport\")+'\",'\n    + '\"username\":\"' + global.get(\"mqttuser\")+'\",'\n    + '\"password\":\"' + global.get(\"mqttpass\")+'\"'\n    +'}';\nreturn msg\n\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1537,6 +1440,7 @@
         "id": "b558512e932294f3",
         "type": "inject",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "Déclencher Sauvegarde",
         "props": [
@@ -1567,6 +1471,7 @@
         "id": "775a0c31e77378c1",
         "type": "function",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "Sauvegarder Variables",
         "func": "// Ce code récupère les variables globales spécifiées et les sauvegarde dans un fichier JSON\n\nfunction saveGlobalVariables(msg) {\n    // Récupération des variables globales spécifiques\n    const configVariables = {\n        Broker_IP: global.get(\"Broker_IP\") || \"\",\n        Broker_Password: global.get(\"Broker_Password\") || \"\",\n        Broker_Port: global.get(\"Broker_Port\") || 1883,\n        Broker_User: global.get(\"Broker_User\") || \"\",\n        Number_of_BMS: global.get(\"Number_of_BMS\") || 0,\n        USB_serial_port: global.get(\"USB_serial_port\") || \"\"\n    };\n\n    // Conversion en JSON avec formatage pour meilleure lisibilité\n    const jsonData = JSON.stringify(configVariables, null, 2);\n\n    // Préparation du message pour le nœud file\n    msg.payload = jsonData;\n    msg.filename = \"/data/config_variables.json\"; // Adaptez le chemin selon votre installation\n    \n    node.status({fill:\"green\", shape:\"dot\", text:\"Variables sauvegardées\"});\n    return msg;\n}\n\nreturn saveGlobalVariables(msg);\n",
@@ -1588,6 +1493,7 @@
         "id": "320400a815bfc063",
         "type": "file",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "",
         "filename": "/data/config_variables.json",
@@ -1609,6 +1515,7 @@
         "id": "71357a03a76a1030",
         "type": "inject",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "Déclencher au Démarrage",
         "props": [
@@ -1639,6 +1546,7 @@
         "id": "b0db0cc1e97ef4e3",
         "type": "file in",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "Lire Fichier Config",
         "filename": "/data/config_variables.json",
@@ -1661,6 +1569,7 @@
         "id": "8cd654ec0967fcf6",
         "type": "debug",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "debug 28",
         "active": false,
@@ -1678,6 +1587,7 @@
         "id": "d03f4d01fe7ccfc5",
         "type": "function",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "Charger Variables",
         "func": "// CHARGEMENT DES VARIABLES GLOBALES AU DÉMARRAGE\n// Nœud function \"Charger Variables\"\n\n// Fonction pour créer un fichier de configuration par défaut\nfunction createDefaultVariables(node, msg) {\n    // Valeurs par défaut\n    const defaultConfig = {\n        Broker_IP: \"localhost\",\n        Broker_Password: \"\",\n        Broker_Port: 1883,\n        Broker_User: \"\",\n        Number_of_BMS: 1,\n        USB_serial_port: \"/dev/ttyUSB0\"\n    };\n    \n    // Assigner les valeurs par défaut aux variables globales\n    Object.keys(defaultConfig).forEach(key => {\n        global.set(key, defaultConfig[key]);\n    });\n    \n    // Créer le fichier de configuration par défaut\n    msg.payload = JSON.stringify(defaultConfig, null, 2);\n    msg.filename = \"/data/config_variables.json\";\n    \n    // Pour envoyer à un nœud file pour sauvegarde\n    node.status({fill:\"yellow\", shape:\"dot\", text:\"Valeurs par défaut créées\"});\n    node.log(\"Fichier de configuration par défaut créé\");\n    \n    return msg;\n}\n\n// Fonction principale pour charger les variables\nfunction loadGlobalVariables(msg) {\n    try {\n        // Conversion du contenu JSON en objet JavaScript\n        const configVariables = JSON.parse(msg.payload);\n        \n        // Vérification et assignation des variables globales\n        if (configVariables.Broker_IP !== undefined) \n            global.set(\"Broker_IP\", configVariables.Broker_IP);\n        \n        if (configVariables.Broker_Password !== undefined) \n            global.set(\"Broker_Password\", configVariables.Broker_Password);\n        \n        if (configVariables.Broker_Port !== undefined) \n            global.set(\"Broker_Port\", configVariables.Broker_Port);\n        \n        if (configVariables.Broker_User !== undefined) \n            global.set(\"Broker_User\", configVariables.Broker_User);\n        \n        if (configVariables.Number_of_BMS !== undefined) \n            global.set(\"Number_of_BMS\", configVariables.Number_of_BMS);\n        \n        if (configVariables.USB_serial_port !== undefined) \n            global.set(\"USB_serial_port\", configVariables.USB_serial_port);\n        \n        // Message de confirmation\n        node.status({fill:\"green\", shape:\"dot\", text:\"Variables chargées\"});\n        node.log(\"Variables de configuration chargées avec succès\");\n        \n        // Valeurs chargées pour debug/vérification\n        msg.payload = configVariables;\n        return [msg, null]; // Premier port de sortie\n    } catch (error) {\n        // Gestion d'erreur\n        node.status({fill:\"red\", shape:\"ring\", text:\"Erreur de chargement\"});\n        node.error(\"Erreur lors du chargement des variables: \" + error.message);\n        \n        // On crée un fichier par défaut en cas d'erreur\n        const defaultMsg = createDefaultVariables(node, msg);\n        return [null, defaultMsg]; // Deuxième port de sortie\n    }\n}\n\n// Exécution principale\nreturn loadGlobalVariables(msg);",
@@ -1699,6 +1609,7 @@
         "id": "d58f55104cf0689b",
         "type": "debug",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "debug 29",
         "active": true,
@@ -1716,6 +1627,7 @@
         "id": "57217d3eaacd8969",
         "type": "debug",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "debug 31",
         "active": false,
@@ -1733,6 +1645,7 @@
         "id": "cd796d78d0986bb3",
         "type": "link in",
         "z": "2d882136a35b2d36",
+        "d": true,
         "g": "3b674a0c673b7683",
         "name": "Sauvegarde_parametres_in",
         "links": [
@@ -1747,110 +1660,6 @@
                 "775a0c31e77378c1"
             ]
         ]
-    },
-    {
-        "id": "9dc18132143b3952",
-        "type": "function",
-        "z": "2d882136a35b2d36",
-        "name": "Récupération variables",
-        "func": "// Récupération des variables définies dans le menu configuration de HA\nconst mqttBroker = env.get(\"MQTT_BROKER\");\nconst serialPort = env.get(\"SERIAL_PORT\");\n// défini les variables\n    msg.payload = {\n    \"mqttBroker\": mqttBroker,\n    \"serialPort\": serialPort\n    }\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 920,
-        "wires": [
-            [
-                "501c22f826398053"
-            ]
-        ]
-    },
-    {
-        "id": "31870046f3802527",
-        "type": "inject",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 170,
-        "y": 920,
-        "wires": [
-            [
-                "9dc18132143b3952",
-                "402ec67d8d831b8d"
-            ]
-        ]
-    },
-    {
-        "id": "501c22f826398053",
-        "type": "debug",
-        "z": "2d882136a35b2d36",
-        "name": "debug 20",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 610,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "402ec67d8d831b8d",
-        "type": "function",
-        "z": "2d882136a35b2d36",
-        "name": "Récupération variables",
-        "func": "// Récupération des variables définies dans le menu configuration de HA\nmsg.bms_count = process.env.BMS_COUNT;\nmsg.mqtt_broker = process.env.MQTT_BROKER;\nmsg.mqtt_user = process.env.MQTT_USER;\nmsg.mqtt_password = process.env.MQTT_PASSWORD;\nmsg.serial_port = process.env.SERIAL_PORT;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 960,
-        "wires": [
-            [
-                "f6ea837d3e1ac356"
-            ]
-        ]
-    },
-    {
-        "id": "f6ea837d3e1ac356",
-        "type": "debug",
-        "z": "2d882136a35b2d36",
-        "name": "debug 44",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 620,
-        "y": 960,
-        "wires": []
     },
     {
         "id": "e3d2b4d505d7c3b1",
@@ -1925,10 +1734,9 @@
         "id": "c5b68a34de9a9c28",
         "type": "function",
         "z": "2d882136a35b2d36",
-        "d": true,
         "g": "58578674e7f69c99",
-        "name": "Config global variable",
-        "func": "msg.license = msg.payload.licence\n\n\nlet count = msg.payload.listonduleur.length //compte le nombre de usb\nglobal.set('countUSBOnduleur', count); //nombre d'onduleur\n\n//ajoute les config onduleur au globals\nfor (let i = 0; i < count; i++) {\n\n  let j = i + 1; //ajoute +1 pour demarrer a 1\n  let chemin = msg.payload.listonduleur[i].chemin;\n  let type = msg.payload.listonduleur[i].type\n  let onduleur = msg.payload.listonduleur[i].onduleur\n  let qpgs = (msg.payload.listonduleur[i].multionduleur == undefined) ? true :\n              msg.payload.listonduleur[i].multionduleur;\n  let full = (msg.payload.listonduleur[i].full == undefined) ? true :\n              msg.payload.listonduleur[i].full;\n  let battTension = (msg.payload.listonduleur[i].battTension == undefined) ? 48 :\n                     msg.payload.listonduleur[i].battTension\n\n\n  if (msg.payload.listonduleur[i].chemin != \"false\"){\n      global.set('onduleur' + j, true);\n      global.set('onduleurUsbPort' + j, chemin);\n      global.set('onduleurComType' + j, type);\n      global.set('onduleurType' + j, onduleur);\n      global.set('onduleurqpgs' + j, qpgs);\n      global.set('battTension' + j, battTension);\n      \n      global.set('onduleur' + j, undefined);\n      global.set('onduleurUsbPort' + j, undefined);\n      global.set('onduleurComType' + j, undefined);\n      global.set('onduleurType' + j, undefined);\n      global.set('onduleurqpgs' + j, undefined);\n      global.set('battTension' + j, undefined);\n\n\n      //futur config\n      global.set('onduleurs.onduleur_' + j + '.active', true);\n      global.set('onduleurs.onduleur_' + j + '.id', j);\n      global.set('onduleurs.onduleur_' + j + '.chemin', chemin);\n      global.set('onduleurs.onduleur_' + j + '.ComType', type);\n      global.set('onduleurs.onduleur_' + j + '.type', onduleur);\n      global.set('onduleurs.onduleur_' + j + '.qpgs', qpgs);\n      global.set('onduleurs.onduleur_' + j + '.full', full);\n      global.set('onduleurs.onduleur_' + j + '.battTension', battTension);\n  }\n\n}\n\n//Parametre généraux\nglobal.set(\"parametre.Version\", msg.payload.version); \nglobal.set(\"parametre.config.interval\", msg.payload.interval); //2 secondes\nglobal.set(\"parametre.config.intervalBatt\", msg.payload.intervalBatt); // 7000 ms pour 7 secondes\nglobal.set(\"parametre.config.debug\", msg.payload.debug);\nglobal.set('parametre.li.num', msg.license);\n\n//Nom Personalisé Onduleur\nglobal.set(\"name.Onduleur\", msg.payload.nameEntities.nameOnduleur); \nglobal.set(\"name.PV\", msg.payload.nameEntities.namePV);\nglobal.set(\"name.PV2\", msg.payload.nameEntities.namePV2);\nglobal.set(\"name.Batt_charge\", msg.payload.nameEntities.nameBatt_charge);\nglobal.set(\"name.Batt_batt_decharge\", msg.payload.nameEntities.nameBatt_batt_decharge);\nglobal.set(\"name.Batt_batt_chargedecharge\", msg.payload.nameEntities.nameBatt_batt_chargedecharge);\nglobal.set(\"name.Conso_maison\", msg.payload.nameEntities.nameConso_maison);\nglobal.set(\"name.conso_grid\", msg.payload.nameEntities.nameGrid_power);\nglobal.set(\"name.GridTension\", msg.payload.nameEntities.nameGridTension);\nglobal.set(\"name.BattTensiont\", msg.payload.nameEntities.nameBattTensiont);\nglobal.set(\"name.PvTensiont\", msg.payload.nameEntities.namePvTensiont);\nglobal.set(\"name.Pv2Tensiont\", msg.payload.nameEntities.namePv2Tensiont);\nglobal.set(\"name.OnduleurTension\", msg.payload.nameEntities.nameOnduleurTension);\nglobal.set(\"name.PvIntensite\", msg.payload.nameEntities.namePvIntensite);\nglobal.set(\"name.Pv2Intensite\", msg.payload.nameEntities.namePv2Intensite);\nglobal.set(\"name.BattChargeIntensite\", msg.payload.nameEntities.nameBattChargeIntensite);\nglobal.set(\"name.BattDechargeIntensite\", msg.payload.nameEntities.nameBattDechargeIntensite);\nglobal.set(\"name.OnduleurFrequency\", msg.payload.nameEntities.nameOnduleurFrequency);\nglobal.set(\"name.DataFrequency\", msg.payload.nameEntities.nameDataFrequency);\nglobal.set(\"name.BattCapacite\", msg.payload.nameEntities.nameBattCapacite);\nglobal.set(\"name.Mode\", msg.payload.nameEntities.nameMode);\nglobal.set(\"name.Temp\", msg.payload.nameEntities.nameTemp);\nglobal.set(\"name.Param01\", msg.payload.nameEntities.nameParam01);\nglobal.set(\"name.Param02\", msg.payload.nameEntities.nameParam02);\nglobal.set(\"name.Param05\", msg.payload.nameEntities.nameParam05);\nglobal.set(\"name.Param11\", msg.payload.nameEntities.nameParam11);\nglobal.set(\"name.Param12\", msg.payload.nameEntities.nameParam12);\nglobal.set(\"name.Param13\", msg.payload.nameEntities.nameParam13);\nglobal.set(\"name.Param16\", msg.payload.nameEntities.nameParam16);\nglobal.set(\"name.Param26\", msg.payload.nameEntities.nameParam26);\nglobal.set(\"name.Param27\", msg.payload.nameEntities.nameParam27);\nglobal.set(\"name.Param29\", msg.payload.nameEntities.nameParam29);\n\n\n\n//Batterie\n\nlet countBat = msg.payload.listbatterie.length; //compte le nombre de usb batterie\nglobal.set('countUSBBatterie', countBat); //nombre d'onduleur\n\n//ajoute les config Batteries au globals\nfor (let i = 0; i < countBat; i++) {\n\n  let j = i + 1; //ajoute +1 pour demarrer a 1\n  let chemin = msg.payload.listbatterie[i].chemin;\n  let type = msg.payload.listbatterie[i].type\n  let batterie = msg.payload.listbatterie[i].batterie\n\n  global.set(\"batterieUsbPort\", msg.payload.listbatterie[0].chemin); // port usb\n  global.set(\"batterieType\", msg.payload.listbatterie[0].type); //type d'batterie\n\n  if (msg.payload.listbatterie[i].chemin != \"false\") {\n    global.set('batterie' + j, true);\n    global.set('batterieUsbPort' + j, chemin);\n    global.set('batterieComType' + j, type);\n    global.set('batterieType' + j, batterie);\n\n     \n\n  }\n}\n\nglobal.set(\"batterieName\", 'Pylontech'); //nb batterie par defaut\nglobal.set(\"battNb\", '0'); //nb batterie par defaut\nglobal.set(\"battTension\", msg.payload.battTension); //type d'batterie\nglobal.set(\"batterieElfinActive\", msg.payload.elfinbatterie); //Utilisation du elfin\nglobal.set(\"batterieElfinAdresse\", msg.payload.elfinbatterieip); //adresse ip sous forme <<ip>>:<<port>>\nglobal.set(\"batterieElfinPort\", msg.payload.elfinbatterieport); //adresse ip sous forme <<ip>>:<<port>>\n\n//lovelace\nglobal.set(\"lovelace.lovelace\", msg.payload.lovelace); //Lovelace true/false\nglobal.set(\"lovelace.panneaux\", msg.payload.panneaux); //Lovelace nom panneau\nglobal.set(\"lovelace.batteries\", msg.payload.batteries); //Lovelace nom batteries\n\n//mqtt patrametre\nglobal.set(\"parametre.mqtt.Adresse\", msg.payload.mqtt.mqttadresse); //type d'batterie\nglobal.set(\"parametre.mqtt.Port\", msg.payload.mqtt.mqttport); //type d'batterie\nglobal.set(\"parametre.mqtt.Login\", msg.payload.mqtt.mqttuser); //type d'batterie\nglobal.set(\"parametre.mqtt.Password\", msg.payload.mqtt.mqttpass); //type d'batterie\nglobal.set(\"parametre.mqtt.DirSmart\", \"smartphoton\");\n\nif (msg.payload.mqtt.mqttInterne != undefined){\n  global.set(\"mqttInterne\", msg.payload.mqtt.mqttInterne);\n}\n\n//NOLAK",
+        "name": "Définir global variables",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Path depuis le premier élément jkbms\n    if (data.jkbms && data.jkbms.length > 0 && data.jkbms[0].path) {\n        global.set(\"path\", data.jkbms[0].path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms[0].path);\n    }\n    \n    // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\")\n        }\n    };\n    \n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1949,7 +1757,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "debug 97",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2785,7 +2593,7 @@
         "z": "e437f2f44495aeb9",
         "g": "efcb27eee8e0e602",
         "name": "msg.status",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3627,89 +3435,6 @@
         "x": 620,
         "y": 480,
         "wires": []
-    },
-    {
-        "id": "8e76e7d091360fc4",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "2",
-        "payloadType": "num",
-        "x": 170,
-        "y": 1600,
-        "wires": [
-            [
-                "5f293dcf7f68a851"
-            ]
-        ]
-    },
-    {
-        "id": "5f293dcf7f68a851",
-        "type": "change",
-        "z": "e437f2f44495aeb9",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "slaveAddress-Trame3",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 1580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "97f82d73f0fd2c38",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 170,
-        "y": 1560,
-        "wires": [
-            [
-                "5f293dcf7f68a851"
-            ]
-        ]
     },
     {
         "id": "f2fbf57365769c2d",

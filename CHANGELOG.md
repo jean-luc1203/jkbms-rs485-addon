@@ -1,3 +1,6 @@
+## 1.0.12
+New Flows with variable from the config menu
+
 ## 1.0.11
 Change DOCS.md to reflect the new documentation of the software
 
