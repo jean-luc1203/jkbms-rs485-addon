@@ -1,114 +1,91 @@
-# Smartphoton JK-BMS-RS485 Add-on Home Assistant based on node red
+# Smartphoton JK-BMS-RS485 Add-on Home Assistant 
+**this code is based on node red**
 
-#   !!!!!   Please note that this version is not yet functional  !!!!!
+#!!!   Please note that this version is not yet functional  !!!
 
-Smartphoton JK-BMS-RS485 is a BMS management add-on via RS485 port (wired) from the JKong company
-
+**Smartphoton JK-BMS-RS485** (*JKong company*
+) is a BMS management add-on that use an RS485 port (wired) 
 **BMS Type**
-* [x] PBxA1xS1xP
 
+* [x] **PBxA1xS1xP**
+
+---
+## <u>Explanations:</u>
+This add-on allows you to connect your Home Assistant machine (physical or virtual) to one or more Jkong BMSs. 
+To do this, you need to make an RJ45 cable with two wires connected as described below and plug it into the BMS. 
+The last port from the right is OK. There are two RS485 ports reserved for communications. 
+The second is used to connect the second BMS, if there is one. 
+Up to 15 BMSs can be connected to the same bus. These are straight cables.
+Data is collected approximately every 10 seconds. This will depend on the number of BMSs present.
+All data is available on the MQTT Broker, which allows it to be shared with other software. This is a very interesting point for those who have Jeedom, for example.
+
+<u>**Setting address:**</u>
+Each BMS **must have a different Modbus address**. Set this to 1 if possible. Addresses are set by the position of the DIP switches on the front of the BMS communication module. There must not be an address set to 0, nor any duplicate addresses.
+
+  * The acquisition part works perfectly and has been tested.
+  * The setup part is not yet fully functional. You can use the application for this if necessary. But for the most part, it works. I have not implemented any logic between the various parameters. The Jkong application does this perfectly.
+  * The static data part is fully functional.
 <br /><br />
 ---
-## Installation
----
+## <u>Installation:</u>
+
+### Via the add-on shop
 
 Installing this add-on is no different from installing any other Home Assistant add-on.
 
-1. Add the "https://github.com/jean-luc1203/Smartphoton-JK-BMS-RS485/" repository to the add-on shop
-1. Click the "Install" button to install the add-on...
-1. Configure your installation in the configuration menu.
-1. Start the "Smartphoton JK-BMS-RS485" add-on module.
-1. Check the "Smartphoton JK-BMS-RS485" logs to see if everything went well.
+1. Add this repository in Home Assistant: `https://github.com/jean-luc1203/jkbms-rs485-addon`
+2. Install the "Smartphoton_JKBMS RS485 Home Assistant Addon"
+3. Configure the parameters according to your installation
+4. Start the module
 
-You can use the [Smartphoton JK-BMS-RS485 Configuration][addon-config] for your yaml
+### Manual installation (for development)
+
+1. Clone this repository in the `/addons/` folder of your Home Assistant installation
+2. Reload the add-ons
+3. Install and configure
+
 
 <br /><br />
 
 
 ---
-## Battery
----
+## <u>Fields on the configuration tab</u>
+|                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **path**       | The path to the USB port where the Serial port RS485 adapter is connected to your machine. <u>For example</u>: */dev/serial/by-id/usb-1a86_USB_Serial-if00-port0* or */dev/ttyUSB0* if the port is unique. You can find the path to use in the Settings-System-Hardware-All Hardware menu, under ttyUSB. see the photo below                                                                                                                                                                                                                                                                     |
+|  **nb-jkbms**  |                                                                                                                                                                                                                                                                                                                            Number of JK BMSs to control (from 1 to 15)                                                                                                                                                                                                                           |
+| **mqttaddress**|                                                                                                                                                                                                                                                                                                                                                                      The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS                                                                                                                        |
+|  **mqttport**: |                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Port number of the MQTT broker                                                                                           |
+|  **mqttuser**  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Port number of the MQTT broker                                                              |
+|  **mqttpass**  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Password for MQTT authentication. **Put it in quotation marks**|
 
-### Option: `Choice of port Battery list or listbatterie`
-Choosing the battery's USB port. ("false" not to use it)<br />
-Chemin : ip ou serial. (<ip>:<port>) or /dev/serial/by-id/<serial name><br />
-Type : ip ou serial<br />
-Battery : choice of battery. false ou pylontech<br />
-nbSlave : Number of slave batteries (jkbms only)
+# <u>Yaml exemple:</u>
 
+
+*jkbms:
+  - path: /dev/ttyUSB0
+    nb-jkbms: 1
+mqtt:
+  mqttadresse: core-mosquitto.local.hass.io
+  mqttport: 1883
+  mqttuser: jlm
+  mqttpass: "12345678"
+ssl: false
+certfile: fullchain.pem
+keyfile: privkey.pem*
 
 <br /><br />
+## <u>Use</u>
+
+- BMS appear in MQTT devices
+
+![BMS-in-MQTT-devices](images/JKBMS-in-MQTT-devices.png)
+
+- Entities created
+
+![JKBMS-entities](images/JKBMS-entities.png)
+
 **example**
-```yaml
-- chemin: "false"
-```
-or for usb battery communication
-
-```yaml
-- chemin: /dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge_EQDPb115818-if00-port0
-  type: serial
-  batterie: pylontech
-```
-
-or for battery communication via ip or elfin
-
-```yaml
-- chemin: 192.168.1.252:8888
-  type: ip
-  batterie: pylontech
-```
-
-<br /><br />
-**Available options**
-
-<table style="width:100%; border-collapse: collapse;" border="1">
-  <thead>
-    <tr>
-      <th>Clé</th>
-      <th>chemin</th>
-      <th>type</th>
-      <th>batterie</th>
-      <th>nbSlave</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Nom</strong></td>
-      <td>chemin</td>
-      <td>type</td>
-      <td>batterie</td>
-      <td>nbSlave</td>
-    </tr>
-    <tr>
-      <td><strong>Valeur par défaut</strong></td>
-      <td>false</td>
-      <td>serial</td>
-      <td>pylontech</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td><strong>Obligatoire</strong></td>
-      <td>oui</td>
-      <td>oui</td>
-      <td>oui</td>
-      <td>non</td>
-    </tr>
-    <tr>
-      <td><strong>Pylontech</strong></td>
-      <td>Adresse ip, chemin serial</td>
-      <td>ip, serial</td>
-      <td>false, pylontech</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td><strong>JKBMS</strong></td>
-      <td>Adresse ip, chemin serial</td>
-      <td>ip, rs485</td>
-      <td>false, jkbms</td>
-      <td>1,2,3 ... 15</td>
-    </tr>
-  </tbody>
-</table>
 
 
 ---
@@ -118,15 +95,6 @@ You must have an mqtt broker (you can install it via the addon shop. [Addon Mosq
 You will then need to add mqtt integration (see mqtt doc)
 
 
-### Option:
-**mqttadresse** Address of your broker
-
-**mqttport** port broker
-
-**mqttuser** login user
-
-**mqttpass** login password
-<br /><br />
 ---
 ## Other options
 ---
@@ -147,26 +115,6 @@ more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
 
-### Option: `ssl` (non testé)
-
-Enables/Disables SSL (HTTPS) on the web interface.
-Set it `true` to enable it, `false` otherwise.
-
-**Note**: _The SSL settings only apply to direct access and has no effect
-on the Ingress service._
-
-### Option: `certfile`
-
-The certificate file to use for SSL.
-
-**Note**: _The file MUST be stored in `/ssl/`, which is the default_
-
-### Option: `keyfile`
-
-The private key file to use for SSL.
-
-**Note**: _The file MUST be stored in `/ssl/`, which is the default_
-
 
 ## Changelog & Releases
 ---
@@ -177,6 +125,7 @@ The private key file to use for SSL.
 - `MINOR`: Backwards-compatible new features and enhancements.
 - `PATCH`: Backwards-compatible bugfixes and package updates.
 
+![USB Material select](images/USB-choice.png)
 
 ## Support
 ---
@@ -188,7 +137,7 @@ The private key file to use for SSL.
 
 ## Authors & contributors
 ---
-Smartphoton JK-BMS-RS485, Jean-luc
+Smartphoton JK-BMS-RS485, Jean-luc - 2025
 
 The original setup of this repository is by [Franck Nijhof][frenck].
 
