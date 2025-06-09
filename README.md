@@ -1,4 +1,4 @@
-# JK-BMS Node-RED Manager
+# JK-BMS RS485 Home Assistant Addon
 
 #   !!!!!   Please note that this version is not yet functional  !!!!!
 
@@ -6,28 +6,33 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 
 ## Features
 
-- Integrated Node-RED interface for JK-BMS management
+- Configuration interface for JK-BMS software settings
 - Modbus RS485 communication
 - Control panel integrated into Home Assistant
 - Multi-BMS support
-- MQTT integration
+- MQTT integration (open to other software)
+
+## Screenshot
+
+![JKBMS-preview](images/JKBMS-preview.png)
 
 ## Configuration
 
 ### Available parameters
-
-- Number of BMS**: Number of JK BMS to manage (1-10)
-- MQTT broker IP address**: MQTT broker address for communication
-- Broker user**: User name for MQTT authentication (optional)
-- Broker Password**: Password for MQTT authentication (optional)
-- USB serial port**: Serial port for RS485 communication (e.g. /dev/ttyUSB0)
-
+ 
+- path:  The path to the USB port where the Serial port RS485 adapter is connected to your machine
+- nb-jkbms: Number of JK BMSs to control (from 1 to 15)
+- mqttaddress: The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS.
+- mqttport: Port number of the MQTT broker
+- mqttuser: User name for MQTT authentication
+- mqttpass: Password for MQTT authentication. Put it in quotation marks
+- 
 ## Installation
 
 ### Via the add-on shop
 
-1. Add this repository in Home Assistant: `https://github.com/{username}/jk-bms-nodered-addon`
-2. Install the "JK-BMS Node-RED Manager" module
+1. Add this repository in Home Assistant: `https://github.com/jean-luc1203/jkbms-rs485-addon`
+2. Install the "Smartphoton_JKBMS RS485 Home Assistant Addon"
 3. Configure the parameters according to your installation
 4. Start the module
 
@@ -39,20 +44,20 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 
 ## Use
 
-Once installed and configured, the Node-RED interface can be accessed via :
-`http://your-home-assistant-ip:1880`
+- BMS appear in MQTT devices
 
-JK-BMS flows will be automatically loaded and configured according to your settings.
+![BMS-in-MQTT-devices](images/JKBMS-in-MQTT-devices.png)
 
-## Node-RED dependencies
+- Entities created
 
-This module automatically installs :
-- `node-red-contrib-buffer-parser`
-- `@flowfuse/node-red-dashboard`
+![JKBMS-entities](images/JKBMS-entities.png)
+
 
 ## Authors & contributors
 
-The original setup of this repository is by Jean-Luc Martinelli or JLM.
+For the creation of the module under HAOS, I drew inspiration from Nolak's work for smartphoton 
+as well as assistance from various AI.
+The Node Red flow are from me. Jean-Luc Martinelli or JLM.
 
 
 ## Support
@@ -62,5 +67,3 @@ To report problems or request features, use GitHub issues.
 ## License
 
 MIT License
-
-*** Translated with www.DeepL.com/Translator (free version) ***
