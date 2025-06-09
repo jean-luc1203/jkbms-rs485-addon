@@ -1,3 +1,6 @@
+## 1.0.13
+Change nb-jkbms to nb_jkbms and the flows that use it
+
 ## 1.0.12
 New Flows with variable from the config menu
 

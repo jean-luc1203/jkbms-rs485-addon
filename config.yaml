@@ -1,6 +1,6 @@
 ---
 name: "Smartphoton_JK-BMS RS485 management"
-version: 1.0.12
+version: 1.0.13
 slug: "smartphoton_jkbms"
 description: JK-BMS management via RS485 port
 url: https://domosimple.eu/
@@ -34,7 +34,7 @@ map:
 options:
   jkbms:
     -  path: "/dev/ttyUSB0"
-       nb-jkbms: 1
+       nb_jkbms: 1
   mqtt:
     mqttadresse: "core-mosquitto.local.hass.io"
     mqttport: 1883
@@ -46,7 +46,7 @@ options:
 schema:
   jkbms:
     - path: str
-      nb-jkbms: int?
+      nb_jkbms: int?
   mqtt:
     mqttadresse: str?
     mqttport: int?
