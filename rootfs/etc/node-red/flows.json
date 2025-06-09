@@ -1279,13 +1279,6 @@
                 "pt": "global",
                 "to": "1",
                 "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "Broker_Port",
-                "pt": "global",
-                "to": "1883",
-                "tot": "num"
             }
         ],
         "action": "",
@@ -1736,7 +1729,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Path et nb-jkbms depuis le premier élément jkbms\n    if (data.jkbms && data.jkbms.length > 0) {\n        if (data.jkbms[0].path) {\n            global.set(\"path\", data.jkbms[0].path);\n            node.log(\"Variable globale 'path' définie: \" + data.jkbms[0].path);\n        }\n        \n        if (data.jkbms[0][\"nb-jkbms\"]) {\n            global.set(\"nb_jkbms\", data.jkbms[0][\"nb-jkbms\"]);\n            node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms[0][\"nb-jkbms\"]);\n        }\n    }\n    \n    // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            \"nb_jkbms\": global.get(\"nb_jkbms\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\")\n        }\n    };\n    \n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Path et nb_jkbms depuis le premier élément jkbms\n    if (data.jkbms && data.jkbms.length > 0) {\n        if (data.jkbms[0].path) {\n            global.set(\"path\", data.jkbms[0].path);\n            node.log(\"Variable globale 'path' définie: \" + data.jkbms[0].path);\n        }\n        \n        if (data.jkbms[0][\"nb_jkbms\"]) {\n            global.set(\"nb_jkbms\", data.jkbms[0][\"nb_jkbms\"]);\n            node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms[0][\"nb_jkbms\"]);\n        }\n    }\n    \n    // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            \"nb_jkbms\": global.get(\"nb_jkbms\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\")\n        }\n    };\n    \n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2593,7 +2586,7 @@
         "z": "e437f2f44495aeb9",
         "g": "efcb27eee8e0e602",
         "name": "msg.status",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
