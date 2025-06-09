@@ -21,7 +21,7 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 ### Available parameters
  
 - path:  The path to the USB port where the Serial port RS485 adapter is connected to your machine
-- nb-jkbms: Number of JK BMSs to control (from 1 to 15)
+- nb_jkbms: Number of JK BMSs to control (from 1 to 15)
 - mqttaddress: The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS.
 - mqttport: Port number of the MQTT broker
 - mqttuser: User name for MQTT authentication
