@@ -76,7 +76,7 @@ ssl: false
 certfile: fullchain.pem
 keyfile: privkey.pem`
 
-<br /><br />
+
 ## <u>Use</u>
 
 - BMS appear in MQTT `devices`
