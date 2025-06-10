@@ -33,7 +33,7 @@ map:
   - ssl
 options:
   jkbms:
-    -  path: "/dev/ttyUSB0"
+    -  path: "/dev/ttyUSBx"
        nb_jkbms: 1
   mqtt:
     mqttadresse: "core-mosquitto.local.hass.io"
