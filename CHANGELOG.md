@@ -1,6 +1,9 @@
+## 1.0.15
+First real tests with 2 JKBMS's
+
 ## 1.0.14
-Test call URL external 
-image from DOCS.md
+Test call URL external image from DOCS.md
+
 ## 1.0.13
 Change nb-jkbms to nb_jkbms and the flows that use it
 

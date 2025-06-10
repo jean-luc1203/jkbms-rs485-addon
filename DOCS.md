@@ -1,13 +1,14 @@
 # Smartphoton JK-BMS-RS485 Add-on Home Assistant 
-**this code is based on node red**
+**This code is based on [node red V4](https://nodered.org/)**
 
-#!!!   Please note that this version is not yet functional  !!!
+**Smartphoton JK-BMS-RS485** [(*JKong company*)](https://jikongbms.com/product-category/smart-bms/smart-lifepo4-bms/) is a BMS management add-on that use an RS485 port (wired)
 
-**Smartphoton JK-BMS-RS485** (*JKong company*
-) is a BMS management add-on that use an RS485 port (wired) 
 **BMS Type**
 
-* [x] **PBxA1xS1xP**
+* [x] **PB2A16S20P**
+* [x] **PB2A16S15P**
+* [x] **PB1A16S15P**
+* [x] **PB1A16S10P**
 
 ---
 ## <u>Explanations:</u>
@@ -52,17 +53,17 @@ Installing this add-on is no different from installing any other Home Assistant 
 ## <u>Fields on the configuration tab</u>
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **path**       | The path to the USB port where the Serial port RS485 adapter is connected to your machine. <u>For example</u>: */dev/serial/by-id/usb-1a86_USB_Serial-if00-port0* or */dev/ttyUSB0* if the port is unique. You can find the path to use in the Settings-System-Hardware-All Hardware menu, under ttyUSB. see the photo below                                                                                                                                                                                                                                                                     |
-|  **nb_jkbms**  |                                                                                                                                                                                                                                                                                                                            Number of JK BMSs to control (from 1 to 15)                                                                                                                                                                                                                           |
-| **mqttaddress**|                                                                                                                                                                                                                                                                                                                                                                      The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS                                                                                                                        |
-|  **mqttport**: |                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Port number of the MQTT broker                                                                                           |
-|  **mqttuser**  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Port number of the MQTT broker                                                              |
-|  **mqttpass**  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Password for MQTT authentication. **Put it in quotation marks**|
+| path       | The path to the USB port where the Serial port RS485 adapter is connected to your machine. <u>For example</u>: */dev/serial/by-id/usb-1a86_USB_Serial-if00-port0* or */dev/ttyUSB0* if the port is unique. You can find the path to use in the Settings-System-Hardware-All Hardware menu, under ttyUSB. see the photo below                                                                                                                                                                                                                                                                     |
+|  nb_jkbms  |                                                                                                                                                                                                                                                                                                                            Number of JK BMSs to control (from 1 to 15)                                                                                                                                                                                                                           |
+| mqttaddress|                                                                                                                                                                                                                                                                                                                                                                      The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS                                                                                                                        |
+|  mqttport |                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Port number of the MQTT broker                                                                                           |
+|  mqttuser  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Port number of the MQTT broker                                                              |
+|  mqttpass  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Password for MQTT authentication. Put it in quotation marks|
 
 # <u>Yaml exemple:</u>
 
 
-*jkbms:
+<kbd>jkbms:
   - path: /dev/ttyUSB0
     nb_jkbms: 1
 mqtt:
@@ -72,7 +73,7 @@ mqtt:
   mqttpass: "12345678"
 ssl: false
 certfile: fullchain.pem
-keyfile: privkey.pem*
+keyfile: privkey.pem</kbd>
 
 <br /><br />
 ## <u>Use</u>

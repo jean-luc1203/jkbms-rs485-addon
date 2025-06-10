@@ -1,9 +1,9 @@
 ---
-name: "Smartphoton_JK-BMS RS485 management"
-version: 1.0.14
+name: "Smartphoton JK-BMS RS485 wired management"
+version: 1.0.15
 slug: "smartphoton_jkbms"
-description: JK-BMS management via RS485 port
-url: https://domosimple.eu/
+description: JK-BMS management via RS485 & Rj45 port
+url: https://domosimple.eu/forum/forum-32.html
 ingress: false
 #ingress_port: 1891
 ingress_stream: false
