@@ -17,8 +17,6 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 ![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-preview.png)
 
 
-![JKBMS-preview](images/JKBMS-preview.png)
-
 ## Configuration
 
 ### Available parameters
