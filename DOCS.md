@@ -51,6 +51,7 @@ Installing this add-on is no different from installing any other Home Assistant 
 
 ---
 ## <u>Fields on the configuration tab</u>
+
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | path       | The path to the USB port where the Serial port RS485 adapter is connected to your machine. <u>For example</u>: */dev/serial/by-id/usb-1a86_USB_Serial-if00-port0* or */dev/ttyUSB0* if the port is unique. You can find the path to use in the Settings-System-Hardware-All Hardware menu, under ttyUSB. see the photo below                                                                                                                                                                                                                                                                     |
@@ -58,12 +59,12 @@ Installing this add-on is no different from installing any other Home Assistant 
 | mqttaddress|                                                                                                                                                                                                                                                                                                                                                                      The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS                                                                                                                        |
 |  mqttport |                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Port number of the MQTT broker                                                                                           |
 |  mqttuser  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Port number of the MQTT broker                                                              |
-|  mqttpass  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Password for MQTT authentication. Put it in quotation marks|
+|  mqttpass  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Password for MQTT authentication. **Put it in quotation marks**|
 
 # <u>Yaml exemple:</u>
 
 
-<kbd>jkbms:
+`jkbms:
   - path: /dev/ttyUSB0
     nb_jkbms: 1
 mqtt:
@@ -73,18 +74,18 @@ mqtt:
   mqttpass: "12345678"
 ssl: false
 certfile: fullchain.pem
-keyfile: privkey.pem</kbd>
+keyfile: privkey.pem`
 
 <br /><br />
 ## <u>Use</u>
 
-- BMS appear in MQTT devices
+- BMS appear in MQTT `devices`
 
-![BMS-in-MQTT-devices](images/JKBMS-in-MQTT-devices.png)
+![BMS-in-MQTT-devices](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-in-MQTT-devices.png)
 
 - Entities created
 
-![JKBMS-entities](images/JKBMS-entities.png)
+![JKBMS-entities](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-entities.png)
 
 **example**
 
