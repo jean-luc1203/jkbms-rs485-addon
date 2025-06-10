@@ -125,7 +125,7 @@ you are troubleshooting.
 - `MINOR`: Backwards-compatible new features and enhancements.
 - `PATCH`: Backwards-compatible bugfixes and package updates.
 
-![USB Material select](images/USB-choice.png)
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/USB-choice.png)
 
 ## Support
 ---
