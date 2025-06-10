@@ -29,12 +29,20 @@ RUN \
         openssh-client \
         patch \
     \
+    && npm config set fetch-timeout 300000 \
+    && npm config set fetch-retry-mintimeout 20000 \
+    && npm config set fetch-retry-maxtimeout 120000 \
+    && npm config set fetch-retries 5 \
+    && npm config set registry https://registry.npmjs.org/ \
     && npm install \
         --no-audit \
         --no-fund \
         --no-update-notifier \
         --omit=dev \
         --unsafe-perm \
+        --fetch-timeout=300000 \
+        --fetch-retry-mintimeout=20000 \
+        --fetch-retry-maxtimeout=120000 \
     && npm rebuild --build-from-source @serialport/bindings-cpp \
     \
     && npm cache clear --force \
@@ -55,7 +63,7 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
-# Garantir les droits dans l’image Docker
+# Garantir les droits dans l'image Docker
 RUN chmod +x \
     /etc/s6-overlay/s6-rc.d/init-customizations/run \
     /etc/s6-overlay/s6-rc.d/init-customizations/up \
