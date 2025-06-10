@@ -1,3 +1,6 @@
+## 1.0.17
+Module installation ok, modification of one flow
+
 ## 1.0.16
 First tests NOK, try another Dockerfile
 
