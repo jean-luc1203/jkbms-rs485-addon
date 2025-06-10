@@ -1,3 +1,6 @@
+## 1.0.16
+First tests NOK, try another Dockerfile
+
 ## 1.0.15
 First real tests with 2 JKBMS's
 
