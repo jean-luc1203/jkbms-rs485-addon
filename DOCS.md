@@ -20,7 +20,7 @@ Up to 15 BMSs can be connected to the same bus. These are straight cables.
 Data is collected approximately every 10 seconds. This will depend on the number of BMSs present.
 All data is available on the MQTT Broker, which allows it to be shared with other software. This is a very interesting point for those who have Jeedom, for example.
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
+[![Buy Me A Coffee on ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)      [!["Buy Me A Coffee on Paypal"](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
 <u>**Setting address:**</u>
 Each BMS **must have a different Modbus address**. Set this to 1 if possible. Addresses are set by the position of the DIP switches on the front of the BMS communication module. There must not be an address set to 0, nor any duplicate addresses.
