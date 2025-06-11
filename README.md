@@ -26,6 +26,14 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 - mqttuser: User name for MQTT authentication
 - mqttpass: Password for MQTT authentication. Put it in quotation marks
 - 
+## <u>&ndash;&raquo; Complementary and pre-configured Dashboard: &laquo;&ndash; </u>
+
+You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system. 
+This can save you several hours of work in formatting the data by yourself.
+Have a look [here](https://ko-fi.com/s/495acc37c7) 
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
+
 ## Installation
 
 ### Via the add-on shop
