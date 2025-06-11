@@ -20,6 +20,8 @@ Up to 15 BMSs can be connected to the same bus. These are straight cables.
 Data is collected approximately every 10 seconds. This will depend on the number of BMSs present.
 All data is available on the MQTT Broker, which allows it to be shared with other software. This is a very interesting point for those who have Jeedom, for example.
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
+
 <u>**Setting address:**</u>
 Each BMS **must have a different Modbus address**. Set this to 1 if possible. Addresses are set by the position of the DIP switches on the front of the BMS communication module. There must not be an address set to 0, nor any duplicate addresses.
 
@@ -27,6 +29,12 @@ Each BMS **must have a different Modbus address**. Set this to 1 if possible. Ad
   * The setup part is not yet fully functional. You can use the application for this if necessary. But for the most part, it works. I have not implemented any logic between the various parameters. The Jkong application does this perfectly.
   * The static data part is fully functional.
 <br /><br />
+
+## <u>&ndash;&raquo; Complementary and pre-configured Dashboard: &laquo;&ndash; </u>
+
+You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system. 
+This can save you several hours of work in formatting the data by yourself.
+Have a look [here](https://ko-fi.com/s/495acc37c7) 
 ---
 ## <u>Installation:</u>
 
