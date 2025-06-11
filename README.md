@@ -10,6 +10,9 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 - Multi-BMS support
 - MQTT integration (open to other software)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
+
+
 ## Screenshot
 
 ![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-preview.png)
@@ -31,8 +34,6 @@ Home Assistant add-on module for managing JK-BMS via Node-RED and Modbus RS485.
 You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system. 
 This can save you several hours of work in formatting the data by yourself.
 Have a look [here](https://ko-fi.com/s/495acc37c7) 
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
 
 ## Installation
 
