@@ -36,10 +36,9 @@ Have a look [here](https://ko-fi.com/s/495acc37c7)
 
 ## Installation
 
-
+You can add the repository automatically by following this:
 [![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Link-to-automatic-installation.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fjean-luc1203%2Fjkbms-rs485-addon)
 
-You can add the repository automatically by following this [link](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fjean-luc1203%2Fjkbms-rs485-addon):
 
 
 ### Via the add-on shop
