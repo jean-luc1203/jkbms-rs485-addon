@@ -1,7 +1,7 @@
 ## 1.1.0
 1st version tested and approved
 Data acquisition speed has been greatly increased
-You can read the launch article on [my forum.](https://domosimple.eu/forum/thread-916-post-7515.html#pid7515)
+You can read the launch article on [my forum.](https://domosimple.eu/forum/thread-917.html)
 
 ## 1.0.18
 Modification of default USB device ttyUSB0 to ttyUSBx. Otherwise, there may be a conflict with other modules that could use ttyUSB0.
