@@ -36,8 +36,6 @@ Have a look [here](https://ko-fi.com/s/495acc37c7)
 
 ## Installation
 
-[![Add repository on my Home Assistant][repository-badge]][repository-url]
-
 ### Via the add-on shop
 
 1. Add this repository in Home Assistant: `https://github.com/jean-luc1203/jkbms-rs485-addon`
