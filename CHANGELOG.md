@@ -1,3 +1,7 @@
+## 1.1.0
+1st version tested and approved
+Data acquisition speed has been greatly increased
+
 ## 1.0.18
 Modification of default USB device ttyUSB0 to ttyUSBx. Otherwise, there may be a conflict with other modules that could use ttyUSB0.
 

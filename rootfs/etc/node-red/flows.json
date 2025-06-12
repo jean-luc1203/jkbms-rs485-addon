@@ -90,7 +90,7 @@
         ],
         "x": 14,
         "y": 179,
-        "w": 722,
+        "w": 732,
         "h": 382
     },
     {
@@ -3241,8 +3241,8 @@
         "g": "6b5bd0bba4a26d99",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -3252,7 +3252,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 260,
+        "x": 270,
         "y": 220,
         "wires": [
             [
@@ -3273,7 +3273,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 460,
         "y": 220,
         "wires": [
             [
@@ -3295,7 +3295,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
+        "x": 640,
         "y": 220,
         "wires": []
     },
@@ -3306,8 +3306,8 @@
         "g": "6b5bd0bba4a26d99",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -3317,7 +3317,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 260,
+        "x": 270,
         "y": 340,
         "wires": [
             [
@@ -3338,7 +3338,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 460,
         "y": 340,
         "wires": [
             [
@@ -3360,7 +3360,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
+        "x": 640,
         "y": 340,
         "wires": []
     },
@@ -3371,8 +3371,8 @@
         "g": "6b5bd0bba4a26d99",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -3382,7 +3382,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 260,
+        "x": 270,
         "y": 480,
         "wires": [
             [
@@ -3403,7 +3403,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 460,
         "y": 480,
         "wires": [
             [
@@ -3425,7 +3425,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
+        "x": 640,
         "y": 480,
         "wires": []
     },
