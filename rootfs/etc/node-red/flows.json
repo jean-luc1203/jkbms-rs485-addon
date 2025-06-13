@@ -1789,7 +1789,7 @@
                 "p": "payload"
             }
         ],
-        "repeat": "3",
+        "repeat": "1",
         "crontab": "",
         "once": true,
         "onceDelay": "3",
@@ -2266,7 +2266,7 @@
         "g": "efcb27eee8e0e602",
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
-        "x": 320,
+        "x": 340,
         "y": 60,
         "wires": [
             [
@@ -3371,7 +3371,7 @@
         "g": "6b5bd0bba4a26d99",
         "name": "",
         "pauseType": "delay",
-        "timeout": "300",
+        "timeout": "500",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
