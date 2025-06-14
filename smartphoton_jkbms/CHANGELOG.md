@@ -1,3 +1,6 @@
+## 1.1.3
+Changed the structure of the Github
+
 ## 1.1.2
 Add 3 fields. One Switch and 2 fields for IP & Port. This is prevision for the Gateway IP <--> RS485 
 
