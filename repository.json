@@ -1,13 +1,4 @@
-{
-  "addons": [
-    {
-      "name": "Smartphoton JK-BMS RS485",
-      "slug": "smartphoton_jkbms",
-      "description": "Module de gestion JK-BMS via RS485",
-      "version": "1.2.0",
-      "url": "https://github.com/jean-luc1203/jkbms-rs485-addon",
-      "arch": ["amd64", "armv7", "aarch64"],
-      "maintainer": "Smartphoton - Jean-Luc Martinelli"
-    }
-  ]
-}
+name: Smartphoton JK-BMS RS485
+description": Module de gestion JK-BMS via RS485
+url: 'https://github.com/jean-luc1203/jkbms-rs485-addon'
+maintainer: Smartphoton - Jean-Luc Martinelli
