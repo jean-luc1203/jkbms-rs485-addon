@@ -1,3 +1,6 @@
+## 1.1.2
+Add 3 fields. One Switch and 2 fields for IP & Port. This is prevision for the Gateway IP <--> RS485 
+
 ## 1.1.1
 Retrieve data 3x faster
 
