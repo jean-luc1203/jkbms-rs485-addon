@@ -1,16 +1,6 @@
-## 1.1.3
-Changed the structure of the Github
-
-## 1.1.2
-Add 3 fields. One Switch and 2 fields for IP & Port. This is prevision for the Gateway IP <--> RS485 
-
-## 1.1.1
-Retrieve data 3x faster
-
 ## 1.1.0
 1st version tested and approved
 Data acquisition speed has been greatly increased
-You can read the launch article on [my forum.](https://domosimple.eu/forum/thread-917.html)
 
 ## 1.0.18
 Modification of default USB device ttyUSB0 to ttyUSBx. Otherwise, there may be a conflict with other modules that could use ttyUSB0.
