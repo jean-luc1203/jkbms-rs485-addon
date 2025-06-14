@@ -1,3 +1,6 @@
+## 1.1.1
+Trying to add Gateway IP fields
+
 ## 1.1.0
 1st version tested and approved
 Data acquisition speed has been greatly increased
