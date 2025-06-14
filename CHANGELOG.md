@@ -1,3 +1,6 @@
+## 1.1.2
+Modification for GW fields and 3 times more faster for data reading 
+
 ## 1.1.1
 Trying to add Gateway IP fields
 
