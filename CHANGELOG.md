@@ -1,3 +1,6 @@
+## 1.1.3
+Change access right to nodered files
+
 ## 1.1.2
 Modification for GW fields and 3 times more faster for data reading 
 
