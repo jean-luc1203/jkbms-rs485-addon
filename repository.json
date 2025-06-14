@@ -1,6 +1,13 @@
 {
-  "name": "Smartphoton JKBMS RS485 Home Assistant Addon",
-  "udev": true,
-  "url": "https://github.com/jean-luc1203/jkbms-rs485-addon/",
-  "maintainer": "Smartphoton - Jean-Luc Martinelli - JLM - 2025"
+  "addons": [
+    {
+      "name": "Smartphoton JKBMS RS485",
+      "slug": "smartphoton_jkbms",
+      "description": "Module de gestion JK-BMS via RS485 pour Home Assistant",
+      "version": "1.2.0",
+      "url": "https://github.com/jean-luc1203/jkbms-rs485-addon",
+      "arch": ["amd64", "armv7", "aarch64"],
+      "maintainer": "Smartphoton - Jean-Luc Martinelli - JLM - 2025"
+    }
+  ]
 }
