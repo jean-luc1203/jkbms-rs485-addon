@@ -30,6 +30,13 @@ Each BMS **must have a different Modbus address**. Set this to 1 if possible. Ad
   * The static data part is fully functional.
 <br /><br />
 
+## Adds the possibility of using an RS485 <---> ethernet or Wifi gateway
+
+ - *Use the IP address of the gateway and the port defined in the GW to the module
+   configuration*
+
+!! Parameters modification via the gateway **has not yet been implemented**. Only via the USB port.
+
 ## <u>&ndash;&raquo; Complementary and pre-configured Dashboard: &laquo;&ndash; </u>
 
 You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system. 

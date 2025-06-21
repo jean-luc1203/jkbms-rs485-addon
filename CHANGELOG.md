@@ -1,3 +1,27 @@
+## 1.2.0
+
+## Adds the possibility of using an RS485 <---> ethernet or Wifi gateway
+
+ - *Use the IP address of the gateway and the port defined in the GW to the module
+   configuration*
+
+!! Parameters modification via the gateway **has not yet been implemented**. Only via the USB port.
+
+## 1.1.11
+Change flow for GW
+
+## 1.1.10
+Changed flow for GW preparation
+
+## 1.1.9
+Test with config.yaml
+
+## 1.1.8
+Test with config.yaml
+
+## 1.1.4
+Creation optional fields for GW
+
 ## 1.1.3
 Change access right to nodered files
 

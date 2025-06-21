@@ -69,13 +69,9 @@
             "color": "#000000"
         },
         "nodes": [
-            "inject_trigger",
             "prepare_command",
             "48962018a6c0050f",
-            "5e4cf2d81989f072",
             "cb31b781d9bcb31e",
-            "d5de8194258da8b9",
-            "ba317fa19df49491",
             "020c19662d54639e",
             "42b39467dd4b0da2",
             "33128f050c7a6d40",
@@ -86,11 +82,17 @@
             "57c7fc5e6af725a8",
             "588a28b52bca3c97",
             "6aaaa309d4c3a50c",
-            "307f2a35426531d7"
+            "307f2a35426531d7",
+            "45e89eb282d2510b",
+            "cc5072db2fb56b16",
+            "a6457f1b4018e210",
+            "d3854248aace5164",
+            "366518e9212a6b71",
+            "771632eaf7af77e3"
         ],
         "x": 14,
-        "y": 179,
-        "w": 732,
+        "y": 199,
+        "w": 982,
         "h": 382
     },
     {
@@ -101,7 +103,8 @@
         "style": {
             "stroke": "#ff0000",
             "label": true,
-            "color": "#000000"
+            "color": "#000000",
+            "fill": "#ffbfbf"
         },
         "nodes": [
             "305e1cac13589b0d",
@@ -110,8 +113,8 @@
             "d9ef164688871372",
             "9c7f34f8f23e6ba9"
         ],
-        "x": 164,
-        "y": 19,
+        "x": 104,
+        "y": 39,
         "w": 472,
         "h": 122
     },
@@ -138,10 +141,11 @@
             "c5358579966ea944",
             "bb5385e5fa6e8f58",
             "8941479643260a23",
-            "dc8be2eb9f379046"
+            "dc8be2eb9f379046",
+            "722fcc3b75fdf46e"
         ],
         "x": 18,
-        "y": 619,
+        "y": 739,
         "w": 903,
         "h": 908
     },
@@ -408,8 +412,8 @@
             "867a03823f8deac3",
             "a14480dd30524258"
         ],
-        "x": 24,
-        "y": 119,
+        "x": 14,
+        "y": 259,
         "w": 842,
         "h": 82
     },
@@ -456,31 +460,6 @@
         "h": 142
     },
     {
-        "id": "3b674a0c673b7683",
-        "type": "group",
-        "z": "2d882136a35b2d36",
-        "name": "Sauvegardes & restauration globales variables  ",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "b558512e932294f3",
-            "775a0c31e77378c1",
-            "320400a815bfc063",
-            "71357a03a76a1030",
-            "b0db0cc1e97ef4e3",
-            "8cd654ec0967fcf6",
-            "d03f4d01fe7ccfc5",
-            "d58f55104cf0689b",
-            "57217d3eaacd8969",
-            "cd796d78d0986bb3"
-        ],
-        "x": 14,
-        "y": 559,
-        "w": 952,
-        "h": 242
-    },
-    {
         "id": "58578674e7f69c99",
         "type": "group",
         "z": "2d882136a35b2d36",
@@ -494,13 +473,60 @@
             "e3d2b4d505d7c3b1",
             "d3a91a0be3d32cfa",
             "6a484576febf2df9",
-            "c5b68a34de9a9c28",
             "697f593b67e21ceb",
-            "307c4ac37254eba4"
+            "307c4ac37254eba4",
+            "c5b68a34de9a9c28"
         ],
         "x": 34,
-        "y": 219,
+        "y": 119,
         "w": 1032,
+        "h": 122
+    },
+    {
+        "id": "67d16682a4904961",
+        "type": "group",
+        "z": "e437f2f44495aeb9",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "47904917111ec14c",
+            "8d56499e5fd78d16",
+            "6ba5ab19ca0baf49",
+            "502b03bbf1fa8f13"
+        ],
+        "x": 714,
+        "y": 599,
+        "w": 372,
+        "h": 122
+    },
+    {
+        "id": "1c9e2e84f7764473",
+        "type": "group",
+        "z": "e437f2f44495aeb9",
+        "name": "Gateway Ethernet or Wifi",
+        "style": {
+            "stroke": "#0070c0",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "fb941bfb8f075284",
+            "374bbe6e8c64a12a",
+            "710b79fc70fe4146",
+            "d132c36160191dc5",
+            "22c8417438319190"
+        ],
+        "x": 614,
+        "y": 39,
+        "w": 512,
         "h": 122
     },
     {
@@ -524,7 +550,7 @@
             "f0baa88edd6cc075"
         ],
         "x": 44,
-        "y": 839,
+        "y": 959,
         "w": 821,
         "h": 122
     },
@@ -555,7 +581,7 @@
             "ec8b2fdc37713423"
         ],
         "x": 54,
-        "y": 1159,
+        "y": 1279,
         "w": 841,
         "h": 202
     },
@@ -580,7 +606,7 @@
             "08b1d0bb4085f9c1"
         ],
         "x": 44,
-        "y": 999,
+        "y": 1119,
         "w": 842,
         "h": 122
     },
@@ -598,7 +624,7 @@
             "019f592e42a7a3e6"
         ],
         "x": 54,
-        "y": 1419,
+        "y": 1539,
         "w": 372,
         "h": 82
     },
@@ -1144,8 +1170,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 160,
+        "x": 330,
+        "y": 300,
         "wires": [
             [
                 "a14480dd30524258"
@@ -1170,12 +1196,12 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "1.5",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 160,
+        "x": 130,
+        "y": 300,
         "wires": [
             [
                 "f5943e5ca4b7e848"
@@ -1189,8 +1215,8 @@
         "g": "90972d3c7f38ea12",
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
-        "x": 540,
-        "y": 160,
+        "x": 530,
+        "y": 300,
         "wires": [
             [
                 "b1df428df7a432e7"
@@ -1211,8 +1237,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 740,
-        "y": 160,
+        "x": 730,
+        "y": 300,
         "wires": []
     },
     {
@@ -1278,6 +1304,20 @@
                 "p": "slaveAddress-setup",
                 "pt": "global",
                 "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "gateway_ip",
+                "pt": "global",
+                "to": "192.168.1.238",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "gateway_port",
+                "pt": "global",
+                "to": "8887",
                 "tot": "num"
             }
         ],
@@ -1430,231 +1470,6 @@
         "wires": []
     },
     {
-        "id": "b558512e932294f3",
-        "type": "inject",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "Déclencher Sauvegarde",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "60",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 170,
-        "y": 600,
-        "wires": [
-            [
-                "775a0c31e77378c1"
-            ]
-        ]
-    },
-    {
-        "id": "775a0c31e77378c1",
-        "type": "function",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "Sauvegarder Variables",
-        "func": "// Ce code récupère les variables globales spécifiées et les sauvegarde dans un fichier JSON\n\nfunction saveGlobalVariables(msg) {\n    // Récupération des variables globales spécifiques\n    const configVariables = {\n        Broker_IP: global.get(\"Broker_IP\") || \"\",\n        Broker_Password: global.get(\"Broker_Password\") || \"\",\n        Broker_Port: global.get(\"Broker_Port\") || 1883,\n        Broker_User: global.get(\"Broker_User\") || \"\",\n        Number_of_BMS: global.get(\"Number_of_BMS\") || 0,\n        USB_serial_port: global.get(\"USB_serial_port\") || \"\"\n    };\n\n    // Conversion en JSON avec formatage pour meilleure lisibilité\n    const jsonData = JSON.stringify(configVariables, null, 2);\n\n    // Préparation du message pour le nœud file\n    msg.payload = jsonData;\n    msg.filename = \"/data/config_variables.json\"; // Adaptez le chemin selon votre installation\n    \n    node.status({fill:\"green\", shape:\"dot\", text:\"Variables sauvegardées\"});\n    return msg;\n}\n\nreturn saveGlobalVariables(msg);\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 640,
-        "wires": [
-            [
-                "320400a815bfc063"
-            ]
-        ]
-    },
-    {
-        "id": "320400a815bfc063",
-        "type": "file",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "",
-        "filename": "/data/config_variables.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 660,
-        "y": 640,
-        "wires": [
-            [
-                "57217d3eaacd8969",
-                "b0db0cc1e97ef4e3"
-            ]
-        ]
-    },
-    {
-        "id": "71357a03a76a1030",
-        "type": "inject",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "Déclencher au Démarrage",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 760,
-        "wires": [
-            [
-                "b0db0cc1e97ef4e3"
-            ]
-        ]
-    },
-    {
-        "id": "b0db0cc1e97ef4e3",
-        "type": "file in",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "Lire Fichier Config",
-        "filename": "/data/config_variables.json",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 430,
-        "y": 760,
-        "wires": [
-            [
-                "8cd654ec0967fcf6",
-                "d03f4d01fe7ccfc5"
-            ]
-        ]
-    },
-    {
-        "id": "8cd654ec0967fcf6",
-        "type": "debug",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "debug 28",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 620,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "d03f4d01fe7ccfc5",
-        "type": "function",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "Charger Variables",
-        "func": "// CHARGEMENT DES VARIABLES GLOBALES AU DÉMARRAGE\n// Nœud function \"Charger Variables\"\n\n// Fonction pour créer un fichier de configuration par défaut\nfunction createDefaultVariables(node, msg) {\n    // Valeurs par défaut\n    const defaultConfig = {\n        Broker_IP: \"localhost\",\n        Broker_Password: \"\",\n        Broker_Port: 1883,\n        Broker_User: \"\",\n        Number_of_BMS: 1,\n        USB_serial_port: \"/dev/ttyUSB0\"\n    };\n    \n    // Assigner les valeurs par défaut aux variables globales\n    Object.keys(defaultConfig).forEach(key => {\n        global.set(key, defaultConfig[key]);\n    });\n    \n    // Créer le fichier de configuration par défaut\n    msg.payload = JSON.stringify(defaultConfig, null, 2);\n    msg.filename = \"/data/config_variables.json\";\n    \n    // Pour envoyer à un nœud file pour sauvegarde\n    node.status({fill:\"yellow\", shape:\"dot\", text:\"Valeurs par défaut créées\"});\n    node.log(\"Fichier de configuration par défaut créé\");\n    \n    return msg;\n}\n\n// Fonction principale pour charger les variables\nfunction loadGlobalVariables(msg) {\n    try {\n        // Conversion du contenu JSON en objet JavaScript\n        const configVariables = JSON.parse(msg.payload);\n        \n        // Vérification et assignation des variables globales\n        if (configVariables.Broker_IP !== undefined) \n            global.set(\"Broker_IP\", configVariables.Broker_IP);\n        \n        if (configVariables.Broker_Password !== undefined) \n            global.set(\"Broker_Password\", configVariables.Broker_Password);\n        \n        if (configVariables.Broker_Port !== undefined) \n            global.set(\"Broker_Port\", configVariables.Broker_Port);\n        \n        if (configVariables.Broker_User !== undefined) \n            global.set(\"Broker_User\", configVariables.Broker_User);\n        \n        if (configVariables.Number_of_BMS !== undefined) \n            global.set(\"Number_of_BMS\", configVariables.Number_of_BMS);\n        \n        if (configVariables.USB_serial_port !== undefined) \n            global.set(\"USB_serial_port\", configVariables.USB_serial_port);\n        \n        // Message de confirmation\n        node.status({fill:\"green\", shape:\"dot\", text:\"Variables chargées\"});\n        node.log(\"Variables de configuration chargées avec succès\");\n        \n        // Valeurs chargées pour debug/vérification\n        msg.payload = configVariables;\n        return [msg, null]; // Premier port de sortie\n    } catch (error) {\n        // Gestion d'erreur\n        node.status({fill:\"red\", shape:\"ring\", text:\"Erreur de chargement\"});\n        node.error(\"Erreur lors du chargement des variables: \" + error.message);\n        \n        // On crée un fichier par défaut en cas d'erreur\n        const defaultMsg = createDefaultVariables(node, msg);\n        return [null, defaultMsg]; // Deuxième port de sortie\n    }\n}\n\n// Exécution principale\nreturn loadGlobalVariables(msg);",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 650,
-        "y": 760,
-        "wires": [
-            [
-                "d58f55104cf0689b"
-            ]
-        ]
-    },
-    {
-        "id": "d58f55104cf0689b",
-        "type": "debug",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "debug 29",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 820,
-        "y": 760,
-        "wires": []
-    },
-    {
-        "id": "57217d3eaacd8969",
-        "type": "debug",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "debug 31",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 860,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "cd796d78d0986bb3",
-        "type": "link in",
-        "z": "2d882136a35b2d36",
-        "d": true,
-        "g": "3b674a0c673b7683",
-        "name": "Sauvegarde_parametres_in",
-        "links": [
-            "ea324554d0bd9024",
-            "3ce30d1dddc257b6",
-            "a860585537cd655c"
-        ],
-        "x": 215,
-        "y": 640,
-        "wires": [
-            [
-                "775a0c31e77378c1"
-            ]
-        ]
-    },
-    {
         "id": "e3d2b4d505d7c3b1",
         "type": "inject",
         "z": "2d882136a35b2d36",
@@ -1677,7 +1492,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 260,
+        "y": 160,
         "wires": [
             [
                 "d3a91a0be3d32cfa"
@@ -1698,7 +1513,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 350,
-        "y": 260,
+        "y": 160,
         "wires": [
             [
                 "6a484576febf2df9"
@@ -1715,32 +1530,11 @@
         "action": "",
         "pretty": false,
         "x": 550,
-        "y": 260,
+        "y": 160,
         "wires": [
             [
-                "c5b68a34de9a9c28",
-                "307c4ac37254eba4"
-            ]
-        ]
-    },
-    {
-        "id": "c5b68a34de9a9c28",
-        "type": "function",
-        "z": "2d882136a35b2d36",
-        "g": "58578674e7f69c99",
-        "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Path et nb_jkbms depuis le premier élément jkbms\n    if (data.jkbms && data.jkbms.length > 0) {\n        if (data.jkbms[0].path) {\n            global.set(\"path\", data.jkbms[0].path);\n            node.log(\"Variable globale 'path' définie: \" + data.jkbms[0].path);\n        }\n        \n        if (data.jkbms[0][\"nb_jkbms\"]) {\n            global.set(\"nb_jkbms\", data.jkbms[0][\"nb_jkbms\"]);\n            node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms[0][\"nb_jkbms\"]);\n        }\n    }\n    \n    // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            \"nb_jkbms\": global.get(\"nb_jkbms\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\")\n        }\n    };\n    \n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 260,
-        "wires": [
-            [
-                "697f593b67e21ceb"
+                "307c4ac37254eba4",
+                "c5b68a34de9a9c28"
             ]
         ]
     },
@@ -1758,7 +1552,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 960,
-        "y": 260,
+        "y": 160,
         "wires": []
     },
     {
@@ -1775,33 +1569,27 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 300,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "inject_trigger",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "g": "6b5bd0bba4a26d99",
-        "name": "Trame 3",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 120,
-        "y": 520,
+        "id": "c5b68a34de9a9c28",
+        "type": "function",
+        "z": "2d882136a35b2d36",
+        "g": "58578674e7f69c99",
+        "name": "Définir global variables",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms_path) {\n        global.set(\"path\", data.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms_path);\n    }\n    \n    if (data.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.use_gateway);\n    }\n    \n    if (data.gateway_ip) {\n        global.set(\"gateway_ip\", data.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.gateway_ip);\n    }\n    \n    if (data.gateway_port) {\n        global.set(\"gateway_port\", data.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.gateway_port);\n    }\n    \n    // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 160,
         "wires": [
             [
-                "prepare_command",
-                "588a28b52bca3c97"
+                "697f593b67e21ceb"
             ]
         ]
     },
@@ -1819,10 +1607,10 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 520,
+        "y": 540,
         "wires": [
             [
-                "cb31b781d9bcb31e"
+                "d3854248aace5164"
             ]
         ]
     },
@@ -1840,37 +1628,10 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 260,
+        "y": 280,
         "wires": [
             [
-                "cb31b781d9bcb31e"
-            ]
-        ]
-    },
-    {
-        "id": "5e4cf2d81989f072",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "g": "6b5bd0bba4a26d99",
-        "name": "Trame 1",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1.5",
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 120,
-        "y": 260,
-        "wires": [
-            [
-                "48962018a6c0050f",
-                "33128f050c7a6d40"
+                "d3854248aace5164"
             ]
         ]
     },
@@ -1885,10 +1646,11 @@
             "5df172e294de3c89",
             "3d4605eb10a3d1dc",
             "30ec269020be3cfd",
-            "d1d7ba8380ba4e39"
+            "d1d7ba8380ba4e39",
+            "366518e9212a6b71"
         ],
-        "x": 205,
-        "y": 60,
+        "x": 145,
+        "y": 80,
         "wires": [
             [
                 "8d8489f730e79441"
@@ -1906,46 +1668,7 @@
             "305e1cac13589b0d"
         ],
         "x": 695,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "d5de8194258da8b9",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "g": "6b5bd0bba4a26d99",
-        "name": "Trame 2",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "120",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1.7",
-        "topic": "",
-        "payload": "01 10 16 20 00 01 02 00 00 D6 F1",
-        "payloadType": "str",
-        "x": 120,
-        "y": 380,
-        "wires": [
-            [
-                "020c19662d54639e",
-                "47c0ebe01c623676"
-            ]
-        ]
-    },
-    {
-        "id": "ba317fa19df49491",
-        "type": "link out",
-        "z": "e437f2f44495aeb9",
-        "g": "6b5bd0bba4a26d99",
-        "name": "link out 11",
-        "mode": "link",
-        "links": [],
-        "x": 595,
-        "y": 380,
+        "y": 400,
         "wires": []
     },
     {
@@ -1962,10 +1685,10 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 380,
+        "y": 400,
         "wires": [
             [
-                "cb31b781d9bcb31e"
+                "d3854248aace5164"
             ]
         ]
     },
@@ -1974,16 +1697,17 @@
         "type": "debug",
         "z": "e437f2f44495aeb9",
         "g": "6ec0cd904988f0ff",
-        "name": "debug 14",
+        "name": "Trame 3",
         "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1320,
+        "y": 1440,
         "wires": []
     },
     {
@@ -2000,7 +1724,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 1080,
+        "y": 1200,
         "wires": []
     },
     {
@@ -2010,13 +1734,15 @@
         "g": "554f91ffdbfbfc68",
         "name": "link in 3",
         "links": [
-            "cfbb3e70d43124da"
+            "cfbb3e70d43124da",
+            "d132c36160191dc5"
         ],
         "x": 65,
-        "y": 740,
+        "y": 860,
         "wires": [
             [
-                "ef22a3d568844d0a"
+                "ef22a3d568844d0a",
+                "722fcc3b75fdf46e"
             ]
         ]
     },
@@ -2025,16 +1751,17 @@
         "type": "debug",
         "z": "e437f2f44495aeb9",
         "g": "f8bc911f73526834",
-        "name": "debug 13",
+        "name": "Trame 2",
         "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 190,
-        "y": 1040,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2042,16 +1769,17 @@
         "type": "debug",
         "z": "e437f2f44495aeb9",
         "g": "8d42d70f697c6b57",
-        "name": "debug 19",
+        "name": "Trame 1",
         "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 880,
+        "y": 1000,
         "wires": []
     },
     {
@@ -2068,7 +1796,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 579,
-        "y": 920,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2251,7 +1979,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 390,
-        "y": 920,
+        "y": 1040,
         "wires": [
             [
                 "1555b1456f9f113e",
@@ -2266,8 +1994,8 @@
         "g": "efcb27eee8e0e602",
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
-        "x": 340,
-        "y": 60,
+        "x": 280,
+        "y": 80,
         "wires": [
             [
                 "cfbb3e70d43124da",
@@ -2308,7 +2036,7 @@
         "repair": false,
         "outputs": 4,
         "x": 200,
-        "y": 740,
+        "y": 860,
         "wires": [
             [
                 "58ef70ea1beab86a"
@@ -2335,8 +2063,8 @@
         "links": [
             "87cae6741d4eba43"
         ],
-        "x": 345,
-        "y": 100,
+        "x": 285,
+        "y": 120,
         "wires": []
     },
     {
@@ -2353,8 +2081,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 60,
+        "x": 460,
+        "y": 80,
         "wires": []
     },
     {
@@ -2372,7 +2100,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 480,
-        "y": 780,
+        "y": 900,
         "wires": []
     },
     {
@@ -2389,7 +2117,7 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 1280,
+        "y": 1400,
         "wires": [
             [
                 "f2fbf57365769c2d",
@@ -2413,7 +2141,7 @@
             "8a804f30a6c6f20f"
         ],
         "x": 365,
-        "y": 740,
+        "y": 860,
         "wires": []
     },
     {
@@ -2426,7 +2154,7 @@
             "31a51f2f45d84be6"
         ],
         "x": 95,
-        "y": 1280,
+        "y": 1400,
         "wires": [
             [
                 "27c1423f6c9aada6",
@@ -2445,7 +2173,7 @@
             "23a113423703427c"
         ],
         "x": 365,
-        "y": 700,
+        "y": 820,
         "wires": []
     },
     {
@@ -2458,7 +2186,7 @@
             "5f01f1a8c86201ad"
         ],
         "x": 85,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             [
                 "9b9034a8b404274d",
@@ -2480,7 +2208,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1460,
+        "y": 1580,
         "wires": [
             [
                 "019f592e42a7a3e6"
@@ -2501,7 +2229,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 320,
-        "y": 1460,
+        "y": 1580,
         "wires": []
     },
     {
@@ -2518,7 +2246,7 @@
         "finalize": "",
         "libs": [],
         "x": 210,
-        "y": 1080,
+        "y": 1200,
         "wires": [
             [
                 "6ddc941d8fc09996"
@@ -2537,7 +2265,7 @@
             "1c533d251a90da41"
         ],
         "x": 365,
-        "y": 660,
+        "y": 780,
         "wires": []
     },
     {
@@ -2550,7 +2278,7 @@
             "58ef70ea1beab86a"
         ],
         "x": 85,
-        "y": 920,
+        "y": 1040,
         "wires": [
             [
                 "1967c318d9216a54",
@@ -2572,7 +2300,7 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 920,
+        "y": 1040,
         "wires": [
             [
                 "780b5889dad59c22"
@@ -2594,8 +2322,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 100,
+        "x": 460,
+        "y": 120,
         "wires": []
     },
     {
@@ -2612,7 +2340,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 1320,
+        "y": 1440,
         "wires": []
     },
     {
@@ -2630,7 +2358,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1320,
+        "y": 1440,
         "wires": []
     },
     {
@@ -2649,7 +2377,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 780,
-        "y": 1280,
+        "y": 1400,
         "wires": []
     },
     {
@@ -2667,7 +2395,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 769,
-        "y": 920,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2686,7 +2414,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 779,
-        "y": 880,
+        "y": 1000,
         "wires": []
     },
     {
@@ -2704,7 +2432,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 400,
-        "y": 1320,
+        "y": 1440,
         "wires": []
     },
     {
@@ -3094,7 +2822,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 390,
-        "y": 1080,
+        "y": 1200,
         "wires": [
             [
                 "e6d9f6f2ecbfa12e",
@@ -3116,7 +2844,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1280,
+        "y": 1400,
         "wires": [
             [
                 "3c4c2b0ec268a41f",
@@ -3138,7 +2866,7 @@
         "finalize": "",
         "libs": [],
         "x": 579,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
                 "55ea9406b130a136",
@@ -3160,7 +2888,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1040,
+        "y": 1160,
         "wires": [
             [
                 "e8ed5df6828f9f8f",
@@ -3183,7 +2911,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1080,
+        "y": 1200,
         "wires": []
     },
     {
@@ -3202,7 +2930,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 780,
-        "y": 1040,
+        "y": 1160,
         "wires": []
     },
     {
@@ -3213,7 +2941,7 @@
         "name": "Relecture-Trame-2-in",
         "links": [],
         "x": 215,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
                 "020c19662d54639e"
@@ -3231,7 +2959,7 @@
             "63b5b654057c4381"
         ],
         "x": 365,
-        "y": 780,
+        "y": 900,
         "wires": []
     },
     {
@@ -3253,7 +2981,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 270,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "bdc67ff77d388fd4"
@@ -3274,7 +3002,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "612e601399a564be"
@@ -3296,7 +3024,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 220,
+        "y": 240,
         "wires": []
     },
     {
@@ -3318,7 +3046,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 270,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "c15a66e8901ebb92"
@@ -3339,7 +3067,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "57c7fc5e6af725a8"
@@ -3361,7 +3089,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 340,
+        "y": 360,
         "wires": []
     },
     {
@@ -3383,7 +3111,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 270,
-        "y": 480,
+        "y": 500,
         "wires": [
             [
                 "6aaaa309d4c3a50c"
@@ -3404,7 +3132,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 480,
+        "y": 500,
         "wires": [
             [
                 "307f2a35426531d7"
@@ -3426,7 +3154,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 480,
+        "y": 500,
         "wires": []
     },
     {
@@ -3924,7 +3652,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 420,
-        "y": 1280,
+        "y": 1400,
         "wires": [
             [
                 "64590862f9d3a361",
@@ -3977,7 +3705,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 600,
-        "y": 1420,
+        "y": 1540,
         "wires": [
             [
                 "dc8be2eb9f379046"
@@ -3998,7 +3726,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1420,
+        "y": 1540,
         "wires": []
     },
     {
@@ -4015,7 +3743,7 @@
         "finalize": "",
         "libs": [],
         "x": 589,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
                 "8ccdcf5d7075d4c7"
@@ -4037,7 +3765,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 789,
-        "y": 1240,
+        "y": 1360,
         "wires": []
     },
     {
@@ -4054,7 +3782,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1220,
+        "y": 1340,
         "wires": [
             [
                 "0b480948b60d645d"
@@ -4084,7 +3812,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 230,
-        "y": 1220,
+        "y": 1340,
         "wires": [
             [
                 "653bf583b3edc452"
@@ -4105,8 +3833,409 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 1200,
+        "y": 1320,
         "wires": []
+    },
+    {
+        "id": "45e89eb282d2510b",
+        "type": "inject",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "Trame 1",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "host",
+                "v": "gateway_ip",
+                "vt": "global"
+            },
+            {
+                "p": "port",
+                "v": "gateway_port",
+                "vt": "global"
+            }
+        ],
+        "repeat": "180",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "33128f050c7a6d40",
+                "48962018a6c0050f"
+            ]
+        ]
+    },
+    {
+        "id": "cc5072db2fb56b16",
+        "type": "inject",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "Trame 2",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "host",
+                "v": "gateway_ip",
+                "vt": "global"
+            },
+            {
+                "p": "port",
+                "v": "gateway_port",
+                "vt": "global"
+            }
+        ],
+        "repeat": "120",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1.5",
+        "topic": "",
+        "payload": "01 10 16 20 00 01 02 00 00 D6 F1",
+        "payloadType": "str",
+        "x": 120,
+        "y": 400,
+        "wires": [
+            [
+                "020c19662d54639e",
+                "47c0ebe01c623676"
+            ]
+        ]
+    },
+    {
+        "id": "a6457f1b4018e210",
+        "type": "inject",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "Trame 3",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "host",
+                "v": "gateway_ip",
+                "vt": "global"
+            },
+            {
+                "p": "port",
+                "v": "gateway_port",
+                "vt": "global"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 540,
+        "wires": [
+            [
+                "prepare_command",
+                "588a28b52bca3c97"
+            ]
+        ]
+    },
+    {
+        "id": "fb941bfb8f075284",
+        "type": "inject",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "GW IP",
+        "props": [
+            {
+                "p": "host",
+                "v": "gateway_ip",
+                "vt": "global"
+            },
+            {
+                "p": "port",
+                "v": "gateway_port",
+                "vt": "global"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 710,
+        "y": 80,
+        "wires": [
+            [
+                "374bbe6e8c64a12a"
+            ]
+        ]
+    },
+    {
+        "id": "374bbe6e8c64a12a",
+        "type": "tcp request",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "",
+        "server": "",
+        "port": "",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "200",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 850,
+        "y": 120,
+        "wires": [
+            [
+                "710b79fc70fe4146",
+                "d132c36160191dc5"
+            ]
+        ]
+    },
+    {
+        "id": "710b79fc70fe4146",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "TCP debug ",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "47904917111ec14c",
+        "type": "inject",
+        "z": "e437f2f44495aeb9",
+        "g": "67d16682a4904961",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 830,
+        "y": 640,
+        "wires": [
+            [
+                "8d56499e5fd78d16"
+            ]
+        ]
+    },
+    {
+        "id": "8d56499e5fd78d16",
+        "type": "change",
+        "z": "e437f2f44495aeb9",
+        "g": "67d16682a4904961",
+        "name": "GW true ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "use_gateway",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6ba5ab19ca0baf49",
+        "type": "inject",
+        "z": "e437f2f44495aeb9",
+        "g": "67d16682a4904961",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 830,
+        "y": 680,
+        "wires": [
+            [
+                "502b03bbf1fa8f13"
+            ]
+        ]
+    },
+    {
+        "id": "502b03bbf1fa8f13",
+        "type": "change",
+        "z": "e437f2f44495aeb9",
+        "g": "67d16682a4904961",
+        "name": "GW false ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "use_gateway",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d132c36160191dc5",
+        "type": "link out",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "Serial Out",
+        "mode": "link",
+        "links": [
+            "87cae6741d4eba43"
+        ],
+        "x": 955,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d3854248aace5164",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "Use Gateway ?",
+        "property": "use_gateway",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 840,
+        "y": 400,
+        "wires": [
+            [
+                "771632eaf7af77e3"
+            ],
+            [
+                "366518e9212a6b71"
+            ]
+        ]
+    },
+    {
+        "id": "366518e9212a6b71",
+        "type": "link out",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "305e1cac13589b0d"
+        ],
+        "x": 955,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "722fcc3b75fdf46e",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "554f91ffdbfbfc68",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "771632eaf7af77e3",
+        "type": "link out",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "link out 3",
+        "mode": "link",
+        "links": [
+            "22c8417438319190"
+        ],
+        "x": 955,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "22c8417438319190",
+        "type": "link in",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "link in 1",
+        "links": [
+            "771632eaf7af77e3"
+        ],
+        "x": 745,
+        "y": 120,
+        "wires": [
+            [
+                "374bbe6e8c64a12a"
+            ]
+        ]
     },
     {
         "id": "40c53f7ceb572ff5",
@@ -6582,9 +6711,7 @@
         "g": "8ca20acee7a5ced4",
         "name": "Sauvegarde_parametres_out",
         "mode": "link",
-        "links": [
-            "cd796d78d0986bb3"
-        ],
+        "links": [],
         "x": 605,
         "y": 520,
         "wires": []
@@ -6596,9 +6723,7 @@
         "g": "3309ffc04a216e40",
         "name": "Sauvegarde_parametres_out",
         "mode": "link",
-        "links": [
-            "cd796d78d0986bb3"
-        ],
+        "links": [],
         "x": 675,
         "y": 640,
         "wires": []
@@ -6610,9 +6735,7 @@
         "g": "331dfcc16357afd3",
         "name": "Sauvegarde_parametres_out",
         "mode": "link",
-        "links": [
-            "cd796d78d0986bb3"
-        ],
+        "links": [],
         "x": 615,
         "y": 880,
         "wires": []
