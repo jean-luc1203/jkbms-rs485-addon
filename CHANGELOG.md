@@ -1,6 +1,9 @@
 ## 1.2.5
 All's well, the JKBMS configuration fields are no longer erased when the module is updated.
 
+!!! To ensure that important new modifications are taken into account. Please save the current module configuration information (YAML edition).
+Delete the add-on module completely, then reinstall it. Reconfigure the configuration and launch the module.
+
 ## 1.2.4
 Final local tests before releasing the latest version
 
