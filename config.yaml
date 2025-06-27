@@ -1,8 +1,8 @@
 ---
 name: "Smartphoton JK-BMS RS485 wired management"
-version: 1.2.0
+version: 1.2.5
 slug: "smartphoton_jkbms"
-description: JK-BMS management via RS485 & Rj45 port
+description: JK-BMS management via RS485-Rj45 port & Ip Gateway
 url: https://domosimple.eu/forum/forum-32.html
 ingress: false
 ingress_stream: false
@@ -31,12 +31,13 @@ map:
   - share:rw
   - ssl
 options:
-  # Configuration JK-BMS (sortie du tableau)
-  jkbms_path: "/dev/ttyUSBx"
-  jkbms_count: 1
-  use_gateway: false
-  gateway_ip: "192.168.1.100"
-  gateway_port: 5000
+  # Configuration JKBMS
+  jkbms:
+    jkbms_path: "/dev/ttyUSBx"
+    jkbms_count: 1
+    use_gateway: false
+    gateway_ip: "192.168.1.100"
+    gateway_port: 5000
   # Configuration MQTT
   mqtt:
     mqttadresse: "core-mosquitto.local.hass.io"
@@ -48,12 +49,13 @@ options:
   certfile: "fullchain.pem"
   keyfile: "privkey.pem"
 schema:
-  # Configuration JK-BMS (structure plate)
-  jkbms_path: str
-  jkbms_count: int(1,10)?
-  use_gateway: bool
-  gateway_ip: str?
-  gateway_port: int(1,65535)?
+  # Configuration JK-BMS
+  jkbms:
+    jkbms_path: str
+    jkbms_count: int(1,10)?
+    use_gateway: bool
+    gateway_ip: str?
+    gateway_port: int(1,65535)?
   # Configuration MQTT
   mqtt:
     mqttadresse: str?
