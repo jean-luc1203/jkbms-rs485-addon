@@ -1,3 +1,21 @@
+## 1.2.6
+Fix
+
+## 1.2.5
+All's well, the JKBMS configuration fields are no longer erased when the module is updated.
+
+## 1.2.4
+Final local tests before releasing the latest version
+
+## 1.2.3
+Changed flow initialisation structure for new schema of jkbms fields
+
+## 1.2.2
+Still modification for jkbms fields
+
+## 1.2.1
+Modification of the loss of JKBMS configuration fields when updating the module
+
 ## 1.2.0
 
 ## Adds the possibility of using an RS485 <---> ethernet or Wifi gateway
