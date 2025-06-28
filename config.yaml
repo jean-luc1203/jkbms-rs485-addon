@@ -1,6 +1,6 @@
 ---
 name: "Smartphoton JK-BMS RS485 wired management"
-version: 1.2.5
+version: 1.2.0
 slug: "smartphoton_jkbms"
 description: JK-BMS management via RS485-Rj45 port & Ip Gateway
 url: https://domosimple.eu/forum/forum-32.html
