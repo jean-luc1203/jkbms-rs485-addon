@@ -116,8 +116,8 @@ Installing this add-on is no different from installing any other Home Assistant 
 >     >     mqtt:
 >     >       mqttadresse: core-mosquitto.local.hass.io
 >     >       mqttport: 1883
->     >       mqttuser: administrateur
->     >       mqttpass: smartphoton2024
+>     >       mqttuser: youruser
+>     >       mqttpass: yourpassword
 >     >     ssl: false
 >     >     certfile: fullchain.pem
 >     >     keyfile: privkey.pem
