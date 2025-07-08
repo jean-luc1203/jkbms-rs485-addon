@@ -31,6 +31,14 @@
         "env": []
     },
     {
+        "id": "99bc02947d644bce",
+        "type": "tab",
+        "label": "Lecture broadascting",
+        "disabled": false,
+        "info": "Dans ce cas, il y a un des BMS qui est \r\ndéfini en maitre du bus rs485. C'est lui \r\nqui va aller demander les informations aux\r\nautres BMS.\r\nDans cette configuration, on ne peut pas\r\nchanger les paramètres car il ne peut pas\r\ny avoir 2 Master sur le bus en modbus.",
+        "env": []
+    },
+    {
         "id": "dfa2ea8601dc4518",
         "type": "tab",
         "label": "Dashboard",
@@ -71,7 +79,6 @@
         "nodes": [
             "prepare_command",
             "48962018a6c0050f",
-            "cb31b781d9bcb31e",
             "020c19662d54639e",
             "42b39467dd4b0da2",
             "33128f050c7a6d40",
@@ -88,11 +95,14 @@
             "a6457f1b4018e210",
             "d3854248aace5164",
             "366518e9212a6b71",
-            "771632eaf7af77e3"
+            "771632eaf7af77e3",
+            "63698aee56bda913",
+            "fa16677249a8083b",
+            "e14f3e4c62553529"
         ],
         "x": 14,
         "y": 199,
-        "w": 982,
+        "w": 1172,
         "h": 382
     },
     {
@@ -113,8 +123,8 @@
             "d9ef164688871372",
             "9c7f34f8f23e6ba9"
         ],
-        "x": 104,
-        "y": 39,
+        "x": 94,
+        "y": 19,
         "w": 472,
         "h": 122
     },
@@ -138,16 +148,15 @@
             "8d42d70f697c6b57",
             "6ec0cd904988f0ff",
             "f8bc911f73526834",
-            "c5358579966ea944",
             "bb5385e5fa6e8f58",
             "8941479643260a23",
             "dc8be2eb9f379046",
             "722fcc3b75fdf46e"
         ],
         "x": 18,
-        "y": 739,
+        "y": 659,
         "w": 903,
-        "h": 908
+        "h": 842
     },
     {
         "id": "c5544de409dc3632",
@@ -217,11 +226,12 @@
             "c827a1a690486903",
             "b8969f5c95ec96c0",
             "1905f9987eb5b3fd",
-            "7989336bb8bc11db"
+            "7989336bb8bc11db",
+            "c0c803d40187af13"
         ],
         "x": 14,
         "y": 39,
-        "w": 752,
+        "w": 932,
         "h": 282
     },
     {
@@ -483,30 +493,6 @@
         "h": 122
     },
     {
-        "id": "67d16682a4904961",
-        "type": "group",
-        "z": "e437f2f44495aeb9",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "47904917111ec14c",
-            "8d56499e5fd78d16",
-            "6ba5ab19ca0baf49",
-            "502b03bbf1fa8f13"
-        ],
-        "x": 714,
-        "y": 599,
-        "w": 372,
-        "h": 122
-    },
-    {
         "id": "1c9e2e84f7764473",
         "type": "group",
         "z": "e437f2f44495aeb9",
@@ -524,9 +510,132 @@
             "d132c36160191dc5",
             "22c8417438319190"
         ],
-        "x": 614,
-        "y": 39,
+        "x": 674,
+        "y": 19,
         "w": 512,
+        "h": 122
+    },
+    {
+        "id": "11b4dc13edc4bcc3",
+        "type": "group",
+        "z": "99bc02947d644bce",
+        "name": "Port Série Out",
+        "style": {
+            "stroke": "#ff0000",
+            "label": true,
+            "color": "#000000",
+            "fill": "#ffbfbf",
+            "fill-opacity": "0.21"
+        },
+        "nodes": [
+            "4ef61d69d00f1490",
+            "d05d32e34e2c10f6",
+            "01c8b4c6fbc133de",
+            "f1b7752a921d9b53",
+            "c0266ba152a5fbfc",
+            "40c4250769668c46",
+            "493bb5d0d7ce7299"
+        ],
+        "x": 14,
+        "y": 339,
+        "w": 992,
+        "h": 122
+    },
+    {
+        "id": "94abce3e597586b2",
+        "type": "group",
+        "z": "99bc02947d644bce",
+        "name": "Décodage des trames \"setup\" & \"data\"",
+        "style": {
+            "stroke": "#ffC000",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "a452bbacda9a31c4",
+            "3c693547320d0dac",
+            "fb6e7487bf7e7c7e"
+        ],
+        "x": 8,
+        "y": 493,
+        "w": 824,
+        "h": 534
+    },
+    {
+        "id": "fc76e68ff3fcec78",
+        "type": "group",
+        "z": "2d882136a35b2d36",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2dec048bac62f023",
+            "d5219701b2c5f1cf",
+            "db5c741c85c91494",
+            "dd52ab323e399460",
+            "afbe5d1b0c4b80b6",
+            "2d21e118cc99e498",
+            "e9b70213147f5383",
+            "d9e741387f3c254f"
+        ],
+        "x": 34,
+        "y": 559,
+        "w": 492,
+        "h": 202
+    },
+    {
+        "id": "9ac7fbaa9de4a5f4",
+        "type": "group",
+        "z": "2d882136a35b2d36",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b392b5cc58085773",
+            "f2b2c75d94da72f9"
+        ],
+        "x": 554,
+        "y": 569.199951171875,
+        "w": 312,
+        "h": 131.800048828125
+    },
+    {
+        "id": "ddca5e18c215e224",
+        "type": "group",
+        "z": "99bc02947d644bce",
+        "name": "Check si on est en position broadcast sur le JKBMS Master et si on utilise le Gateway Ethernet or Wifi. Si oui, il faut établir une fois la connexion IP",
+        "style": {
+            "stroke": "#0070c0",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000",
+            "fill-opacity": "0.21"
+        },
+        "nodes": [
+            "2026baa068afc243",
+            "cc27dece6b425072",
+            "4c149bdb598cd074",
+            "f7827123ec54a57f",
+            "d550b1374404759c",
+            "50df119af6f415a2",
+            "08a96f8a195e39a5",
+            "2c7355f24a2d8f75"
+        ],
+        "x": 14,
+        "y": 199,
+        "w": 1112,
         "h": 122
     },
     {
@@ -534,7 +643,7 @@
         "type": "group",
         "z": "e437f2f44495aeb9",
         "g": "554f91ffdbfbfc68",
-        "name": "Trame 1",
+        "name": "Trame 1 - Specifications statiques",
         "style": {
             "label": true,
             "color": "#000000"
@@ -550,7 +659,7 @@
             "f0baa88edd6cc075"
         ],
         "x": 44,
-        "y": 959,
+        "y": 879,
         "w": 821,
         "h": 122
     },
@@ -559,7 +668,7 @@
         "type": "group",
         "z": "e437f2f44495aeb9",
         "g": "554f91ffdbfbfc68",
-        "name": "Trame 3",
+        "name": "Trame 3 - Data des BMS en live",
         "style": {
             "label": true,
             "color": "#000000"
@@ -577,20 +686,19 @@
             "0b480948b60d645d",
             "8ccdcf5d7075d4c7",
             "653bf583b3edc452",
-            "55785a4118180011",
-            "ec8b2fdc37713423"
+            "55785a4118180011"
         ],
         "x": 54,
-        "y": 1279,
+        "y": 1219,
         "w": 841,
-        "h": 202
+        "h": 182
     },
     {
         "id": "f8bc911f73526834",
         "type": "group",
         "z": "e437f2f44495aeb9",
         "g": "554f91ffdbfbfc68",
-        "name": "Trame 2",
+        "name": "Trame 2 - Settings des BMS",
         "style": {
             "label": true,
             "color": "#000000"
@@ -606,27 +714,9 @@
             "08b1d0bb4085f9c1"
         ],
         "x": 44,
-        "y": 1119,
+        "y": 1039,
         "w": 842,
         "h": 122
-    },
-    {
-        "id": "c5358579966ea944",
-        "type": "group",
-        "z": "e437f2f44495aeb9",
-        "g": "554f91ffdbfbfc68",
-        "name": "Debug si nécessaire",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "b8914948fca3fdf5",
-            "019f592e42a7a3e6"
-        ],
-        "x": 54,
-        "y": 1539,
-        "w": 372,
-        "h": 82
     },
     {
         "id": "754c40640a559f32",
@@ -696,6 +786,85 @@
         "y": 379,
         "w": 562,
         "h": 122
+    },
+    {
+        "id": "a452bbacda9a31c4",
+        "type": "group",
+        "z": "99bc02947d644bce",
+        "g": "94abce3e597586b2",
+        "name": "Trame \"data\"",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#addb7b",
+            "fill-opacity": "0.24"
+        },
+        "nodes": [
+            "a1768eb7569c4708",
+            "4b1ded314830c9c3",
+            "1032539f128413e3",
+            "d70717c2791db26b",
+            "09e579b3b056849b",
+            "12d1fa573bb3da59",
+            "0036128267c62ded"
+        ],
+        "x": 34,
+        "y": 879,
+        "w": 692,
+        "h": 122
+    },
+    {
+        "id": "3c693547320d0dac",
+        "type": "group",
+        "z": "99bc02947d644bce",
+        "g": "94abce3e597586b2",
+        "name": "Trame \"setup\"",
+        "style": {
+            "label": true,
+            "color": "#000000",
+            "fill": "#ffbfbf",
+            "fill-opacity": "0.22"
+        },
+        "nodes": [
+            "2338c095f7c11c4a",
+            "22bf36a730da59e9",
+            "6a9629791ec88e16",
+            "3f75db3381208af3",
+            "a9b8b69f18754295",
+            "83fe441b68fd0f68",
+            "b7d3089c6d8f4d46"
+        ],
+        "x": 34,
+        "y": 739,
+        "w": 692,
+        "h": 122
+    },
+    {
+        "id": "fb6e7487bf7e7c7e",
+        "type": "group",
+        "z": "99bc02947d644bce",
+        "g": "94abce3e597586b2",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "stroke-opacity": "0.44",
+            "label": true,
+            "fill": "#bfdbef",
+            "fill-opacity": "0.15"
+        },
+        "nodes": [
+            "e531bf651f9a7d53",
+            "fbdd38a809fed0f0",
+            "478ff4b948448d8c",
+            "ab83cb844c76756e",
+            "e937fa82573471f0",
+            "f50e96b26caba2a9",
+            "e3fa9e45171a68ac"
+        ],
+        "x": 34,
+        "y": 519,
+        "w": 772,
+        "h": 142
     },
     {
         "id": "a144206f0ce5be54",
@@ -958,9 +1127,9 @@
         "rts": "none",
         "cts": "none",
         "dsr": "none",
-        "newline": "200",
+        "newline": "50",
         "bin": "bin",
-        "out": "time",
+        "out": "interbyte",
         "addchar": "",
         "responsetimeout": "500"
     },
@@ -1319,6 +1488,13 @@
                 "pt": "global",
                 "to": "8887",
                 "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "bms_broadcasting",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
             }
         ],
         "action": "",
@@ -1544,7 +1720,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "debug 97",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1578,7 +1754,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n    \n    // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n     \n    if (data.jkbms.bms_broadcasting) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n \n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1590,6 +1766,269 @@
         "wires": [
             [
                 "697f593b67e21ceb"
+            ]
+        ]
+    },
+    {
+        "id": "2dec048bac62f023",
+        "type": "inject",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "d5219701b2c5f1cf"
+            ]
+        ]
+    },
+    {
+        "id": "d5219701b2c5f1cf",
+        "type": "change",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "GW true ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "use_gateway",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db5c741c85c91494",
+        "type": "inject",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "dd52ab323e399460"
+            ]
+        ]
+    },
+    {
+        "id": "dd52ab323e399460",
+        "type": "change",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "GW false ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "use_gateway",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "afbe5d1b0c4b80b6",
+        "type": "inject",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 680,
+        "wires": [
+            [
+                "2d21e118cc99e498"
+            ]
+        ]
+    },
+    {
+        "id": "2d21e118cc99e498",
+        "type": "change",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "BMS Broadcasting ? True",
+        "rules": [
+            {
+                "t": "set",
+                "p": "bms_broadcasting",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e9b70213147f5383",
+        "type": "inject",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "d9e741387f3c254f"
+            ]
+        ]
+    },
+    {
+        "id": "d9e741387f3c254f",
+        "type": "change",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "BMS Broadcasting ? False",
+        "rules": [
+            {
+                "t": "set",
+                "p": "bms_broadcasting",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b392b5cc58085773",
+        "type": "file",
+        "z": "2d882136a35b2d36",
+        "g": "9ac7fbaa9de4a5f4",
+        "name": "",
+        "filename": "/config/temp/broadcast-bms.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 710,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2b2c75d94da72f9",
+        "type": "function",
+        "z": "2d882136a35b2d36",
+        "g": "9ac7fbaa9de4a5f4",
+        "name": "debug en hexa",
+        "func": "// Vérifie que le payload est un Buffer\nif (Buffer.isBuffer(msg.payload)) {\n    // Convertit chaque octet en hexadécimal sur 2 chiffres\n    msg.payload = msg.payload\n        .toString('hex')                // Convertit tout le buffer en une chaîne hexadécimale continue\n        .match(/.{1,2}/g)               // Coupe la chaîne tous les 2 caractères\n        .join(' ') + '\\n';              // Ajoute un espace entre chaque octet et un retour à la ligne\n} else if (Array.isArray(msg.payload)) {\n    // Si c'est un tableau, on le traite aussi\n    msg.payload = msg.payload\n        .map(x => x.toString(16).padStart(2, '0'))\n        .join(' ') + '\\n';\n} else {\n    // Sinon, on ne fait rien ou on peut lever une erreur\n    msg.payload = 'Payload non reconnu\\n';\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 662.2000122070312,
+        "y": 610.199951171875,
+        "wires": [
+            [
+                "b392b5cc58085773"
             ]
         ]
     },
@@ -1606,7 +2045,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 570,
         "y": 540,
         "wires": [
             [
@@ -1627,7 +2066,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 570,
         "y": 280,
         "wires": [
             [
@@ -1642,34 +2081,19 @@
         "g": "efcb27eee8e0e602",
         "name": "Serial-In",
         "links": [
-            "cb31b781d9bcb31e",
             "5df172e294de3c89",
             "3d4605eb10a3d1dc",
             "30ec269020be3cfd",
             "d1d7ba8380ba4e39",
             "366518e9212a6b71"
         ],
-        "x": 145,
-        "y": 80,
+        "x": 135,
+        "y": 60,
         "wires": [
             [
                 "8d8489f730e79441"
             ]
         ]
-    },
-    {
-        "id": "cb31b781d9bcb31e",
-        "type": "link out",
-        "z": "e437f2f44495aeb9",
-        "g": "6b5bd0bba4a26d99",
-        "name": "link out 5",
-        "mode": "link",
-        "links": [
-            "305e1cac13589b0d"
-        ],
-        "x": 695,
-        "y": 400,
-        "wires": []
     },
     {
         "id": "020c19662d54639e",
@@ -1684,7 +2108,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 570,
         "y": 400,
         "wires": [
             [
@@ -1707,7 +2131,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1440,
+        "y": 1360,
         "wires": []
     },
     {
@@ -1724,7 +2148,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 1200,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1738,7 +2162,7 @@
             "d132c36160191dc5"
         ],
         "x": 65,
-        "y": 860,
+        "y": 780,
         "wires": [
             [
                 "ef22a3d568844d0a",
@@ -1761,7 +2185,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 190,
-        "y": 1160,
+        "y": 1080,
         "wires": []
     },
     {
@@ -1779,7 +2203,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1000,
+        "y": 920,
         "wires": []
     },
     {
@@ -1796,7 +2220,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 579,
-        "y": 1040,
+        "y": 960,
         "wires": []
     },
     {
@@ -1979,7 +2403,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 390,
-        "y": 1040,
+        "y": 960,
         "wires": [
             [
                 "1555b1456f9f113e",
@@ -1994,12 +2418,12 @@
         "g": "efcb27eee8e0e602",
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
-        "x": 280,
-        "y": 80,
+        "x": 270,
+        "y": 60,
         "wires": [
             [
-                "cfbb3e70d43124da",
                 "d9ef164688871372",
+                "cfbb3e70d43124da",
                 "9c7f34f8f23e6ba9"
             ]
         ]
@@ -2036,7 +2460,7 @@
         "repair": false,
         "outputs": 4,
         "x": 200,
-        "y": 860,
+        "y": 780,
         "wires": [
             [
                 "58ef70ea1beab86a"
@@ -2063,8 +2487,8 @@
         "links": [
             "87cae6741d4eba43"
         ],
-        "x": 285,
-        "y": 120,
+        "x": 275,
+        "y": 100,
         "wires": []
     },
     {
@@ -2073,7 +2497,7 @@
         "z": "e437f2f44495aeb9",
         "g": "efcb27eee8e0e602",
         "name": "Modbus Out",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2081,8 +2505,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 80,
+        "x": 450,
+        "y": 60,
         "wires": []
     },
     {
@@ -2100,7 +2524,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 480,
-        "y": 900,
+        "y": 820,
         "wires": []
     },
     {
@@ -2117,13 +2541,12 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 1400,
+        "y": 1320,
         "wires": [
             [
                 "f2fbf57365769c2d",
                 "8941479643260a23",
-                "0b480948b60d645d",
-                "ec8b2fdc37713423"
+                "0b480948b60d645d"
             ],
             [
                 "da663fa50d94c63c"
@@ -2141,7 +2564,7 @@
             "8a804f30a6c6f20f"
         ],
         "x": 365,
-        "y": 860,
+        "y": 780,
         "wires": []
     },
     {
@@ -2154,7 +2577,7 @@
             "31a51f2f45d84be6"
         ],
         "x": 95,
-        "y": 1400,
+        "y": 1320,
         "wires": [
             [
                 "27c1423f6c9aada6",
@@ -2173,7 +2596,7 @@
             "23a113423703427c"
         ],
         "x": 365,
-        "y": 820,
+        "y": 740,
         "wires": []
     },
     {
@@ -2186,51 +2609,13 @@
             "5f01f1a8c86201ad"
         ],
         "x": 85,
-        "y": 1180,
+        "y": 1100,
         "wires": [
             [
                 "9b9034a8b404274d",
                 "3775966e34cef950"
             ]
         ]
-    },
-    {
-        "id": "b8914948fca3fdf5",
-        "type": "function",
-        "z": "e437f2f44495aeb9",
-        "g": "c5358579966ea944",
-        "name": "buffer to hexa",
-        "func": "// Dans un nœud function\nmsg.payload = Buffer.from(msg.payload).toString('hex');\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 1580,
-        "wires": [
-            [
-                "019f592e42a7a3e6"
-            ]
-        ]
-    },
-    {
-        "id": "019f592e42a7a3e6",
-        "type": "debug",
-        "z": "e437f2f44495aeb9",
-        "g": "c5358579966ea944",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 320,
-        "y": 1580,
-        "wires": []
     },
     {
         "id": "3775966e34cef950",
@@ -2246,7 +2631,7 @@
         "finalize": "",
         "libs": [],
         "x": 210,
-        "y": 1200,
+        "y": 1120,
         "wires": [
             [
                 "6ddc941d8fc09996"
@@ -2265,7 +2650,7 @@
             "1c533d251a90da41"
         ],
         "x": 365,
-        "y": 780,
+        "y": 700,
         "wires": []
     },
     {
@@ -2278,7 +2663,7 @@
             "58ef70ea1beab86a"
         ],
         "x": 85,
-        "y": 1040,
+        "y": 960,
         "wires": [
             [
                 "1967c318d9216a54",
@@ -2300,31 +2685,13 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 1040,
+        "y": 960,
         "wires": [
             [
                 "780b5889dad59c22"
             ],
             []
         ]
-    },
-    {
-        "id": "9c7f34f8f23e6ba9",
-        "type": "debug",
-        "z": "e437f2f44495aeb9",
-        "g": "efcb27eee8e0e602",
-        "name": "msg.status",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "status",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 460,
-        "y": 120,
-        "wires": []
     },
     {
         "id": "a57eec1d77cfb03e",
@@ -2340,7 +2707,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 1440,
+        "y": 1360,
         "wires": []
     },
     {
@@ -2358,7 +2725,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1440,
+        "y": 1360,
         "wires": []
     },
     {
@@ -2377,7 +2744,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 780,
-        "y": 1400,
+        "y": 1320,
         "wires": []
     },
     {
@@ -2395,7 +2762,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 769,
-        "y": 1040,
+        "y": 960,
         "wires": []
     },
     {
@@ -2414,7 +2781,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 779,
-        "y": 1000,
+        "y": 920,
         "wires": []
     },
     {
@@ -2432,7 +2799,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 400,
-        "y": 1440,
+        "y": 1360,
         "wires": []
     },
     {
@@ -2822,7 +3189,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 390,
-        "y": 1200,
+        "y": 1120,
         "wires": [
             [
                 "e6d9f6f2ecbfa12e",
@@ -2844,7 +3211,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1400,
+        "y": 1320,
         "wires": [
             [
                 "3c4c2b0ec268a41f",
@@ -2866,7 +3233,7 @@
         "finalize": "",
         "libs": [],
         "x": 579,
-        "y": 1000,
+        "y": 920,
         "wires": [
             [
                 "55ea9406b130a136",
@@ -2888,7 +3255,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1160,
+        "y": 1080,
         "wires": [
             [
                 "e8ed5df6828f9f8f",
@@ -2911,7 +3278,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1200,
+        "y": 1120,
         "wires": []
     },
     {
@@ -2930,7 +3297,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 780,
-        "y": 1160,
+        "y": 1080,
         "wires": []
     },
     {
@@ -2940,7 +3307,7 @@
         "g": "6b5bd0bba4a26d99",
         "name": "Relecture-Trame-2-in",
         "links": [],
-        "x": 215,
+        "x": 375,
         "y": 440,
         "wires": [
             [
@@ -2959,7 +3326,7 @@
             "63b5b654057c4381"
         ],
         "x": 365,
-        "y": 900,
+        "y": 820,
         "wires": []
     },
     {
@@ -2980,7 +3347,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 270,
+        "x": 510,
         "y": 240,
         "wires": [
             [
@@ -3001,7 +3368,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 700,
         "y": 240,
         "wires": [
             [
@@ -3023,7 +3390,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
+        "x": 900,
         "y": 240,
         "wires": []
     },
@@ -3045,7 +3412,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 270,
+        "x": 510,
         "y": 360,
         "wires": [
             [
@@ -3066,7 +3433,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 700,
         "y": 360,
         "wires": [
             [
@@ -3088,7 +3455,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
+        "x": 900,
         "y": 360,
         "wires": []
     },
@@ -3110,7 +3477,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 270,
+        "x": 510,
         "y": 500,
         "wires": [
             [
@@ -3131,7 +3498,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 700,
         "y": 500,
         "wires": [
             [
@@ -3153,7 +3520,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
+        "x": 900,
         "y": 500,
         "wires": []
     },
@@ -3652,7 +4019,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 420,
-        "y": 1400,
+        "y": 1320,
         "wires": [
             [
                 "64590862f9d3a361",
@@ -3705,7 +4072,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 600,
-        "y": 1540,
+        "y": 1460,
         "wires": [
             [
                 "dc8be2eb9f379046"
@@ -3726,7 +4093,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1540,
+        "y": 1460,
         "wires": []
     },
     {
@@ -3743,7 +4110,7 @@
         "finalize": "",
         "libs": [],
         "x": 589,
-        "y": 1360,
+        "y": 1280,
         "wires": [
             [
                 "8ccdcf5d7075d4c7"
@@ -3765,7 +4132,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 789,
-        "y": 1360,
+        "y": 1280,
         "wires": []
     },
     {
@@ -3782,7 +4149,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1340,
+        "y": 1260,
         "wires": [
             [
                 "0b480948b60d645d"
@@ -3812,29 +4179,12 @@
         "payload": "",
         "payloadType": "date",
         "x": 230,
-        "y": 1340,
+        "y": 1260,
         "wires": [
             [
                 "653bf583b3edc452"
             ]
         ]
-    },
-    {
-        "id": "ec8b2fdc37713423",
-        "type": "debug",
-        "z": "e437f2f44495aeb9",
-        "g": "6ec0cd904988f0ff",
-        "name": "debug 27",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
-        "y": 1320,
-        "wires": []
     },
     {
         "id": "45e89eb282d2510b",
@@ -3868,8 +4218,7 @@
         "y": 280,
         "wires": [
             [
-                "33128f050c7a6d40",
-                "48962018a6c0050f"
+                "63698aee56bda913"
             ]
         ]
     },
@@ -3905,8 +4254,7 @@
         "y": 400,
         "wires": [
             [
-                "020c19662d54639e",
-                "47c0ebe01c623676"
+                "fa16677249a8083b"
             ]
         ]
     },
@@ -3942,8 +4290,7 @@
         "y": 540,
         "wires": [
             [
-                "prepare_command",
-                "588a28b52bca3c97"
+                "e14f3e4c62553529"
             ]
         ]
     },
@@ -3970,8 +4317,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 710,
-        "y": 80,
+        "x": 770,
+        "y": 60,
         "wires": [
             [
                 "374bbe6e8c64a12a"
@@ -3992,8 +4339,8 @@
         "newline": "",
         "trim": false,
         "tls": "",
-        "x": 850,
-        "y": 120,
+        "x": 910,
+        "y": 100,
         "wires": [
             [
                 "710b79fc70fe4146",
@@ -4015,121 +4362,9 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1010,
-        "y": 80,
+        "x": 1070,
+        "y": 60,
         "wires": []
-    },
-    {
-        "id": "47904917111ec14c",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "g": "67d16682a4904961",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 830,
-        "y": 640,
-        "wires": [
-            [
-                "8d56499e5fd78d16"
-            ]
-        ]
-    },
-    {
-        "id": "8d56499e5fd78d16",
-        "type": "change",
-        "z": "e437f2f44495aeb9",
-        "g": "67d16682a4904961",
-        "name": "GW true ",
-        "rules": [
-            {
-                "t": "set",
-                "p": "use_gateway",
-                "pt": "global",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1000,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6ba5ab19ca0baf49",
-        "type": "inject",
-        "z": "e437f2f44495aeb9",
-        "g": "67d16682a4904961",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 830,
-        "y": 680,
-        "wires": [
-            [
-                "502b03bbf1fa8f13"
-            ]
-        ]
-    },
-    {
-        "id": "502b03bbf1fa8f13",
-        "type": "change",
-        "z": "e437f2f44495aeb9",
-        "g": "67d16682a4904961",
-        "name": "GW false ",
-        "rules": [
-            {
-                "t": "set",
-                "p": "use_gateway",
-                "pt": "global",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1000,
-        "y": 680,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "d132c36160191dc5",
@@ -4141,8 +4376,8 @@
         "links": [
             "87cae6741d4eba43"
         ],
-        "x": 955,
-        "y": 120,
+        "x": 1015,
+        "y": 100,
         "wires": []
     },
     {
@@ -4164,7 +4399,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 840,
+        "x": 1080,
         "y": 400,
         "wires": [
             [
@@ -4173,6 +4408,10 @@
             [
                 "366518e9212a6b71"
             ]
+        ],
+        "outputLabels": [
+            "Ip Gateway",
+            "Serial Port"
         ]
     },
     {
@@ -4185,8 +4424,8 @@
         "links": [
             "305e1cac13589b0d"
         ],
-        "x": 955,
-        "y": 420,
+        "x": 1135,
+        "y": 440,
         "wires": []
     },
     {
@@ -4203,7 +4442,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 180,
-        "y": 800,
+        "y": 720,
         "wires": []
     },
     {
@@ -4216,8 +4455,8 @@
         "links": [
             "22c8417438319190"
         ],
-        "x": 955,
-        "y": 380,
+        "x": 1135,
+        "y": 360,
         "wires": []
     },
     {
@@ -4229,11 +4468,116 @@
         "links": [
             "771632eaf7af77e3"
         ],
-        "x": 745,
-        "y": 120,
+        "x": 805,
+        "y": 100,
         "wires": [
             [
                 "374bbe6e8c64a12a"
+            ]
+        ]
+    },
+    {
+        "id": "9c7f34f8f23e6ba9",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "efcb27eee8e0e602",
+        "name": "msg.status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "status",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "63698aee56bda913",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "bms_broadcasting ?",
+        "property": "bms_broadcasting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 300,
+        "y": 280,
+        "wires": [
+            [],
+            [
+                "48962018a6c0050f",
+                "33128f050c7a6d40"
+            ]
+        ]
+    },
+    {
+        "id": "fa16677249a8083b",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "bms_broadcasting ?",
+        "property": "bms_broadcasting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [],
+            [
+                "47c0ebe01c623676",
+                "020c19662d54639e"
+            ]
+        ]
+    },
+    {
+        "id": "e14f3e4c62553529",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "bms_broadcasting ?",
+        "property": "bms_broadcasting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 300,
+        "y": 540,
+        "wires": [
+            [],
+            [
+                "588a28b52bca3c97",
+                "prepare_command"
             ]
         ]
     },
@@ -4252,7 +4596,7 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 520,
+        "x": 640,
         "y": 240,
         "wires": []
     },
@@ -4266,7 +4610,7 @@
         "links": [
             "42b39467dd4b0da2"
         ],
-        "x": 635,
+        "x": 755,
         "y": 200,
         "wires": []
     },
@@ -4280,7 +4624,7 @@
         "links": [
             "3b2397378287cde4"
         ],
-        "x": 295,
+        "x": 415,
         "y": 280,
         "wires": []
     },
@@ -4302,7 +4646,7 @@
         "bytopic": "topic",
         "topic": "topic",
         "outputs": 2,
-        "x": 460,
+        "x": 640,
         "y": 100,
         "wires": [
             [
@@ -4327,7 +4671,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
+        "x": 840,
         "y": 80,
         "wires": []
     },
@@ -4344,7 +4688,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
+        "x": 840,
         "y": 120,
         "wires": []
     },
@@ -4366,7 +4710,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 340,
+        "x": 460,
         "y": 200,
         "wires": [
             [
@@ -4395,7 +4739,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
+        "x": 640,
         "y": 200,
         "wires": [
             [
@@ -4417,7 +4761,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 340,
+        "x": 460,
         "y": 240,
         "wires": []
     },
@@ -5538,7 +5882,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 140,
+        "x": 260,
         "y": 240,
         "wires": [
             [
@@ -5575,7 +5919,7 @@
         "y": 100,
         "wires": [
             [
-                "7989336bb8bc11db"
+                "c0c803d40187af13"
             ]
         ]
     },
@@ -5592,7 +5936,7 @@
         "nl": false,
         "rap": false,
         "inputs": 1,
-        "x": 290,
+        "x": 490,
         "y": 100,
         "wires": [
             [
@@ -5634,6 +5978,1699 @@
         "x": 750,
         "y": 500,
         "wires": []
+    },
+    {
+        "id": "c0c803d40187af13",
+        "type": "switch",
+        "z": "63221fce04fce9a1",
+        "g": "784cf280be8f9617",
+        "name": "bms_broadcasting ?",
+        "property": "bms_broadcasting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [],
+            [
+                "7989336bb8bc11db"
+            ]
+        ]
+    },
+    {
+        "id": "4ef61d69d00f1490",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "Modbus Out",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 230,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e531bf651f9a7d53",
+        "type": "link in",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": "Broadcast-in",
+        "links": [
+            "cc27dece6b425072",
+            "d05d32e34e2c10f6"
+        ],
+        "x": 75,
+        "y": 580,
+        "wires": [
+            [
+                "ab83cb844c76756e",
+                "e937fa82573471f0"
+            ]
+        ]
+    },
+    {
+        "id": "fbdd38a809fed0f0",
+        "type": "link out",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": "data-out",
+        "mode": "link",
+        "links": [
+            "4b1ded314830c9c3"
+        ],
+        "x": 765,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "478ff4b948448d8c",
+        "type": "link out",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": "setup-out",
+        "mode": "link",
+        "links": [
+            "6a9629791ec88e16"
+        ],
+        "x": 765,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a1768eb7569c4708",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "Trame 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 140,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "4b1ded314830c9c3",
+        "type": "link in",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "data-in",
+        "links": [
+            "fbdd38a809fed0f0"
+        ],
+        "x": 75,
+        "y": 920,
+        "wires": [
+            [
+                "a1768eb7569c4708",
+                "0036128267c62ded"
+            ]
+        ]
+    },
+    {
+        "id": "1032539f128413e3",
+        "type": "mqtt out",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "Onduleur",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 620,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "d70717c2791db26b",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "debug 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "09e579b3b056849b",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "Trame Data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "12d1fa573bb3da59",
+        "type": "function",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "Data To MQTT",
+        "func": "// Récupération de l'adresse BMS depuis msg.bms_adresse\nlet bmsAdresse = msg.bms_adresse;\n\n// Gestion du cas où bmsAdresse est \"master\" (string) ou un nombre\nlet slaveIdStr;\nif (typeof bmsAdresse === \"string\" && bmsAdresse.toLowerCase() === \"master\") {\n    slaveIdStr = \"master\";\n} else if (typeof bmsAdresse === \"number\") {\n    slaveIdStr = String(bmsAdresse);\n} else if (!isNaN(Number(bmsAdresse))) {\n    slaveIdStr = String(Number(bmsAdresse));\n} else {\n    // Valeur par défaut si jamais la donnée est absente ou invalide\n    slaveIdStr = \"1\";\n}\n\n// Debug pour vérifier la valeur prise\nconsole.log(`BMS utilisé: ${slaveIdStr}`);\n// node.warn(`BMS utilisé: ${slaveIdStr}`);\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdStr;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdStr;\nvar deviceID = \"BMS_\" + slaveIdStr + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Extraire uniquement les tensions des cellules\nvar cellVoltages = [];\nvar cellKeys = [];\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, voltage) => sum + voltage, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n    payload[\"cell_voltage_average_V\"] = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"] = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"] = parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"] = parseInt(minVoltIndex);\n}\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n    var configPayload = {\n        name: cleanKey,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        unit_of_measurement: \"\",\n        entity_category: \"diagnostic\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS - RS485 - Ip Gateway\",\n            sw_version: \"2.0.0\"\n        }\n    };\n\n    if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n    if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n    if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n    if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n    if (key.endsWith(\"_T\")) configPayload.unit_of_measurement = \"°C\";\n    if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n    if (key.endsWith(\"_P\")) {\n        configPayload.unit_of_measurement = \"%\";\n        if (key.startsWith(\"SOC\")) {\n            configPayload.device_class = \"battery\";\n        }\n    }\n    if (key.endsWith(\"_S\")) configPayload.unit_of_measurement = \"s\";\n\n    discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n}\n\n// Publier les données dynamiques sous un seul topic\ntopics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = discoveryMsgs;\nfor (var topic in topics) {\n    outputMsgs.push({ topic: topic, payload: topics[topic] });\n}\n\nreturn [outputMsgs];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 920,
+        "wires": [
+            [
+                "d70717c2791db26b",
+                "1032539f128413e3"
+            ]
+        ]
+    },
+    {
+        "id": "0036128267c62ded",
+        "type": "buffer-parser",
+        "z": "99bc02947d644bce",
+        "g": "a452bbacda9a31c4",
+        "name": "Trame 3",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "uint16le",
+                "name": "Cell_1_volt_V",
+                "offset": 6,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_2_volt_V",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_3_volt_V",
+                "offset": 10,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_4_volt_V",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_5_volt_V",
+                "offset": 14,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_6_volt_V",
+                "offset": 16,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_7_volt_V",
+                "offset": 18,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_8_volt_V",
+                "offset": 20,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_9_volt_V",
+                "offset": 22,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_10_volt_V",
+                "offset": 24,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_11_volt_V",
+                "offset": 26,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_12_volt_V",
+                "offset": 28,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_13_volt_V",
+                "offset": 30,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_14_volt_V",
+                "offset": 32,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_15_volt_V",
+                "offset": 34,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Cell_16_volt_V",
+                "offset": 36,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_1_ohm_R",
+                "offset": 80,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_2_ohm_R",
+                "offset": 82,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_3_ohm_R",
+                "offset": 84,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_4_ohm_R",
+                "offset": 86,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_5_ohm_R",
+                "offset": 88,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_6_ohm_R",
+                "offset": 90,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_7_ohm_R",
+                "offset": 92,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_8_ohm_R",
+                "offset": 94,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_9_ohm_R",
+                "offset": 96,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_10_ohm_R",
+                "offset": 98,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_11_ohm_R",
+                "offset": 100,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_12_ohm_R",
+                "offset": 102,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_13_ohm_R",
+                "offset": 104,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_14_ohm_R",
+                "offset": 106,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_15_ohm_R",
+                "offset": 108,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Cell_16_ohm_R",
+                "offset": 110,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Mos_temp_T",
+                "offset": 144,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "uint32le",
+                "name": "Puissance_Totale_W",
+                "offset": 154,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "Courant_total_A",
+                "offset": 158,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Sonde_1_temp_T",
+                "offset": 162,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Sonde_2_temp_T",
+                "offset": 164,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Balance_courant_A",
+                "offset": 170,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "byte",
+                "name": "Balance_Action_B",
+                "offset": 172,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/100",
+                "mask": ""
+            },
+            {
+                "type": "uint8",
+                "name": "SOC_pourcentage_P",
+                "offset": 173,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "Capacite_restante_Ah",
+                "offset": 174,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "Capacite_batterie_Ah",
+                "offset": 178,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "Nombre_Cycle_N",
+                "offset": 182,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "Cycle_Capacite_Ah",
+                "offset": 186,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "uint8",
+                "name": "SOH_pourcentage_P",
+                "offset": 190,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint32le",
+                "name": "Total_runtime_S",
+                "offset": 194,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "byte",
+                "name": "Switch_Charge_B",
+                "offset": 198,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "byte",
+                "name": "Switch_Decharge_B",
+                "offset": 199,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "byte",
+                "name": "Switch_Balance_B",
+                "offset": 200,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "Tension_Totale_volt_V",
+                "offset": 234,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/100",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Sonde_3_temp_T",
+                "offset": 254,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int16le",
+                "name": "Sonde_4_temp_T",
+                "offset": 258,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 200,
+        "y": 920,
+        "wires": [
+            [
+                "09e579b3b056849b",
+                "12d1fa573bb3da59"
+            ]
+        ]
+    },
+    {
+        "id": "2338c095f7c11c4a",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "Trame Setup",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "22bf36a730da59e9",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "Trame 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 200,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "6a9629791ec88e16",
+        "type": "link in",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "setup-in",
+        "links": [
+            "478ff4b948448d8c"
+        ],
+        "x": 75,
+        "y": 780,
+        "wires": [
+            [
+                "22bf36a730da59e9",
+                "3f75db3381208af3"
+            ]
+        ]
+    },
+    {
+        "id": "3f75db3381208af3",
+        "type": "buffer-parser",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "Trame 2",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int32le",
+                "name": "smart_sleep_voltage_V",
+                "offset": 6,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_voltage_undervoltage_protection_V",
+                "offset": 10,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_voltage_undervoltage_recovery_V",
+                "offset": 14,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_voltage_overvoltage_protection_V",
+                "offset": 18,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_voltage_overvoltage_recovery_V",
+                "offset": 22,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "balance_trigger_voltage_V",
+                "offset": 26,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_soc100_voltage_V",
+                "offset": 30,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_soc0_voltage_V",
+                "offset": 34,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_request_charge_voltage_V",
+                "offset": 38,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_request_float_voltage_V",
+                "offset": 42,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "power_off_voltage_V",
+                "offset": 46,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "max_charge_current_A",
+                "offset": 50,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "charge_overcurrent_protection_delay_S",
+                "offset": 54,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "charge_overcurrent_protection_recovery_time_S",
+                "offset": 58,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "max_discharge_current_S",
+                "offset": 62,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "discharge_overcurrent_protection_delay_S",
+                "offset": 66,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "discharge_overcurrent_protection_recovery_time_S",
+                "offset": 70,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "short_circuit_protection_recovery_time_S",
+                "offset": 74,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "max_balance_current_A",
+                "offset": 78,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "charge_overtemperature_protection_T",
+                "offset": 82,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "charge_overtemperature_protection_recovery_T",
+                "offset": 86,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "discharge_overtemperature_protection_T",
+                "offset": 90,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "discharge_overtemperature_protection_recovery_T",
+                "offset": 94,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "charge_undertemperature_protection_T",
+                "offset": 98,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "charge_undertemperature_protection_recovery_T",
+                "offset": 102,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "power_tube_overtemperature_protection_T",
+                "offset": 106,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "power_tube_overtemperature_protection_recovery_T",
+                "offset": 110,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/10",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "cell_count_N",
+                "offset": 114,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "charging_switch_B",
+                "offset": 118,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "discharging_switch_B",
+                "offset": 122,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "balance_switch_B",
+                "offset": 126,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "total_battery_capacity_Ah",
+                "offset": 130,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "short_circuit_protection_delay_S",
+                "offset": 134,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "balance_starting_voltage_V",
+                "offset": 138,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": "Connexion_wire_resistance_1_R",
+                "offset": 158,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "/1000",
+                "mask": ""
+            },
+            {
+                "type": "int32le",
+                "name": " Device_address_N",
+                "offset": 270,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "display_always_on_switch_B",
+                "offset": 282,
+                "length": 1,
+                "offsetbit": 4,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "smart_sleep_switch_B",
+                "offset": 282,
+                "length": 1,
+                "offsetbit": 7,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "disable_pcl_module_switch_B",
+                "offset": 282,
+                "length": 1,
+                "offsetbit": 8,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "bool",
+                "name": "timed_stored_data_switch_B",
+                "offset": 283,
+                "length": 1,
+                "offsetbit": 1,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 200,
+        "y": 780,
+        "wires": [
+            [
+                "2338c095f7c11c4a",
+                "a9b8b69f18754295"
+            ]
+        ]
+    },
+    {
+        "id": "a9b8b69f18754295",
+        "type": "function",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "Setup To MQTT",
+        "func": "// --- Récupération de l'adresse BMS depuis msg.bms_adresse ---\nlet bmsAdresse = msg.bms_adresse;\n\n// Gestion du cas où bmsAdresse est \"master\" (string) ou un nombre\nlet slaveIdStr;\nif (typeof bmsAdresse === \"string\" && bmsAdresse.toLowerCase() === \"master\") {\n    slaveIdStr = \"master\";\n} else if (typeof bmsAdresse === \"number\") {\n    slaveIdStr = String(bmsAdresse);\n} else if (!isNaN(Number(bmsAdresse))) {\n    slaveIdStr = String(Number(bmsAdresse));\n} else {\n    // Valeur par défaut si jamais la donnée est absente ou invalide\n    slaveIdStr = \"1\";\n}\n\n// --- Définition des variables de base ---\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdStr;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdStr;\nvar deviceID = \"BMS_\" + slaveIdStr + \"_device\";\n\nvar discoveryMsgs = [];\n\n// --- Fonction de conversion des booléens ---\nfunction formatBoolean(value) {\n    if (typeof value === 'boolean') {\n        return value ? 'True' : 'False';\n    }\n    if (typeof value === 'string') {\n        const lowerVal = value.toLowerCase();\n        return lowerVal === 'true' ? 'True' : lowerVal === 'false' ? 'False' : value;\n    }\n    return value;\n}\n\n// --- Fonction de création du payload de config Home Assistant ---\nfunction createConfigPayload(key, value) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var entityType = \"number\";\n    if (key.endsWith(\"_B\")) {\n        entityType = \"switch\";\n    }\n    var configTopic = `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`;\n\n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: `${baseTopic}/control/${cleanKey}/state`,\n        command_topic: `${baseTopic}/control/${cleanKey}/set`,\n        entity_category: \"config\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: payload.BMS_A || \"JK-BMS - RS485 - Ip Gateway\",\n            sw_version: \"2.0.0\"\n        }\n    };\n\n    if (entityType === \"number\") {\n        configPayload.mode = \"box\";\n        if (key.endsWith(\"_V\")) {\n            configPayload.unit_of_measurement = \"V\";\n            configPayload.min = 0;\n            configPayload.max = 5;\n            configPayload.step = 0.01;\n        }\n        // Ajoute ici d'autres unités si besoin\n    } else if (entityType === \"switch\") {\n        configPayload.payload_on = \"True\";\n        configPayload.payload_off = \"False\";\n        configPayload.state_on = \"True\";\n        configPayload.state_off = \"False\";\n    }\n\n    return {\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    };\n}\n\n// --- Génération des messages de découverte et d'état ---\nfor (var key in payload) {\n    // Message de découverte Home Assistant\n    discoveryMsgs.push(createConfigPayload(key, payload[key]));\n\n    // Message d'état pour chaque entité\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var formattedValue = formatBoolean(payload[key]);\n    discoveryMsgs.push({\n        topic: `${baseTopic}/control/${cleanKey}/state`,\n        payload: formattedValue,\n        retain: true\n    });\n}\n\n// --- Retourne le tableau de messages MQTT ---\nreturn [discoveryMsgs];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "83fe441b68fd0f68",
+                "b7d3089c6d8f4d46"
+            ]
+        ]
+    },
+    {
+        "id": "83fe441b68fd0f68",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "debug 20",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b7d3089c6d8f4d46",
+        "type": "mqtt out",
+        "z": "99bc02947d644bce",
+        "g": "3c693547320d0dac",
+        "name": "Onduleur",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 620,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ab83cb844c76756e",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": "debug 23",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "d05d32e34e2c10f6",
+        "type": "link out",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "Broadcast-serial-Out",
+        "mode": "link",
+        "links": [
+            "e531bf651f9a7d53"
+        ],
+        "x": 455,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "01c8b4c6fbc133de",
+        "type": "switch",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "bms_broadcasting ?",
+        "property": "bms_broadcasting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "d05d32e34e2c10f6",
+                "f1b7752a921d9b53",
+                "493bb5d0d7ce7299"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f1b7752a921d9b53",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "Broadcast-serial-Out",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "94cfed9008574ab3",
+        "type": "comment",
+        "z": "99bc02947d644bce",
+        "name": "Cas du BMS défini en Master Modbus RS485",
+        "info": "",
+        "x": 270,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "dc2371259001e187",
+        "type": "comment",
+        "z": "99bc02947d644bce",
+        "name": "C'est lui qui demande les informations aux autres BMS.",
+        "info": "",
+        "x": 380,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "48722ca95f97ab84",
+        "type": "comment",
+        "z": "99bc02947d644bce",
+        "name": "Dans cette configuration, on ne peut pas changer les paramètres !!!",
+        "info": "",
+        "x": 520,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1cdef2e113523f68",
+        "type": "comment",
+        "z": "99bc02947d644bce",
+        "name": "Car il ne peut pas y avoir 2 Master sur le bus en Modbus.",
+        "info": "",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c0266ba152a5fbfc",
+        "type": "serial in",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "",
+        "serial": "6e1abcbcc6ebb714",
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "4ef61d69d00f1490",
+                "01c8b4c6fbc133de"
+            ]
+        ]
+    },
+    {
+        "id": "40c4250769668c46",
+        "type": "file",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "",
+        "filename": "/config/temp/broadcast-bms-1-8.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 840,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "493bb5d0d7ce7299",
+        "type": "function",
+        "z": "99bc02947d644bce",
+        "d": true,
+        "g": "11b4dc13edc4bcc3",
+        "name": "debug en hexa",
+        "func": "// Vérifie que le payload est un Buffer\nif (Buffer.isBuffer(msg.payload)) {\n    // Convertit chaque octet en hexadécimal sur 2 chiffres\n    msg.payload = msg.payload\n        .toString('hex')                // Convertit tout le buffer en une chaîne hexadécimale continue\n        .match(/.{1,2}/g)               // Coupe la chaîne tous les 2 caractères\n        .join(' ') + '\\n';              // Ajoute un espace entre chaque octet et un retour à la ligne\n} else if (Array.isArray(msg.payload)) {\n    // Si c'est un tableau, on le traite aussi\n    msg.payload = msg.payload\n        .map(x => x.toString(16).padStart(2, '0'))\n        .join(' ') + '\\n';\n} else {\n    // Sinon, on ne fait rien ou on peut lever une erreur\n    msg.payload = 'Payload non reconnu\\n';\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 420,
+        "wires": [
+            [
+                "40c4250769668c46"
+            ]
+        ]
+    },
+    {
+        "id": "e937fa82573471f0",
+        "type": "function",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": "Type trames + adresse modbus",
+        "func": "// On suppose que msg.payload est un Buffer ou un Array d'octets\nlet payload = msg.payload;\nif (Buffer.isBuffer(payload)) payload = Array.from(payload);\n\n// Fonction utilitaire pour décoder le type de trame\nfunction typeTrame(byte) {\n    if (byte === 1) return \"setup\";\n    if (byte === 2) return \"data\";\n    return \"autre\";\n}\n\n// Trame \"master\" (broadcast) : commence par 55 aa eb 90\nif (\n    payload.length > 5 &&\n    payload[0] === 0x55 &&\n    payload[1] === 0xaa &&\n    payload[2] === 0xeb &&\n    payload[3] === 0x90\n) {\n    msg.bms_adresse = \"master\";\n    msg.bms_type = typeTrame(payload[4]); // offset 4\n    // On garde le payload tel quel\n    return msg;\n}\n\n// Trame \"courte\" : premier byte = adresse (de 1 à 15)\nif (\n    payload.length > 16 &&\n    payload[0] >= 0x01 &&\n    payload[0] <= 0x0F\n) {\n    msg.bms_adresse = payload[0];\n    msg.bms_type = typeTrame(payload[15]); // offset 15\n\n    // On cherche le début de la vraie trame (0x55, 0xAA)\n    let start = -1;\n    for (let i = 0; i < payload.length - 1; i++) {\n        if (payload[i] === 0x55 && payload[i+1] === 0xAA) {\n            start = i;\n            break;\n        }\n    }\n    if (start !== -1) {\n  let newPayload = payload.slice(start);\n  // Conversion explicite en Buffer pour compatibilité parser\n  msg.payload = Buffer.from(newPayload);\n  return msg;\n} else {\n  // Si pas de 0x55 0xAA trouvé, on ignore ou on passe la trame brute\n  return null;\n}\n\n}\n\n// Pour les autres trames, ignorer ou traiter différemment\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 580,
+        "wires": [
+            [
+                "f50e96b26caba2a9",
+                "e3fa9e45171a68ac"
+            ]
+        ]
+    },
+    {
+        "id": "f50e96b26caba2a9",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": " Types de trames analysées",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e3fa9e45171a68ac",
+        "type": "switch",
+        "z": "99bc02947d644bce",
+        "g": "fb6e7487bf7e7c7e",
+        "name": "Trame type ?",
+        "property": "bms_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "setup",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "data",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 580,
+        "wires": [
+            [
+                "478ff4b948448d8c"
+            ],
+            [
+                "fbdd38a809fed0f0"
+            ]
+        ]
+    },
+    {
+        "id": "2026baa068afc243",
+        "type": "debug",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "TCP debug ",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "cc27dece6b425072",
+        "type": "link out",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "Broadcast-Out",
+        "mode": "link",
+        "links": [
+            "e531bf651f9a7d53"
+        ],
+        "x": 955,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "4c149bdb598cd074",
+        "type": "inject",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "GW IP close",
+        "props": [
+            {
+                "p": "action",
+                "v": "close",
+                "vt": "str"
+            },
+            {
+                "p": "host",
+                "v": "gateway_ip",
+                "vt": "global"
+            },
+            {
+                "p": "port",
+                "v": "gateway_port",
+                "vt": "global"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 690,
+        "y": 280,
+        "wires": [
+            [
+                "f7827123ec54a57f"
+            ]
+        ]
+    },
+    {
+        "id": "f7827123ec54a57f",
+        "type": "tcp-client",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "action": "action",
+        "actionType": "msg",
+        "host": "host",
+        "hostType": "msg",
+        "port": "port",
+        "portType": "msg",
+        "datamode": "stream",
+        "datatype": "buffer",
+        "newline": "",
+        "write": "payload",
+        "writeType": "msg",
+        "maxRetries": "5",
+        "retryDelay": "3000",
+        "indefiniteRetries": false,
+        "topic": "",
+        "name": "",
+        "debug": "warning",
+        "x": 860,
+        "y": 240,
+        "wires": [
+            [
+                "2026baa068afc243",
+                "cc27dece6b425072"
+            ]
+        ]
+    },
+    {
+        "id": "d550b1374404759c",
+        "type": "change",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "GW IP Connect",
+        "rules": [
+            {
+                "t": "set",
+                "p": "action",
+                "pt": "msg",
+                "to": "connect",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "host",
+                "pt": "msg",
+                "to": "gateway_ip",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "port",
+                "pt": "msg",
+                "to": "gateway_port",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "f7827123ec54a57f"
+            ]
+        ]
+    },
+    {
+        "id": "50df119af6f415a2",
+        "type": "switch",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "bms_broadcasting ?",
+        "property": "bms_broadcasting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "08a96f8a195e39a5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "08a96f8a195e39a5",
+        "type": "switch",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "Use Gateway ?",
+        "property": "use_gateway",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 480,
+        "y": 240,
+        "wires": [
+            [
+                "d550b1374404759c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2c7355f24a2d8f75",
+        "type": "inject",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "50df119af6f415a2"
+            ]
+        ]
     },
     {
         "id": "323d60d4baaf7cef",

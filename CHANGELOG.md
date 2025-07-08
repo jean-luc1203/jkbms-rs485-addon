@@ -1,5 +1,44 @@
+## 2.0.0
+
+## ⚡️ Enhancements
+Here is the add-on's new functionality in Version 2.0
+
+It is now possible to leave a BMS in Master mode.
+
+This involves setting all 4 small switches to the **down** or **0000** position.
+Parameters can no longer be modified in this mode ! 
+
+In this configuration, the BMS will query the other BMSs if any are connected to the RS485 bus.
+
+The BMS will then broadcast the information it has retrieved cyclically every 5 seconds. This information will be read by this add-on
+
+## 📚 Documentation
+
+Please read the Github [README.md](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/README.md)
+
+## ⚠️ Attention
+As a precaution, please make a backup before this update. (it can be useful)
+
+## 1.2.9
+Changed timeout for the serial node out
+
+## 1.2.8
+test for BMS brodcasting mode with multiple BMS on Bus
+
+## 1.2.7
+Change broadcast flow
+
 ## 1.2.6
-Fix
+## ⚡️ Enhancements
+
+- Start of BMS management in Master Bus Broadcasting mode.
+- Addition of a Boolean field and creation of a specific flow to manage broadcast frames.
+- Check whether you are in broadcast or full mode, with the option of modifying BMS parameters
+
+## 🐞 Bug fixes
+       -
+## 📚 Documentation
+       -
 
 ## 1.2.5
 All's well, the JKBMS configuration fields are no longer erased when the module is updated.
@@ -44,7 +83,7 @@ Creation optional fields for GW
 Change access right to nodered files
 
 ## 1.1.2
-Modification for GW fields and 3 times more faster for data reading 
+Modification for GW fields and 3 times more faster for data reading
 
 ## 1.1.1
 Trying to add Gateway IP fields

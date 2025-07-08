@@ -1,14 +1,14 @@
 ---
-name: "Smartphoton JK-BMS RS485 wired management"
-version: 1.2.6
+name: "JK-BMS wired management"
+version: 2.0.0
 slug: "smartphoton_jkbms"
-description: JK-BMS management via RS485-Rj45 port & Ip Gateway
+description: JK-BMS management via RS485 & Ip Gateway
 url: https://domosimple.eu/forum/forum-32.html
 ingress: false
 ingress_stream: false
 panel_icon: mdi:sitemap
 init: false
-homeassistant: 2023.3.0
+homeassistant: 2025.3.0
 arch:
   - aarch64
   - amd64
@@ -38,6 +38,8 @@ options:
     use_gateway: false
     gateway_ip: "192.168.1.100"
     gateway_port: 5000
+    bms_broadcasting: true
+    CAN bus usage: false
   # Configuration MQTT
   mqtt:
     mqttadresse: "core-mosquitto.local.hass.io"
@@ -56,6 +58,8 @@ schema:
     use_gateway: bool
     gateway_ip: str?
     gateway_port: int(1,65535)?
+    bms_broadcasting: bool
+    CAN bus usage: bool
   # Configuration MQTT
   mqtt:
     mqttadresse: str?

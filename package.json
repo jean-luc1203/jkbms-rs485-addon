@@ -50,6 +50,7 @@
     "node-red-contrib-zip":"*",
     "@flowfuse/node-red-dashboard":"*",
     "@nickiv/node-red-huawei-sms":"*",
+    "node-red-contrib-tcp-client2":"*",
     "node-red-contrib-buffer-parser":"*"
   },
   "engines": {
