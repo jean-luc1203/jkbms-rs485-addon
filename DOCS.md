@@ -161,6 +161,21 @@ more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
 
+---
+## cable assembly
+
+` - RS485 bus:`
+
+` - CAN Bus:`
+
+I used this type of adapter:
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/CANdo-adaptator.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/CAN-JKBMS-Pinout.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-JKBMS-to-CANdo-adapteur.jpg)
+
 
 ## Changelog & Releases
 ---
