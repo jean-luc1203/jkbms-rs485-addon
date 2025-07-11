@@ -423,8 +423,8 @@
             "a14480dd30524258"
         ],
         "x": 14,
-        "y": 259,
-        "w": 842,
+        "y": 279,
+        "w": 832,
         "h": 82
     },
     {
@@ -439,12 +439,13 @@
         },
         "nodes": [
             "3721fb908989cdb8",
-            "c8edea76be99bfc1"
+            "c8edea76be99bfc1",
+            "58578674e7f69c99"
         ],
-        "x": 14,
+        "x": 8,
         "y": 19,
-        "w": 562,
-        "h": 82
+        "w": 1084,
+        "h": 228
     },
     {
         "id": "44faab0d8759f989",
@@ -468,29 +469,6 @@
         "y": 379,
         "w": 772,
         "h": 142
-    },
-    {
-        "id": "58578674e7f69c99",
-        "type": "group",
-        "z": "2d882136a35b2d36",
-        "name": "Récupération des variables définies dans la configuration du module depuis l'onglet configuration de HAOS",
-        "style": {
-            "stroke": "#000000",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "e3d2b4d505d7c3b1",
-            "d3a91a0be3d32cfa",
-            "6a484576febf2df9",
-            "697f593b67e21ceb",
-            "307c4ac37254eba4",
-            "c5b68a34de9a9c28"
-        ],
-        "x": 34,
-        "y": 119,
-        "w": 1032,
-        "h": 122
     },
     {
         "id": "1c9e2e84f7764473",
@@ -636,6 +614,30 @@
         "x": 14,
         "y": 199,
         "w": 1112,
+        "h": 122
+    },
+    {
+        "id": "58578674e7f69c99",
+        "type": "group",
+        "z": "2d882136a35b2d36",
+        "g": "4f414bd4941422a3",
+        "name": "Récupération des variables définies dans la configuration du module depuis l'onglet configuration de HAOS",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "e3d2b4d505d7c3b1",
+            "d3a91a0be3d32cfa",
+            "6a484576febf2df9",
+            "697f593b67e21ceb",
+            "307c4ac37254eba4",
+            "c5b68a34de9a9c28"
+        ],
+        "x": 34,
+        "y": 99,
+        "w": 1032,
         "h": 122
     },
     {
@@ -1340,7 +1342,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "a14480dd30524258"
@@ -1370,7 +1372,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "f5943e5ca4b7e848"
@@ -1385,7 +1387,7 @@
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
         "x": 530,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "b1df428df7a432e7"
@@ -1406,8 +1408,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 300,
+        "x": 720,
+        "y": 320,
         "wires": []
     },
     {
@@ -1488,13 +1490,6 @@
                 "pt": "global",
                 "to": "8887",
                 "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "bms_broadcasting",
-                "pt": "global",
-                "to": "true",
-                "tot": "bool"
             }
         ],
         "action": "",
@@ -1706,7 +1701,7 @@
         "action": "",
         "pretty": false,
         "x": 550,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "307c4ac37254eba4",
@@ -1728,7 +1723,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 960,
-        "y": 160,
+        "y": 140,
         "wires": []
     },
     {
@@ -1745,7 +1740,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 200,
+        "y": 180,
         "wires": []
     },
     {
@@ -1754,7 +1749,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n     \n    if (data.jkbms.bms_broadcasting) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n \n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n \n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1762,7 +1757,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "697f593b67e21ceb"
@@ -2497,7 +2492,7 @@
         "z": "e437f2f44495aeb9",
         "g": "efcb27eee8e0e602",
         "name": "Modbus Out",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4482,7 +4477,7 @@
         "z": "e437f2f44495aeb9",
         "g": "efcb27eee8e0e602",
         "name": "msg.status",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,

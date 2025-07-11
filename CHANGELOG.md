@@ -1,3 +1,12 @@
+## 2.0.1
+
+## 🐞 Bug fixes
+Correction of the use of the variable "Broadcasting"
+
+## 📚 Documentation
+Added documentation on RS485 & CAN protocols for jkbms
+
+
 ## 2.0.0
 
 ## ⚡️ Enhancements
@@ -6,7 +15,7 @@ Here is the add-on's new functionality in Version 2.0
 It is now possible to leave a BMS in Master mode.
 
 This involves setting all 4 small switches to the **down** or **0000** position.
-Parameters can no longer be modified in this mode ! 
+Parameters can no longer be modified in this mode !
 
 In this configuration, the BMS will query the other BMSs if any are connected to the RS485 bus.
 
