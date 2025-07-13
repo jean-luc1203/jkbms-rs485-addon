@@ -40,14 +40,11 @@ To activate Listen mode, set the parameter
 
   ## Screenshot
 
-  ![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-preview.png)
+  ![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JK-BMS-Screenshot-1.gif)
+
+---
 
   ![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.gif)
-
-[![Buy Me A Coffee on ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)      [!["Buy Me A Coffee on Paypal"](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
-
-
-
 
 ## Configuration
 ---
@@ -104,6 +101,8 @@ Have a look [here](https://ko-fi.com/s/495acc37c7)
 For the creation of the module under HAOS, I drew inspiration from Nolak's work for smartphoton
 as well as assistance from various AI.
 The Node Red flow are from me. Jean-Luc Martinelli or JLM.
+
+[![Buy Me A Coffee on ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)      [!["Buy Me A Coffee on Paypal"](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
 
 ## Support
