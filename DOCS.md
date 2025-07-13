@@ -153,7 +153,10 @@ I used this type of adapter:
 
 ![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.gif)
 
+RJ45:
+
 Pin 1 <-------> B
+
 Pin 2 <-------> A
 
 No need of GND in my case
