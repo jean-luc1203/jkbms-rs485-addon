@@ -140,6 +140,35 @@ Installing this add-on is no different from installing any other Home Assistant 
 You must have an mqtt broker (you can install it via the addon shop. [Addon Mosquitto broker][addon-mqtt])
 You will then need to add mqtt integration (see mqtt doc)
 
+---
+## cable assembly
+
+` - RS485 bus:`
+
+I used this type of adapter:
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-RS485-1.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-RS485-2.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.gif)
+
+Pin 1 <-------> B
+Pin 2 <-------> A
+
+No need of GND in my case
+
+
+` - CAN Bus:`
+
+I used this type of adapter:
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/CANdo-adaptator.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/CAN-JKBMS-Pinout.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-JKBMS-to-CANdo-adapteur.jpg)
+
 
 ---
 ## Other options
@@ -162,34 +191,6 @@ the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
 
 ---
-## cable assembly
-
-` - RS485 bus:`
-
-I used this type of adapter:
-
-![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-RS485-1.jpg)
-
-![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-RS485-2.jpg)
-
-![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.mp4)
-
-Pin 1 <-------> B
-Pin 2 <-------> A
-
-No need of GND in my case
-
-
-` - CAN Bus:`
-
-I used this type of adapter:
-
-![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/CANdo-adaptator.jpg)
-
-![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/CAN-JKBMS-Pinout.jpg)
-
-![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-JKBMS-to-CANdo-adapteur.jpg)
-
 
 ## Changelog & Releases
 ---
