@@ -50,23 +50,22 @@ To activate Listen mode, set the parameter
 
 
 ## Configuration
+---
+## <u>Fields on the configuration tab</u>
 
-### Available parameters
-
-Section JKBMS
-> - **path:**               The path to the USB port where the Serial port RS485 adapter is connected to your machine
-> - **nb_jkbms:**           Number of JK BMSs to control (from 1 to 15)
-> - **use_gateway:**        Using an IP gateway ?
-> - **gateway_ip:**         address of the IP gateway
-> - **gateway_port:**       Gateway port number
-> - **bms_broadcasting:**   One of the BMSs is configured in master mode (0000)
-> - **CAN bus usage:**      Using the CAN bus broadcasting (not yet implemented)
-
-Section MQTT
-> - **mqttaddress:**  The IP address or DNS name of your MQTT broker.By default, this will be the internal address of HAOS.
-> - **mqttport:**     Port number of the MQTT broker
-> - **mqttuser:**     User name for MQTT authentication
-> - **mqttpass:**     Password for MQTT authentication. **Put it in quotation marks**
+|variable                |Explanations                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| path       | The path to the USB port where the Serial port RS485 adapter is connected to your machine. <u>For example</u>: */dev/serial/by-id/usb-1a86_USB_Serial-if00-port0* or */dev/ttyUSB0* if the port is unique. You can find the path to use in the Settings-System-Hardware-All Hardware menu, under ttyUSB. see the photo below                                                                                                                                                                                                                                                                     |
+|  nb_jkbms  |                                                                                                                                                                                                                                                                                                                            Number of JK BMSs to control (from 1 to 15)                                                                                                                                            |
+|  use_gateway  |                                                                                                                                                                                                                                                                                                                            Using an IP gateway ?                                                                                                                                              |
+|  gateway_ip  |                                                                                                                                                                                                                                                                                                                            address of the IP gateway                                                                                                                                        |
+|  gateway_port  |                                                                                                                                                                                                                                                                                                                            Gateway port number                                                                                                                                         |
+|  bms_broadcasting  |                                                                                                                                                                                                                                                                                                                            One of the BMSs is configured in master mode (0000)                                                                                                                             
+|  CAN bus usage  |                                                                                                                                                                                                                                                                                                                            Using the CAN bus broadcasting (not yet implemented)                                                                                                                              
+|  mqttaddress  |                                                                                                                                                                                                 The IP address or DNS name of your MQTT broker. By default, this will be the internal address of HAOS                                                                                                                       
+|  mqttport   |                                                                                                                                                                                                 Port number of the MQTT broker             
+|  mqttuser  |                                                                                                                                                                                                 User name for MQTT authentication broker                                               
+|  mqttpass  |                                                                                                                                                                                                Password for MQTT authentication. **Put it in quotation marks**                                                                                                                                       |
 
 ## <u>&ndash;&raquo; Complementary and pre-configured Dashboard: &laquo;&ndash; </u>
 
