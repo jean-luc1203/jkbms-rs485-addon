@@ -166,6 +166,20 @@ you are troubleshooting.
 
 ` - RS485 bus:`
 
+I used this type of adapter:
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-RS485-1.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-RS485-2.jpg)
+
+![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.mp4)
+
+Pin 1 <-------> B
+Pin 2 <-------> A
+
+No need of GND in my case
+
+
 ` - CAN Bus:`
 
 I used this type of adapter:
