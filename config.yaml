@@ -1,8 +1,8 @@
 ---
 name: "JK-BMS wired management"
-version: 2.0.1
+version: 3.0.0
 slug: "smartphoton_jkbms"
-description: JK-BMS management via RS485 & Ip Gateway
+description: JK-BMS management via RS485 & CAN bus, also with an Ip Gateway relay
 url: https://domosimple.eu/forum/forum-32.html
 ingress: false
 ingress_stream: false
@@ -15,6 +15,9 @@ arch:
   - armhf
   - armv7
   - i386
+privileged:
+  - NET_ADMIN
+  - SYS_RAWIO
 ports:
   "1891/tcp": 1891
 ports_description:

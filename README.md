@@ -1,20 +1,26 @@
-# JK-BMS RS485 Home Assistant Addon
+**Smartphoton JK-BMS-RS485 & CAN bus** [(*JKong company*)](https://jikongbms.com/product-category/smart-bms/smart-lifepo4-bms/) is a BMS management add-on that use an RS485 or CAN port (wired)
 
-Home Assistant add-on module for managing JK-BMS via RS485 (Modbus)
-The software uses Node-RED.
+**BMS Type**
 
-## Features V2.0.0
+* [x] **PB2A16S20P**
+* [x] **PB2A16S15P**
+* [x] **PB1A16S15P**
+* [x] **PB1A16S10P**
+* [x] **New one with the FW:19**
+
+## Features V3.0.0
 
 - Configuration interface for JK-BMS software settings
 - Modbus RS485 <--> USB communication
 - Modbus RS485 <--> **IP Gateway** (Ethernet or Wifi) communication
+- CAN bus broadcasting (New !! July 2025)
 - Control panel integrated into Home Assistant
 - Multi-BMS support
 - MQTT integration (open to other software)
-- Multi modes: Master or Listening
+- Multi modes rs485: Master or Listening
 
 
-## It has 2 operating modes.
+## It has 3 operating modes.
 
 
 **1) Master mode**
@@ -58,13 +64,20 @@ To activate Listen mode, set the parameter
 |  gateway_ip  |                                                                                                                                                                                                                                                                                                                            address of the IP gateway                                                                                                                                        |
 |  gateway_port  |                                                                                                                                                                                                                                                                                                                            Gateway port number                                                                                                                                         |
 |  bms_broadcasting  |                                                                                                                                                                                                                                                                                                                            One of the BMSs is configured in master mode (0000)                                                                                                                             
-|  CAN bus usage  |                                                                                                                                                                                                                                                                                                                            Using the CAN bus broadcasting (not yet implemented)                                                                                                                              
+|  CAN bus usage  |                                                                                                                                                                                                                                                                                                                            Using the CAN bus broadcasting (yet implemented in july 2025)                                                                                                                              
 |  mqttaddress  |                                                                                                                                                                                                 The IP address or DNS name of your MQTT broker. By default, this will be the internal address of HAOS                                                                                                                       
 |  mqttport   |                                                                                                                                                                                                 Port number of the MQTT broker             
 |  mqttuser  |                                                                                                                                                                                                 User name for MQTT authentication broker                                               
 |  mqttpass  |                                                                                                                                                                                                Password for MQTT authentication. **Put it in quotation marks**                                                                                                                                       |
 
-## <u>&ndash;&raquo; Complementary and pre-configured Dashboard: &laquo;&ndash; </u>
+**3) CAN broadcasting**
+
+Here is the latest development (July 2025).
+**CAN bus support is now fully functional**
+
+This is the second RJ45 connector from the left. The BMS broadcast information in loop mode
+
+## <u>&ndash;&raquo; 💫 &laquo;&ndash; </u> Complementary and pre-configured Dashboard: 💫
 
 You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system.
 This can save you several hours of work in formatting the data by yourself.

@@ -1,3 +1,23 @@
+## V3.0.0
+
+## ⚡️ Enhancements
+CAN bus support is now available 💫
+
+## 📚 Documentation
+Added documentation for CAN support. See DOCS.md
+
+## 2.0.6
+Change CAN flow
+
+## 2.0.5
+Change Dockerfile
+
+## 2.0.3
+Give access write to can0
+
+## 2.0.2
+Change Dockerfile to support CANutils
+
 ## 2.0.1
 
 ## 🐞 Bug fixes

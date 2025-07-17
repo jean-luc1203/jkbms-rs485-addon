@@ -17,7 +17,7 @@
     {
         "id": "e437f2f44495aeb9",
         "type": "tab",
-        "label": "Lecture JK-BMS",
+        "label": "Lecture RS485",
         "disabled": false,
         "info": "",
         "env": []
@@ -25,7 +25,7 @@
     {
         "id": "63221fce04fce9a1",
         "type": "tab",
-        "label": "Setup",
+        "label": "Setup RS485",
         "disabled": false,
         "info": "",
         "env": []
@@ -33,9 +33,17 @@
     {
         "id": "99bc02947d644bce",
         "type": "tab",
-        "label": "Lecture broadascting",
+        "label": "Lecture Broadascting RS485",
         "disabled": false,
         "info": "Dans ce cas, il y a un des BMS qui est \r\ndéfini en maitre du bus rs485. C'est lui \r\nqui va aller demander les informations aux\r\nautres BMS.\r\nDans cette configuration, on ne peut pas\r\nchanger les paramètres car il ne peut pas\r\ny avoir 2 Master sur le bus en modbus.",
+        "env": []
+    },
+    {
+        "id": "6f39605626c227f5",
+        "type": "tab",
+        "label": "CAN bus",
+        "disabled": false,
+        "info": "",
         "env": []
     },
     {
@@ -98,11 +106,14 @@
             "771632eaf7af77e3",
             "63698aee56bda913",
             "fa16677249a8083b",
-            "e14f3e4c62553529"
+            "e14f3e4c62553529",
+            "5c3a287a31756b29",
+            "93c40f46a5276c90",
+            "b6cc27c67d796d20"
         ],
         "x": 14,
         "y": 199,
-        "w": 1172,
+        "w": 1242,
         "h": 382
     },
     {
@@ -156,7 +167,7 @@
         "x": 18,
         "y": 659,
         "w": 903,
-        "h": 842
+        "h": 802
     },
     {
         "id": "c5544de409dc3632",
@@ -220,19 +231,20 @@
             "c3fe04450213c840",
             "55b993c941334789",
             "d0a21ee58c34740e",
-            "195a17138b42ee08",
             "08624c75c29f1a0d",
             "70d583469e139f77",
             "c827a1a690486903",
             "b8969f5c95ec96c0",
             "1905f9987eb5b3fd",
             "7989336bb8bc11db",
-            "c0c803d40187af13"
+            "c0c803d40187af13",
+            "c60e5886a226d888",
+            "195a17138b42ee08"
         ],
         "x": 14,
-        "y": 39,
-        "w": 932,
-        "h": 282
+        "y": 59,
+        "w": 842,
+        "h": 242
     },
     {
         "id": "219ec3c4c0c62dcb",
@@ -512,12 +524,13 @@
             "f1b7752a921d9b53",
             "c0266ba152a5fbfc",
             "40c4250769668c46",
-            "493bb5d0d7ce7299"
+            "493bb5d0d7ce7299",
+            "9221fe282a76a91d"
         ],
         "x": 14,
-        "y": 339,
-        "w": 992,
-        "h": 122
+        "y": 359,
+        "w": 972,
+        "h": 162
     },
     {
         "id": "94abce3e597586b2",
@@ -535,7 +548,7 @@
             "fb6e7487bf7e7c7e"
         ],
         "x": 8,
-        "y": 493,
+        "y": 573,
         "w": 824,
         "h": 534
     },
@@ -609,12 +622,111 @@
             "d550b1374404759c",
             "50df119af6f415a2",
             "08a96f8a195e39a5",
-            "2c7355f24a2d8f75"
+            "2c7355f24a2d8f75",
+            "1b02344f5b485302"
         ],
         "x": 14,
         "y": 199,
         "w": 1112,
         "h": 122
+    },
+    {
+        "id": "1659512173ac5dde",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "CAN read",
+        "style": {
+            "stroke": "#ff0000",
+            "label": true,
+            "color": "#ff0000"
+        },
+        "nodes": [
+            "debeb1659d832433",
+            "dd638741dd67a0fa",
+            "afda168dcc577447",
+            "8e9b6b055c793dc9",
+            "a5ca6b217cf20620",
+            "b486bd5757d63a96",
+            "e35a22af4cfb4aab",
+            "a93a52a81ab07732"
+        ],
+        "x": 34,
+        "y": 339,
+        "w": 952,
+        "h": 162
+    },
+    {
+        "id": "81e87bf1358cea74",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "g": "12f3839fa2aa30dd",
+        "name": "16 Cell's volatge",
+        "style": {
+            "stroke": "#92d04f",
+            "label": true
+        },
+        "nodes": [
+            "4c4eac235afc784d",
+            "c2cadec1246ba5ab",
+            "2c44317c4fc7f87b",
+            "76abc934aabf45f4"
+        ],
+        "x": 294,
+        "y": 1619,
+        "w": 352,
+        "h": 202
+    },
+    {
+        "id": "74ad3b95eaa90607",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "16 Cell's volatge",
+        "style": {
+            "stroke": "#92d04f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "57e421fa560c803d",
+            "1b47ac436bae964f",
+            "ee60aa9a48b55440",
+            "95511efaecddd619",
+            "3fb364efef228032",
+            "967cc031da8e2ec5",
+            "877707b09934aea8",
+            "47dfe280df4a3ac5",
+            "f92e0a8759f632c6",
+            "4b66c61c278ac4be",
+            "127f92ab8cc478b1",
+            "054c54a5156ac319",
+            "aced4a4a091a1e74"
+        ],
+        "x": 234,
+        "y": 819,
+        "w": 832,
+        "h": 202
+    },
+    {
+        "id": "aebda0e9c5e670ce",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "To MQTT Broker",
+        "style": {
+            "label": true,
+            "stroke": "#0070c0",
+            "fill": "#e3f3d3",
+            "color": "#000000"
+        },
+        "nodes": [
+            "16203b1b31a94438",
+            "2abeac79a7a60bdf"
+        ],
+        "x": 704,
+        "y": 1199,
+        "w": 222,
+        "h": 82
     },
     {
         "id": "58578674e7f69c99",
@@ -811,7 +923,7 @@
             "0036128267c62ded"
         ],
         "x": 34,
-        "y": 879,
+        "y": 959,
         "w": 692,
         "h": 122
     },
@@ -837,7 +949,7 @@
             "b7d3089c6d8f4d46"
         ],
         "x": 34,
-        "y": 739,
+        "y": 819,
         "w": 692,
         "h": 122
     },
@@ -864,9 +976,184 @@
             "e3fa9e45171a68ac"
         ],
         "x": 34,
-        "y": 519,
+        "y": 599,
         "w": 772,
         "h": 142
+    },
+    {
+        "id": "123b0ed4c6f86bf1",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Up & Down & Bit rate",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "3a8a35018471c50d",
+            "037c856e9dbdee08",
+            "bf8dd87cddd1c298",
+            "a559d6a53057c3cd",
+            "32ce044630ecdb22",
+            "90fabac7f2e4da58",
+            "80756acdd3b06f07",
+            "9f60e2a640e47a4a",
+            "aa1ffc433549152e",
+            "f90eb49dcb2754b0",
+            "2b78d0ed870911e7",
+            "8d034dc6787f72f7"
+        ],
+        "x": 734,
+        "y": 1439,
+        "w": 752,
+        "h": 322
+    },
+    {
+        "id": "0388c08ac1fe3555",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "CAN décodage",
+        "style": {
+            "stroke": "#ffff00",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "b85cf8a2e274cd6e",
+            "29f5a876043e9da5",
+            "9a58ddb07e0e912b",
+            "6a3ba3b08c54d70a",
+            "50cca358c5872f99",
+            "507d76b6a0d7897e",
+            "acde481454565979",
+            "447979a492328699",
+            "ca51039d5be4a45d",
+            "ace991e23c232841",
+            "837cfa7877f2dd4c",
+            "bae9db3e281e416b",
+            "1f99bb024c5993e8",
+            "b3dca75a3421ce34",
+            "fad2af17433455d4",
+            "37cf1d3022a1b642",
+            "3ea687bcaa04ce10",
+            "793d901ed1991029",
+            "8240cb0c8c5647c5",
+            "a11d62f848c62b67",
+            "d9a011a72d0eaa6f",
+            "796ecb28f71eed3b",
+            "8eee98be3d1c3c7f",
+            "dae0612e02e5b473",
+            "5edc4a52fe062c7f",
+            "bdcbdd3c688042a6",
+            "362f2489b0d408bd",
+            "c5a98b0c5f5d64f2",
+            "74ad3b95eaa90607",
+            "aebda0e9c5e670ce"
+        ],
+        "x": 34,
+        "y": 539,
+        "w": 1058,
+        "h": 768
+    },
+    {
+        "id": "e1de84404cf506bb",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Show",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2306b712876234b4",
+            "25b38f684b56f4d4",
+            "ff238165fe766351",
+            "c167cc7ffeb79849"
+        ],
+        "x": 734,
+        "y": 1819,
+        "w": 582,
+        "h": 122
+    },
+    {
+        "id": "12f3839fa2aa30dd",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Pour debug only",
+        "style": {
+            "stroke": "#a4a4a4",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "8e3b6bcd7fb6e48a",
+            "92f149fe0b3bc0d2",
+            "fb15e8c98b163412",
+            "78ad1bcbfbe5a40d",
+            "53544b632612530f",
+            "995611184e5d2b75",
+            "1aad2af2efba4fad",
+            "8d5a08e039dcd320",
+            "a152c219b355f6bb",
+            "be65d6cdf2f372a5",
+            "80cec58d26f6a497",
+            "2ecd4b65af254b85",
+            "840fb8f774527a63",
+            "728e5c92cfe21a0b",
+            "81e87bf1358cea74"
+        ],
+        "x": 34,
+        "y": 1339,
+        "w": 638,
+        "h": 722
+    },
+    {
+        "id": "5b464cd2f9d14e86",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Initialisation de l'interface",
+        "style": {
+            "stroke": "#6f2fa0",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "334558cf9160abbc",
+            "23de69cae0a52325",
+            "74e574d77665a36c",
+            "7618a5ab3e9a6ac9",
+            "7047fec81d56c8fc",
+            "85efcc8901c88607",
+            "093b2c7ea2dc8456",
+            "4f8bce80a42ea945",
+            "53653e7846563aac",
+            "60e4d94b3a07ad57",
+            "21c532569fadf935",
+            "fade95fa358320fc"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 852,
+        "h": 269.5
+    },
+    {
+        "id": "3323819c39fb70cb",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Globale Variable change",
+        "style": {
+            "stroke": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "c66d10a45dbb8701",
+            "97a80a07f118a98b",
+            "781d0351238cb499",
+            "9eb91ae71793b88f"
+        ],
+        "x": 914,
+        "y": 59,
+        "w": 472,
+        "h": 122
     },
     {
         "id": "a144206f0ce5be54",
@@ -1400,7 +1687,7 @@
         "z": "2d882136a35b2d36",
         "g": "90972d3c7f38ea12",
         "name": "Serial Control",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1715,7 +2002,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "debug 97",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1732,7 +2019,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "debug 164",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1749,7 +2036,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n \n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n   \n    if (data.jkbms.CAN_bus_usage !== undefined) {\n    global.set(\"CAN_bus_usage\", data.jkbms.CAN_bus_usage);\n    node.log(\"Variable globale 'CAN_bus_usage' définie: \" + data.jkbms.CAN_bus_usage);\n    }\n\n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2040,7 +2327,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 770,
         "y": 540,
         "wires": [
             [
@@ -2061,7 +2348,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 770,
         "y": 280,
         "wires": [
             [
@@ -2103,7 +2390,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 770,
         "y": 400,
         "wires": [
             [
@@ -3302,8 +3589,8 @@
         "g": "6b5bd0bba4a26d99",
         "name": "Relecture-Trame-2-in",
         "links": [],
-        "x": 375,
-        "y": 440,
+        "x": 545,
+        "y": 400,
         "wires": [
             [
                 "020c19662d54639e"
@@ -3342,7 +3629,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 510,
+        "x": 710,
         "y": 240,
         "wires": [
             [
@@ -3363,7 +3650,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 900,
         "y": 240,
         "wires": [
             [
@@ -3385,7 +3672,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 900,
+        "x": 1100,
         "y": 240,
         "wires": []
     },
@@ -3407,7 +3694,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 510,
+        "x": 710,
         "y": 360,
         "wires": [
             [
@@ -3428,7 +3715,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 900,
         "y": 360,
         "wires": [
             [
@@ -3450,8 +3737,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 900,
-        "y": 360,
+        "x": 1100,
+        "y": 320,
         "wires": []
     },
     {
@@ -3472,7 +3759,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 510,
+        "x": 710,
         "y": 500,
         "wires": [
             [
@@ -3493,7 +3780,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 900,
         "y": 500,
         "wires": [
             [
@@ -3515,7 +3802,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 900,
+        "x": 1100,
         "y": 500,
         "wires": []
     },
@@ -4067,7 +4354,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 600,
-        "y": 1460,
+        "y": 1420,
         "wires": [
             [
                 "dc8be2eb9f379046"
@@ -4088,7 +4375,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 1460,
+        "y": 1420,
         "wires": []
     },
     {
@@ -4210,10 +4497,10 @@
         "payload": "1",
         "payloadType": "num",
         "x": 120,
-        "y": 280,
+        "y": 240,
         "wires": [
             [
-                "63698aee56bda913"
+                "5c3a287a31756b29"
             ]
         ]
     },
@@ -4246,10 +4533,10 @@
         "payload": "01 10 16 20 00 01 02 00 00 D6 F1",
         "payloadType": "str",
         "x": 120,
-        "y": 400,
+        "y": 360,
         "wires": [
             [
-                "fa16677249a8083b"
+                "93c40f46a5276c90"
             ]
         ]
     },
@@ -4282,10 +4569,10 @@
         "payload": "1",
         "payloadType": "num",
         "x": 120,
-        "y": 540,
+        "y": 500,
         "wires": [
             [
-                "e14f3e4c62553529"
+                "b6cc27c67d796d20"
             ]
         ]
     },
@@ -4394,7 +4681,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 1080,
+        "x": 1120,
         "y": 400,
         "wires": [
             [
@@ -4419,7 +4706,7 @@
         "links": [
             "305e1cac13589b0d"
         ],
-        "x": 1135,
+        "x": 1215,
         "y": 440,
         "wires": []
     },
@@ -4450,7 +4737,7 @@
         "links": [
             "22c8417438319190"
         ],
-        "x": 1135,
+        "x": 1215,
         "y": 360,
         "wires": []
     },
@@ -4508,8 +4795,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 300,
-        "y": 280,
+        "x": 500,
+        "y": 240,
         "wires": [
             [],
             [
@@ -4537,8 +4824,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 300,
-        "y": 400,
+        "x": 500,
+        "y": 360,
         "wires": [
             [],
             [
@@ -4566,13 +4853,97 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 300,
-        "y": 540,
+        "x": 500,
+        "y": 500,
         "wires": [
             [],
             [
                 "588a28b52bca3c97",
                 "prepare_command"
+            ]
+        ]
+    },
+    {
+        "id": "5c3a287a31756b29",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [],
+            [
+                "63698aee56bda913"
+            ]
+        ]
+    },
+    {
+        "id": "93c40f46a5276c90",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [],
+            [
+                "fa16677249a8083b"
+            ]
+        ]
+    },
+    {
+        "id": "b6cc27c67d796d20",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 500,
+        "wires": [
+            [],
+            [
+                "e14f3e4c62553529"
             ]
         ]
     },
@@ -4591,8 +4962,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 640,
-        "y": 240,
+        "x": 700,
+        "y": 260,
         "wires": []
     },
     {
@@ -4605,8 +4976,8 @@
         "links": [
             "42b39467dd4b0da2"
         ],
-        "x": 755,
-        "y": 200,
+        "x": 815,
+        "y": 220,
         "wires": []
     },
     {
@@ -4619,8 +4990,8 @@
         "links": [
             "3b2397378287cde4"
         ],
-        "x": 415,
-        "y": 280,
+        "x": 515,
+        "y": 260,
         "wires": []
     },
     {
@@ -4641,15 +5012,15 @@
         "bytopic": "topic",
         "topic": "topic",
         "outputs": 2,
-        "x": 640,
-        "y": 100,
+        "x": 140,
+        "y": 220,
         "wires": [
             [
                 "d0a21ee58c34740e"
             ],
             [
-                "195a17138b42ee08",
-                "b8969f5c95ec96c0"
+                "b8969f5c95ec96c0",
+                "195a17138b42ee08"
             ]
         ]
     },
@@ -4666,25 +5037,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 840,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "195a17138b42ee08",
-        "type": "debug",
-        "z": "63221fce04fce9a1",
-        "g": "784cf280be8f9617",
-        "name": "debug 3",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 840,
-        "y": 120,
+        "x": 140,
+        "y": 180,
         "wires": []
     },
     {
@@ -4705,8 +5059,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 460,
-        "y": 200,
+        "x": 560,
+        "y": 220,
         "wires": [
             [
                 "40c53f7ceb572ff5",
@@ -4734,8 +5088,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
-        "y": 200,
+        "x": 700,
+        "y": 220,
         "wires": [
             [
                 "32422263e19ea107"
@@ -4748,7 +5102,7 @@
         "z": "63221fce04fce9a1",
         "g": "784cf280be8f9617",
         "name": "debug 1",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4756,8 +5110,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 240,
+        "x": 380,
+        "y": 260,
         "wires": []
     },
     {
@@ -5877,8 +6231,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 240,
+        "x": 380,
+        "y": 220,
         "wires": [
             [
                 "c3fe04450213c840",
@@ -5914,7 +6268,7 @@
         "y": 100,
         "wires": [
             [
-                "c0c803d40187af13"
+                "c60e5886a226d888"
             ]
         ]
     },
@@ -5931,7 +6285,7 @@
         "nl": false,
         "rap": false,
         "inputs": 1,
-        "x": 490,
+        "x": 710,
         "y": 100,
         "wires": [
             [
@@ -5993,7 +6347,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 300,
+        "x": 520,
         "y": 100,
         "wires": [
             [],
@@ -6001,6 +6355,51 @@
                 "7989336bb8bc11db"
             ]
         ]
+    },
+    {
+        "id": "c60e5886a226d888",
+        "type": "switch",
+        "z": "63221fce04fce9a1",
+        "g": "784cf280be8f9617",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [],
+            [
+                "c0c803d40187af13"
+            ]
+        ]
+    },
+    {
+        "id": "195a17138b42ee08",
+        "type": "debug",
+        "z": "63221fce04fce9a1",
+        "g": "784cf280be8f9617",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 140,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "4ef61d69d00f1490",
@@ -6016,8 +6415,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 230,
-        "y": 420,
+        "x": 130,
+        "y": 460,
         "wires": []
     },
     {
@@ -6031,7 +6430,7 @@
             "d05d32e34e2c10f6"
         ],
         "x": 75,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "ab83cb844c76756e",
@@ -6050,7 +6449,7 @@
             "4b1ded314830c9c3"
         ],
         "x": 765,
-        "y": 600,
+        "y": 680,
         "wires": []
     },
     {
@@ -6064,7 +6463,7 @@
             "6a9629791ec88e16"
         ],
         "x": 765,
-        "y": 560,
+        "y": 640,
         "wires": []
     },
     {
@@ -6082,7 +6481,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 140,
-        "y": 960,
+        "y": 1040,
         "wires": []
     },
     {
@@ -6095,7 +6494,7 @@
             "fbdd38a809fed0f0"
         ],
         "x": 75,
-        "y": 920,
+        "y": 1000,
         "wires": [
             [
                 "a1768eb7569c4708",
@@ -6119,7 +6518,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 620,
-        "y": 920,
+        "y": 1000,
         "wires": []
     },
     {
@@ -6137,7 +6536,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 620,
-        "y": 960,
+        "y": 1040,
         "wires": []
     },
     {
@@ -6146,7 +6545,7 @@
         "z": "99bc02947d644bce",
         "g": "a452bbacda9a31c4",
         "name": "Trame Data",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6155,7 +6554,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 960,
+        "y": 1040,
         "wires": []
     },
     {
@@ -6172,7 +6571,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 920,
+        "y": 1000,
         "wires": [
             [
                 "d70717c2791db26b",
@@ -6675,7 +7074,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 200,
-        "y": 920,
+        "y": 1000,
         "wires": [
             [
                 "09e579b3b056849b",
@@ -6698,7 +7097,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 820,
+        "y": 900,
         "wires": []
     },
     {
@@ -6716,7 +7115,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 820,
+        "y": 900,
         "wires": []
     },
     {
@@ -6729,7 +7128,7 @@
             "478ff4b948448d8c"
         ],
         "x": 75,
-        "y": 780,
+        "y": 860,
         "wires": [
             [
                 "22bf36a730da59e9",
@@ -7124,7 +7523,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 200,
-        "y": 780,
+        "y": 860,
         "wires": [
             [
                 "2338c095f7c11c4a",
@@ -7146,7 +7545,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 780,
+        "y": 860,
         "wires": [
             [
                 "83fe441b68fd0f68",
@@ -7169,7 +7568,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 620,
-        "y": 820,
+        "y": 900,
         "wires": []
     },
     {
@@ -7188,7 +7587,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 620,
-        "y": 780,
+        "y": 860,
         "wires": []
     },
     {
@@ -7205,7 +7604,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 180,
-        "y": 620,
+        "y": 700,
         "wires": []
     },
     {
@@ -7218,8 +7617,8 @@
         "links": [
             "e531bf651f9a7d53"
         ],
-        "x": 455,
-        "y": 420,
+        "x": 735,
+        "y": 440,
         "wires": []
     },
     {
@@ -7241,13 +7640,13 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 340,
-        "y": 380,
+        "x": 580,
+        "y": 400,
         "wires": [
             [
-                "d05d32e34e2c10f6",
                 "f1b7752a921d9b53",
-                "493bb5d0d7ce7299"
+                "493bb5d0d7ce7299",
+                "d05d32e34e2c10f6"
             ],
             []
         ]
@@ -7258,7 +7657,7 @@
         "z": "99bc02947d644bce",
         "g": "11b4dc13edc4bcc3",
         "name": "Broadcast-serial-Out",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7266,8 +7665,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 380,
+        "x": 820,
+        "y": 400,
         "wires": []
     },
     {
@@ -7318,11 +7717,11 @@
         "name": "",
         "serial": "6e1abcbcc6ebb714",
         "x": 120,
-        "y": 380,
+        "y": 400,
         "wires": [
             [
                 "4ef61d69d00f1490",
-                "01c8b4c6fbc133de"
+                "9221fe282a76a91d"
             ]
         ]
     },
@@ -7338,8 +7737,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 840,
-        "y": 420,
+        "x": 820,
+        "y": 480,
         "wires": [
             []
         ]
@@ -7358,8 +7757,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 420,
+        "x": 560,
+        "y": 480,
         "wires": [
             [
                 "40c4250769668c46"
@@ -7380,7 +7779,7 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "f50e96b26caba2a9",
@@ -7403,7 +7802,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 420,
-        "y": 620,
+        "y": 700,
         "wires": []
     },
     {
@@ -7430,7 +7829,7 @@
         "repair": false,
         "outputs": 2,
         "x": 610,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "478ff4b948448d8c"
@@ -7601,7 +8000,7 @@
         "repair": false,
         "outputs": 2,
         "x": 280,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "08a96f8a195e39a5"
@@ -7629,7 +8028,7 @@
         "repair": false,
         "outputs": 2,
         "x": 480,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "d550b1374404759c"
@@ -7663,9 +8062,2461 @@
         "y": 240,
         "wires": [
             [
+                "1b02344f5b485302"
+            ]
+        ]
+    },
+    {
+        "id": "1b02344f5b485302",
+        "type": "switch",
+        "z": "99bc02947d644bce",
+        "g": "ddca5e18c215e224",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [],
+            [
                 "50df119af6f415a2"
             ]
         ]
+    },
+    {
+        "id": "9221fe282a76a91d",
+        "type": "switch",
+        "z": "99bc02947d644bce",
+        "g": "11b4dc13edc4bcc3",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 400,
+        "wires": [
+            [],
+            [
+                "01c8b4c6fbc133de"
+            ]
+        ]
+    },
+    {
+        "id": "b85cf8a2e274cd6e",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "Autre",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 150,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "debeb1659d832433",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "command": "candump can0",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "CANdump",
+        "x": 310,
+        "y": 420,
+        "wires": [
+            [
+                "8e9b6b055c793dc9"
+            ],
+            [
+                "afda168dcc577447"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dd638741dd67a0fa",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "debeb1659d832433"
+            ]
+        ]
+    },
+    {
+        "id": "afda168dcc577447",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "name": "CAN dump",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "8e9b6b055c793dc9",
+        "type": "rbe",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "b486bd5757d63a96",
+                "a93a52a81ab07732"
+            ]
+        ]
+    },
+    {
+        "id": "a5ca6b217cf20620",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "name": "CAN décodées",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "b486bd5757d63a96",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "name": "Décodage protocole 6 - 500000 bds",
+        "func": "// === Décodage trames CAN JKBMS - Dernière mise à jour ===\n\nfunction parseCanFrame(payload) {\n    const regex = /can0\\s+([A-F0-9]+)\\s+\\[8\\]\\s+([A-F0-9\\s]+)/;\n    const match = payload.match(regex);\n    if (!match) return null;\n    const canId = match[1];\n    const dataHex = match[2].trim().split(/\\s+/);\n    const data = dataHex.map(hex => parseInt(hex, 16));\n    return { canId, data };\n}\n\nfunction decode2F4(data) {\n    const totalVoltage = ((data[1] << 8) | data[0]) * 0.1;\n    const soc = data[4];\n    let rawCurrent = (data[3] << 8) | data[2];\n    if (rawCurrent > 32767) rawCurrent -= 65536;\n    const current = (rawCurrent * 0.1) - 400;\n    return {\n        type: \"main_status\",\n        totalVoltage,\n        soc,\n        current\n    };\n}\n\nfunction decode07F4(data) {\n    let alarmBits = 0;\n    for (let i = 0; i < 4; i++) {\n        alarmBits |= data[i] << (8 * i);\n    }\n    const alarmList = [\n        \"Cell overvoltage\",\n        \"Cell undervoltage\",\n        \"Total voltage overvoltage\",\n        \"Total voltage undervoltage\",\n        \"Large pressure difference of monomer\",\n        \"Discharge overcurrent\",\n        \"Charge overcurrent\",\n        \"Temperature is too high\",\n        \"Temperature is too low\",\n        \"Excessive temperature difference\",\n        \"SOC too low\",\n        \"Insulation is too low\",\n        \"High voltage interlock fault\",\n        \"External communication failure\",\n        \"Internal communication failure\"\n    ];\n    const alarms = [];\n    for (let i = 0; i < alarmList.length; i++) {\n        const level = (alarmBits >> (i * 2)) & 0x03;\n        if (level > 0) {\n            alarms.push({\n                code: i + 1,\n                name: alarmList[i],\n                level,\n                levelText: [\"\", \"Serious\", \"Important\", \"General\"][level]\n            });\n        }\n    }\n    return {\n        type: \"alarm_info\",\n        alarms,\n        alarmCount: alarms.length,\n        rawAlarmBits: alarmBits\n    };\n}\n\nfunction decode4F4(data) {\n    const deltaCellVoltage = data[0] * 0.001;\n    const maxCellVoltage = ((data[1] << 8) | data[0]) * 0.001;\n    const maxCellPosition = data[2];\n    const minCellVoltage = ((data[4] << 8) | data[3]) * 0.001;\n    const minCellPosition = data[5];\n    return {\n        type: \"cell_minmax\",\n        deltaCellVoltage,\n        maxCellVoltage,\n        maxCellPosition,\n        minCellVoltage,\n        minCellPosition\n    };\n}\n\nfunction decode5F4(data) {\n    const maxTemp = data[0] - 50;\n    const maxTempPosition = data[1];\n    const minTemp = data[2] - 50;\n    const minTempPosition = data[3];\n    const avgTemp = data[4] - 50;\n    return {\n        type: \"temperatures\",\n        maxTemp,\n        maxTempPosition,\n        minTemp,\n        minTempPosition,\n        avgTemp\n    };\n}\n\nfunction decode18F128F4(data) {\n    let current = (data[1] << 8) | data[0];\n    if (current > 32767) current -= 65536;\n    current *= 0.001;\n    const power = ((data[3] << 8) | data[2]) * 0.1;\n    const cycleCount = (data[7] << 8) | data[6];\n    return {\n        type: \"power_current\",\n        current,\n        power,\n        cycleCount\n    };\n}\n\n// ✅ MISE À JOUR : ID 01F21400\nfunction decode01F21400(data) {\n    // Byte 0–1 : Voltage (unsigned), × 0.01\n    const voltage = ((data[1] << 8) | data[0]) * 0.01;\n\n    // Byte 2–3 : Current (signed), × 0.1\n    let rawCurrent = (data[3] << 8) | data[2];\n    if (rawCurrent > 32767) rawCurrent -= 65536;\n    const current = rawCurrent * 0.1;\n\n    // Byte 4–5 : Temperature (signed), ÷ 10\n    let rawTemp = (data[5] << 8) | data[4];\n    if (rawTemp > 32767) rawTemp -= 65536;\n    const temperature = rawTemp / 10;\n\n    // Byte 6–7 : Cycle count (unsigned)\n    const cycleCount = (data[7] << 8) | data[6];\n\n    return {\n        type: \"monitoring\",\n        voltage,       // en V\n        current,       // en A\n        temperature,   // en °C\n        cycleCount\n    };\n}\n\nfunction decode18F528F4(data) {\n    const alarmCode = data[0];\n    const cycleCount = (data[2] << 8) | data[1];\n    const alarmMap = {\n        0: \"Normal\",\n        1: \"Cell overvoltage\",\n        2: \"Cell undervoltage\",\n        3: \"Pack overvoltage\",\n        4: \"Pack undervoltage\",\n        5: \"Charge overcurrent\",\n        6: \"Discharge overcurrent\",\n        7: \"Charge overtemp\",\n        8: \"Discharge overtemp\",\n        9: \"Charge undertemp\",\n        10: \"Discharge undertemp\",\n        11: \"MOS overtemp\",\n        12: \"Short circuit\",\n        13: \"BMS overtemp\",\n        14: \"BMS undertemp\",\n        23: \"Cell imbalance\",\n        35: \"System normal\"\n    };\n    return {\n        type: \"cycle_count\",\n        alarmCode,\n        alarmText: alarmMap[alarmCode] || `Unknown alarm ${alarmCode}`,\n        cycleCount\n    };\n}\n\nfunction decode1806E5F4(data) {\n    const value = (data[3] << 8) | data[2];\n    return {\n        type: \"status_data\",\n        value,\n        byte0: data[0],\n        byte1: data[1],\n        rawBytes: data\n    };\n}\n\nfunction decode18F228F4(data) {\n    const temps = [];\n    let mosTemp = null;\n    for (let i = 1; i < 6; i++) {\n        if (data[i] !== 0) {\n            const temp = data[i] - 50;\n            temps.push(temp);\n        }\n    }\n    if (temps.length > 0) {\n        mosTemp = temps[0];\n    }\n    return {\n        type: \"individual_temps\",\n        temperatures: temps,\n        mosTemp,\n        sensorCount: temps.length,\n        byte0: data[0]\n    };\n}\n\nfunction decode18F428F4(data) {\n    const systemData = (data[1] << 8) | data[0];\n    const socAlt = data[6];\n    return {\n        type: \"alt_soc_data\",\n        systemData,\n        socAlt,\n        byte2: data[2],\n        rawBytes: data\n    };\n}\n\nfunction decodeCellVoltages(canId, data) {\n    const baseId = parseInt(canId.substring(3, 4));\n    const cellStart = baseId * 4;\n    const voltages = [];\n    for (let i = 0; i < 8; i += 2) {\n        const voltage = ((data[i + 1] << 8) | data[i]) * 0.001;\n        voltages.push({\n            cellNumber: cellStart + (i / 2) + 1,\n            voltage\n        });\n    }\n    return {\n        type: \"cell_voltages\",\n        group: baseId,\n        voltages\n    };\n}\n\nfunction decodeExperimental(canId, data) {\n    const patterns = [];\n    for (let i = 0; i < data.length; i++) {\n        if (data[i] >= 70 && data[i] <= 80) {\n            patterns.push({\n                type: \"possible_mos_temp\",\n                position: i,\n                value: data[i] - 50,\n                rawValue: data[i]\n            });\n        }\n    }\n    for (let i = 0; i < data.length - 1; i++) {\n        const value16 = (data[i + 1] << 8) | data[i];\n        if (value16 >= 10 && value16 <= 50) {\n            patterns.push({\n                type: \"possible_cycle_count\",\n                position: i,\n                value: value16,\n                rawBytes: [data[i], data[i + 1]]\n            });\n        }\n    }\n    return {\n        type: \"experimental\",\n        canId,\n        patterns,\n        rawData: data\n    };\n}\n\n// === LOGIQUE PRINCIPALE ===\nconst parsed = parseCanFrame(msg.payload);\nif (!parsed) {\n    return {\n        payload: {\n            timestamp: new Date().toISOString(),\n            canId: \"\",\n            type: \"parse_error\",\n            note: \"Erreur parsing trame CAN\"\n        }\n    };\n}\n\nconst { canId, data } = parsed;\nlet decoded;\n\nswitch (canId) {\n    case \"2F4\":\n        decoded = decode2F4(data);\n        break;\n    case \"4F4\":\n        decoded = decode4F4(data);\n        break;\n    case \"5F4\":\n        decoded = decode5F4(data);\n        break;\n    case \"7F4\":\n        decoded = decode07F4(data);\n        break;\n    case \"18F128F4\":\n        decoded = decode18F128F4(data);\n        break;\n    case \"01F21400\":\n        decoded = decode01F21400(data);\n        break;\n    case \"18F528F4\":\n        decoded = decode18F528F4(data);\n        break;\n    case \"1806E5F4\":\n        decoded = decode1806E5F4(data);\n        break;\n    case \"18F228F4\":\n        decoded = decode18F228F4(data);\n        break;\n    case \"18F428F4\":\n        decoded = decode18F428F4(data);\n        break;\n    default:\n        if (canId.match(/^18E[0-3]28F4$/)) {\n            decoded = decodeCellVoltages(canId, data);\n        } else {\n            decoded = decodeExperimental(canId, data);\n        }\n        break;\n}\n\nlet bmsId = \"unknown\";\nif (decoded.type === \"cycle_count\") {\n    bmsId = decoded.cycleCount === 35 ? \"BMS2\" : \"BMS1\";\n} else if (decoded.type === \"power_current\" && typeof decoded.cycleCount !== \"undefined\") {\n    bmsId = decoded.cycleCount === 35 ? \"BMS2\" : (decoded.cycleCount === 12 ? \"BMS1\" : \"unknown\");\n} else if (decoded.type === \"individual_temps\" && typeof decoded.mosTemp === \"number\") {\n    bmsId = decoded.mosTemp > 24 ? \"BMS2\" : \"BMS1\";\n}\n\nreturn {\n    payload: {\n        timestamp: new Date().toISOString(),\n        canId,\n        bmsId,\n        rawData: data,\n        rawHex: data.map(b => b.toString(16).padStart(2, '0').toUpperCase()).join(' '),\n        ...decoded\n    }\n};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 420,
+        "wires": [
+            [
+                "a5ca6b217cf20620",
+                "e35a22af4cfb4aab"
+            ]
+        ]
+    },
+    {
+        "id": "29f5a876043e9da5",
+        "type": "switch",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "property": "payload.canId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "7F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "01F21400",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1806E5F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E028F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E128F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E228F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E328F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F128F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F228F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F328F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F428F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F528F4",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 16,
+        "x": 120,
+        "y": 900,
+        "wires": [
+            [
+                "8eee98be3d1c3c7f"
+            ],
+            [
+                "dae0612e02e5b473"
+            ],
+            [
+                "5edc4a52fe062c7f"
+            ],
+            [
+                "bdcbdd3c688042a6"
+            ],
+            [
+                "362f2489b0d408bd"
+            ],
+            [
+                "acde481454565979"
+            ],
+            [
+                "4b66c61c278ac4be"
+            ],
+            [
+                "127f92ab8cc478b1"
+            ],
+            [
+                "054c54a5156ac319"
+            ],
+            [
+                "aced4a4a091a1e74"
+            ],
+            [
+                "50cca358c5872f99"
+            ],
+            [
+                "c5a98b0c5f5d64f2"
+            ],
+            [
+                "507d76b6a0d7897e"
+            ],
+            [
+                "6a3ba3b08c54d70a"
+            ],
+            [
+                "9a58ddb07e0e912b"
+            ],
+            [
+                "b85cf8a2e274cd6e"
+            ]
+        ]
+    },
+    {
+        "id": "9a58ddb07e0e912b",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "18F528F4 - ? compteur ??",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "6a3ba3b08c54d70a",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "18F428F4 - ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "a93a52a81ab07732",
+        "type": "file",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "1659512173ac5dde",
+        "name": "",
+        "filename": "/config/temp/CAN-dump.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 720,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50cca358c5872f99",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "18F128F4 - ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "507d76b6a0d7897e",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "18F328F4 - ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "acde481454565979",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "1806E5F4 - status_data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "447979a492328699",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "totalVoltage - soc -current",
+        "func": "// Récupération des données depuis le payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1\";\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\n// -- Liste des capteurs à publier, avec config Home Assistant --\nlet sensors = [\n    {\n        key: \"totalVoltage\",\n        name: \"Total voltage\",\n        unit: \"V\",\n        device_class: \"voltage\",\n        value: data.totalVoltage ? Number(data.totalVoltage).toFixed(2) : \"0.00\",\n        icon: \"mdi:car-battery\"\n    },\n    {\n        key: \"soc\",\n        name: \"State of Charge\",\n        unit: \"%\",\n        device_class: \"battery\",\n        value: data.soc || 0,\n        icon: \"mdi:battery-high\"\n    },\n    {\n        key: \"current\",\n        name: \"Current\",\n        unit: \"A\",\n        device_class: \"current\",\n        value: data.current ? Number(data.current).toFixed(1) : \"0.0\",\n        icon: \"mdi:current-dc\"\n    }\n];\n\n// -- Formatage & publication des valeurs sur topics MQTT --\nfor (let s of sensors) {\n    // Envoi de la valeur sur le topic\n    messages.push({\n        topic: `${prefix}/${s.key}`,\n        payload: String(s.value),\n        retain: true\n    });\n\n    // Génération d'un message autodiscovery Home Assistant\n    let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/${s.key}/config`;\n    let config = {\n        name: `${s.name}`,\n        device_class: s.device_class,\n        state_topic: `${prefix}/${s.key}`,\n        unique_id: uniq_id_prefix + s.key,\n        unit_of_measurement: s.unit,\n        icon: s.icon,\n        expire_after: 600,\n        force_update: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"CANbus vers MQTT\",\n            sw_version: \"v1.0\"\n        }\n    };\n    messages.push({\n        topic: discoveryTopic,\n        payload: JSON.stringify(config),\n        retain: true\n    });\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 580,
+        "wires": [
+            [
+                "ca51039d5be4a45d",
+                "d9a011a72d0eaa6f"
+            ]
+        ]
+    },
+    {
+        "id": "ca51039d5be4a45d",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "debug 36",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "8e3b6bcd7fb6e48a",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "Autre",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 150,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "92f149fe0b3bc0d2",
+        "type": "switch",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "",
+        "property": "payload.canId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "7F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "01F21400",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1806E5F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E028F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E128F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E228F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18E328F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F128F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F228F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F328F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F428F4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "18F528F4",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 16,
+        "x": 120,
+        "y": 1640,
+        "wires": [
+            [
+                "78ad1bcbfbe5a40d"
+            ],
+            [
+                "1aad2af2efba4fad"
+            ],
+            [
+                "2ecd4b65af254b85"
+            ],
+            [
+                "fb15e8c98b163412"
+            ],
+            [
+                "a152c219b355f6bb"
+            ],
+            [
+                "80cec58d26f6a497"
+            ],
+            [
+                "4c4eac235afc784d"
+            ],
+            [
+                "c2cadec1246ba5ab"
+            ],
+            [
+                "2c44317c4fc7f87b"
+            ],
+            [
+                "76abc934aabf45f4"
+            ],
+            [
+                "8d5a08e039dcd320"
+            ],
+            [
+                "840fb8f774527a63"
+            ],
+            [
+                "be65d6cdf2f372a5"
+            ],
+            [
+                "995611184e5d2b75"
+            ],
+            [
+                "53544b632612530f"
+            ],
+            [
+                "8e3b6bcd7fb6e48a"
+            ]
+        ]
+    },
+    {
+        "id": "fb15e8c98b163412",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "7F4 - Alarm",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "78ad1bcbfbe5a40d",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "2F4 - main_status",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "53544b632612530f",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "18F528F4 - ? compteur ??",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "995611184e5d2b75",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "18F428F4 - ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "1aad2af2efba4fad",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "4F4 - cell_minmax",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "8d5a08e039dcd320",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "18F128F4 - ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "a152c219b355f6bb",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "01F21400 - monitoring",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "be65d6cdf2f372a5",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "18F328F4 - ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "80cec58d26f6a497",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "1806E5F4 - status_data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "2ecd4b65af254b85",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "5F4 - temperatures",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "840fb8f774527a63",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "18F228F4 - individual_temps",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "4c4eac235afc784d",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "81e87bf1358cea74",
+        "name": "18E028F4 - cell_voltages 0 à 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "c2cadec1246ba5ab",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "81e87bf1358cea74",
+        "name": "18E128F4 - cell_voltages 4 à 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "2c44317c4fc7f87b",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "81e87bf1358cea74",
+        "name": "18E228F4 - cell_voltages 8 à 11",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "76abc934aabf45f4",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "81e87bf1358cea74",
+        "name": "18F328F4 - cell_voltages 12 à 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "728e5c92cfe21a0b",
+        "type": "link in",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "12f3839fa2aa30dd",
+        "name": "Debug-CAN-in",
+        "links": [
+            "e35a22af4cfb4aab"
+        ],
+        "x": 105,
+        "y": 1440,
+        "wires": [
+            [
+                "92f149fe0b3bc0d2"
+            ]
+        ]
+    },
+    {
+        "id": "ace991e23c232841",
+        "type": "link in",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "Debug-CAN-in",
+        "links": [
+            "e35a22af4cfb4aab"
+        ],
+        "x": 90.33332824707031,
+        "y": 673.1666259765625,
+        "wires": [
+            [
+                "29f5a876043e9da5"
+            ]
+        ]
+    },
+    {
+        "id": "e35a22af4cfb4aab",
+        "type": "link out",
+        "z": "6f39605626c227f5",
+        "g": "1659512173ac5dde",
+        "name": "Debug-CAN-out",
+        "mode": "link",
+        "links": [
+            "728e5c92cfe21a0b",
+            "ace991e23c232841"
+        ],
+        "x": 945,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "837cfa7877f2dd4c",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "4F4 - cell_minmax",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1\";\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\n// Définition des capteurs & paramètres à publier\nlet sensors = [\n    {\n        key: \"deltaCellVoltage\",\n        name: \"Delta Cell Votage\",\n        unit: \"V\",\n        device_class: \"voltage\",\n        value: data.deltaCellVoltage !== undefined ? data.deltaCellVoltage : 0,\n        icon: \"mdi:battery-minus-variant\"\n    },\n    {\n        key: \"maxCellVoltage\",\n        name: \"Cell max voltage\",\n        unit: \"V\",\n        device_class: \"voltage\",\n        value: data.maxCellVoltage !== undefined ? Number(data.maxCellVoltage).toFixed(2) : \"0.00\",\n        icon: \"mdi:battery-high\"\n    },\n    {\n        key: \"maxCellPosition\",\n        name: \"Cell max position\",\n        unit: \"\",\n        device_class: \"none\",\n        value: data.maxCellPosition !== undefined ? data.maxCellPosition : 0,\n        icon: \"mdi:numeric\"\n    },\n    {\n        key: \"minCellVoltage\",\n        name: \"Cell min votage\",\n        unit: \"V\",\n        device_class: \"voltage\",\n        value: data.minCellVoltage !== undefined ? data.minCellVoltage : 0,\n        icon: \"mdi:battery-low\"\n    },\n    {\n        key: \"minCellPosition\",\n        name: \"Cell min position\",\n        unit: \"\",\n        device_class: \"none\",\n        value: data.minCellPosition !== undefined ? data.minCellPosition : 0,\n        icon: \"mdi:numeric\"\n    }\n];\n\n// Loop de publication/value/discovery\nfor (let s of sensors) {\n    messages.push({\n        topic: `${prefix}/${s.key}`,\n        payload: String(s.value),\n        retain: true\n    });\n\n    let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/${s.key}/config`;\n    let config = {\n        name: s.name,\n        state_topic: `${prefix}/${s.key}`,\n        unique_id: uniq_id_prefix + s.key,\n        icon: s.icon,\n        expire_after: 600,\n        force_update: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"CANbus vers MQTT\",\n            sw_version: \"v1.0\"\n        }\n    };\n\n    // Ajoute unit_of_measurement et device_class seulement si pertinent\n    if (s.unit) config.unit_of_measurement = s.unit;\n    if (s.device_class && s.device_class !== \"none\") config.device_class = s.device_class;\n\n    messages.push({\n        topic: discoveryTopic,\n        payload: JSON.stringify(config),\n        retain: true\n    });\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 620,
+        "wires": [
+            [
+                "d9a011a72d0eaa6f",
+                "bae9db3e281e416b"
+            ]
+        ]
+    },
+    {
+        "id": "bae9db3e281e416b",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "debug 33",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "1f99bb024c5993e8",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "5F4 - temperatures",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1\";\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\n// Définition des capteurs & paramètres à publier (avec nouveaux noms)\nlet sensors = [\n    {\n        key: \"maxTemp\",\n        name: \"Temp. Maxi\",\n        unit: \"°C\",\n        device_class: \"temperature\",\n        value: data.maxTemp !== undefined ? data.maxTemp : 0,\n        icon: \"mdi:thermometer-high\"\n    },\n    {\n        key: \"maxTempPosition\",\n        name: \"Temp. position Maxi\",\n        unit: \"\",\n        device_class: \"none\",\n        value: data.maxTempPosition !== undefined ? data.maxTempPosition : 0,\n        icon: \"mdi:numeric\"\n    },\n    {\n        key: \"minTemp\",\n        name: \"Temp. Mini\",\n        unit: \"°C\",\n        device_class: \"temperature\",\n        value: data.minTemp !== undefined ? data.minTemp : 0,\n        icon: \"mdi:thermometer-low\"\n    },\n    {\n        key: \"minTempPosition\",\n        name: \"Temp. position Mini\",\n        unit: \"\",\n        device_class: \"none\",\n        value: data.minTempPosition !== undefined ? data.minTempPosition : 0,\n        icon: \"mdi:numeric\"\n    },\n    {\n        key: \"avgTemp\",\n        name: \"Temp. Avg\",\n        unit: \"°C\",\n        device_class: \"temperature\",\n        value: data.avgTemp !== undefined ? data.avgTemp : 0,\n        icon: \"mdi:thermometer\"\n    }\n];\n\n// Publication des valeurs & autodiscovery Home Assistant\nfor (let s of sensors) {\n    messages.push({\n        topic: `${prefix}/${s.key}`,\n        payload: String(s.value),\n        retain: true\n    });\n\n    let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/${s.key}/config`;\n    let config = {\n        name: s.name,\n        state_topic: `${prefix}/${s.key}`,\n        unique_id: uniq_id_prefix + s.key,\n        icon: s.icon,\n        expire_after: 600,\n        force_update: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"CANbus vers MQTT\",\n            sw_version: \"v1.0\"\n        }\n    };\n    if (s.unit) config.unit_of_measurement = s.unit;\n    if (s.device_class && s.device_class !== \"none\") config.device_class = s.device_class;\n\n    messages.push({\n        topic: discoveryTopic,\n        payload: JSON.stringify(config),\n        retain: true\n    });\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 660,
+        "wires": [
+            [
+                "d9a011a72d0eaa6f",
+                "b3dca75a3421ce34"
+            ]
+        ]
+    },
+    {
+        "id": "b3dca75a3421ce34",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fad2af17433455d4",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "01F21400 - monitoring",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1\";\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\n// ----------- Publication cycleCount uniquement ----------\nlet s = {\n    key: \"cycleCount\",\n    name: \"Cycles number\",\n    unit: \"\",\n    device_class: \"none\",\n    value: data.cycleCount !== undefined ? data.cycleCount : 0,\n    icon: \"mdi:counter\"\n};\n\n// Publication valeur brute\nmessages.push({\n    topic: `${prefix}/${s.key}`,\n    payload: String(s.value),\n    retain: true\n});\n\n// Publication auto-discovery Home Assistant\nlet discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/${s.key}/config`;\nlet config = {\n    name: s.name,\n    state_topic: `${prefix}/${s.key}`,\n    unique_id: uniq_id_prefix + s.key,\n    icon: s.icon,\n    expire_after: 600,\n    force_update: true,\n    device: {\n        identifiers: [deviceID],\n        name: deviceName,\n        manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n        model: \"CANbus vers MQTT\",\n        sw_version: \"v1.0\"\n    }\n};\nmessages.push({\n    topic: discoveryTopic,\n    payload: JSON.stringify(config),\n    retain: true\n});\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 740,
+        "wires": [
+            [
+                "d9a011a72d0eaa6f",
+                "37cf1d3022a1b642"
+            ]
+        ]
+    },
+    {
+        "id": "37cf1d3022a1b642",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "debug 35",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "3ea687bcaa04ce10",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "7F4 - Alarm",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1\";\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\n// Extraction du nom de la première alarme (s'il existe)\nlet alarmName = \"\";\nif (Array.isArray(data.alarms) && data.alarms.length > 0 && data.alarms[0].name) {\n    alarmName = data.alarms[0].name;\n}\n\n// Définition du capteur\nlet s = {\n    key: \"alarmName\",\n    name: \"Alarme descr.\",\n    value: alarmName,\n    icon: \"mdi:alert-circle\"\n};\n\n// Publication de la valeur sur le topic MQTT\nmessages.push({\n    topic: `${prefix}/${s.key}`,\n    payload: s.value,\n    retain: true\n});\n\n// Configuration autodiscovery Home Assistant - sensor texte (pas d'unité)\nlet discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/${s.key}/config`;\nlet config = {\n    name: s.name,\n    state_topic: `${prefix}/${s.key}`,\n    unique_id: uniq_id_prefix + s.key,\n    icon: s.icon,\n    expire_after: 600,\n    device: {\n        identifiers: [deviceID],\n        name: deviceName,\n        manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n        model: \"CANbus vers MQTT\",\n        sw_version: \"v1.0\"\n    }\n};\nmessages.push({\n    topic: discoveryTopic,\n    payload: JSON.stringify(config),\n    retain: true\n});\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 700,
+        "wires": [
+            [
+                "d9a011a72d0eaa6f",
+                "793d901ed1991029"
+            ]
+        ]
+    },
+    {
+        "id": "793d901ed1991029",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "debug 38",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "57e421fa560c803d",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "18E028F4 - cell_voltages 0 à 3",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1/cellVoltage_\";  // <-- maintenant underscore\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_cell_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\nif (Array.isArray(data.voltages)) {\n    for (let cell of data.voltages) {\n        let cellNumber = cell.cellNumber || 0;\n        let voltage = cell.voltage !== undefined ? Number(cell.voltage).toFixed(3) : \"0.000\";\n        let key = `${cellNumber}`;\n\n        // 1) Publication de la tension de cette cellule sur son topic dédié\n        messages.push({\n            topic: `${prefix}${key}`,\n            payload: voltage,\n            retain: true\n        });\n\n        // 2) Autodiscovery HA pour cette cellule\n        let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/cell_voltage_${key}/config`;\n        let config = {\n            name: `Cell ${cellNumber}`,\n            state_topic: `${prefix}${key}`,\n            unique_id: uniq_id_prefix + key,\n            device_class: \"voltage\",\n            unit_of_measurement: \"V\",\n            icon: \"mdi:battery\",\n            expire_after: 600,\n            force_update: true,\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"CANbus vers MQTT\",\n                sw_version: \"v1.0\"\n            }\n        };\n        messages.push({\n            topic: discoveryTopic,\n            payload: JSON.stringify(config),\n            retain: true\n        });\n    }\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 860,
+        "wires": [
+            [
+                "f92e0a8759f632c6",
+                "1b47ac436bae964f"
+            ]
+        ]
+    },
+    {
+        "id": "1b47ac436bae964f",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "debug 39",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ee60aa9a48b55440",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "18E128F4 - cell_voltages 4 à 7",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1/cellVoltage_\"; // underscore\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_cell_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\nif (Array.isArray(data.voltages)) {\n    for (let cell of data.voltages) {\n        let cellNumber = cell.cellNumber || 0;\n        let voltage = cell.voltage !== undefined ? Number(cell.voltage).toFixed(3) : \"0.000\";\n        let key = `${cellNumber}`;\n\n        // 1) Publication de la tension de cette cellule sur son topic dédié\n        messages.push({\n            topic: `${prefix}${key}`,\n            payload: voltage,\n            retain: true\n        });\n\n        // 2) Autodiscovery HA pour cette cellule\n        let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/cell_voltage_${key}/config`;\n        let config = {\n            name: `Cell ${cellNumber}`,\n            state_topic: `${prefix}${key}`,\n            unique_id: uniq_id_prefix + key,\n            device_class: \"voltage\",\n            unit_of_measurement: \"V\",\n            icon: \"mdi:battery\",\n            expire_after: 600,\n            force_update: true,\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"CANbus vers MQTT\",\n                sw_version: \"v1.0\"\n            }\n        };\n        messages.push({\n            topic: discoveryTopic,\n            payload: JSON.stringify(config),\n            retain: true\n        });\n    }\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 900,
+        "wires": [
+            [
+                "f92e0a8759f632c6",
+                "95511efaecddd619"
+            ]
+        ]
+    },
+    {
+        "id": "95511efaecddd619",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "debug 40",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "3fb364efef228032",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "18E228F4 - cell_voltages 8 à 11",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1/cellVoltage_\"; // underscore\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_cell_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\nif (Array.isArray(data.voltages)) {\n    for (let cell of data.voltages) {\n        let cellNumber = cell.cellNumber || 0;\n        let voltage = cell.voltage !== undefined ? Number(cell.voltage).toFixed(3) : \"0.000\";\n        let key = `${cellNumber}`;\n\n        // 1) Publication de la tension de cette cellule sur son topic dédié\n        messages.push({\n            topic: `${prefix}${key}`,\n            payload: voltage,\n            retain: true\n        });\n\n        // 2) Autodiscovery HA pour cette cellule\n        let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/cell_voltage_${key}/config`;\n        let config = {\n            name: `Cell ${cellNumber}`,\n            state_topic: `${prefix}${key}`,\n            unique_id: uniq_id_prefix + key,\n            device_class: \"voltage\",\n            unit_of_measurement: \"V\",\n            icon: \"mdi:battery\",\n            expire_after: 600,\n            force_update: true,\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"CANbus vers MQTT\",\n                sw_version: \"v1.0\"\n            }\n        };\n        messages.push({\n            topic: discoveryTopic,\n            payload: JSON.stringify(config),\n            retain: true\n        });\n    }\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 940,
+        "wires": [
+            [
+                "f92e0a8759f632c6",
+                "967cc031da8e2ec5"
+            ]
+        ]
+    },
+    {
+        "id": "967cc031da8e2ec5",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "debug 41",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "877707b09934aea8",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "18F328F4 - cell_voltages 12 à 15",
+        "func": "// Récupération du payload\nlet data = msg.payload || {};\nlet prefix = \"CANbus-1/cellVoltage_\"; // underscore\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_cell_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\nif (Array.isArray(data.voltages)) {\n    for (let cell of data.voltages) {\n        let cellNumber = cell.cellNumber || 0;\n        let voltage = cell.voltage !== undefined ? Number(cell.voltage).toFixed(3) : \"0.000\";\n        let key = `${cellNumber}`;\n\n        // 1) Publication de la tension sur le topic dédié\n        messages.push({\n            topic: `${prefix}${key}`,\n            payload: voltage,\n            retain: true\n        });\n\n        // 2) Autodiscovery Home Assistant pour cette cellule\n        let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/cell_voltage_${key}/config`;\n        let config = {\n            name: `Cell ${cellNumber}`,\n            state_topic: `${prefix}${key}`,\n            unique_id: uniq_id_prefix + key,\n            device_class: \"voltage\",\n            unit_of_measurement: \"V\",\n            icon: \"mdi:battery\",\n            expire_after: 600,\n            force_update: true,\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"CANbus vers MQTT\",\n                sw_version: \"v1.0\"\n            }\n        };\n        messages.push({\n            topic: discoveryTopic,\n            payload: JSON.stringify(config),\n            retain: true\n        });\n    }\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 980,
+        "wires": [
+            [
+                "f92e0a8759f632c6",
+                "47dfe280df4a3ac5"
+            ]
+        ]
+    },
+    {
+        "id": "47dfe280df4a3ac5",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "debug 42",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "8240cb0c8c5647c5",
+        "type": "function",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "18F228F4 - individual_temps",
+        "func": "let data = msg.payload || {};\nlet prefix = \"CANbus-1\";\nlet discoveryPrefix = \"homeassistant\";\nlet uniq_id_prefix = \"canbus1_\";\nlet deviceID = \"canbus1_device\";\nlet deviceName = \"CANbus-1\";\n\nlet messages = [];\n\n// 1) Températures individuelles\nif (Array.isArray(data.temperatures)) {\n    for (let i = 0; i < data.temperatures.length; i++) {\n        let temp = data.temperatures[i];\n        let key = `temperature_${i+1}`;\n\n        messages.push({\n            topic: `${prefix}/${key}`,\n            payload: temp !== undefined ? String(temp) : \"\",\n            retain: true\n        });\n\n        let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/${key}/config`;\n        let config = {\n            name: `Temp. Sonde ${i+1}`,\n            state_topic: `${prefix}/${key}`,\n            unique_id: uniq_id_prefix + key,\n            device_class: \"temperature\",\n            unit_of_measurement: \"°C\",\n            icon: \"mdi:thermometer\",\n            expire_after: 600,\n            force_update: true,\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"CANbus vers MQTT\",\n                sw_version: \"v1.0\"\n            }\n        };\n        messages.push({\n            topic: discoveryTopic,\n            payload: JSON.stringify(config),\n            retain: true\n        });\n    }\n}\n\n// 2) Température MOSFET\nif (data.mosTemp !== undefined) {\n    messages.push({\n        topic: `${prefix}/mosTemp`,\n        payload: String(data.mosTemp),\n        retain: true\n    });\n    let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/mosTemp/config`;\n    let config = {\n        name: `Temp. MOSFET`,\n        state_topic: `${prefix}/mosTemp`,\n        unique_id: uniq_id_prefix + \"mosTemp\",\n        device_class: \"temperature\",\n        unit_of_measurement: \"°C\",\n        icon: \"mdi:thermometer-lines\",\n        expire_after: 600,\n        force_update: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"CANbus vers MQTT\",\n            sw_version: \"v1.0\"\n        }\n    };\n    messages.push({\n        topic: discoveryTopic,\n        payload: JSON.stringify(config),\n        retain: true\n    });\n}\n\n// 3) Nombre de sondes\nif (data.sensorCount !== undefined) {\n    messages.push({\n        topic: `${prefix}/TempSensorCount`,\n        payload: String(data.sensorCount),\n        retain: true\n    });\n    let discoveryTopic = `${discoveryPrefix}/sensor/${deviceID}/TempSensorCount/config`;\n    let config = {\n        name: `Nb. of probes temp.`,\n        state_topic: `${prefix}/TempSensorCount`,\n        unique_id: uniq_id_prefix + \"TempSensorCount\",\n        icon: \"mdi:counter\",\n        expire_after: 600,\n        force_update: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"CANbus vers MQTT\",\n            sw_version: \"v1.0\"\n        }\n    };\n    messages.push({\n        topic: discoveryTopic,\n        payload: JSON.stringify(config),\n        retain: true\n    });\n}\n\nreturn [messages];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1120,
+        "wires": [
+            [
+                "796ecb28f71eed3b",
+                "a11d62f848c62b67"
+            ]
+        ]
+    },
+    {
+        "id": "a11d62f848c62b67",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "debug 43",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "d9a011a72d0eaa6f",
+        "type": "link out",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "CAN-to-MQTT-out",
+        "mode": "link",
+        "links": [
+            "16203b1b31a94438"
+        ],
+        "x": 835,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "16203b1b31a94438",
+        "type": "link in",
+        "z": "6f39605626c227f5",
+        "g": "aebda0e9c5e670ce",
+        "name": "CAN-to-MQTT-in",
+        "links": [
+            "d9a011a72d0eaa6f",
+            "f92e0a8759f632c6",
+            "796ecb28f71eed3b"
+        ],
+        "x": 745,
+        "y": 1240,
+        "wires": [
+            [
+                "2abeac79a7a60bdf"
+            ]
+        ]
+    },
+    {
+        "id": "2abeac79a7a60bdf",
+        "type": "mqtt out",
+        "z": "6f39605626c227f5",
+        "g": "aebda0e9c5e670ce",
+        "name": "Onduleur",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 840,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "f92e0a8759f632c6",
+        "type": "link out",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "CAN-to-MQTT-out",
+        "mode": "link",
+        "links": [
+            "16203b1b31a94438"
+        ],
+        "x": 855,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "796ecb28f71eed3b",
+        "type": "link out",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "CAN-to-MQTT-out",
+        "mode": "link",
+        "links": [
+            "16203b1b31a94438"
+        ],
+        "x": 815,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "8eee98be3d1c3c7f",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "3",
+        "nbRateUnits": "15",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "447979a492328699"
+            ]
+        ]
+    },
+    {
+        "id": "dae0612e02e5b473",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "837cfa7877f2dd4c"
+            ]
+        ]
+    },
+    {
+        "id": "5edc4a52fe062c7f",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 660,
+        "wires": [
+            [
+                "1f99bb024c5993e8"
+            ]
+        ]
+    },
+    {
+        "id": "bdcbdd3c688042a6",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "3ea687bcaa04ce10"
+            ]
+        ]
+    },
+    {
+        "id": "362f2489b0d408bd",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 740,
+        "wires": [
+            [
+                "fad2af17433455d4"
+            ]
+        ]
+    },
+    {
+        "id": "4b66c61c278ac4be",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 860,
+        "wires": [
+            [
+                "57e421fa560c803d"
+            ]
+        ]
+    },
+    {
+        "id": "127f92ab8cc478b1",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 900,
+        "wires": [
+            [
+                "ee60aa9a48b55440"
+            ]
+        ]
+    },
+    {
+        "id": "054c54a5156ac319",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 940,
+        "wires": [
+            [
+                "3fb364efef228032"
+            ]
+        ]
+    },
+    {
+        "id": "aced4a4a091a1e74",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "74ad3b95eaa90607",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 980,
+        "wires": [
+            [
+                "877707b09934aea8"
+            ]
+        ]
+    },
+    {
+        "id": "c5a98b0c5f5d64f2",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "0388c08ac1fe3555",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 1120,
+        "wires": [
+            [
+                "8240cb0c8c5647c5"
+            ]
+        ]
+    },
+    {
+        "id": "334558cf9160abbc",
+        "type": "switch",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "CAN_bus_usage ?",
+        "property": "CAN_bus_usage",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 60,
+        "wires": [
+            [],
+            [
+                "74e574d77665a36c",
+                "fade95fa358320fc"
+            ]
+        ]
+    },
+    {
+        "id": "23de69cae0a52325",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "334558cf9160abbc"
+            ]
+        ]
+    },
+    {
+        "id": "74e574d77665a36c",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "command": "ip link set can0 down",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "4f8bce80a42ea945",
+                "093b2c7ea2dc8456"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7618a5ab3e9a6ac9",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "command": "ip link set can0 up type can bitrate 500000",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "53653e7846563aac",
+                "60e4d94b3a07ad57"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7047fec81d56c8fc",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "command": "ip link set can0 up",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "85efcc8901c88607",
+                "21c532569fadf935"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "85efcc8901c88607",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "debeb1659d832433"
+            ]
+        ]
+    },
+    {
+        "id": "3a8a35018471c50d",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "command": "ip link set can0 down",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1040,
+        "y": 1700,
+        "wires": [
+            [
+                "bf8dd87cddd1c298"
+            ],
+            [],
+            [
+                "a559d6a53057c3cd"
+            ]
+        ]
+    },
+    {
+        "id": "037c856e9dbdee08",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 850,
+        "y": 1700,
+        "wires": [
+            [
+                "3a8a35018471c50d"
+            ]
+        ]
+    },
+    {
+        "id": "bf8dd87cddd1c298",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "debug 29",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "a559d6a53057c3cd",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "32ce044630ecdb22",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "command": "ip link set can0 up",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1030,
+        "y": 1620,
+        "wires": [
+            [
+                "80756acdd3b06f07"
+            ],
+            [],
+            [
+                "9f60e2a640e47a4a"
+            ]
+        ]
+    },
+    {
+        "id": "90fabac7f2e4da58",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 850,
+        "y": 1620,
+        "wires": [
+            [
+                "32ce044630ecdb22"
+            ]
+        ]
+    },
+    {
+        "id": "80756acdd3b06f07",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "debug 32",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "9f60e2a640e47a4a",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "debug 34",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "aa1ffc433549152e",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "command": "ip link set can0 up type can bitrate 500000",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1120,
+        "y": 1500,
+        "wires": [
+            [
+                "2b78d0ed870911e7"
+            ],
+            [],
+            [
+                "8d034dc6787f72f7"
+            ]
+        ]
+    },
+    {
+        "id": "f90eb49dcb2754b0",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 850,
+        "y": 1500,
+        "wires": [
+            [
+                "aa1ffc433549152e"
+            ]
+        ]
+    },
+    {
+        "id": "2b78d0ed870911e7",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "8d034dc6787f72f7",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "d": true,
+        "g": "123b0ed4c6f86bf1",
+        "name": "debug 28",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "2306b712876234b4",
+        "type": "exec",
+        "z": "6f39605626c227f5",
+        "g": "e1de84404cf506bb",
+        "command": "ip link show can0",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1050,
+        "y": 1880,
+        "wires": [
+            [
+                "ff238165fe766351"
+            ],
+            [],
+            [
+                "c167cc7ffeb79849"
+            ]
+        ]
+    },
+    {
+        "id": "25b38f684b56f4d4",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "g": "e1de84404cf506bb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 850,
+        "y": 1880,
+        "wires": [
+            [
+                "2306b712876234b4"
+            ]
+        ]
+    },
+    {
+        "id": "ff238165fe766351",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "e1de84404cf506bb",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "c167cc7ffeb79849",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "e1de84404cf506bb",
+        "name": "debug 27",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "093b2c7ea2dc8456",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "CAN Down",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c66d10a45dbb8701",
+        "type": "change",
+        "z": "6f39605626c227f5",
+        "g": "3323819c39fb70cb",
+        "name": "CAN_bus_usage ? False",
+        "rules": [
+            {
+                "t": "set",
+                "p": "CAN_bus_usage",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1250,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "97a80a07f118a98b",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "g": "3323819c39fb70cb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1030,
+        "y": 100,
+        "wires": [
+            [
+                "781d0351238cb499"
+            ]
+        ]
+    },
+    {
+        "id": "781d0351238cb499",
+        "type": "change",
+        "z": "6f39605626c227f5",
+        "g": "3323819c39fb70cb",
+        "name": "CAN_bus_usage ? True",
+        "rules": [
+            {
+                "t": "set",
+                "p": "CAN_bus_usage",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1250,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9eb91ae71793b88f",
+        "type": "inject",
+        "z": "6f39605626c227f5",
+        "g": "3323819c39fb70cb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1030,
+        "y": 140,
+        "wires": [
+            [
+                "c66d10a45dbb8701"
+            ]
+        ]
+    },
+    {
+        "id": "4f8bce80a42ea945",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 120,
+        "wires": [
+            [
+                "7618a5ab3e9a6ac9"
+            ]
+        ]
+    },
+    {
+        "id": "53653e7846563aac",
+        "type": "delay",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "7047fec81d56c8fc"
+            ]
+        ]
+    },
+    {
+        "id": "60e4d94b3a07ad57",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "bds",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "21c532569fadf935",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "CAN Up",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fade95fa358320fc",
+        "type": "debug",
+        "z": "6f39605626c227f5",
+        "g": "5b464cd2f9d14e86",
+        "name": "Using CANbus",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 60,
+        "wires": []
     },
     {
         "id": "323d60d4baaf7cef",

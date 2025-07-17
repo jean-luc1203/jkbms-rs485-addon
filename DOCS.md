@@ -1,7 +1,7 @@
-# Smartphoton JK-BMS-RS485 Add-on Home Assistant
+# Smartphoton JK-BMS-RS485 & CAN Add-on Home Assistant
 **This code is based on [node red V4](https://nodered.org/)**
 
-**Smartphoton JK-BMS-RS485** [(*JKong company*)](https://jikongbms.com/product-category/smart-bms/smart-lifepo4-bms/) is a BMS management add-on that use an RS485 port (wired)
+**Smartphoton JK-BMS-RS485 & CAN bus** [(*JKong company*)](https://jikongbms.com/product-category/smart-bms/smart-lifepo4-bms/) is a BMS management add-on that use an RS485 or CAN port (wired)
 
 **BMS Type**
 
@@ -9,20 +9,25 @@
 * [x] **PB2A16S15P**
 * [x] **PB1A16S15P**
 * [x] **PB1A16S10P**
+* [x] **To be tested with new hardware Firmware V19**
 
 ---
 ## <u>Explanations:</u>
 This add-on allows you to connect your Home Assistant machine (physical or virtual) to one or more Jkong BMSs.
+
 To do this, you need to make an RJ45 cable with two wires connected as described below and plug it into the BMS.
+
 The last port from the right is OK. There are two RS485 ports reserved for communications.
 The second is used to connect the second BMS, if there is one.
+
 Up to 15 BMSs can be connected to the same bus. These are straight cables.
 Data is collected approximately every 10 seconds. This will depend on the number of BMSs present.
-All data is available on the MQTT Broker, which allows it to be shared with other software. This is a very interesting point for those who have Jeedom, for example.
+
+All data is available on the **MQTT Broker**, which allows it to be shared with other software. This is a very interesting point for those who have Jeedom, for example.
 
 [![Buy Me A Coffee on ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)      [!["Buy Me A Coffee on Paypal"](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
-**1) Master mode**
+**1) Master mode rs485**
 
 In this mode, the software interrogates each BMS (addresses from 1 to 15) via the RS485 bus to retrieve static, setup and dynamic values.
 Several parameters can be changed from the software.
@@ -39,14 +44,14 @@ Each BMS **must have a different Modbus address**. Set this to 1 if possible. Ad
   * The static data part is fully functional.
 <br /><br />
 
-## Adds the possibility of using an RS485 <---> ethernet or Wifi gateway
+## Adds the possibility of using an RS485 <---> ethernet or Wifi gateway (June 2025)
 
  - *Use the IP address of the gateway and the port defined in the GW to the module
    configuration*
 
 !! Parameters modification via the gateway **has not yet been implemented**. Only via the USB port.
 
-**2) Listening mode**
+**2) Listening mode rs485**
 
 In this mode, the software listens to the rs485 bus. One of the BMSs has been defined as the master of the rs485 bus. This involves setting all 4 small switches to the down or 0000 position.
 This is the BMS that will query the other BMSs if any are connected. This BMS will then broadcast the information it has retrieved cyclically every 5 seconds.
@@ -58,11 +63,45 @@ To activate Listen mode, set the parameter
 
 	`bms_broadcasting: true`
 
-## <u>&ndash;&raquo; Complementary and pre-configured Dashboard: &laquo;&ndash; </u>
+
+**3) CAN broadcasting**
+
+Here is the latest development (July 2025).
+**CAN bus support is now fully functional**
+
+This is the second RJ45 connector from the left.
+You must first select the CAN protocol to **option 006 - (500k) V2.0** in the jkbms application.
+
+You will need to purchase a CAN adapter. Not all adapters are compatible with Home Assistant.
+
+It should not appear under ttyUSBx in the hardware list.
+However, in a HAOS terminal, run the command: ip link
+If you see an interface named can0, it will work.
+
+Install the module, then before launching it, go to configuration and set the CANbus_usage variable to true.
+Also enter the MQTT parameters.
+
+The jkbms continuously broadcasts a certain amount of data that will be sent directly to HAOS under the MQTT device section (must be installed and functional before this module).
+
+The device should appear under the name CANbus-1. The data are inside.
+
+In CAN mode, only reading is possible. No modifications are possible.
+
+This is possible with the rs485 bus if necessary.
+
+Caution:
+Be sure to use the jkbms protocol and not victron, pylontech, or any other.
+The data is refreshed every 5 seconds
+
+⚠️
+ 💫   ** Complementary and pre-configured Dashboard**  💫    
 
 You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system.
-This can save you several hours of work in formatting the data by yourself.
-Have a look [here](https://ko-fi.com/s/495acc37c7)
+
+This can **save you several hours of work** in formatting the data by yourself.
+
+⚠️ Have a look [here](https://ko-fi.com/s/495acc37c7)  
+
 ---
 ## <u>Installation:</u>
 

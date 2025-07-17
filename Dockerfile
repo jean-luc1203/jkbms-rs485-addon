@@ -20,6 +20,7 @@ RUN \
         py3-pip \
         python3-dev \
     \
+
     && apk add --no-cache \
         git \
         icu-data-full \
@@ -28,7 +29,12 @@ RUN \
 		npm \
         openssh-client \
         patch \
+        can-utils \
+        iproute2 \
+        bash \
+        mosquitto-clients \
     \
+
     && npm config set fetch-timeout 300000 \
     && npm config set fetch-retry-mintimeout 20000 \
     && npm config set fetch-retry-maxtimeout 120000 \
