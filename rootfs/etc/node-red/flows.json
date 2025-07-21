@@ -162,11 +162,12 @@
             "bb5385e5fa6e8f58",
             "8941479643260a23",
             "dc8be2eb9f379046",
-            "722fcc3b75fdf46e"
+            "722fcc3b75fdf46e",
+            "3f4f19d2ec5aba28"
         ],
         "x": 18,
         "y": 659,
-        "w": 903,
+        "w": 928,
         "h": 802
     },
     {
@@ -656,6 +657,181 @@
         "h": 162
     },
     {
+        "id": "123b0ed4c6f86bf1",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Up & Down & Bit rate",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "3a8a35018471c50d",
+            "037c856e9dbdee08",
+            "bf8dd87cddd1c298",
+            "a559d6a53057c3cd",
+            "32ce044630ecdb22",
+            "90fabac7f2e4da58",
+            "80756acdd3b06f07",
+            "9f60e2a640e47a4a",
+            "aa1ffc433549152e",
+            "f90eb49dcb2754b0",
+            "2b78d0ed870911e7",
+            "8d034dc6787f72f7"
+        ],
+        "x": 734,
+        "y": 1439,
+        "w": 752,
+        "h": 322
+    },
+    {
+        "id": "0388c08ac1fe3555",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "CAN décodage",
+        "style": {
+            "stroke": "#ffff00",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "b85cf8a2e274cd6e",
+            "29f5a876043e9da5",
+            "9a58ddb07e0e912b",
+            "6a3ba3b08c54d70a",
+            "50cca358c5872f99",
+            "507d76b6a0d7897e",
+            "acde481454565979",
+            "447979a492328699",
+            "ca51039d5be4a45d",
+            "ace991e23c232841",
+            "837cfa7877f2dd4c",
+            "bae9db3e281e416b",
+            "1f99bb024c5993e8",
+            "b3dca75a3421ce34",
+            "fad2af17433455d4",
+            "37cf1d3022a1b642",
+            "3ea687bcaa04ce10",
+            "793d901ed1991029",
+            "8240cb0c8c5647c5",
+            "a11d62f848c62b67",
+            "d9a011a72d0eaa6f",
+            "796ecb28f71eed3b",
+            "8eee98be3d1c3c7f",
+            "dae0612e02e5b473",
+            "5edc4a52fe062c7f",
+            "bdcbdd3c688042a6",
+            "362f2489b0d408bd",
+            "c5a98b0c5f5d64f2",
+            "74ad3b95eaa90607",
+            "aebda0e9c5e670ce"
+        ],
+        "x": 34,
+        "y": 539,
+        "w": 1058,
+        "h": 768
+    },
+    {
+        "id": "e1de84404cf506bb",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Show",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2306b712876234b4",
+            "25b38f684b56f4d4",
+            "ff238165fe766351",
+            "c167cc7ffeb79849"
+        ],
+        "x": 734,
+        "y": 1819,
+        "w": 582,
+        "h": 122
+    },
+    {
+        "id": "12f3839fa2aa30dd",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Pour debug only",
+        "style": {
+            "stroke": "#a4a4a4",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "8e3b6bcd7fb6e48a",
+            "92f149fe0b3bc0d2",
+            "fb15e8c98b163412",
+            "78ad1bcbfbe5a40d",
+            "53544b632612530f",
+            "995611184e5d2b75",
+            "1aad2af2efba4fad",
+            "8d5a08e039dcd320",
+            "a152c219b355f6bb",
+            "be65d6cdf2f372a5",
+            "80cec58d26f6a497",
+            "2ecd4b65af254b85",
+            "840fb8f774527a63",
+            "728e5c92cfe21a0b",
+            "81e87bf1358cea74"
+        ],
+        "x": 34,
+        "y": 1339,
+        "w": 638,
+        "h": 722
+    },
+    {
+        "id": "5b464cd2f9d14e86",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Initialisation de l'interface",
+        "style": {
+            "stroke": "#6f2fa0",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "334558cf9160abbc",
+            "23de69cae0a52325",
+            "74e574d77665a36c",
+            "7618a5ab3e9a6ac9",
+            "7047fec81d56c8fc",
+            "85efcc8901c88607",
+            "093b2c7ea2dc8456",
+            "4f8bce80a42ea945",
+            "53653e7846563aac",
+            "60e4d94b3a07ad57",
+            "21c532569fadf935",
+            "fade95fa358320fc"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 852,
+        "h": 269.5
+    },
+    {
+        "id": "3323819c39fb70cb",
+        "type": "group",
+        "z": "6f39605626c227f5",
+        "name": "Globale Variable change",
+        "style": {
+            "stroke": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "c66d10a45dbb8701",
+            "97a80a07f118a98b",
+            "781d0351238cb499",
+            "9eb91ae71793b88f"
+        ],
+        "x": 914,
+        "y": 59,
+        "w": 472,
+        "h": 122
+    },
+    {
         "id": "81e87bf1358cea74",
         "type": "group",
         "z": "6f39605626c227f5",
@@ -979,181 +1155,6 @@
         "y": 599,
         "w": 772,
         "h": 142
-    },
-    {
-        "id": "123b0ed4c6f86bf1",
-        "type": "group",
-        "z": "6f39605626c227f5",
-        "name": "Up & Down & Bit rate",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "3a8a35018471c50d",
-            "037c856e9dbdee08",
-            "bf8dd87cddd1c298",
-            "a559d6a53057c3cd",
-            "32ce044630ecdb22",
-            "90fabac7f2e4da58",
-            "80756acdd3b06f07",
-            "9f60e2a640e47a4a",
-            "aa1ffc433549152e",
-            "f90eb49dcb2754b0",
-            "2b78d0ed870911e7",
-            "8d034dc6787f72f7"
-        ],
-        "x": 734,
-        "y": 1439,
-        "w": 752,
-        "h": 322
-    },
-    {
-        "id": "0388c08ac1fe3555",
-        "type": "group",
-        "z": "6f39605626c227f5",
-        "name": "CAN décodage",
-        "style": {
-            "stroke": "#ffff00",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "b85cf8a2e274cd6e",
-            "29f5a876043e9da5",
-            "9a58ddb07e0e912b",
-            "6a3ba3b08c54d70a",
-            "50cca358c5872f99",
-            "507d76b6a0d7897e",
-            "acde481454565979",
-            "447979a492328699",
-            "ca51039d5be4a45d",
-            "ace991e23c232841",
-            "837cfa7877f2dd4c",
-            "bae9db3e281e416b",
-            "1f99bb024c5993e8",
-            "b3dca75a3421ce34",
-            "fad2af17433455d4",
-            "37cf1d3022a1b642",
-            "3ea687bcaa04ce10",
-            "793d901ed1991029",
-            "8240cb0c8c5647c5",
-            "a11d62f848c62b67",
-            "d9a011a72d0eaa6f",
-            "796ecb28f71eed3b",
-            "8eee98be3d1c3c7f",
-            "dae0612e02e5b473",
-            "5edc4a52fe062c7f",
-            "bdcbdd3c688042a6",
-            "362f2489b0d408bd",
-            "c5a98b0c5f5d64f2",
-            "74ad3b95eaa90607",
-            "aebda0e9c5e670ce"
-        ],
-        "x": 34,
-        "y": 539,
-        "w": 1058,
-        "h": 768
-    },
-    {
-        "id": "e1de84404cf506bb",
-        "type": "group",
-        "z": "6f39605626c227f5",
-        "name": "Show",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "2306b712876234b4",
-            "25b38f684b56f4d4",
-            "ff238165fe766351",
-            "c167cc7ffeb79849"
-        ],
-        "x": 734,
-        "y": 1819,
-        "w": 582,
-        "h": 122
-    },
-    {
-        "id": "12f3839fa2aa30dd",
-        "type": "group",
-        "z": "6f39605626c227f5",
-        "name": "Pour debug only",
-        "style": {
-            "stroke": "#a4a4a4",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "8e3b6bcd7fb6e48a",
-            "92f149fe0b3bc0d2",
-            "fb15e8c98b163412",
-            "78ad1bcbfbe5a40d",
-            "53544b632612530f",
-            "995611184e5d2b75",
-            "1aad2af2efba4fad",
-            "8d5a08e039dcd320",
-            "a152c219b355f6bb",
-            "be65d6cdf2f372a5",
-            "80cec58d26f6a497",
-            "2ecd4b65af254b85",
-            "840fb8f774527a63",
-            "728e5c92cfe21a0b",
-            "81e87bf1358cea74"
-        ],
-        "x": 34,
-        "y": 1339,
-        "w": 638,
-        "h": 722
-    },
-    {
-        "id": "5b464cd2f9d14e86",
-        "type": "group",
-        "z": "6f39605626c227f5",
-        "name": "Initialisation de l'interface",
-        "style": {
-            "stroke": "#6f2fa0",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "334558cf9160abbc",
-            "23de69cae0a52325",
-            "74e574d77665a36c",
-            "7618a5ab3e9a6ac9",
-            "7047fec81d56c8fc",
-            "85efcc8901c88607",
-            "093b2c7ea2dc8456",
-            "4f8bce80a42ea945",
-            "53653e7846563aac",
-            "60e4d94b3a07ad57",
-            "21c532569fadf935",
-            "fade95fa358320fc"
-        ],
-        "x": 34,
-        "y": 19,
-        "w": 852,
-        "h": 269.5
-    },
-    {
-        "id": "3323819c39fb70cb",
-        "type": "group",
-        "z": "6f39605626c227f5",
-        "name": "Globale Variable change",
-        "style": {
-            "stroke": "#bfdbef",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "c66d10a45dbb8701",
-            "97a80a07f118a98b",
-            "781d0351238cb499",
-            "9eb91ae71793b88f"
-        ],
-        "x": 914,
-        "y": 59,
-        "w": 472,
-        "h": 122
     },
     {
         "id": "a144206f0ce5be54",
@@ -3485,7 +3486,7 @@
         "z": "e437f2f44495aeb9",
         "g": "6ec0cd904988f0ff",
         "name": "To MQTT",
-        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Extraire uniquement les tensions des cellules\nvar cellVoltages = [];\nvar cellKeys = [];\nfor (var key in payload) {\n    // Ne prendre que les clés qui contiennent \"Cell\" et \"volt\" et finissent par \"_V\"\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    // Calcul de la moyenne\n    var cellAvgVolt = cellVoltages.reduce((sum, voltage) => sum + voltage, 0) / cellVoltages.length;\n    \n    // Trouve la tension max et min\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    \n    // Calcul du delta\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n    \n    // Trouve les index des cellules\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n    \n    // Ajoute les valeurs calculées au payload\n    payload[\"cell_voltage_average_V\"] = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"] = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"] = parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"] = parseInt(minVoltIndex);\n}\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\"); // Supprime l'underscore et l'unité\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n    \n    var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n    var configPayload = {\n        name: cleanKey,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        unit_of_measurement: \"\",\n        entity_category: \"diagnostic\",  // Ajoute cette catégorie pour grouper dans \"Live data\"\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS\",\n            model: \"JK_PB2A16S15P\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    // Ajouter des unités de mesure spécifiques\n    if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n    if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n    if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n    if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n    if (key.endsWith(\"_T\")) configPayload.unit_of_measurement = \"°C\";\n    if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n    if (key.endsWith(\"_P\")) {\n        configPayload.unit_of_measurement = \"%\";\n        if (key.startsWith(\"SOC\")) {\n            configPayload.device_class = \"battery\";\n        }\n    }\n    if (key.endsWith(\"_S\")) configPayload.unit_of_measurement = \"s\";\n    \n    discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n}\n\n// Publier les données dynamiques sous un seul topic\ntopics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = discoveryMsgs;\nfor (var topic in topics) {\n    outputMsgs.push({ topic: topic, payload: topics[topic] });\n}\n\nreturn [outputMsgs];",
+        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Extraire uniquement les tensions des cellules\nvar cellVoltages = [];\nvar cellKeys = [];\nfor (var key in payload) {\n    // Ne prendre que les clés qui contiennent \"Cell\" et \"volt\" et finissent par \"_V\"\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    // Calcul de la moyenne\n    var cellAvgVolt = cellVoltages.reduce((sum, voltage) => sum + voltage, 0) / cellVoltages.length;\n    \n    // Trouve la tension max et min\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    \n    // Calcul du delta\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n    \n    // Trouve les index des cellules\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n    \n    // Ajoute les valeurs calculées au payload\n    payload[\"cell_voltage_average_V\"] = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"] = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"] = parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"] = parseInt(minVoltIndex);\n}\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\"); // Supprime l'underscore et l'unité\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n    \n    var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n    var configPayload = {\n        name: cleanKey,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        unit_of_measurement: \"\",\n        entity_category: \"diagnostic\",  // Ajoute cette catégorie pour grouper dans \"Live data\"\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: payload.BMS_A || \"rs485 vers MQTT\",\n            sw_version: payload.SW_N || \"3.0.1\"\n        }\n    };\n    \n    // Ajouter des unités de mesure spécifiques\n    if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n    if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n    if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n    if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n    if (key.endsWith(\"_T\")) configPayload.unit_of_measurement = \"°C\";\n    if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n    if (key.endsWith(\"_P\")) {\n        configPayload.unit_of_measurement = \"%\";\n        if (key.startsWith(\"SOC\")) {\n            configPayload.device_class = \"battery\";\n        }\n    }\n    if (key.endsWith(\"_S\")) configPayload.unit_of_measurement = \"s\";\n    \n    discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n}\n\n// Publier les données dynamiques sous un seul topic\ntopics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = discoveryMsgs;\nfor (var topic in topics) {\n    outputMsgs.push({ topic: topic, payload: topics[topic] });\n}\n\nreturn [outputMsgs];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3507,7 +3508,7 @@
         "z": "e437f2f44495aeb9",
         "g": "8d42d70f697c6b57",
         "name": "To MQTT",
-        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nvar discoveryMsgs = [];\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var sensorTopic = `${baseTopic}/state/${cleanKey}`;  // Simplifié le state_topic\n    \n    var configTopic = `${discoveryPrefix}/sensor/${deviceID}/${cleanKey}/config`;\n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        enabled_by_default: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS\",\n            model: payload.BMS_A || \"JK_PB2A16S15P\",\n            sw_version: payload.SW_N || \"1.0.0\"\n        }\n    };\n\n    // Ajout des unités selon le suffixe\n    if (key.endsWith(\"_S\")) {\n        configPayload.unit_of_measurement = \"s\";\n        configPayload.device_class = \"duration\";\n        configPayload.state_class = \"measurement\";\n    }\n    else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n        configPayload.unit_of_measurement = \"s\";\n        configPayload.device_class = \"duration\";\n        configPayload.state_class = \"measurement\";\n    }\n    else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n        configPayload.state_class = \"measurement\";\n    }\n\n    // Gestion des icônes\n    if (key.includes(\"Password\")) {\n        configPayload.icon = \"mdi:form-textbox-password\";\n    } else if (key.includes(\"Serial\")) {\n        configPayload.icon = \"mdi:barcode\";\n    } else if (key.includes(\"protocol\")) {\n        configPayload.icon = \"mdi:protocol\";\n    } else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\")) {\n        configPayload.icon = \"mdi:numeric-10\";\n    } else if (key.includes(\"Uptime\")) {\n        configPayload.icon = \"mdi:timer-outline\";\n        configPayload.device_class = \"duration\";\n    } else if (key.includes(\"date\")) {\n        configPayload.icon = \"mdi:calendar\";\n    }\n\n    // Ajouter le message de configuration\n    discoveryMsgs.push({\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    });\n\n    // Ajouter le message d'état\n    discoveryMsgs.push({\n        topic: sensorTopic,\n        payload: payload[key],\n        retain: true\n    });\n}\n\nreturn [discoveryMsgs];",
+        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nvar discoveryMsgs = [];\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var sensorTopic = `${baseTopic}/state/${cleanKey}`;  // Simplifié le state_topic\n    \n    var configTopic = `${discoveryPrefix}/sensor/${deviceID}/${cleanKey}/config`;\n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        enabled_by_default: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: payload.BMS_A || \"rs485 vers MQTT\",\n            sw_version: payload.SW_N || \"3.0.1\"\n        }\n    };\n\n    // Ajout des unités selon le suffixe\n    if (key.endsWith(\"_S\")) {\n        configPayload.unit_of_measurement = \"s\";\n        configPayload.device_class = \"duration\";\n        configPayload.state_class = \"measurement\";\n    }\n    else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n        configPayload.unit_of_measurement = \"s\";\n        configPayload.device_class = \"duration\";\n        configPayload.state_class = \"measurement\";\n    }\n    else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n        configPayload.state_class = \"measurement\";\n    }\n\n    // Gestion des icônes\n    if (key.includes(\"Password\")) {\n        configPayload.icon = \"mdi:form-textbox-password\";\n    } else if (key.includes(\"Serial\")) {\n        configPayload.icon = \"mdi:barcode\";\n    } else if (key.includes(\"protocol\")) {\n        configPayload.icon = \"mdi:protocol\";\n    } else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\")) {\n        configPayload.icon = \"mdi:numeric-10\";\n    } else if (key.includes(\"Uptime\")) {\n        configPayload.icon = \"mdi:timer-outline\";\n        configPayload.device_class = \"duration\";\n    } else if (key.includes(\"date\")) {\n        configPayload.icon = \"mdi:calendar\";\n    }\n\n    // Ajouter le message de configuration\n    discoveryMsgs.push({\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    });\n\n    // Ajouter le message d'état\n    discoveryMsgs.push({\n        topic: sensorTopic,\n        payload: payload[key],\n        retain: true\n    });\n}\n\nreturn [discoveryMsgs];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3529,7 +3530,7 @@
         "z": "e437f2f44495aeb9",
         "g": "f8bc911f73526834",
         "name": "To MQTT",
-        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nvar discoveryMsgs = [];\n\n// Fonction de conversion des booléens\nfunction formatBoolean(value) {\n    if (typeof value === 'boolean') {\n        return value ? 'True' : 'False';\n    }\n    if (typeof value === 'string') {\n        const lowerVal = value.toLowerCase();\n        return lowerVal === 'true' ? 'True' : lowerVal === 'false' ? 'False' : value;\n    }\n    return value;\n}\n\nfunction createConfigPayload(key, value, commandTopic) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var entityType = \"number\";\n    \n    if (key.endsWith(\"_B\")) {\n        entityType = \"switch\";\n    }\n    \n    var configTopic = `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`;\n    \n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: `${baseTopic}/control/${cleanKey}/state`,\n        command_topic: `${baseTopic}/control/${cleanKey}/set`,\n        entity_category: \"config\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS\",\n            model: payload.BMS_A || \"JK_PB2A16S15P\",\n            sw_version: \"1.0.0\"\n        }\n    };\n\n    if (entityType === \"number\") {\n        configPayload.mode = \"box\";\n        \n        if (key.endsWith(\"_V\")) {\n            configPayload.unit_of_measurement = \"V\";\n            configPayload.min = 0;\n            configPayload.max = 5;\n            configPayload.step = 0.01;\n        }\n    \n        // ... (autres configurations number inchangées)\n    \n    } else if (entityType === \"switch\") {\n        // Modification clé ici pour Home Assistant\n        configPayload.payload_on = \"True\";\n        configPayload.payload_off = \"False\";\n        configPayload.state_on = \"True\";\n        configPayload.state_off = \"False\";\n    }\n\n    return {\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    };\n}\n\nfor (var key in payload) {\n    discoveryMsgs.push(createConfigPayload(key, payload[key]));\n    \n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var formattedValue = formatBoolean(payload[key]);\n    \n    discoveryMsgs.push({\n        topic: `${baseTopic}/control/${cleanKey}/state`,\n        payload: formattedValue,\n        retain: true\n    });\n}\n\nreturn [discoveryMsgs];",
+        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nvar discoveryMsgs = [];\n\n// --- 1.  Dictionnaire des bornes personnalisées -----------------------------\nconst customBounds = {\n    // Courants\n    max_charge_current_A: { min: 0, max: 200, step: 1, unit: \"A\" },\n    max_discharge_current_S: { min: 0, max: 200, step: 1, unit: \"A\" },\n    max_balance_current_A: { min: 0, max: 5, step: 0.01, unit: \"A\" },\n    \n    // Capacités\n    total_battery_capacity_Ah: { min: 0, max: 500, step: 1, unit: \"Ah\" },\n    \n    // Délai et temps de protection\n    short_circuit_protection_delay_S: { min: 0, max: 3600, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_delay_S: { min: 0, max: 300, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_delay_S: { min: 0, max: 300, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_recovery_time_S: { min: 0, max: 3600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_recovery_time_S: { min: 0, max: 3600, step: 1, unit: \"s\" },\n    short_circuit_protection_recovery_time_S: { min: 0, max: 300, step: 1, unit: \"s\" },\n    \n    // Voltages\n    smart_sleep_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_protection_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_recovery_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_overvoltage_protection_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_overvoltage_recovery_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    balance_trigger_voltage_V: { min: 0, max: 5, step: 0.001, unit: \"V\" },\n    cell_soc100_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_soc0_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_charge_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_float_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    power_off_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    balance_starting_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    \n    // Températures\n    charge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_recovery_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    \n    // Divers\n    cell_count_N: { min: 1, max: 32, step: 1, unit: \"\" },\n    Connexion_wire_resistance_1_R: { min: 0, max: 1000, step: 0.1, unit: \"mΩ\" },\n    Device_address_N: { min: 1, max: 247, step: 1, unit: \"\" }\n};\n// ---------------------------------------------------------------------------\n\n// Fonction de conversion des booléens\nfunction formatBoolean(value) {\n    if (typeof value === 'boolean') {\n        return value ? 'True' : 'False';\n    }\n    if (typeof value === 'string') {\n        const lowerVal = value.toLowerCase();\n        return lowerVal === 'true' ? 'True' : lowerVal === 'false' ? 'False' : value;\n    }\n    return value;\n}\n\nfunction createConfigPayload(key, value, commandTopic) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var entityType = \"number\";\n    \n    if (key.endsWith(\"_B\")) {\n        entityType = \"switch\";\n    }\n    \n    var configTopic = `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`;\n    \n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: `${baseTopic}/control/${cleanKey}/state`,\n        command_topic: `${baseTopic}/control/${cleanKey}/set`,\n        entity_category: \"config\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: payload.BMS_A || \"rs485 vers MQTT\",\n            sw_version: payload.SW_N || \"3.0.1\"\n        }\n    };\n\n    if (entityType === \"number\") {\n        configPayload.mode = \"box\";\n\n        /* 1) On regarde si la clé a des bornes spécifiques */\n        const bounds = customBounds[key];\n\n        if (bounds) {\n            configPayload.min = bounds.min;\n            configPayload.max = bounds.max;\n            configPayload.step = bounds.step;\n            if (bounds.unit) {\n                configPayload.unit_of_measurement = bounds.unit;\n            }\n        } else {\n            /* 2) Sinon règles actuelles */\n            if (key.endsWith(\"_V\")) {\n                configPayload.unit_of_measurement = \"V\";\n                configPayload.min = 0;\n                configPayload.max = 5;\n                configPayload.step = 0.01;\n            } else if (key.endsWith(\"_A\")) {\n                configPayload.unit_of_measurement = \"A\";\n                configPayload.min = 0;\n                configPayload.max = 400;\n                configPayload.step = 0.1;\n            } else if (key.endsWith(\"_S\") || key.endsWith(\"_s\")) {\n                configPayload.unit_of_measurement = \"s\";\n                configPayload.min = 0;\n                configPayload.max = 3600;\n                configPayload.step = 1;\n            } else if (key.endsWith(\"_T\")) {\n                configPayload.unit_of_measurement = \"°C\";\n                configPayload.min = -40;\n                configPayload.max = 150;\n                configPayload.step = 0.5;\n            } else {\n                /* défaut de secours */\n                configPayload.min = 0;\n                configPayload.max = 100;\n                configPayload.step = 1;\n            }\n        }\n    } else if (entityType === \"switch\") {\n        // Modification clé ici pour Home Assistant\n        configPayload.payload_on = \"True\";\n        configPayload.payload_off = \"False\";\n        configPayload.state_on = \"True\";\n        configPayload.state_off = \"False\";\n    }\n\n    return {\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    };\n}\n\nfor (var key in payload) {\n    discoveryMsgs.push(createConfigPayload(key, payload[key]));\n    \n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var formattedValue = formatBoolean(payload[key]);\n    \n    discoveryMsgs.push({\n        topic: `${baseTopic}/control/${cleanKey}/state`,\n        payload: formattedValue,\n        retain: true\n    });\n}\n\nreturn [discoveryMsgs];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4945,6 +4946,25 @@
             [
                 "e14f3e4c62553529"
             ]
+        ]
+    },
+    {
+        "id": "3f4f19d2ec5aba28",
+        "type": "function",
+        "z": "e437f2f44495aeb9",
+        "g": "554f91ffdbfbfc68",
+        "name": "To MQTT (Setup Sav)",
+        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nvar discoveryMsgs = [];\n\n// Fonction de conversion des booléens\nfunction formatBoolean(value) {\n    if (typeof value === 'boolean') {\n        return value ? 'True' : 'False';\n    }\n    if (typeof value === 'string') {\n        const lowerVal = value.toLowerCase();\n        return lowerVal === 'true' ? 'True' : lowerVal === 'false' ? 'False' : value;\n    }\n    return value;\n}\n\nfunction createConfigPayload(key, value, commandTopic) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var entityType = \"number\";\n    \n    if (key.endsWith(\"_B\")) {\n        entityType = \"switch\";\n    }\n    \n    var configTopic = `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`;\n    \n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: `${baseTopic}/control/${cleanKey}/state`,\n        command_topic: `${baseTopic}/control/${cleanKey}/set`,\n        entity_category: \"config\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: payload.BMS_A || \"rs485 vers MQTT\",\n            sw_version: payload.SW_N || \"3.0.1\"\n        }\n    };\n\n    if (entityType === \"number\") {\n        configPayload.mode = \"box\";\n        \n        if (key.endsWith(\"_V\")) {\n            configPayload.unit_of_measurement = \"V\";\n            configPayload.min = 0;\n            configPayload.max = 5;\n            configPayload.step = 0.01;\n        }\n    \n        // ... (autres configurations number inchangées)\n    \n    } else if (entityType === \"switch\") {\n        // Modification clé ici pour Home Assistant\n        configPayload.payload_on = \"True\";\n        configPayload.payload_off = \"False\";\n        configPayload.state_on = \"True\";\n        configPayload.state_off = \"False\";\n    }\n\n    return {\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    };\n}\n\nfor (var key in payload) {\n    discoveryMsgs.push(createConfigPayload(key, payload[key]));\n    \n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var formattedValue = formatBoolean(payload[key]);\n    \n    discoveryMsgs.push({\n        topic: `${baseTopic}/control/${cleanKey}/state`,\n        payload: formattedValue,\n        retain: true\n    });\n}\n\nreturn [discoveryMsgs];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 820,
+        "wires": [
+            []
         ]
     },
     {

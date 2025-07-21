@@ -1,3 +1,13 @@
+## 3.0.1
+
+## ⚡️ Enhancements
+
+**SETUP fields**
+
+Defining the various boudary values for the BMS  **setup** variable
+
+For the various variables, I now define realistic **min** and **max** limits, as well as the **increment/decrement step** and, if necessary, its unit.
+
 ## V3.0.0
 
 ## ⚡️ Enhancements
