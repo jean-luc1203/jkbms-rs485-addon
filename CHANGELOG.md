@@ -1,3 +1,30 @@
+## 3.0.5
+
+## ⚡️ Enhancements
+
+- Code change for "static" & "setup" frames. 
+Auto-discovery sent once on module start-up.
+
+Then only the data is sent.
+This loads the MQTT broker 10x less. The acquisition time is now set at 4 seconds for 2 BMS.
+
+- Add new topic named **BMS_1/cell_voltage_min_number** which gives the voltage of the lowest cell in the pack 
+
+
+
+## 3.0.4
+Change pickup time
+
+## 3.0.3
+Init flow variable
+
+## 3.0.2
+
+## 🐞 Bug fixes
+No longer send auto-discovery topics with data frames. Send them just once at startup.
+This will relieve the MQTT broker and improve the speed of data updates in HAOS.
+This loads the MQTT broker 500x less
+
 ## 3.0.1
 
 ## ⚡️ Enhancements
