@@ -1,3 +1,21 @@
+## 3.0.6
+
+## 🐞 Bug fixes
+
+- Check that MQTT is communicating with the module
+I have created a Topic in the MQTT broker to confirm that the module is able to talk to the broker at. This Topic is called **JK-BMS-RS485-CAN-module** and it must be equal to **"Online"**.
+You can check this with MQTTExplorer
+
+- Checking communication with the BMS:
+To check that communication with the BMS is working properly, a log is created in the module's log file. Every 30 seconds you should be able to see this type of text
+
+```
+6 Aug 18:42:13 - [warn] [function:SerialNb] BMS SerialNb: JK-Pack-2
+6 Aug 18:42:43 - [warn] [function:SerialNb] BMS SerialNb: JK-Pack-1
+6 Aug 18:43:13 - [warn] [function:SerialNb] BMS SerialNb: JK-Pack-2
+6 Aug 18:43:43 - [warn] [function:SerialNb] BMS SerialNb: JK-Pack-1
+```
+
 ## 3.0.5
 
 ## ⚡️ Enhancements

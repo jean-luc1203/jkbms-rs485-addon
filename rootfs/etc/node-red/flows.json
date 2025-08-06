@@ -473,12 +473,17 @@
             "4ef89226ddebe9b3",
             "cc37c11c33756143",
             "5ee485bdb3085557",
-            "358d596529460ec8"
+            "358d596529460ec8",
+            "26d9f67617beafd6",
+            "0c133d9593ec2ba8",
+            "581bb25eb289c865",
+            "64dec8f00a1699ba",
+            "833093d4e8ca4a30"
         ],
         "x": 34,
         "y": 459,
         "w": 772,
-        "h": 142
+        "h": 222
     },
     {
         "id": "1c9e2e84f7764473",
@@ -574,7 +579,7 @@
             "d9e741387f3c254f"
         ],
         "x": 34,
-        "y": 639,
+        "y": 719,
         "w": 492,
         "h": 202
     },
@@ -596,7 +601,7 @@
             "f2b2c75d94da72f9"
         ],
         "x": 554,
-        "y": 689.199951171875,
+        "y": 749.199951171875,
         "w": 312,
         "h": 131.800048828125
     },
@@ -962,12 +967,13 @@
             "1967c318d9216a54",
             "55ea9406b130a136",
             "1a9a7bee6083f2b1",
-            "f0baa88edd6cc075"
+            "f0baa88edd6cc075",
+            "f5edb8b76186ffc2"
         ],
         "x": 44,
-        "y": 999,
+        "y": 979,
         "w": 902,
-        "h": 122
+        "h": 142
     },
     {
         "id": "6ec0cd904988f0ff",
@@ -1902,7 +1908,8 @@
         "wires": [
             [
                 "358d596529460ec8",
-                "7b4899cb440ff2f9"
+                "7b4899cb440ff2f9",
+                "64dec8f00a1699ba"
             ]
         ]
     },
@@ -2090,7 +2097,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 680,
+        "y": 760,
         "wires": [
             [
                 "d5219701b2c5f1cf"
@@ -2118,7 +2125,7 @@
         "to": "",
         "reg": false,
         "x": 320,
-        "y": 680,
+        "y": 760,
         "wires": [
             []
         ]
@@ -2146,7 +2153,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 720,
+        "y": 800,
         "wires": [
             [
                 "dd52ab323e399460"
@@ -2174,7 +2181,7 @@
         "to": "",
         "reg": false,
         "x": 320,
-        "y": 720,
+        "y": 800,
         "wires": [
             []
         ]
@@ -2202,7 +2209,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 760,
+        "y": 840,
         "wires": [
             [
                 "2d21e118cc99e498"
@@ -2230,7 +2237,7 @@
         "to": "",
         "reg": false,
         "x": 370,
-        "y": 760,
+        "y": 840,
         "wires": [
             []
         ]
@@ -2258,7 +2265,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 800,
+        "y": 880,
         "wires": [
             [
                 "d9e741387f3c254f"
@@ -2286,7 +2293,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 800,
+        "y": 880,
         "wires": [
             []
         ]
@@ -2304,7 +2311,7 @@
         "overwriteFile": "false",
         "encoding": "none",
         "x": 710,
-        "y": 780,
+        "y": 840,
         "wires": [
             []
         ]
@@ -2323,12 +2330,127 @@
         "finalize": "",
         "libs": [],
         "x": 662.2000122070312,
-        "y": 730.199951171875,
+        "y": 790.199951171875,
         "wires": [
             [
                 "b392b5cc58085773"
             ]
         ]
+    },
+    {
+        "id": "26d9f67617beafd6",
+        "type": "mqtt out",
+        "z": "2d882136a35b2d36",
+        "g": "44faab0d8759f989",
+        "name": "Onduleur",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 700,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "0c133d9593ec2ba8",
+        "type": "inject",
+        "z": "2d882136a35b2d36",
+        "g": "44faab0d8759f989",
+        "name": "Publie \"Online\"",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 600,
+        "wires": [
+            [
+                "64dec8f00a1699ba"
+            ]
+        ]
+    },
+    {
+        "id": "581bb25eb289c865",
+        "type": "delay",
+        "z": "2d882136a35b2d36",
+        "g": "44faab0d8759f989",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 600,
+        "wires": [
+            [
+                "26d9f67617beafd6",
+                "833093d4e8ca4a30"
+            ]
+        ]
+    },
+    {
+        "id": "64dec8f00a1699ba",
+        "type": "function",
+        "z": "2d882136a35b2d36",
+        "g": "44faab0d8759f989",
+        "name": "Informe \"Online\"",
+        "func": "msg.payload = \"Online\";\nmsg.topic = \"JK-BMS-RS485-CAN-module\";\nmsg.action = \"\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 600,
+        "wires": [
+            [
+                "581bb25eb289c865"
+            ]
+        ]
+    },
+    {
+        "id": "833093d4e8ca4a30",
+        "type": "debug",
+        "z": "2d882136a35b2d36",
+        "g": "44faab0d8759f989",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 640,
+        "wires": []
     },
     {
         "id": "prepare_command",
@@ -2707,7 +2829,8 @@
         "wires": [
             [
                 "1555b1456f9f113e",
-                "f0baa88edd6cc075"
+                "f0baa88edd6cc075",
+                "f5edb8b76186ffc2"
             ]
         ]
     },
@@ -4999,6 +5122,25 @@
         "libs": [],
         "x": 450,
         "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f5edb8b76186ffc2",
+        "type": "function",
+        "z": "e437f2f44495aeb9",
+        "g": "8d42d70f697c6b57",
+        "name": "SerialNb",
+        "func": "var BMS = msg.payload.SerialNb_N;\n// Pour debug, affichons la valeur BMS\nnode.warn(`BMS SerialNb: ${BMS}`);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1020,
         "wires": [
             []
         ]
