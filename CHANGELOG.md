@@ -1,3 +1,6 @@
+## 3.0.7
+change a timer for the MQTT alive
+
 ## 3.0.6
 
 ## 🐞 Bug fixes
