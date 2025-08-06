@@ -5,6 +5,8 @@
 - Check that MQTT is communicating with the module
 I have created a Topic in the MQTT broker to confirm that the module is able to talk to the broker at. This Topic is called **JK-BMS-RS485-CAN-module** and it must be equal to **"Online"**.
 You can check this with MQTTExplorer
+<img width="680" height="100" alt="image" src="https://github.com/user-attachments/assets/ca40210b-f563-45c8-a73f-43a67e05cb32" />
+
 
 - Checking communication with the BMS:
 To check that communication with the BMS is working properly, a log is created in the module's log file. Every 30 seconds you should be able to see this type of text
