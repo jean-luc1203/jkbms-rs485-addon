@@ -27,6 +27,9 @@ All data is available on the **MQTT Broker**, which allows it to be shared with 
 
 [![Buy Me A Coffee on ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)      [!["Buy Me A Coffee on Paypal"](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
+⚠️ For the moment only stick with FTDI, CH340, or CP2102 chip that will be recognized as ttyUSBx are compatible.
+Those that create an interface of type ttyACM0 are not functional ⚠️
+
 **1) Master mode rs485**
 
 In this mode, the software interrogates each BMS (addresses from 1 to 15) via the RS485 bus to retrieve static, setup and dynamic values.
