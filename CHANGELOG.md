@@ -1,3 +1,10 @@
+## 3.0.8
+
+## 🐞 Bug fixes
+following the enlightened suggestion of https://github.com/lgrenetier
+I have changed "node-red-dashboard": "*", to "node-red-dashboard": "3.6.3"
+so that the module can be installed
+
 ## 3.0.7
 change a timer for the MQTT alive
 
