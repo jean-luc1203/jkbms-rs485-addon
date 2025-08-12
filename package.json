@@ -24,7 +24,7 @@
     "node-red-contrib-persistent-fsm": "*",
     "node-red-contrib-sunevents": "*",
     "node-red-contrib-time-range-switch": "*",
-    "node-red-dashboard": "*",
+    "node-red-dashboard": "3.6.3",
     "node-red-node-base64": "*",
     "node-red-node-email": "*",
     "node-red-node-feedparser": "*",
