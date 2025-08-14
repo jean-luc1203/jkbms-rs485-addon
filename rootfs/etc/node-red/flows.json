@@ -47,22 +47,6 @@
         "env": []
     },
     {
-        "id": "dfa2ea8601dc4518",
-        "type": "tab",
-        "label": "Dashboard",
-        "disabled": true,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "c42476a3aa2dd79c",
-        "type": "tab",
-        "label": "Divers",
-        "disabled": true,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "6fc9763d4087338c",
         "type": "subflow",
         "name": "Subflow 1",
@@ -94,7 +78,6 @@
             "612e601399a564be",
             "47c0ebe01c623676",
             "c15a66e8901ebb92",
-            "57c7fc5e6af725a8",
             "588a28b52bca3c97",
             "6aaaa309d4c3a50c",
             "307f2a35426531d7",
@@ -109,12 +92,13 @@
             "e14f3e4c62553529",
             "5c3a287a31756b29",
             "93c40f46a5276c90",
-            "b6cc27c67d796d20"
+            "b6cc27c67d796d20",
+            "57c7fc5e6af725a8"
         ],
         "x": 14,
         "y": 399,
         "w": 1242,
-        "h": 382
+        "h": 362
     },
     {
         "id": "efcb27eee8e0e602",
@@ -166,52 +150,6 @@
         "y": 799,
         "w": 954,
         "h": 808
-    },
-    {
-        "id": "c5544de409dc3632",
-        "type": "group",
-        "z": "c42476a3aa2dd79c",
-        "name": "Essais divers",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "5b14b666e62da67d",
-            "63b5b654057c4381",
-            "2d239cf871fcdd0f",
-            "754c40640a559f32",
-            "39449a18b64acb51",
-            "8bc9c72eb8f36ff2",
-            "d3d5c2188bb8b56e"
-        ],
-        "x": 34,
-        "y": 39,
-        "w": 928,
-        "h": 488
-    },
-    {
-        "id": "49a4091113d20136",
-        "type": "group",
-        "z": "c42476a3aa2dd79c",
-        "name": "Ecran LCD On / Off",
-        "style": {
-            "stroke": "#000000",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "ea5ef01450d064c2",
-            "1a7ba77a039ff8a5",
-            "7d10fe7928d35c9e",
-            "5df172e294de3c89",
-            "f1dc521817c84612",
-            "496e4bb443b0bf0b",
-            "edd8784d0c5d79c2"
-        ],
-        "x": 34,
-        "y": 559,
-        "w": 682,
-        "h": 162
     },
     {
         "id": "784cf280be8f9617",
@@ -305,118 +243,6 @@
         "h": 1362
     },
     {
-        "id": "3309ffc04a216e40",
-        "type": "group",
-        "z": "dfa2ea8601dc4518",
-        "name": "MQTT Broker",
-        "style": {
-            "label": true,
-            "stroke": "#000000",
-            "color": "#000000"
-        },
-        "nodes": [
-            "95136cbde35b3056",
-            "2123d252804f6de2",
-            "836bea324c6df2ca",
-            "1cd47d6c2f768f5f",
-            "3cb083ba64129d24",
-            "852b53befbd1075b",
-            "dee0d6711b426449",
-            "27b1591610853483",
-            "698f6870ab9ffea7",
-            "fd5bbf99e156f067",
-            "70d27fecf9d0f6b3",
-            "f295b7dfa1823e2a",
-            "e5f2093494699767",
-            "d1d53addb7c64437",
-            "3ce30d1dddc257b6"
-        ],
-        "x": 74,
-        "y": 579,
-        "w": 772,
-        "h": 242
-    },
-    {
-        "id": "8ca20acee7a5ced4",
-        "type": "group",
-        "z": "dfa2ea8601dc4518",
-        "name": "BMS number",
-        "style": {
-            "label": true,
-            "stroke": "#000000",
-            "color": "#000000"
-        },
-        "nodes": [
-            "323d60d4baaf7cef",
-            "a2b0648cb046cfbe",
-            "4622780f4abd4ac3",
-            "ea324554d0bd9024"
-        ],
-        "x": 34,
-        "y": 479,
-        "w": 612,
-        "h": 82
-    },
-    {
-        "id": "259fe46998b37b22",
-        "type": "group",
-        "z": "dfa2ea8601dc4518",
-        "name": "Initialtisation des variables par défaut si pas renseignées",
-        "style": {
-            "label": true,
-            "stroke": "#000000",
-            "color": "#000000"
-        },
-        "nodes": [
-            "15f1710cf5093fb0",
-            "6cae3649dec819a4",
-            "bbe4431a1216286d",
-            "0716aa3cd0eb7183",
-            "ad72afbb71279da9",
-            "b40d86ff8814acd6",
-            "10d32db96de1049b",
-            "9c7d6f179e710814",
-            "bce7a24ea78cde8e",
-            "2372cd84fe52e55c",
-            "91b88a5031c60415",
-            "b67ac1233f0da57e",
-            "cff79b090ba46671",
-            "8ea8e26d1fdd001e",
-            "081a4d809dc9018e",
-            "43c4f85eafb7dc6b",
-            "8eba824391b30950",
-            "9e1ff26caf038053",
-            "42c42f151143fc33",
-            "5d682238eaebc0e9",
-            "2b3a79e14d5983b1"
-        ],
-        "x": 34,
-        "y": 58,
-        "w": 822,
-        "h": 363
-    },
-    {
-        "id": "331dfcc16357afd3",
-        "type": "group",
-        "z": "dfa2ea8601dc4518",
-        "name": "USB_serial_port",
-        "style": {
-            "label": true,
-            "stroke": "#000000",
-            "color": "#000000"
-        },
-        "nodes": [
-            "f046317729829edf",
-            "504a0728ea25b990",
-            "08f864ae8a8410af",
-            "a860585537cd655c"
-        ],
-        "x": 74,
-        "y": 839,
-        "w": 582,
-        "h": 82
-    },
-    {
         "id": "90972d3c7f38ea12",
         "type": "group",
         "z": "2d882136a35b2d36",
@@ -477,13 +303,12 @@
             "26d9f67617beafd6",
             "0c133d9593ec2ba8",
             "581bb25eb289c865",
-            "64dec8f00a1699ba",
-            "833093d4e8ca4a30"
+            "64dec8f00a1699ba"
         ],
         "x": 34,
-        "y": 459,
+        "y": 499,
         "w": 772,
-        "h": 222
+        "h": 182
     },
     {
         "id": "1c9e2e84f7764473",
@@ -501,12 +326,16 @@
             "374bbe6e8c64a12a",
             "710b79fc70fe4146",
             "d132c36160191dc5",
-            "22c8417438319190"
+            "22c8417438319190",
+            "b9b04485f9fbc64d",
+            "61e63fe540899da7",
+            "ee5133b8f2e1ce50",
+            "f294da9db9a3115d"
         ],
         "x": 614,
         "y": 219,
-        "w": 512,
-        "h": 122
+        "w": 752,
+        "h": 162
     },
     {
         "id": "11b4dc13edc4bcc3",
@@ -576,12 +405,16 @@
             "afbe5d1b0c4b80b6",
             "2d21e118cc99e498",
             "e9b70213147f5383",
-            "d9e741387f3c254f"
+            "d9e741387f3c254f",
+            "148bb6621d6f57fc",
+            "4149e782582786e2",
+            "6fd6a3864ee04df9",
+            "3fd0da8c40c956bd"
         ],
         "x": 34,
         "y": 719,
         "w": 492,
-        "h": 202
+        "h": 282
     },
     {
         "id": "9ac7fbaa9de4a5f4",
@@ -1030,75 +863,6 @@
         "h": 122
     },
     {
-        "id": "754c40640a559f32",
-        "type": "group",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "LCD-on-off",
-        "style": {
-            "stroke": "#6f2fa0",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "0e2e65e40bcb2ac0",
-            "dbee32cce099fa83",
-            "d5dca54b28d74f18",
-            "0e22f5085190544e",
-            "3d4605eb10a3d1dc"
-        ],
-        "x": 374,
-        "y": 99,
-        "w": 562,
-        "h": 122
-    },
-    {
-        "id": "39449a18b64acb51",
-        "type": "group",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "Lire - DIVERS: 0xabcd",
-        "style": {
-            "stroke": "#6f2fa0",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "e9a62d58d10aea04",
-            "991b73c0d7830977",
-            "a627048a1842edd0",
-            "347c975cf903685a",
-            "30ec269020be3cfd"
-        ],
-        "x": 374,
-        "y": 239,
-        "w": 562,
-        "h": 122
-    },
-    {
-        "id": "d3d5c2188bb8b56e",
-        "type": "group",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "Lire - DIVERS bit's",
-        "style": {
-            "stroke": "#6f2fa0",
-            "label": true,
-            "color": "#000000"
-        },
-        "nodes": [
-            "3d490c4684163fca",
-            "142bf6609d8a7858",
-            "33a274fa6b859154",
-            "d1d7ba8380ba4e39",
-            "8cf65bc85374df94"
-        ],
-        "x": 374,
-        "y": 379,
-        "w": 562,
-        "h": 122
-    },
-    {
         "id": "a452bbacda9a31c4",
         "type": "group",
         "z": "99bc02947d644bce",
@@ -1275,156 +1039,6 @@
         }
     },
     {
-        "id": "5752eb1b8caab0c9",
-        "type": "ui_tab",
-        "name": "Junctek",
-        "icon": "dashboard",
-        "order": 18,
-        "disabled": true,
-        "hidden": true
-    },
-    {
-        "id": "cba66bb9ef46fb85",
-        "type": "ui_group",
-        "name": "Jauges",
-        "tab": "5752eb1b8caab0c9",
-        "order": 2,
-        "disp": true,
-        "width": 15,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "d3d8016d23d6cfdc",
-        "type": "ui_spacer",
-        "z": "a1b94e47fdb804f8",
-        "name": "spacer",
-        "group": "cba66bb9ef46fb85",
-        "order": 7,
-        "width": 12,
-        "height": 1
-    },
-    {
-        "id": "0d11c7e9e1c9694f",
-        "type": "ui_spacer",
-        "z": "a1b94e47fdb804f8",
-        "name": "spacer",
-        "group": "cba66bb9ef46fb85",
-        "order": 9,
-        "width": 12,
-        "height": 1
-    },
-    {
-        "id": "0dd2e420a2181a0a",
-        "type": "ui-base",
-        "name": "Setup",
-        "path": "/dashboard",
-        "appIcon": "",
-        "includeClientData": true,
-        "acceptsClientConfig": [
-            "ui-notification",
-            "ui-control"
-        ],
-        "showPathInSidebar": false,
-        "headerContent": "page",
-        "navigationStyle": "default",
-        "titleBarStyle": "default",
-        "showReconnectNotification": true,
-        "notificationDisplayTime": 1,
-        "showDisconnectNotification": true
-    },
-    {
-        "id": "71b1a03690005ff7",
-        "type": "ui-theme",
-        "name": "Default Theme",
-        "colors": {
-            "surface": "#ffffff",
-            "primary": "#0094CE",
-            "bgPage": "#eeeeee",
-            "groupBg": "#ffffff",
-            "groupOutline": "#cccccc"
-        },
-        "sizes": {
-            "density": "default",
-            "pagePadding": "12px",
-            "groupGap": "12px",
-            "groupBorderRadius": "4px",
-            "widgetGap": "12px"
-        }
-    },
-    {
-        "id": "e5d49fabb6dd43f4",
-        "type": "ui-page",
-        "name": "Setup",
-        "ui": "0dd2e420a2181a0a",
-        "path": "/page1",
-        "icon": "home",
-        "layout": "grid",
-        "theme": "71b1a03690005ff7",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "4"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "9"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 1,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "858d2c8bdccf259b",
-        "type": "ui-group",
-        "name": "Setup JK-BMS's",
-        "page": "e5d49fabb6dd43f4",
-        "width": "7",
-        "height": 1,
-        "order": 1,
-        "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "d7bba5b6c3974417",
-        "type": "ui-spacer",
-        "group": "858d2c8bdccf259b",
-        "name": "spacer",
-        "tooltip": "",
-        "order": 2,
-        "width": "4",
-        "height": 1,
-        "className": ""
-    },
-    {
-        "id": "99d1b89194675707",
-        "type": "ui-spacer",
-        "group": "858d2c8bdccf259b",
-        "name": "spacer",
-        "tooltip": "",
-        "order": 8,
-        "width": "2",
-        "height": 1,
-        "className": ""
-    },
-    {
         "id": "6e1abcbcc6ebb714",
         "type": "serial-port",
         "name": "JKBMS-RS485",
@@ -1474,6 +1088,17 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "346118cfe13b92d2",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.3",
+            "node-red-node-serialport": "2.0.3",
+            "node-red-contrib-buffer-parser": "3.2.2",
+            "node-red-contrib-tcp-client2": "1.1.3"
+        }
     },
     {
         "id": "bd32d7ad2e41fd6b",
@@ -1836,7 +1461,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "358d596529460ec8"
@@ -1866,7 +1491,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "cc37c11c33756143"
@@ -1887,7 +1512,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "5ee485bdb3085557"
@@ -1904,7 +1529,7 @@
         "action": "",
         "pretty": false,
         "x": 510,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "358d596529460ec8",
@@ -1929,7 +1554,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 700,
-        "y": 500,
+        "y": 540,
         "wires": []
     },
     {
@@ -1947,7 +1572,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 680,
-        "y": 560,
+        "y": 600,
         "wires": []
     },
     {
@@ -2025,7 +1650,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "debug 97",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2059,7 +1684,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n   \n    if (data.jkbms.CAN_bus_usage !== undefined) {\n    global.set(\"CAN_bus_usage\", data.jkbms.CAN_bus_usage);\n    node.log(\"Variable globale 'CAN_bus_usage' définie: \" + data.jkbms.CAN_bus_usage);\n    }\n\n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n    \n    if (data.jkbms.gateway_debug !== undefined) {\n        global.set(\"gateway_debug\", data.jkbms.gateway_debug);\n        node.log(\"Variable globale 'gateway_debug' définie: \" + data.jkbms.gateway_debug);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n   \n    if (data.jkbms.CAN_bus_usage !== undefined) {\n    global.set(\"CAN_bus_usage\", data.jkbms.CAN_bus_usage);\n    node.log(\"Variable globale 'CAN_bus_usage' définie: \" + data.jkbms.CAN_bus_usage);\n    }\n\n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            gateway_debug: global.get(\"gateway_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2353,7 +1978,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 700,
-        "y": 600,
+        "y": 640,
         "wires": []
     },
     {
@@ -2379,7 +2004,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
                 "64dec8f00a1699ba"
@@ -2405,11 +2030,10 @@
         "allowrate": false,
         "outputs": 1,
         "x": 520,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
-                "26d9f67617beafd6",
-                "833093d4e8ca4a30"
+                "26d9f67617beafd6"
             ]
         ]
     },
@@ -2427,7 +2051,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
                 "581bb25eb289c865"
@@ -2435,22 +2059,116 @@
         ]
     },
     {
-        "id": "833093d4e8ca4a30",
-        "type": "debug",
+        "id": "148bb6621d6f57fc",
+        "type": "inject",
         "z": "2d882136a35b2d36",
-        "g": "44faab0d8759f989",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
-        "y": 640,
-        "wires": []
+        "g": "fc76e68ff3fcec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 920,
+        "wires": [
+            [
+                "4149e782582786e2"
+            ]
+        ]
+    },
+    {
+        "id": "4149e782582786e2",
+        "type": "change",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "gateway_debug true ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "gateway_debug",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6fd6a3864ee04df9",
+        "type": "inject",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 960,
+        "wires": [
+            [
+                "3fd0da8c40c956bd"
+            ]
+        ]
+    },
+    {
+        "id": "3fd0da8c40c956bd",
+        "type": "change",
+        "z": "2d882136a35b2d36",
+        "g": "fc76e68ff3fcec78",
+        "name": "gateway_debug false ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "gateway_debug",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 960,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "prepare_command",
@@ -2466,7 +2184,7 @@
         "finalize": "",
         "libs": [],
         "x": 770,
-        "y": 740,
+        "y": 720,
         "wires": [
             [
                 "d3854248aace5164"
@@ -2501,10 +2219,6 @@
         "g": "efcb27eee8e0e602",
         "name": "Serial-In",
         "links": [
-            "5df172e294de3c89",
-            "3d4605eb10a3d1dc",
-            "30ec269020be3cfd",
-            "d1d7ba8380ba4e39",
             "366518e9212a6b71"
         ],
         "x": 125,
@@ -3704,9 +3418,7 @@
         "g": "554f91ffdbfbfc68",
         "name": "Autres-topics-out",
         "mode": "link",
-        "links": [
-            "63b5b654057c4381"
-        ],
+        "links": [],
         "x": 365,
         "y": 960,
         "wires": []
@@ -3824,24 +3536,6 @@
         ]
     },
     {
-        "id": "57c7fc5e6af725a8",
-        "type": "debug",
-        "z": "e437f2f44495aeb9",
-        "g": "6b5bd0bba4a26d99",
-        "name": "Trame 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1100,
-        "y": 520,
-        "wires": []
-    },
-    {
         "id": "588a28b52bca3c97",
         "type": "delay",
         "z": "e437f2f44495aeb9",
@@ -3860,7 +3554,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 710,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "6aaaa309d4c3a50c"
@@ -3881,7 +3575,7 @@
         "finalize": "",
         "libs": [],
         "x": 900,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "307f2a35426531d7"
@@ -3903,7 +3597,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1100,
-        "y": 700,
+        "y": 680,
         "wires": []
     },
     {
@@ -4619,7 +4313,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 120,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "b6cc27c67d796d20"
@@ -4646,8 +4340,8 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "1",
         "topic": "",
         "x": 710,
         "y": 260,
@@ -4667,7 +4361,7 @@
         "port": "",
         "out": "time",
         "ret": "buffer",
-        "splitc": "200",
+        "splitc": "100",
         "newline": "",
         "trim": false,
         "tls": "",
@@ -4676,7 +4370,8 @@
         "wires": [
             [
                 "710b79fc70fe4146",
-                "d132c36160191dc5"
+                "d132c36160191dc5",
+                "ee5133b8f2e1ce50"
             ]
         ]
     },
@@ -4690,8 +4385,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 1010,
@@ -4708,8 +4403,8 @@
         "links": [
             "87cae6741d4eba43"
         ],
-        "x": 955,
-        "y": 300,
+        "x": 835,
+        "y": 340,
         "wires": []
     },
     {
@@ -4765,12 +4460,13 @@
         "type": "debug",
         "z": "e437f2f44495aeb9",
         "g": "554f91ffdbfbfc68",
-        "name": "debug 13",
+        "name": "Réponses",
         "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 180,
@@ -4904,7 +4600,7 @@
         "repair": false,
         "outputs": 2,
         "x": 500,
-        "y": 700,
+        "y": 680,
         "wires": [
             [],
             [
@@ -4989,7 +4685,7 @@
         "repair": false,
         "outputs": 2,
         "x": 290,
-        "y": 700,
+        "y": 680,
         "wires": [
             [],
             [
@@ -5144,6 +4840,112 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "b9b04485f9fbc64d",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "debug: host used",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "host",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "61e63fe540899da7",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "debug: port used",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "port",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "57c7fc5e6af725a8",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "6b5bd0bba4a26d99",
+        "name": "Trame 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "ee5133b8f2e1ce50",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "Debug_GW ?",
+        "property": "gateway_debug",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 1020,
+        "y": 300,
+        "wires": [
+            [
+                "61e63fe540899da7",
+                "b9b04485f9fbc64d",
+                "f294da9db9a3115d"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "Ip Gateway",
+            "Serial Port"
+        ]
+    },
+    {
+        "id": "f294da9db9a3115d",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "GW IP response: ",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "40c53f7ceb572ff5",
@@ -10715,1747 +10517,5 @@
         "x": 760,
         "y": 60,
         "wires": []
-    },
-    {
-        "id": "323d60d4baaf7cef",
-        "type": "ui-number-input",
-        "z": "dfa2ea8601dc4518",
-        "g": "8ca20acee7a5ced4",
-        "group": "858d2c8bdccf259b",
-        "name": "Nombre de BMS",
-        "label": "Nombre de BMS",
-        "order": 1,
-        "width": "2",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "15",
-        "step": 1,
-        "tooltip": "Veuillez indiquer le nombre de BMS présents",
-        "passthru": true,
-        "sendOnBlur": false,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": true,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "spinner": "default",
-        "x": 200,
-        "y": 520,
-        "wires": [
-            [
-                "a2b0648cb046cfbe"
-            ]
-        ]
-    },
-    {
-        "id": "95136cbde35b3056",
-        "type": "ui-text-input",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "group": "858d2c8bdccf259b",
-        "name": "MQTT Broker IP adresse",
-        "label": "Broker IP",
-        "order": 3,
-        "width": "2",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "mode": "text",
-        "tooltip": "Veuillez entrer l'adresse IP de votre Broker MQTT",
-        "delay": 300,
-        "passthru": false,
-        "sendOnDelay": false,
-        "sendOnBlur": false,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": true,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 270,
-        "y": 620,
-        "wires": [
-            [
-                "2123d252804f6de2"
-            ]
-        ]
-    },
-    {
-        "id": "a2b0648cb046cfbe",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "8ca20acee7a5ced4",
-        "name": "Number of BMS",
-        "rules": [
-            {
-                "t": "set",
-                "p": "Number_of_BMS",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 460,
-        "y": 520,
-        "wires": [
-            [
-                "ea324554d0bd9024"
-            ]
-        ]
-    },
-    {
-        "id": "2123d252804f6de2",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_IP",
-        "rules": [
-            {
-                "t": "set",
-                "p": "Broker_IP",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 620,
-        "wires": [
-            [
-                "3ce30d1dddc257b6"
-            ]
-        ]
-    },
-    {
-        "id": "836bea324c6df2ca",
-        "type": "ui-text-input",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "group": "858d2c8bdccf259b",
-        "name": "Broker User",
-        "label": "Broker User",
-        "order": 4,
-        "width": "2",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "mode": "text",
-        "tooltip": "Veuillez entrer le nom utilisteur pour la connexion à votre broker",
-        "delay": 300,
-        "passthru": false,
-        "sendOnDelay": false,
-        "sendOnBlur": false,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": true,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 230,
-        "y": 660,
-        "wires": [
-            [
-                "1cd47d6c2f768f5f"
-            ]
-        ]
-    },
-    {
-        "id": "1cd47d6c2f768f5f",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_User",
-        "rules": [
-            {
-                "t": "set",
-                "p": "Broker_User",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 490,
-        "y": 660,
-        "wires": [
-            [
-                "3ce30d1dddc257b6"
-            ]
-        ]
-    },
-    {
-        "id": "3cb083ba64129d24",
-        "type": "ui-text-input",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "group": "858d2c8bdccf259b",
-        "name": "Broker Password",
-        "label": "Broker Password",
-        "order": 5,
-        "width": "2",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "mode": "password",
-        "tooltip": "Veuillez entrer le mot de passe pour la connexion à votre Broker MQTT",
-        "delay": 300,
-        "passthru": false,
-        "sendOnDelay": false,
-        "sendOnBlur": false,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": true,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 250,
-        "y": 700,
-        "wires": [
-            [
-                "852b53befbd1075b"
-            ]
-        ]
-    },
-    {
-        "id": "852b53befbd1075b",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_Password",
-        "rules": [
-            {
-                "t": "set",
-                "p": "Broker_Password",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 510,
-        "y": 700,
-        "wires": [
-            [
-                "3ce30d1dddc257b6"
-            ]
-        ]
-    },
-    {
-        "id": "15f1710cf5093fb0",
-        "type": "switch",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_IP vide ?",
-        "property": "Broker_IP",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "null"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 380,
-        "y": 180,
-        "wires": [
-            [
-                "0716aa3cd0eb7183"
-            ],
-            [
-                "bbe4431a1216286d"
-            ]
-        ]
-    },
-    {
-        "id": "6cae3649dec819a4",
-        "type": "inject",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_IP",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Broker_IP",
-        "payloadType": "global",
-        "x": 150,
-        "y": 180,
-        "wires": [
-            [
-                "15f1710cf5093fb0"
-            ]
-        ]
-    },
-    {
-        "id": "bbe4431a1216286d",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_IP_out",
-        "mode": "link",
-        "links": [
-            "dee0d6711b426449"
-        ],
-        "x": 815,
-        "y": 189,
-        "wires": []
-    },
-    {
-        "id": "dee0d6711b426449",
-        "type": "link in",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_IP_in",
-        "links": [
-            "bbe4431a1216286d"
-        ],
-        "x": 115,
-        "y": 620,
-        "wires": [
-            [
-                "95136cbde35b3056"
-            ]
-        ]
-    },
-    {
-        "id": "0716aa3cd0eb7183",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Please fill it",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Please fill it",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 630,
-        "y": 160,
-        "wires": [
-            [
-                "bbe4431a1216286d"
-            ]
-        ]
-    },
-    {
-        "id": "ad72afbb71279da9",
-        "type": "switch",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_User vide ?",
-        "property": "Broker_User",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "null"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 391,
-        "y": 239,
-        "wires": [
-            [
-                "9c7d6f179e710814"
-            ],
-            [
-                "10d32db96de1049b"
-            ]
-        ]
-    },
-    {
-        "id": "b40d86ff8814acd6",
-        "type": "inject",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_User",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Broker_User",
-        "payloadType": "global",
-        "x": 151,
-        "y": 239,
-        "wires": [
-            [
-                "ad72afbb71279da9"
-            ]
-        ]
-    },
-    {
-        "id": "10d32db96de1049b",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_User_out",
-        "mode": "link",
-        "links": [
-            "27b1591610853483"
-        ],
-        "x": 815,
-        "y": 248,
-        "wires": []
-    },
-    {
-        "id": "9c7d6f179e710814",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Please fill it",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Please fill it",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 631,
-        "y": 219,
-        "wires": [
-            [
-                "10d32db96de1049b"
-            ]
-        ]
-    },
-    {
-        "id": "27b1591610853483",
-        "type": "link in",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_User_in",
-        "links": [
-            "10d32db96de1049b"
-        ],
-        "x": 115,
-        "y": 660,
-        "wires": [
-            [
-                "836bea324c6df2ca"
-            ]
-        ]
-    },
-    {
-        "id": "bce7a24ea78cde8e",
-        "type": "switch",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Number_of_BMS vide ?",
-        "property": "Number_of_BMS",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "null"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 411,
-        "y": 119,
-        "wires": [
-            [
-                "b67ac1233f0da57e"
-            ],
-            [
-                "91b88a5031c60415"
-            ]
-        ]
-    },
-    {
-        "id": "2372cd84fe52e55c",
-        "type": "inject",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Number_of_BMS",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Number_of_BMS",
-        "payloadType": "global",
-        "x": 171,
-        "y": 119,
-        "wires": [
-            [
-                "bce7a24ea78cde8e"
-            ]
-        ]
-    },
-    {
-        "id": "91b88a5031c60415",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Number_of_BMS_out",
-        "mode": "link",
-        "links": [
-            "4622780f4abd4ac3"
-        ],
-        "x": 815,
-        "y": 127,
-        "wires": []
-    },
-    {
-        "id": "b67ac1233f0da57e",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "fill to 1 ",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "1",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 611,
-        "y": 99,
-        "wires": [
-            [
-                "91b88a5031c60415"
-            ]
-        ]
-    },
-    {
-        "id": "4622780f4abd4ac3",
-        "type": "link in",
-        "z": "dfa2ea8601dc4518",
-        "g": "8ca20acee7a5ced4",
-        "name": "Number_of_BMS_in",
-        "links": [
-            "91b88a5031c60415"
-        ],
-        "x": 75,
-        "y": 520,
-        "wires": [
-            [
-                "323d60d4baaf7cef"
-            ]
-        ]
-    },
-    {
-        "id": "cff79b090ba46671",
-        "type": "switch",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_Password vide ?",
-        "property": "Broker_Password",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "null"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 411,
-        "y": 307,
-        "wires": [
-            [
-                "43c4f85eafb7dc6b"
-            ],
-            [
-                "081a4d809dc9018e"
-            ]
-        ]
-    },
-    {
-        "id": "8ea8e26d1fdd001e",
-        "type": "inject",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_Password",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Broker_Password",
-        "payloadType": "global",
-        "x": 171,
-        "y": 307,
-        "wires": [
-            [
-                "cff79b090ba46671"
-            ]
-        ]
-    },
-    {
-        "id": "081a4d809dc9018e",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Broker_Password_out",
-        "mode": "link",
-        "links": [
-            "698f6870ab9ffea7"
-        ],
-        "x": 815,
-        "y": 314,
-        "wires": []
-    },
-    {
-        "id": "43c4f85eafb7dc6b",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Please fill it",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Please fill it",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 631,
-        "y": 287,
-        "wires": [
-            [
-                "081a4d809dc9018e"
-            ]
-        ]
-    },
-    {
-        "id": "698f6870ab9ffea7",
-        "type": "link in",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_Password_in",
-        "links": [
-            "081a4d809dc9018e"
-        ],
-        "x": 115,
-        "y": 700,
-        "wires": [
-            [
-                "3cb083ba64129d24"
-            ]
-        ]
-    },
-    {
-        "id": "fd5bbf99e156f067",
-        "type": "ui-button",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "group": "858d2c8bdccf259b",
-        "name": "Show Password ?",
-        "label": "Show Password",
-        "order": 6,
-        "width": "2",
-        "height": "1",
-        "emulateClick": false,
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "eye-remove-outline",
-        "iconPosition": "left",
-        "payload": "yes",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "buttonColor": "",
-        "textColor": "",
-        "iconColor": "",
-        "enableClick": true,
-        "enablePointerdown": false,
-        "pointerdownPayload": "",
-        "pointerdownPayloadType": "str",
-        "enablePointerup": false,
-        "pointerupPayload": "",
-        "pointerupPayloadType": "str",
-        "x": 190,
-        "y": 740,
-        "wires": [
-            [
-                "f295b7dfa1823e2a",
-                "e5f2093494699767"
-            ]
-        ]
-    },
-    {
-        "id": "70d27fecf9d0f6b3",
-        "type": "ui-text",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "group": "858d2c8bdccf259b",
-        "order": 7,
-        "width": "2",
-        "height": "1",
-        "name": "Show Passw,",
-        "label": "Password",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#717171",
-        "wrapText": false,
-        "className": "",
-        "x": 750,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "f295b7dfa1823e2a",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Broker_Password",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Broker_Password",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 410,
-        "y": 740,
-        "wires": [
-            [
-                "70d27fecf9d0f6b3"
-            ]
-        ]
-    },
-    {
-        "id": "e5f2093494699767",
-        "type": "delay",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 380,
-        "y": 780,
-        "wires": [
-            [
-                "d1d53addb7c64437"
-            ]
-        ]
-    },
-    {
-        "id": "d1d53addb7c64437",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "clear",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": " ",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 520,
-        "y": 780,
-        "wires": [
-            [
-                "70d27fecf9d0f6b3"
-            ]
-        ]
-    },
-    {
-        "id": "f046317729829edf",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "331dfcc16357afd3",
-        "name": "USB serial port",
-        "rules": [
-            {
-                "t": "set",
-                "p": "USB_serial_port",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 880,
-        "wires": [
-            [
-                "a860585537cd655c"
-            ]
-        ]
-    },
-    {
-        "id": "504a0728ea25b990",
-        "type": "link in",
-        "z": "dfa2ea8601dc4518",
-        "g": "331dfcc16357afd3",
-        "name": "USB_serial_port_in",
-        "links": [
-            "42c42f151143fc33"
-        ],
-        "x": 115,
-        "y": 880,
-        "wires": [
-            [
-                "08f864ae8a8410af"
-            ]
-        ]
-    },
-    {
-        "id": "08f864ae8a8410af",
-        "type": "ui-text-input",
-        "z": "dfa2ea8601dc4518",
-        "g": "331dfcc16357afd3",
-        "group": "858d2c8bdccf259b",
-        "name": "USB serial port",
-        "label": "USB serial port",
-        "order": 9,
-        "width": "4",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "mode": "text",
-        "tooltip": "Veuillez entrer le nom de votre interface USB / RS485. Ex: /dev/ttyUSB1",
-        "delay": 300,
-        "passthru": true,
-        "sendOnDelay": false,
-        "sendOnBlur": false,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": true,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 240,
-        "y": 880,
-        "wires": [
-            [
-                "f046317729829edf"
-            ]
-        ]
-    },
-    {
-        "id": "8eba824391b30950",
-        "type": "switch",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "USB_serial_port vide ?",
-        "property": "USB_serial_port",
-        "propertyType": "global",
-        "rules": [
-            {
-                "t": "null"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 400,
-        "y": 360,
-        "wires": [
-            [
-                "5d682238eaebc0e9",
-                "2b3a79e14d5983b1"
-            ],
-            [
-                "42c42f151143fc33"
-            ]
-        ]
-    },
-    {
-        "id": "9e1ff26caf038053",
-        "type": "inject",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "USB_serial_port",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "USB_serial_port",
-        "payloadType": "global",
-        "x": 160,
-        "y": 360,
-        "wires": [
-            [
-                "8eba824391b30950"
-            ]
-        ]
-    },
-    {
-        "id": "42c42f151143fc33",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "USB_serial_port_out",
-        "mode": "link",
-        "links": [
-            "504a0728ea25b990"
-        ],
-        "x": 815,
-        "y": 368,
-        "wires": []
-    },
-    {
-        "id": "5d682238eaebc0e9",
-        "type": "change",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "Please fill it",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Please fill it",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 630,
-        "y": 340,
-        "wires": [
-            [
-                "42c42f151143fc33"
-            ]
-        ]
-    },
-    {
-        "id": "2b3a79e14d5983b1",
-        "type": "debug",
-        "z": "dfa2ea8601dc4518",
-        "g": "259fe46998b37b22",
-        "name": "debug 10",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 630,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "ea324554d0bd9024",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "8ca20acee7a5ced4",
-        "name": "Sauvegarde_parametres_out",
-        "mode": "link",
-        "links": [],
-        "x": 605,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "3ce30d1dddc257b6",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "3309ffc04a216e40",
-        "name": "Sauvegarde_parametres_out",
-        "mode": "link",
-        "links": [],
-        "x": 675,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "a860585537cd655c",
-        "type": "link out",
-        "z": "dfa2ea8601dc4518",
-        "g": "331dfcc16357afd3",
-        "name": "Sauvegarde_parametres_out",
-        "mode": "link",
-        "links": [],
-        "x": 615,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "5b14b666e62da67d",
-        "type": "switch",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "Topic ?",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "LCD-on-off",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "divers",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "divers-bit",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 4,
-        "x": 240,
-        "y": 140,
-        "wires": [
-            [
-                "0e22f5085190544e",
-                "8bc9c72eb8f36ff2"
-            ],
-            [
-                "347c975cf903685a"
-            ],
-            [
-                "8cf65bc85374df94"
-            ],
-            [
-                "2d239cf871fcdd0f"
-            ]
-        ],
-        "outputLabels": [
-            "LCD-on-off",
-            "",
-            null,
-            "Autres"
-        ]
-    },
-    {
-        "id": "63b5b654057c4381",
-        "type": "link in",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "Autres-topics-in",
-        "links": [
-            "bb5385e5fa6e8f58"
-        ],
-        "x": 145,
-        "y": 140,
-        "wires": [
-            [
-                "5b14b666e62da67d"
-            ]
-        ]
-    },
-    {
-        "id": "2d239cf871fcdd0f",
-        "type": "debug",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "Autres topics",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 130,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "0e2e65e40bcb2ac0",
-        "type": "inject",
-        "z": "c42476a3aa2dd79c",
-        "g": "754c40640a559f32",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 470,
-        "y": 140,
-        "wires": [
-            [
-                "d5dca54b28d74f18"
-            ]
-        ]
-    },
-    {
-        "id": "dbee32cce099fa83",
-        "type": "debug",
-        "z": "c42476a3aa2dd79c",
-        "g": "754c40640a559f32",
-        "name": "debug 9",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "d5dca54b28d74f18",
-        "type": "function",
-        "z": "c42476a3aa2dd79c",
-        "g": "754c40640a559f32",
-        "name": "Lire LCD from x1114",
-        "func": "// Node-RED function node pour générer la trame Modbus\nfunction generateModbusCommand() {\n    // Fonction de calcul CRC16 Modbus\n    function crc16(buffer) {\n        let crc = 0xFFFF;\n        for (let i = 0; i < buffer.length; i++) {\n            crc ^= buffer[i];\n            for (let j = 0; j < 8; j++) {\n                if (crc & 0x0001) {\n                    crc = (crc >> 1) ^ 0xA001;\n                } else {\n                    crc = crc >> 1;\n                }\n            }\n        }\n        return crc;\n    }\n\n    // Construction de la trame sans CRC\n    const command = [\n        0x01,       // Slave ID\n        0x03,       // Function code (03 - Read Holding Registers)\n        0x11,       // Register address high byte\n        0x14,       // Register address low byte\n        0x00,       // Quantity high byte (1 registre, 2 octets)\n        0x01        // Quantity low byte\n    ];\n\n    // Calcul du CRC\n    const crc = crc16(Buffer.from(command));\n    \n    // Ajout du CRC à la trame (en ordre inverse car little-endian)\n    command.push(crc & 0xFF);         // CRC low byte\n    command.push((crc >> 8) & 0xFF);  // CRC high byte\n\n    return Buffer.from(command);\n}\n\n// Envoi de la trame\nmsg.topic = \"LCD-on-off\"\nmsg.payload = generateModbusCommand();\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 140,
-        "wires": [
-            [
-                "3d4605eb10a3d1dc"
-            ]
-        ]
-    },
-    {
-        "id": "0e22f5085190544e",
-        "type": "buffer-parser",
-        "z": "c42476a3aa2dd79c",
-        "g": "754c40640a559f32",
-        "name": "LCD-on-off",
-        "data": "payload",
-        "dataType": "msg",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
-            {
-                "type": "buffer",
-                "name": "item2",
-                "offset": 4,
-                "length": 1,
-                "offsetbit": 5,
-                "scale": "1",
-                "mask": ""
-            },
-            {
-                "type": "bool",
-                "name": "Port Switch",
-                "offset": 3,
-                "length": 1,
-                "offsetbit": 3,
-                "scale": "1",
-                "mask": ""
-            },
-            {
-                "type": "bool",
-                "name": "LCD-on-off",
-                "offset": 4,
-                "length": 1,
-                "offsetbit": 4,
-                "scale": "1",
-                "mask": ""
-            }
-        ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "payload",
-        "msgPropertyType": "str",
-        "resultType": "keyvalue",
-        "resultTypeType": "return",
-        "multipleResult": false,
-        "fanOutMultipleResult": false,
-        "setTopic": true,
-        "outputs": 1,
-        "x": 470,
-        "y": 180,
-        "wires": [
-            [
-                "dbee32cce099fa83"
-            ]
-        ]
-    },
-    {
-        "id": "3d4605eb10a3d1dc",
-        "type": "link out",
-        "z": "c42476a3aa2dd79c",
-        "g": "754c40640a559f32",
-        "name": "link out 13",
-        "mode": "link",
-        "links": [
-            "305e1cac13589b0d"
-        ],
-        "x": 895,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "e9a62d58d10aea04",
-        "type": "inject",
-        "z": "c42476a3aa2dd79c",
-        "g": "39449a18b64acb51",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 470,
-        "y": 280,
-        "wires": [
-            [
-                "a627048a1842edd0"
-            ]
-        ]
-    },
-    {
-        "id": "991b73c0d7830977",
-        "type": "debug",
-        "z": "c42476a3aa2dd79c",
-        "g": "39449a18b64acb51",
-        "name": "debug 25",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 820,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "a627048a1842edd0",
-        "type": "function",
-        "z": "c42476a3aa2dd79c",
-        "g": "39449a18b64acb51",
-        "name": "Lire - DIVERS: x1078",
-        "func": "// Node-RED function node pour générer la trame Modbus\nfunction generateModbusCommand() {\n    // Fonction de calcul CRC16 Modbus\n    function crc16(buffer) {\n        let crc = 0xFFFF;\n        for (let i = 0; i < buffer.length; i++) {\n            crc ^= buffer[i];\n            for (let j = 0; j < 8; j++) {\n                if (crc & 0x0001) {\n                    crc = (crc >> 1) ^ 0xA001;\n                } else {\n                    crc = crc >> 1;\n                }\n            }\n        }\n        return crc;\n    }\n\n    // Construction de la trame sans CRC\n    const command = [\n        0x01,       // Slave ID\n        0x03,       // Function code (03 - Read Holding Registers)\n        0x10,       // Register address high byte (0x12)\n        0x70,       // Register address low byte (0xC4)\n        0x00,       // Quantity high byte (1 registre, 2 octets)\n        0x02        // Quantity low byte (1 registre, 2 octets)\n    ];\n\n    // Calcul du CRC\n    const crc = crc16(Buffer.from(command));\n    \n    // Ajout du CRC à la trame (en ordre inverse car little-endian)\n    command.push(crc & 0xFF);         // CRC low byte\n    command.push((crc >> 8) & 0xFF);  // CRC high byte\n\n    return Buffer.from(command);\n}\n\n// Envoi de la trame\nmsg.topic = \"divers\";\nmsg.payload = generateModbusCommand();\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 280,
-        "wires": [
-            [
-                "30ec269020be3cfd"
-            ]
-        ]
-    },
-    {
-        "id": "347c975cf903685a",
-        "type": "buffer-parser",
-        "z": "c42476a3aa2dd79c",
-        "g": "39449a18b64acb51",
-        "name": "cell cell_voltage_overvoltage_protection",
-        "data": "payload",
-        "dataType": "msg",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
-            {
-                "type": "uint32be",
-                "name": "divers",
-                "offset": 3,
-                "length": 1,
-                "offsetbit": 0,
-                "scale": "1",
-                "mask": ""
-            }
-        ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "payload",
-        "msgPropertyType": "str",
-        "resultType": "keyvalue",
-        "resultTypeType": "return",
-        "multipleResult": false,
-        "fanOutMultipleResult": false,
-        "setTopic": true,
-        "outputs": 1,
-        "x": 560,
-        "y": 320,
-        "wires": [
-            [
-                "991b73c0d7830977"
-            ]
-        ]
-    },
-    {
-        "id": "30ec269020be3cfd",
-        "type": "link out",
-        "z": "c42476a3aa2dd79c",
-        "g": "39449a18b64acb51",
-        "name": "link out 6",
-        "mode": "link",
-        "links": [
-            "305e1cac13589b0d"
-        ],
-        "x": 895,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "8bc9c72eb8f36ff2",
-        "type": "debug",
-        "z": "c42476a3aa2dd79c",
-        "g": "c5544de409dc3632",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 420,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "3d490c4684163fca",
-        "type": "inject",
-        "z": "c42476a3aa2dd79c",
-        "g": "d3d5c2188bb8b56e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 470,
-        "y": 420,
-        "wires": [
-            [
-                "33a274fa6b859154"
-            ]
-        ]
-    },
-    {
-        "id": "142bf6609d8a7858",
-        "type": "debug",
-        "z": "c42476a3aa2dd79c",
-        "g": "d3d5c2188bb8b56e",
-        "name": "debug 7",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 700,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "33a274fa6b859154",
-        "type": "function",
-        "z": "c42476a3aa2dd79c",
-        "g": "d3d5c2188bb8b56e",
-        "name": "Lire - DIVERs bit's",
-        "func": "// Node-RED function node pour générer la trame Modbus\nfunction generateModbusCommand() {\n    // Fonction de calcul CRC16 Modbus\n    function crc16(buffer) {\n        let crc = 0xFFFF;\n        for (let i = 0; i < buffer.length; i++) {\n            crc ^= buffer[i];\n            for (let j = 0; j < 8; j++) {\n                if (crc & 0x0001) {\n                    crc = (crc >> 1) ^ 0xA001;\n                } else {\n                    crc = crc >> 1;\n                }\n            }\n        }\n        return crc;\n    }\n\n    // Construction de la trame sans CRC\n    const command = [\n        0x01,       // Slave ID\n        0x03,       // Function code (03 - Read Holding Registers)\n        0x11,       // Register address high byte (0x11)\n        0x14,       // Register address low byte (0x14)\n        0x00,       // Quantity high byte (1 registre, 2 octets)\n        0x01        // Quantity low byte (1 registre, 2 octets)\n    ];\n\n    // Calcul du CRC\n    const crc = crc16(Buffer.from(command));\n    \n    // Ajout du CRC à la trame (en ordre inverse car little-endian)\n    command.push(crc & 0xFF);         // CRC low byte\n    command.push((crc >> 8) & 0xFF);  // CRC high byte\n\n    return Buffer.from(command);\n}\n\n// Envoi de la trame\nmsg.topic = \"divers-bit\";\nmsg.payload = generateModbusCommand();\n\n// Fonction pour extraire les 9 premiers bits de la réponse\nmsg.extractBits = function(response) {\n    if (response && response.length >= 5) {\n        const uint16Value = (response[3] << 8) | response[4];\n        let bitStates = {};\n        for (let i = 0; i < 9; i++) {\n            bitStates[`bit${i}`] = (uint16Value >> i) & 1;\n        }\n        return bitStates;\n    }\n    return null;\n};\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 420,
-        "wires": [
-            [
-                "d1d7ba8380ba4e39"
-            ]
-        ]
-    },
-    {
-        "id": "d1d7ba8380ba4e39",
-        "type": "link out",
-        "z": "c42476a3aa2dd79c",
-        "g": "d3d5c2188bb8b56e",
-        "name": "link out 1",
-        "mode": "link",
-        "links": [
-            "305e1cac13589b0d"
-        ],
-        "x": 895,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "8cf65bc85374df94",
-        "type": "function",
-        "z": "c42476a3aa2dd79c",
-        "g": "d3d5c2188bb8b56e",
-        "name": "function 3",
-        "func": "if (msg.payload && msg.payload.length >= 5) {\n    msg.payload = msg.extractBits(msg.payload);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 530,
-        "y": 460,
-        "wires": [
-            [
-                "142bf6609d8a7858"
-            ]
-        ]
-    },
-    {
-        "id": "ea5ef01450d064c2",
-        "type": "inject",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "Allumer écran",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "01 10 11 14 00 01 02 32 10 B0 E9",
-        "payloadType": "str",
-        "x": 150,
-        "y": 640,
-        "wires": [
-            [
-                "7d10fe7928d35c9e"
-            ]
-        ]
-    },
-    {
-        "id": "1a7ba77a039ff8a5",
-        "type": "inject",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "Eteindre écran",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "01 10 11 14 00 01 02 32 00 b1 25",
-        "payloadType": "str",
-        "x": 160,
-        "y": 680,
-        "wires": [
-            [
-                "7d10fe7928d35c9e"
-            ]
-        ]
-    },
-    {
-        "id": "7d10fe7928d35c9e",
-        "type": "function",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "Conversion Hex",
-        "func": "// Convertit la chaîne hex en buffer\nmsg.payload = Buffer.from(msg.payload.split(' ').map(x => parseInt(x, 16)));\nreturn msg;",
-        "outputs": 1,
-        "x": 560,
-        "y": 620,
-        "wires": [
-            [
-                "5df172e294de3c89"
-            ]
-        ]
-    },
-    {
-        "id": "5df172e294de3c89",
-        "type": "link out",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "link out 4",
-        "mode": "link",
-        "links": [
-            "305e1cac13589b0d"
-        ],
-        "x": 675,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "f1dc521817c84612",
-        "type": "change",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "On",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "01 10 11 14 00 01 02 32 10 B0 E9",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 390,
-        "y": 600,
-        "wires": [
-            [
-                "7d10fe7928d35c9e"
-            ]
-        ]
-    },
-    {
-        "id": "496e4bb443b0bf0b",
-        "type": "switch",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "On / Off ?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 250,
-        "y": 600,
-        "wires": [
-            [
-                "f1dc521817c84612"
-            ],
-            [
-                "edd8784d0c5d79c2"
-            ]
-        ]
-    },
-    {
-        "id": "edd8784d0c5d79c2",
-        "type": "change",
-        "z": "c42476a3aa2dd79c",
-        "g": "49a4091113d20136",
-        "name": "Off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "01 10 11 14 00 01 02 32 00 b1 25",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 390,
-        "y": 660,
-        "wires": [
-            [
-                "7d10fe7928d35c9e"
-            ]
-        ]
     }
 ]

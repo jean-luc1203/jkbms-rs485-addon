@@ -1,3 +1,10 @@
+## 3.0.10
+
+## ⚡️ Enhancements
+
+Added a "debug" option to check whether there is communication via the IP - rs485 gateway. The information can be found in the live module log.
+Don't forget to reset it to "false" once testing is complete.
+
 ## 3.0.8
 
 ## 🐞 Bug fixes
