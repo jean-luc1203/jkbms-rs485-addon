@@ -3,8 +3,10 @@
 ## ⚡️ Enhancements
 
 Added a "debug" option to check whether there is communication via the IP - rs485 gateway. The information can be found in the live module log.
+
 To enable it, change the gateway_debug parameter to "true"
-Don't forget to reset it to "false" once testing is complete.
+
+⚠️ Don't forget to reset it to "false" once testing is complete.
 
 <img width="680" height="100" alt="image" src="https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/images/GW-IP-debug.png" />
 
