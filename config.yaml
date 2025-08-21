@@ -1,9 +1,9 @@
 ---
 name: "JK-BMS wired management"
-version: 3.0.10
+version: 3.0.12
 slug: "smartphoton_jkbms"
 description: JK-BMS management via RS485 & CAN bus, also with an Ip Gateway relay
-url: https://domosimple.eu/forum/forum-32.html
+url: https://domosimple.eu/forum/thread-917.html
 ingress: false
 ingress_stream: false
 panel_icon: mdi:sitemap
@@ -41,7 +41,7 @@ options:
     use_gateway: false
     gateway_ip: "192.168.1.100"
     gateway_port: 5000
-    gateway_debug: false
+    communication_debug: false
     bms_broadcasting: true
     CAN_bus_usage: false
   # Configuration MQTT
@@ -62,7 +62,7 @@ schema:
     use_gateway: bool
     gateway_ip: str?
     gateway_port: int(1,65535)?
-    gateway_debug: bool
+    communication_debug: bool
     bms_broadcasting: bool
     CAN_bus_usage: bool
   # Configuration MQTT

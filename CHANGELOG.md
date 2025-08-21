@@ -1,3 +1,16 @@
+## 3.0.12
+
+## ⚡️ Enhancements
+
+It is now possible to have the debug option on both the rs485 port and the IP gateway.
+
+⚠️ The `gateway_debug` parameter no longer exists, replaced by `communication_debug`
+
+👀 Please, Don't forget to reset it to "false" once testing is complete. This could unnecessarily overload the module
+
+<img width="680" height="100" alt="image" src="https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/images/Communication-debug.png" />
+
+
 ## 3.0.10
 
 ## ⚡️ Enhancements

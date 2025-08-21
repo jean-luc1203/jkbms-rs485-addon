@@ -116,12 +116,13 @@
             "8d8489f730e79441",
             "cfbb3e70d43124da",
             "d9ef164688871372",
-            "9c7f34f8f23e6ba9"
+            "9c7f34f8f23e6ba9",
+            "49ab51c7e37d5c8b"
         ],
         "x": 84,
         "y": 219,
         "w": 472,
-        "h": 122
+        "h": 162
     },
     {
         "id": "554f91ffdbfbfc68",
@@ -327,14 +328,11 @@
             "710b79fc70fe4146",
             "d132c36160191dc5",
             "22c8417438319190",
-            "b9b04485f9fbc64d",
-            "61e63fe540899da7",
-            "ee5133b8f2e1ce50",
-            "f294da9db9a3115d"
+            "03dacf72abe28e64"
         ],
         "x": 614,
         "y": 219,
-        "w": 752,
+        "w": 512,
         "h": 162
     },
     {
@@ -686,6 +684,32 @@
         "h": 162
     },
     {
+        "id": "7b3773047d4f1a3f",
+        "type": "group",
+        "z": "e437f2f44495aeb9",
+        "name": "Debug des données",
+        "style": {
+            "stroke": "#007000",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "ee5133b8f2e1ce50",
+            "f294da9db9a3115d",
+            "b9b04485f9fbc64d",
+            "61e63fe540899da7",
+            "a3841448a0ba9bd0",
+            "98cbd20677778844",
+            "664663fef4b24fb9",
+            "7013fb35e9e5b498",
+            "8e63e12d4e405a33"
+        ],
+        "x": 114,
+        "y": 1659,
+        "w": 712,
+        "h": 242
+    },
+    {
         "id": "81e87bf1358cea74",
         "type": "group",
         "z": "6f39605626c227f5",
@@ -830,7 +854,8 @@
             "8ccdcf5d7075d4c7",
             "d17de5931fc46f14",
             "8941479643260a23",
-            "dc8be2eb9f379046"
+            "dc8be2eb9f379046",
+            "4d36819424553e8e"
         ],
         "x": 54,
         "y": 1359,
@@ -1684,7 +1709,7 @@
         "z": "2d882136a35b2d36",
         "g": "58578674e7f69c99",
         "name": "Définir global variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n    \n    if (data.jkbms.gateway_debug !== undefined) {\n        global.set(\"gateway_debug\", data.jkbms.gateway_debug);\n        node.log(\"Variable globale 'gateway_debug' définie: \" + data.jkbms.gateway_debug);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n   \n    if (data.jkbms.CAN_bus_usage !== undefined) {\n    global.set(\"CAN_bus_usage\", data.jkbms.CAN_bus_usage);\n    node.log(\"Variable globale 'CAN_bus_usage' définie: \" + data.jkbms.CAN_bus_usage);\n    }\n\n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            gateway_debug: global.get(\"gateway_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Extraction et stockage des variables globales\ntry {\n    // Configuration JK-BMS principale\n    if (data.jkbms.jkbms_path) {\n        global.set(\"path\", data.jkbms.jkbms_path);\n        node.log(\"Variable globale 'path' définie: \" + data.jkbms.jkbms_path);\n    }\n    \n    if (data.jkbms.jkbms_count) {\n        global.set(\"nb_jkbms\", data.jkbms.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' définie: \" + data.jkbms.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (data.jkbms.use_gateway !== undefined) {\n        global.set(\"use_gateway\", data.jkbms.use_gateway);\n        node.log(\"Variable globale 'use_gateway' définie: \" + data.jkbms.use_gateway);\n    }\n    \n    if (data.jkbms.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", data.jkbms.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' définie: \" + data.jkbms.gateway_ip);\n    }\n    \n    if (data.jkbms.gateway_port !== undefined) {\n        global.set(\"gateway_port\", data.jkbms.gateway_port);\n        node.log(\"Variable globale 'gateway_port' définie: \" + data.jkbms.gateway_port);\n    }\n    \n    if (data.jkbms.communication_debug !== undefined) {\n        global.set(\"communication_debug\", data.jkbms.communication_debug);\n        node.log(\"Variable globale 'communication_debug' définie: \" + data.jkbms.communication_debug);\n    }\n     \n    if (data.jkbms.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", data.jkbms.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' définie: \" + data.jkbms.bms_broadcasting);\n    }\n   \n    if (data.jkbms.CAN_bus_usage !== undefined) {\n    global.set(\"CAN_bus_usage\", data.jkbms.CAN_bus_usage);\n    node.log(\"Variable globale 'CAN_bus_usage' définie: \" + data.jkbms.CAN_bus_usage);\n    }\n\n     // Paramètres MQTT\n    if (data.mqtt) {\n        if (data.mqtt.mqttadresse) {\n            global.set(\"mqttadresse\", data.mqtt.mqttadresse);\n            node.log(\"Variable globale 'mqttadresse' définie: \" + data.mqtt.mqttadresse);\n        }\n        \n        if (data.mqtt.mqttport) {\n            global.set(\"mqttport\", data.mqtt.mqttport);\n            node.log(\"Variable globale 'mqttport' définie: \" + data.mqtt.mqttport);\n        }\n        \n        if (data.mqtt.mqttuser) {\n            global.set(\"mqttuser\", data.mqtt.mqttuser);\n            node.log(\"Variable globale 'mqttuser' définie: \" + data.mqtt.mqttuser);\n        }\n        \n        if (data.mqtt.mqttpass) {\n            global.set(\"mqttpass\", data.mqtt.mqttpass);\n            node.log(\"Variable globale 'mqttpass' définie: \" + data.mqtt.mqttpass);\n        }\n    }\n    \n    // Configuration SSL (ajoutée en bonus)\n    if (data.ssl !== undefined) {\n        global.set(\"ssl\", data.ssl);\n        node.log(\"Variable globale 'ssl' définie: \" + data.ssl);\n    }\n    \n    if (data.certfile) {\n        global.set(\"certfile\", data.certfile);\n        node.log(\"Variable globale 'certfile' définie: \" + data.certfile);\n    }\n    \n    if (data.keyfile) {\n        global.set(\"keyfile\", data.keyfile);\n        node.log(\"Variable globale 'keyfile' définie: \" + data.keyfile);\n    }\n    \n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            communication_debug: global.get(\"communication_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            ssl: global.get(\"ssl\"),\n            certfile: global.get(\"certfile\"),\n            keyfile: global.get(\"keyfile\")\n        }\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2093,11 +2118,11 @@
         "type": "change",
         "z": "2d882136a35b2d36",
         "g": "fc76e68ff3fcec78",
-        "name": "gateway_debug true ",
+        "name": "communication_debug true ",
         "rules": [
             {
                 "t": "set",
-                "p": "gateway_debug",
+                "p": "communication_debug",
                 "pt": "global",
                 "to": "true",
                 "tot": "bool"
@@ -2108,7 +2133,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 360,
+        "x": 380,
         "y": 920,
         "wires": [
             []
@@ -2149,11 +2174,11 @@
         "type": "change",
         "z": "2d882136a35b2d36",
         "g": "fc76e68ff3fcec78",
-        "name": "gateway_debug false ",
+        "name": "communication_debug false ",
         "rules": [
             {
                 "t": "set",
-                "p": "gateway_debug",
+                "p": "communication_debug",
                 "pt": "global",
                 "to": "false",
                 "tot": "bool"
@@ -2164,7 +2189,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 360,
+        "x": 380,
         "y": 960,
         "wires": [
             []
@@ -2222,7 +2247,7 @@
             "366518e9212a6b71"
         ],
         "x": 125,
-        "y": 260,
+        "y": 300,
         "wires": [
             [
                 "8d8489f730e79441"
@@ -2556,12 +2581,13 @@
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
         "x": 260,
-        "y": 260,
+        "y": 300,
         "wires": [
             [
                 "d9ef164688871372",
                 "cfbb3e70d43124da",
-                "9c7f34f8f23e6ba9"
+                "9c7f34f8f23e6ba9",
+                "49ab51c7e37d5c8b"
             ]
         ]
     },
@@ -2624,8 +2650,8 @@
         "links": [
             "87cae6741d4eba43"
         ],
-        "x": 265,
-        "y": 300,
+        "x": 295,
+        "y": 340,
         "wires": []
     },
     {
@@ -4099,7 +4125,8 @@
         "wires": [
             [
                 "a57eec1d77cfb03e",
-                "d17de5931fc46f14"
+                "d17de5931fc46f14",
+                "4d36819424553e8e"
             ]
         ]
     },
@@ -4371,7 +4398,7 @@
             [
                 "710b79fc70fe4146",
                 "d132c36160191dc5",
-                "ee5133b8f2e1ce50"
+                "03dacf72abe28e64"
             ]
         ]
     },
@@ -4786,24 +4813,6 @@
         ]
     },
     {
-        "id": "dde1908189272386",
-        "type": "function",
-        "z": "e437f2f44495aeb9",
-        "name": "Trame \"statics\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01; // Valeur par défaut si non définie\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nvar discoveryMsgs = [];\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n    var sensorTopic = `${baseTopic}/state/${cleanKey}`;  // Simplifié le state_topic\n    \n    var configTopic = `${discoveryPrefix}/sensor/${deviceID}/${cleanKey}/config`;\n    var configPayload = {\n        name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        enabled_by_default: true,\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: payload.BMS_A || \"rs485 vers MQTT\",\n            sw_version: payload.SW_N || \"3.0.1\"\n        }\n    };\n\n    // Ajout des unités selon le suffixe\n    if (key.endsWith(\"_S\")) {\n        configPayload.unit_of_measurement = \"s\";\n        configPayload.device_class = \"duration\";\n        configPayload.state_class = \"measurement\";\n    }\n    else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n        configPayload.unit_of_measurement = \"s\";\n        configPayload.device_class = \"duration\";\n        configPayload.state_class = \"measurement\";\n    }\n    else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n        configPayload.state_class = \"measurement\";\n    }\n\n    // Gestion des icônes\n    if (key.includes(\"Password\")) {\n        configPayload.icon = \"mdi:form-textbox-password\";\n    } else if (key.includes(\"Serial\")) {\n        configPayload.icon = \"mdi:barcode\";\n    } else if (key.includes(\"protocol\")) {\n        configPayload.icon = \"mdi:protocol\";\n    } else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\")) {\n        configPayload.icon = \"mdi:numeric-10\";\n    } else if (key.includes(\"Uptime\")) {\n        configPayload.icon = \"mdi:timer-outline\";\n        configPayload.device_class = \"duration\";\n    } else if (key.includes(\"date\")) {\n        configPayload.icon = \"mdi:calendar\";\n    }\n\n    // Ajouter le message de configuration\n    discoveryMsgs.push({\n        topic: configTopic,\n        payload: JSON.stringify(configPayload),\n        retain: true\n    });\n\n    // Ajouter le message d'état\n    discoveryMsgs.push({\n        topic: sensorTopic,\n        payload: payload[key],\n        retain: true\n    });\n}\n\nreturn [discoveryMsgs];",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 622,
-        "y": 1671,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e3bdc1ba76203c34",
         "type": "function",
         "z": "e437f2f44495aeb9",
@@ -4842,42 +4851,6 @@
         ]
     },
     {
-        "id": "b9b04485f9fbc64d",
-        "type": "debug",
-        "z": "e437f2f44495aeb9",
-        "g": "1c9e2e84f7764473",
-        "name": "debug: host used",
-        "active": true,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "host",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1230,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "61e63fe540899da7",
-        "type": "debug",
-        "z": "e437f2f44495aeb9",
-        "g": "1c9e2e84f7764473",
-        "name": "debug: port used",
-        "active": true,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "port",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1230,
-        "y": 340,
-        "wires": []
-    },
-    {
         "id": "57c7fc5e6af725a8",
         "type": "debug",
         "z": "e437f2f44495aeb9",
@@ -4899,9 +4872,9 @@
         "id": "ee5133b8f2e1ce50",
         "type": "switch",
         "z": "e437f2f44495aeb9",
-        "g": "1c9e2e84f7764473",
-        "name": "Debug_GW ?",
-        "property": "gateway_debug",
+        "g": "7b3773047d4f1a3f",
+        "name": "communication_debug ?",
+        "property": "communication_debug",
         "propertyType": "global",
         "rules": [
             {
@@ -4914,8 +4887,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 1020,
-        "y": 300,
+        "x": 310,
+        "y": 1740,
         "wires": [
             [
                 "61e63fe540899da7",
@@ -4925,27 +4898,223 @@
             []
         ],
         "outputLabels": [
-            "Ip Gateway",
-            "Serial Port"
+            "Vrai",
+            "Faux"
         ]
     },
     {
         "id": "f294da9db9a3115d",
         "type": "debug",
         "z": "e437f2f44495aeb9",
-        "g": "1c9e2e84f7764473",
-        "name": "GW IP response: ",
+        "g": "7b3773047d4f1a3f",
+        "name": "JK-BMS response: ",
         "active": true,
-        "tosidebar": true,
+        "tosidebar": false,
         "console": true,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1230,
-        "y": 260,
+        "x": 560,
+        "y": 1700,
         "wires": []
+    },
+    {
+        "id": "b9b04485f9fbc64d",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "host used",
+        "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "host",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "61e63fe540899da7",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "port used",
+        "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "port",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "a3841448a0ba9bd0",
+        "type": "link in",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "Debug In",
+        "links": [
+            "03dacf72abe28e64",
+            "49ab51c7e37d5c8b"
+        ],
+        "x": 155,
+        "y": 1740,
+        "wires": [
+            [
+                "ee5133b8f2e1ce50"
+            ]
+        ]
+    },
+    {
+        "id": "03dacf72abe28e64",
+        "type": "link out",
+        "z": "e437f2f44495aeb9",
+        "g": "1c9e2e84f7764473",
+        "name": "debug-out",
+        "mode": "link",
+        "links": [
+            "a3841448a0ba9bd0"
+        ],
+        "x": 965,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "49ab51c7e37d5c8b",
+        "type": "link out",
+        "z": "e437f2f44495aeb9",
+        "g": "efcb27eee8e0e602",
+        "name": "debug-out",
+        "mode": "link",
+        "links": [
+            "a3841448a0ba9bd0"
+        ],
+        "x": 395,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4d36819424553e8e",
+        "type": "link out",
+        "z": "e437f2f44495aeb9",
+        "g": "6ec0cd904988f0ff",
+        "name": "Debug-data-in",
+        "mode": "link",
+        "links": [
+            "8e63e12d4e405a33"
+        ],
+        "x": 545,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "98cbd20677778844",
+        "type": "debug",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "Live current [A] ",
+        "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "live-current",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "664663fef4b24fb9",
+        "type": "switch",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "communication_debug ?",
+        "property": "communication_debug",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 1860,
+        "wires": [
+            [
+                "7013fb35e9e5b498"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "Vrai",
+            "Faux"
+        ]
+    },
+    {
+        "id": "7013fb35e9e5b498",
+        "type": "change",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "Courant",
+        "rules": [
+            {
+                "t": "set",
+                "p": "live-current",
+                "pt": "msg",
+                "to": "payload.Courant_total_A",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 1860,
+        "wires": [
+            [
+                "98cbd20677778844"
+            ]
+        ]
+    },
+    {
+        "id": "8e63e12d4e405a33",
+        "type": "link in",
+        "z": "e437f2f44495aeb9",
+        "g": "7b3773047d4f1a3f",
+        "name": "Debug-data-in",
+        "links": [
+            "4d36819424553e8e"
+        ],
+        "x": 155,
+        "y": 1860,
+        "wires": [
+            [
+                "664663fef4b24fb9"
+            ]
+        ]
     },
     {
         "id": "40c53f7ceb572ff5",
