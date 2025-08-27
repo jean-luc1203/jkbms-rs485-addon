@@ -5,10 +5,11 @@
 Add help to each configuration field. 
 At the top of each configuration field, there's now an explanation of the purpose of this parameter
 
-## 🐞 Bug fixes
+ 🐞 Bug fixes
 No longer calls the TCP/IP gateway if the parameter is set to "false"
 
-
+## ⚠️ Please, Save your configuration
+As the format has changed. You will then need to fill it in again ‼️ ‼️
 
 ## 3.0.12
 
