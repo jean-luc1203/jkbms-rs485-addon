@@ -1,8 +1,8 @@
 ---
 name: "JK-BMS wired management"
-version: 3.0.12
+version: 3.0.13
 slug: "smartphoton_jkbms"
-description: JK-BMS management via RS485 & CAN bus, also with an Ip Gateway relay
+description: Management via RS485 & CAN bus. Also with an Ip Gateway
 url: https://domosimple.eu/forum/thread-917.html
 ingress: false
 ingress_stream: false
@@ -33,45 +33,74 @@ map:
   - media:rw
   - share:rw
   - ssl
+
 options:
-  # Configuration JKBMS
-  jkbms:
-    jkbms_path: "/dev/ttyUSBx"
-    jkbms_count: 1
-    use_gateway: false
-    gateway_ip: "192.168.1.100"
-    gateway_port: 5000
-    communication_debug: false
-    bms_broadcasting: true
-    CAN_bus_usage: false
-  # Configuration MQTT
-  mqtt:
-    mqttadresse: "core-mosquitto.local.hass.io"
-    mqttport: 1883
-    mqttuser: "username"
-    mqttpass: "password"
-  # Configuration SSL
+  # JK-BMS Configuration
+  jkbms_path: "/dev/serial/by-id/usb-xxxx_USB_Serial-abcdefghij"
+  jkbms_count: 1
+  use_gateway: false
+  gateway_ip: "192.168.1.100"
+  gateway_port: 5000
+  communication_debug: false
+  bms_broadcasting: false
+  CAN_bus_usage: false
+  
+  # MQTT Configuration
+  mqttadresse: "core-mosquitto.local.hass.io"
+  mqttport: 1883
+  mqttuser: "username"
+  mqttpass: "password"
+  
+  # SSL Configuration
   ssl: false
   certfile: "fullchain.pem"
   keyfile: "privkey.pem"
+
 schema:
-  # Configuration JK-BMS
-  jkbms:
-    jkbms_path: str
-    jkbms_count: int(1,10)?
-    use_gateway: bool
-    gateway_ip: str?
-    gateway_port: int(1,65535)?
-    communication_debug: bool
-    bms_broadcasting: bool
-    CAN_bus_usage: bool
-  # Configuration MQTT
-  mqtt:
-    mqttadresse: str?
-    mqttport: int(1,65535)?
-    mqttuser: str?
-    mqttpass: password?
-  # Configuration SSL
+  # JK-BMS Configuration
+  jkbms_path: str
+  jkbms_count: int(1,10)?
+  use_gateway: bool
+  gateway_ip: str?
+  gateway_port: int(1,65535)?
+  communication_debug: bool
+  bms_broadcasting: bool
+  CAN_bus_usage: bool
+  
+  # MQTT Configuration  
+  mqttadresse: str?
+  mqttport: int(1,65535)?
+  mqttuser: str?
+  mqttpass: password?
+  
+  # SSL Configuration
   ssl: bool?
   certfile: str?
   keyfile: str?
+
+# Configuration des groupes visuels
+panel_config:
+  - name: "JK-BMS Configuration"
+    description: "Settings for JK-BMS communication and management"
+    fields:
+      - jkbms_path
+      - jkbms_count
+      - use_gateway
+      - gateway_ip
+      - gateway_port
+      - communication_debug
+      - bms_broadcasting
+      - CAN_bus_usage
+  - name: "MQTT Configuration"
+    description: "Settings for MQTT broker connection"
+    fields:
+      - mqttadresse
+      - mqttport
+      - mqttuser
+      - mqttpass
+  - name: "SSL Configuration"
+    description: "Settings for secure connections"
+    fields:
+      - ssl
+      - certfile
+      - keyfile

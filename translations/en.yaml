@@ -1,0 +1,64 @@
+---
+configuration:
+  # JK-BMS Configuration Section
+  jkbms_path:
+    name: "🟨 JK-BMS → Serial Port Path"
+    description: "Path to the serial port where the JK-BMS is connected (Menu: Settings-Hardware-All Hardware)."
+    
+  jkbms_count:
+    name: "🟨 JK-BMS → Number of BMS Modules"
+    description: "Number of JK-BMS modules to interrogate. They must be connected to the RS485 bus (value: 1 to 15)."
+    
+  use_gateway:
+    name: "🟨 JK-BMS → Use TCP Gateway"
+    description: "Enable communication via an IP gateway (TCP Gateway) instead of the local serial port."
+    
+  gateway_ip:
+    name: "🟨 JK-BMS → Gateway IP Address"
+    description: "IP address of the network gateway to access the JK-BMS remotely (e.g., 192.168.1.100)."
+    
+  gateway_port:
+    name: "🟨 JK-BMS → Gateway Port"
+    description: "TCP port of the network gateway (default: 5000)."
+    
+  communication_debug:
+    name: "🟨 JK-BMS → Communication Debug"
+    description: "Enable detailed communication logs display (for diagnostics or support)."
+    
+  bms_broadcasting:
+    name: "🟨 JK-BMS → BMS Broadcasting"
+    description: "In this mode, the BMS publishes aggregated data on its own. It must be Master (switch to 0000)."
+    
+  CAN_bus_usage:
+    name: "🟨 JK-BMS → CAN Bus Usage"
+    description: "Enable communication and data transmission on the CAN bus (if physically connected)."
+
+  # MQTT Configuration Section
+  mqttadresse:
+    name: "🚩 MQTT → Broker Address"
+    description: "Address of the MQTT broker (e.g., core-mosquitto.local.hass.io or local IP)."
+    
+  mqttport:
+    name: "🚩 MQTT → Port"
+    description: "Port of the MQTT broker (default 1883 for unsecured MQTT, 8883 for SSL)."
+    
+  mqttuser:
+    name: "🚩 MQTT → Username"
+    description: "Username used to connect to the MQTT broker."
+    
+  mqttpass:
+    name: "🚩 MQTT → Password"
+    description: "Password associated with the MQTT user."
+
+  # SSL Configuration Section
+  ssl:
+    name: "🔒 SSL → Enable SSL"
+    description: "Enable secure connection (SSL/TLS) for access to the add-on's web interface."
+    
+  certfile:
+    name: "🔒 SSL → Certificate File"
+    description: "Name of the SSL certificate file (placed in the /ssl folder). Example: fullchain.pem."
+    
+  keyfile:
+    name: "🔒 SSL → Private Key File"
+    description: "Name of the SSL private key file (placed in the /ssl folder). Example: privkey.pem."

@@ -1,3 +1,15 @@
+## 3.0.13
+
+## ⚡️ Enhancements
+
+Add help to each configuration field. 
+At the top of each configuration field, there's now an explanation of the purpose of this parameter
+
+## 🐞 Bug fixes
+No longer calls the TCP/IP gateway if the parameter is set to "false"
+
+
+
 ## 3.0.12
 
 ## ⚡️ Enhancements
