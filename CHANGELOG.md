@@ -28,6 +28,16 @@ As the format has changed. You will then need to fill it in again ‼️ ‼️
 **Please** also, click on the **"Reset to default"** button on the configuration menu. This will clean up the configuration file and you will be able to define it again with your settings
 
 **Screenshots**:
+<img width="289" height="642" alt="1 (5)" src="https://github.com/user-attachments/assets/9a34eb2e-ca5f-41fb-87ad-e25c1d992b5f" />
+<img width="290" height="643" alt="1 (4)" src="https://github.com/user-attachments/assets/5174d523-1d67-4446-8604-639811afff35" />
+<img width="290" height="641" alt="1 (3)" src="https://github.com/user-attachments/assets/6324eced-a71d-4d81-b1f9-eae1ea71de05" />
+<img width="293" height="641" alt="1 (2)" src="https://github.com/user-attachments/assets/34e4c9de-5366-4aa8-8b24-dc818b1e1c94" />
+<img width="289" height="645" alt="1 (1)" src="https://github.com/user-attachments/assets/9017b879-be8d-484f-8373-5013c5c93b8c" />
+
+** File to be modified to add/remove HAOS entities for external export**:
+
+<img width="699" height="623" alt="1 (6)" src="https://github.com/user-attachments/assets/21ef7595-126e-4a92-9558-2a7b73e19666" />
+
 
 
 ## 3.0.13
