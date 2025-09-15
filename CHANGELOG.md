@@ -29,17 +29,6 @@ As the format has changed. You will then need to fill it in again ‼️ ‼️
 
 **Screenshots**:
 
-<img width="290" height="643" alt="1 (4)" src="https://github.com/user-attachments/assets/77c56a66-80ce-4c62-bbba-f5a6f64d488a" />
-<img width="289" height="642" alt="1 (5)" src="https://github.com/user-attachments/assets/fecfd7ef-b727-41c2-9c23-be91df9fdeb6" />
-
-<img width="293" height="641" alt="1 (2)" src="https://github.com/user-attachments/assets/22015f8e-a66a-47e6-9e08-00bb75b5e966" />
-<img width="290" height="641" alt="1 (3)" src="https://github.com/user-attachments/assets/e7c05ac5-a0c5-4766-becb-739858f8a870" />
-<img width="290" height="643" alt="1 (4)" src="https://github.com/user-attachments/assets/f8560552-4e7c-4618-a45c-25246d4b15cb" />
-
-**Example of Home Assistant entities exported to the outside world:**
-
-<img width="699" height="623" alt="2025-09-15_14h09_21" src="https://github.com/user-attachments/assets/fd03b04a-14f9-42b5-9766-bebf0cff98d0" />
-
 
 ## 3.0.13
 
