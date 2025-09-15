@@ -38,7 +38,9 @@ As the format has changed. You will then need to fill it in again ‼️ ‼️
 
 <img width="699" height="623" alt="1 (6)" src="https://github.com/user-attachments/assets/21ef7595-126e-4a92-9558-2a7b73e19666" />
 
+## Mémory & CPU
 
+I've streamlined the code and installation. Installation is faster and the module less memory-hungry.
 
 ## 3.0.13
 
