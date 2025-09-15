@@ -15,13 +15,13 @@ There's no need to install anything else at home, such as VPNs, proxies or perso
 ## To select the entities you wish to export
 use the "File editor" addon to modify the `configentities_list.json` file
 
-You can read the `HiveMQ-Access.md` on the Github https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/HiveMQ-Access.md
+You can read the documentation which explains how to define an access Cloud `HiveMQ-Access.md` on the Github [https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/HiveMQ-Access.md](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/HiveMQ-Access.md)
 
-You can watch the video explanation on my channel Youtbe: @domosimple
+You can watch the video explanation on my channel [Youtbe: @domosimple](https://www.youtube.com/@domosimple)
 
 ## Translations
 
-Field descriptions in the module configuration automatically take into account the English or French language 😃
+Fields descriptions in the module configuration automatically take into account the English or French language 😃
 
 ## ⚠️ Please, Save your module settings
 As the format has changed. You will then need to fill it in again ‼️ ‼️
