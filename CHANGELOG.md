@@ -10,7 +10,7 @@ As a result, this data can be accessed anywhere in the world and on any device t
 
 For example, on your phone, the ["IoT MQTT Panel"](https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod&hl=en-US) application lets you connect to the Cloud Broker and display the JK-BMS values on your phone in a dashboard defined by you or downloaded from my Ko-Fi.
 
-There's no need to install anything else at home, such as VPNs, proxies or personal plug&play networks like Zerotier or Tailscale.
+There's no need to install anything else at home, such as VPNs, proxies (Nginx) or personal plug&play networks like Zerotier or Tailscale.
 
 ## To select the entities you wish to export
 use the "File editor" addon to modify the `configentities_list.json` file
