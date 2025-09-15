@@ -8,7 +8,7 @@ Enable secure, encrypted transmission of user-defined JK-BMS entities to a cloud
 
 As a result, this data can be accessed anywhere in the world and on any device that has an MQTT client installed.
 
-For example, on your phone, the "IoT MQTT Panel" application lets you connect to the Cloud Broker and display the JK-BMS values on your phone in a dashboard defined by you or downloaded from my Ko-Fi.
+For example, on your phone, the ["IoT MQTT Panel"](https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod&hl=en-US) application lets you connect to the Cloud Broker and display the JK-BMS values on your phone in a dashboard defined by you or downloaded from my Ko-Fi.
 
 There's no need to install anything else at home, such as VPNs, proxies or personal plug&play networks like Zerotier or Tailscale.
 
