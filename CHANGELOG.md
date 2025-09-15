@@ -27,6 +27,16 @@ As the format has changed. You will then need to fill it in again ‼️ ‼️
 
 **Please** also, click on the **"Reset to default"** button on the configuration menu. This will clean up the configuration file and you will be able to define it again with your settings
 
+**Screenshots**:
+
+<img width="290" height="643" alt="1 (4)" src="https://github.com/user-attachments/assets/77c56a66-80ce-4c62-bbba-f5a6f64d488a" />
+<img width="289" height="642" alt="1 (5)" src="https://github.com/user-attachments/assets/fecfd7ef-b727-41c2-9c23-be91df9fdeb6" />
+
+<img width="293" height="641" alt="1 (2)" src="https://github.com/user-attachments/assets/22015f8e-a66a-47e6-9e08-00bb75b5e966" />
+<img width="290" height="641" alt="1 (3)" src="https://github.com/user-attachments/assets/e7c05ac5-a0c5-4766-becb-739858f8a870" />
+<img width="290" height="643" alt="1 (4)" src="https://github.com/user-attachments/assets/f8560552-4e7c-4618-a45c-25246d4b15cb" />
+
+
 ## 3.0.13
 
 ## ⚡️ Enhancements
