@@ -36,6 +36,10 @@ As the format has changed. You will then need to fill it in again ‼️ ‼️
 <img width="290" height="641" alt="1 (3)" src="https://github.com/user-attachments/assets/e7c05ac5-a0c5-4766-becb-739858f8a870" />
 <img width="290" height="643" alt="1 (4)" src="https://github.com/user-attachments/assets/f8560552-4e7c-4618-a45c-25246d4b15cb" />
 
+**Example of Home Assistant entities exported to the outside world:**
+
+<img width="699" height="623" alt="2025-09-15_14h09_21" src="https://github.com/user-attachments/assets/fd03b04a-14f9-42b5-9766-bebf0cff98d0" />
+
 
 ## 3.0.13
 
