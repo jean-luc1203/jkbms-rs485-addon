@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.0.13
+version: 3.1
 slug: "smartphoton_jkbms"
 description: Management via RS485 & CAN bus. Also with an Ip Gateway
 url: https://domosimple.eu/forum/thread-917.html
@@ -39,68 +39,41 @@ options:
   jkbms_path: "/dev/serial/by-id/usb-xxxx_USB_Serial-abcdefghij"
   jkbms_count: 1
   use_gateway: false
-  gateway_ip: "192.168.1.100"
-  gateway_port: 5000
+  gateway_ip_port: "192.168.1.100:5000"
   communication_debug: false
   bms_broadcasting: false
   CAN_bus_usage: false
-  
+
   # MQTT Configuration
-  mqttadresse: "core-mosquitto.local.hass.io"
-  mqttport: 1883
+  mqttadresse_port: "core-mosquitto.local.hass.io:1883"
   mqttuser: "username"
   mqttpass: "password"
-  
-  # SSL Configuration
-  ssl: false
-  certfile: "fullchain.pem"
-  keyfile: "privkey.pem"
+
+  # Cloud MQTT Broker Configuration
+  cloud_broker: false
+  cloud_broker_adress_port: "bca204074b374abvcdefbae5b858.s1.eu.hivemq.cloud:8883"
+  cloud_broker_user: "username"
+  cloud_broker_pass: "password"
+  cloud_HA_long_term_access_tokens: "abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 schema:
   # JK-BMS Configuration
   jkbms_path: str
   jkbms_count: int(1,10)?
   use_gateway: bool
-  gateway_ip: str?
-  gateway_port: int(1,65535)?
+  gateway_ip_port: str?
   communication_debug: bool
   bms_broadcasting: bool
   CAN_bus_usage: bool
-  
-  # MQTT Configuration  
-  mqttadresse: str?
-  mqttport: int(1,65535)?
+
+  # MQTT Configuration
+  mqttadresse_port: str?
   mqttuser: str?
   mqttpass: password?
-  
-  # SSL Configuration
-  ssl: bool?
-  certfile: str?
-  keyfile: str?
 
-# Configuration des groupes visuels
-panel_config:
-  - name: "JK-BMS Configuration"
-    description: "Settings for JK-BMS communication and management"
-    fields:
-      - jkbms_path
-      - jkbms_count
-      - use_gateway
-      - gateway_ip
-      - gateway_port
-      - communication_debug
-      - bms_broadcasting
-      - CAN_bus_usage
-  - name: "MQTT Configuration"
-    description: "Settings for MQTT broker connection"
-    fields:
-      - mqttadresse
-      - mqttport
-      - mqttuser
-      - mqttpass
-  - name: "SSL Configuration"
-    description: "Settings for secure connections"
-    fields:
-      - ssl
-      - certfile
-      - keyfile
+  # Cloud MQTT Broker Configuration
+  cloud_broker: bool?
+  cloud_broker_adress_port: str?
+  cloud_broker_user: str?
+  cloud_broker_pass: password?
+  cloud_HA_long_term_access_tokens: str?

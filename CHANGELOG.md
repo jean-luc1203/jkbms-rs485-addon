@@ -1,8 +1,38 @@
+## 3.1
+
+## ⚡️ Enhancements
+
+##           🌟  Cloud MQTT Broker support  🌟
+
+Enable secure, encrypted transmission of user-defined JK-BMS entities to a cloud broker such as HiveMQTT.
+
+As a result, this data can be accessed anywhere in the world and on any device that has an MQTT client installed.
+
+For example, on your phone, the "IoT MQTT Panel" application lets you connect to the Cloud Broker and display the JK-BMS values on your phone in a dashboard defined by you or downloaded from my Ko-Fi.
+
+There's no need to install anything else at home, such as VPNs, proxies or personal plug&play networks like Zerotier or Tailscale.
+
+## To select the entities you wish to export
+use the "File editor" addon to modify the `configentities_list.json` file
+
+You can read the `HiveMQ-Access.md` on the Github https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/HiveMQ-Access.md
+
+You can watch the video explanation on my channel Youtbe: @domosimple
+
+## Translations
+
+Field descriptions in the module configuration automatically take into account the English or French language 😃
+
+## ⚠️ Please, Save your module settings
+As the format has changed. You will then need to fill it in again ‼️ ‼️
+
+**Please** also, click on the **"Reset to default"** button on the configuration menu. This will clean up the configuration file and you will be able to define it again with your settings
+
 ## 3.0.13
 
 ## ⚡️ Enhancements
 
-Add help to each configuration field. 
+Add help to each configuration field.
 At the top of each configuration field, there's now an explanation of the purpose of this parameter
 
  🐞 Bug fixes
@@ -71,13 +101,13 @@ To check that communication with the BMS is working properly, a log is created i
 
 ## ⚡️ Enhancements
 
-- Code change for "static" & "setup" frames. 
+- Code change for "static" & "setup" frames.
 Auto-discovery sent once on module start-up.
 
 Then only the data is sent.
 This loads the MQTT broker 10x less. The acquisition time is now set at 4 seconds for 2 BMS.
 
-- Add new topic named **BMS_1/cell_voltage_min_number** which gives the voltage of the lowest cell in the pack 
+- Add new topic named **BMS_1/cell_voltage_min_number** which gives the voltage of the lowest cell in the pack
 
 
 

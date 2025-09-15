@@ -4,7 +4,6 @@ FROM ${BUILD_FROM}
 
 # Copy Node-RED package.json
 COPY package.json /opt/
-COPY node-red-dashboard-show-dashboard.patch /tmp/
 
 # Set workdir
 WORKDIR /opt
@@ -55,8 +54,8 @@ RUN \
     \
     && echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
     \
-    && patch -d /opt/node_modules/node-red-dashboard -p1 \
-             -i /tmp/node-red-dashboard-show-dashboard.patch \
+#    && patch -d /opt/node_modules/node-red-dashboard -p1 \
+#             -i /tmp/node-red-dashboard-show-dashboard.patch \
     \
     && apk del --no-cache --purge .build-dependencies \
     && rm -fr \
@@ -74,6 +73,9 @@ RUN chmod +x \
     /etc/s6-overlay/s6-rc.d/init-customizations/run \
     /etc/s6-overlay/s6-rc.d/init-customizations/up \
     /etc/s6-overlay/s6-rc.d/init-customizations/type
+
+# This is for MQTT Cloud usage
+COPY configentities_list.json /opt/configentities_list.json
 
 # Health check
 HEALTHCHECK --start-period=10m \
