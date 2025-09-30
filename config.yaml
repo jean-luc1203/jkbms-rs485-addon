@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.1
+version: 3.1.1
 slug: "smartphoton_jkbms"
 description: Management via RS485 & CAN bus. Also with an Ip Gateway
 url: https://domosimple.eu/forum/thread-917.html

@@ -1,3 +1,11 @@
+## 3.1.1
+
+ 🐞 Bug fixes
+
+Changed base image amd64 home assistant addon from 'stable' to '18.1.0'.
+due to a change in the 'stable' image
+
+
 ## 3.1
 
 ## ⚡️ Enhancements
