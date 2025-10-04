@@ -788,12 +788,14 @@
             "24b002ddce3a8bf8",
             "9cb68cad2f001d89",
             "fae0cf06c8864182",
-            "b372af83215826ef"
+            "b372af83215826ef",
+            "eb9e89e0f3dcde59",
+            "0de1c229949a97c9"
         ],
         "x": 14,
-        "y": 419,
+        "y": 379,
         "w": 1012,
-        "h": 182
+        "h": 222
     },
     {
         "id": "4c6743f249067968",
@@ -3429,7 +3431,7 @@
         "z": "ce01fabde0618f55",
         "g": "c06c156ddb36634e",
         "name": "Trame \"setup\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nconst discoveryKey = `discoverySent_SETUP_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nconst customBounds = {\n    max_charge_current_A: { min: 0, max: 200, step: 1, unit: \"A\" },\n    max_discharge_current_S: { min: 0, max: 200, step: 1, unit: \"A\" },\n    max_balance_current_A: { min: 0, max: 5, step: 0.01, unit: \"A\" },\n    total_battery_capacity_Ah: { min: 0, max: 500, step: 1, unit: \"Ah\" },\n    short_circuit_protection_delay_S: { min: 0, max: 3600, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_delay_S: { min: 0, max: 300, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_delay_S: { min: 0, max: 300, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_recovery_time_S: { min: 0, max: 3600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_recovery_time_S: { min: 0, max: 3600, step: 1, unit: \"s\" },\n    short_circuit_protection_recovery_time_S: { min: 0, max: 300, step: 1, unit: \"s\" },\n    smart_sleep_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_protection_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_recovery_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_overvoltage_protection_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_overvoltage_recovery_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    balance_trigger_voltage_V: { min: 0, max: 5, step: 0.001, unit: \"V\" },\n    cell_soc100_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_soc0_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_charge_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_float_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    power_off_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    balance_starting_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    charge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_recovery_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    cell_count_N: { min: 1, max: 32, step: 1, unit: \"\" },\n    Connexion_wire_resistance_1_R: { min: 0, max: 1000, step: 0.1, unit: \"mΩ\" },\n    Device_address_N: { min: 1, max: 247, step: 1, unit: \"\" }\n};\n\n// ------------------------------------------------------------------\n// Fonctions utilitaires\nfunction formatBoolean(val) {\n    if (typeof val === 'boolean') return val ? 'True' : 'False';\n    const v = String(val).toLowerCase();\n    return v === 'true' ? 'True' : v === 'false' ? 'False' : val;\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const entityType = key.endsWith(\"_B\") ? \"switch\" : \"number\";\n\n        let cfg = {\n            name: key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \"),\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: `${baseTopic}/control/${cleanKey}/state`,\n            command_topic: `${baseTopic}/control/${cleanKey}/set`,\n            entity_category: \"config\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"Setup BMS\",\n                sw_version: \"3.0.1\"\n            }\n        };\n\n        if (entityType === \"number\") {\n            cfg.mode = \"box\";\n            const bounds = customBounds[key];\n            if (bounds) {\n                cfg.min = bounds.min; cfg.max = bounds.max; cfg.step = bounds.step;\n                if (bounds.unit) cfg.unit_of_measurement = bounds.unit;\n            } else {\n                // règles par défaut\n                if (key.endsWith(\"_V\")) {\n                    cfg.unit_of_measurement = \"V\"; cfg.min = 0; cfg.max = 5; cfg.step = 0.01;\n                } else if (key.endsWith(\"_A\")) {\n                    cfg.unit_of_measurement = \"A\"; cfg.min = 0; cfg.max = 400; cfg.step = 0.1;\n                } else if (key.endsWith(\"_S\")) {\n                    cfg.unit_of_measurement = \"s\"; cfg.min = 0; cfg.max = 3600; cfg.step = 1;\n                } else if (key.endsWith(\"_T\")) {\n                    cfg.unit_of_measurement = \"°C\"; cfg.min = -40; cfg.max = 150; cfg.step = 0.5;\n                } else {\n                    cfg.min = 0; cfg.max = 100; cfg.step = 1;\n                }\n            }\n        } else if (entityType === \"switch\") {\n            cfg.payload_on = \"True\"; cfg.payload_off = \"False\";\n            cfg.state_on = \"True\"; cfg.state_off = \"False\";\n        }\n\n        msgs.push({\n            topic: `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`,\n            payload: JSON.stringify(cfg),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/control/${cleanKey}/state`,\n            payload: formatBoolean(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\n// Marquer comme traité si c’est la première fois\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n}\n\nreturn [discoveryMsgs.concat(stateMsgs)];",
+        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nconst discoveryKey = `discoverySent_SETUP_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nconst customBounds = {\n    max_charge_current_A: { min: 0, max: 600, step: 0.1, unit: \"A\" },\n    max_discharge_current_S: { min: 0, max: 600, step: 0.1, unit: \"A\" },\n    max_balance_current_A: { min: 0, max: 10, step: 0.1, unit: \"A\" },\n    total_battery_capacity_Ah: { min: 5, max: 2000, step: 1, unit: \"Ah\" },\n    short_circuit_protection_delay_S: { min: 0, max: 5000, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_delay_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_delay_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_recovery_time_S: { min: 2, max: 3600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_recovery_time_S: { min: 2, max: 3600, step: 1, unit: \"s\" },\n    short_circuit_protection_recovery_time_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    smart_sleep_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_protection_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_undervoltage_recovery_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_overvoltage_protection_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_overvoltage_recovery_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    balance_trigger_voltage_V: { min: 0.003, max: 1, step: 0.001, unit: \"V\" },\n    cell_soc100_voltage_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_soc0_voltage_V: { min: 1, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_request_charge_voltage_V: { min: 1.2, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_float_voltage_V: { min: 1.2, max: 5, step: 0.01, unit: \"V\" },\n    power_off_voltage_V: { min: 1.2, max: 4.5, step: 0.01, unit: \"V\" },\n    balance_starting_voltage_V: { min: 1.2, max: 4.25, step: 0.01, unit: \"V\" },\n    charge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_recovery_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_T: { min: 30, max: 100, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_recovery_T: { min: 30, max: 100, step: 0.5, unit: \"°C\" },\n    cell_count_N: { min: 1, max: 32, step: 1, unit: \"\" },\n    Connexion_wire_resistance_1_R: { min: 0, max: 1000, step: 0.1, unit: \"mΩ\" },\n    Device_address_N: { min: 1, max: 247, step: 1, unit: \"\" }\n};\n\n// ------------------------------------------------------------------\n// Fonctions utilitaires\nfunction formatBoolean(val) {\n    if (typeof val === 'boolean') return val ? 'True' : 'False';\n    const v = String(val).toLowerCase();\n    return v === 'true' ? 'True' : v === 'false' ? 'False' : val;\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const entityType = key.endsWith(\"_B\") ? \"switch\" : \"number\";\n\n        let cfg = {\n            name: key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \"),\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: `${baseTopic}/control/${cleanKey}/state`,\n            command_topic: `${baseTopic}/control/${cleanKey}/set`,\n            entity_category: \"config\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"Setup BMS\",\n                sw_version: \"3.0.1\"\n            }\n        };\n\n        if (entityType === \"number\") {\n            cfg.mode = \"box\";\n            const bounds = customBounds[key];\n            if (bounds) {\n                cfg.min = bounds.min; cfg.max = bounds.max; cfg.step = bounds.step;\n                if (bounds.unit) cfg.unit_of_measurement = bounds.unit;\n            } else {\n                // règles par défaut\n                if (key.endsWith(\"_V\")) {\n                    cfg.unit_of_measurement = \"V\"; cfg.min = 0; cfg.max = 5; cfg.step = 0.01;\n                } else if (key.endsWith(\"_A\")) {\n                    cfg.unit_of_measurement = \"A\"; cfg.min = 0; cfg.max = 400; cfg.step = 0.1;\n                } else if (key.endsWith(\"_S\")) {\n                    cfg.unit_of_measurement = \"s\"; cfg.min = 0; cfg.max = 3600; cfg.step = 1;\n                } else if (key.endsWith(\"_T\")) {\n                    cfg.unit_of_measurement = \"°C\"; cfg.min = -40; cfg.max = 150; cfg.step = 0.5;\n                } else {\n                    cfg.min = 0; cfg.max = 100; cfg.step = 1;\n                }\n            }\n        } else if (entityType === \"switch\") {\n            cfg.payload_on = \"True\"; cfg.payload_off = \"False\";\n            cfg.state_on = \"True\"; cfg.state_off = \"False\";\n        }\n\n        msgs.push({\n            topic: `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`,\n            payload: JSON.stringify(cfg),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/control/${cleanKey}/state`,\n            payload: formatBoolean(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\n// Marquer comme traité si c’est la première fois\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n}\n\nreturn [discoveryMsgs.concat(stateMsgs)];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -10814,7 +10816,7 @@
         "z": "a1c7ea549b32dfc9",
         "g": "c2c511b3522ee8b0",
         "name": "debug 8",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -10883,7 +10885,8 @@
         "y": 180,
         "wires": [
             [
-                "8c259c144bc281fb"
+                "8c259c144bc281fb",
+                "f8c85e619c304aa7"
             ]
         ]
     },
@@ -11108,7 +11111,7 @@
         "z": "a1c7ea549b32dfc9",
         "g": "6d8a2197f9b79fe1",
         "name": "debug 21",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -11201,7 +11204,8 @@
         "y": 460,
         "wires": [
             [
-                "7300a1fc5fc21865"
+                "7300a1fc5fc21865",
+                "0de1c229949a97c9"
             ]
         ]
     },
@@ -11670,8 +11674,8 @@
         "y": 180,
         "wires": [
             [
-                "e9140fbdd804c122",
-                "fc6a7dbdb2978cae"
+                "fc6a7dbdb2978cae",
+                "e9140fbdd804c122"
             ]
         ]
     },
@@ -11751,6 +11755,7 @@
         "id": "b372af83215826ef",
         "type": "mqtt out",
         "z": "a1c7ea549b32dfc9",
+        "d": true,
         "g": "6d8a2197f9b79fe1",
         "name": "Cloud MQTT Broker",
         "topic": "",
@@ -11764,6 +11769,54 @@
         "broker": "79bd9f312e074d8e",
         "x": 600,
         "y": 520,
+        "wires": []
+    },
+    {
+        "id": "eb9e89e0f3dcde59",
+        "type": "inject",
+        "z": "a1c7ea549b32dfc9",
+        "g": "6d8a2197f9b79fe1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 470,
+        "y": 420,
+        "wires": [
+            [
+                "24b002ddce3a8bf8"
+            ]
+        ]
+    },
+    {
+        "id": "0de1c229949a97c9",
+        "type": "debug",
+        "z": "a1c7ea549b32dfc9",
+        "g": "6d8a2197f9b79fe1",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 420,
         "wires": []
     }
 ]

@@ -1,3 +1,17 @@
+## 3.1.2
+
+ 🐞 Bug fixes --> Incorrect min / max ranges for MQTT number entities
+
+[Issue #29](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/29)
+
+All Home Assistant entities now have appropriate scales.
+
+###  📌 For this to be taken into account !!!
+it is **essential to Delete the MQTT device** `BMS_1, BMS_2, BMS_3, etc.`
+
+So that the entities can be recreated with the correct value scales 
+
+
 ## 3.1.1
 
  🐞 Bug fixes
