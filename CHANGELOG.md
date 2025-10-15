@@ -9,6 +9,9 @@ The MQTT Cloud synchronization part has been removed. It is now part of an addit
 ## ⚡️ Enhancements
  
 - Addition of 2 sensors controlling the LCD buzzer
+- 
+<img width="670" height="129" alt="LCD-Buzzer" src="https://github.com/user-attachments/assets/f6fabab5-843c-4db6-86ec-96954081ed07" />
+
 - Display the Module Addon Version number into the log at startup
  
 ## 🐞 Bug fixes
