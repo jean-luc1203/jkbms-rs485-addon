@@ -1000,7 +1000,7 @@
         "id": "6e1abcbcc6ebb714",
         "type": "serial-port",
         "name": "JKBMS-RS485-Fake",
-        "serialport": "/dev/JKBMS-Fake",
+        "serialport": "/dev/JKBMS",
         "serialbaud": "115200",
         "databits": 8,
         "parity": "none",

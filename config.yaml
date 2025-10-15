@@ -1,14 +1,14 @@
 ---
 name: "JK-BMS wired management"
-version: 3.1.2
+version: 3.1.8
 slug: "smartphoton_jkbms"
-description: Management via RS485 & CAN bus. Also with an Ip Gateway
+description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://domosimple.eu/forum/thread-917.html
 ingress: false
 ingress_stream: false
 panel_icon: mdi:sitemap
 init: false
-homeassistant: 2025.3.0
+homeassistant: 2025.10.1
 arch:
   - aarch64
   - amd64
@@ -32,7 +32,6 @@ map:
   - config:rw
   - media:rw
   - share:rw
-  - ssl
 
 options:
   # JK-BMS Configuration
@@ -49,13 +48,6 @@ options:
   mqttuser: "username"
   mqttpass: "password"
 
-  # Cloud MQTT Broker Configuration
-  cloud_broker: false
-  cloud_broker_adress_port: "bca204074b374abvcdefbae5b858.s1.eu.hivemq.cloud:8883"
-  cloud_broker_user: "username"
-  cloud_broker_pass: "password"
-  cloud_HA_long_term_access_tokens: "abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
 schema:
   # JK-BMS Configuration
   jkbms_path: str
@@ -71,9 +63,3 @@ schema:
   mqttuser: str?
   mqttpass: password?
 
-  # Cloud MQTT Broker Configuration
-  cloud_broker: bool?
-  cloud_broker_adress_port: str?
-  cloud_broker_user: str?
-  cloud_broker_pass: password?
-  cloud_HA_long_term_access_tokens: str?

@@ -41,24 +41,3 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Password"
     description: "Password associated with the MQTT user."
-
-  # Cloud MQTT Broker Configuration Section
-  cloud_broker:
-    name: "✴️ Cloud MQTT → Enable MQTT Cloud"
-    description: "Enable secure Cloud connection (TLS) for access (e.g. HiveMQ Cloud broker)."
-
-  cloud_broker_adress_port: 
-    name: "✴️ Cloud MQTT → Broker Address + Port"
-    description: "MQTT Cloud broker address + port (e.g. bca204074b374abvcdefbae5b858.s1.eu.hivemq.cloud:8883)."
-    
-  cloud_broker_user:
-    name: "✴️ Cloud MQTT → Username"
-    description: "Username to connect to the MQTT Cloud broker."
-    
-  cloud_broker_pass:
-    name: "✴️ Cloud MQTT → Password"
-    description: "Password associated with the MQTT Cloud user."
-
-  cloud_HA_long_term_access_tokens:
-    name: "✴️ HA Long-term Access Token"
-    description: "Persistent token created in the <HA-User-Security> menu. Allows the addon to communicate with the HA API."

@@ -1,3 +1,23 @@
+## 3.1.8
+
+## ⚡️ Important change
+
+The MQTT Cloud synchronization part has been removed. It is now part of an additional module called: [HAOS Encrypted MQTT Cloud Topic Synchronizer](https://github.com/jean-luc1203/HomeAssistant-MQTT-Cloud-2way-Synchronizer)
+
+⚠️ Please save your module configuration in a notepad. Then press “Reset to defaults” to clear the configuration file. Next, fill in the module configuration fields again and restart the module
+
+## ⚡️ Enhancements
+ 
+- Addition of 2 sensors controlling the LCD buzzer
+- Display the Module Addon Version number into the log at startup
+ 
+## 🐞 Bug fixes
+  
+- Various bugs have been corrected in the TCP/IP Gateway section
+- No more attempts to connect to Cloud Broker
+
+##  ____________________________________________________________________
+ 
 ## 3.1.2
 
  🐞 Bug fixes --> Incorrect min / max ranges for MQTT number entities

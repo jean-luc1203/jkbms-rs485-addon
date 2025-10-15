@@ -19,18 +19,11 @@ if ! bashio::fs.directory_exists '/config/smartphoton_jkbms/'; then
     sed -i "s/%%ID%%/${id}/" "/config/smartphoton_jkbms/flows.json"
 fi
 
-# Copier le fichier configentities_list.json s'il n'existe pas déjà 
-# Il est utilisé pour le MQTT Cloud
-if ! bashio::fs.file_exists '/config/smartphoton_jkbms/configentities_list.json'; then
-    cp /opt/configentities_list.json /config/configentities_list.json \
-        || bashio::exit.nok "Failed to copy configentities_list.json"
-    bashio::log.info "configentities_list.json copied to /config/"
-fi
-
 # Vérification de version
 if ! bashio::fs.file_exists '/config/smartphoton_jkbms/version'; then
     touch /config/smartphoton_jkbms/version
     VERSION=$(bashio::addon.version)
+    bashio::log.info "Module Addon Version number: ${VERSION}"
     echo $VERSION >> /config/smartphoton_jkbms/version
     chmod 775 /config/smartphoton_jkbms/version
     bashio::log.info "${VERSION}"
@@ -39,6 +32,7 @@ else
     VERSION=$(bashio::addon.version)
     if [ $VERSIONOLD != $VERSION ]; then
         bashio::log.info "Mise a jour de la nouvelle version"
+        bashio::log.info "Module Addon Version number: ${VERSION}"
         if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
             rm /config/smartphoton_jkbms/flows.backup
         fi
