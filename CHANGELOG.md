@@ -1,3 +1,11 @@
+## 3.1.9
+
+## 🐞 Bug fixes
+Correction of wrong T3 sensor temperature
+
+##  ____________________________________________________________________
+
+
 ## 3.1.8
 
 ## ⚡️ Important change
