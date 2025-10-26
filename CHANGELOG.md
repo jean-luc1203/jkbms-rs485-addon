@@ -2,9 +2,12 @@
 
 ## ⚡️ Enhancements
  
-- Addition of 1 sensors `sensor.bms_x_total_runtime_formatted` 
+- Addition of 1 sensors `sensor.bms_x_total_runtime_formatted`
+
 This gives the number of days-hours-seconds your JK-BMS has been running
+
 in Day-Hour-Minute format, for example:  `300D22H46M`
+
 No need to create a template in HAOS to calculate it
 
 
