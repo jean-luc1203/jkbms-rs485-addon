@@ -1,3 +1,16 @@
+## 3.1.11
+
+## ⚡️ Enhancements
+ 
+- Addition of 2 new sensors:
+  `sensor.bms_1_charge_status_text` which indicates whether the battery is in #Bulk / Absorption / Float#` mode
+   & 
+  `sensor.bms_1_charge_status_time_formatted` which indicates how long the balancing takes to reach the `balance trigger voltage 
+
+##  ____________________________________________________________________
+
+
+
 ## 3.1.10
 
 ## ⚡️ Enhancements
