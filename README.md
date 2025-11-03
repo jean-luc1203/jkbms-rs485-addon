@@ -89,8 +89,11 @@ Have a look here: [![here](https://ko-fi.com/img/githubbutton_sm.svg)](https://k
 ## 🚨 Alarm management (since 01.11.2025) 🚨
 
 The module can manage 21 alarms identified by the BMS.
-It will create 3 HAOS entities telling you that there are alarms in progress,
-How many and which ones. It also tells you on which BMS there is an alarm
+
+It will create 4 HAOS entities telling you that there are alarms in progress,
+How many and which ones. It also tells you on which BMS there is an alarm.
+Il y a aussi une entité prévue pour déclancher un automatisme basé sur un senseur binaire global. `binary_sensor.bms_global_bms_global_alarm`
+
 You can see which alarms are possible on this [*table*](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/Alarmes-description.md)
 
 ⚠️ for the moment, this is only functional in Master/Slave mode. 
