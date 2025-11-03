@@ -84,7 +84,8 @@ This is the second RJ45 connector from the left. The BMS broadcast information i
 
 You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system.
 This can save you several hours of work in formatting the data by yourself.
-Have a look [here](https://ko-fi.com/s/495acc37c7)
+Have a look here: [![here](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/495acc37c7)
+
 
 ## 🚨 Alarm management (since 01.11.2025) 🚨
 
