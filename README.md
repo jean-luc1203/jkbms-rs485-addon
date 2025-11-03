@@ -82,7 +82,7 @@ This is the second RJ45 connector from the left. The BMS broadcast information i
 
 ## <u>&ndash;&raquo; 💫 &laquo;&ndash; </u> Complementary and pre-configured Dashboard: 💫
 
-You can obtain two pre-configured dashboards that you can import into your Home Assistant home automation system.
+You can obtain **two pre-configured dashboards** that you can import into your Home Assistant home automation system.
 This can save you several hours of work in formatting the data by yourself.
 Have a look here: [![here](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/s/495acc37c7)
 
@@ -92,7 +92,7 @@ The module can manage 21 alarms identified by the BMS.
 
 It will create 4 HAOS entities telling you that there are alarms in progress,
 How many and which ones. It also tells you on which BMS there is an alarm.
-Il y a aussi une entité prévue pour déclancher un automatisme basé sur un senseur binaire global. `binary_sensor.bms_global_bms_global_alarm`
+There is also an entity designed to trigger an automatic system based on a global binary senso: `binary_sensor.bms_global_bms_global_alarm`
 
 You can see which alarms are possible on this [*table*](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/Alarmes-description.md)
 
