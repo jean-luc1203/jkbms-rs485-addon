@@ -86,6 +86,15 @@ You can obtain two pre-configured dashboards that you can import into your Home 
 This can save you several hours of work in formatting the data by yourself.
 Have a look [here](https://ko-fi.com/s/495acc37c7)
 
+## Alarm management (since 01.11.2025)
+
+The module can manage 21 alarms identified by the BMS.
+It will create 3 HAOS entities telling you that there are alarms in progress,
+How many and which ones. It also tells you on which BMS there is an alarm
+You can see which alarms are possible on this table
+
+(for the moment, this is only functional in Master/Slave mode)
+
 ## Installation
 
 ### Via the add-on shop
