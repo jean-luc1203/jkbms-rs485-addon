@@ -215,6 +215,27 @@ I used this type of adapter:
 ![USB Material select](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Cable-JKBMS-to-CANdo-adapteur.jpg)
 
 
+# Alarmes
+
+This module can warn you in the event of faults announced by the BMS
+These alarms are:
+
+    -Charge Overtemperature
+    -Charge Undertemperature
+    -Coprocessor communication error
+    -Cell Undervoltage
+    -Battery pack undervoltage
+    -Discharge overcurrent
+    -Discharge short circuit
+    -Discharge overtemperature
+    -Wire resistance
+    -Mosfet overtemperature
+    -Cell count is not equal to settings
+    -Current sensor anomaly
+    -Cell Overvoltage
+    -Battery pack overvoltage
+    -Charge overcurrent protection
+    -Charge short circuit
 ---
 ## Other options
 ---
