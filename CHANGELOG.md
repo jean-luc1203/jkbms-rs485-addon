@@ -17,13 +17,20 @@ These 2 sensors indicate on which BMS there is an alarm and the wording of these
 
 A global sensor:
 
-- ❶ `binary_sensor.bms_global_bms_global_alarm`
+- ❸ `binary_sensor.bms_global_bms_global_alarm`
 This is a binary sensor that enables simple automation in the event of an alarm on any BMS.
 
 It was a big, long job, but I think it was worth it.
 You tell me.
 
-You can see a short live demonstration on my Youtube channel
+You can see a short live demonstration on my Youtube [channel](https://www.youtube.com/@domosimple)
+- --
+<img width="840" height="292" alt="image" src="https://github.com/user-attachments/assets/4e4a3295-2b64-49cb-b257-d17ff279e21c" />
+
+<img width="530" height="251" alt="image" src="https://github.com/user-attachments/assets/7ba844ae-7c5f-45da-8ffa-226c2b3179d5" />
+
+<img width="1105" height="612" alt="image" src="https://github.com/user-attachments/assets/8bf939d9-82d5-4b9f-ba96-22db16404a02" />
+
 
 ##  ____________________________________________________________________
 
