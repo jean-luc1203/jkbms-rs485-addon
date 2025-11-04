@@ -260,6 +260,15 @@ These alarms are:
 | \-                      | Temperature sensor anomaly                       | Anomalie du capteur de température                       | \-                   | \-      |
 | \-                      | Parallel module anomaly                          | Anomalie du module en parallèle                          | \-                   | \-      |
 
+## Screenshots:
+
+You can see a short live demonstration on my Youtube [channel](https://www.youtube.com/@domosimple)
+- --
+<img width="840" height="292" alt="image" src="https://github.com/user-attachments/assets/4e4a3295-2b64-49cb-b257-d17ff279e21c" />
+
+<img width="530" height="251" alt="image" src="https://github.com/user-attachments/assets/7ba844ae-7c5f-45da-8ffa-226c2b3179d5" />
+
+<img width="1105" height="612" alt="image" src="https://github.com/user-attachments/assets/8bf939d9-82d5-4b9f-ba96-22db16404a02" />
 ---
 ## Other options
 ---
