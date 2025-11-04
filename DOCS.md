@@ -218,24 +218,48 @@ I used this type of adapter:
 # Alarmes
 
 This module can warn you in the event of faults announced by the BMS
+The module will create sensors automatically in HAOS.
+These are:
+
+- ❶ `binary_sensor.bms_x_bms_alarm_active`
+- ❷ `sensor.bms_1_bms_1_alarm_list`
+
+These 2 sensors indicate on which BMS there is an alarm and the wording of these alarms. If there is more than one, they are separated by a comma.
+
+A global sensor:
+
+- ❶ `binary_sensor.bms_global_bms_global_alarm`
+This is a binary sensor that enables simple automation in the event of an alarm on any BMS.
+
 These alarms are:
 
-    -Charge Overtemperature
-    -Charge Undertemperature
-    -Coprocessor communication error
-    -Cell Undervoltage
-    -Battery pack undervoltage
-    -Discharge overcurrent
-    -Discharge short circuit
-    -Discharge overtemperature
-    -Wire resistance
-    -Mosfet overtemperature
-    -Cell count is not equal to settings
-    -Current sensor anomaly
-    -Cell Overvoltage
-    -Battery pack overvoltage
-    -Charge overcurrent protection
-    -Charge short circuit
+| **Bit name**            | **English description**                          | **Description française**                                | **0 : Normal**       | **BIT** |
+| ----------------------- | ------------------------------------------------ | -------------------------------------------------------- | -------------------- | ------- |
+| AlarmWireRes            | Balancing resistance too high                    | Résistance d’équilibrage trop élevée                     | 1: fault ; 0: normal | 0       |
+| AlarmMosOTP             | MOS over-temperature protection                  | Protection contre la surchauffe du MOS                   | 1: fault ; 0: normal | 1       |
+| AlarmCellQuantity       | Number of cells does not match parameter         | Nombre de cellules non conforme au paramètre             | 1: fault ; 0: normal | 2       |
+| AlarmCurSensorErr       | Abnormal current sensor                          | Capteur de courant anormal                               | 1: fault ; 0: normal | 3       |
+| AlarmCellOVP            | Cell over-voltage protection                     | Protection surtension cellule                            | 1: fault ; 0: normal | 4       |
+| AlarmBatOVP             | Battery over-voltage protection                  | Protection surtension batterie                           | 1: fault ; 0: normal | 5       |
+| AlarmChOCP              | Overcurrent charge protection                    | Protection surintensité en charge                        | 1: fault ; 0: normal | 6       |
+| AlarmChSCP              | Charge short-circuit protection                  | Protection court‑circuit en charge                       | 1: fault ; 0: normal | 7       |
+| AlarmChOTP              | Over-temperature charge protection               | Protection surchauffe en charge                          | 1: fault ; 0: normal | 8       |
+| AlarmChUTP              | Low temperature charge protection                | Protection basse température en charge                   | 1: fault ; 0: normal | 9       |
+| AlarmCPUAuxCommuErr     | Internal communication anomaly                   | Anomalie de communication interne                        | 1: fault ; 0: normal | 10      |
+| AlarmCellUVP            | Cell under-voltage protection                    | Protection sous‑tension cellule                          | 1: fault ; 0: normal | 11      |
+| AlarmBatUVP             | Battery under-voltage protection                 | Protection sous‑tension batterie                         | 1: fault ; 0: normal | 12      |
+| AlarmDchOCP             | Overcurrent discharge protection                 | Protection surintensité en décharge                      | 1: fault ; 0: normal | 13      |
+| AlarmDchSCP             | Discharge short-circuit protection               | Protection court‑circuit en décharge                     | 1: fault ; 0: normal | 14      |
+| AlarmDchOTP             | Over-temperature discharge protection            | Protection surchauffe en décharge                        | 1: fault ; 0: normal | 15      |
+| AlarmChargeMOS          | Charge MOS anomaly                               | Anomalie du MOS de charge                                | 1: fault ; 0: normal | 16      |
+| AlarmDischargeMOS       | Discharge MOS anomaly                            | Anomalie du MOS de décharge                              | 1: fault ; 0: normal | 17      |
+| GPSDisconneted          | GPS disconnected                                 | GPS déconnecté                                           | 1: fault ; 0: normal | 18      |
+| Modify PWD in time      | Please modify the authorization password in time | Veuillez modifier le mot de passe d’autorisation à temps | 1: fault ; 0: normal | 19      |
+| Discharge On Failed     | Discharge activation failure                     | Échec de l’activation de la décharge                     | 1: fault ; 0: normal | 20      |
+| Battery Over Temp Alarm | Battery over-temperature alarm                   | Alarme de surchauffe de la batterie                      | 1: fault ; 0: normal | 21      |
+| \-                      | Temperature sensor anomaly                       | Anomalie du capteur de température                       | \-                   | \-      |
+| \-                      | Parallel module anomaly                          | Anomalie du module en parallèle                          | \-                   | \-      |
+
 ---
 ## Other options
 ---

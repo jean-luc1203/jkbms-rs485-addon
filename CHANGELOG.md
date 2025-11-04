@@ -1,3 +1,34 @@
+## 3.2.0
+
+## ⚡️ Enhancements
+
+# 🚨  Alarm management  🚨
+ 
+Management of the 23 alarms that JK-BMS can trigger.
+See DOCS.md file for more information
+
+The module will create sensors automatically in HAOS.
+These are:
+
+- ❶ `binary_sensor.bms_x_bms_alarm_active`
+- ❷ `sensor.bms_1_bms_1_alarm_list`
+
+These 2 sensors indicate on which BMS there is an alarm and the wording of these alarms. If there is more than one, they are separated by a comma. 
+
+A global sensor:
+
+- ❶ `binary_sensor.bms_global_bms_global_alarm`
+This is a binary sensor that enables simple automation in the event of an alarm on any BMS.
+
+It was a big, long job, but I think it was worth it.
+You tell me.
+
+You can see a short live demonstration on my Youtube channel
+
+##  ____________________________________________________________________
+
+
+
 ## 3.1.11
 
 ## ⚡️ Enhancements

@@ -93,12 +93,14 @@
             "5d8b1329cf980408",
             "73cf0d220e1de798",
             "e45ebcb6cea88b4b",
-            "35900806dc5fb044"
+            "35900806dc5fb044",
+            "6a927c4cc1d5d2dc",
+            "ef8d7ae6ef560ca9"
         ],
         "x": 14,
         "y": 499,
         "w": 1262,
-        "h": 362
+        "h": 402
     },
     {
         "id": "9c42cd07964fe992",
@@ -118,8 +120,8 @@
             "47ab0322cedc3c22",
             "54c93e67707946a8"
         ],
-        "x": 434,
-        "y": 279,
+        "x": 414,
+        "y": 339,
         "w": 352,
         "h": 122
     },
@@ -134,22 +136,17 @@
             "color": "#000000"
         },
         "nodes": [
-            "2621a947da028681",
-            "300c67230e4e510a",
-            "6152557feb0eac9a",
-            "c516cfa766ac29a1",
-            "7bd0459073759ca1",
-            "b17bb5bd16c1be78",
             "bff0d4fab3ef46a5",
             "2e57321f85689f45",
             "c06c156ddb36634e",
-            "fd734524924bf8a8",
-            "95b5286db50cb893"
+            "e17a26b0d2bf5039",
+            "dd313e0f9fd4ef67",
+            "9e766385cf7c92f6"
         ],
         "x": 18,
-        "y": 899,
-        "w": 1034,
-        "h": 768
+        "y": 953,
+        "w": 1074,
+        "h": 934
     },
     {
         "id": "18188dc49c4fd89a",
@@ -238,12 +235,18 @@
             "b4210ea0e3eceeca",
             "19813c881712a20f",
             "1d8951e6d5cadaac",
-            "bcb6622b78752c20"
+            "bcb6622b78752c20",
+            "631dc32357e54b02",
+            "4077be501625201b",
+            "54b01d2a7d5b9841",
+            "1c9fa4df6d24ab3c",
+            "60a3899229e506ca",
+            "046612ece2e887b7"
         ],
-        "x": 54,
+        "x": 4,
         "y": 419,
-        "w": 942,
-        "h": 1482
+        "w": 1032,
+        "h": 1562
     },
     {
         "id": "4cfdd0fab949bb3c",
@@ -335,10 +338,10 @@
             "fbd3591a98eafd6d",
             "3de40e166b34cd30"
         ],
-        "x": 814,
-        "y": 239,
-        "w": 392,
-        "h": 222
+        "x": 784,
+        "y": 279,
+        "w": 452,
+        "h": 182
     },
     {
         "id": "71ff535abf2657b3",
@@ -362,9 +365,9 @@
             "cdc3910800c7d95b",
             "76ddac3ef98c9d5f"
         ],
-        "x": 14,
+        "x": 4,
         "y": 359,
-        "w": 972,
+        "w": 982,
         "h": 162
     },
     {
@@ -670,25 +673,6 @@
         "h": 122
     },
     {
-        "id": "fc42763da6defab8",
-        "type": "group",
-        "z": "ce01fabde0618f55",
-        "name": "Permet de ne faire qu'une seule passe pour les  discovery topic de HAOS",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "8666d6cf3f8a75cc",
-            "bd13172ab7887f84",
-            "5b29999d7fdc4120",
-            "e77b486cbdcfe2b9"
-        ],
-        "x": 44,
-        "y": 19,
-        "w": 602,
-        "h": 162
-    },
-    {
         "id": "ce6083697fa14dc0",
         "type": "group",
         "z": "ce01fabde0618f55",
@@ -709,8 +693,8 @@
             "3c1b49123cabedb0",
             "8eea8a8ef9220c22"
         ],
-        "x": 14,
-        "y": 1699,
+        "x": 34,
+        "y": 1979,
         "w": 712,
         "h": 242
     },
@@ -729,14 +713,13 @@
         "nodes": [
             "fa351cb08a5d02e9",
             "bb64089a3c76b396",
-            "54a82bd9914c48e5",
             "0e2831f9e2a8e7cf",
             "6542c8ba28167fbf"
         ],
         "x": 44,
-        "y": 239,
+        "y": 339,
         "w": 334,
-        "h": 162
+        "h": 122
     },
     {
         "id": "646f282c0dd63a6e",
@@ -843,7 +826,10 @@
         "name": "Trame 1 - Specifications statiques",
         "style": {
             "label": true,
-            "color": "#000000"
+            "color": "#000000",
+            "stroke": "#777777",
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.26"
         },
         "nodes": [
             "b2d928a2b649fe63",
@@ -857,7 +843,7 @@
             "1c51761e84ee5bb2"
         ],
         "x": 44,
-        "y": 1119,
+        "y": 1179,
         "w": 902,
         "h": 142
     },
@@ -869,7 +855,10 @@
         "name": "Trame 3 - Data des BMS en live",
         "style": {
             "label": true,
-            "color": "#000000"
+            "color": "#000000",
+            "stroke": "#0070c0",
+            "fill": "#bfdbef",
+            "fill-opacity": "0.31"
         },
         "nodes": [
             "a6b1b65a3e856d8f",
@@ -879,17 +868,13 @@
             "97a3abc79a4c67cd",
             "60a06da8cc236522",
             "c6f86ca54e23c581",
-            "609d1962222fd9ae",
-            "341f048d7cd2addd",
             "15033939a61ddd92",
-            "65f7cb3119d4baa9",
-            "cd88b13577b5a05a",
             "705a77e3b053f7ca"
         ],
-        "x": 134,
-        "y": 1419,
+        "x": 94,
+        "y": 1519,
         "w": 892,
-        "h": 222
+        "h": 122
     },
     {
         "id": "c06c156ddb36634e",
@@ -899,7 +884,10 @@
         "name": "Trame 2 - Settings des BMS",
         "style": {
             "label": true,
-            "color": "#000000"
+            "color": "#000000",
+            "stroke": "#ff0000",
+            "fill": "#ffffbf",
+            "fill-opacity": "0.39"
         },
         "nodes": [
             "867fca3b9f77ce27",
@@ -909,12 +897,14 @@
             "d07dea014d2dd68a",
             "f62828b434e3951b",
             "ea72bb742b3422f7",
-            "0780657340cd75cc"
+            "0780657340cd75cc",
+            "cbea3d957ba91cf1",
+            "dd809fbaf4dc9ce7"
         ],
-        "x": 84,
-        "y": 1279,
+        "x": 64,
+        "y": 1339,
         "w": 902,
-        "h": 122
+        "h": 142
     },
     {
         "id": "b75a55c2aaa3b2b6",
@@ -994,6 +984,133 @@
         "y": 599,
         "w": 772,
         "h": 142
+    },
+    {
+        "id": "54c718657c13c657",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "name": "ESSAIS To show RCV and RFV values in 'hours' instead of 'seconds' ",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "1401504164e95430",
+            "1a8ddebb594458ae",
+            "9b436a73a13b0cb3",
+            "ea5c7b5329c945a4",
+            "5ea27536ce8688a6",
+            "2b4bee671f623f3c",
+            "94d92b48b836576f",
+            "58a120471d8b3aa5"
+        ],
+        "x": 64,
+        "y": 2339,
+        "w": 762,
+        "h": 162
+    },
+    {
+        "id": "e17a26b0d2bf5039",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "g": "1bb1485c6f644ee6",
+        "name": "Trame 4 - Alarmes BMS",
+        "style": {
+            "stroke": "#ffff00",
+            "fill": "#ffff7f",
+            "label": true,
+            "color": "#000000",
+            "fill-opacity": "0.49"
+        },
+        "nodes": [
+            "311d7af5080d4a35",
+            "5fc29293a4e477ba",
+            "785684768df719de",
+            "88ab86576ce40ea4",
+            "b1a321c3617b6aea",
+            "9007859fb0b17098",
+            "9ace53705bb161cf",
+            "aebbfae197c3bc9f",
+            "6b90f1e389dcec6b",
+            "a2d4dd9068a4e071",
+            "558093e71cc2db1c"
+        ],
+        "x": 124,
+        "y": 1679,
+        "w": 882,
+        "h": 182
+    },
+    {
+        "id": "dd313e0f9fd4ef67",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "g": "1bb1485c6f644ee6",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "6152557feb0eac9a",
+            "6957819b1dec75c3"
+        ],
+        "x": 784,
+        "y": 1059,
+        "w": 282,
+        "h": 82
+    },
+    {
+        "id": "9e766385cf7c92f6",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "g": "1bb1485c6f644ee6",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2621a947da028681",
+            "300c67230e4e510a",
+            "c516cfa766ac29a1",
+            "7bd0459073759ca1",
+            "b17bb5bd16c1be78",
+            "fd734524924bf8a8",
+            "95b5286db50cb893",
+            "5dff82f5facf29e8"
+        ],
+        "x": 44,
+        "y": 979,
+        "w": 652,
+        "h": 164.5
+    },
+    {
+        "id": "fc42763da6defab8",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "name": "Permet de ne faire qu'une seule passe pour les  discovery topic de HAOS",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8666d6cf3f8a75cc",
+            "bd13172ab7887f84",
+            "5b29999d7fdc4120",
+            "e77b486cbdcfe2b9",
+            "7020aefa46e32f74",
+            "90d3a2c04fa2bc90"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 652,
+        "h": 242
     },
     {
         "id": "6e1abcbcc6ebb714",
@@ -2210,8 +2327,8 @@
             "389031f7d149d0e4",
             "6542c8ba28167fbf"
         ],
-        "x": 475,
-        "y": 360,
+        "x": 455,
+        "y": 420,
         "wires": [
             [
                 "5e23433b1e088edf"
@@ -2253,8 +2370,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 280,
-        "y": 1460,
+        "x": 240,
+        "y": 1560,
         "wires": []
     },
     {
@@ -2271,22 +2388,22 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
-        "y": 1320,
+        "x": 430,
+        "y": 1400,
         "wires": []
     },
     {
         "id": "2621a947da028681",
         "type": "link in",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "9e766385cf7c92f6",
         "name": "link in 3",
         "links": [
             "9fb62a629d09612b",
             "03d54d1f353534ca"
         ],
-        "x": 65,
-        "y": 1000,
+        "x": 85,
+        "y": 1080,
         "wires": [
             [
                 "300c67230e4e510a",
@@ -2308,8 +2425,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 230,
-        "y": 1320,
+        "x": 210,
+        "y": 1400,
         "wires": []
     },
     {
@@ -2327,7 +2444,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1180,
+        "y": 1240,
         "wires": []
     },
     {
@@ -2345,7 +2462,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 1180,
+        "y": 1240,
         "wires": []
     },
     {
@@ -2496,7 +2613,7 @@
             },
             {
                 "type": "uint8",
-                "name": "Request_Charge_voltage_Time_S",
+                "name": "Request_Charge_voltage_Time_H",
                 "offset": 266,
                 "length": 1,
                 "offsetbit": 0,
@@ -2505,7 +2622,7 @@
             },
             {
                 "type": "uint8",
-                "name": "Request_Float_voltage_Time_N",
+                "name": "Request_Float_voltage_Time_H",
                 "offset": 267,
                 "length": 1,
                 "offsetbit": 0,
@@ -2528,7 +2645,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 420,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "bbe7f5ddcea331a9",
@@ -2544,8 +2661,8 @@
         "g": "9c42cd07964fe992",
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
-        "x": 610,
-        "y": 360,
+        "x": 590,
+        "y": 420,
         "wires": [
             [
                 "47ab0322cedc3c22",
@@ -2558,8 +2675,8 @@
         "id": "300c67230e4e510a",
         "type": "switch",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
-        "name": "Trame 1-2-3-Autres",
+        "g": "9e766385cf7c92f6",
+        "name": "Trame 1-2-3-Alarmes-Autres",
         "property": "topic",
         "propertyType": "msg",
         "rules": [
@@ -2579,14 +2696,19 @@
                 "vt": "str"
             },
             {
+                "t": "eq",
+                "v": "Trame-Alarmes-BMS",
+                "vt": "str"
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "false",
         "repair": false,
-        "outputs": 4,
-        "x": 200,
-        "y": 1000,
+        "outputs": 5,
+        "x": 260,
+        "y": 1080,
         "wires": [
             [
                 "b17bb5bd16c1be78"
@@ -2598,7 +2720,9 @@
                 "c516cfa766ac29a1"
             ],
             [
-                "6152557feb0eac9a",
+                "5dff82f5facf29e8"
+            ],
+            [
                 "fd734524924bf8a8"
             ]
         ]
@@ -2613,8 +2737,8 @@
         "links": [
             "2621a947da028681"
         ],
-        "x": 745,
-        "y": 360,
+        "x": 725,
+        "y": 420,
         "wires": []
     },
     {
@@ -2631,15 +2755,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 600,
-        "y": 320,
+        "x": 580,
+        "y": 380,
         "wires": []
     },
     {
         "id": "6152557feb0eac9a",
         "type": "debug",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "dd313e0f9fd4ef67",
         "name": "Autres trame",
         "active": true,
         "tosidebar": true,
@@ -2649,8 +2773,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 170,
-        "y": 1060,
+        "x": 950,
+        "y": 1100,
         "wires": []
     },
     {
@@ -2666,13 +2790,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 1500,
+        "x": 260,
+        "y": 1600,
         "wires": [
             [
-                "c6f86ca54e23c581",
-                "65f7cb3119d4baa9",
-                "609d1962222fd9ae"
+                "c6f86ca54e23c581"
             ],
             []
         ]
@@ -2681,14 +2803,14 @@
         "id": "c516cfa766ac29a1",
         "type": "link out",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "9e766385cf7c92f6",
         "name": "trame3-out",
         "mode": "link",
         "links": [
             "c0f222bb926bd319"
         ],
-        "x": 365,
-        "y": 1020,
+        "x": 535,
+        "y": 1060,
         "wires": []
     },
     {
@@ -2700,8 +2822,8 @@
         "links": [
             "c516cfa766ac29a1"
         ],
-        "x": 175,
-        "y": 1500,
+        "x": 135,
+        "y": 1600,
         "wires": [
             [
                 "4c893435cad6711e",
@@ -2713,14 +2835,14 @@
         "id": "7bd0459073759ca1",
         "type": "link out",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "9e766385cf7c92f6",
         "name": "trame2-out",
         "mode": "link",
         "links": [
             "dde116783a665a3f"
         ],
-        "x": 365,
-        "y": 980,
+        "x": 475,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2732,8 +2854,8 @@
         "links": [
             "7bd0459073759ca1"
         ],
-        "x": 125,
-        "y": 1340,
+        "x": 105,
+        "y": 1420,
         "wires": [
             [
                 "3987f9e640e885a6",
@@ -2754,8 +2876,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 1360,
+        "x": 230,
+        "y": 1440,
         "wires": [
             [
                 "d07dea014d2dd68a"
@@ -2767,14 +2889,14 @@
         "id": "b17bb5bd16c1be78",
         "type": "link out",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "9e766385cf7c92f6",
         "name": "trame1-out",
         "mode": "link",
         "links": [
             "7a45939101576456"
         ],
-        "x": 365,
-        "y": 940,
+        "x": 425,
+        "y": 1020,
         "wires": []
     },
     {
@@ -2787,7 +2909,7 @@
             "b17bb5bd16c1be78"
         ],
         "x": 85,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "2492d95ecc9f328c",
@@ -2809,7 +2931,7 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "264d6f5686cf22f1"
@@ -2831,8 +2953,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
-        "y": 1460,
+        "x": 450,
+        "y": 1560,
         "wires": []
     },
     {
@@ -2849,8 +2971,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 910,
-        "y": 1460,
+        "x": 870,
+        "y": 1560,
         "wires": []
     },
     {
@@ -2868,8 +2990,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 900,
-        "y": 1500,
+        "x": 860,
+        "y": 1600,
         "wires": []
     },
     {
@@ -2887,7 +3009,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1180,
+        "y": 1240,
         "wires": []
     },
     {
@@ -2906,7 +3028,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 860,
-        "y": 1220,
+        "y": 1280,
         "wires": []
     },
     {
@@ -3279,6 +3401,15 @@
                 "offsetbit": 1,
                 "scale": "1",
                 "mask": ""
+            },
+            {
+                "type": "8bit",
+                "name": "0x1114",
+                "offset": 282,
+                "length": 1,
+                "offsetbit": 2,
+                "scale": "1",
+                "mask": ""
             }
         ],
         "swap1": "",
@@ -3295,12 +3426,13 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 460,
-        "y": 1360,
+        "x": 440,
+        "y": 1440,
         "wires": [
             [
                 "867fca3b9f77ce27",
-                "f62828b434e3951b"
+                "f62828b434e3951b",
+                "cbea3d957ba91cf1"
             ]
         ]
     },
@@ -3310,7 +3442,7 @@
         "z": "ce01fabde0618f55",
         "g": "bff0d4fab3ef46a5",
         "name": "Trame \"statics\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois\nconst discoveryKey = `discoverySent_STATIC_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\n// Champs qui doivent être des \"number\" (configuration)\nconst numberFields = [\"LCD_buzzer_trigger_N\", \"LCD_buzzer_trigger_value_N\", \"LCD_buzzer_release_value_N\"];\n\n// ------------------------------------------------------------------\n// 3. Fonctions de génération\nfunction formatValue(v) {\n    return (typeof v === 'string') ? v : String(v);\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const sensorTopic = `${baseTopic}/state/${cleanKey}`;\n        \n        // Vérifier si c'est un champ \"number\" (configuration)\n        if (numberFields.includes(key)) {\n            const commandTopic = `${baseTopic}/control/${cleanKey}/set`;\n            \n            // Définir la plage selon le champ\n            let min = 0;\n            let max = 100;\n            let unit = \"%\";\n            \n            if (key === \"LCD_buzzer_trigger_N\") {\n                max = 12;\n                unit = \"\";\n            }\n            \n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_${cleanKey}`,\n                state_topic: sensorTopic,\n                command_topic: commandTopic,\n                min: min,\n                max: max,\n                step: 1,\n                mode: \"box\",\n                entity_category: \"config\",\n                enabled_by_default: true,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.1.5\"\n                }\n            };\n            \n            // Ajouter l'unité seulement si elle existe\n            if (unit) {\n                cfg.unit_of_measurement = unit;\n            }\n            \n            // Icône spécifique pour les alarmes sonores\n            if (key.includes(\"buzzer\")) {\n                cfg.icon = \"mdi:volume-high\";\n            }\n            \n            msgs.push({\n                topic: `${discoveryPrefix}/number/${deviceID}/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        } else {\n            // Capteur classique (sensor)\n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_${cleanKey}`,\n                state_topic: sensorTopic,\n                enabled_by_default: true,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.0.1\"\n                }\n            };\n\n            // unités & classes\n            if (key.endsWith(\"_S\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n                cfg.state_class = \"measurement\";\n            }\n\n            // icônes\n            if (key.includes(\"Password\")) cfg.icon = \"mdi:form-textbox-password\";\n            else if (key.includes(\"Serial\")) cfg.icon = \"mdi:barcode\";\n            else if (key.includes(\"protocol\")) cfg.icon = \"mdi:protocol\";\n            else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\"))\n                cfg.icon = \"mdi:numeric-10\";\n            else if (key.includes(\"Uptime\")) {\n                cfg.icon = \"mdi:timer-outline\";\n                cfg.device_class = \"duration\";\n            } else if (key.includes(\"date\")) cfg.icon = \"mdi:calendar\";\n\n            msgs.push({\n                topic: `${discoveryPrefix}/sensor/${deviceID}/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        }\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/state/${cleanKey}`,\n            payload: formatValue(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\nif (!discoveryAlreadySent) flow.set(discoveryKey, true);\n\nreturn [discoveryMsgs.concat(stateMsgs)];",
+        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois\nconst discoveryKey = `discoverySent_STATIC_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\n// Champs qui doivent être des \"number\" (configuration)\nconst numberFields = [\n    \"LCD_buzzer_trigger_N\", \n    \"LCD_buzzer_trigger_value_N\", \n    \"LCD_buzzer_release_value_N\",\n    \"Request_Charge_voltage_Time_H\",\n    \"Request_Float_voltage_Time_H\"\n];\n\n// ------------------------------------------------------------------\n// 3. Fonctions de génération\nfunction formatValue(v) {\n    return (typeof v === 'string') ? v : String(v);\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const sensorTopic = `${baseTopic}/state/${cleanKey}`;\n        \n        // Vérifier si c'est un champ \"number\" (configuration)\n        if (numberFields.includes(key)) {\n            const commandTopic = `${baseTopic}/control/${cleanKey}/set`;\n            \n            // Définir la plage selon le champ\n            let min = 0;\n            let max = 100;\n            let unit = \"%\";\n            let step = 1;\n            let icon = \"mdi:tune\";\n            \n            if (key === \"LCD_buzzer_trigger_N\") {\n                max = 12;\n                unit = \"\";\n                icon = \"mdi:volume-high\";\n            } else if (key === \"Request_Charge_voltage_Time_H\" || key === \"Request_Float_voltage_Time_H\") {\n                min = 0;\n                max = 10;\n                step = 0.1;\n                unit = \"h\";\n                icon = \"mdi:timer-outline\";\n            }\n            \n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_${cleanKey}`,\n                state_topic: sensorTopic,\n                command_topic: commandTopic,\n                min: min,\n                max: max,\n                step: step,\n                mode: \"box\",\n                entity_category: \"config\",\n                enabled_by_default: true,\n                icon: icon,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.1.5\"\n                }\n            };\n            \n            // Ajouter l'unité seulement si elle existe\n            if (unit) {\n                cfg.unit_of_measurement = unit;\n            }\n            \n            msgs.push({\n                topic: `${discoveryPrefix}/number/${deviceID}/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        } else {\n            // Capteur classique (sensor)\n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_${cleanKey}`,\n                state_topic: sensorTopic,\n                enabled_by_default: true,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.0.1\"\n                }\n            };\n\n            // unités & classes\n            if (key.endsWith(\"_S\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_H\")) {\n                cfg.unit_of_measurement = \"h\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n                cfg.state_class = \"measurement\";\n            }\n\n            // icônes\n            if (key.includes(\"Password\")) cfg.icon = \"mdi:form-textbox-password\";\n            else if (key.includes(\"Serial\")) cfg.icon = \"mdi:barcode\";\n            else if (key.includes(\"protocol\")) cfg.icon = \"mdi:protocol\";\n            else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\"))\n                cfg.icon = \"mdi:numeric-10\";\n            else if (key.includes(\"Uptime\")) {\n                cfg.icon = \"mdi:timer-outline\";\n                cfg.device_class = \"duration\";\n            } else if (key.includes(\"date\")) cfg.icon = \"mdi:calendar\";\n\n            msgs.push({\n                topic: `${discoveryPrefix}/sensor/${deviceID}/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        }\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/state/${cleanKey}`,\n            payload: formatValue(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\nif (!discoveryAlreadySent) flow.set(discoveryKey, true);\n\nreturn [discoveryMsgs.concat(stateMsgs)];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3318,7 +3450,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 1220,
+        "y": 1280,
         "wires": [
             [
                 "32a6b862b301b073",
@@ -3339,8 +3471,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1360,
+        "x": 650,
+        "y": 1440,
         "wires": [
             [
                 "ea72bb742b3422f7",
@@ -3362,8 +3494,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 870,
-        "y": 1320,
+        "x": 850,
+        "y": 1400,
         "wires": []
     },
     {
@@ -3381,8 +3513,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 860,
-        "y": 1360,
+        "x": 840,
+        "y": 1440,
         "wires": []
     },
     {
@@ -3404,12 +3536,14 @@
         "id": "fd734524924bf8a8",
         "type": "link out",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "9e766385cf7c92f6",
         "name": "Autres-topics-out",
         "mode": "link",
-        "links": [],
-        "x": 365,
-        "y": 1060,
+        "links": [
+            "6957819b1dec75c3"
+        ],
+        "x": 655,
+        "y": 1100,
         "wires": []
     },
     {
@@ -3567,7 +3701,8 @@
         "y": 780,
         "wires": [
             [
-                "348ec2d0147bf36c"
+                "348ec2d0147bf36c",
+                "ef8d7ae6ef560ca9"
             ]
         ]
     },
@@ -4110,8 +4245,8 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 500,
-        "y": 1500,
+        "x": 460,
+        "y": 1600,
         "wires": [
             [
                 "60a06da8cc236522",
@@ -4119,115 +4254,6 @@
                 "705a77e3b053f7ca"
             ]
         ]
-    },
-    {
-        "id": "65f7cb3119d4baa9",
-        "type": "buffer-parser",
-        "z": "ce01fabde0618f55",
-        "d": true,
-        "g": "2e57321f85689f45",
-        "name": "Erreurs codes",
-        "data": "payload",
-        "dataType": "msg",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
-            {
-                "type": "uint16be",
-                "name": "errors-codes",
-                "offset": 166,
-                "length": 1,
-                "offsetbit": 0,
-                "scale": "1",
-                "mask": ""
-            },
-            {
-                "type": "bool",
-                "name": "bit4",
-                "offset": 166,
-                "length": 1,
-                "offsetbit": 4,
-                "scale": "1",
-                "mask": ""
-            }
-        ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "payload",
-        "msgPropertyType": "str",
-        "resultType": "keyvalue",
-        "resultTypeType": "return",
-        "multipleResult": false,
-        "fanOutMultipleResult": false,
-        "setTopic": true,
-        "outputs": 1,
-        "x": 320,
-        "y": 1560,
-        "wires": [
-            [
-                "cd88b13577b5a05a"
-            ]
-        ]
-    },
-    {
-        "id": "cd88b13577b5a05a",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "2e57321f85689f45",
-        "name": "debug 22",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 1560,
-        "wires": []
-    },
-    {
-        "id": "609d1962222fd9ae",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "2e57321f85689f45",
-        "name": "Gestion des codes d'erreurs",
-        "func": "// Liste des erreurs possibles\nconst errorList = [\n    \"Charge Overtemperature\",               // bit 0\n    \"Charge Undertemperature\",              // bit 1\n    \"Coprocessor communication error\",      // bit 2\n    \"Cell Undervoltage\",                    // bit 3\n    \"Battery pack undervoltage\",            // bit 4\n    \"Discharge overcurrent\",                // bit 5\n    \"Discharge short circuit\",              // bit 6\n    \"Discharge overtemperature\",            // bit 7\n    \"Wire resistance\",                      // bit 8\n    \"Mosfet overtemperature\",               // bit 9\n    \"Cell count is not equal to settings\",  // bit 10\n    \"Current sensor anomaly\",               // bit 11\n    \"Cell Overvoltage\",                     // bit 12\n    \"Battery pack overvoltage\",             // bit 13\n    \"Charge overcurrent protection\",        // bit 14\n    \"Charge short circuit\"                  // bit 15\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier que le buffer est suffisamment grand\nif (buffer.length <= 167) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur à l'offset 166 (en supposant Big Endian - BE)\nconst errorCode = (buffer[166] << 8) | buffer[167];\n\n// Initialiser un tableau pour stocker les erreurs détectées\nconst activeErrors = [];\n\n// Vérifier chaque bit d'erreur\nfor (let i = 0; i < errorList.length; i++) {\n    // Si le bit correspondant est activé (1), ajouter l'erreur à la liste\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\n// Si aucune erreur n'est détectée\nif (activeErrors.length === 0) {\n    msg.payload = \"Aucune erreur détectée\";\n} else {\n    // Joindre les erreurs avec des virgules\n    msg.payload = activeErrors.join(\", \");\n}\n\n// Ajouter également le code d'erreur brut pour référence\nmsg.errorCode = errorCode;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 1600,
-        "wires": [
-            [
-                "341f048d7cd2addd"
-            ]
-        ]
-    },
-    {
-        "id": "341f048d7cd2addd",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "2e57321f85689f45",
-        "name": "debug 26",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 560,
-        "y": 1600,
-        "wires": []
     },
     {
         "id": "a3bd0a6eeb93d67f",
@@ -4360,8 +4386,8 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "x": 910,
-        "y": 280,
+        "x": 890,
+        "y": 320,
         "wires": [
             [
                 "fbd3591a98eafd6d"
@@ -4382,8 +4408,8 @@
         "newline": "",
         "trim": false,
         "tls": "",
-        "x": 910,
-        "y": 340,
+        "x": 1090,
+        "y": 380,
         "wires": [
             [
                 "5f1cc6f02653dd86",
@@ -4397,7 +4423,7 @@
         "type": "debug",
         "z": "ce01fabde0618f55",
         "g": "fcf5dd3bc6e97b81",
-        "name": "TCP debug ",
+        "name": "TCP",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -4407,7 +4433,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1090,
-        "y": 340,
+        "y": 420,
         "wires": []
     },
     {
@@ -4420,8 +4446,8 @@
         "links": [
             "2621a947da028681"
         ],
-        "x": 1115,
-        "y": 380,
+        "x": 1195,
+        "y": 340,
         "wires": []
     },
     {
@@ -4476,7 +4502,7 @@
         "id": "95b5286db50cb893",
         "type": "debug",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
+        "g": "9e766385cf7c92f6",
         "name": "Réponses",
         "active": false,
         "tosidebar": true,
@@ -4486,8 +4512,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 180,
-        "y": 940,
+        "x": 200,
+        "y": 1020,
         "wires": []
     },
     {
@@ -4514,8 +4540,8 @@
             "bbfdd16be70fd7b0",
             "0e2831f9e2a8e7cf"
         ],
-        "x": 875,
-        "y": 420,
+        "x": 825,
+        "y": 380,
         "wires": [
             [
                 "3de40e166b34cd30"
@@ -4694,57 +4720,6 @@
         ]
     },
     {
-        "id": "bd13172ab7887f84",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "fc42763da6defab8",
-        "name": "discoverySent_BMS_x to undefined",
-        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 60,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8666d6cf3f8a75cc",
-        "type": "inject",
-        "z": "ce01fabde0618f55",
-        "g": "fc42763da6defab8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 60,
-        "wires": [
-            [
-                "bd13172ab7887f84",
-                "5b29999d7fdc4120",
-                "e77b486cbdcfe2b9"
-            ]
-        ]
-    },
-    {
         "id": "15033939a61ddd92",
         "type": "function",
         "z": "ce01fabde0618f55",
@@ -4757,51 +4732,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 1500,
+        "x": 660,
+        "y": 1600,
         "wires": [
             [
                 "d8f9f00da2e3a338",
                 "97a3abc79a4c67cd"
             ]
-        ]
-    },
-    {
-        "id": "5b29999d7fdc4120",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "fc42763da6defab8",
-        "name": "discoverySent_SETUP_BMS_x to undefined",
-        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_SETUP_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 450,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e77b486cbdcfe2b9",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "fc42763da6defab8",
-        "name": "discoverySent_STATIC_BMS_x to undefined",
-        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_STATIC_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 450,
-        "y": 140,
-        "wires": [
-            []
         ]
     },
     {
@@ -4818,7 +4755,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1160,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -4860,8 +4797,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 210,
-        "y": 1780,
+        "x": 230,
+        "y": 2060,
         "wires": [
             [
                 "9cd19b0cda3b295b",
@@ -4889,8 +4826,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
-        "y": 1740,
+        "x": 480,
+        "y": 2020,
         "wires": []
     },
     {
@@ -4907,8 +4844,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
-        "y": 1780,
+        "x": 450,
+        "y": 2060,
         "wires": []
     },
     {
@@ -4925,8 +4862,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
-        "y": 1820,
+        "x": 450,
+        "y": 2100,
         "wires": []
     },
     {
@@ -4939,8 +4876,8 @@
             "b2892effe9f79e84",
             "54c93e67707946a8"
         ],
-        "x": 55,
-        "y": 1780,
+        "x": 75,
+        "y": 2060,
         "wires": [
             [
                 "993c2383b70be9f1"
@@ -4957,8 +4894,8 @@
         "links": [
             "4c96f83e2c664c74"
         ],
-        "x": 1115,
-        "y": 420,
+        "x": 1195,
+        "y": 380,
         "wires": []
     },
     {
@@ -4971,8 +4908,8 @@
         "links": [
             "4c96f83e2c664c74"
         ],
-        "x": 745,
-        "y": 320,
+        "x": 725,
+        "y": 380,
         "wires": []
     },
     {
@@ -4985,8 +4922,8 @@
         "links": [
             "8eea8a8ef9220c22"
         ],
-        "x": 625,
-        "y": 1460,
+        "x": 585,
+        "y": 1560,
         "wires": []
     },
     {
@@ -5003,8 +4940,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 1900,
+        "x": 610,
+        "y": 2180,
         "wires": []
     },
     {
@@ -5026,8 +4963,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 210,
-        "y": 1900,
+        "x": 230,
+        "y": 2180,
         "wires": [
             [
                 "3c1b49123cabedb0"
@@ -5064,8 +5001,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 420,
-        "y": 1900,
+        "x": 440,
+        "y": 2180,
         "wires": [
             [
                 "276f29f9528f1322"
@@ -5081,8 +5018,8 @@
         "links": [
             "705a77e3b053f7ca"
         ],
-        "x": 55,
-        "y": 1900,
+        "x": 75,
+        "y": 2180,
         "wires": [
             [
                 "a4215bec9779ed8c"
@@ -5109,7 +5046,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1060,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "55581e8fd2063a3b"
@@ -5128,10 +5065,11 @@
         "g": "e09fcfa37fa58cc8",
         "name": "Setup-to-serial-or-GW-in",
         "links": [
-            "1b9d270fb278785c"
+            "1b9d270fb278785c",
+            "94d92b48b836576f"
         ],
         "x": 205,
-        "y": 360,
+        "y": 420,
         "wires": [
             [
                 "bb64089a3c76b396"
@@ -5158,10 +5096,9 @@
         "repair": false,
         "outputs": 2,
         "x": 150,
-        "y": 320,
+        "y": 380,
         "wires": [
             [
-                "54a82bd9914c48e5",
                 "0e2831f9e2a8e7cf"
             ],
             [
@@ -5174,23 +5111,6 @@
         ]
     },
     {
-        "id": "54a82bd9914c48e5",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "e09fcfa37fa58cc8",
-        "name": "debug 9",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 150,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "0e2831f9e2a8e7cf",
         "type": "link out",
         "z": "ce01fabde0618f55",
@@ -5200,8 +5120,8 @@
         "links": [
             "72408cddd3840bf2"
         ],
-        "x": 305,
-        "y": 300,
+        "x": 285,
+        "y": 380,
         "wires": []
     },
     {
@@ -5214,8 +5134,8 @@
         "links": [
             "19e4f82b41b8041a"
         ],
-        "x": 305,
-        "y": 340,
+        "x": 285,
+        "y": 420,
         "wires": []
     },
     {
@@ -5245,12 +5165,655 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 990,
-        "y": 420,
+        "x": 930,
+        "y": 380,
         "wires": [
             [
                 "55581e8fd2063a3b"
             ]
+        ]
+    },
+    {
+        "id": "6a927c4cc1d5d2dc",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "0693b9727dec471d",
+        "name": "LECTURE DES ALARMES JK-BMS",
+        "func": "// ========== FONCTION 1: LECTURE DES ALARMES JK-BMS ==========\n// Lecture de l'adresse 0x12A0 (4778 en décimal) - Registre des alarmes\n// UINT32 sur 4 registres (nous allons lire 2 registres de 16 bits)\n\n// Récupération de l'adresse esclave depuis le contexte global\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01;\n\n// Configuration Modbus pour lecture des alarmes\nconst functionCode = 0x03;      // FC3: Read Holding Registers\nconst address = 0x12A0;         // Adresse du registre des alarmes (4778)\nconst registerHigh = (address >> 8) & 0xFF;   // 0x12\nconst registerLow = address & 0xFF;            // 0xA0\nconst quantityHigh = 0x00;\nconst quantityLow = 0x02;       // Lire 2 registres (32 bits)\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\n// Topic pour identifier cette requête dans le switch\nmsg.topic = \"Trame-Alarmes-BMS\";\nmsg.payload = finalBuffer;\n\n// Sauvegarder l'ID du BMS pour le retrouver dans la réponse\nmsg.bmsId = slaveId;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 860,
+        "wires": [
+            [
+                "a632bb3545ad81d5"
+            ]
+        ]
+    },
+    {
+        "id": "ef8d7ae6ef560ca9",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "0693b9727dec471d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 860,
+        "wires": [
+            [
+                "6a927c4cc1d5d2dc"
+            ]
+        ]
+    },
+    {
+        "id": "1401504164e95430",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "function 3",
+        "func": "// Vérifier que nous avons reçu des données\nif (!msg.payload || msg.payload.length < 7) {\n    node.warn(\"Pas de données reçues ou données incomplètes\");\n    return null;\n}\n\nconst response = msg.payload;\n\n// Structure de la réponse Modbus :\n// [0] = Slave ID\n// [1] = Function Code (0x03)\n// [2] = Byte Count (devrait être 2)\n// [3] = RCVTime (Premier byte - Request Charge Voltage Time)\n// [4] = RFVTime (Deuxième byte - Request Float Voltage Time)\n// [5-6] = CRC\n\nconst slaveId = response[0];\nconst functionCode = response[1];\nconst byteCount = response[2];\nconst RCVTime_raw = response[3];  // Premier byte\nconst RFVTime_raw = response[4];  // Deuxième byte\n\n// Conversion avec l'unité 0.1H (diviser par 10 pour obtenir des heures)\nconst RCVTime_hours = RCVTime_raw * 0.1;\nconst RFVTime_hours = RFVTime_raw * 0.1;\n\n// Préparer le message de sortie\nmsg.payload = {\n    address: \"0x1104\",\n    slaveId: slaveId,\n    functionCode: functionCode,\n    raw_response: response,\n    RCVTime: {\n        raw: RCVTime_raw,\n        value: RCVTime_hours,\n        unit: \"h\",\n        description: \"Request Charge Voltage Time\"\n    },\n    RFVTime: {\n        raw: RFVTime_raw,\n        value: RFVTime_hours,\n        unit: \"h\",\n        description: \"Request Float Voltage Time\"\n    }\n};\n\n// Message de debug formaté\nnode.status({\n    fill: \"green\",\n    shape: \"dot\",\n    text: `RCVTime: ${RCVTime_hours}h | RFVTime: ${RFVTime_hours}h`\n});\n\nnode.warn(`Lecture 0x1104 - RCVTime: ${RCVTime_hours}h (raw: ${RCVTime_raw}) | RFVTime: ${RFVTime_hours}h (raw: ${RFVTime_raw})`);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 2460,
+        "wires": [
+            [
+                "1a8ddebb594458ae"
+            ]
+        ]
+    },
+    {
+        "id": "1a8ddebb594458ae",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "9b436a73a13b0cb3",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "Décodage de la réponse et préparation de l'écriture",
+        "func": "// Décodage de la réponse et modification de la valeur appropriée\nif (!msg.payload || msg.payload.length < 7) {\n    node.warn(\"Pas de données reçues ou données incomplètes\");\n    return null;\n}\n\nconst response = msg.payload;\n\n// Extraction des valeurs actuelles\nconst currentRCVTime_raw = response[3];  // Premier byte\nconst currentRFVTime_raw = response[4];  // Deuxième byte\n\nnode.warn(`Valeurs actuelles lues - RCVTime: ${currentRCVTime_raw} | RFVTime: ${currentRFVTime_raw}`);\n\n// Récupérer quelle valeur doit être modifiée\nconst fieldToUpdate = flow.get(\"field_to_update\");\nlet newRCVTime_raw = currentRCVTime_raw;\nlet newRFVTime_raw = currentRFVTime_raw;\n\n// Appliquer la modification\nif (fieldToUpdate === \"RCVTime\") {\n    const newValue = flow.get(\"new_RCVTime\");\n    newRCVTime_raw = Math.round(newValue * 10);\n    node.warn(`Modification RCVTime: ${currentRCVTime_raw} -> ${newRCVTime_raw} (${newValue}h)`);\n} else if (fieldToUpdate === \"RFVTime\") {\n    const newValue = flow.get(\"new_RFVTime\");\n    newRFVTime_raw = Math.round(newValue * 10);\n    node.warn(`Modification RFVTime: ${currentRFVTime_raw} -> ${newRFVTime_raw} (${newValue}h)`);\n} else {\n    node.error(\"Champ à modifier non défini\");\n    return null;\n}\n\n// Validation\nif (newRCVTime_raw < 0 || newRCVTime_raw > 100 || newRFVTime_raw < 0 || newRFVTime_raw > 100) {\n    node.error(\"Valeurs hors limites (0-10h)\");\n    return null;\n}\n\n// Passer les nouvelles valeurs au nœud suivant\nmsg.payload = {\n    RCVTime: newRCVTime_raw,\n    RFVTime: newRFVTime_raw\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 2420,
+        "wires": [
+            [
+                "ea5c7b5329c945a4"
+            ]
+        ]
+    },
+    {
+        "id": "ea5c7b5329c945a4",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "function 4",
+        "func": "// Génération de la trame d'écriture Modbus avec les nouvelles valeurs\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst rcvRaw = msg.payload.RCVTime;\nconst rfvRaw = msg.payload.RFVTime;\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction de la trame sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    0x06,           // Function code (Write Single Register)\n    0x15,           // Register address high byte\n    0x04,           // Register address low byte\n    rcvRaw & 0xFF,  // Value high byte (RCVTime)\n    rfvRaw & 0xFF   // Value low byte (RFVTime)\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\nnode.warn(`Écriture registre 0x1504 - RCVTime: ${rcvRaw} | RFVTime: ${rfvRaw}`);\n\nmsg.topic = \"write_voltage_times\";\nmsg.payload = finalBuffer;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 2420,
+        "wires": [
+            [
+                "5ea27536ce8688a6"
+            ]
+        ]
+    },
+    {
+        "id": "5ea27536ce8688a6",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "2b4bee671f623f3c",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "function 2",
+        "func": "// Récupération de l'adresse esclave depuis le contexte global\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01; // Valeur par défaut si non définie\nconst functionCode = 0x03; // Function Code 3 : Read Holding Registers\nconst registerHigh = 0x15; // Adresse haute de 0x1504\nconst registerLow = 0x04;  // Adresse basse de 0x1504\nconst quantityHigh = 0x00; // Nombre de registres haute (0x0001 = 1 registre)\nconst quantityLow = 0x01;  // Nombre de registres basse\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\nmsg.topic = \"Trame-1-statiques\";\nmsg.payload = finalBuffer;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 2380,
+        "wires": [
+            [
+                "94d92b48b836576f"
+            ]
+        ]
+    },
+    {
+        "id": "94d92b48b836576f",
+        "type": "link out",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "link out 5",
+        "mode": "link",
+        "links": [
+            "fa351cb08a5d02e9"
+        ],
+        "x": 455,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "58a120471d8b3aa5",
+        "type": "inject",
+        "z": "ce01fabde0618f55",
+        "g": "54c718657c13c657",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 2380,
+        "wires": [
+            [
+                "2b4bee671f623f3c"
+            ]
+        ]
+    },
+    {
+        "id": "311d7af5080d4a35",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "Trame Alarmes",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "5fc29293a4e477ba",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "alarms",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "alarms",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "5dff82f5facf29e8",
+        "type": "link out",
+        "z": "ce01fabde0618f55",
+        "g": "9e766385cf7c92f6",
+        "name": "trame-alarme-out",
+        "mode": "link",
+        "links": [
+            "785684768df719de"
+        ],
+        "x": 595,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "785684768df719de",
+        "type": "link in",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "trame-alarme-in",
+        "links": [
+            "5dff82f5facf29e8"
+        ],
+        "x": 165,
+        "y": 1760,
+        "wires": [
+            [
+                "311d7af5080d4a35",
+                "558093e71cc2db1c"
+            ]
+        ]
+    },
+    {
+        "id": "6957819b1dec75c3",
+        "type": "link in",
+        "z": "ce01fabde0618f55",
+        "g": "dd313e0f9fd4ef67",
+        "name": "Autres-topics-in",
+        "links": [
+            "fd734524924bf8a8"
+        ],
+        "x": 825,
+        "y": 1100,
+        "wires": [
+            [
+                "6152557feb0eac9a"
+            ]
+        ]
+    },
+    {
+        "id": "88ab86576ce40ea4",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "b1a321c3617b6aea",
+        "type": "mqtt out",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "Onduleur",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 900,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "9007859fb0b17098",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "AGGREGATION GLOBALE DES ALARMES BMS",
+        "func": "// ========== AGGREGATION GLOBALE DES ALARMES BMS ==========\n// Ce nœud agrège les alarmes de tous les BMS et crée un binary_sensor global\n\n// Récupération des données d'alarme du BMS courant\nconst alarmData = msg.alarms;\n\nif (!alarmData || !alarmData.bms_id) {\n    node.error(\"Données d'alarme invalides ou BMS ID manquant\");\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\n\n// ------------------------------------------------------------------\n// 1. Configuration\nconst TOTAL_BMS = global.get(\"nb_jkbms\") || 4; // Récupération depuis la variable globale\nconst discoveryPrefix = \"homeassistant\";\nconst globalDeviceID = \"BMS_GLOBAL_device\";\nconst globalDeviceName = \"BMS Global\";\n\n// ------------------------------------------------------------------\n// 2. Stockage de l'état des alarmes dans le contexte flow\n// Clé unique pour stocker l'état de chaque BMS\nconst alarmStateKey = `bms_alarm_state_${bmsId}`;\nconst globalDiscoveryKey = \"discoverySent_GLOBAL_ALARM\";\n\n// Stocker l'état actuel de ce BMS\nflow.set(alarmStateKey, {\n    has_alarm: alarmData.has_alarms,\n    alarm_count: alarmData.alarm_count,\n    timestamp: new Date().toISOString(),\n    active_alarms: alarmData.active_alarms\n});\n\n// ------------------------------------------------------------------\n// 3. Calcul de l'état global en parcourant tous les BMS\nlet globalHasAlarm = false;\nlet totalAlarmCount = 0;\nlet alarmedBmsList = [];\n\nfor (let i = 1; i <= TOTAL_BMS; i++) {\n    const stateKey = `bms_alarm_state_${i}`;\n    const bmsState = flow.get(stateKey);\n    \n    if (bmsState && bmsState.has_alarm) {\n        globalHasAlarm = true;\n        totalAlarmCount += bmsState.alarm_count;\n        alarmedBmsList.push(`BMS ${i}`);\n    }\n}\n\n// ------------------------------------------------------------------\n// 4. Fonction de génération du message discovery (une seule fois)\nfunction buildGlobalDiscoveryMessage() {\n    const binarySensorConfig = {\n        name: \"BMS Global Alarm\",\n        unique_id: `${globalDeviceID}_alarm_active`,\n        state_topic: \"BMS_GLOBAL/alarm/state\",\n        payload_on: \"ON\",\n        payload_off: \"OFF\",\n        device_class: \"problem\",\n        icon: \"mdi:battery-alert\",\n        device: {\n            identifiers: [globalDeviceID],\n            name: globalDeviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS Aggregator\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    return {\n        topic: `${discoveryPrefix}/binary_sensor/${globalDeviceID}/alarm_active/config`,\n        payload: binarySensorConfig,\n        retain: true\n    };\n}\n\n// ------------------------------------------------------------------\n// 5. Fonction de génération du message state\nfunction buildGlobalStateMessage() {\n    return {\n        topic: \"BMS_GLOBAL/alarm/state\",\n        payload: globalHasAlarm ? \"ON\" : \"OFF\",\n        retain: true,\n        qos: 1\n    };\n}\n\n// ------------------------------------------------------------------\n// 6. Construction et envoi des messages\nconst discoveryAlreadySent = flow.get(globalDiscoveryKey) || false;\nconst messages = [];\n\n// Envoyer le discovery une seule fois\nif (!discoveryAlreadySent) {\n    messages.push(buildGlobalDiscoveryMessage());\n    flow.set(globalDiscoveryKey, true);\n    node.log(`✓ Discovery envoyé pour BMS Global Alarm (${TOTAL_BMS} BMS surveillés)`);\n}\n\n// Toujours envoyer le state\nmessages.push(buildGlobalStateMessage());\n\n// Log de l'état global\nif (globalHasAlarm) {\n    node.warn(`🚨 ALARME GLOBALE: ${totalAlarmCount} alarme(s) sur ${alarmedBmsList.join(\", \")}`);\n} else {\n    //node.log(`✓ BMS Global: Aucune alarme active (${TOTAL_BMS} BMS OK)`);\n}\n\n// Retourner tous les messages (discovery + state)\nreturn [messages];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 1820,
+        "wires": [
+            [
+                "9ace53705bb161cf",
+                "6b90f1e389dcec6b"
+            ]
+        ]
+    },
+    {
+        "id": "9ace53705bb161cf",
+        "type": "mqtt out",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "Onduleur",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 900,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "aebbfae197c3bc9f",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 1820,
+        "wires": [
+            [
+                "9007859fb0b17098"
+            ]
+        ]
+    },
+    {
+        "id": "6b90f1e389dcec6b",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "bms_global_alarm",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "cbea3d957ba91cf1",
+        "type": "change",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "0x1114",
+        "rules": [
+            {
+                "t": "set",
+                "p": "0x1114",
+                "pt": "msg",
+                "to": "payload[\"0x1114\"]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "bms_id",
+                "pt": "msg",
+                "to": "slaveAddress-Trame2",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 1400,
+        "wires": [
+            [
+                "dd809fbaf4dc9ce7"
+            ]
+        ]
+    },
+    {
+        "id": "dd809fbaf4dc9ce7",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "a2d4dd9068a4e071",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "Trame \"alarmes\" to MQTT",
+        "func": "// ========== MQTT DISCOVERY & STATE - ALARMES JK-BMS ==========\n// Traitement des alarmes avec auto-discovery Home Assistant\n\n// Récupération des données d'alarme\nconst alarmData = msg.alarms;\n\nif (!alarmData || !alarmData.bms_id) {\n    node.error(\"Données d'alarme invalides ou BMS ID manquant\");\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois par BMS\nconst discoveryKey = `discoverySent_ALARMS_BMS_${bmsId}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = `BMS_${bmsId}`;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = `BMS_${bmsId}`;\nconst deviceID = `BMS_${bmsId}_device`;\n\n// ------------------------------------------------------------------\n// 3. Fonction de génération des messages discovery\nfunction buildAlarmDiscoveryMessages() {\n    const msgs = [];\n    \n    // 3.1 Binary Sensor pour has_alarms\n    const binarySensorConfig = {\n        name: `BMS ${bmsId} Alarm Active`,\n        unique_id: `${deviceID}_alarm_active`,\n        state_topic: `${baseTopic}/alarm/active`,\n        payload_on: \"ON\",\n        payload_off: \"OFF\",\n        device_class: \"problem\",\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:alert-circle\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/binary_sensor/${deviceID}/alarm_active/config`,\n        payload: binarySensorConfig,\n        retain: true\n    });\n    \n    // 3.2 Sensor texte visuel avec emojis\n    const visualStatusConfig = {\n        name: `BMS ${bmsId} Visual Status`,\n        unique_id: `${deviceID}_visual_status`,\n        state_topic: `${baseTopic}/alarm/visual_status`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:gauge\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/visual_status/config`,\n        payload: visualStatusConfig,\n        retain: true\n    });\n    \n    // 3.3 Sensor texte pour alarm_details.status\n    const textSensorConfig = {\n        name: `BMS ${bmsId} Alarm Status`,\n        unique_id: `${deviceID}_alarm_status`,\n        state_topic: `${baseTopic}/alarm/status`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:text-box-outline\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_status/config`,\n        payload: textSensorConfig,\n        retain: true\n    });\n    \n    // 3.4 Sensor pour la liste des alarmes (format JSON)\n    const listSensorConfig = {\n        name: `BMS ${bmsId} Alarm List`,\n        unique_id: `${deviceID}_alarm_list`,\n        state_topic: `${baseTopic}/alarm/list`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:format-list-bulleted\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_list/config`,\n        payload: listSensorConfig,\n        retain: true\n    });\n    \n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Fonction de génération des messages state\nfunction buildAlarmStateMessages() {\n    const msgs = [];\n    \n    // State pour binary_sensor alarm_active\n    // CORRECTION: Envoyer ON/OFF comme défini dans la config discovery\n    msgs.push({\n        topic: `${baseTopic}/alarm/active`,\n        payload: alarmData.has_alarms ? \"ON\" : \"OFF\",\n        retain: true\n    });\n    \n    // State pour sensor visual_status (affichage convivial)\n    const visualStatus = alarmData.has_alarms \n        ? `🚨 ${alarmData.alarm_count} alarme(s)` \n        : \"✅ Aucune alarme\";\n    \n    msgs.push({\n        topic: `${baseTopic}/alarm/visual_status`,\n        payload: visualStatus,\n        retain: true\n    });\n    \n    // State pour sensor texte (status)\n    const statusText = alarmData.alarm_details.status || \"Unknown\";\n    msgs.push({\n        topic: `${baseTopic}/alarm/status`,\n        payload: statusText,\n        retain: true\n    });\n    \n    // State pour la liste des alarmes\n    const alarmList = alarmData.active_alarms.length > 0 \n        ? alarmData.active_alarms.map(a => a.description).join(\", \")\n        : \"\";\n    \n    msgs.push({\n        topic: `${baseTopic}/alarm/list`,\n        payload: alarmList,\n        retain: true\n    });\n    \n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 5. Construction des messages\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildAlarmDiscoveryMessages();\nconst stateMsgs = buildAlarmStateMessages();\n\n// Marquer le discovery comme envoyé\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n    node.log(`✓ Discovery envoyé pour BMS ${bmsId} (alarmes)`);\n}\n\n// Log des alarmes actives\nif (alarmData.has_alarms) {\n    node.warn(`⚠️ BMS ${bmsId}: ${alarmData.alarm_count} alarme(s) active(s)`);\n} else {\n    //node.log(`✓ BMS ${bmsId}: Aucune alarme`);\n}\n\n// Retourner tous les messages (discovery + state)\nreturn [discoveryMsgs.concat(stateMsgs)];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 1720,
+        "wires": [
+            [
+                "88ab86576ce40ea4",
+                "b1a321c3617b6aea"
+            ]
+        ]
+    },
+    {
+        "id": "558093e71cc2db1c",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "e17a26b0d2bf5039",
+        "name": "trt. réponse alarmes",
+        "func": "// Définition des bits d'alarme (0-23)\nconst ALARM_BITS = {\n    0: \"Balancing resistance too high\",\n    1: \"MOS over-temperature protection\",\n    2: \"Number of cells does not match parameter\",\n    3: \"Abnormal current sensor\",\n    4: \"Cell over-voltage protection\",\n    5: \"Battery over-voltage protection\",\n    6: \"Overcurrent charge protection\",\n    7: \"Charge short-circuit protection\",\n    8: \"Over-temperature charge protection\",\n    9: \"Low temperature charge protection\",\n    10: \"Internal communication anomaly\",\n    11: \"Cell under-voltage protection\",\n    12: \"Battery under-voltage protection\",\n    13: \"Overcurrent discharge protection\",\n    14: \"Discharge short-circuit protection\",\n    15: \"Over-temperature discharge protection\",\n    16: \"Charge MOS anomaly\",\n    17: \"Discharge MOS anomaly\",\n    18: \"GPS disconnected\",\n    19: \"Please modify the authorization password in time\",\n    20: \"Discharge activation failure\",\n    21: \"Battery over-temperature alarm\",\n    22: \"Temperature sensor anomaly\",\n    23: \"Parallel module anomaly\"\n};\n\n// Vérifier que c'est bien une réponse de lecture d'alarmes\nif (msg.topic !== \"Trame-Alarmes-BMS\") {\n    return null;\n}\n\n// Vérifier que la réponse est un buffer et a suffisamment de données\n// Format attendu: [SlaveID][FC][ByteCount][Data...][CRC_L][CRC_H]\nif (!Buffer.isBuffer(msg.payload) || msg.payload.length < 7) {\n    node.error(\"Réponse invalide: buffer trop court ou format incorrect\");\n    return null;\n}\n\n// Extraction des données Modbus\nconst slaveId = msg.payload[0];\nconst functionCode = msg.payload[1];\nconst byteCount = msg.payload[2];\n\n// Vérification du nombre d'octets (devrait être 4 pour 2 registres)\nif (byteCount !== 4) {\n    node.error(`Nombre d'octets incorrect: ${byteCount}, attendu: 4`);\n    return null;\n}\n\n// Extraction de la valeur UINT32 (Big Endian)\n// Les 4 octets de données commencent à l'index 3\nconst alarmValue = msg.payload.readUInt32BE(3);\n\n// Extraire les alarmes actives (bits à 1)\nconst activeAlarms = [];\nconst alarmDetails = {};\nconst alarmBits = [];\n\nfor (let bit = 0; bit <= 23; bit++) {\n    if (alarmValue & (1 << bit)) {\n        const alarmDescription = ALARM_BITS[bit];\n        activeAlarms.push({\n            bit: bit,\n            description: alarmDescription\n        });\n        alarmDetails[`BIT${bit}`] = alarmDescription;\n        alarmBits.push(bit);\n    }\n}\n\n// Toujours remplir le champ \"status\"\nif (activeAlarms.length === 0) {\n    alarmDetails.status = \"No BMS alarms\";\n} else {\n    alarmDetails.status = \"🚨 BMS Alarm Alert\";\n}\n\n// Préparer le payload détaillé dans msg.alarms\nmsg.alarms = {\n    bms_id: msg.bmsId || slaveId,\n    timestamp: new Date().toISOString(),\n    slave_id: slaveId,\n    raw_value: alarmValue,\n    raw_hex: '0x' + alarmValue.toString(16).toUpperCase().padStart(8, '0'),\n    raw_binary: alarmValue.toString(2).padStart(24, '0'),\n    alarm_count: activeAlarms.length,\n    has_alarms: activeAlarms.length > 0,\n    active_bits: alarmBits,\n    active_alarms: activeAlarms,\n    alarm_details: alarmDetails\n};\n\n// Payload simplifié pour MQTT\nmsg.payload = {\n    bms_id: msg.bmsId || slaveId,\n    status: activeAlarms.length > 0 ? \"ALARM\" : \"OK\",\n    count: activeAlarms.length,\n    alarms: activeAlarms.map(a => a.description),\n    bits: alarmBits,\n    timestamp: new Date().toISOString()\n};\n\n// Changement du topic pour MQTT\nmsg.topic = `jkbms/alarms/bms${msg.bmsId || slaveId}`;\n\n// Log pour debug (uniquement en cas d'alarmes actives)\nif (activeAlarms.length > 0) {\n    node.warn(`⚠️ BMS #${msg.bmsId || slaveId}: ${activeAlarms.length} alarme(s) active(s) détectée(s)`);\n    activeAlarms.forEach(alarm => {\n        node.warn(`  - BIT${alarm.bit}: ${alarm.description}`);\n    });\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1760,
+        "wires": [
+            [
+                "5fc29293a4e477ba",
+                "aebbfae197c3bc9f",
+                "a2d4dd9068a4e071"
+            ]
+        ]
+    },
+    {
+        "id": "8666d6cf3f8a75cc",
+        "type": "inject",
+        "z": "ce01fabde0618f55",
+        "g": "fc42763da6defab8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "bd13172ab7887f84",
+                "5b29999d7fdc4120",
+                "e77b486cbdcfe2b9",
+                "7020aefa46e32f74",
+                "90d3a2c04fa2bc90"
+            ]
+        ]
+    },
+    {
+        "id": "bd13172ab7887f84",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "fc42763da6defab8",
+        "name": "discoverySent_BMS_x to undefined",
+        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b29999d7fdc4120",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "fc42763da6defab8",
+        "name": "discoverySent_SETUP_BMS_x to undefined",
+        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_SETUP_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e77b486cbdcfe2b9",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "fc42763da6defab8",
+        "name": "discoverySent_STATIC_BMS_x to undefined",
+        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_STATIC_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7020aefa46e32f74",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "fc42763da6defab8",
+        "name": "discoverySent_ALARMS_BMS_x to undefined",
+        "func": "// Réinitialise toutes les clés de discovery au démarrage\nconst keys = flow.keys();\nkeys.forEach(k => {\n    if (k.startsWith(\"discoverySent_ALARMS_BMS_\")) {\n        flow.set(k, undefined);\n    }\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90d3a2c04fa2bc90",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "fc42763da6defab8",
+        "name": "discoverySent_GLOBAL_ALARM_x to undefined",
+        "func": "flow.set(\"discoverySent_GLOBAL_ALARM\", null);\nnode.warn(\"✓ Verrou discovery réinitialisé\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 220,
+        "wires": [
+            []
         ]
     },
     {
@@ -5646,12 +6209,22 @@
                 "vt": "str"
             },
             {
+                "t": "eq",
+                "v": "control/request_charge_voltage_time/state",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "control/request_float_voltage_time/state",
+                "vt": "str"
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "false",
         "repair": false,
-        "outputs": 37,
+        "outputs": 39,
         "x": 230,
         "y": 1160,
         "wires": [
@@ -5740,7 +6313,8 @@
                 "10d7690719c5a734"
             ],
             [
-                "452323515d5b4f2d"
+                "452323515d5b4f2d",
+                "046612ece2e887b7"
             ],
             [
                 "ca1db571bf48ece1"
@@ -5762,6 +6336,12 @@
             ],
             [
                 "1d8951e6d5cadaac"
+            ],
+            [
+                "631dc32357e54b02"
+            ],
+            [
+                "4077be501625201b"
             ],
             [
                 "9cdaf1add7c8c49f"
@@ -6378,10 +6958,9 @@
         "id": "452323515d5b4f2d",
         "type": "function",
         "z": "348d851bc48bb663",
-        "d": true,
         "g": "0bbb61cb5f6504ae",
-        "name": "Write LCD-on-off",
-        "func": "// Node-RED function node pour générer la trame Modbus\nfunction generateModbusCommand(setLCDOn) {\n    // Fonction de calcul CRC16 Modbus\n    function crc16(buffer) {\n        let crc = 0xFFFF;\n        for (let i = 0; i < buffer.length; i++) {\n            crc ^= buffer[i];\n            for (let j = 0; j < 8; j++) {\n                if (crc & 0x0001) {\n                    crc = (crc >> 1) ^ 0xA001;\n                } else {\n                    crc = crc >> 1;\n                }\n            }\n        }\n        return crc;\n    }\n\n    // Construction de la trame sans CRC\n    // Récupération de l'adresse esclave depuis le contexte global\n    const slaveId = global.get(\"slaveAddress-setup\") || 0x01; // Valeur par défaut si non définie\n\n    const command = [\n        slaveId,       // Slave ID\n        0x10,       // Function code (16 - Write Multiple Registers)\n        0x11,       // Register address high byte (0x11)\n        0x14,       // Register address low byte (0x14)\n        0x00,       // Quantity of registers high byte\n        0x01,       // Quantity of registers low byte\n        0x02,       // Byte count\n        0x00,       // Data high byte\n        setLCDOn ? 0x10 : 0x00  // Data low byte (bit 4 set or unset)\n    ];\n\n    // Calcul du CRC\n    const crc = crc16(Buffer.from(command));\n    \n    // Ajout du CRC à la trame (en ordre inverse car little-endian)\n    command.push(crc & 0xFF);         // CRC low byte\n    command.push((crc >> 8) & 0xFF);  // CRC high byte\n\n    return Buffer.from(command);\n}\n\n// Traitement du payload d'entrée\nlet setLCDOn = msg.payload.toLowerCase() === \"true\";\n\n// Envoi de la trame\nmsg.topic = \"LCD\";\nmsg.payload = generateModbusCommand(setLCDOn);\n\n// Fonction pour extraire les 9 premiers bits de la réponse\nmsg.extractBits = function(response) {\n    if (response && response.length >= 5) {\n        const uint16Value = (response[3] << 8) | response[4];\n        let bitStates = {};\n        for (let i = 0; i < 9; i++) {\n            bitStates[`bit${i}`] = (uint16Value >> i) & 1;\n        }\n        return bitStates;\n    }\n    return null;\n};\n\nreturn msg;\n",
+        "name": "Write LCD On / Off",
+        "func": "// ========== CONTRÔLE ÉCRAN LCD BMS ==========\n// Gestion du bit 4 du registre 0x1114 (UINT16)\n// Entrée : msg.payload = true (allumer) ou false (éteindre)\n// Utilise la variable globale \"0x1114\" pour récupérer l'état actuel\n\n// Vérification et conversion du payload\nlet screenOn;\n\nif (typeof msg.payload === \"boolean\") {\n    screenOn = msg.payload;\n} else if (typeof msg.payload === \"string\") {\n    if (msg.payload === \"True\" || msg.payload === \"true\") {\n        screenOn = true;\n    } else if (msg.payload === \"False\" || msg.payload === \"false\") {\n        screenOn = false;\n    } else {\n        node.error(\"Payload invalide : doit être 'True', 'False', true ou false\");\n        return null;\n    }\n} else {\n    node.error(\"Payload invalide : doit être 'True', 'False', true ou false\");\n    return null;\n}\nconst bmsId = msg.bmsId || 1; // ID du BMS (à adapter selon votre configuration)\n\n// ------------------------------------------------------------------\n// ÉTAPE 1 : Récupération de la valeur actuelle depuis la variable globale\nconst registerData = global.get(\"0x1114\");\n\nif (!registerData || !Array.isArray(registerData) || registerData.length === 0) {\n    node.error(\"Variable globale '0x1114' non trouvée ou invalide\");\n    return null;\n}\n\n// Extraction de l'objet contenant les bits\nconst bitData = registerData[0];\n\n// Reconstruction de la valeur UINT16 depuis les bits\n// Les bits sont dans l'ordre : bit0, bit1, bit2, ..., bit7 (8 bits)\n// Note: Si vous avez les 16 bits, adaptez la boucle\nlet currentValue = 0;\nif (bitData.bits && Array.isArray(bitData.bits)) {\n    for (let i = 0; i < bitData.bits.length; i++) {\n        if (bitData.bits[i] === 1) {\n            currentValue |= (1 << i);\n        }\n    }\n} else {\n    // Méthode alternative si les bits sont dans bit0, bit1, etc.\n    for (let i = 0; i < 16; i++) {\n        const bitKey = `bit${i}`;\n        if (bitData[bitKey] === 1) {\n            currentValue |= (1 << i);\n        }\n    }\n}\n\nnode.log(`Valeur actuelle du registre 0x1114: 0x${currentValue.toString(16).toUpperCase().padStart(4, '0')} (binaire: ${currentValue.toString(2).padStart(16, '0')})`);\nnode.log(`État actuel de l'écran (bit 4): ${bitData.bit4 === 1 ? 'ON' : 'OFF'}`);\n\n// ------------------------------------------------------------------\n// ÉTAPE 2 : Modification du bit 4\nconst LCD_BIT = 4;\nlet newValue;\n\nif (screenOn) {\n    // Allumer l'écran : mettre le bit 4 à 1\n    newValue = currentValue | (1 << LCD_BIT);\n    node.log(`🔆 Allumage écran LCD (bit ${LCD_BIT} = 1)`);\n} else {\n    // Éteindre l'écran : mettre le bit 4 à 0\n    newValue = currentValue & ~(1 << LCD_BIT);\n    node.log(`🔅 Extinction écran LCD (bit ${LCD_BIT} = 0)`);\n}\n\nnode.log(`Nouvelle valeur: 0x${newValue.toString(16).toUpperCase().padStart(4, '0')} (binaire: ${newValue.toString(2).padStart(16, '0')})`);\n\n// Vérification : le bit 4 a-t-il bien changé ?\nconst newBit4 = (newValue >> LCD_BIT) & 1;\nnode.log(`Vérification bit 4 après modification: ${newBit4}`);\n\n// ------------------------------------------------------------------\n// ÉTAPE 3 : Préparation de la commande d'écriture Modbus\nconst LCD_REGISTER = 0x1114;\n\nconst writeMsg = {\n    payload: {\n        fc: 6,              // Function Code 6 : Write Single Register\n        unitid: bmsId,\n        address: LCD_REGISTER,\n        value: newValue     // Nouvelle valeur avec bit 4 modifié\n    },\n    bmsId: bmsId,\n    topic: \"LCD_Write_Command\"\n};\n\nnode.status({\n    fill: screenOn ? \"green\" : \"yellow\", \n    shape: \"dot\", \n    text: screenOn ? \"Écran ON\" : \"Écran OFF\"\n});\n\nreturn [writeMsg];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -6392,7 +6971,6 @@
         "y": 1580,
         "wires": [
             [
-                "1b9d270fb278785c",
                 "bcb6622b78752c20"
             ]
         ]
@@ -6784,15 +7362,133 @@
         "z": "348d851bc48bb663",
         "g": "0bbb61cb5f6504ae",
         "name": "debug 5",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
+        "x": 740,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "631dc32357e54b02",
+        "type": "function",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "request charge voltage time",
+        "func": "// Génération de la trame de lecture Modbus 0x1504\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst functionCode = 0x03;\nconst registerHigh = 0x15;\nconst registerLow = 0x04;\nconst quantityHigh = 0x00;\nconst quantityLow = 0x01;\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\nmsg.topic = \"read_before_write\";\nmsg.payload = finalBuffer;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1900,
+        "wires": [
+            [
+                "54b01d2a7d5b9841",
+                "1b9d270fb278785c"
+            ]
+        ]
+    },
+    {
+        "id": "4077be501625201b",
+        "type": "function",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "request float voltage time",
+        "func": "// Génération de la trame de lecture Modbus 0x1504\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst functionCode = 0x03;\nconst registerHigh = 0x15;\nconst registerLow = 0x04;\nconst quantityHigh = 0x00;\nconst quantityLow = 0x01;\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\nmsg.topic = \"read_before_write\";\nmsg.payload = finalBuffer;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1940,
+        "wires": [
+            [
+                "1c9fa4df6d24ab3c",
+                "1b9d270fb278785c"
+            ]
+        ]
+    },
+    {
+        "id": "54b01d2a7d5b9841",
+        "type": "debug",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "request charge voltage time",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "1c9fa4df6d24ab3c",
+        "type": "debug",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "request float voltage time",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "60a3899229e506ca",
+        "type": "function",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "Lecture du registre 0x1504",
+        "func": "// Génération de la trame de lecture Modbus 0x1504\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst functionCode = 0x03;\nconst registerHigh = 0x15;\nconst registerLow = 0x04;\nconst quantityHigh = 0x00;\nconst quantityLow = 0x01;\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\nmsg.topic = \"read_before_write\";\nmsg.payload = finalBuffer;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 890,
-        "y": 1600,
+        "y": 1800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "046612ece2e887b7",
+        "type": "debug",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 90,
+        "y": 1320,
         "wires": []
     },
     {
