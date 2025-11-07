@@ -1,3 +1,12 @@
+## 3.2.1
+
+## 🐞 Bug fixes
+Increase the number maxi of BMS `jkbms_count` to 15 instead of 10
+
+
+##  ____________________________________________________________________
+ 
+
 ## 3.2.0
 
 ## ⚡️ Enhancements
