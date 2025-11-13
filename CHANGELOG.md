@@ -1,3 +1,30 @@
+## 3.3.0
+
+## 🐞 Bug fixes & Enhancements
+
+- Improved timer management
+- addition of a delay node to regulate traffic and avoid crossing frames
+- Major code overhaul to improve timing Efficiency
+- Modified management of IP gateway usage
+- Precaution regarding the management of damaged Alarms frames
+
+⚠️ Please save your module before the update.
+
+I have run tests, but I haven't been able to test everything. So please take precautions.
+I would also appreciate your feedback on whether it works well or not at all.
+
+
+##  ____________________________________________________________________
+
+## 3.2.3
+
+## 🐞 Bug fixes
+Correct management of a single BMS, all 125 entities are correctly discovered when there is only one BMS in master/slave mode.
+
+
+##  ____________________________________________________________________
+ 
+
 ## 3.2.1
 
 ## 🐞 Bug fixes

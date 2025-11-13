@@ -73,14 +73,6 @@
             "1430199873abea94",
             "9df6cb4f228ce42d",
             "61eadd92484325e7",
-            "c054e6c82bc4bb0a",
-            "6ca55c256080e1c0",
-            "73bb9117fd0b3a8e",
-            "4deeee03e0b1768d",
-            "16f7228e721581da",
-            "2d3862f26efaad60",
-            "bfc4f86c756f8e57",
-            "348ec2d0147bf36c",
             "a3bd0a6eeb93d67f",
             "074c128ffe1701e8",
             "935c37a416cb0336",
@@ -93,14 +85,13 @@
             "5d8b1329cf980408",
             "73cf0d220e1de798",
             "e45ebcb6cea88b4b",
-            "35900806dc5fb044",
-            "6a927c4cc1d5d2dc",
-            "ef8d7ae6ef560ca9"
+            "3782b34f573f61fe",
+            "02768681f22fb273"
         ],
         "x": 14,
-        "y": 499,
-        "w": 1262,
-        "h": 402
+        "y": 519,
+        "w": 1222,
+        "h": 282
     },
     {
         "id": "9c42cd07964fe992",
@@ -118,11 +109,12 @@
             "5e23433b1e088edf",
             "9fb62a629d09612b",
             "47ab0322cedc3c22",
-            "54c93e67707946a8"
+            "54c93e67707946a8",
+            "29aa81cab8e98225"
         ],
-        "x": 414,
+        "x": 54,
         "y": 339,
-        "w": 352,
+        "w": 512,
         "h": 122
     },
     {
@@ -143,10 +135,10 @@
             "dd313e0f9fd4ef67",
             "9e766385cf7c92f6"
         ],
-        "x": 18,
-        "y": 953,
-        "w": 1074,
-        "h": 934
+        "x": 16,
+        "y": 893,
+        "w": 1436,
+        "h": 994
     },
     {
         "id": "18188dc49c4fd89a",
@@ -222,7 +214,6 @@
             "f69bb43232dd2c3b",
             "e1b5d6daa74cc917",
             "10d7690719c5a734",
-            "452323515d5b4f2d",
             "ca1db571bf48ece1",
             "25bbb554698f3085",
             "d4b59e37e854b67d",
@@ -235,17 +226,16 @@
             "b4210ea0e3eceeca",
             "19813c881712a20f",
             "1d8951e6d5cadaac",
-            "bcb6622b78752c20",
             "631dc32357e54b02",
             "4077be501625201b",
             "54b01d2a7d5b9841",
             "1c9fa4df6d24ab3c",
-            "60a3899229e506ca",
-            "046612ece2e887b7"
+            "14c2982fd6b4b10b",
+            "c2a965eb88a133a6"
         ],
-        "x": 4,
+        "x": 54,
         "y": 419,
-        "w": 1032,
+        "w": 932,
         "h": 1562
     },
     {
@@ -336,11 +326,12 @@
             "72408cddd3840bf2",
             "b2892effe9f79e84",
             "fbd3591a98eafd6d",
-            "3de40e166b34cd30"
+            "3de40e166b34cd30",
+            "8c17e9b0cc52aac4"
         ],
-        "x": 784,
+        "x": 634,
         "y": 279,
-        "w": 452,
+        "w": 602,
         "h": 182
     },
     {
@@ -716,10 +707,54 @@
             "0e2831f9e2a8e7cf",
             "6542c8ba28167fbf"
         ],
-        "x": 44,
-        "y": 339,
+        "x": 814,
+        "y": 59,
         "w": 334,
         "h": 122
+    },
+    {
+        "id": "54c718657c13c657",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "name": "ESSAIS To show RCV and RFV values in 'hours' instead of 'seconds' ",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "1401504164e95430",
+            "1a8ddebb594458ae",
+            "9b436a73a13b0cb3",
+            "ea5c7b5329c945a4",
+            "5ea27536ce8688a6",
+            "2b4bee671f623f3c",
+            "94d92b48b836576f",
+            "58a120471d8b3aa5"
+        ],
+        "x": 64,
+        "y": 2339,
+        "w": 762,
+        "h": 162
+    },
+    {
+        "id": "fc42763da6defab8",
+        "type": "group",
+        "z": "ce01fabde0618f55",
+        "name": "Permet de ne faire qu'une seule passe pour les  discovery topic de HAOS",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8666d6cf3f8a75cc",
+            "bd13172ab7887f84",
+            "5b29999d7fdc4120",
+            "e77b486cbdcfe2b9",
+            "7020aefa46e32f74",
+            "90d3a2c04fa2bc90"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 652,
+        "h": 242
     },
     {
         "id": "646f282c0dd63a6e",
@@ -839,13 +874,16 @@
             "2492d95ecc9f328c",
             "32a6b862b301b073",
             "cb1a7697e8293f75",
-            "f15bd83b2cddefde",
-            "1c51761e84ee5bb2"
+            "1c51761e84ee5bb2",
+            "dab766c54a57452d",
+            "c054e6c82bc4bb0a",
+            "6ca55c256080e1c0",
+            "73bb9117fd0b3a8e"
         ],
         "x": 44,
-        "y": 1179,
-        "w": 902,
-        "h": 142
+        "y": 1139,
+        "w": 1382,
+        "h": 122
     },
     {
         "id": "2e57321f85689f45",
@@ -869,11 +907,14 @@
             "60a06da8cc236522",
             "c6f86ca54e23c581",
             "15033939a61ddd92",
-            "705a77e3b053f7ca"
+            "705a77e3b053f7ca",
+            "00cca2d92bf02b99",
+            "884c969712f9982d",
+            "914fc4cee6ebe7ee"
         ],
-        "x": 94,
-        "y": 1519,
-        "w": 892,
+        "x": 42,
+        "y": 1499,
+        "w": 1384,
         "h": 122
     },
     {
@@ -898,13 +939,15 @@
             "f62828b434e3951b",
             "ea72bb742b3422f7",
             "0780657340cd75cc",
-            "cbea3d957ba91cf1",
-            "dd809fbaf4dc9ce7"
+            "ae08f365b6a639d5",
+            "16f7228e721581da",
+            "35900806dc5fb044",
+            "987af1e78ba9a7d1"
         ],
-        "x": 64,
-        "y": 1339,
-        "w": 902,
-        "h": 142
+        "x": 43,
+        "y": 1299,
+        "w": 1383,
+        "h": 122
     },
     {
         "id": "b75a55c2aaa3b2b6",
@@ -986,29 +1029,6 @@
         "h": 142
     },
     {
-        "id": "54c718657c13c657",
-        "type": "group",
-        "z": "ce01fabde0618f55",
-        "name": "ESSAIS To show RCV and RFV values in 'hours' instead of 'seconds' ",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "1401504164e95430",
-            "1a8ddebb594458ae",
-            "9b436a73a13b0cb3",
-            "ea5c7b5329c945a4",
-            "5ea27536ce8688a6",
-            "2b4bee671f623f3c",
-            "94d92b48b836576f",
-            "58a120471d8b3aa5"
-        ],
-        "x": 64,
-        "y": 2339,
-        "w": 762,
-        "h": 162
-    },
-    {
         "id": "e17a26b0d2bf5039",
         "type": "group",
         "z": "ce01fabde0618f55",
@@ -1019,7 +1039,7 @@
             "fill": "#ffff7f",
             "label": true,
             "color": "#000000",
-            "fill-opacity": "0.49"
+            "fill-opacity": "0.2"
         },
         "nodes": [
             "311d7af5080d4a35",
@@ -1034,9 +1054,9 @@
             "a2d4dd9068a4e071",
             "558093e71cc2db1c"
         ],
-        "x": 124,
+        "x": 44,
         "y": 1679,
-        "w": 882,
+        "w": 1082,
         "h": 182
     },
     {
@@ -1058,7 +1078,7 @@
             "6957819b1dec75c3"
         ],
         "x": 784,
-        "y": 1059,
+        "y": 999,
         "w": 282,
         "h": 82
     },
@@ -1087,30 +1107,9 @@
             "5dff82f5facf29e8"
         ],
         "x": 44,
-        "y": 979,
+        "y": 919,
         "w": 652,
         "h": 164.5
-    },
-    {
-        "id": "fc42763da6defab8",
-        "type": "group",
-        "z": "ce01fabde0618f55",
-        "name": "Permet de ne faire qu'une seule passe pour les  discovery topic de HAOS",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "8666d6cf3f8a75cc",
-            "bd13172ab7887f84",
-            "5b29999d7fdc4120",
-            "e77b486cbdcfe2b9",
-            "7020aefa46e32f74",
-            "90d3a2c04fa2bc90"
-        ],
-        "x": 34,
-        "y": 19,
-        "w": 652,
-        "h": 242
     },
     {
         "id": "6e1abcbcc6ebb714",
@@ -1529,7 +1528,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "0.5",
+        "onceDelay": "2",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -1559,7 +1558,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "2",
+        "onceDelay": "5",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -2289,10 +2288,11 @@
         "finalize": "",
         "libs": [],
         "x": 770,
-        "y": 820,
+        "y": 700,
         "wires": [
             [
-                "a632bb3545ad81d5"
+                "a632bb3545ad81d5",
+                "3782b34f573f61fe"
             ]
         ]
     },
@@ -2310,7 +2310,7 @@
         "finalize": "",
         "libs": [],
         "x": 770,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "a632bb3545ad81d5"
@@ -2327,11 +2327,11 @@
             "389031f7d149d0e4",
             "6542c8ba28167fbf"
         ],
-        "x": 455,
+        "x": 95,
         "y": 420,
         "wires": [
             [
-                "5e23433b1e088edf"
+                "29aa81cab8e98225"
             ]
         ]
     },
@@ -2349,7 +2349,7 @@
         "finalize": "",
         "libs": [],
         "x": 770,
-        "y": 700,
+        "y": 620,
         "wires": [
             [
                 "a632bb3545ad81d5"
@@ -2370,8 +2370,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 240,
-        "y": 1560,
+        "x": 188,
+        "y": 1540,
         "wires": []
     },
     {
@@ -2388,8 +2388,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
-        "y": 1400,
+        "x": 369,
+        "y": 1340,
         "wires": []
     },
     {
@@ -2403,7 +2403,7 @@
             "03d54d1f353534ca"
         ],
         "x": 85,
-        "y": 1080,
+        "y": 1020,
         "wires": [
             [
                 "300c67230e4e510a",
@@ -2425,8 +2425,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 210,
-        "y": 1400,
+        "x": 189,
+        "y": 1340,
         "wires": []
     },
     {
@@ -2444,7 +2444,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1240,
+        "y": 1180,
         "wires": []
     },
     {
@@ -2461,8 +2461,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 410,
-        "y": 1240,
+        "x": 350,
+        "y": 1180,
         "wires": []
     },
     {
@@ -2645,12 +2645,13 @@
         "setTopic": true,
         "outputs": 1,
         "x": 420,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "bbe7f5ddcea331a9",
-                "f15bd83b2cddefde",
-                "1c51761e84ee5bb2"
+                "1c51761e84ee5bb2",
+                "dab766c54a57452d",
+                "c054e6c82bc4bb0a"
             ]
         ]
     },
@@ -2661,7 +2662,7 @@
         "g": "9c42cd07964fe992",
         "name": "JKBMS-RS485",
         "serial": "6e1abcbcc6ebb714",
-        "x": 590,
+        "x": 390,
         "y": 420,
         "wires": [
             [
@@ -2708,7 +2709,7 @@
         "repair": false,
         "outputs": 5,
         "x": 260,
-        "y": 1080,
+        "y": 1020,
         "wires": [
             [
                 "b17bb5bd16c1be78"
@@ -2737,7 +2738,7 @@
         "links": [
             "2621a947da028681"
         ],
-        "x": 725,
+        "x": 525,
         "y": 420,
         "wires": []
     },
@@ -2755,7 +2756,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
+        "x": 380,
         "y": 380,
         "wires": []
     },
@@ -2774,7 +2775,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 950,
-        "y": 1100,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2790,8 +2791,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 1600,
+        "x": 208,
+        "y": 1580,
         "wires": [
             [
                 "c6f86ca54e23c581"
@@ -2810,7 +2811,7 @@
             "c0f222bb926bd319"
         ],
         "x": 535,
-        "y": 1060,
+        "y": 1000,
         "wires": []
     },
     {
@@ -2822,8 +2823,8 @@
         "links": [
             "c516cfa766ac29a1"
         ],
-        "x": 135,
-        "y": 1600,
+        "x": 83,
+        "y": 1580,
         "wires": [
             [
                 "4c893435cad6711e",
@@ -2842,7 +2843,7 @@
             "dde116783a665a3f"
         ],
         "x": 475,
-        "y": 1040,
+        "y": 980,
         "wires": []
     },
     {
@@ -2854,8 +2855,8 @@
         "links": [
             "7bd0459073759ca1"
         ],
-        "x": 105,
-        "y": 1420,
+        "x": 84,
+        "y": 1360,
         "wires": [
             [
                 "3987f9e640e885a6",
@@ -2876,8 +2877,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 1440,
+        "x": 209,
+        "y": 1380,
         "wires": [
             [
                 "d07dea014d2dd68a"
@@ -2896,7 +2897,7 @@
             "7a45939101576456"
         ],
         "x": 425,
-        "y": 1020,
+        "y": 960,
         "wires": []
     },
     {
@@ -2909,7 +2910,7 @@
             "b17bb5bd16c1be78"
         ],
         "x": 85,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "2492d95ecc9f328c",
@@ -2931,7 +2932,7 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "264d6f5686cf22f1"
@@ -2953,8 +2954,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
-        "y": 1560,
+        "x": 398,
+        "y": 1540,
         "wires": []
     },
     {
@@ -2971,8 +2972,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 870,
-        "y": 1560,
+        "x": 1310,
+        "y": 1580,
         "wires": []
     },
     {
@@ -2990,8 +2991,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 860,
-        "y": 1600,
+        "x": 1160,
+        "y": 1580,
         "wires": []
     },
     {
@@ -3008,8 +3009,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
-        "y": 1240,
+        "x": 1310,
+        "y": 1220,
         "wires": []
     },
     {
@@ -3027,8 +3028,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 860,
-        "y": 1280,
+        "x": 1160,
+        "y": 1220,
         "wires": []
     },
     {
@@ -3359,7 +3360,7 @@
             },
             {
                 "type": "int32le",
-                "name": " Device_address_N",
+                "name": "Device_address_N",
                 "offset": 270,
                 "length": 1,
                 "offsetbit": 0,
@@ -3370,7 +3371,7 @@
                 "type": "bool",
                 "name": "display_always_on_switch_B",
                 "offset": 282,
-                "length": 1,
+                "length": 2,
                 "offsetbit": 4,
                 "scale": "1",
                 "mask": ""
@@ -3403,7 +3404,7 @@
                 "mask": ""
             },
             {
-                "type": "8bit",
+                "type": "uint16le",
                 "name": "0x1114",
                 "offset": 282,
                 "length": 1,
@@ -3426,35 +3427,13 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 440,
-        "y": 1440,
+        "x": 379,
+        "y": 1380,
         "wires": [
             [
-                "867fca3b9f77ce27",
                 "f62828b434e3951b",
-                "cbea3d957ba91cf1"
-            ]
-        ]
-    },
-    {
-        "id": "f15bd83b2cddefde",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "bff0d4fab3ef46a5",
-        "name": "Trame \"statics\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois\nconst discoveryKey = `discoverySent_STATIC_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\n// Champs qui doivent être des \"number\" (configuration)\nconst numberFields = [\n    \"LCD_buzzer_trigger_N\", \n    \"LCD_buzzer_trigger_value_N\", \n    \"LCD_buzzer_release_value_N\",\n    \"Request_Charge_voltage_Time_H\",\n    \"Request_Float_voltage_Time_H\"\n];\n\n// ------------------------------------------------------------------\n// 3. Fonctions de génération\nfunction formatValue(v) {\n    return (typeof v === 'string') ? v : String(v);\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const sensorTopic = `${baseTopic}/state/${cleanKey}`;\n        \n        // Vérifier si c'est un champ \"number\" (configuration)\n        if (numberFields.includes(key)) {\n            const commandTopic = `${baseTopic}/control/${cleanKey}/set`;\n            \n            // Définir la plage selon le champ\n            let min = 0;\n            let max = 100;\n            let unit = \"%\";\n            let step = 1;\n            let icon = \"mdi:tune\";\n            \n            if (key === \"LCD_buzzer_trigger_N\") {\n                max = 12;\n                unit = \"\";\n                icon = \"mdi:volume-high\";\n            } else if (key === \"Request_Charge_voltage_Time_H\" || key === \"Request_Float_voltage_Time_H\") {\n                min = 0;\n                max = 10;\n                step = 0.1;\n                unit = \"h\";\n                icon = \"mdi:timer-outline\";\n            }\n            \n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_${cleanKey}`,\n                state_topic: sensorTopic,\n                command_topic: commandTopic,\n                min: min,\n                max: max,\n                step: step,\n                mode: \"box\",\n                entity_category: \"config\",\n                enabled_by_default: true,\n                icon: icon,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.1.5\"\n                }\n            };\n            \n            // Ajouter l'unité seulement si elle existe\n            if (unit) {\n                cfg.unit_of_measurement = unit;\n            }\n            \n            msgs.push({\n                topic: `${discoveryPrefix}/number/${deviceID}/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        } else {\n            // Capteur classique (sensor)\n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_${cleanKey}`,\n                state_topic: sensorTopic,\n                enabled_by_default: true,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.0.1\"\n                }\n            };\n\n            // unités & classes\n            if (key.endsWith(\"_S\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_H\")) {\n                cfg.unit_of_measurement = \"h\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n                cfg.state_class = \"measurement\";\n            }\n\n            // icônes\n            if (key.includes(\"Password\")) cfg.icon = \"mdi:form-textbox-password\";\n            else if (key.includes(\"Serial\")) cfg.icon = \"mdi:barcode\";\n            else if (key.includes(\"protocol\")) cfg.icon = \"mdi:protocol\";\n            else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\"))\n                cfg.icon = \"mdi:numeric-10\";\n            else if (key.includes(\"Uptime\")) {\n                cfg.icon = \"mdi:timer-outline\";\n                cfg.device_class = \"duration\";\n            } else if (key.includes(\"date\")) cfg.icon = \"mdi:calendar\";\n\n            msgs.push({\n                topic: `${discoveryPrefix}/sensor/${deviceID}/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        }\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/state/${cleanKey}`,\n            payload: formatValue(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\nif (!discoveryAlreadySent) flow.set(discoveryKey, true);\n\nreturn [discoveryMsgs.concat(stateMsgs)];",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 1280,
-        "wires": [
-            [
-                "32a6b862b301b073",
-                "cb1a7697e8293f75"
+                "867fca3b9f77ce27",
+                "ae08f365b6a639d5"
             ]
         ]
     },
@@ -3464,15 +3443,15 @@
         "z": "ce01fabde0618f55",
         "g": "c06c156ddb36634e",
         "name": "Trame \"setup\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nconst discoveryKey = `discoverySent_SETUP_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nconst customBounds = {\n    max_charge_current_A: { min: 0, max: 600, step: 0.1, unit: \"A\" },\n    max_discharge_current_S: { min: 0, max: 600, step: 0.1, unit: \"A\" },\n    max_balance_current_A: { min: 0, max: 10, step: 0.1, unit: \"A\" },\n    total_battery_capacity_Ah: { min: 5, max: 2000, step: 1, unit: \"Ah\" },\n    short_circuit_protection_delay_S: { min: 0, max: 5000, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_delay_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_delay_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_recovery_time_S: { min: 2, max: 3600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_recovery_time_S: { min: 2, max: 3600, step: 1, unit: \"s\" },\n    short_circuit_protection_recovery_time_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    smart_sleep_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_protection_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_undervoltage_recovery_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_overvoltage_protection_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_overvoltage_recovery_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    balance_trigger_voltage_V: { min: 0.003, max: 1, step: 0.001, unit: \"V\" },\n    cell_soc100_voltage_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_soc0_voltage_V: { min: 1, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_request_charge_voltage_V: { min: 1.2, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_float_voltage_V: { min: 1.2, max: 5, step: 0.01, unit: \"V\" },\n    power_off_voltage_V: { min: 1.2, max: 4.5, step: 0.01, unit: \"V\" },\n    balance_starting_voltage_V: { min: 1.2, max: 4.25, step: 0.01, unit: \"V\" },\n    charge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_recovery_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_T: { min: 30, max: 100, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_recovery_T: { min: 30, max: 100, step: 0.5, unit: \"°C\" },\n    cell_count_N: { min: 1, max: 32, step: 1, unit: \"\" },\n    Connexion_wire_resistance_1_R: { min: 0, max: 1000, step: 0.1, unit: \"mΩ\" },\n    Device_address_N: { min: 1, max: 247, step: 1, unit: \"\" }\n};\n\n// ------------------------------------------------------------------\n// Fonctions utilitaires\nfunction formatBoolean(val) {\n    if (typeof val === 'boolean') return val ? 'True' : 'False';\n    const v = String(val).toLowerCase();\n    return v === 'true' ? 'True' : v === 'false' ? 'False' : val;\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const entityType = key.endsWith(\"_B\") ? \"switch\" : \"number\";\n\n        let cfg = {\n            name: key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \"),\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: `${baseTopic}/control/${cleanKey}/state`,\n            command_topic: `${baseTopic}/control/${cleanKey}/set`,\n            entity_category: \"config\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"Setup BMS\",\n                sw_version: \"3.1.5\"\n            }\n        };\n\n        if (entityType === \"number\") {\n            cfg.mode = \"box\";\n            const bounds = customBounds[key];\n            if (bounds) {\n                cfg.min = bounds.min; cfg.max = bounds.max; cfg.step = bounds.step;\n                if (bounds.unit) cfg.unit_of_measurement = bounds.unit;\n            } else {\n                // règles par défaut\n                if (key.endsWith(\"_V\")) {\n                    cfg.unit_of_measurement = \"V\"; cfg.min = 0; cfg.max = 5; cfg.step = 0.01;\n                } else if (key.endsWith(\"_A\")) {\n                    cfg.unit_of_measurement = \"A\"; cfg.min = 0; cfg.max = 400; cfg.step = 0.1;\n                } else if (key.endsWith(\"_S\")) {\n                    cfg.unit_of_measurement = \"s\"; cfg.min = 0; cfg.max = 3600; cfg.step = 1;\n                } else if (key.endsWith(\"_T\")) {\n                    cfg.unit_of_measurement = \"°C\"; cfg.min = -40; cfg.max = 150; cfg.step = 0.5;\n                } else {\n                    cfg.min = 0; cfg.max = 100; cfg.step = 1;\n                }\n            }\n        } else if (entityType === \"switch\") {\n            cfg.payload_on = \"True\"; cfg.payload_off = \"False\";\n            cfg.state_on = \"True\"; cfg.state_off = \"False\";\n        }\n\n        msgs.push({\n            topic: `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`,\n            payload: JSON.stringify(cfg),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/control/${cleanKey}/state`,\n            payload: formatBoolean(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\n// Marquer comme traité si c’est la première fois\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n}\n\nreturn [discoveryMsgs.concat(stateMsgs)];",
+        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame2\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nconst discoveryKey = `discoverySent_SETUP_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\nconst customBounds = {\n    max_charge_current_A: { min: 0, max: 600, step: 0.1, unit: \"A\" },\n    max_discharge_current_S: { min: 0, max: 600, step: 0.1, unit: \"A\" },\n    max_balance_current_A: { min: 0, max: 10, step: 0.1, unit: \"A\" },\n    total_battery_capacity_Ah: { min: 5, max: 2000, step: 1, unit: \"Ah\" },\n    short_circuit_protection_delay_S: { min: 0, max: 5000, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_delay_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_delay_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    charge_overcurrent_protection_recovery_time_S: { min: 2, max: 3600, step: 1, unit: \"s\" },\n    discharge_overcurrent_protection_recovery_time_S: { min: 2, max: 3600, step: 1, unit: \"s\" },\n    short_circuit_protection_recovery_time_S: { min: 2, max: 600, step: 1, unit: \"s\" },\n    smart_sleep_voltage_V: { min: 0, max: 5, step: 0.01, unit: \"V\" },\n    cell_voltage_undervoltage_protection_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_undervoltage_recovery_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_overvoltage_protection_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_voltage_overvoltage_recovery_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    balance_trigger_voltage_V: { min: 0.003, max: 1, step: 0.001, unit: \"V\" },\n    cell_soc100_voltage_V: { min: 1.2, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_soc0_voltage_V: { min: 1, max: 4.5, step: 0.001, unit: \"V\" },\n    cell_request_charge_voltage_V: { min: 1.2, max: 5, step: 0.01, unit: \"V\" },\n    cell_request_float_voltage_V: { min: 1.2, max: 5, step: 0.01, unit: \"V\" },\n    power_off_voltage_V: { min: 1.2, max: 4.5, step: 0.01, unit: \"V\" },\n    balance_starting_voltage_V: { min: 1.2, max: 4.25, step: 0.01, unit: \"V\" },\n    charge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    discharge_overtemperature_protection_recovery_T: { min: -40, max: 150, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    charge_undertemperature_protection_recovery_T: { min: -40, max: 50, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_T: { min: 30, max: 100, step: 0.5, unit: \"°C\" },\n    power_tube_overtemperature_protection_recovery_T: { min: 30, max: 100, step: 0.5, unit: \"°C\" },\n    cell_count_N: { min: 1, max: 32, step: 1, unit: \"\" },\n    Connexion_wire_resistance_1_R: { min: 0, max: 1000, step: 0.1, unit: \"mΩ\" },\n    Device_address_N: { min: 1, max: 247, step: 1, unit: \"\" }\n};\n\n// ------------------------------------------------------------------\n// Fonctions utilitaires\nfunction formatBoolean(val) {\n    if (typeof val === 'boolean') return val ? 'True' : 'False';\n    const v = String(val).toLowerCase();\n    return v === 'true' ? 'True' : v === 'false' ? 'False' : val;\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        if (key === \"0x1114\") continue; // 🔹 Ignore cette clé\n\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const entityType = key.endsWith(\"_B\") ? \"switch\" : \"number\";\n\n        let cfg = {\n            name: key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \"),\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: `${baseTopic}/control/${cleanKey}/state`,\n            command_topic: `${baseTopic}/control/${cleanKey}/set`,\n            entity_category: \"config\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"Setup BMS\",\n                sw_version: \"3.1.5\"\n            }\n        };\n\n        if (entityType === \"number\") {\n            cfg.mode = \"box\";\n            const bounds = customBounds[key];\n            if (bounds) {\n                cfg.min = bounds.min; cfg.max = bounds.max; cfg.step = bounds.step;\n                if (bounds.unit) cfg.unit_of_measurement = bounds.unit;\n            } else {\n                // règles par défaut\n                if (key.endsWith(\"_V\")) {\n                    cfg.unit_of_measurement = \"V\"; cfg.min = 0; cfg.max = 5; cfg.step = 0.01;\n                } else if (key.endsWith(\"_A\")) {\n                    cfg.unit_of_measurement = \"A\"; cfg.min = 0; cfg.max = 400; cfg.step = 0.1;\n                } else if (key.endsWith(\"_S\")) {\n                    cfg.unit_of_measurement = \"s\"; cfg.min = 0; cfg.max = 3600; cfg.step = 1;\n                } else if (key.endsWith(\"_T\")) {\n                    cfg.unit_of_measurement = \"°C\"; cfg.min = -40; cfg.max = 150; cfg.step = 0.5;\n                } else {\n                    cfg.min = 0; cfg.max = 100; cfg.step = 1;\n                }\n            }\n        } else if (entityType === \"switch\") {\n            cfg.payload_on = \"True\"; cfg.payload_off = \"False\";\n            cfg.state_on = \"True\"; cfg.state_off = \"False\";\n        }\n\n        msgs.push({\n            topic: `${discoveryPrefix}/${entityType}/${deviceID}/${cleanKey}/config`,\n            payload: JSON.stringify(cfg),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        if (key === \"0x1114\") continue; // 🔹 Ignore aussi pour les states\n\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/control/${cleanKey}/state`,\n            payload: formatBoolean(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\n// 🔹 Supprime la clé \"0x1114\" directement si elle est présente\nif (\"0x1114\" in payload) delete payload[\"0x1114\"];\n\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildDiscoveryMessages(payload);\nconst stateMsgs = buildStateMessages(payload);\n\n// Marquer comme traité si c’est la première fois\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n}\n\nreturn [discoveryMsgs.concat(stateMsgs)];\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1440,
+        "x": 970,
+        "y": 1380,
         "wires": [
             [
                 "ea72bb742b3422f7",
@@ -3494,8 +3473,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 850,
-        "y": 1400,
+        "x": 1310,
+        "y": 1380,
         "wires": []
     },
     {
@@ -3513,8 +3492,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 840,
-        "y": 1440,
+        "x": 1160,
+        "y": 1380,
         "wires": []
     },
     {
@@ -3523,9 +3502,11 @@
         "z": "ce01fabde0618f55",
         "g": "0693b9727dec471d",
         "name": "Relecture-Trame-2-in",
-        "links": [],
-        "x": 545,
-        "y": 700,
+        "links": [
+            "aa260e367192285d"
+        ],
+        "x": 605,
+        "y": 660,
         "wires": [
             [
                 "9df6cb4f228ce42d"
@@ -3543,185 +3524,7 @@
             "6957819b1dec75c3"
         ],
         "x": 655,
-        "y": 1100,
-        "wires": []
-    },
-    {
-        "id": "c054e6c82bc4bb0a",
-        "type": "delay",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 710,
-        "y": 540,
-        "wires": [
-            [
-                "6ca55c256080e1c0"
-            ]
-        ]
-    },
-    {
-        "id": "6ca55c256080e1c0",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "Loop Modbus adresse",
-        "func": "let currentAddress = global.get(\"slaveAddress-Trame1\") || 1; // Valeur par défaut : 1\nlet Number_of_BMS = global.get(\"nb_jkbms\") || 1; // Valeur par défaut : 1\n\n// Incrémenter l'adresse, revenir à 1 après 8\ncurrentAddress = currentAddress >= Number_of_BMS ? 1 : currentAddress + 1;\n\nglobal.set(\"slaveAddress-Trame1\", currentAddress);\n\n//node.warn(`Prochaine adresse esclave Trame1 : ${currentAddress}`);\nmsg.payload = currentAddress;\nreturn msg; // Continuer vers le prochain nœud\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 540,
-        "wires": [
-            [
-                "73bb9117fd0b3a8e"
-            ]
-        ]
-    },
-    {
-        "id": "73bb9117fd0b3a8e",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "Trame 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1100,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "4deeee03e0b1768d",
-        "type": "delay",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 710,
-        "y": 660,
-        "wires": [
-            [
-                "16f7228e721581da"
-            ]
-        ]
-    },
-    {
-        "id": "16f7228e721581da",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "Loop Modbus adresse",
-        "func": "let currentAddress = global.get(\"slaveAddress-Trame2\") || 1; // Valeur par défaut : 1\nlet Number_of_BMS = global.get(\"nb_jkbms\") || 1; // Valeur par défaut : 1\n\n// Incrémenter l'adresse, revenir à 1 après 8\ncurrentAddress = currentAddress >= Number_of_BMS ? 1 : currentAddress + 1;\n\nglobal.set(\"slaveAddress-Trame2\", currentAddress);\n\n//node.warn(`Prochaine adresse esclave Trame2 : ${currentAddress}`);\nmsg.payload = currentAddress;\nreturn msg; // Continuer vers le prochain nœud\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 660,
-        "wires": [
-            [
-                "35900806dc5fb044"
-            ]
-        ]
-    },
-    {
-        "id": "2d3862f26efaad60",
-        "type": "delay",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 710,
-        "y": 780,
-        "wires": [
-            [
-                "bfc4f86c756f8e57"
-            ]
-        ]
-    },
-    {
-        "id": "bfc4f86c756f8e57",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "Loop Modbus adresse",
-        "func": "let currentAddress = global.get(\"slaveAddress-Trame3\") || 1; // Valeur par défaut : 1\nlet Number_of_BMS = global.get(\"nb_jkbms\") || 1; // Valeur par défaut : 1\n\n// Incrémenter l'adresse, revenir à 1 après 8\ncurrentAddress = currentAddress >= Number_of_BMS ? 1 : currentAddress + 1;\n\nglobal.set(\"slaveAddress-Trame3\", currentAddress);\n\n// node.warn(`Prochaine adresse esclave Trame3 : ${currentAddress}`);\nmsg.payload = currentAddress;\nreturn msg; // Continuer vers le prochain nœud\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 780,
-        "wires": [
-            [
-                "348ec2d0147bf36c",
-                "ef8d7ae6ef560ca9"
-            ]
-        ]
-    },
-    {
-        "id": "348ec2d0147bf36c",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "Trame 3",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1100,
-        "y": 780,
+        "y": 1040,
         "wires": []
     },
     {
@@ -4245,13 +4048,14 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 460,
-        "y": 1600,
+        "x": 408,
+        "y": 1580,
         "wires": [
             [
                 "60a06da8cc236522",
                 "15033939a61ddd92",
-                "705a77e3b053f7ca"
+                "705a77e3b053f7ca",
+                "914fc4cee6ebe7ee"
             ]
         ]
     },
@@ -4279,12 +4083,12 @@
         "repeat": "30",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
+        "onceDelay": "3",
         "topic": "",
         "payload": "1",
         "payloadType": "num",
         "x": 120,
-        "y": 540,
+        "y": 560,
         "wires": [
             [
                 "5d8b1329cf980408"
@@ -4315,12 +4119,12 @@
         "repeat": "20",
         "crontab": "",
         "once": true,
-        "onceDelay": "1.5",
+        "onceDelay": "4",
         "topic": "",
         "payload": "01 10 16 20 00 01 02 00 00 D6 F1",
         "payloadType": "str",
         "x": 120,
-        "y": 660,
+        "y": 620,
         "wires": [
             [
                 "73cf0d220e1de798"
@@ -4351,12 +4155,12 @@
         "repeat": "3",
         "crontab": "",
         "once": true,
-        "onceDelay": "2",
+        "onceDelay": "5",
         "topic": "",
         "payload": "1",
         "payloadType": "num",
         "x": 120,
-        "y": 780,
+        "y": 700,
         "wires": [
             [
                 "e45ebcb6cea88b4b"
@@ -4386,7 +4190,7 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "x": 890,
+        "x": 730,
         "y": 320,
         "wires": [
             [
@@ -4404,7 +4208,7 @@
         "port": "",
         "out": "time",
         "ret": "buffer",
-        "splitc": "100",
+        "splitc": "30",
         "newline": "",
         "trim": false,
         "tls": "",
@@ -4469,8 +4273,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 1120,
-        "y": 700,
+        "x": 1060,
+        "y": 660,
         "wires": [
             [
                 "bbfdd16be70fd7b0"
@@ -4494,8 +4298,8 @@
         "links": [
             "19e4f82b41b8041a"
         ],
-        "x": 1235,
-        "y": 720,
+        "x": 1195,
+        "y": 740,
         "wires": []
     },
     {
@@ -4513,7 +4317,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1020,
+        "y": 960,
         "wires": []
     },
     {
@@ -4526,8 +4330,8 @@
         "links": [
             "72408cddd3840bf2"
         ],
-        "x": 1235,
-        "y": 680,
+        "x": 1195,
+        "y": 580,
         "wires": []
     },
     {
@@ -4540,7 +4344,7 @@
             "bbfdd16be70fd7b0",
             "0e2831f9e2a8e7cf"
         ],
-        "x": 825,
+        "x": 675,
         "y": 380,
         "wires": [
             [
@@ -4568,12 +4372,11 @@
         "repair": false,
         "outputs": 2,
         "x": 500,
-        "y": 540,
+        "y": 560,
         "wires": [
             [],
             [
-                "1430199873abea94",
-                "c054e6c82bc4bb0a"
+                "1430199873abea94"
             ]
         ]
     },
@@ -4597,11 +4400,10 @@
         "repair": false,
         "outputs": 2,
         "x": 500,
-        "y": 660,
+        "y": 620,
         "wires": [
             [],
             [
-                "4deeee03e0b1768d",
                 "9df6cb4f228ce42d"
             ]
         ]
@@ -4626,11 +4428,10 @@
         "repair": false,
         "outputs": 2,
         "x": 500,
-        "y": 780,
+        "y": 700,
         "wires": [
             [],
             [
-                "2d3862f26efaad60",
                 "d84c3f32b5bee13a"
             ]
         ]
@@ -4655,7 +4456,7 @@
         "repair": false,
         "outputs": 2,
         "x": 290,
-        "y": 540,
+        "y": 560,
         "wires": [
             [],
             [
@@ -4683,7 +4484,7 @@
         "repair": false,
         "outputs": 2,
         "x": 290,
-        "y": 660,
+        "y": 620,
         "wires": [
             [],
             [
@@ -4711,7 +4512,7 @@
         "repair": false,
         "outputs": 2,
         "x": 290,
-        "y": 780,
+        "y": 700,
         "wires": [
             [],
             [
@@ -4732,51 +4533,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1600,
+        "x": 960,
+        "y": 1580,
         "wires": [
             [
                 "d8f9f00da2e3a338",
                 "97a3abc79a4c67cd"
             ]
         ]
-    },
-    {
-        "id": "1c51761e84ee5bb2",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "bff0d4fab3ef46a5",
-        "name": "SerialNb",
-        "func": "var BMS = msg.payload.SerialNb_N;\n// Pour debug, affichons la valeur BMS\nnode.warn(`query BMS SerialNb: ${BMS}`);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 1220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "35900806dc5fb044",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "Trame 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1100,
-        "y": 660,
-        "wires": []
     },
     {
         "id": "993c2383b70be9f1",
@@ -4908,7 +4672,7 @@
         "links": [
             "4c96f83e2c664c74"
         ],
-        "x": 725,
+        "x": 525,
         "y": 380,
         "wires": []
     },
@@ -4922,8 +4686,8 @@
         "links": [
             "8eea8a8ef9220c22"
         ],
-        "x": 585,
-        "y": 1560,
+        "x": 525,
+        "y": 1540,
         "wires": []
     },
     {
@@ -5045,7 +4809,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 1060,
+        "x": 920,
         "y": 320,
         "wires": [
             [
@@ -5068,8 +4832,8 @@
             "1b9d270fb278785c",
             "94d92b48b836576f"
         ],
-        "x": 205,
-        "y": 420,
+        "x": 855,
+        "y": 100,
         "wires": [
             [
                 "bb64089a3c76b396"
@@ -5095,8 +4859,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 150,
-        "y": 380,
+        "x": 970,
+        "y": 100,
         "wires": [
             [
                 "0e2831f9e2a8e7cf"
@@ -5120,8 +4884,8 @@
         "links": [
             "72408cddd3840bf2"
         ],
-        "x": 285,
-        "y": 380,
+        "x": 1105,
+        "y": 100,
         "wires": []
     },
     {
@@ -5134,8 +4898,8 @@
         "links": [
             "19e4f82b41b8041a"
         ],
-        "x": 285,
-        "y": 420,
+        "x": 1105,
+        "y": 140,
         "wires": []
     },
     {
@@ -5165,58 +4929,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 930,
+        "x": 770,
         "y": 380,
         "wires": [
             [
-                "55581e8fd2063a3b"
-            ]
-        ]
-    },
-    {
-        "id": "6a927c4cc1d5d2dc",
-        "type": "function",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "LECTURE DES ALARMES JK-BMS",
-        "func": "// ========== FONCTION 1: LECTURE DES ALARMES JK-BMS ==========\n// Lecture de l'adresse 0x12A0 (4778 en décimal) - Registre des alarmes\n// UINT32 sur 4 registres (nous allons lire 2 registres de 16 bits)\n\n// Récupération de l'adresse esclave depuis le contexte global\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01;\n\n// Configuration Modbus pour lecture des alarmes\nconst functionCode = 0x03;      // FC3: Read Holding Registers\nconst address = 0x12A0;         // Adresse du registre des alarmes (4778)\nconst registerHigh = (address >> 8) & 0xFF;   // 0x12\nconst registerLow = address & 0xFF;            // 0xA0\nconst quantityHigh = 0x00;\nconst quantityLow = 0x02;       // Lire 2 registres (32 bits)\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\n// Topic pour identifier cette requête dans le switch\nmsg.topic = \"Trame-Alarmes-BMS\";\nmsg.payload = finalBuffer;\n\n// Sauvegarder l'ID du BMS pour le retrouver dans la réponse\nmsg.bmsId = slaveId;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 790,
-        "y": 860,
-        "wires": [
-            [
-                "a632bb3545ad81d5"
-            ]
-        ]
-    },
-    {
-        "id": "ef8d7ae6ef560ca9",
-        "type": "delay",
-        "z": "ce01fabde0618f55",
-        "g": "0693b9727dec471d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 860,
-        "wires": [
-            [
-                "6a927c4cc1d5d2dc"
+                "8c17e9b0cc52aac4"
             ]
         ]
     },
@@ -5397,7 +5114,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 300,
+        "x": 220,
         "y": 1720,
         "wires": []
     },
@@ -5415,8 +5132,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 530,
-        "y": 1760,
+        "x": 390,
+        "y": 1720,
         "wires": []
     },
     {
@@ -5430,7 +5147,7 @@
             "785684768df719de"
         ],
         "x": 595,
-        "y": 1080,
+        "y": 1020,
         "wires": []
     },
     {
@@ -5442,7 +5159,7 @@
         "links": [
             "5dff82f5facf29e8"
         ],
-        "x": 165,
+        "x": 85,
         "y": 1760,
         "wires": [
             [
@@ -5461,7 +5178,7 @@
             "fd734524924bf8a8"
         ],
         "x": 825,
-        "y": 1100,
+        "y": 1040,
         "wires": [
             [
                 "6152557feb0eac9a"
@@ -5481,8 +5198,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 900,
-        "y": 1720,
+        "x": 980,
+        "y": 1760,
         "wires": []
     },
     {
@@ -5500,7 +5217,7 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 900,
+        "x": 820,
         "y": 1760,
         "wires": []
     },
@@ -5510,14 +5227,14 @@
         "z": "ce01fabde0618f55",
         "g": "e17a26b0d2bf5039",
         "name": "AGGREGATION GLOBALE DES ALARMES BMS",
-        "func": "// ========== AGGREGATION GLOBALE DES ALARMES BMS ==========\n// Ce nœud agrège les alarmes de tous les BMS et crée un binary_sensor global\n\n// Récupération des données d'alarme du BMS courant\nconst alarmData = msg.alarms;\n\nif (!alarmData || !alarmData.bms_id) {\n    node.error(\"Données d'alarme invalides ou BMS ID manquant\");\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\n\n// ------------------------------------------------------------------\n// 1. Configuration\nconst TOTAL_BMS = global.get(\"nb_jkbms\") || 4; // Récupération depuis la variable globale\nconst discoveryPrefix = \"homeassistant\";\nconst globalDeviceID = \"BMS_GLOBAL_device\";\nconst globalDeviceName = \"BMS Global\";\n\n// ------------------------------------------------------------------\n// 2. Stockage de l'état des alarmes dans le contexte flow\n// Clé unique pour stocker l'état de chaque BMS\nconst alarmStateKey = `bms_alarm_state_${bmsId}`;\nconst globalDiscoveryKey = \"discoverySent_GLOBAL_ALARM\";\n\n// Stocker l'état actuel de ce BMS\nflow.set(alarmStateKey, {\n    has_alarm: alarmData.has_alarms,\n    alarm_count: alarmData.alarm_count,\n    timestamp: new Date().toISOString(),\n    active_alarms: alarmData.active_alarms\n});\n\n// ------------------------------------------------------------------\n// 3. Calcul de l'état global en parcourant tous les BMS\nlet globalHasAlarm = false;\nlet totalAlarmCount = 0;\nlet alarmedBmsList = [];\n\nfor (let i = 1; i <= TOTAL_BMS; i++) {\n    const stateKey = `bms_alarm_state_${i}`;\n    const bmsState = flow.get(stateKey);\n    \n    if (bmsState && bmsState.has_alarm) {\n        globalHasAlarm = true;\n        totalAlarmCount += bmsState.alarm_count;\n        alarmedBmsList.push(`BMS ${i}`);\n    }\n}\n\n// ------------------------------------------------------------------\n// 4. Fonction de génération du message discovery (une seule fois)\nfunction buildGlobalDiscoveryMessage() {\n    const binarySensorConfig = {\n        name: \"BMS Global Alarm\",\n        unique_id: `${globalDeviceID}_alarm_active`,\n        state_topic: \"BMS_GLOBAL/alarm/state\",\n        payload_on: \"ON\",\n        payload_off: \"OFF\",\n        device_class: \"problem\",\n        icon: \"mdi:battery-alert\",\n        device: {\n            identifiers: [globalDeviceID],\n            name: globalDeviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS Aggregator\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    return {\n        topic: `${discoveryPrefix}/binary_sensor/${globalDeviceID}/alarm_active/config`,\n        payload: binarySensorConfig,\n        retain: true\n    };\n}\n\n// ------------------------------------------------------------------\n// 5. Fonction de génération du message state\nfunction buildGlobalStateMessage() {\n    return {\n        topic: \"BMS_GLOBAL/alarm/state\",\n        payload: globalHasAlarm ? \"ON\" : \"OFF\",\n        retain: true,\n        qos: 1\n    };\n}\n\n// ------------------------------------------------------------------\n// 6. Construction et envoi des messages\nconst discoveryAlreadySent = flow.get(globalDiscoveryKey) || false;\nconst messages = [];\n\n// Envoyer le discovery une seule fois\nif (!discoveryAlreadySent) {\n    messages.push(buildGlobalDiscoveryMessage());\n    flow.set(globalDiscoveryKey, true);\n    node.log(`✓ Discovery envoyé pour BMS Global Alarm (${TOTAL_BMS} BMS surveillés)`);\n}\n\n// Toujours envoyer le state\nmessages.push(buildGlobalStateMessage());\n\n// Log de l'état global\nif (globalHasAlarm) {\n    node.warn(`🚨 ALARME GLOBALE: ${totalAlarmCount} alarme(s) sur ${alarmedBmsList.join(\", \")}`);\n} else {\n    //node.log(`✓ BMS Global: Aucune alarme active (${TOTAL_BMS} BMS OK)`);\n}\n\n// Retourner tous les messages (discovery + state)\nreturn [messages];",
+        "func": "// ========== AGGREGATION GLOBALE DES ALARMES BMS ==========\n// Ce nœud agrège les alarmes de tous les BMS et crée un binary_sensor global\n\n// Récupération des données d'alarme du BMS courant\nconst alarmData = msg.alarms;\n\nif (!alarmData || !alarmData.bms_id) {\n    node.error(\"Données d'alarme invalides ou BMS ID manquant\");\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\n\n// ------------------------------------------------------------------\n// 1. Configuration\nconst TOTAL_BMS = global.get(\"nb_jkbms\") || 4; // Récupération depuis la variable globale\nconst discoveryPrefix = \"homeassistant\";\nconst globalDeviceID = \"BMS_GLOBAL_device\";\nconst globalDeviceName = \"BMS Global\";\n\n// ------------------------------------------------------------------\n// 2. Stockage de l'état des alarmes dans le contexte flow\n// Clé unique pour stocker l'état de chaque BMS\nconst alarmStateKey = `bms_alarm_state_${bmsId}`;\nconst globalDiscoveryKey = \"discoverySent_GLOBAL_ALARM\";\n\n// Stocker l'état actuel de ce BMS\nflow.set(alarmStateKey, {\n    has_alarm: alarmData.has_alarms,\n    alarm_count: alarmData.alarm_count,\n    timestamp: new Date().toISOString(),\n    active_alarms: alarmData.active_alarms\n});\n\n// ------------------------------------------------------------------\n// 3. Calcul de l'état global en parcourant tous les BMS\nlet globalHasAlarm = false;\nlet totalAlarmCount = 0;\nlet alarmedBmsList = [];\n\nfor (let i = 1; i <= TOTAL_BMS; i++) {\n    const stateKey = `bms_alarm_state_${i}`;\n    const bmsState = flow.get(stateKey);\n    \n    if (bmsState && bmsState.has_alarm) {\n        globalHasAlarm = true;\n        totalAlarmCount += bmsState.alarm_count;\n        alarmedBmsList.push(`BMS ${i}`);\n    }\n}\n\n// ------------------------------------------------------------------\n// 4. Fonction de génération du message discovery (une seule fois)\nfunction buildGlobalDiscoveryMessage() {\n    const binarySensorConfig = {\n        name: \"BMS Global Alarm\",\n        unique_id: `${globalDeviceID}_alarm_active`,\n        state_topic: \"BMS_GLOBAL/alarm/state\",\n        payload_on: \"ON\",\n        payload_off: \"OFF\",\n        device_class: \"problem\",\n        icon: \"mdi:battery-alert\",\n        device: {\n            identifiers: [globalDeviceID],\n            name: globalDeviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS Aggregator\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    return {\n        topic: `${discoveryPrefix}/binary_sensor/${globalDeviceID}/alarm_active/config`,\n        payload: binarySensorConfig,\n        retain: true\n    };\n}\n\n// ------------------------------------------------------------------\n// 5. Fonction de génération du message state\nfunction buildGlobalStateMessage() {\n    return {\n        topic: \"BMS_GLOBAL/alarm/state\",\n        payload: globalHasAlarm ? \"ON\" : \"OFF\",\n        retain: true,\n        qos: 1\n    };\n}\n\n// ------------------------------------------------------------------\n// 6. Construction et envoi des messages\nconst discoveryAlreadySent = flow.get(globalDiscoveryKey) || false;\nconst messages = [];\n\n// Envoyer le discovery une seule fois\nif (!discoveryAlreadySent) {\n    messages.push(buildGlobalDiscoveryMessage());\n    flow.set(globalDiscoveryKey, true);\n    //node.log(`✓ Discovery envoyé pour BMS Global Alarm (${TOTAL_BMS} BMS surveillés)`);\n}\n\n// Toujours envoyer le state\nmessages.push(buildGlobalStateMessage());\n\n// Log de l'état global\nif (globalHasAlarm) {\n    node.warn(`🚨 ALARME GLOBALE: ${totalAlarmCount} alarme(s) sur ${alarmedBmsList.join(\", \")}`);\n} else {\n    //node.log(`✓ BMS Global: Aucune alarme active (${TOTAL_BMS} BMS OK)`);\n}\n\n// Retourner tous les messages (discovery + state)\nreturn [messages];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
+        "x": 510,
         "y": 1820,
         "wires": [
             [
@@ -5541,7 +5258,7 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 900,
+        "x": 800,
         "y": 1820,
         "wires": []
     },
@@ -5563,7 +5280,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 290,
+        "x": 210,
         "y": 1820,
         "wires": [
             [
@@ -5585,61 +5302,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 690,
-        "y": 1780,
-        "wires": []
-    },
-    {
-        "id": "cbea3d957ba91cf1",
-        "type": "change",
-        "z": "ce01fabde0618f55",
-        "g": "c06c156ddb36634e",
-        "name": "0x1114",
-        "rules": [
-            {
-                "t": "set",
-                "p": "0x1114",
-                "pt": "msg",
-                "to": "payload[\"0x1114\"]",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "bms_id",
-                "pt": "msg",
-                "to": "slaveAddress-Trame2",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 600,
-        "y": 1400,
-        "wires": [
-            [
-                "dd809fbaf4dc9ce7"
-            ]
-        ]
-    },
-    {
-        "id": "dd809fbaf4dc9ce7",
-        "type": "debug",
-        "z": "ce01fabde0618f55",
-        "g": "c06c156ddb36634e",
-        "name": "debug 10",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 730,
-        "y": 1380,
+        "x": 990,
+        "y": 1820,
         "wires": []
     },
     {
@@ -5648,15 +5312,15 @@
         "z": "ce01fabde0618f55",
         "g": "e17a26b0d2bf5039",
         "name": "Trame \"alarmes\" to MQTT",
-        "func": "// ========== MQTT DISCOVERY & STATE - ALARMES JK-BMS ==========\n// Traitement des alarmes avec auto-discovery Home Assistant\n\n// Récupération des données d'alarme\nconst alarmData = msg.alarms;\n\nif (!alarmData || !alarmData.bms_id) {\n    node.error(\"Données d'alarme invalides ou BMS ID manquant\");\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois par BMS\nconst discoveryKey = `discoverySent_ALARMS_BMS_${bmsId}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = `BMS_${bmsId}`;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = `BMS_${bmsId}`;\nconst deviceID = `BMS_${bmsId}_device`;\n\n// ------------------------------------------------------------------\n// 3. Fonction de génération des messages discovery\nfunction buildAlarmDiscoveryMessages() {\n    const msgs = [];\n    \n    // 3.1 Binary Sensor pour has_alarms\n    const binarySensorConfig = {\n        name: `BMS ${bmsId} Alarm Active`,\n        unique_id: `${deviceID}_alarm_active`,\n        state_topic: `${baseTopic}/alarm/active`,\n        payload_on: \"ON\",\n        payload_off: \"OFF\",\n        device_class: \"problem\",\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:alert-circle\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/binary_sensor/${deviceID}/alarm_active/config`,\n        payload: binarySensorConfig,\n        retain: true\n    });\n    \n    // 3.2 Sensor texte visuel avec emojis\n    const visualStatusConfig = {\n        name: `BMS ${bmsId} Visual Status`,\n        unique_id: `${deviceID}_visual_status`,\n        state_topic: `${baseTopic}/alarm/visual_status`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:gauge\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/visual_status/config`,\n        payload: visualStatusConfig,\n        retain: true\n    });\n    \n    // 3.3 Sensor texte pour alarm_details.status\n    const textSensorConfig = {\n        name: `BMS ${bmsId} Alarm Status`,\n        unique_id: `${deviceID}_alarm_status`,\n        state_topic: `${baseTopic}/alarm/status`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:text-box-outline\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_status/config`,\n        payload: textSensorConfig,\n        retain: true\n    });\n    \n    // 3.4 Sensor pour la liste des alarmes (format JSON)\n    const listSensorConfig = {\n        name: `BMS ${bmsId} Alarm List`,\n        unique_id: `${deviceID}_alarm_list`,\n        state_topic: `${baseTopic}/alarm/list`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:format-list-bulleted\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_list/config`,\n        payload: listSensorConfig,\n        retain: true\n    });\n    \n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Fonction de génération des messages state\nfunction buildAlarmStateMessages() {\n    const msgs = [];\n    \n    // State pour binary_sensor alarm_active\n    // CORRECTION: Envoyer ON/OFF comme défini dans la config discovery\n    msgs.push({\n        topic: `${baseTopic}/alarm/active`,\n        payload: alarmData.has_alarms ? \"ON\" : \"OFF\",\n        retain: true\n    });\n    \n    // State pour sensor visual_status (affichage convivial)\n    const visualStatus = alarmData.has_alarms \n        ? `🚨 ${alarmData.alarm_count} alarme(s)` \n        : \"✅ Aucune alarme\";\n    \n    msgs.push({\n        topic: `${baseTopic}/alarm/visual_status`,\n        payload: visualStatus,\n        retain: true\n    });\n    \n    // State pour sensor texte (status)\n    const statusText = alarmData.alarm_details.status || \"Unknown\";\n    msgs.push({\n        topic: `${baseTopic}/alarm/status`,\n        payload: statusText,\n        retain: true\n    });\n    \n    // State pour la liste des alarmes\n    const alarmList = alarmData.active_alarms.length > 0 \n        ? alarmData.active_alarms.map(a => a.description).join(\", \")\n        : \"\";\n    \n    msgs.push({\n        topic: `${baseTopic}/alarm/list`,\n        payload: alarmList,\n        retain: true\n    });\n    \n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 5. Construction des messages\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildAlarmDiscoveryMessages();\nconst stateMsgs = buildAlarmStateMessages();\n\n// Marquer le discovery comme envoyé\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n    node.log(`✓ Discovery envoyé pour BMS ${bmsId} (alarmes)`);\n}\n\n// Log des alarmes actives\nif (alarmData.has_alarms) {\n    node.warn(`⚠️ BMS ${bmsId}: ${alarmData.alarm_count} alarme(s) active(s)`);\n} else {\n    //node.log(`✓ BMS ${bmsId}: Aucune alarme`);\n}\n\n// Retourner tous les messages (discovery + state)\nreturn [discoveryMsgs.concat(stateMsgs)];",
+        "func": "// ========== MQTT DISCOVERY & STATE - ALARMES JK-BMS ==========\n// Traitement des alarmes avec auto-discovery Home Assistant\n\n// Récupération des données d'alarme\nconst alarmData = msg.alarms;\n\nif (!alarmData || !alarmData.bms_id) {\n    node.error(\"Données d'alarme invalides ou BMS ID manquant\");\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois par BMS\nconst discoveryKey = `discoverySent_ALARMS_BMS_${bmsId}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = `BMS_${bmsId}`;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = `BMS_${bmsId}`;\nconst deviceID = `BMS_${bmsId}_device`;\n\n// ------------------------------------------------------------------\n// 3. Fonction de génération des messages discovery\nfunction buildAlarmDiscoveryMessages() {\n    const msgs = [];\n    \n    // 3.1 Binary Sensor pour has_alarms\n    const binarySensorConfig = {\n        name: `BMS ${bmsId} Alarm Active`,\n        unique_id: `${deviceID}_alarm_active`,\n        state_topic: `${baseTopic}/alarm/active`,\n        payload_on: \"ON\",\n        payload_off: \"OFF\",\n        device_class: \"problem\",\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:alert-circle\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/binary_sensor/${deviceID}/alarm_active/config`,\n        payload: binarySensorConfig,\n        retain: true\n    });\n    \n    // 3.2 Sensor texte visuel avec emojis\n    const visualStatusConfig = {\n        name: `BMS ${bmsId} Visual Status`,\n        unique_id: `${deviceID}_visual_status`,\n        state_topic: `${baseTopic}/alarm/visual_status`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:gauge\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/visual_status/config`,\n        payload: visualStatusConfig,\n        retain: true\n    });\n    \n    // 3.3 Sensor texte pour alarm_details.status\n    const textSensorConfig = {\n        name: `BMS ${bmsId} Alarm Status`,\n        unique_id: `${deviceID}_alarm_status`,\n        state_topic: `${baseTopic}/alarm/status`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:text-box-outline\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_status/config`,\n        payload: textSensorConfig,\n        retain: true\n    });\n    \n    // 3.4 Sensor pour la liste des alarmes (format JSON)\n    const listSensorConfig = {\n        name: `BMS ${bmsId} Alarm List`,\n        unique_id: `${deviceID}_alarm_list`,\n        state_topic: `${baseTopic}/alarm/list`,\n        entity_category: \"diagnostic\",\n        enabled_by_default: true,\n        icon: \"mdi:format-list-bulleted\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS RS485\",\n            sw_version: \"1.0.0\"\n        }\n    };\n    \n    msgs.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_list/config`,\n        payload: listSensorConfig,\n        retain: true\n    });\n    \n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Fonction de génération des messages state\nfunction buildAlarmStateMessages() {\n    const msgs = [];\n    \n    // State pour binary_sensor alarm_active\n    // CORRECTION: Envoyer ON/OFF comme défini dans la config discovery\n    msgs.push({\n        topic: `${baseTopic}/alarm/active`,\n        payload: alarmData.has_alarms ? \"ON\" : \"OFF\",\n        retain: true\n    });\n    \n    // State pour sensor visual_status (affichage convivial)\n    const visualStatus = alarmData.has_alarms \n        ? `🚨 ${alarmData.alarm_count} alarme(s)` \n        : \"✅ Aucune alarme\";\n    \n    msgs.push({\n        topic: `${baseTopic}/alarm/visual_status`,\n        payload: visualStatus,\n        retain: true\n    });\n    \n    // State pour sensor texte (status)\n    const statusText = alarmData.alarm_details.status || \"Unknown\";\n    msgs.push({\n        topic: `${baseTopic}/alarm/status`,\n        payload: statusText,\n        retain: true\n    });\n    \n    // State pour la liste des alarmes\n    const alarmList = alarmData.active_alarms.length > 0 \n        ? alarmData.active_alarms.map(a => a.description).join(\", \")\n        : \"\";\n    \n    msgs.push({\n        topic: `${baseTopic}/alarm/list`,\n        payload: alarmList,\n        retain: true\n    });\n    \n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 5. Construction des messages\nconst discoveryMsgs = discoveryAlreadySent ? [] : buildAlarmDiscoveryMessages();\nconst stateMsgs = buildAlarmStateMessages();\n\n// Marquer le discovery comme envoyé\nif (!discoveryAlreadySent) {\n    flow.set(discoveryKey, true);\n    //node.log(`✓ Discovery envoyé pour BMS ${bmsId} (alarmes)`);\n}\n\n// Log des alarmes actives\nif (alarmData.has_alarms) {\n    node.warn(`⚠️ BMS ${bmsId}: ${alarmData.alarm_count} alarme(s) active(s)`);\n} else {\n    //node.log(`✓ BMS ${bmsId}: Aucune alarme`);\n}\n\n// Retourner tous les messages (discovery + state)\nreturn [discoveryMsgs.concat(stateMsgs)];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1720,
+        "x": 590,
+        "y": 1760,
         "wires": [
             [
                 "88ab86576ce40ea4",
@@ -5677,7 +5341,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 240,
         "y": 1760,
         "wires": [
             [
@@ -5702,10 +5366,10 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "30",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "3",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -5803,7 +5467,7 @@
         "z": "ce01fabde0618f55",
         "g": "fc42763da6defab8",
         "name": "discoverySent_GLOBAL_ALARM_x to undefined",
-        "func": "flow.set(\"discoverySent_GLOBAL_ALARM\", null);\nnode.warn(\"✓ Verrou discovery réinitialisé\");\nreturn msg;",
+        "func": "flow.set(\"discoverySent_GLOBAL_ALARM\", null);\n//node.warn(\"✓ Verrou discovery réinitialisé\");\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -5814,6 +5478,362 @@
         "y": 220,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "ae08f365b6a639d5",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "0x1114 LCD+",
+        "func": "// Récupérer ou initialiser le tableau\nlet tableau_0x1114 = global.get('0x1114') || [];\n\n// Extraire les données\nlet uint16_value = msg.payload[\"0x1114\"];  // ex: 0x0210 (valeur UINT16)\nlet bms_number = global.get('slaveAddress-Trame2');  // 0 à 15\n//let bms_number = msg.payload[\"Device_address_N\"] ;  // 0 à 15\n\n// Vérifier si ce bms_number existe déjà\nlet index = tableau_0x1114.findIndex(item => item[1] === bms_number);\n\nif (index !== -1) {\n    // Mettre à jour la ligne existante\n    tableau_0x1114[index] = [uint16_value, bms_number];\n} else {\n    // Ajouter une nouvelle ligne\n    tableau_0x1114.push([uint16_value, bms_number]);\n}\n\n// Sauvegarder dans le contexte global\nglobal.set('0x1114', tableau_0x1114);\n\n// Afficher les détails pour debug\nmsg.payload = {\n    bms: bms_number,\n    value: uint16_value,\n    value_hex: \"0x\" + uint16_value.toString(16).toUpperCase().padStart(4, '0'),\n    value_binary: \"0b\" + uint16_value.toString(2).padStart(16, '0'),\n    bit9: (uint16_value & 0x0200) ? 1 : 0  // État du bit 9\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 579,
+        "y": 1340,
+        "wires": [
+            [
+                "987af1e78ba9a7d1"
+            ]
+        ]
+    },
+    {
+        "id": "16f7228e721581da",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "Loop Trame 2",
+        "func": "let currentAddress = global.get(\"slaveAddress-Trame2\") || 1; // Valeur par défaut : 1\nlet Number_of_BMS = global.get(\"nb_jkbms\") || 1; // Valeur par défaut : 1\n\n// Incrémenter l'adresse, revenir à 1 après 8\ncurrentAddress = currentAddress >= Number_of_BMS ? 1 : currentAddress + 1;\n\nglobal.set(\"slaveAddress-Trame2\", currentAddress);\n\n//node.warn(`Prochaine adresse esclave Trame2 : ${currentAddress}`);\nmsg.payload = currentAddress;\nreturn msg; // Continuer vers le prochain nœud\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 1340,
+        "wires": [
+            [
+                "35900806dc5fb044"
+            ]
+        ]
+    },
+    {
+        "id": "1c51761e84ee5bb2",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "bff0d4fab3ef46a5",
+        "name": "SerialNb",
+        "func": "var BMS = msg.payload.SerialNb_N;\n// Pour debug, affichons la valeur BMS\nnode.warn(`query BMS SerialNb: ${BMS}`);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29aa81cab8e98225",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "9c42cd07964fe992",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "50",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "5e23433b1e088edf"
+            ]
+        ]
+    },
+    {
+        "id": "dab766c54a57452d",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "bff0d4fab3ef46a5",
+        "name": "Trame \"statics\" to MQTT",
+        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois (cohérent avec l'initialisation)\nconst discoveryKey = `discoverySent_STATIC_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\n// Champs qui doivent être des \"number\" (configuration)\nconst numberFields = [\n    \"LCD_buzzer_trigger_N\", \n    \"LCD_buzzer_trigger_value_N\", \n    \"LCD_buzzer_release_value_N\",\n    \"Request_Charge_voltage_Time_H\",\n    \"Request_Float_voltage_Time_H\"\n];\n\n// ------------------------------------------------------------------\n// 3. Fonctions de génération\nfunction formatValue(v) {\n    return (typeof v === 'string') ? v : String(v);\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const sensorTopic = `${baseTopic}/state/${cleanKey}`;\n        \n        // Vérifier si c'est un champ \"number\" (configuration)\n        if (numberFields.includes(key)) {\n            const commandTopic = `${baseTopic}/control/${cleanKey}/set`;\n            \n            // Définir la plage selon le champ\n            let min = 0;\n            let max = 100;\n            let unit = \"%\";\n            let step = 1;\n            let icon = \"mdi:tune\";\n            \n            if (key === \"LCD_buzzer_trigger_N\") {\n                max = 12;\n                unit = \"\";\n                icon = \"mdi:volume-high\";\n            } else if (key === \"Request_Charge_voltage_Time_H\" || key === \"Request_Float_voltage_Time_H\") {\n                min = 0;\n                max = 10;\n                step = 0.1;\n                unit = \"h\";\n                icon = \"mdi:timer-outline\";\n            }\n            \n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_static_${cleanKey}`,\n                state_topic: sensorTopic,\n                command_topic: commandTopic,\n                min: min,\n                max: max,\n                step: step,\n                mode: \"box\",\n                entity_category: \"config\",\n                enabled_by_default: true,\n                icon: icon,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.1.5\"\n                }\n            };\n            \n            // Ajouter l'unité seulement si elle existe\n            if (unit) {\n                cfg.unit_of_measurement = unit;\n            }\n            \n            msgs.push({\n                topic: `${discoveryPrefix}/number/${deviceID}_static/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        } else {\n            // Capteur classique (sensor)\n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_static_${cleanKey}`,\n                state_topic: sensorTopic,\n                enabled_by_default: true,\n                // \\u274c SUPPRESSION de \"entity_category: diagnostic\"\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.1.5\"\n                }\n            };\n\n            // unités & classes\n            if (key.endsWith(\"_S\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_H\")) {\n                cfg.unit_of_measurement = \"h\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n                cfg.state_class = \"measurement\";\n            }\n\n            // icônes\n            if (key.includes(\"Password\")) cfg.icon = \"mdi:form-textbox-password\";\n            else if (key.includes(\"Serial\")) cfg.icon = \"mdi:barcode\";\n            else if (key.includes(\"protocol\")) cfg.icon = \"mdi:protocol\";\n            else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\"))\n                cfg.icon = \"mdi:numeric-10\";\n            else if (key.includes(\"Uptime\")) {\n                cfg.icon = \"mdi:timer-outline\";\n                cfg.device_class = \"duration\";\n            } else if (key.includes(\"date\")) cfg.icon = \"mdi:calendar\";\n\n            msgs.push({\n                topic: `${discoveryPrefix}/sensor/${deviceID}_static/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        }\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/state/${cleanKey}`,\n            payload: formatValue(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nvar outputMsgs = [];\n\n// Envoyer les messages de discovery seulement si pas déjà fait\nif (!discoveryAlreadySent) {\n    outputMsgs = buildDiscoveryMessages(payload);\n    flow.set(discoveryKey, true);\n}\n\n// Ajouter les messages de state\nconst stateMsgs = buildStateMessages(payload);\noutputMsgs = outputMsgs.concat(stateMsgs);\n\nreturn [outputMsgs];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 1220,
+        "wires": [
+            [
+                "cb1a7697e8293f75",
+                "32a6b862b301b073"
+            ]
+        ]
+    },
+    {
+        "id": "c054e6c82bc4bb0a",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "bff0d4fab3ef46a5",
+        "name": "1s",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 1180,
+        "wires": [
+            [
+                "6ca55c256080e1c0"
+            ]
+        ]
+    },
+    {
+        "id": "6ca55c256080e1c0",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "bff0d4fab3ef46a5",
+        "name": "Loop Trame 1",
+        "func": "let currentAddress = global.get(\"slaveAddress-Trame1\") || 1; // Valeur par défaut : 1\nlet Number_of_BMS = global.get(\"nb_jkbms\") || 1; // Valeur par défaut : 1\n\n// Incrémenter l'adresse, revenir à 1 après 8\ncurrentAddress = currentAddress >= Number_of_BMS ? 1 : currentAddress + 1;\n\nglobal.set(\"slaveAddress-Trame1\", currentAddress);\n\n//node.warn(`Prochaine adresse esclave Trame1 : ${currentAddress}`);\nmsg.payload = currentAddress;\nreturn msg; // Continuer vers le prochain nœud\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 1180,
+        "wires": [
+            [
+                "73bb9117fd0b3a8e"
+            ]
+        ]
+    },
+    {
+        "id": "73bb9117fd0b3a8e",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "bff0d4fab3ef46a5",
+        "name": "Trame 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "35900806dc5fb044",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "Trame 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "00cca2d92bf02b99",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "2e57321f85689f45",
+        "name": "Loop Trame 3",
+        "func": "let currentAddress = global.get(\"slaveAddress-Trame3\") || 1; // Valeur par défaut : 1\nlet Number_of_BMS = global.get(\"nb_jkbms\") || 1; // Valeur par défaut : 1\n\n// Incrémenter l'adresse, revenir à 1 après 8\ncurrentAddress = currentAddress >= Number_of_BMS ? 1 : currentAddress + 1;\n\nglobal.set(\"slaveAddress-Trame3\", currentAddress);\n\n// node.warn(`Prochaine adresse esclave Trame3 : ${currentAddress}`);\nmsg.payload = currentAddress;\nreturn msg; // Continuer vers le prochain nœud\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 1540,
+        "wires": [
+            [
+                "884c969712f9982d"
+            ]
+        ]
+    },
+    {
+        "id": "884c969712f9982d",
+        "type": "debug",
+        "z": "ce01fabde0618f55",
+        "g": "2e57321f85689f45",
+        "name": "Trame 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "3782b34f573f61fe",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "0693b9727dec471d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "50",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 760,
+        "wires": [
+            [
+                "02768681f22fb273"
+            ]
+        ]
+    },
+    {
+        "id": "02768681f22fb273",
+        "type": "function",
+        "z": "ce01fabde0618f55",
+        "g": "0693b9727dec471d",
+        "name": "LECTURE DES ALARMES JK-BMS",
+        "func": "// ========== FONCTION 1: LECTURE DES ALARMES JK-BMS ==========\n// Lecture de l'adresse 0x12A0 (4778 en décimal) - Registre des alarmes\n// UINT32 sur 4 registres (nous allons lire 2 registres de 16 bits)\n\n// Récupération de l'adresse esclave depuis le contexte global\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01;\n\n// Configuration Modbus pour lecture des alarmes\nconst functionCode = 0x03;      // FC3: Read Holding Registers\nconst address = 0x12A0;         // Adresse du registre des alarmes (4778)\nconst registerHigh = (address >> 8) & 0xFF;   // 0x12\nconst registerLow = address & 0xFF;            // 0xA0\nconst quantityHigh = 0x00;\nconst quantityLow = 0x02;       // Lire 2 registres (32 bits)\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\n// Topic pour identifier cette requête dans le switch\nmsg.topic = \"Trame-Alarmes-BMS\";\nmsg.payload = finalBuffer;\n\n// Sauvegarder l'ID du BMS pour le retrouver dans la réponse\nmsg.bmsId = slaveId;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 760,
+        "wires": [
+            [
+                "a632bb3545ad81d5"
+            ]
+        ]
+    },
+    {
+        "id": "987af1e78ba9a7d1",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "1s",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 1340,
+        "wires": [
+            [
+                "16f7228e721581da"
+            ]
+        ]
+    },
+    {
+        "id": "914fc4cee6ebe7ee",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "2e57321f85689f45",
+        "name": "1s",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 1540,
+        "wires": [
+            [
+                "00cca2d92bf02b99"
+            ]
+        ]
+    },
+    {
+        "id": "8c17e9b0cc52aac4",
+        "type": "delay",
+        "z": "ce01fabde0618f55",
+        "g": "fcf5dd3bc6e97b81",
+        "name": "50ms",
+        "pauseType": "delay",
+        "timeout": "50",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 380,
+        "wires": [
+            [
+                "55581e8fd2063a3b"
+            ]
         ]
     },
     {
@@ -6313,8 +6333,7 @@
                 "10d7690719c5a734"
             ],
             [
-                "452323515d5b4f2d",
-                "046612ece2e887b7"
+                "14c2982fd6b4b10b"
             ],
             [
                 "ca1db571bf48ece1"
@@ -6955,27 +6974,6 @@
         ]
     },
     {
-        "id": "452323515d5b4f2d",
-        "type": "function",
-        "z": "348d851bc48bb663",
-        "g": "0bbb61cb5f6504ae",
-        "name": "Write LCD On / Off",
-        "func": "// ========== CONTRÔLE ÉCRAN LCD BMS ==========\n// Gestion du bit 4 du registre 0x1114 (UINT16)\n// Entrée : msg.payload = true (allumer) ou false (éteindre)\n// Utilise la variable globale \"0x1114\" pour récupérer l'état actuel\n\n// Vérification et conversion du payload\nlet screenOn;\n\nif (typeof msg.payload === \"boolean\") {\n    screenOn = msg.payload;\n} else if (typeof msg.payload === \"string\") {\n    if (msg.payload === \"True\" || msg.payload === \"true\") {\n        screenOn = true;\n    } else if (msg.payload === \"False\" || msg.payload === \"false\") {\n        screenOn = false;\n    } else {\n        node.error(\"Payload invalide : doit être 'True', 'False', true ou false\");\n        return null;\n    }\n} else {\n    node.error(\"Payload invalide : doit être 'True', 'False', true ou false\");\n    return null;\n}\nconst bmsId = msg.bmsId || 1; // ID du BMS (à adapter selon votre configuration)\n\n// ------------------------------------------------------------------\n// ÉTAPE 1 : Récupération de la valeur actuelle depuis la variable globale\nconst registerData = global.get(\"0x1114\");\n\nif (!registerData || !Array.isArray(registerData) || registerData.length === 0) {\n    node.error(\"Variable globale '0x1114' non trouvée ou invalide\");\n    return null;\n}\n\n// Extraction de l'objet contenant les bits\nconst bitData = registerData[0];\n\n// Reconstruction de la valeur UINT16 depuis les bits\n// Les bits sont dans l'ordre : bit0, bit1, bit2, ..., bit7 (8 bits)\n// Note: Si vous avez les 16 bits, adaptez la boucle\nlet currentValue = 0;\nif (bitData.bits && Array.isArray(bitData.bits)) {\n    for (let i = 0; i < bitData.bits.length; i++) {\n        if (bitData.bits[i] === 1) {\n            currentValue |= (1 << i);\n        }\n    }\n} else {\n    // Méthode alternative si les bits sont dans bit0, bit1, etc.\n    for (let i = 0; i < 16; i++) {\n        const bitKey = `bit${i}`;\n        if (bitData[bitKey] === 1) {\n            currentValue |= (1 << i);\n        }\n    }\n}\n\nnode.log(`Valeur actuelle du registre 0x1114: 0x${currentValue.toString(16).toUpperCase().padStart(4, '0')} (binaire: ${currentValue.toString(2).padStart(16, '0')})`);\nnode.log(`État actuel de l'écran (bit 4): ${bitData.bit4 === 1 ? 'ON' : 'OFF'}`);\n\n// ------------------------------------------------------------------\n// ÉTAPE 2 : Modification du bit 4\nconst LCD_BIT = 4;\nlet newValue;\n\nif (screenOn) {\n    // Allumer l'écran : mettre le bit 4 à 1\n    newValue = currentValue | (1 << LCD_BIT);\n    node.log(`🔆 Allumage écran LCD (bit ${LCD_BIT} = 1)`);\n} else {\n    // Éteindre l'écran : mettre le bit 4 à 0\n    newValue = currentValue & ~(1 << LCD_BIT);\n    node.log(`🔅 Extinction écran LCD (bit ${LCD_BIT} = 0)`);\n}\n\nnode.log(`Nouvelle valeur: 0x${newValue.toString(16).toUpperCase().padStart(4, '0')} (binaire: ${newValue.toString(2).padStart(16, '0')})`);\n\n// Vérification : le bit 4 a-t-il bien changé ?\nconst newBit4 = (newValue >> LCD_BIT) & 1;\nnode.log(`Vérification bit 4 après modification: ${newBit4}`);\n\n// ------------------------------------------------------------------\n// ÉTAPE 3 : Préparation de la commande d'écriture Modbus\nconst LCD_REGISTER = 0x1114;\n\nconst writeMsg = {\n    payload: {\n        fc: 6,              // Function Code 6 : Write Single Register\n        unitid: bmsId,\n        address: LCD_REGISTER,\n        value: newValue     // Nouvelle valeur avec bit 4 modifié\n    },\n    bmsId: bmsId,\n    topic: \"LCD_Write_Command\"\n};\n\nnode.status({\n    fill: screenOn ? \"green\" : \"yellow\", \n    shape: \"dot\", \n    text: screenOn ? \"Écran ON\" : \"Écran OFF\"\n});\n\nreturn [writeMsg];",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 490,
-        "y": 1580,
-        "wires": [
-            [
-                "bcb6622b78752c20"
-            ]
-        ]
-    },
-    {
         "id": "ca1db571bf48ece1",
         "type": "function",
         "z": "348d851bc48bb663",
@@ -7160,7 +7158,8 @@
         "y": 100,
         "wires": [
             [
-                "b6ad66b9c7594229"
+                "b6ad66b9c7594229",
+                "0feab4f81e28026c"
             ]
         ]
     },
@@ -7177,8 +7176,8 @@
         "nl": false,
         "rap": false,
         "inputs": 1,
-        "x": 710,
-        "y": 100,
+        "x": 430,
+        "y": 160,
         "wires": [
             [
                 "d9252d611463a606"
@@ -7357,24 +7356,6 @@
         ]
     },
     {
-        "id": "bcb6622b78752c20",
-        "type": "debug",
-        "z": "348d851bc48bb663",
-        "g": "0bbb61cb5f6504ae",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 740,
-        "y": 1580,
-        "wires": []
-    },
-    {
         "id": "631dc32357e54b02",
         "type": "function",
         "z": "348d851bc48bb663",
@@ -7455,40 +7436,43 @@
         "wires": []
     },
     {
-        "id": "60a3899229e506ca",
+        "id": "14c2982fd6b4b10b",
         "type": "function",
         "z": "348d851bc48bb663",
         "g": "0bbb61cb5f6504ae",
-        "name": "Lecture du registre 0x1504",
-        "func": "// Génération de la trame de lecture Modbus 0x1504\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst functionCode = 0x03;\nconst registerHigh = 0x15;\nconst registerLow = 0x04;\nconst quantityHigh = 0x00;\nconst quantityLow = 0x01;\n\n// Calculer CRC16 Modbus\nfunction crc16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc = crc >> 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Construction du buffer sans CRC\nconst dataBuffer = Buffer.from([\n    slaveId,\n    functionCode,\n    registerHigh,\n    registerLow,\n    quantityHigh,\n    quantityLow\n]);\n\n// Calcul du CRC\nconst crc = crc16(dataBuffer);\n\n// Buffer final avec CRC\nconst finalBuffer = Buffer.allocUnsafe(dataBuffer.length + 2);\ndataBuffer.copy(finalBuffer);\nfinalBuffer.writeUInt16LE(crc, dataBuffer.length);\n\nmsg.topic = \"read_before_write\";\nmsg.payload = finalBuffer;\nreturn msg;",
+        "name": "Tableau 0x1114 LCD & Co",
+        "func": "// Extraire le numéro de BMS du topic\nlet topic = msg.topic;  // Exemple : \"BMS_2/control/display_always_on_switch/state\"\nlet bms_match = topic.match(/BMS_(\\d+)\\//);\nlet bms_id = bms_match ? parseInt(bms_match[1]) : null;\n\nif (bms_id === null) {\n    node.error(\"Numéro de BMS non trouvé dans le topic\");\n    return null;\n}\n\n// Extraire l'état demandé (True / False)\nlet display_on = (msg.payload === \"True\" || msg.payload === true);\n\n// Récupérer le tableau stocké\nlet tableau_0x1114 = global.get('0x1114') || [];\n\n// Chercher la valeur actuelle pour ce BMS\nlet bms_data = tableau_0x1114.find(item => item[1] === bms_id);\n\nif (!bms_data) {\n    node.error(\"BMS #\" + bms_id + \" non trouvé dans le tableau\");\n    return null;\n}\n\n// Valeur actuelle du registre (UINT16)\nlet current_value = bms_data[0];\n\n// Modifier le bit 4 (masque 0x0010 = 0b0000000000010000)\nlet mask = 0x0010;\nlet new_value;\nif (display_on) {\n    new_value = current_value | mask;   // Allumer LCD\n} else {\n    new_value = current_value & ~mask;  // Éteindre LCD\n}\n\n// Mettre à jour le tableau avec la nouvelle valeur\nbms_data[0] = new_value;\nglobal.set('0x1114', tableau_0x1114);\n\n// --- Construction de la trame Modbus (Function Code 0x10 - Write Multiple Registers) ---\nlet slave_address = bms_id;\nlet function_code = 0x10;\nlet register_address = 0x1114;\n\nlet register_hi = (register_address >> 8) & 0xFF;\nlet register_lo = register_address & 0xFF;\nlet quantity_hi = 0x00;\nlet quantity_lo = 0x01;\nlet byte_count = 0x02;\n\nlet value_hi = (new_value >> 8) & 0xFF;\nlet value_lo = new_value & 0xFF;\n\n// --- Calcul du CRC16 Modbus ---\nfunction calculateCRC16(buffer) {\n    let crc = 0xFFFF;\n    for (let i = 0; i < buffer.length; i++) {\n        crc ^= buffer[i];\n        for (let j = 0; j < 8; j++) {\n            if (crc & 0x0001) {\n                crc = (crc >> 1) ^ 0xA001;\n            } else {\n                crc >>= 1;\n            }\n        }\n    }\n    return crc;\n}\n\n// Créer le buffer sans CRC\nlet data_buffer = [\n    slave_address, function_code, register_hi, register_lo,\n    quantity_hi, quantity_lo, byte_count, value_hi, value_lo\n];\n\n// Calculer CRC\nlet crc = calculateCRC16(data_buffer);\nlet crc_lo = crc & 0xFF;\nlet crc_hi = (crc >> 8) & 0xFF;\n\n// Trame Modbus complète\nlet modbus_frame = Buffer.from([\n    slave_address, function_code, register_hi, register_lo,\n    quantity_hi, quantity_lo, byte_count, value_hi, value_lo, crc_lo, crc_hi\n]);\n\n// Préparer le message de sortie\nmsg.payload = modbus_frame;\nmsg.bms_id = bms_id;\nmsg.register = \"0x1114\";\nmsg.new_value = new_value;\nmsg.new_value_hex = \"0x\" + new_value.toString(16).toUpperCase().padStart(4, '0');\nmsg.new_value_binary = \"0b\" + new_value.toString(2).padStart(16, '0');\nmsg.display_on = display_on;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
-        "y": 1800,
+        "x": 520,
+        "y": 1580,
         "wires": [
-            []
+            [
+                "c2a965eb88a133a6",
+                "1b9d270fb278785c"
+            ]
         ]
     },
     {
-        "id": "046612ece2e887b7",
+        "id": "c2a965eb88a133a6",
         "type": "debug",
         "z": "348d851bc48bb663",
         "g": "0bbb61cb5f6504ae",
-        "name": "debug 9",
-        "active": true,
+        "name": "LCD action",
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 90,
-        "y": 1320,
+        "x": 870,
+        "y": 1580,
         "wires": []
     },
     {
@@ -7588,7 +7572,10 @@
         "wires": [
             [
                 "bc098ac8e7c2a80e",
-                "2773a8c67764f19a"
+                "2773a8c67764f19a",
+                "65f7cb3119d4baa9",
+                "609d1962222fd9ae",
+                "7d85cec3b8e788bf"
             ]
         ]
     },
@@ -7635,7 +7622,7 @@
         "z": "7eba58462314a0d7",
         "g": "b75a55c2aaa3b2b6",
         "name": "Trame Data",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7653,7 +7640,7 @@
         "z": "7eba58462314a0d7",
         "g": "b75a55c2aaa3b2b6",
         "name": "Data To MQTT",
-        "func": "// Récupération de l'adresse BMS depuis msg.bms_adresse\nlet bmsAdresse = msg.bms_adresse;\n\n// Gestion du cas où bmsAdresse est \"master\" (string) ou un nombre\nlet slaveIdStr;\nif (typeof bmsAdresse === \"string\" && bmsAdresse.toLowerCase() === \"master\") {\n    slaveIdStr = \"master\";\n} else if (typeof bmsAdresse === \"number\") {\n    slaveIdStr = String(bmsAdresse);\n} else if (!isNaN(Number(bmsAdresse))) {\n    slaveIdStr = String(Number(bmsAdresse));\n} else {\n    // Valeur par défaut si jamais la donnée est absente ou invalide\n    slaveIdStr = \"1\";\n}\n\n// Debug pour vérifier la valeur prise\nconsole.log(`BMS utilisé: ${slaveIdStr}`);\n// node.warn(`BMS utilisé: ${slaveIdStr}`);\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdStr;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdStr;\nvar deviceID = \"BMS_\" + slaveIdStr + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Extraire uniquement les tensions des cellules\nvar cellVoltages = [];\nvar cellKeys = [];\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, voltage) => sum + voltage, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n    payload[\"cell_voltage_average_V\"] = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"] = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"] = parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"] = parseInt(minVoltIndex);\n}\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n    var configPayload = {\n        name: cleanKey,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        unit_of_measurement: \"\",\n        entity_category: \"diagnostic\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS - RS485 - Ip Gateway\",\n            sw_version: \"2.0.0\"\n        }\n    };\n\n    if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n    if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n    if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n    if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n    if (key.endsWith(\"_T\")) configPayload.unit_of_measurement = \"°C\";\n    if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n    if (key.endsWith(\"_P\")) {\n        configPayload.unit_of_measurement = \"%\";\n        if (key.startsWith(\"SOC\")) {\n            configPayload.device_class = \"battery\";\n        }\n    }\n    if (key.endsWith(\"_S\")) configPayload.unit_of_measurement = \"s\";\n\n    discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n}\n\n// Publier les données dynamiques sous un seul topic\ntopics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = discoveryMsgs;\nfor (var topic in topics) {\n    outputMsgs.push({ topic: topic, payload: topics[topic] });\n}\n\nreturn [outputMsgs];\n",
+        "func": "// Récupération de l'adresse BMS depuis msg.bms_adresse\nlet bmsAdresse = msg.bms_adresse;\n\n// Gestion du cas où bmsAdresse est \"master\" (string) ou un nombre\nlet slaveIdStr;\nif (typeof bmsAdresse === \"string\" && bmsAdresse.toLowerCase() === \"master\") {\n    slaveIdStr = \"master\";\n} else if (typeof bmsAdresse === \"number\") {\n    slaveIdStr = String(bmsAdresse);\n} else if (!isNaN(Number(bmsAdresse))) {\n    slaveIdStr = String(Number(bmsAdresse));\n} else {\n    // Valeur par défaut si jamais la donnée est absente ou invalide\n    slaveIdStr = \"1\";\n}\n\n// Debug pour vérifier la valeur prise\nconsole.log(`BMS used: ${slaveIdStr}`);\n// node.warn(`BMS used: ${slaveIdStr}`);\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdStr;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdStr;\nvar deviceID = \"BMS_\" + slaveIdStr + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Extraire uniquement les tensions des cellules\nvar cellVoltages = [];\nvar cellKeys = [];\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, voltage) => sum + voltage, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n    payload[\"cell_voltage_average_V\"] = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"] = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"] = parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"] = parseInt(minVoltIndex);\n}\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n    var configPayload = {\n        name: cleanKey,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        unit_of_measurement: \"\",\n        entity_category: \"diagnostic\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS - RS485 - Ip Gateway\",\n            sw_version: \"2.0.0\"\n        }\n    };\n\n    if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n    if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n    if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n    if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n    if (key.endsWith(\"_T\")) configPayload.unit_of_measurement = \"°C\";\n    if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n    if (key.endsWith(\"_P\")) {\n        configPayload.unit_of_measurement = \"%\";\n        if (key.startsWith(\"SOC\")) {\n            configPayload.device_class = \"battery\";\n        }\n    }\n    if (key.endsWith(\"_S\")) configPayload.unit_of_measurement = \"s\";\n\n    discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n}\n\n// Publier les données dynamiques sous un seul topic\ntopics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = discoveryMsgs;\nfor (var topic in topics) {\n    outputMsgs.push({ topic: topic, payload: topics[topic] });\n}\n\nreturn [outputMsgs];\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -8747,7 +8734,7 @@
         "z": "7eba58462314a0d7",
         "g": "71ff535abf2657b3",
         "name": "Broadcast-serial-Out",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9211,6 +9198,194 @@
                 "b28c235f729ec2af"
             ]
         ]
+    },
+    {
+        "id": "609d1962222fd9ae",
+        "type": "function",
+        "z": "7eba58462314a0d7",
+        "name": "Gestion des codes d'erreurs",
+        "func": "// Liste des erreurs possibles\nconst errorList = [\n    \"Charge Overtemperature\",               // bit 0\n    \"Charge Undertemperature\",              // bit 1\n    \"Coprocessor communication error\",      // bit 2\n    \"Cell Undervoltage\",                    // bit 3\n    \"Battery pack undervoltage\",            // bit 4\n    \"Discharge overcurrent\",                // bit 5\n    \"Discharge short circuit\",              // bit 6\n    \"Discharge overtemperature\",            // bit 7\n    \"Wire resistance\",                      // bit 8\n    \"Mosfet overtemperature\",               // bit 9\n    \"Cell count is not equal to settings\",  // bit 10\n    \"Current sensor anomaly\",               // bit 11\n    \"Cell Overvoltage\",                     // bit 12\n    \"Battery pack overvoltage\",             // bit 13\n    \"Charge overcurrent protection\",        // bit 14\n    \"Charge short circuit\"                  // bit 15\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier que le buffer est suffisamment grand\nif (buffer.length <= 167) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur à l'offset 166 (en supposant Big Endian - BE)\nconst errorCode = (buffer[166] << 8) | buffer[167];\n\n// Initialiser un tableau pour stocker les erreurs détectées\nconst activeErrors = [];\n\n// Vérifier chaque bit d'erreur\nfor (let i = 0; i < errorList.length; i++) {\n    // Si le bit correspondant est activé (1), ajouter l'erreur à la liste\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\n// Si aucune erreur n'est détectée\nif (activeErrors.length === 0) {\n    msg.payload = \"Aucune erreur détectée\";\n} else {\n    // Joindre les erreurs avec des virgules\n    msg.payload = activeErrors.join(\", \");\n}\n\n// Ajouter également le code d'erreur brut pour référence\nmsg.errorCode = errorCode;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1240,
+        "wires": [
+            [
+                "341f048d7cd2addd",
+                "2b3dbb8636ea293a"
+            ]
+        ]
+    },
+    {
+        "id": "65f7cb3119d4baa9",
+        "type": "buffer-parser",
+        "z": "7eba58462314a0d7",
+        "name": "Erreurs codes",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "16bitle",
+                "name": "error code",
+                "offset": 166,
+                "length": 2,
+                "offsetbit": 5,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 280,
+        "y": 1200,
+        "wires": [
+            [
+                "cd88b13577b5a05a"
+            ]
+        ]
+    },
+    {
+        "id": "cd88b13577b5a05a",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "name": "Erreurs codes",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "341f048d7cd2addd",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "name": "debug 26",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "2b3dbb8636ea293a",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "bms_adresse",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "578f3611541cf122",
+        "type": "function",
+        "z": "7eba58462314a0d7",
+        "name": "Convertir en binaire",
+        "func": "let valeur = msg.payload; // Supposé être un entier 16 bits\n\n// Convertir en binaire, et compléter à 16 bits avec des 0 à gauche\nlet binaire16 = valeur.toString(2).padStart(16, '0');\n\nmsg.payload = binaire16;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1160,
+        "wires": [
+            [
+                "0dd256ad57891511"
+            ]
+        ]
+    },
+    {
+        "id": "0dd256ad57891511",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "name": "Alarmes en binaire",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "7d85cec3b8e788bf",
+        "type": "function",
+        "z": "7eba58462314a0d7",
+        "name": "function 5",
+        "func": "// Nouvelle liste d'erreurs basée sur ta définition\nconst errorList = [\n    \"Balancing resistance too high\",               // bit 0\n    \"MOS over-temperature protection\",             // bit 1\n    \"Number of cells does not match parameter\",    // bit 2\n    \"Abnormal current sensor\",                      // bit 3\n    \"Cell over-voltage protection\",                 // bit 4\n    \"Battery over-voltage protection\",              // bit 5\n    \"Overcurrent charge protection\",                // bit 6\n    \"Charge short-circuit protection\",              // bit 7\n    \"Over-temperature charge protection\",           // bit 8\n    \"Low temperature charge protection\",            // bit 9\n    \"Internal communication anomaly\",               // bit 10\n    \"Cell under-voltage protection\",                // bit 11\n    \"Battery under-voltage protection\",             // bit 12\n    \"Overcurrent discharge protection\",             // bit 13\n    \"Discharge short-circuit protection\",           // bit 14\n    \"Over-temperature discharge protection\",        // bit 15\n    \"Charge MOS anomaly\",                            // bit 16\n    \"Discharge MOS anomaly\",                         // bit 17\n    \"GPS disconnected\",                             // bit 18\n    \"Please modify the authorization password in time\", // bit 19\n    \"Discharge activation failure\",                 // bit 20\n    \"Battery over-temperature alarm\",                // bit 21\n    \"Temperature sensor anomaly\",                    // bit 22\n    \"Parallel module anomaly\",                        // bit 23\n    \"Erreur fictive Bit 24\",\n    \"Erreur fictive Bit 25\",\n    \"Erreur fictive Bit 26\",\n    \"Erreur fictive Bit 27\",\n    \"Erreur fictive Bit 28\",\n    \"Erreur fictive Bit 29\",\n    \"Erreur fictive Bit 30\",\n    \"Erreur fictive Bit 31\"\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier la taille du buffer\nif (buffer.length <= 169) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur 32 bits (Big Endian)\nconst errorCode =\n    (buffer[166] << 24) |\n    (buffer[167] << 16) |\n    (buffer[168] << 8) |\n    (buffer[169]);\n\nconst activeErrors = [];\n\nfor (let i = 0; i < errorList.length; i++) {\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\nmsg.payload = activeErrors.length === 0 ? \"Aucune erreur détectée\" : activeErrors.join(\", \");\nmsg.errorCode = errorCode;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 1320,
+        "wires": [
+            [
+                "c61f13fa51886e67"
+            ]
+        ]
+    },
+    {
+        "id": "c61f13fa51886e67",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "name": "New version",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 1320,
+        "wires": []
     },
     {
         "id": "db723bbce9cd2eb7",
