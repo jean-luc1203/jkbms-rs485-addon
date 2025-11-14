@@ -1,3 +1,10 @@
+## 3.3.1
+
+## 🐞 Bug fixes
+
+Correction of the timer for alarms 
+
+
 ## 3.3.0
 
 ## 🐞 Bug fixes & Enhancements
