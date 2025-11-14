@@ -2,7 +2,7 @@
 
 ## 🐞 Bug fixes
 
-Correction of the timer for alarms 
+Correction of the timer for alarms when using IP Gateway
 
 
 ## 3.3.0
