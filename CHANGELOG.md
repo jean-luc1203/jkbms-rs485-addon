@@ -1,8 +1,22 @@
+## 3.3.2
+
+## 🐞 Bug fixes
+
+Changed the TCP Connection to the IP Gateway. 
+The connection is no longer closed by default. 
+It remains open at all times from the moment of negotiation between the client and the server.
+This avoids having to renegotiate the opening of the connection.
+
+##  ____________________________________________________________________
+
+
 ## 3.3.1
 
 ## 🐞 Bug fixes
 
 Correction of the timer for alarms when using IP Gateway
+
+##  ____________________________________________________________________
 
 
 ## 3.3.0
