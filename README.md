@@ -46,7 +46,7 @@ To activate Listen mode, set the parameter
 
   ## Screenshot
 
-  ![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JK-BMS-Screenshot-1.gif)
+  ![Logo](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JK-BMS-Screenshot-15-11-2025.gif)
 
 ---
 
