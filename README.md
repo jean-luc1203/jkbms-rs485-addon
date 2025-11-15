@@ -99,6 +99,20 @@ You can see which alarms are possible on this [*table*](https://github.com/jean-
 ⚠️ for the moment, this is only functional in Master/Slave mode. 
 The 2 other modes, broadcasting & CANbus will be dealt with as soon as I have time
 
+## TCP/IP gateway 🌐
+
+You can connect your JK-BMS to an RS485/Ethernet gateway in transparent mode.
+This means you do not need to have your PC next to your BMS(es).
+
+The data will be retransmitted by this gateway over the network and this module will then be able to remotely manage your BMS.
+You will need to activate the dedicated switch for this in the configuration.
+
+Here are the gateways that are known to work actually. 
+You can find them in this [directory](https://github.com/jean-luc1203/jkbms-rs485-addon/tree/main/images/Modbus-Gateway)
+
+This configuration is quite complex and may not work depending on the hardware/settings.
+
+
 
 ## Installation
 
