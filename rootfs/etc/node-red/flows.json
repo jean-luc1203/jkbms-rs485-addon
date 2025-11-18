@@ -47,6 +47,14 @@
         "env": []
     },
     {
+        "id": "44f1a774d989bad2",
+        "type": "tab",
+        "label": "Flux 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "6fc9763d4087338c",
         "type": "subflow",
         "name": "Subflow 1",
@@ -356,7 +364,7 @@
             "cdc3910800c7d95b",
             "76ddac3ef98c9d5f"
         ],
-        "x": 4,
+        "x": 44,
         "y": 359,
         "w": 982,
         "h": 162
@@ -376,10 +384,10 @@
             "a1697c874f4c5e2d",
             "c7bb4746ce710cb1"
         ],
-        "x": 8,
-        "y": 573,
-        "w": 824,
-        "h": 534
+        "x": 48,
+        "y": 553,
+        "w": 844,
+        "h": 594
     },
     {
         "id": "6c19eb9e84cdf38b",
@@ -684,7 +692,7 @@
             "3c1b49123cabedb0",
             "8eea8a8ef9220c22"
         ],
-        "x": 34,
+        "x": 214,
         "y": 1979,
         "w": 712,
         "h": 242
@@ -755,6 +763,28 @@
         "y": 19,
         "w": 652,
         "h": 242
+    },
+    {
+        "id": "2a96ca484e0815bf",
+        "type": "group",
+        "z": "7eba58462314a0d7",
+        "name": "Initialisation Flags discovery",
+        "style": {
+            "stroke": "#92d04f",
+            "fill": "#e3f3d3",
+            "fill-opacity": "0.18",
+            "label": true,
+            "color": "#001f60",
+            "label-position": "n"
+        },
+        "nodes": [
+            "7bdc72b0af93d76a",
+            "b47fc264732cec08"
+        ],
+        "x": 614,
+        "y": 59,
+        "w": 412,
+        "h": 82
     },
     {
         "id": "646f282c0dd63a6e",
@@ -968,10 +998,11 @@
             "b8c6447a9aadb290",
             "6ac6b1debaf96f4e",
             "e3768062bfabfaf0",
-            "2773a8c67764f19a"
+            "2773a8c67764f19a",
+            "01565a6abef1f0a8"
         ],
-        "x": 34,
-        "y": 959,
+        "x": 174,
+        "y": 999,
         "w": 692,
         "h": 122
     },
@@ -994,12 +1025,13 @@
             "6ca68da351cc699c",
             "4716f48d98903bbc",
             "13e4f2a13df6fe21",
-            "34aa954d066715d4"
+            "34aa954d066715d4",
+            "aa3df0b5914b5eef"
         ],
-        "x": 34,
-        "y": 819,
+        "x": 74,
+        "y": 759,
         "w": 692,
-        "h": 122
+        "h": 162
     },
     {
         "id": "c7bb4746ce710cb1",
@@ -1021,12 +1053,13 @@
             "88b164ac7026be0e",
             "40053a1d91143e21",
             "06b6d386a10741c2",
-            "9bf8da3dfdb70216"
+            "9bf8da3dfdb70216",
+            "eb4d973c278afdbc"
         ],
-        "x": 34,
-        "y": 599,
+        "x": 74,
+        "y": 579,
         "w": 772,
-        "h": 142
+        "h": 162
     },
     {
         "id": "e17a26b0d2bf5039",
@@ -4561,7 +4594,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 230,
+        "x": 410,
         "y": 2060,
         "wires": [
             [
@@ -4590,7 +4623,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
+        "x": 660,
         "y": 2020,
         "wires": []
     },
@@ -4608,7 +4641,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
+        "x": 630,
         "y": 2060,
         "wires": []
     },
@@ -4626,7 +4659,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
+        "x": 630,
         "y": 2100,
         "wires": []
     },
@@ -4638,9 +4671,10 @@
         "name": "Debug In",
         "links": [
             "b2892effe9f79e84",
-            "54c93e67707946a8"
+            "54c93e67707946a8",
+            "eb4d973c278afdbc"
         ],
-        "x": 75,
+        "x": 255,
         "y": 2060,
         "wires": [
             [
@@ -4704,7 +4738,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 610,
+        "x": 790,
         "y": 2180,
         "wires": []
     },
@@ -4727,7 +4761,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 230,
+        "x": 410,
         "y": 2180,
         "wires": [
             [
@@ -4765,7 +4799,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 440,
+        "x": 620,
         "y": 2180,
         "wires": [
             [
@@ -4780,9 +4814,10 @@
         "g": "ce6083697fa14dc0",
         "name": "Debug-data-in",
         "links": [
-            "705a77e3b053f7ca"
+            "705a77e3b053f7ca",
+            "01565a6abef1f0a8"
         ],
-        "x": 75,
+        "x": 255,
         "y": 2180,
         "wires": [
             [
@@ -7489,7 +7524,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 130,
+        "x": 170,
         "y": 460,
         "wires": []
     },
@@ -7503,12 +7538,13 @@
             "44c1946af35b4bf2",
             "a760f49cb3f03843"
         ],
-        "x": 75,
+        "x": 115,
         "y": 660,
         "wires": [
             [
                 "88b164ac7026be0e",
-                "40053a1d91143e21"
+                "40053a1d91143e21",
+                "eb4d973c278afdbc"
             ]
         ]
     },
@@ -7522,7 +7558,7 @@
         "links": [
             "e207f8c07a156191"
         ],
-        "x": 765,
+        "x": 805,
         "y": 680,
         "wires": []
     },
@@ -7536,7 +7572,7 @@
         "links": [
             "a4be995f90fc779c"
         ],
-        "x": 765,
+        "x": 805,
         "y": 640,
         "wires": []
     },
@@ -7554,8 +7590,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 140,
-        "y": 1040,
+        "x": 280,
+        "y": 1080,
         "wires": []
     },
     {
@@ -7567,15 +7603,12 @@
         "links": [
             "1bb4998cb85dda4e"
         ],
-        "x": 75,
-        "y": 1000,
+        "x": 215,
+        "y": 1040,
         "wires": [
             [
                 "bc098ac8e7c2a80e",
-                "2773a8c67764f19a",
-                "65f7cb3119d4baa9",
-                "609d1962222fd9ae",
-                "7d85cec3b8e788bf"
+                "2773a8c67764f19a"
             ]
         ]
     },
@@ -7594,8 +7627,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 620,
-        "y": 1000,
+        "x": 760,
+        "y": 1040,
         "wires": []
     },
     {
@@ -7612,8 +7645,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 1040,
+        "x": 760,
+        "y": 1080,
         "wires": []
     },
     {
@@ -7630,8 +7663,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 410,
-        "y": 1040,
+        "x": 550,
+        "y": 1080,
         "wires": []
     },
     {
@@ -7640,15 +7673,15 @@
         "z": "7eba58462314a0d7",
         "g": "b75a55c2aaa3b2b6",
         "name": "Data To MQTT",
-        "func": "// Récupération de l'adresse BMS depuis msg.bms_adresse\nlet bmsAdresse = msg.bms_adresse;\n\n// Gestion du cas où bmsAdresse est \"master\" (string) ou un nombre\nlet slaveIdStr;\nif (typeof bmsAdresse === \"string\" && bmsAdresse.toLowerCase() === \"master\") {\n    slaveIdStr = \"master\";\n} else if (typeof bmsAdresse === \"number\") {\n    slaveIdStr = String(bmsAdresse);\n} else if (!isNaN(Number(bmsAdresse))) {\n    slaveIdStr = String(Number(bmsAdresse));\n} else {\n    // Valeur par défaut si jamais la donnée est absente ou invalide\n    slaveIdStr = \"1\";\n}\n\n// Debug pour vérifier la valeur prise\nconsole.log(`BMS used: ${slaveIdStr}`);\n// node.warn(`BMS used: ${slaveIdStr}`);\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdStr;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdStr;\nvar deviceID = \"BMS_\" + slaveIdStr + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Extraire uniquement les tensions des cellules\nvar cellVoltages = [];\nvar cellKeys = [];\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, voltage) => sum + voltage, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n    payload[\"cell_voltage_average_V\"] = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"] = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"] = parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"] = parseInt(minVoltIndex);\n}\n\n// Ajouter toutes les valeurs dynamiquement\nfor (var key in payload) {\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n    var configPayload = {\n        name: cleanKey,\n        unique_id: `${deviceID}_${cleanKey}`,\n        state_topic: sensorTopic,\n        unit_of_measurement: \"\",\n        entity_category: \"diagnostic\",\n        device: {\n            identifiers: [deviceID],\n            name: deviceName,\n            manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n            model: \"JK-BMS - RS485 - Ip Gateway\",\n            sw_version: \"2.0.0\"\n        }\n    };\n\n    if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n    if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n    if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n    if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n    if (key.endsWith(\"_T\")) configPayload.unit_of_measurement = \"°C\";\n    if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n    if (key.endsWith(\"_P\")) {\n        configPayload.unit_of_measurement = \"%\";\n        if (key.startsWith(\"SOC\")) {\n            configPayload.device_class = \"battery\";\n        }\n    }\n    if (key.endsWith(\"_S\")) configPayload.unit_of_measurement = \"s\";\n\n    discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n}\n\n// Publier les données dynamiques sous un seul topic\ntopics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = discoveryMsgs;\nfor (var topic in topics) {\n    outputMsgs.push({ topic: topic, payload: topics[topic] });\n}\n\nreturn [outputMsgs];\n",
+        "func": "// -------------------------------------------------------------\n// 0. Récupération adresse BMS (nombre ou \"master\")\n// -------------------------------------------------------------\nlet bmsAdresse = msg.bms_adresse;\nlet slaveIdStr;\n\nif (typeof bmsAdresse === \"string\" && bmsAdresse.toLowerCase() === \"master\") {\n    slaveIdStr = \"master\";\n} else if (!isNaN(Number(bmsAdresse))) {\n    slaveIdStr = String(Number(bmsAdresse));\n} else {\n    slaveIdStr = \"1\";  // fallback\n}\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdStr;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdStr;\nvar deviceID = \"BMS_\" + slaveIdStr + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// -------------------------------------------------------------\n// 1. Ne pas renvoyer les topics discovery plusieurs fois\n// -------------------------------------------------------------\nconst discoveryKey = `discoverySent_BMS_${slaveIdStr}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// -------------------------------------------------------------\n// 2. Traitement des tensions de cellules\n// -------------------------------------------------------------\nvar cellVoltages = [];\nvar cellKeys = [];\n\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, v) => sum + v, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n\n    payload[\"cell_voltage_average_V\"]   = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"]     = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"]= parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"]= parseInt(minVoltIndex);\n\n    payload[\"cell_voltage_min_value_V\"] = parseFloat(cellMinVolt.toFixed(3));\n    payload[\"cell_voltage_max_value_V\"] = parseFloat(cellMaxVolt.toFixed(3));\n}\n\n// -------------------------------------------------------------\n// 3. Formatage de Total_runtime_S → lisible\n// -------------------------------------------------------------\nif (payload[\"Total_runtime_S\"] !== undefined) {\n    var totalSeconds = parseInt(payload[\"Total_runtime_S\"]);\n    if (!isNaN(totalSeconds)) {\n        var days = Math.floor(totalSeconds / 86400);\n        var remainingSeconds = totalSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n\n        payload[\"Total_runtime_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n    }\n}\n\n// -------------------------------------------------------------\n// 4. charge_status_N → texte lisible\n// -------------------------------------------------------------\nif (payload[\"charge_status_N\"] !== undefined) {\n    var v = parseInt(payload[\"charge_status_N\"]);\n    var txt = \"Unknown\";\n\n    switch(v) {\n        case 0: case 0x00: txt = \"Bulk\"; break;\n        case 1: case 0x01: txt = \"Absorption\"; break;\n        case 2: case 0x02: txt = \"Float\"; break;\n    }\n    payload[\"charge_status_text_S\"] = txt;\n}\n\n// -------------------------------------------------------------\n// 5. Formatage charge_status_time_S\n// -------------------------------------------------------------\nif (payload[\"charge_status_time_S\"] !== undefined) {\n    var s = parseInt(payload[\"charge_status_time_S\"]);\n    if (!isNaN(s)) {\n        var days = Math.floor(s / 86400);\n        var rem = s % 86400;\n        var hours = Math.floor(rem / 3600);\n        var minutes = Math.floor((rem % 3600) / 60);\n        var seconds = rem % 60;\n\n        if (days > 0)\n            payload[\"charge_status_time_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n        else if (hours > 0)\n            payload[\"charge_status_time_formatted_T\"] = `${hours}H${minutes}M${seconds}S`;\n        else if (minutes > 0)\n            payload[\"charge_status_time_formatted_T\"] = `${minutes}M${seconds}S`;\n        else\n            payload[\"charge_status_time_formatted_T\"] = `${seconds}S`;\n    }\n}\n\n// -------------------------------------------------------------\n// 6. Génération des topics MQTT + discovery\n// -------------------------------------------------------------\nconst allowedSuffixes = [\"_V\", \"_A\", \"_W\", \"_T\", \"_Ah\", \"_R\", \"_P\", \"_S\", \"_B\", \"_N\"];\n\nfor (var key in payload) {\n\n    var hasValidSuffix = allowedSuffixes.some(s => key.endsWith(s));\n    if (!hasValidSuffix) continue;\n\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    if (!discoveryAlreadySent) {\n        var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n\n        var configPayload = {\n            name: cleanKey,\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: sensorTopic,\n            unit_of_measurement: \"\",\n            entity_category: \"diagnostic\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: \"JK-BMS - RS485\",\n                sw_version: \"2.0.0\"\n            }\n        };\n\n        // Gestion des unités EXACTEMENT comme le 2ᵉ noeud\n        if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n        else if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n        else if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n        else if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n        else if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n        else if (key.endsWith(\"_P\")) {\n            configPayload.unit_of_measurement = \"%\";\n            if (key.startsWith(\"SOC\")) configPayload.device_class = \"battery\";\n        }\n        // --- TEMPS (_T) ---\n        else if (key.endsWith(\"_T\")) {\n            if (key === \"Total_runtime_formatted_T\" ||\n                key === \"charge_status_time_formatted_T\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:clock-time-eight-outline\";\n            } else {\n                configPayload.unit_of_measurement = \"°C\";\n            }\n        }\n        // --- SECONDES / TEXTE (_S) ---\n        else if (key.endsWith(\"_S\")) {\n            if (key === \"charge_status_text_S\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:battery-charging\";\n            } \n            else if (key === \"charge_status_time_S\") {\n                configPayload.unit_of_measurement = \"s\";\n                configPayload.icon = \"mdi:timer-outline\";\n            } \n            else {\n                configPayload.unit_of_measurement = \"s\";\n            }\n        }\n\n        discoveryMsgs.push({\n            topic: configTopic,\n            payload: JSON.stringify(configPayload),\n            retain: true\n        });\n    }\n}\n\n// -------------------------------------------------------------\n// 7. Ajouter les valeurs calculées\n// -------------------------------------------------------------\n[\n    \"cell_voltage_average_V\",\n    \"cell_voltage_delta_V\",\n    \"cell_voltage_max_number_N\",\n    \"cell_voltage_min_number_N\",\n    \"cell_voltage_min_value_V\",\n    \"cell_voltage_max_value_V\"\n].forEach(k => {\n    if (payload[k] !== undefined) {\n        let cleanKey = k.replace(/_[A-Z]+$/, \"\");\n        let topic = `${baseTopic}/${cleanKey}`;\n        topics[topic] = payload[k];\n        dynamicData[cleanKey] = payload[k];\n    }\n});\n\n// -------------------------------------------------------------\n// 8. Sortie\n// -------------------------------------------------------------\nvar outputMsgs = [];\n\nif (!discoveryAlreadySent) {\n    outputMsgs = discoveryMsgs;\n    flow.set(discoveryKey, true);\n}\n\nfor (var t in topics) {\n    outputMsgs.push({ topic: t, payload: topics[t] });\n}\n\nreturn [outputMsgs];\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 1000,
+        "x": 560,
+        "y": 1040,
         "wires": [
             [
                 "b8c6447a9aadb290",
@@ -8134,6 +8167,24 @@
                 "offsetbit": 0,
                 "scale": "/10",
                 "mask": ""
+            },
+            {
+                "type": "uint16le",
+                "name": "charge_status_time_S",
+                "offset": 278,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "uint8",
+                "name": "charge_status_N",
+                "offset": 280,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
             }
         ],
         "swap1": "",
@@ -8150,12 +8201,13 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 200,
-        "y": 1000,
+        "x": 340,
+        "y": 1040,
         "wires": [
             [
                 "6ac6b1debaf96f4e",
-                "e3768062bfabfaf0"
+                "e3768062bfabfaf0",
+                "01565a6abef1f0a8"
             ]
         ]
     },
@@ -8173,8 +8225,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 410,
-        "y": 900,
+        "x": 450,
+        "y": 880,
         "wires": []
     },
     {
@@ -8191,8 +8243,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 200,
-        "y": 900,
+        "x": 240,
+        "y": 880,
         "wires": []
     },
     {
@@ -8204,8 +8256,8 @@
         "links": [
             "a65a870d600bb230"
         ],
-        "x": 75,
-        "y": 860,
+        "x": 115,
+        "y": 840,
         "wires": [
             [
                 "5379d0376efbcee9",
@@ -8599,12 +8651,13 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 200,
-        "y": 860,
+        "x": 240,
+        "y": 840,
         "wires": [
             [
                 "d0b96287555baddd",
-                "4716f48d98903bbc"
+                "4716f48d98903bbc",
+                "aa3df0b5914b5eef"
             ]
         ]
     },
@@ -8621,8 +8674,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 860,
+        "x": 460,
+        "y": 840,
         "wires": [
             [
                 "13e4f2a13df6fe21",
@@ -8644,8 +8697,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 900,
+        "x": 660,
+        "y": 880,
         "wires": []
     },
     {
@@ -8663,8 +8716,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 620,
-        "y": 860,
+        "x": 660,
+        "y": 840,
         "wires": []
     },
     {
@@ -8680,7 +8733,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 180,
+        "x": 220,
         "y": 700,
         "wires": []
     },
@@ -8694,7 +8747,7 @@
         "links": [
             "74c53c8fdd7c6f6e"
         ],
-        "x": 735,
+        "x": 775,
         "y": 440,
         "wires": []
     },
@@ -8717,7 +8770,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 580,
+        "x": 620,
         "y": 400,
         "wires": [
             [
@@ -8742,7 +8795,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 820,
+        "x": 860,
         "y": 400,
         "wires": []
     },
@@ -8752,7 +8805,7 @@
         "z": "7eba58462314a0d7",
         "name": "Cas du BMS défini en Master Modbus RS485",
         "info": "",
-        "x": 270,
+        "x": 190,
         "y": 40,
         "wires": []
     },
@@ -8760,9 +8813,9 @@
         "id": "563e3f15cff0f735",
         "type": "comment",
         "z": "7eba58462314a0d7",
-        "name": "C'est lui qui demande les informations aux autres BMS.",
+        "name": "C'est lui qui demande les informations aux autres BMS. De 1 à 15",
         "info": "",
-        "x": 380,
+        "x": 290,
         "y": 80,
         "wires": []
     },
@@ -8772,7 +8825,7 @@
         "z": "7eba58462314a0d7",
         "name": "Dans cette configuration, on ne peut pas changer les paramètres !!!",
         "info": "",
-        "x": 520,
+        "x": 340,
         "y": 120,
         "wires": []
     },
@@ -8782,7 +8835,7 @@
         "z": "7eba58462314a0d7",
         "name": "Car il ne peut pas y avoir 2 Master sur le bus en Modbus.",
         "info": "",
-        "x": 650,
+        "x": 310,
         "y": 160,
         "wires": []
     },
@@ -8793,7 +8846,7 @@
         "g": "71ff535abf2657b3",
         "name": "",
         "serial": "6e1abcbcc6ebb714",
-        "x": 120,
+        "x": 160,
         "y": 400,
         "wires": [
             [
@@ -8814,7 +8867,7 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 820,
+        "x": 860,
         "y": 480,
         "wires": [
             []
@@ -8834,7 +8887,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
+        "x": 600,
         "y": 480,
         "wires": [
             [
@@ -8855,7 +8908,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
+        "x": 310,
         "y": 660,
         "wires": [
             [
@@ -8878,7 +8931,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 420,
+        "x": 460,
         "y": 700,
         "wires": []
     },
@@ -8905,7 +8958,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 610,
+        "x": 650,
         "y": 660,
         "wires": [
             [
@@ -9190,7 +9243,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 350,
+        "x": 390,
         "y": 400,
         "wires": [
             [],
@@ -9200,192 +9253,100 @@
         ]
     },
     {
-        "id": "609d1962222fd9ae",
-        "type": "function",
+        "id": "7bdc72b0af93d76a",
+        "type": "inject",
         "z": "7eba58462314a0d7",
-        "name": "Gestion des codes d'erreurs",
-        "func": "// Liste des erreurs possibles\nconst errorList = [\n    \"Charge Overtemperature\",               // bit 0\n    \"Charge Undertemperature\",              // bit 1\n    \"Coprocessor communication error\",      // bit 2\n    \"Cell Undervoltage\",                    // bit 3\n    \"Battery pack undervoltage\",            // bit 4\n    \"Discharge overcurrent\",                // bit 5\n    \"Discharge short circuit\",              // bit 6\n    \"Discharge overtemperature\",            // bit 7\n    \"Wire resistance\",                      // bit 8\n    \"Mosfet overtemperature\",               // bit 9\n    \"Cell count is not equal to settings\",  // bit 10\n    \"Current sensor anomaly\",               // bit 11\n    \"Cell Overvoltage\",                     // bit 12\n    \"Battery pack overvoltage\",             // bit 13\n    \"Charge overcurrent protection\",        // bit 14\n    \"Charge short circuit\"                  // bit 15\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier que le buffer est suffisamment grand\nif (buffer.length <= 167) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur à l'offset 166 (en supposant Big Endian - BE)\nconst errorCode = (buffer[166] << 8) | buffer[167];\n\n// Initialiser un tableau pour stocker les erreurs détectées\nconst activeErrors = [];\n\n// Vérifier chaque bit d'erreur\nfor (let i = 0; i < errorList.length; i++) {\n    // Si le bit correspondant est activé (1), ajouter l'erreur à la liste\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\n// Si aucune erreur n'est détectée\nif (activeErrors.length === 0) {\n    msg.payload = \"Aucune erreur détectée\";\n} else {\n    // Joindre les erreurs avec des virgules\n    msg.payload = activeErrors.join(\", \");\n}\n\n// Ajouter également le code d'erreur brut pour référence\nmsg.errorCode = errorCode;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 1240,
-        "wires": [
-            [
-                "341f048d7cd2addd",
-                "2b3dbb8636ea293a"
-            ]
-        ]
-    },
-    {
-        "id": "65f7cb3119d4baa9",
-        "type": "buffer-parser",
-        "z": "7eba58462314a0d7",
-        "name": "Erreurs codes",
-        "data": "payload",
-        "dataType": "msg",
-        "specification": "spec",
-        "specificationType": "ui",
-        "items": [
+        "g": "2a96ca484e0815bf",
+        "name": "Init",
+        "props": [
             {
-                "type": "16bitle",
-                "name": "error code",
-                "offset": 166,
-                "length": 2,
-                "offsetbit": 5,
-                "scale": "1",
-                "mask": ""
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             }
         ],
-        "swap1": "",
-        "swap2": "",
-        "swap3": "",
-        "swap1Type": "swap",
-        "swap2Type": "swap",
-        "swap3Type": "swap",
-        "msgProperty": "payload",
-        "msgPropertyType": "str",
-        "resultType": "keyvalue",
-        "resultTypeType": "return",
-        "multipleResult": false,
-        "fanOutMultipleResult": false,
-        "setTopic": true,
-        "outputs": 1,
-        "x": 280,
-        "y": 1200,
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 710,
+        "y": 100,
         "wires": [
             [
-                "cd88b13577b5a05a"
+                "b47fc264732cec08"
             ]
         ]
     },
     {
-        "id": "cd88b13577b5a05a",
-        "type": "debug",
-        "z": "7eba58462314a0d7",
-        "name": "Erreurs codes",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "341f048d7cd2addd",
-        "type": "debug",
-        "z": "7eba58462314a0d7",
-        "name": "debug 26",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "2b3dbb8636ea293a",
-        "type": "debug",
-        "z": "7eba58462314a0d7",
-        "name": "debug 16",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "bms_adresse",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
-        "y": 1280,
-        "wires": []
-    },
-    {
-        "id": "578f3611541cf122",
+        "id": "b47fc264732cec08",
         "type": "function",
         "z": "7eba58462314a0d7",
-        "name": "Convertir en binaire",
-        "func": "let valeur = msg.payload; // Supposé être un entier 16 bits\n\n// Convertir en binaire, et compléter à 16 bits avec des 0 à gauche\nlet binaire16 = valeur.toString(2).padStart(16, '0');\n\nmsg.payload = binaire16;\nreturn msg;\n",
+        "g": "2a96ca484e0815bf",
+        "name": "Init flags for discovery",
+        "func": "// Récupère le nombre total de JKBMS\nlet nb = global.get(\"nb_jkbms\") || 1;\n\n// Toujours remettre le Master à false\nflow.set(\"discoverySent_BMS_master\", false);\n\n// Chaque BMS secondaire\nfor (let i = 1; i <= nb; i++) {\n    let key = `discoverySent_BMS_${i}`;\n    flow.set(key, false);\n}\n\nnode.warn(`Discovery reset done for Master + ${nb} BMS.`);\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
-        "y": 1160,
+        "x": 900,
+        "y": 100,
         "wires": [
-            [
-                "0dd256ad57891511"
-            ]
+            []
         ]
     },
     {
-        "id": "0dd256ad57891511",
-        "type": "debug",
+        "id": "eb4d973c278afdbc",
+        "type": "link out",
         "z": "7eba58462314a0d7",
-        "name": "Alarmes en binaire",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 1160,
+        "g": "c7bb4746ce710cb1",
+        "name": "debug-out",
+        "mode": "link",
+        "links": [
+            "4c96f83e2c664c74"
+        ],
+        "x": 195,
+        "y": 620,
         "wires": []
     },
     {
-        "id": "7d85cec3b8e788bf",
+        "id": "01565a6abef1f0a8",
+        "type": "link out",
+        "z": "7eba58462314a0d7",
+        "g": "b75a55c2aaa3b2b6",
+        "name": "Debug-data-in",
+        "mode": "link",
+        "links": [
+            "8eea8a8ef9220c22"
+        ],
+        "x": 415,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "aa3df0b5914b5eef",
         "type": "function",
         "z": "7eba58462314a0d7",
-        "name": "function 5",
-        "func": "// Nouvelle liste d'erreurs basée sur ta définition\nconst errorList = [\n    \"Balancing resistance too high\",               // bit 0\n    \"MOS over-temperature protection\",             // bit 1\n    \"Number of cells does not match parameter\",    // bit 2\n    \"Abnormal current sensor\",                      // bit 3\n    \"Cell over-voltage protection\",                 // bit 4\n    \"Battery over-voltage protection\",              // bit 5\n    \"Overcurrent charge protection\",                // bit 6\n    \"Charge short-circuit protection\",              // bit 7\n    \"Over-temperature charge protection\",           // bit 8\n    \"Low temperature charge protection\",            // bit 9\n    \"Internal communication anomaly\",               // bit 10\n    \"Cell under-voltage protection\",                // bit 11\n    \"Battery under-voltage protection\",             // bit 12\n    \"Overcurrent discharge protection\",             // bit 13\n    \"Discharge short-circuit protection\",           // bit 14\n    \"Over-temperature discharge protection\",        // bit 15\n    \"Charge MOS anomaly\",                            // bit 16\n    \"Discharge MOS anomaly\",                         // bit 17\n    \"GPS disconnected\",                             // bit 18\n    \"Please modify the authorization password in time\", // bit 19\n    \"Discharge activation failure\",                 // bit 20\n    \"Battery over-temperature alarm\",                // bit 21\n    \"Temperature sensor anomaly\",                    // bit 22\n    \"Parallel module anomaly\",                        // bit 23\n    \"Erreur fictive Bit 24\",\n    \"Erreur fictive Bit 25\",\n    \"Erreur fictive Bit 26\",\n    \"Erreur fictive Bit 27\",\n    \"Erreur fictive Bit 28\",\n    \"Erreur fictive Bit 29\",\n    \"Erreur fictive Bit 30\",\n    \"Erreur fictive Bit 31\"\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier la taille du buffer\nif (buffer.length <= 169) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur 32 bits (Big Endian)\nconst errorCode =\n    (buffer[166] << 24) |\n    (buffer[167] << 16) |\n    (buffer[168] << 8) |\n    (buffer[169]);\n\nconst activeErrors = [];\n\nfor (let i = 0; i < errorList.length; i++) {\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\nmsg.payload = activeErrors.length === 0 ? \"Aucune erreur détectée\" : activeErrors.join(\", \");\nmsg.errorCode = errorCode;\n\nreturn msg;\n",
+        "g": "a1697c874f4c5e2d",
+        "name": "BMS-Nb",
+        "func": "var BMS = msg.payload[\" Device_address_N\"];\n// Pour debug, affichons la valeur BMS\nnode.warn(`BMS Nb: ${BMS} is alive`);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 1320,
-        "wires": [
-            [
-                "c61f13fa51886e67"
-            ]
-        ]
-    },
-    {
-        "id": "c61f13fa51886e67",
-        "type": "debug",
-        "z": "7eba58462314a0d7",
-        "name": "New version",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
         "x": 440,
-        "y": 1320,
-        "wires": []
+        "y": 800,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "db723bbce9cd2eb7",
@@ -11782,5 +11743,247 @@
         "x": 760,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "609d1962222fd9ae",
+        "type": "function",
+        "z": "44f1a774d989bad2",
+        "name": "Gestion des codes d'erreurs",
+        "func": "// Liste des erreurs possibles\nconst errorList = [\n    \"Charge Overtemperature\",               // bit 0\n    \"Charge Undertemperature\",              // bit 1\n    \"Coprocessor communication error\",      // bit 2\n    \"Cell Undervoltage\",                    // bit 3\n    \"Battery pack undervoltage\",            // bit 4\n    \"Discharge overcurrent\",                // bit 5\n    \"Discharge short circuit\",              // bit 6\n    \"Discharge overtemperature\",            // bit 7\n    \"Wire resistance\",                      // bit 8\n    \"Mosfet overtemperature\",               // bit 9\n    \"Cell count is not equal to settings\",  // bit 10\n    \"Current sensor anomaly\",               // bit 11\n    \"Cell Overvoltage\",                     // bit 12\n    \"Battery pack overvoltage\",             // bit 13\n    \"Charge overcurrent protection\",        // bit 14\n    \"Charge short circuit\"                  // bit 15\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier que le buffer est suffisamment grand\nif (buffer.length <= 167) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur à l'offset 166 (en supposant Big Endian - BE)\nconst errorCode = (buffer[166] << 8) | buffer[167];\n\n// Initialiser un tableau pour stocker les erreurs détectées\nconst activeErrors = [];\n\n// Vérifier chaque bit d'erreur\nfor (let i = 0; i < errorList.length; i++) {\n    // Si le bit correspondant est activé (1), ajouter l'erreur à la liste\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\n// Si aucune erreur n'est détectée\nif (activeErrors.length === 0) {\n    msg.payload = \"Aucune erreur détectée\";\n} else {\n    // Joindre les erreurs avec des virgules\n    msg.payload = activeErrors.join(\", \");\n}\n\n// Ajouter également le code d'erreur brut pour référence\nmsg.errorCode = errorCode;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "341f048d7cd2addd",
+                "2b3dbb8636ea293a"
+            ]
+        ]
+    },
+    {
+        "id": "65f7cb3119d4baa9",
+        "type": "buffer-parser",
+        "z": "44f1a774d989bad2",
+        "name": "Erreurs codes",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "16bitle",
+                "name": "error code",
+                "offset": 166,
+                "length": 2,
+                "offsetbit": 5,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "cd88b13577b5a05a"
+            ]
+        ]
+    },
+    {
+        "id": "cd88b13577b5a05a",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "name": "Erreurs codes",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "341f048d7cd2addd",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "name": "debug 26",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2b3dbb8636ea293a",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "bms_adresse",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "578f3611541cf122",
+        "type": "function",
+        "z": "44f1a774d989bad2",
+        "name": "Convertir en binaire",
+        "func": "let valeur = msg.payload; // Supposé être un entier 16 bits\n\n// Convertir en binaire, et compléter à 16 bits avec des 0 à gauche\nlet binaire16 = valeur.toString(2).padStart(16, '0');\n\nmsg.payload = binaire16;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 140,
+        "wires": [
+            [
+                "0dd256ad57891511"
+            ]
+        ]
+    },
+    {
+        "id": "0dd256ad57891511",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "name": "Alarmes en binaire",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7d85cec3b8e788bf",
+        "type": "function",
+        "z": "44f1a774d989bad2",
+        "name": "function 5",
+        "func": "// Nouvelle liste d'erreurs basée sur ta définition\nconst errorList = [\n    \"Balancing resistance too high\",               // bit 0\n    \"MOS over-temperature protection\",             // bit 1\n    \"Number of cells does not match parameter\",    // bit 2\n    \"Abnormal current sensor\",                      // bit 3\n    \"Cell over-voltage protection\",                 // bit 4\n    \"Battery over-voltage protection\",              // bit 5\n    \"Overcurrent charge protection\",                // bit 6\n    \"Charge short-circuit protection\",              // bit 7\n    \"Over-temperature charge protection\",           // bit 8\n    \"Low temperature charge protection\",            // bit 9\n    \"Internal communication anomaly\",               // bit 10\n    \"Cell under-voltage protection\",                // bit 11\n    \"Battery under-voltage protection\",             // bit 12\n    \"Overcurrent discharge protection\",             // bit 13\n    \"Discharge short-circuit protection\",           // bit 14\n    \"Over-temperature discharge protection\",        // bit 15\n    \"Charge MOS anomaly\",                            // bit 16\n    \"Discharge MOS anomaly\",                         // bit 17\n    \"GPS disconnected\",                             // bit 18\n    \"Please modify the authorization password in time\", // bit 19\n    \"Discharge activation failure\",                 // bit 20\n    \"Battery over-temperature alarm\",                // bit 21\n    \"Temperature sensor anomaly\",                    // bit 22\n    \"Parallel module anomaly\",                        // bit 23\n    \"Erreur fictive Bit 24\",\n    \"Erreur fictive Bit 25\",\n    \"Erreur fictive Bit 26\",\n    \"Erreur fictive Bit 27\",\n    \"Erreur fictive Bit 28\",\n    \"Erreur fictive Bit 29\",\n    \"Erreur fictive Bit 30\",\n    \"Erreur fictive Bit 31\"\n];\n\n// Récupérer le buffer\nconst buffer = msg.payload;\n\n// Vérifier la taille du buffer\nif (buffer.length <= 169) {\n    msg.payload = \"Buffer trop petit pour extraire le code d'erreur\";\n    return msg;\n}\n\n// Extraire la valeur d'erreur 32 bits (Big Endian)\nconst errorCode =\n    (buffer[166] << 24) |\n    (buffer[167] << 16) |\n    (buffer[168] << 8) |\n    (buffer[169]);\n\nconst activeErrors = [];\n\nfor (let i = 0; i < errorList.length; i++) {\n    if (errorCode & (1 << i)) {\n        activeErrors.push(errorList[i]);\n    }\n}\n\nmsg.payload = activeErrors.length === 0 ? \"Aucune erreur détectée\" : activeErrors.join(\", \");\nmsg.errorCode = errorCode;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "c61f13fa51886e67"
+            ]
+        ]
+    },
+    {
+        "id": "c61f13fa51886e67",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "name": "New version",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "72ec3f3198fbf38a",
+        "type": "inject",
+        "z": "44f1a774d989bad2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 710,
+        "y": 260,
+        "wires": [
+            [
+                "91de00508088cfa7"
+            ]
+        ]
+    },
+    {
+        "id": "91de00508088cfa7",
+        "type": "change",
+        "z": "44f1a774d989bad2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "discoverySent_BMS_master",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 260,
+        "wires": [
+            []
+        ]
     }
 ]

@@ -1,0 +1,43 @@
+---
+configuration:
+  # JK-BMS Configuration Section
+  jkbms_path:
+    name: "🟪 JK-BMS → Percorso della Porta Seriale"
+    description: "Percorso della porta seriale a cui è connesso il JK-BMS (Menu: Impostazioni-Hardware-Tutto l'hardware)."
+    
+  jkbms_count:
+    name: "🟪 JK-BMS → Numero di Moduli BMS"
+    description: "Numero di moduli JK-BMS da interrogare. Devono essere connessi al bus RS485 (valore: da 1 a 15)."
+    
+  use_gateway:
+    name: "🟨 JK-BMS → Utilizzare un Gateway TCP"
+    description: "Attivare la comunicazione tramite un gateway IP (TCP Gateway) invece della porta seriale locale."
+    
+  gateway_ip_port:
+    name: "🟨 JK-BMS → Indirizzo IP + porta del Gateway"
+    description: "Indirizzo IP + porta del gateway di rete per accedere al JK-BMS da remoto (es: 192.168.1.100:500)."
+    
+  communication_debug:
+    name: "🔴 JK-BMS → Debug Comunicazione"
+    description: "Attivare la visualizzazione dettagliata dei log di comunicazione (per diagnosi o supporto)."
+    
+  bms_broadcasting:
+    name: "🔴 JK-BMS → Trasmissione BMS"
+    description: "In questa modalità, il BMS pubblica i dati aggregati di se stesso. Deve essere Master (passare a 0000)."
+    
+  CAN_bus_usage:
+    name: "🔴 JK-BMS → Utilizzo Bus CAN"
+    description: "Attivare la comunicazione e trasmissione dati sul bus CAN (se connesso fisicamente)."
+
+  # MQTT Configuration Section
+  mqttadresse_port: 
+    name: "🚩 MQTT → Indirizzo + porta del Broker"
+    description: "Indirizzo + porta del broker MQTT (es: core-mosquitto.local.hass.io:1883 o IP locale + porta)."
+    
+  mqttuser:
+    name: "🚩 MQTT → Nome utente"
+    description: "Nome utente per connettersi al broker MQTT."
+    
+  mqttpass:
+    name: "🚩 MQTT → Password"
+    description: "Password associata all'utente MQTT."

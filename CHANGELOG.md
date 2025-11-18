@@ -1,3 +1,44 @@
+# 3.3.4
+
+## ⚡️ Enhancements
+
+###  When in broadcast mode 📺
+
+**BMS Master with the switches set on 0000**
+
+To connect, for example, the Master BMS to the inverter that requires it.
+*Examples*: Victron, Deye, etc ...
+
+Adding automatically entities HAOS:
+- ❶ sensor.bms_master_total_runtime_formatted 
+
+	`ex: 323D1H14M (DHM 323 days, 1 hour and 14 minutes)`
+- ❷ sensor.bms_master_charge_status_text  `ex: Bulk, Absorption, Float`
+- ❸ sensor.bms_master_charge_status_time 
+
+	`ex: 1H34S (1 hour and 34 seconds)`
+
+### 🐞 Debug
+
+- Added the ability to view live frames received in the logs for operational analysis
+
+###  🌍 Traductions: 
+The configuration fields are now translated into:
+- `English / German / Spanish / French / Portuguese / Italian / Polish`
+
+### 🔢 Telemetry ?  
+
+I am considering introducing a telemetry system to get a good idea of the number of live installations of my module.
+But I would like to hear your opinion. For the moment, **nothing has been implemented yet**!
+
+💥 Polls for you at this [location](/https://github.com/jean-luc1203/jkbms-rs485-addon/discussions/52) 💥
+
+Thank you in advance for your response.
+
+
+##  ____________________________________________________________________
+
+
 ## 3.3.3
 
 ## 🐞 Bug fixes
