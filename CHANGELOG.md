@@ -31,7 +31,7 @@ The configuration fields are now translated into:
 I am considering introducing a telemetry system to get a good idea of the number of live installations of my module.
 But I would like to hear your opinion. For the moment, **nothing has been implemented yet**!
 
-💥 Polls for you at this [location](/https://github.com/jean-luc1203/jkbms-rs485-addon/discussions/52) 💥
+💥 Polls for you at this [location](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions/52) 💥
 
 Thank you in advance for your response.
 
