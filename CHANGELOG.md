@@ -1,4 +1,70 @@
-# 3.3.4
+# 3.3.7
+
+## ⚡️ Enhancements	
+## 🚨Alarm management implementations 🚨
+
+ℹ️ One BMS with the switches **set to 0000**
+
+It is therefore the master of the RS485 bus and, for my module, 
+
+it is in broadcasting mode !
+
+![Alarm(s)](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/refs/heads/main/images/Alarms-broadcasting-off.png)
+
+### Alarm management will automatically create these entities in HAOS.
+- ❶ `binary_sensor.bms_global_bms_global_alarm`	It indicates if any of the BMS are in alarm mode.
+  It can take the values `"off"` or `"on"`   *device_class: problem* 
+
+- ❷ `sensor.bms_x_bms_x_visual_status` Visual status for each BMS
+  It can take the values `"✅ No alarm"` or `"🚨 x alarm(s)"`
+
+- ❸`sensor.bms_x_bms_x_alarm_status` Status for each BMS
+  It can take the values `"No BMS alarms"` or `"🚨 BMS Alarm Alert"`
+
+- ❹ `sensor.bms_x_bms_x_alarm_list` List of one or more alarms from a BMS
+  It can take one or several labels as described below:
+  
+  
+*"Balancing resistance too high",               
+"MOS over-temperature protection",             
+"Number of cells does not match parameter",    
+"Abnormal current sensor",                     
+"Cell over-voltage protection",                
+"Battery over-voltage protection",             
+"Overcurrent charge protection",               
+"Charge short-circuit protection",             
+"Over-temperature charge protection",          
+"Low temperature charge protection",           
+"Internal communication anomaly",              
+"Cell under-voltage protection",               
+"Battery under-voltage protection",            
+"Overcurrent discharge protection",            
+"Discharge short-circuit protection",          
+"Over-temperature discharge protection",       
+"Charge MOS anomaly",                          
+"Discharge MOS anomaly",                       
+"GPS disconnected",                            
+"Please modify the authorization password in time",                             
+"Discharge activation failure",                
+"Battery over-temperature alarm",              
+"Temperature sensor anomaly",                  
+"Parallel module anomaly",                     
+"Erreur fictive Bit 24",                            
+"Erreur fictive Bit 25",                            
+"Erreur fictive Bit 26",                            
+"Erreur fictive Bit 27",                            
+"Erreur fictive Bit 28",                            
+"Erreur fictive Bit 29",                            
+"Erreur fictive Bit 30",                            
+"Erreur fictive Bit 31"*                            
+
+![Alarm(s) ON](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/refs/heads/main/images/Alarms-broadcasting-on.png)
+![Alarm(s) OFF](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/refs/heads/main/images/Alarms-broadcasting-on-2.png)
+
+##  ____________________________________________________________________
+
+
+# 3.3.6
 
 ## ⚡️ Enhancements
 
@@ -31,7 +97,7 @@ The configuration fields are now translated into:
 I am considering introducing a telemetry system to get a good idea of the number of live installations of my module.
 But I would like to hear your opinion. For the moment, **nothing has been implemented yet**!
 
-💥 Polls for you at this [location](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions/52) 💥
+💥 Polls for you at this [location](/https://github.com/jean-luc1203/jkbms-rs485-addon/discussions/52) 💥
 
 Thank you in advance for your response.
 
