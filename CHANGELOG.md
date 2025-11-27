@@ -1,3 +1,13 @@
+# 3.3.8
+
+### 🐞 Debug
+Correction of malformed topic: discovery topic `device_address`
+ 
+There was an extra space character.
+
+##  ____________________________________________________________________
+
+
 # 3.3.7
 
 ## ⚡️ Enhancements	

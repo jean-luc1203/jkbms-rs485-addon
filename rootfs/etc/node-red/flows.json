@@ -1055,12 +1055,13 @@
             "4716f48d98903bbc",
             "13e4f2a13df6fe21",
             "34aa954d066715d4",
-            "aa3df0b5914b5eef"
+            "aa3df0b5914b5eef",
+            "0e6ed0d1722fa950"
         ],
         "x": 74,
         "y": 759,
-        "w": 692,
-        "h": 162
+        "w": 772,
+        "h": 202
     },
     {
         "id": "c7bb4746ce710cb1",
@@ -1187,7 +1188,7 @@
         "rts": "none",
         "cts": "none",
         "dsr": "none",
-        "newline": "50",
+        "newline": "100",
         "bin": "bin",
         "out": "interbyte",
         "addchar": "",
@@ -8623,7 +8624,7 @@
             },
             {
                 "type": "int32le",
-                "name": " Device_address_N",
+                "name": "Device_address_N",
                 "offset": 270,
                 "length": 1,
                 "offsetbit": 0,
@@ -8709,7 +8710,8 @@
         "wires": [
             [
                 "13e4f2a13df6fe21",
-                "34aa954d066715d4"
+                "34aa954d066715d4",
+                "0e6ed0d1722fa950"
             ]
         ]
     },
@@ -9365,7 +9367,7 @@
         "z": "7eba58462314a0d7",
         "g": "a1697c874f4c5e2d",
         "name": "BMS-Nb",
-        "func": "var BMS = msg.payload[\" Device_address_N\"];\n// Pour debug, affichons la valeur BMS\nnode.warn(`BMS Nb: ${BMS} is alive`);\nreturn msg;",
+        "func": "var BMS = msg.payload[\"Device_address_N\"];\n// Pour debug, affichons la valeur BMS\nnode.warn(`BMS Nb: ${BMS} is alive`);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -9565,6 +9567,25 @@
             [
                 "568cf4c923b7c5bd"
             ]
+        ]
+    },
+    {
+        "id": "0e6ed0d1722fa950",
+        "type": "file",
+        "z": "7eba58462314a0d7",
+        "d": true,
+        "g": "a1697c874f4c5e2d",
+        "name": "",
+        "filename": "/config/temp/discovery.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 710,
+        "y": 920,
+        "wires": [
+            []
         ]
     },
     {
