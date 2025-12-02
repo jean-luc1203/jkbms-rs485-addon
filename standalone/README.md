@@ -3,7 +3,9 @@
 This image allows you to run the **JK-BMS-RS485 & CAN bus** as standalone container alongside **Home Assistant Docker** installation (without the Supervisor).  
 The image embeds the original Node-RED core implementation of the add-on and exposes its configuration via Docker environment variables.
 
-## Build the image
+## Build the Docker image
+
+### Local build
 
 From the root of the repository, run:
 
@@ -11,14 +13,41 @@ From the root of the repository, run:
 docker build -t jkbms-rs485-standalone -f standalone/Dockerfile .
 ```
 
+### Multiplatform build with a Docker registry
+
+Prepare a multi-platform Docker builder (one-time setup):
+
+```bash
+docker buildx create --use --name multiarch-builder
+```
+
+Login to the docker registry:
+
+```bash
+docker login {registry}
+```
+
+Build the image and push it to the registry.  
+From the root of the repository, run:
+
+```bash
+docker buildx build \
+  --platform linux/amd64,linux/arm64/v8 \
+  -t {registry}/{owner}/jkbms-rs485-standalone:latest \
+  -f standalone/Dockerfile \
+  --push \
+  .
+```
+
 ## Example docker-compose configuration
 
 > **Note:** Environment variable names are derived from the original add-on schema declared in `config.yaml`.
 
-```
+```yaml
 services:
   jkbms-rs485:
-    image: jkbms-rs485-standalone:latest
+    # Note: when using a locally built image, {registry}/{owner} can be omitted
+    image: {registry}/{owner}/jkbms-rs485-standalone:latest
     container_name: jkbms-rs485
 
     environment:
