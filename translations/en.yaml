@@ -41,3 +41,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Password"
     description: "Password associated with the MQTT user."
+
+  Send_bip:
+    name: "📊 Add-on usage"
+    description: "Enable a beep to be sent at start-up. No private data is transmitted. Processing complies with the GDPR."

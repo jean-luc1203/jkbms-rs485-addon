@@ -49,7 +49,7 @@
     {
         "id": "44f1a774d989bad2",
         "type": "tab",
-        "label": "Flux 1",
+        "label": "bip",
         "disabled": false,
         "info": "",
         "env": []
@@ -814,6 +814,29 @@
         "y": 1199,
         "w": 1012,
         "h": 142
+    },
+    {
+        "id": "f01abbb6cacd7fc3",
+        "type": "group",
+        "z": "44f1a774d989bad2",
+        "name": "Envoie un bip pour comptage",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true,
+            "label-position": "n",
+            "color": "#001f60"
+        },
+        "nodes": [
+            "5da0f98c22c6e3ad",
+            "e49dd8137a9b4be7",
+            "73134f5234c91520",
+            "f6373e9f00aa1a65",
+            "1893baf4911090f5"
+        ],
+        "x": 134,
+        "y": 99,
+        "w": 852,
+        "h": 82
     },
     {
         "id": "646f282c0dd63a6e",
@@ -2290,7 +2313,7 @@
         "z": "b1ca67b21089b915",
         "g": "c8e26f4ca5e76e36",
         "name": "traitement des variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Fonction pour traiter les champs contenant \":\"\nfunction processAddressPortFields(data) {\n    const processedData = {...data}; // Copie de l'objet original\n    \n    // Liste des champs à traiter (ceux qui peuvent contenir adresse:port)\n    const fieldsToProcess = [\n        { field: 'gateway_ip_port', addressField: 'gateway_ip', portField: 'gateway_port' },\n        { field: 'mqttadresse_port', addressField: 'mqttadresse', portField: 'mqttport' },\n        { field: 'cloud_broker_adress_port', addressField: 'cloud_broker_adress', portField: 'cloud_broker_port' }\n    ];\n    \n    fieldsToProcess.forEach(config => {\n        if (processedData[config.field] && typeof processedData[config.field] === 'string') {\n            const value = processedData[config.field];\n            \n            // Vérifier si le champ contient \":\"\n            if (value.includes(':')) {\n                const lastColonIndex = value.lastIndexOf(':'); // Utilise le dernier \":\" pour gérer les IPv6\n                const address = value.substring(0, lastColonIndex);\n                const port = value.substring(lastColonIndex + 1);\n                \n                // Ajouter les champs séparés\n                processedData[config.addressField] = address;\n                processedData[config.portField] = parseInt(port, 10);\n                \n                node.log(`Champ '${config.field}' traité: ${address}:${port}`);\n            }\n            \n            // Supprimer le champ original avec \"_port\" \n            delete processedData[config.field];\n        }\n    });\n    \n    return processedData;\n}\n\n// Extraction et stockage des variables globales\ntry {\n    // Traitement préalable des champs avec \":\"\n    const processedData = processAddressPortFields(data);\n    \n    // Configuration JK-BMS principale\n    if (processedData.jkbms_path) {\n        global.set(\"path\", processedData.jkbms_path);\n        node.log(\"Variable globale 'path' = \" + processedData.jkbms_path);\n    }\n    \n    if (processedData.jkbms_count) {\n        global.set(\"nb_jkbms\", processedData.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' = \" + processedData.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (processedData.use_gateway !== undefined) {\n        global.set(\"use_gateway\", processedData.use_gateway);\n        node.log(\"Variable globale 'use_gateway' = \" + processedData.use_gateway);\n    }\n    \n    if (processedData.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", processedData.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' = \" + processedData.gateway_ip);\n    }\n    \n    if (processedData.gateway_port !== undefined) {\n        global.set(\"gateway_port\", processedData.gateway_port);\n        node.log(\"Variable globale 'gateway_port' = \" + processedData.gateway_port);\n    }\n    \n    if (processedData.communication_debug !== undefined) {\n        global.set(\"communication_debug\", processedData.communication_debug);\n        node.log(\"Variable globale 'communication_debug' = \" + processedData.communication_debug);\n    }\n     \n    if (processedData.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", processedData.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' = \" + processedData.bms_broadcasting);\n    }\n   \n    if (processedData.CAN_bus_usage !== undefined) {\n        global.set(\"CAN_bus_usage\", processedData.CAN_bus_usage);\n        node.log(\"Variable globale 'CAN_bus_usage' = \" + processedData.CAN_bus_usage);\n    }\n\n    // Paramètres MQTT\n    if (processedData.mqttadresse) {\n        global.set(\"mqttadresse\", processedData.mqttadresse);\n        node.log(\"Variable globale 'mqttadresse' = \" + processedData.mqttadresse);\n    }\n    \n    if (processedData.mqttport) {\n        global.set(\"mqttport\", processedData.mqttport);\n        node.log(\"Variable globale 'mqttport' = \" + processedData.mqttport);\n    }\n    \n    if (processedData.mqttuser) {\n        global.set(\"mqttuser\", processedData.mqttuser);\n        node.log(\"Variable globale 'mqttuser' = \" + processedData.mqttuser);\n    }\n    \n    if (processedData.mqttpass) {\n        global.set(\"mqttpass\", processedData.mqttpass);\n        node.log(\"Variable globale 'mqttpass' = •••••••••\");\n    }\n\n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            communication_debug: global.get(\"communication_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\")\n        },\n        processedData: processedData // Pour debugging\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Fonction pour traiter les champs contenant \":\"\nfunction processAddressPortFields(data) {\n    const processedData = {...data}; // Copie de l'objet original\n    \n    // Liste des champs à traiter (ceux qui peuvent contenir adresse:port)\n    const fieldsToProcess = [\n        { field: 'gateway_ip_port', addressField: 'gateway_ip', portField: 'gateway_port' },\n        { field: 'mqttadresse_port', addressField: 'mqttadresse', portField: 'mqttport' },\n        { field: 'cloud_broker_adress_port', addressField: 'cloud_broker_adress', portField: 'cloud_broker_port' }\n    ];\n    \n    fieldsToProcess.forEach(config => {\n        if (processedData[config.field] && typeof processedData[config.field] === 'string') {\n            const value = processedData[config.field];\n            \n            // Vérifier si le champ contient \":\"\n            if (value.includes(':')) {\n                const lastColonIndex = value.lastIndexOf(':'); // Utilise le dernier \":\" pour gérer les IPv6\n                const address = value.substring(0, lastColonIndex);\n                const port = value.substring(lastColonIndex + 1);\n                \n                // Ajouter les champs séparés\n                processedData[config.addressField] = address;\n                processedData[config.portField] = parseInt(port, 10);\n                \n                node.log(`Champ '${config.field}' traité: ${address}:${port}`);\n            }\n            \n            // Supprimer le champ original avec \"_port\" \n            delete processedData[config.field];\n        }\n    });\n    \n    return processedData;\n}\n\n// Extraction et stockage des variables globales\ntry {\n    // Traitement préalable des champs avec \":\"\n    const processedData = processAddressPortFields(data);\n    \n    // Configuration JK-BMS principale\n    if (processedData.jkbms_path) {\n        global.set(\"path\", processedData.jkbms_path);\n        node.log(\"Variable globale 'path' = \" + processedData.jkbms_path);\n    }\n    \n    if (processedData.jkbms_count) {\n        global.set(\"nb_jkbms\", processedData.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' = \" + processedData.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (processedData.use_gateway !== undefined) {\n        global.set(\"use_gateway\", processedData.use_gateway);\n        node.log(\"Variable globale 'use_gateway' = \" + processedData.use_gateway);\n    }\n    \n    if (processedData.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", processedData.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' = \" + processedData.gateway_ip);\n    }\n    \n    if (processedData.gateway_port !== undefined) {\n        global.set(\"gateway_port\", processedData.gateway_port);\n        node.log(\"Variable globale 'gateway_port' = \" + processedData.gateway_port);\n    }\n    \n    if (processedData.communication_debug !== undefined) {\n        global.set(\"communication_debug\", processedData.communication_debug);\n        node.log(\"Variable globale 'communication_debug' = \" + processedData.communication_debug);\n    }\n     \n    if (processedData.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", processedData.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' = \" + processedData.bms_broadcasting);\n    }\n   \n    if (processedData.CAN_bus_usage !== undefined) {\n        global.set(\"CAN_bus_usage\", processedData.CAN_bus_usage);\n        node.log(\"Variable globale 'CAN_bus_usage' = \" + processedData.CAN_bus_usage);\n    }\n\n    // Paramètres MQTT\n    if (processedData.mqttadresse) {\n        global.set(\"mqttadresse\", processedData.mqttadresse);\n        node.log(\"Variable globale 'mqttadresse' = \" + processedData.mqttadresse);\n    }\n    \n    if (processedData.mqttport) {\n        global.set(\"mqttport\", processedData.mqttport);\n        node.log(\"Variable globale 'mqttport' = \" + processedData.mqttport);\n    }\n    \n    if (processedData.mqttuser) {\n        global.set(\"mqttuser\", processedData.mqttuser);\n        node.log(\"Variable globale 'mqttuser' = \" + processedData.mqttuser);\n    }\n    \n    if (processedData.mqttpass) {\n        global.set(\"mqttpass\", processedData.mqttpass);\n        node.log(\"Variable globale 'mqttpass' = •••••••••\");\n    }\n\n     if (processedData.Send_bip) {\n        global.set(\"Send_bip\", processedData.Send_bip);\n        node.log(\"Variable globale 'Send_bip' = \" + processedData.Send_bip);\n    }\n\n\n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            communication_debug: global.get(\"communication_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            Send_bip: global.get(\"Send_bip\"),\n        },\n        processedData: processedData // Pour debugging\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -5638,7 +5661,7 @@
         "z": "ce01fabde0618f55",
         "g": "bff0d4fab3ef46a5",
         "name": "Trame \"statics\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois (cohérent avec l'initialisation)\nconst discoveryKey = `discoverySent_STATIC_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\n// Champs qui doivent être des \"number\" (configuration)\nconst numberFields = [\n    \"LCD_buzzer_trigger_N\", \n    \"LCD_buzzer_trigger_value_N\", \n    \"LCD_buzzer_release_value_N\",\n    \"Request_Charge_voltage_Time_H\",\n    \"Request_Float_voltage_Time_H\"\n];\n\n// ------------------------------------------------------------------\n// 3. Fonctions de génération\nfunction formatValue(v) {\n    return (typeof v === 'string') ? v : String(v);\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const sensorTopic = `${baseTopic}/state/${cleanKey}`;\n        \n        // Vérifier si c'est un champ \"number\" (configuration)\n        if (numberFields.includes(key)) {\n            const commandTopic = `${baseTopic}/control/${cleanKey}/set`;\n            \n            // Définir la plage selon le champ\n            let min = 0;\n            let max = 100;\n            let unit = \"%\";\n            let step = 1;\n            let icon = \"mdi:tune\";\n            \n            if (key === \"LCD_buzzer_trigger_N\") {\n                max = 12;\n                unit = \"\";\n                icon = \"mdi:volume-high\";\n            } else if (key === \"Request_Charge_voltage_Time_H\" || key === \"Request_Float_voltage_Time_H\") {\n                min = 0;\n                max = 10;\n                step = 0.1;\n                unit = \"h\";\n                icon = \"mdi:timer-outline\";\n            }\n            \n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_static_${cleanKey}`,\n                state_topic: sensorTopic,\n                command_topic: commandTopic,\n                min: min,\n                max: max,\n                step: step,\n                mode: \"box\",\n                entity_category: \"config\",\n                enabled_by_default: true,\n                icon: icon,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.3\"\n                }\n            };\n            \n            // Ajouter l'unité seulement si elle existe\n            if (unit) {\n                cfg.unit_of_measurement = unit;\n            }\n            \n            msgs.push({\n                topic: `${discoveryPrefix}/number/${deviceID}_static/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        } else {\n            // Capteur classique (sensor)\n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_static_${cleanKey}`,\n                state_topic: sensorTopic,\n                enabled_by_default: true,\n                // \\u274c SUPPRESSION de \"entity_category: diagnostic\"\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.3\"\n                }\n            };\n\n            // unités & classes\n            if (key.endsWith(\"_S\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_H\")) {\n                cfg.unit_of_measurement = \"h\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n                cfg.state_class = \"measurement\";\n            }\n\n            // icônes\n            if (key.includes(\"Password\")) cfg.icon = \"mdi:form-textbox-password\";\n            else if (key.includes(\"Serial\")) cfg.icon = \"mdi:barcode\";\n            else if (key.includes(\"protocol\")) cfg.icon = \"mdi:protocol\";\n            else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\"))\n                cfg.icon = \"mdi:numeric-10\";\n            else if (key.includes(\"Uptime\")) {\n                cfg.icon = \"mdi:timer-outline\";\n                cfg.device_class = \"duration\";\n            } else if (key.includes(\"date\")) cfg.icon = \"mdi:calendar\";\n\n            msgs.push({\n                topic: `${discoveryPrefix}/sensor/${deviceID}_static/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        }\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/state/${cleanKey}`,\n            payload: formatValue(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nvar outputMsgs = [];\n\n// Envoyer les messages de discovery seulement si pas déjà fait\nif (!discoveryAlreadySent) {\n    outputMsgs = buildDiscoveryMessages(payload);\n    flow.set(discoveryKey, true);\n}\n\n// Ajouter les messages de state\nconst stateMsgs = buildStateMessages(payload);\noutputMsgs = outputMsgs.concat(stateMsgs);\n\nreturn [outputMsgs];",
+        "func": "// Récupération de l'ID d'esclave\nconst slaveId = global.get(\"slaveAddress-Trame1\") || 0x01;\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\n// ------------------------------------------------------------------\n// 1. Vérrou : discovery une seule fois (cohérent avec l'initialisation)\nconst discoveryKey = `discoverySent_STATIC_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\n// ------------------------------------------------------------------\n// 2. Constantes\nconst baseTopic = \"BMS_\" + slaveIdNumber;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceName = \"BMS_\" + slaveIdNumber;\nconst deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\n\n// Champs qui doivent être des \"number\" (configuration)\nconst numberFields = [\n    \"LCD_buzzer_trigger_N\", \n    \"LCD_buzzer_trigger_value_N\", \n    \"LCD_buzzer_release_value_N\",\n    \"Request_Charge_voltage_Time_H\",\n    \"Request_Float_voltage_Time_H\"\n];\n\n// ------------------------------------------------------------------\n// 3. Fonctions de génération\nfunction formatValue(v) {\n    return (typeof v === 'string') ? v : String(v);\n}\n\nfunction buildDiscoveryMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        const sensorTopic = `${baseTopic}/state/${cleanKey}`;\n        \n        // Vérifier si c'est un champ \"number\" (configuration)\n        if (numberFields.includes(key)) {\n            const commandTopic = `${baseTopic}/control/${cleanKey}/set`;\n            \n            // Définir la plage selon le champ\n            let min = 0;\n            let max = 100;\n            let unit = \"%\";\n            let step = 1;\n            let icon = \"mdi:tune\";\n            \n            if (key === \"LCD_buzzer_trigger_N\") {\n                max = 25;\n                unit = \"\";\n                icon = \"mdi:volume-high\";\n            } else if (key === \"Request_Charge_voltage_Time_H\" || key === \"Request_Float_voltage_Time_H\") {\n                min = 0;\n                max = 25;\n                step = 0.1;\n                unit = \"h\";\n                icon = \"mdi:timer-outline\";\n            }\n            \n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_static_${cleanKey}`,\n                state_topic: sensorTopic,\n                command_topic: commandTopic,\n                min: min,\n                max: max,\n                step: step,\n                mode: \"box\",\n                entity_category: \"config\",\n                enabled_by_default: true,\n                icon: icon,\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.3\"\n                }\n            };\n            \n            // Ajouter l'unité seulement si elle existe\n            if (unit) {\n                cfg.unit_of_measurement = unit;\n            }\n            \n            msgs.push({\n                topic: `${discoveryPrefix}/number/${deviceID}_static/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        } else {\n            // Capteur classique (sensor)\n            let cfg = {\n                name: `BMS ${key.replace(/_[A-Z]+$/, \"\").replace(/_/g, \" \")}`,\n                unique_id: `${deviceID}_static_${cleanKey}`,\n                state_topic: sensorTopic,\n                enabled_by_default: true,\n                // \\u274c SUPPRESSION de \"entity_category: diagnostic\"\n                device: {\n                    identifiers: [deviceID],\n                    name: deviceName,\n                    manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                    model: payloadObj.BMS_A || \"rs485 vers MQTT\",\n                    sw_version: payloadObj.SW_N || \"3.3\"\n                }\n            };\n\n            // unités & classes\n            if (key.endsWith(\"_S\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_H\")) {\n                cfg.unit_of_measurement = \"h\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && key.includes(\"Time\")) {\n                cfg.unit_of_measurement = \"s\";\n                cfg.device_class = \"duration\";\n                cfg.state_class = \"measurement\";\n            } else if (key.endsWith(\"_N\") && !key.includes(\"Serial\")) {\n                cfg.state_class = \"measurement\";\n            }\n\n            // icônes\n            if (key.includes(\"Password\")) cfg.icon = \"mdi:form-textbox-password\";\n            else if (key.includes(\"Serial\")) cfg.icon = \"mdi:barcode\";\n            else if (key.includes(\"protocol\")) cfg.icon = \"mdi:protocol\";\n            else if (key.includes(\"version\") || key.includes(\"SW\") || key.includes(\"FW\"))\n                cfg.icon = \"mdi:numeric-10\";\n            else if (key.includes(\"Uptime\")) {\n                cfg.icon = \"mdi:timer-outline\";\n                cfg.device_class = \"duration\";\n            } else if (key.includes(\"date\")) cfg.icon = \"mdi:calendar\";\n\n            msgs.push({\n                topic: `${discoveryPrefix}/sensor/${deviceID}_static/${cleanKey}/config`,\n                payload: JSON.stringify(cfg),\n                retain: true\n            });\n        }\n    }\n    return msgs;\n}\n\nfunction buildStateMessages(payloadObj) {\n    const msgs = [];\n    for (const key in payloadObj) {\n        const cleanKey = key.replace(/_[A-Z]+$/, \"\").toLowerCase();\n        msgs.push({\n            topic: `${baseTopic}/state/${cleanKey}`,\n            payload: formatValue(payloadObj[key]),\n            retain: true\n        });\n    }\n    return msgs;\n}\n\n// ------------------------------------------------------------------\n// 4. Construction des messages\nconst payload = msg.payload;\n\nvar outputMsgs = [];\n\n// Envoyer les messages de discovery seulement si pas déjà fait\nif (!discoveryAlreadySent) {\n    outputMsgs = buildDiscoveryMessages(payload);\n    flow.set(discoveryKey, true);\n}\n\n// Ajouter les messages de state\nconst stateMsgs = buildStateMessages(payload);\noutputMsgs = outputMsgs.concat(stateMsgs);\n\nreturn [outputMsgs];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -11983,5 +12006,126 @@
         "x": 760,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "5da0f98c22c6e3ad",
+        "type": "http request",
+        "z": "44f1a774d989bad2",
+        "g": "f01abbb6cacd7fc3",
+        "name": "POST",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://www.smartphoton.ch/jkbms-endpoint.php",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 730,
+        "y": 140,
+        "wires": [
+            [
+                "e49dd8137a9b4be7"
+            ]
+        ]
+    },
+    {
+        "id": "e49dd8137a9b4be7",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "g": "f01abbb6cacd7fc3",
+        "name": "debug 11",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "73134f5234c91520",
+        "type": "function",
+        "z": "44f1a774d989bad2",
+        "g": "f01abbb6cacd7fc3",
+        "name": "bip",
+        "func": "// Transforme en JSON pur\nmsg.payload = {\"bip\": \"bip\"};\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "5da0f98c22c6e3ad"
+            ]
+        ]
+    },
+    {
+        "id": "f6373e9f00aa1a65",
+        "type": "inject",
+        "z": "44f1a774d989bad2",
+        "g": "f01abbb6cacd7fc3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "1893baf4911090f5"
+            ]
+        ]
+    },
+    {
+        "id": "1893baf4911090f5",
+        "type": "switch",
+        "z": "44f1a774d989bad2",
+        "g": "f01abbb6cacd7fc3",
+        "name": "bip permis ?",
+        "property": "Send_bip",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "73134f5234c91520"
+            ],
+            []
+        ]
     }
 ]

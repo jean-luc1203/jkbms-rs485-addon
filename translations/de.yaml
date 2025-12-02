@@ -41,3 +41,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Passwort"
     description: "Passwort für den MQTT-Benutzer."
+    
+  Send_bip:
+    name: „📊 Addon-Nutzung”
+    description: „Ermöglicht das Senden eines Signaltons beim Start. Es werden keine privaten Daten übertragen. Die Verarbeitung erfolgt in Übereinstimmung mit der DSGVO.”

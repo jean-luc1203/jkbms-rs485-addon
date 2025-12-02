@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.3.8
+version: 3.3.10
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://domosimple.eu/forum/thread-917.html
@@ -48,6 +48,9 @@ options:
   mqttuser: "username"
   mqttpass: "password"
 
+  # Telemetry
+  Send_bip: true
+
 schema:
   # JK-BMS Configuration
   jkbms_path: str
@@ -62,4 +65,7 @@ schema:
   mqttadresse_port: str?
   mqttuser: str?
   mqttpass: password?
+
+  # Telemetry
+  Send_bip: bool
 

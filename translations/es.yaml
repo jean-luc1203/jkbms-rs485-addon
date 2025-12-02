@@ -41,3 +41,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Contraseña"
     description: "Contraseña asociada al usuario MQTT."
+    
+  Send_bip:
+    name: «📊 Uso del complemento»
+    description: «Permite enviar un pitido al inicio. No se transmite ningún dato privado. El tratamiento cumple con el RGPD»

@@ -1,3 +1,18 @@
+# 3.3.10
+
+### 🐞 Debug
+Increase to 25 the maximum value for the parameter: `number.bms_x_bms_request_float_voltage_time
+ 
+### ⚡️ Enhancements
+
+When starting up, the module sends a "bip" to my website smartphoton.ch. 
+This allows me to get an idea of how many modules are installed.
+💡 No private information is sent. Only the word "bip".
+You can disable this feature in the module configuration.
+
+##  ____________________________________________________________________
+
+
 # 3.3.8
 
 ### 🐞 Debug

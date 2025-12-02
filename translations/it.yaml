@@ -41,3 +41,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Password"
     description: "Password associata all'utente MQTT."
+    
+  Send_bip:
+    name: “📊 Utilizzo dell'add-on”
+    description: “Consente l'invio di un segnale acustico all'avvio. Non vengono trasmessi dati privati. Il trattamento è conforme al RGPD”

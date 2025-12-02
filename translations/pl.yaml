@@ -41,3 +41,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Hasło"
     description: "Hasło powiązane z użytkownikiem MQTT."
+    
+  Send_bip:
+    name: „📊 Dodatek użytkowania”
+    description: „Zezwól na wysyłanie sygnału dźwiękowego podczas uruchamiania. Żadne dane prywatne nie są przekazywane. Przetwarzanie jest zgodne z RODO”

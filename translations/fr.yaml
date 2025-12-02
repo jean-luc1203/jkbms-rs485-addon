@@ -41,3 +41,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Mot de passe"
     description: "Mot de passe associé à l'utilisateur MQTT."
+
+  Send_bip:
+    name: "📊 Addon utilisation"
+    description: "Permettre l'envoi d'un bip au démarrage. Aucune donnée privée n'est transmise. Le traitement est en conforme à la RGPD"
