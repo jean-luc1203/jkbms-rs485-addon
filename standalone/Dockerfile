@@ -1,14 +1,16 @@
-# Use the base Node-RED Alpine image
-FROM nodered/node-red:latest-minimal
+# Use the base Node Alpine image
+FROM node:20-alpine
+
+# Create directories and set ownership to existing node user
+RUN mkdir -p /usr/src/node-red /data \
+    && chown -R node:node /data \
+    && chown -R node:node /usr/src/node-red
 
 # Set working directory
 WORKDIR /usr/src/node-red
 
 # Copy Node-RED package manifest to install dependencies
 COPY package.json /usr/src/node-red/package.json
-
-# Next steps require root privileges
-USER root
 
 # Install dependencies declared in package.json
 RUN apk add --no-cache --virtual .build-dependencies \
@@ -29,15 +31,16 @@ RUN apk add --no-cache --virtual .build-dependencies \
         /root/.cache \
         /root/.npm \
         /root/.nrpmrc \
-        /tmp/*
+        /tmp/* \
+    \
+    && chown -R node:node /usr/src/node-red
 
-# Wrap the original entrypoint.sh from the base image to call envoptions.js
-RUN mv /usr/src/node-red/entrypoint.sh /usr/src/node-red/entrypoint-base.sh
+# Create entrypoint.sh to call envoptions.js and run node-red main process
 COPY standalone/entrypoint.sh /usr/src/node-red/entrypoint.sh
 RUN chmod +x /usr/src/node-red/entrypoint.sh
 
-# Switch back to the original user of the base image
-USER node-red
+# Switch to node user
+USER node
 
 # Script for generating of /data/options.json based on the schema in config.yaml and Docker environment variables
 COPY standalone/envoptions.js \
@@ -50,7 +53,16 @@ COPY rootfs/etc/node-red/config.js \
      rootfs/etc/node-red/settings.js \
      /data/
 
-# We keep the base image ENTRYPOINT ["./entrypoint.sh"] which now points to our wrapper.
+# Env variables
+ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
+    PATH=/usr/src/node-red/node_modules/.bin:${PATH} \
+    FLOWS=flows.json
+
+# Expose the listening port of node-red
+EXPOSE 1880
+
+# Set entry point for the container
+ENTRYPOINT ["./entrypoint.sh"]
 
 # Labels
 LABEL \
