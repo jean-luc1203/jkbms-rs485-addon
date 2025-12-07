@@ -7,6 +7,41 @@
   - Added custom bounds (`customBounds`) for all BMS parameters (max currents up to 600A, battery capacity up to 2000Ah, protection delays up to 5000s)
   - Affected corrections: `total_battery_capacity_Ah`, `max_discharge_current`, `discharge_overcurrent_protection_delay`, `short_circuit_protection_delay`, and other BMS configuration parameters
 
+  ### Custom value ranges added:
+
+  **Currents and capacities:**
+  - Max charge current: 0-600
+  - Max discharge current: 0-600
+  - Max balance current: 0-10
+  - Total battery capacity: 5-2000
+
+  **Protection delays (in seconds):**
+  - Short circuit protection delay: 0-5000
+  - Charge overcurrent protection delay: 2-600
+  - Discharge overcurrent protection delay: 2-600
+  - Charge overcurrent recovery time: 2-3600
+  - Discharge overcurrent recovery time: 2-3600
+  - Short circuit recovery time: 2-600
+
+  **Cell voltages:**
+  - Smart sleep voltage: 0-5
+  - Undervoltage/overvoltage protections: 1.2-4.5
+  - Balance trigger: 0.003-1
+  - SOC 0%/100% voltages: 1-4.5
+  - Request charge/float voltages: 1.2-5
+  - Power off voltage: 1.2-4.5
+  - Balance starting voltage: 1.2-4.25
+
+  **Temperatures:**
+  - Charge/discharge overtemperature protections: -40 to 150
+  - Charge undertemperature protections: -40 to 50
+  - Power tube overtemperature protections: 30-100
+
+  **Others:**
+  - Cell count: 1-32
+  - Wiring resistance: 0-1000
+  - Device address: 1-247
+  
 ##  ____________________________________________________________________
 
 # 3.3.10
