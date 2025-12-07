@@ -1,3 +1,13 @@
+## v3.3.12 - 07-12-2025
+
+### 🔧 Corrections (Bugfix)
+
+Correction of the minimum value for `bms_master_bms_device_address: 0 (range 1.0 - 247.0)`. The value 0 will be now allowed
+
+##  ____________________________________________________________________
+
+
+
 ## v3.3.11 - 07-12-2025
 
 ### 🔧 Corrections (Bugfix)
