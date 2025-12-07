@@ -1,11 +1,22 @@
+## v3.3.11 - 07-12-2025
+
+### 🔧 Corrections (Bugfix)
+
+- **Correction of MQTT value ranges**: Resolution of the error "The range is 0 to 100 but the value is higher" for Home Assistant entities.
+  - Increase of the default range from 0-100 to 0-5000 in the "Setup To MQTT" node.
+  - Added custom bounds (`customBounds`) for all BMS parameters (max currents up to 600A, battery capacity up to 2000Ah, protection delays up to 5000s)
+  - Affected corrections: `total_battery_capacity_Ah`, `max_discharge_current`, `discharge_overcurrent_protection_delay`, `short_circuit_protection_delay`, and other BMS configuration parameters
+
+##  ____________________________________________________________________
+
 # 3.3.10
 
 ### 🐞 Debug
 Increase to 25 the maximum value for the parameter: `number.bms_x_bms_request_float_voltage_time
- 
+
 ### ⚡️ Enhancements
 
-When starting up, the module sends a "bip" to my website smartphoton.ch. 
+When starting up, the module sends a "bip" to my website smartphoton.ch.
 This allows me to get an idea of how many modules are installed.
 💡 No private information is sent. Only the word "bip".
 You can disable this feature in the module configuration.
@@ -17,7 +28,7 @@ You can disable this feature in the module configuration.
 
 ### 🐞 Debug
 Correction of malformed topic: discovery topic `device_address`
- 
+
 There was an extra space character.
 
 ##  ____________________________________________________________________
@@ -25,12 +36,12 @@ There was an extra space character.
 
 # 3.3.7
 
-## ⚡️ Enhancements	
+## ⚡️ Enhancements
 ## 🚨Alarm management implementations 🚨
 
 ℹ️ One BMS with the switches **set to 0000**
 
-It is therefore the master of the RS485 bus and, for my module, 
+It is therefore the master of the RS485 bus and, for my module,
 
 it is in broadcasting mode !
 
@@ -38,7 +49,7 @@ it is in broadcasting mode !
 
 ### Alarm management will automatically create these entities in HAOS.
 - ❶ `binary_sensor.bms_global_bms_global_alarm`	It indicates if any of the BMS are in alarm mode.
-  It can take the values `"off"` or `"on"`   *device_class: problem* 
+  It can take the values `"off"` or `"on"`   *device_class: problem*
 
 - ❷ `sensor.bms_x_bms_x_visual_status` Visual status for each BMS
   It can take the values `"✅ No alarm"` or `"🚨 x alarm(s)"`
@@ -48,8 +59,8 @@ it is in broadcasting mode !
 
 - ❹ `sensor.bms_x_bms_x_alarm_list` List of one or more alarms from a BMS
   It can take one or several labels as described below:
-  
-  
+
+
 *"Balancing resistance too high",               
 "MOS over-temperature protection",             
 "Number of cells does not match parameter",    
@@ -101,11 +112,11 @@ To connect, for example, the Master BMS to the inverter that requires it.
 *Examples*: Victron, Deye, etc ...
 
 Adding automatically entities HAOS:
-- ❶ sensor.bms_master_total_runtime_formatted 
+- ❶ sensor.bms_master_total_runtime_formatted
 
 	`ex: 323D1H14M (DHM 323 days, 1 hour and 14 minutes)`
 - ❷ sensor.bms_master_charge_status_text  `ex: Bulk, Absorption, Float`
-- ❸ sensor.bms_master_charge_status_time 
+- ❸ sensor.bms_master_charge_status_time
 
 	`ex: 1H34S (1 hour and 34 seconds)`
 
@@ -113,7 +124,7 @@ Adding automatically entities HAOS:
 
 - Added the ability to view live frames received in the logs for operational analysis
 
-###  🌍 Traductions: 
+###  🌍 Traductions:
 The configuration fields are now translated into:
 - `English / German / Spanish / French / Portuguese / Italian / Polish`
 
@@ -134,7 +145,7 @@ Thank you in advance for your response.
 
 ## 🐞 Bug fixes
 
-Changed some of the TCP timer connection to the IP Gateway 
+Changed some of the TCP timer connection to the IP Gateway
 
 ##  ____________________________________________________________________
 
@@ -173,7 +184,7 @@ Correct management of a single BMS, all 125 entities are correctly discovered wh
 
 
 ##  ____________________________________________________________________
- 
+
 
 ## 3.2.1
 
@@ -182,14 +193,14 @@ Increase the number maxi of BMS `jkbms_count` to 15 instead of 10
 
 
 ##  ____________________________________________________________________
- 
+
 
 ## 3.2.0
 
 ## ⚡️ Enhancements
 
 # 🚨  Alarm management  🚨
- 
+
 Management of the 23 alarms that JK-BMS can trigger.
 See DOCS.md file for more information
 
@@ -199,7 +210,7 @@ These are:
 - ❶ `binary_sensor.bms_x_bms_alarm_active`
 - ❷ `sensor.bms_1_bms_1_alarm_list`
 
-These 2 sensors indicate on which BMS there is an alarm and the wording of these alarms. If there is more than one, they are separated by a comma. 
+These 2 sensors indicate on which BMS there is an alarm and the wording of these alarms. If there is more than one, they are separated by a comma.
 
 A global sensor:
 
@@ -225,11 +236,11 @@ You can see a short live demonstration on my Youtube [channel](https://www.youtu
 ## 3.1.11
 
 ## ⚡️ Enhancements
- 
+
 - Addition of 2 new sensors:
   - ❶ `sensor.bms_1_charge_status_text` which indicates whether the battery is in
   `Bulk / Absorption / Float` mode
-   
+
   - ❷ `sensor.bms_1_charge_status_time_formatted` which indicates how long the balancing
   takes to reach the `balance trigger voltage
 <img width="863" height="321" alt="image" src="https://github.com/user-attachments/assets/ba998fc6-d215-4819-9fd4-90e5628c0a87" />
@@ -242,7 +253,7 @@ You can see a short live demonstration on my Youtube [channel](https://www.youtu
 ## 3.1.10
 
 ## ⚡️ Enhancements
- 
+
 - Addition of 1 sensors `sensor.bms_x_total_runtime_formatted`
 
 This gives the number of days-hours-minute your JK-BMS has been running
@@ -272,19 +283,19 @@ The MQTT Cloud synchronization part has been removed. It is now part of an addit
 ⚠️ Please save your module configuration in a notepad. Then press “Reset to defaults” to clear the configuration file. Next, fill in the module configuration fields again and restart the module
 
 ## ⚡️ Enhancements
- 
+
 - Addition of 2 sensors controlling the LCD buzzer
 <img width="670" height="129" alt="LCD-Buzzer" src="https://github.com/user-attachments/assets/f6fabab5-843c-4db6-86ec-96954081ed07" />
 
 - Display the Module Addon Version number into the log at startup
- 
+
 ## 🐞 Bug fixes
-  
+
 - Various bugs have been corrected in the TCP/IP Gateway section
 - No more attempts to connect to Cloud Broker
 
 ##  ____________________________________________________________________
- 
+
 ## 3.1.2
 
  🐞 Bug fixes --> Incorrect min / max ranges for MQTT number entities
@@ -296,7 +307,7 @@ All Home Assistant entities now have appropriate scales.
 ###  📌 For this to be taken into account !!!
 it is **essential to Delete the MQTT device** `BMS_1, BMS_2, BMS_3, etc.`
 
-So that the entities can be recreated with the correct value scales 
+So that the entities can be recreated with the correct value scales
 
 
 ## 3.1.1
@@ -324,7 +335,7 @@ There's no need to install anything else at home, such as VPNs, proxies (Nginx) 
 ## To select the entities you wish to export
 use the "File editor" addon to modify the `configentities_list.json` file
 
-For a fuller description, You can read the [`HiveMQ-Access.md` ](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/HiveMQ-Access.md)on the Github 
+For a fuller description, You can read the [`HiveMQ-Access.md` ](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/HiveMQ-Access.md)on the Github
 
 You can also watch the video explanation on my channel Youtube: [@domosimple](https://www.youtube.com/@domosimple)
 ## Translations
