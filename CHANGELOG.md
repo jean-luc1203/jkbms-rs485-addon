@@ -4,8 +4,12 @@
 
 Addition of 2 sensors that provide the status of the heating function connected to the JK
 
-- `sensor.bms_2_heating_current`         Indicates the amperage used for heating
-- `sensor.bms_2_heating_status_text`     Indicates whether the heating function is activated
+- `sensor.bms_x_heating`                 Is the heating function activated ?    -    (ON / OFF) 
+- `sensor.bms_x_heating_current`         Indicates the amperage used for heating
+- `sensor.bms_x_heating_status_text`     Indicates whether the heating function is activated
+
+<img width="346" height="148" alt="image" src="https://github.com/user-attachments/assets/a81ec864-de59-4e85-b125-27eb11b69065" />
+
 
 ##  ____________________________________________________________________
 
@@ -705,3 +709,4 @@ Modification config.yaml
 ## 1.0.0
 
 - Module construction le 06-06-2025
+
