@@ -1,3 +1,15 @@
+## v3.3.13 - 10-12-2025
+
+### ⚡️ Enhancements
+
+Addition of 2 sensors that provide the status of the heating function connected to the JK
+
+- `sensor.bms_2_heating_current`         Indicates the amperage used for heating
+- `sensor.bms_2_heating_status_text`     Indicates whether the heating function is activated
+
+##  ____________________________________________________________________
+
+
 ## v3.3.12 - 07-12-2025
 
 ### 🔧 Corrections (Bugfix)
