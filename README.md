@@ -129,6 +129,20 @@ This configuration is quite complex and may not work depending on the hardware/s
 2. Reload the add-ons
 3. Install and configure
 
+
+## 🚀 Standalone Docker (new option, december 2025)
+
+Run your JK-BMS RS485 & CAN **independently from HAOS** via Docker!
+
+✅ For Home Assistant in Docker or environments without Supervisor  
+✅ Automatic options configuration via `envoptions.js`  
+✅ Ready-to-use Dockerfile + complete documentation  
+
+**👉 [Docker Installation](standalone/README.md)**
+
+*Community contribution - Thanks to the contributor SergeyYmb. !*
+
+
 ## Use
 
 - BMS appear in MQTT devices
