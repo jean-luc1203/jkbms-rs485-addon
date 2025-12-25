@@ -55,6 +55,14 @@
         "env": []
     },
     {
+        "id": "e046a6ce6457b012",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "6fc9763d4087338c",
         "type": "subflow",
         "name": "Subflow 1",
@@ -141,8 +149,7 @@
             "c06c156ddb36634e",
             "e17a26b0d2bf5039",
             "dd313e0f9fd4ef67",
-            "9e766385cf7c92f6",
-            "b9acdd24017a1107"
+            "9e766385cf7c92f6"
         ],
         "x": 16,
         "y": 893,
@@ -311,8 +318,8 @@
             "323bc1fdf8eb4b0e",
             "468d5c1a95681d8d"
         ],
-        "x": 34,
-        "y": 499,
+        "x": 14,
+        "y": 479,
         "w": 772,
         "h": 182
     },
@@ -693,8 +700,8 @@
             "3c1b49123cabedb0",
             "8eea8a8ef9220c22"
         ],
-        "x": 214,
-        "y": 1979,
+        "x": 294,
+        "y": 1919,
         "w": 712,
         "h": 242
     },
@@ -740,7 +747,7 @@
             "58a120471d8b3aa5"
         ],
         "x": 64,
-        "y": 2339,
+        "y": 2219,
         "w": 762,
         "h": 162
     },
@@ -817,27 +824,97 @@
         "h": 142
     },
     {
-        "id": "f01abbb6cacd7fc3",
+        "id": "0bab67838083522a",
         "type": "group",
-        "z": "44f1a774d989bad2",
-        "name": "Envoie un bip pour comptage",
+        "z": "b1ca67b21089b915",
+        "name": "URL Dashboard Node Red",
         "style": {
-            "stroke": "#0070c0",
             "label": true,
-            "label-position": "n",
+            "stroke": "#0070c0",
             "color": "#001f60"
         },
         "nodes": [
-            "5da0f98c22c6e3ad",
-            "e49dd8137a9b4be7",
-            "73134f5234c91520",
-            "f6373e9f00aa1a65",
-            "1893baf4911090f5"
+            "691f43464b1625d9",
+            "e05d7ff558a4dbae",
+            "7060e96cd73705af"
         ],
-        "x": 134,
-        "y": 99,
-        "w": 852,
+        "x": 24,
+        "y": 699,
+        "w": 622,
         "h": 82
+    },
+    {
+        "id": "f382b31e2c58e8c3",
+        "type": "group",
+        "z": "e046a6ce6457b012",
+        "name": "Dashboard Live Data",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "90589e2e759450b0",
+            "72858cb8135ecca1",
+            "6c3251dbb536e412",
+            "4669a15e5fbce50a"
+        ],
+        "x": 304,
+        "y": 339,
+        "w": 842,
+        "h": 82
+    },
+    {
+        "id": "76fabc0223d5e539",
+        "type": "group",
+        "z": "e046a6ce6457b012",
+        "name": "Dashboard Static Data",
+        "style": {
+            "label": true,
+            "stroke": "#001f60",
+            "color": "#001f60"
+        },
+        "nodes": [
+            "41569635140450b8",
+            "3f54927a8562ef8c",
+            "88076e010f936d8b",
+            "09f010af7c5e1992"
+        ],
+        "x": 154,
+        "y": 59,
+        "w": 872,
+        "h": 82
+    },
+    {
+        "id": "3eae94408690a564",
+        "type": "group",
+        "z": "44f1a774d989bad2",
+        "name": "Check OS type",
+        "style": {
+            "stroke": "#92d04f",
+            "label": true,
+            "color": "#ff0000"
+        },
+        "nodes": [
+            "inject_startup_v2",
+            "exec_test_os",
+            "switch_os",
+            "set_windows",
+            "exec_detect_linux_detail",
+            "parse_env_v2",
+            "file_read_v2",
+            "parse_json_v2",
+            "debug_config_v2",
+            "72f87905871f38b0",
+            "c0a1550183f24e9b",
+            "7d18ea54123e1414",
+            "4c19e94f627591cd",
+            "4b5571fbcfbfbc8c"
+        ],
+        "x": 114,
+        "y": 119,
+        "w": 1112,
+        "h": 302
     },
     {
         "id": "646f282c0dd63a6e",
@@ -961,10 +1038,11 @@
             "dab766c54a57452d",
             "c054e6c82bc4bb0a",
             "6ca55c256080e1c0",
-            "73bb9117fd0b3a8e"
+            "73bb9117fd0b3a8e",
+            "32f3c0d652235f1c"
         ],
         "x": 44,
-        "y": 1139,
+        "y": 1119,
         "w": 1382,
         "h": 122
     },
@@ -993,7 +1071,8 @@
             "705a77e3b053f7ca",
             "00cca2d92bf02b99",
             "884c969712f9982d",
-            "914fc4cee6ebe7ee"
+            "914fc4cee6ebe7ee",
+            "8756d698a33880b8"
         ],
         "x": 42,
         "y": 1499,
@@ -1025,12 +1104,13 @@
             "ae08f365b6a639d5",
             "16f7228e721581da",
             "35900806dc5fb044",
-            "987af1e78ba9a7d1"
+            "987af1e78ba9a7d1",
+            "96189c0a78b84915"
         ],
         "x": 43,
         "y": 1299,
         "w": 1383,
-        "h": 122
+        "h": 142
     },
     {
         "id": "b75a55c2aaa3b2b6",
@@ -1199,6 +1279,27 @@
         "h": 164.5
     },
     {
+        "id": "3909cc6b3670d838",
+        "type": "group",
+        "z": "e046a6ce6457b012",
+        "name": "Dashboard Settings Data",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true,
+            "color": "#0070c0"
+        },
+        "nodes": [
+            "1dc7d19597d60885",
+            "73a9586798828b06",
+            "87a73731e478e29a",
+            "020632fc8339b4f3"
+        ],
+        "x": 214,
+        "y": 199,
+        "w": 892,
+        "h": 82
+    },
+    {
         "id": "6e1abcbcc6ebb714",
         "type": "serial-port",
         "name": "JKBMS-RS485-Fake",
@@ -1255,9 +1356,200 @@
         "env": [],
         "modules": {
             "node-red-node-serialport": "2.0.3",
+            "@flowfuse/node-red-dashboard": "1.30.0",
+            "node-red-contrib-os": "0.2.1",
             "node-red-contrib-buffer-parser": "3.2.2",
             "node-red-contrib-tcp-client2": "1.1.3"
         }
+    },
+    {
+        "id": "477d6a6e29555062",
+        "type": "ui-base",
+        "name": "Setup BMS 1",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": true,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 5,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "7f42c22c3ff64d85",
+        "type": "ui-theme",
+        "name": "JLM",
+        "colors": {
+            "surface": "#5431fb",
+            "primary": "#0094ce",
+            "bgPage": "#c0c0c0",
+            "groupBg": "#eaeaea",
+            "groupOutline": "#0000ff"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "8px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "page_bms1",
+        "type": "ui-page",
+        "name": "Live BMS 1",
+        "ui": "477d6a6e29555062",
+        "path": "/bms1",
+        "icon": "pulse",
+        "layout": "grid",
+        "theme": "7f42c22c3ff64d85",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "group_bms1",
+        "type": "ui-group",
+        "name": "Live BMS 1",
+        "page": "page_bms1",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "page_static",
+        "type": "ui-page",
+        "name": "Infos BMS 1",
+        "ui": "477d6a6e29555062",
+        "path": "/infos-bms",
+        "icon": "database",
+        "layout": "grid",
+        "theme": "7f42c22c3ff64d85",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 3,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "group_static",
+        "type": "ui-group",
+        "name": "Infos BMS 1",
+        "page": "page_static",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": true,
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "6af349ba04c1ad8a",
+        "type": "ui-group",
+        "name": "Setup BMS",
+        "page": "a076c0a708cffec2",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "a076c0a708cffec2",
+        "type": "ui-page",
+        "name": "Setup BMS 1",
+        "ui": "477d6a6e29555062",
+        "path": "/setup1",
+        "icon": "cog",
+        "layout": "grid",
+        "theme": "7f42c22c3ff64d85",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "bd32d7ad2e41fd6b",
@@ -1365,9 +1657,9 @@
         "id": "25c51ee819816528",
         "type": "comment",
         "z": "0f3c5bd285141d40",
-        "name": "copyright ©JLM 2025",
+        "name": "copyright ©JLM 2025 - 2026",
         "info": "",
-        "x": 120,
+        "x": 140,
         "y": 74,
         "wires": []
     },
@@ -1619,8 +1911,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 150,
-        "y": 540,
+        "x": 130,
+        "y": 520,
         "wires": [
             [
                 "4e25b5fa6500606e"
@@ -1649,8 +1941,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 600,
+        "x": 120,
+        "y": 580,
         "wires": [
             [
                 "b82078ca27edc9db"
@@ -1670,8 +1962,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 600,
+        "x": 330,
+        "y": 580,
         "wires": [
             [
                 "58adbc8abf20aab0"
@@ -1687,8 +1979,8 @@
         "property": "broker",
         "action": "",
         "pretty": false,
-        "x": 510,
-        "y": 600,
+        "x": 490,
+        "y": 580,
         "wires": [
             [
                 "4e25b5fa6500606e",
@@ -1712,8 +2004,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 700,
-        "y": 540,
+        "x": 680,
+        "y": 520,
         "wires": []
     },
     {
@@ -1730,8 +2022,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 680,
-        "y": 600,
+        "x": 660,
+        "y": 580,
         "wires": []
     },
     {
@@ -2098,8 +2390,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 700,
-        "y": 640,
+        "x": 680,
+        "y": 620,
         "wires": []
     },
     {
@@ -2124,8 +2416,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 640,
+        "x": 140,
+        "y": 620,
         "wires": [
             [
                 "468d5c1a95681d8d"
@@ -2150,8 +2442,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 520,
-        "y": 640,
+        "x": 500,
+        "y": 620,
         "wires": [
             [
                 "66ce0bd5261eb149"
@@ -2171,8 +2463,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 640,
+        "x": 340,
+        "y": 620,
         "wires": [
             [
                 "323bc1fdf8eb4b0e"
@@ -2314,7 +2606,7 @@
         "z": "b1ca67b21089b915",
         "g": "c8e26f4ca5e76e36",
         "name": "traitement des variables",
-        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Fonction pour traiter les champs contenant \":\"\nfunction processAddressPortFields(data) {\n    const processedData = {...data}; // Copie de l'objet original\n    \n    // Liste des champs à traiter (ceux qui peuvent contenir adresse:port)\n    const fieldsToProcess = [\n        { field: 'gateway_ip_port', addressField: 'gateway_ip', portField: 'gateway_port' },\n        { field: 'mqttadresse_port', addressField: 'mqttadresse', portField: 'mqttport' },\n        { field: 'cloud_broker_adress_port', addressField: 'cloud_broker_adress', portField: 'cloud_broker_port' }\n    ];\n    \n    fieldsToProcess.forEach(config => {\n        if (processedData[config.field] && typeof processedData[config.field] === 'string') {\n            const value = processedData[config.field];\n            \n            // Vérifier si le champ contient \":\"\n            if (value.includes(':')) {\n                const lastColonIndex = value.lastIndexOf(':'); // Utilise le dernier \":\" pour gérer les IPv6\n                const address = value.substring(0, lastColonIndex);\n                const port = value.substring(lastColonIndex + 1);\n                \n                // Ajouter les champs séparés\n                processedData[config.addressField] = address;\n                processedData[config.portField] = parseInt(port, 10);\n                \n                node.log(`Champ '${config.field}' traité: ${address}:${port}`);\n            }\n            \n            // Supprimer le champ original avec \"_port\" \n            delete processedData[config.field];\n        }\n    });\n    \n    return processedData;\n}\n\n// Extraction et stockage des variables globales\ntry {\n    // Traitement préalable des champs avec \":\"\n    const processedData = processAddressPortFields(data);\n    \n    // Configuration JK-BMS principale\n    if (processedData.jkbms_path) {\n        global.set(\"path\", processedData.jkbms_path);\n        node.log(\"Variable globale 'path' = \" + processedData.jkbms_path);\n    }\n    \n    if (processedData.jkbms_count) {\n        global.set(\"nb_jkbms\", processedData.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' = \" + processedData.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (processedData.use_gateway !== undefined) {\n        global.set(\"use_gateway\", processedData.use_gateway);\n        node.log(\"Variable globale 'use_gateway' = \" + processedData.use_gateway);\n    }\n    \n    if (processedData.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", processedData.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' = \" + processedData.gateway_ip);\n    }\n    \n    if (processedData.gateway_port !== undefined) {\n        global.set(\"gateway_port\", processedData.gateway_port);\n        node.log(\"Variable globale 'gateway_port' = \" + processedData.gateway_port);\n    }\n    \n    if (processedData.communication_debug !== undefined) {\n        global.set(\"communication_debug\", processedData.communication_debug);\n        node.log(\"Variable globale 'communication_debug' = \" + processedData.communication_debug);\n    }\n     \n    if (processedData.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", processedData.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' = \" + processedData.bms_broadcasting);\n    }\n   \n    if (processedData.CAN_bus_usage !== undefined) {\n        global.set(\"CAN_bus_usage\", processedData.CAN_bus_usage);\n        node.log(\"Variable globale 'CAN_bus_usage' = \" + processedData.CAN_bus_usage);\n    }\n\n    // Paramètres MQTT\n    if (processedData.mqttadresse) {\n        global.set(\"mqttadresse\", processedData.mqttadresse);\n        node.log(\"Variable globale 'mqttadresse' = \" + processedData.mqttadresse);\n    }\n    \n    if (processedData.mqttport) {\n        global.set(\"mqttport\", processedData.mqttport);\n        node.log(\"Variable globale 'mqttport' = \" + processedData.mqttport);\n    }\n    \n    if (processedData.mqttuser) {\n        global.set(\"mqttuser\", processedData.mqttuser);\n        node.log(\"Variable globale 'mqttuser' = \" + processedData.mqttuser);\n    }\n    \n    if (processedData.mqttpass) {\n        global.set(\"mqttpass\", processedData.mqttpass);\n        node.log(\"Variable globale 'mqttpass' = •••••••••\");\n    }\n\n     if (processedData.Send_bip) {\n        global.set(\"Send_bip\", processedData.Send_bip);\n        node.log(\"Variable globale 'Send_bip' = \" + processedData.Send_bip);\n    }\n\n\n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            communication_debug: global.get(\"communication_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            Send_bip: global.get(\"Send_bip\"),\n        },\n        processedData: processedData // Pour debugging\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
+        "func": "// Récupération des données du payload\nconst data = msg.payload;\n\n// Fonction pour traiter les champs contenant \":\"\nfunction processAddressPortFields(data) {\n    const processedData = {...data}; // Copie de l'objet original\n    \n    // Liste des champs à traiter (ceux qui peuvent contenir adresse:port)\n    const fieldsToProcess = [\n        { field: 'gateway_ip_port', addressField: 'gateway_ip', portField: 'gateway_port' },\n        { field: 'mqttadresse_port', addressField: 'mqttadresse', portField: 'mqttport' },\n        { field: 'cloud_broker_adress_port', addressField: 'cloud_broker_adress', portField: 'cloud_broker_port' }\n    ];\n    \n    fieldsToProcess.forEach(config => {\n        if (processedData[config.field] && typeof processedData[config.field] === 'string') {\n            const value = processedData[config.field];\n            \n            // Vérifier si le champ contient \":\"\n            if (value.includes(':')) {\n                const lastColonIndex = value.lastIndexOf(':'); // Utilise le dernier \":\" pour gérer les IPv6\n                const address = value.substring(0, lastColonIndex);\n                const port = value.substring(lastColonIndex + 1);\n                \n                // Ajouter les champs séparés\n                processedData[config.addressField] = address;\n                processedData[config.portField] = parseInt(port, 10);\n                \n                node.log(`Champ '${config.field}' traité: ${address}:${port}`);\n            }\n            \n            // Supprimer le champ original avec \"_port\" \n            delete processedData[config.field];\n        }\n    });\n    \n    return processedData;\n}\n\n// Extraction et stockage des variables globales\ntry {\n    // Traitement préalable des champs avec \":\"\n    const processedData = processAddressPortFields(data);\n    \n    // Configuration JK-BMS principale\n    if (processedData.jkbms_path) {\n        global.set(\"path\", processedData.jkbms_path);\n        node.log(\"Variable globale 'path' = \" + processedData.jkbms_path);\n    }\n    \n    if (processedData.jkbms_count) {\n        global.set(\"nb_jkbms\", processedData.jkbms_count);\n        node.log(\"Variable globale 'nb_jkbms' = \" + processedData.jkbms_count);\n    }\n    \n    // Configuration Gateway\n    if (processedData.use_gateway !== undefined) {\n        global.set(\"use_gateway\", processedData.use_gateway);\n        node.log(\"Variable globale 'use_gateway' = \" + processedData.use_gateway);\n    }\n    \n    if (processedData.gateway_ip !== undefined) {\n        global.set(\"gateway_ip\", processedData.gateway_ip);\n        node.log(\"Variable globale 'gateway_ip' = \" + processedData.gateway_ip);\n    }\n    \n    if (processedData.gateway_port !== undefined) {\n        global.set(\"gateway_port\", processedData.gateway_port);\n        node.log(\"Variable globale 'gateway_port' = \" + processedData.gateway_port);\n    }\n    \n    if (processedData.communication_debug !== undefined) {\n        global.set(\"communication_debug\", processedData.communication_debug);\n        node.log(\"Variable globale 'communication_debug' = \" + processedData.communication_debug);\n    }\n     \n    if (processedData.bms_broadcasting !== undefined) {\n        global.set(\"bms_broadcasting\", processedData.bms_broadcasting);\n        node.log(\"Variable globale 'bms_broadcasting' = \" + processedData.bms_broadcasting);\n    }\n   \n    if (processedData.CAN_bus_usage !== undefined) {\n        global.set(\"CAN_bus_usage\", processedData.CAN_bus_usage);\n        node.log(\"Variable globale 'CAN_bus_usage' = \" + processedData.CAN_bus_usage);\n    }\n\n    // Paramètres MQTT\n    if (processedData.mqttadresse) {\n        global.set(\"mqttadresse\", processedData.mqttadresse);\n        node.log(\"Variable globale 'mqttadresse' = \" + processedData.mqttadresse);\n    }\n    \n    if (processedData.mqttport) {\n        global.set(\"mqttport\", processedData.mqttport);\n        node.log(\"Variable globale 'mqttport' = \" + processedData.mqttport);\n    }\n    \n    if (processedData.mqttuser) {\n        global.set(\"mqttuser\", processedData.mqttuser);\n        node.log(\"Variable globale 'mqttuser' = \" + processedData.mqttuser);\n    }\n    \n    if (processedData.mqttpass) {\n        global.set(\"mqttpass\", processedData.mqttpass);\n        node.log(\"Variable globale 'mqttpass' = •••••••••\");\n    }\n\n    if (processedData.Send_bip !== undefined) {\n        global.set(\"Send_bip\", processedData.Send_bip);\n        node.log(\"Variable globale 'Send_bip' = \" + processedData.Send_bip);\n    }\n\n    // Message de confirmation\n    msg.payload = {\n        status: \"success\",\n        message: \"Variables globales créées avec succès\",\n        variables: {\n            path: global.get(\"path\"),\n            nb_jkbms: global.get(\"nb_jkbms\"),\n            use_gateway: global.get(\"use_gateway\"),\n            gateway_ip: global.get(\"gateway_ip\"),\n            gateway_port: global.get(\"gateway_port\"),\n            communication_debug: global.get(\"communication_debug\"),\n            bms_broadcasting: global.get(\"bms_broadcasting\"),\n            mqttadresse: global.get(\"mqttadresse\"),\n            mqttport: global.get(\"mqttport\"),\n            mqttuser: global.get(\"mqttuser\"),\n            mqttpass: global.get(\"mqttpass\"),\n            CAN_bus_usage: global.get(\"CAN_bus_usage\"),\n            Send_bip: global.get(\"Send_bip\")\n        },\n        processedData: processedData // Pour debugging\n    };\n\n} catch (error) {\n    node.error(\"Erreur lors de la création des variables globales: \" + error.message);\n    msg.payload = {\n        status: \"error\",\n        message: error.message\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2359,6 +2651,69 @@
         "outputLabels": [
             "Ip Gateway",
             "Serial Port"
+        ]
+    },
+    {
+        "id": "691f43464b1625d9",
+        "type": "NetworkIntf",
+        "z": "b1ca67b21089b915",
+        "g": "0bab67838083522a",
+        "name": "",
+        "x": 310,
+        "y": 740,
+        "wires": [
+            [
+                "7060e96cd73705af"
+            ]
+        ]
+    },
+    {
+        "id": "e05d7ff558a4dbae",
+        "type": "inject",
+        "z": "b1ca67b21089b915",
+        "g": "0bab67838083522a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "7",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "691f43464b1625d9"
+            ]
+        ]
+    },
+    {
+        "id": "7060e96cd73705af",
+        "type": "function",
+        "z": "b1ca67b21089b915",
+        "g": "0bab67838083522a",
+        "name": "URL standalone",
+        "func": "var IP = msg.payload.networkInterfaces.enp2s0[0].address\n// Pour debug, affichons la valeur URL Dashboard Node Red\nnode.warn(`⏩ Dashboard URL for Standalone version: http://${IP}:1891/endpoint/dashboard/`);\nnode.warn(`⏩ Please do not use with HAOS, only in standalone mode (executable for Windows or Linux)`);\nnode.warn(`⏩ If you still wish to use it in HAOS, use the \"iFrame\" card with the above address`);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 740,
+        "wires": [
+            []
         ]
     },
     {
@@ -2531,7 +2886,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 200,
-        "y": 1180,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2549,7 +2904,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 350,
-        "y": 1180,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2732,13 +3087,14 @@
         "setTopic": true,
         "outputs": 1,
         "x": 420,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "bbe7f5ddcea331a9",
                 "1c51761e84ee5bb2",
                 "dab766c54a57452d",
-                "c054e6c82bc4bb0a"
+                "c054e6c82bc4bb0a",
+                "32f3c0d652235f1c"
             ]
         ]
     },
@@ -2997,7 +3353,7 @@
             "b17bb5bd16c1be78"
         ],
         "x": 85,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "2492d95ecc9f328c",
@@ -3019,7 +3375,7 @@
         "finalize": "",
         "libs": [],
         "x": 220,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "264d6f5686cf22f1"
@@ -3097,7 +3453,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1310,
-        "y": 1220,
+        "y": 1200,
         "wires": []
     },
     {
@@ -3116,7 +3472,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 1160,
-        "y": 1220,
+        "y": 1200,
         "wires": []
     },
     {
@@ -3520,7 +3876,8 @@
             [
                 "f62828b434e3951b",
                 "867fca3b9f77ce27",
-                "ae08f365b6a639d5"
+                "ae08f365b6a639d5",
+                "96189c0a78b84915"
             ]
         ]
     },
@@ -4160,7 +4517,8 @@
                 "60a06da8cc236522",
                 "15033939a61ddd92",
                 "705a77e3b053f7ca",
-                "914fc4cee6ebe7ee"
+                "914fc4cee6ebe7ee",
+                "8756d698a33880b8"
             ]
         ]
     },
@@ -4631,7 +4989,7 @@
         "z": "ce01fabde0618f55",
         "g": "2e57321f85689f45",
         "name": "Trame \"data\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01;\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\n// ------------------------------------------------------------------\n// 1. Clé unique par BMS pour éviter les rediscovery répétés\nconst discoveryKey = `discoverySent_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 2. Variables de travail\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Clés calculées à ignorer pour le discovery (laissée vide ici)\nconst excludeFromDiscovery = [];\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3. Traitement des tensions de cellules\nvar cellVoltages = [];\nvar cellKeys = [];\n\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, v) => sum + v, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n\n    payload[\"cell_voltage_average_V\"]   = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"]     = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"]= parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"]= parseInt(minVoltIndex);\n\n    // ➜ Tension réelle de la cellule la plus basse\n    payload[\"cell_voltage_min_value_V\"] = parseFloat(cellMinVolt.toFixed(3));\n    \n    // ➜ Nouvelle clé : tension réelle de la cellule la plus haute\n    payload[\"cell_voltage_max_value_V\"] = parseFloat(cellMaxVolt.toFixed(3));\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3b. Traitement du Total_runtime pour format lisible\nif (payload[\"Total_runtime_S\"] !== undefined) {\n    var totalSeconds = parseInt(payload[\"Total_runtime_S\"]);\n    if (!isNaN(totalSeconds)) {\n        var days = Math.floor(totalSeconds / 86400);\n        var remainingSeconds = totalSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n        \n        // Création du format 300D22H46M\n        payload[\"Total_runtime_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n    }\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3c. Traitement du charge_status_N : conversion en texte lisible\nif (payload[\"charge_status_N\"] !== undefined) {\n    var statusValue = parseInt(payload[\"charge_status_N\"]);\n    var statusText = \"Unknown\";\n    \n    switch(statusValue) {\n        case 0:\n        case 0x00:\n            statusText = \"Bulk\";\n            break;\n        case 1:\n        case 0x01:\n            statusText = \"Absorption\";\n            break;\n        case 2:\n        case 0x02:\n            statusText = \"Float\";\n            break;\n    }\n    \n    // Création d'une nouvelle clé avec le texte lisible\n    payload[\"charge_status_text_S\"] = statusText;\n}\n\n// Traitement du charge_status_time_S pour format lisible\nif (payload[\"charge_status_time_S\"] !== undefined) {\n    var statusSeconds = parseInt(payload[\"charge_status_time_S\"]);\n    if (!isNaN(statusSeconds)) {\n        var days = Math.floor(statusSeconds / 86400);\n        var remainingSeconds = statusSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n        var seconds = remainingSeconds % 60;\n        \n        // Création du format lisible\n        if (days > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n        } else if (hours > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${hours}H${minutes}M${seconds}S`;\n        } else if (minutes > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${minutes}M${seconds}S`;\n        } else {\n            payload[\"charge_status_time_formatted_T\"] = `${seconds}S`;\n        }\n    }\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3d. Formatage Heating_B → texte lisible\nif (payload[\"Heating_B\"] !== undefined) {\n    var heatingStatus = parseInt(payload[\"Heating_B\"]);\n    var heatingTxt = heatingStatus === 1 ? \"ON\" : \"OFF\";\n    payload[\"Heating_status_text_S\"] = heatingTxt;\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Création des messages de données et (si besoin) de discovery\nconst allowedSuffixes = [\"_V\", \"_A\", \"_W\", \"_T\", \"_Ah\", \"_R\", \"_P\", \"_S\", \"_B\", \"_N\"];\n\nfor (var key in payload) {\n    if (excludeFromDiscovery.includes(key)) continue;\n\n    var hasValidSuffix = allowedSuffixes.some(s => key.endsWith(s));\n    if (!hasValidSuffix) continue;\n\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    if (!discoveryAlreadySent) {\n        var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n        var configPayload = {\n            name: cleanKey,\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: sensorTopic,\n            unit_of_measurement: \"\",\n            entity_category: \"diagnostic\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: payload.BMS_A || \"rs485 vers MQTT\",\n                sw_version: payload.SW_N || \"3.3\"\n            }\n        };\n\n        if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n        else if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n        else if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n        else if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n        else if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n        else if (key.endsWith(\"_P\")) {\n            configPayload.unit_of_measurement = \"%\";\n            if (key.startsWith(\"SOC\")) configPayload.device_class = \"battery\";\n        }\n        else if (key.endsWith(\"_T\")) {\n            // Pour les temps formatés, pas d'unité car c'est déjà dans le format\n            if (key === \"Total_runtime_formatted_T\" || key === \"charge_status_time_formatted_T\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:clock-time-eight-outline\";\n            } \n            // Autres cas avec _T = température\n            else {\n                configPayload.unit_of_measurement = \"°C\";\n            }\n        }\n        // --- BOOLÉENS (_B) ---\n        else if (key.endsWith(\"_B\")) {\n            configPayload.unit_of_measurement = \"\";\n            if (key === \"Heating_B\") {\n                configPayload.device_class = \"heat\";\n                configPayload.icon = \"mdi:heating-coil\";\n            } else if (key === \"Switch_Charge_B\" || key === \"Switch_Decharge_B\") {\n                configPayload.device_class = \"switch\";\n                configPayload.icon = \"mdi:toggle-switch\";\n            } else if (key === \"Balance_Action_B\") {\n                configPayload.icon = \"mdi:battery-sync\";\n            } else if (key === \"Switch_Balance_B\") {\n                configPayload.icon = \"mdi:battery-balance\";\n            }\n        }\n        else if (key.endsWith(\"_S\")) {\n            // Pour charge_status_text_S, c'est du texte sans unité\n            if (key === \"charge_status_text_S\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:battery-charging\";\n            }\n            // Pour Heating_status_text_S\n            else if (key === \"Heating_status_text_S\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:heating-coil\";\n            }\n            // Pour charge_status_time_S, unité en secondes avec icône timer\n            else if (key === \"charge_status_time_S\") {\n                configPayload.unit_of_measurement = \"s\";\n                configPayload.icon = \"mdi:timer-outline\";\n            }\n            // Autres cas avec _S = secondes par défaut\n            else {\n                configPayload.unit_of_measurement = \"s\";\n            }\n        }\n\n        discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n    }\n}\n\n// Ajouter les clés calculées aux données dynamiques (sans discovery)\n[\n    \"cell_voltage_average_V\",\n    \"cell_voltage_delta_V\",\n    \"cell_voltage_max_number_N\",\n    \"cell_voltage_min_number_N\",\n    \"cell_voltage_min_value_V\",\n    \"cell_voltage_max_value_V\",\n    \"Heating_status_text_S\"\n].forEach(k => {\n    if (payload[k] !== undefined) {\n        var clean = k.replace(/_[A-Z]+$/, \"\");\n        var topic = `${baseTopic}/${clean}`;\n        topics[topic] = payload[k];\n        dynamicData[clean] = payload[k];\n    }\n});\n\n// ------------------------------------------------------------------\n// 5. Préparation des messages à retourner\n// topics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = [];\nif (!discoveryAlreadySent) {\n    outputMsgs = discoveryMsgs;\n    flow.set(discoveryKey, true);\n}\n\nfor (var t in topics) {\n    outputMsgs.push({ topic: t, payload: topics[t] });\n}\n\nreturn [outputMsgs];",
+        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01;\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\n// ------------------------------------------------------------------\n// 1. Clé unique par BMS pour éviter les rediscovery répétés\nconst discoveryKey = `discoverySent_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 2. Variables de travail\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Clés calculées à ignorer pour le discovery (laissée vide ici)\nconst excludeFromDiscovery = [];\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3. Traitement des tensions de cellules\nvar cellVoltages = [];\nvar cellKeys = [];\n\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, v) => sum + v, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n\n    payload[\"cell_voltage_average_V\"]   = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"]     = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"]= parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"]= parseInt(minVoltIndex);\n\n    // ➜ Tension réelle de la cellule la plus basse\n    payload[\"cell_voltage_min_value_V\"] = parseFloat(cellMinVolt.toFixed(3));\n    \n    // ➜ Nouvelle clé : tension réelle de la cellule la plus haute\n    payload[\"cell_voltage_max_value_V\"] = parseFloat(cellMaxVolt.toFixed(3));\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3b. Traitement du Total_runtime pour format lisible\nif (payload[\"Total_runtime_S\"] !== undefined) {\n    var totalSeconds = parseInt(payload[\"Total_runtime_S\"]);\n    if (!isNaN(totalSeconds)) {\n        var days = Math.floor(totalSeconds / 86400);\n        var remainingSeconds = totalSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n        \n        // Création du format 300D22H46M\n        payload[\"Total_runtime_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n    }\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3c. Traitement du charge_status_N : conversion en texte lisible\nif (payload[\"charge_status_N\"] !== undefined) {\n    var statusValue = parseInt(payload[\"charge_status_N\"]);\n    var statusText = \"Unknown\";\n    \n    switch(statusValue) {\n        case 0:\n        case 0x00:\n            statusText = \"Bulk\";\n            break;\n        case 1:\n        case 0x01:\n            statusText = \"Absorption\";\n            break;\n        case 2:\n        case 0x02:\n            statusText = \"Float\";\n            break;\n    }\n    \n    // Création d'une nouvelle clé avec le texte lisible\n    payload[\"charge_status_text_S\"] = statusText;\n}\n\n// Traitement du charge_status_time_S pour format lisible\nif (payload[\"charge_status_time_S\"] !== undefined) {\n    var statusSeconds = parseInt(payload[\"charge_status_time_S\"]);\n    if (!isNaN(statusSeconds)) {\n        var days = Math.floor(statusSeconds / 86400);\n        var remainingSeconds = statusSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n        var seconds = remainingSeconds % 60;\n        \n        // Création du format lisible\n        if (days > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n        } else if (hours > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${hours}H${minutes}M${seconds}S`;\n        } else if (minutes > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${minutes}M${seconds}S`;\n        } else {\n            payload[\"charge_status_time_formatted_T\"] = `${seconds}S`;\n        }\n    }\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Création des messages de données et (si besoin) de discovery\nconst allowedSuffixes = [\"_V\", \"_A\", \"_W\", \"_T\", \"_Ah\", \"_R\", \"_P\", \"_S\", \"_B\", \"_N\"];\n\nfor (var key in payload) {\n    if (excludeFromDiscovery.includes(key)) continue;\n\n    var hasValidSuffix = allowedSuffixes.some(s => key.endsWith(s));\n    if (!hasValidSuffix) continue;\n\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    if (!discoveryAlreadySent) {\n        var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n        var configPayload = {\n            name: cleanKey,\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: sensorTopic,\n            unit_of_measurement: \"\",\n            entity_category: \"diagnostic\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: payload.BMS_A || \"rs485 vers MQTT\",\n                sw_version: payload.SW_N || \"3.3\"\n            }\n        };\n\n        if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n        else if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n        else if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n        else if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n        else if (key.endsWith(\"_T\")) {\n            // Pour les temps formatés, pas d'unité car c'est déjà dans le format\n            if (key === \"Total_runtime_formatted_T\" || key === \"charge_status_time_formatted_T\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:clock-time-eight-outline\";\n            } \n            // Autres cas avec _T = température\n            else {\n                configPayload.unit_of_measurement = \"°C\";\n            }\n        }\n        else if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n        else if (key.endsWith(\"_P\")) {\n            configPayload.unit_of_measurement = \"%\";\n            if (key.startsWith(\"SOC\")) configPayload.device_class = \"battery\";\n        } \n        else if (key.endsWith(\"_S\")) {\n            // Pour charge_status_text_S, c'est du texte sans unité\n            if (key === \"charge_status_text_S\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:battery-charging\";\n            } \n            // Pour charge_status_time_S, unité en secondes avec icône timer\n            else if (key === \"charge_status_time_S\") {\n                configPayload.unit_of_measurement = \"s\";\n                configPayload.icon = \"mdi:timer-outline\";\n            }\n            // Autres cas avec _S = secondes par défaut\n            else {\n                configPayload.unit_of_measurement = \"s\";\n            }\n        }\n\n        discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n    }\n}\n\n// Ajouter les clés calculées aux données dynamiques (sans discovery)\n[\n    \"cell_voltage_average_V\",\n    \"cell_voltage_delta_V\",\n    \"cell_voltage_max_number_N\",\n    \"cell_voltage_min_number_N\",\n    \"cell_voltage_min_value_V\",\n    \"cell_voltage_max_value_V\"\n].forEach(k => {\n    if (payload[k] !== undefined) {\n        var clean = k.replace(/_[A-Z]+$/, \"\");\n        var topic = `${baseTopic}/${clean}`;\n        topics[topic] = payload[k];\n        dynamicData[clean] = payload[k];\n    }\n});\n\n// ------------------------------------------------------------------\n// 5. Préparation des messages à retourner\n// topics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = [];\nif (!discoveryAlreadySent) {\n    outputMsgs = discoveryMsgs;\n    flow.set(discoveryKey, true);\n}\n\nfor (var t in topics) {\n    outputMsgs.push({ topic: t, payload: topics[t] });\n}\n\nreturn [outputMsgs];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4666,8 +5024,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 410,
-        "y": 2060,
+        "x": 490,
+        "y": 2000,
         "wires": [
             [
                 "9cd19b0cda3b295b",
@@ -4695,8 +5053,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 2020,
+        "x": 740,
+        "y": 1960,
         "wires": []
     },
     {
@@ -4713,8 +5071,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
-        "y": 2060,
+        "x": 710,
+        "y": 2000,
         "wires": []
     },
     {
@@ -4731,8 +5089,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
-        "y": 2100,
+        "x": 710,
+        "y": 2040,
         "wires": []
     },
     {
@@ -4746,8 +5104,8 @@
             "54c93e67707946a8",
             "eb4d973c278afdbc"
         ],
-        "x": 255,
-        "y": 2060,
+        "x": 335,
+        "y": 2000,
         "wires": [
             [
                 "993c2383b70be9f1"
@@ -4810,8 +5168,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 790,
-        "y": 2180,
+        "x": 870,
+        "y": 2120,
         "wires": []
     },
     {
@@ -4833,8 +5191,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 410,
-        "y": 2180,
+        "x": 490,
+        "y": 2120,
         "wires": [
             [
                 "3c1b49123cabedb0"
@@ -4871,8 +5229,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 620,
-        "y": 2180,
+        "x": 700,
+        "y": 2120,
         "wires": [
             [
                 "276f29f9528f1322"
@@ -4889,8 +5247,8 @@
             "705a77e3b053f7ca",
             "01565a6abef1f0a8"
         ],
-        "x": 255,
-        "y": 2180,
+        "x": 335,
+        "y": 2120,
         "wires": [
             [
                 "a4215bec9779ed8c"
@@ -5058,7 +5416,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 2460,
+        "y": 2340,
         "wires": [
             [
                 "1a8ddebb594458ae"
@@ -5080,7 +5438,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 320,
-        "y": 2460,
+        "y": 2340,
         "wires": []
     },
     {
@@ -5097,7 +5455,7 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 2420,
+        "y": 2300,
         "wires": [
             [
                 "ea5c7b5329c945a4"
@@ -5118,7 +5476,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 2420,
+        "y": 2300,
         "wires": [
             [
                 "5ea27536ce8688a6"
@@ -5139,7 +5497,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 720,
-        "y": 2420,
+        "y": 2300,
         "wires": []
     },
     {
@@ -5156,7 +5514,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 2380,
+        "y": 2260,
         "wires": [
             [
                 "94d92b48b836576f"
@@ -5174,7 +5532,7 @@
             "fa351cb08a5d02e9"
         ],
         "x": 455,
-        "y": 2380,
+        "y": 2260,
         "wires": []
     },
     {
@@ -5200,7 +5558,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 180,
-        "y": 2380,
+        "y": 2260,
         "wires": [
             [
                 "2b4bee671f623f3c"
@@ -5643,7 +6001,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 1180,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -5688,7 +6046,7 @@
         "finalize": "",
         "libs": [],
         "x": 970,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "cb1a7697e8293f75",
@@ -5715,7 +6073,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 750,
-        "y": 1180,
+        "y": 1160,
         "wires": [
             [
                 "6ca55c256080e1c0"
@@ -5736,7 +6094,7 @@
         "finalize": "",
         "libs": [],
         "x": 940,
-        "y": 1180,
+        "y": 1160,
         "wires": [
             [
                 "73bb9117fd0b3a8e"
@@ -5758,7 +6116,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1300,
-        "y": 1180,
+        "y": 1160,
         "wires": []
     },
     {
@@ -5944,23 +6302,46 @@
         ]
     },
     {
-        "id": "b9acdd24017a1107",
-        "type": "function",
+        "id": "8756d698a33880b8",
+        "type": "link out",
         "z": "ce01fabde0618f55",
-        "g": "1bb1485c6f644ee6",
-        "name": "Trame \"data\" to MQTT",
-        "func": "// Récupération de l'ID d'esclave depuis les variables globales\nconst slaveId = global.get(\"slaveAddress-Trame3\") || 0x01;\n\n// Conversion de la valeur hexadécimale en décimal si nécessaire\nconst slaveIdNumber = typeof slaveId === 'string' ? parseInt(slaveId, 16) : slaveId;\n\nvar payload = msg.payload;\nvar baseTopic = \"BMS_\" + slaveIdNumber;\nvar discoveryPrefix = \"homeassistant/sensor\";\nvar deviceName = \"BMS_\" + slaveIdNumber;\nvar deviceID = \"BMS_\" + slaveIdNumber + \"_device\";\nvar dynamicDataTopic = `${baseTopic}/donnees_dynamiques`;\n\n// ------------------------------------------------------------------\n// 1. Clé unique par BMS pour éviter les rediscovery répétés\nconst discoveryKey = `discoverySent_BMS_${slaveIdNumber}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 2. Variables de travail\nvar topics = {};\nvar discoveryMsgs = [];\nvar dynamicData = {};\n\n// Clés calculées à ignorer pour le discovery (laissée vide ici)\nconst excludeFromDiscovery = [];\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3. Traitement des tensions de cellules\nvar cellVoltages = [];\nvar cellKeys = [];\n\nfor (var key in payload) {\n    if (key.includes(\"Cell_\") && key.includes(\"volt\") && key.endsWith(\"_V\")) {\n        let voltage = Number(payload[key]);\n        if (!isNaN(voltage)) {\n            cellVoltages.push(voltage);\n            cellKeys.push(key);\n        }\n    }\n}\n\n// Calculs des statistiques des cellules\nif (cellVoltages.length > 0) {\n    var cellAvgVolt = cellVoltages.reduce((sum, v) => sum + v, 0) / cellVoltages.length;\n    var cellMaxVolt = Math.max(...cellVoltages);\n    var cellMinVolt = Math.min(...cellVoltages);\n    var cellDeltaVolt = cellMaxVolt - cellMinVolt;\n\n    var maxVoltIndex = cellKeys[cellVoltages.indexOf(cellMaxVolt)].match(/Cell_(\\d+)/)[1];\n    var minVoltIndex = cellKeys[cellVoltages.indexOf(cellMinVolt)].match(/Cell_(\\d+)/)[1];\n\n    payload[\"cell_voltage_average_V\"]   = parseFloat(cellAvgVolt.toFixed(3));\n    payload[\"cell_voltage_delta_V\"]     = parseFloat(cellDeltaVolt.toFixed(3));\n    payload[\"cell_voltage_max_number_N\"]= parseInt(maxVoltIndex);\n    payload[\"cell_voltage_min_number_N\"]= parseInt(minVoltIndex);\n\n    // ➜ Tension réelle de la cellule la plus basse\n    payload[\"cell_voltage_min_value_V\"] = parseFloat(cellMinVolt.toFixed(3));\n    \n    // ➜ Nouvelle clé : tension réelle de la cellule la plus haute\n    payload[\"cell_voltage_max_value_V\"] = parseFloat(cellMaxVolt.toFixed(3));\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3b. Traitement du Total_runtime pour format lisible\nif (payload[\"Total_runtime_S\"] !== undefined) {\n    var totalSeconds = parseInt(payload[\"Total_runtime_S\"]);\n    if (!isNaN(totalSeconds)) {\n        var days = Math.floor(totalSeconds / 86400);\n        var remainingSeconds = totalSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n        \n        // Création du format 300D22H46M\n        payload[\"Total_runtime_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n    }\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 3c. Traitement du charge_status_N : conversion en texte lisible\nif (payload[\"charge_status_N\"] !== undefined) {\n    var statusValue = parseInt(payload[\"charge_status_N\"]);\n    var statusText = \"Unknown\";\n    \n    switch(statusValue) {\n        case 0:\n        case 0x00:\n            statusText = \"Bulk\";\n            break;\n        case 1:\n        case 0x01:\n            statusText = \"Absorption\";\n            break;\n        case 2:\n        case 0x02:\n            statusText = \"Float\";\n            break;\n    }\n    \n    // Création d'une nouvelle clé avec le texte lisible\n    payload[\"charge_status_text_S\"] = statusText;\n}\n\n// Traitement du charge_status_time_S pour format lisible\nif (payload[\"charge_status_time_S\"] !== undefined) {\n    var statusSeconds = parseInt(payload[\"charge_status_time_S\"]);\n    if (!isNaN(statusSeconds)) {\n        var days = Math.floor(statusSeconds / 86400);\n        var remainingSeconds = statusSeconds % 86400;\n        var hours = Math.floor(remainingSeconds / 3600);\n        var minutes = Math.floor((remainingSeconds % 3600) / 60);\n        var seconds = remainingSeconds % 60;\n        \n        // Création du format lisible\n        if (days > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${days}D${hours}H${minutes}M`;\n        } else if (hours > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${hours}H${minutes}M${seconds}S`;\n        } else if (minutes > 0) {\n            payload[\"charge_status_time_formatted_T\"] = `${minutes}M${seconds}S`;\n        } else {\n            payload[\"charge_status_time_formatted_T\"] = `${seconds}S`;\n        }\n    }\n}\n// ------------------------------------------------------------------\n\n// ------------------------------------------------------------------\n// 4. Création des messages de données et (si besoin) de discovery\nconst allowedSuffixes = [\"_V\", \"_A\", \"_W\", \"_T\", \"_Ah\", \"_R\", \"_P\", \"_S\", \"_B\", \"_N\"];\n\nfor (var key in payload) {\n    if (excludeFromDiscovery.includes(key)) continue;\n\n    var hasValidSuffix = allowedSuffixes.some(s => key.endsWith(s));\n    if (!hasValidSuffix) continue;\n\n    var cleanKey = key.replace(/_[A-Z]+$/, \"\");\n    var sensorTopic = `${baseTopic}/${cleanKey}`;\n    topics[sensorTopic] = payload[key];\n    dynamicData[cleanKey] = payload[key];\n\n    if (!discoveryAlreadySent) {\n        var configTopic = `${discoveryPrefix}/${deviceID}_${cleanKey}/config`;\n        var configPayload = {\n            name: cleanKey,\n            unique_id: `${deviceID}_${cleanKey}`,\n            state_topic: sensorTopic,\n            unit_of_measurement: \"\",\n            entity_category: \"diagnostic\",\n            device: {\n                identifiers: [deviceID],\n                name: deviceName,\n                manufacturer: \"Smartphoton-JK-BMS / ©JLM 2025\",\n                model: payload.BMS_A || \"rs485 vers MQTT\",\n                sw_version: payload.SW_N || \"3.3\"\n            }\n        };\n\n        if (key.endsWith(\"_V\")) configPayload.unit_of_measurement = \"V\";\n        else if (key.endsWith(\"_Ah\")) configPayload.unit_of_measurement = \"Ah\";\n        else if (key.endsWith(\"_A\")) configPayload.unit_of_measurement = \"A\";\n        else if (key.endsWith(\"_W\")) configPayload.unit_of_measurement = \"W\";\n        else if (key.endsWith(\"_T\")) {\n            // Pour les temps formatés, pas d'unité car c'est déjà dans le format\n            if (key === \"Total_runtime_formatted_T\" || key === \"charge_status_time_formatted_T\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:clock-time-eight-outline\";\n            } \n            // Autres cas avec _T = température\n            else {\n                configPayload.unit_of_measurement = \"°C\";\n            }\n        }\n        else if (key.endsWith(\"_R\")) configPayload.unit_of_measurement = \"Ω\";\n        else if (key.endsWith(\"_P\")) {\n            configPayload.unit_of_measurement = \"%\";\n            if (key.startsWith(\"SOC\")) configPayload.device_class = \"battery\";\n        } \n        else if (key.endsWith(\"_S\")) {\n            // Pour charge_status_text_S, c'est du texte sans unité\n            if (key === \"charge_status_text_S\") {\n                configPayload.unit_of_measurement = \"\";\n                configPayload.icon = \"mdi:battery-charging\";\n            } \n            // Pour charge_status_time_S, unité en secondes avec icône timer\n            else if (key === \"charge_status_time_S\") {\n                configPayload.unit_of_measurement = \"s\";\n                configPayload.icon = \"mdi:timer-outline\";\n            }\n            // Autres cas avec _S = secondes par défaut\n            else {\n                configPayload.unit_of_measurement = \"s\";\n            }\n        }\n\n        discoveryMsgs.push({ topic: configTopic, payload: JSON.stringify(configPayload), retain: true });\n    }\n}\n\n// Ajouter les clés calculées aux données dynamiques (sans discovery)\n[\n    \"cell_voltage_average_V\",\n    \"cell_voltage_delta_V\",\n    \"cell_voltage_max_number_N\",\n    \"cell_voltage_min_number_N\",\n    \"cell_voltage_min_value_V\",\n    \"cell_voltage_max_value_V\"\n].forEach(k => {\n    if (payload[k] !== undefined) {\n        var clean = k.replace(/_[A-Z]+$/, \"\");\n        var topic = `${baseTopic}/${clean}`;\n        topics[topic] = payload[k];\n        dynamicData[clean] = payload[k];\n    }\n});\n\n// ------------------------------------------------------------------\n// 5. Préparation des messages à retourner\n// topics[dynamicDataTopic] = JSON.stringify(dynamicData);\n\nvar outputMsgs = [];\nif (!discoveryAlreadySent) {\n    outputMsgs = discoveryMsgs;\n    flow.set(discoveryKey, true);\n}\n\nfor (var t in topics) {\n    outputMsgs.push({ topic: t, payload: topics[t] });\n}\n\nreturn [outputMsgs];",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1120,
-        "y": 1640,
-        "wires": [
-            []
-        ]
+        "g": "2e57321f85689f45",
+        "name": "Dashboard-Live-Data-Out",
+        "mode": "link",
+        "links": [
+            "90589e2e759450b0"
+        ],
+        "x": 595,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "32f3c0d652235f1c",
+        "type": "link out",
+        "z": "ce01fabde0618f55",
+        "g": "bff0d4fab3ef46a5",
+        "name": "Dashboard-Static-Data-Out",
+        "mode": "link",
+        "links": [
+            "41569635140450b8"
+        ],
+        "x": 625,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "96189c0a78b84915",
+        "type": "link out",
+        "z": "ce01fabde0618f55",
+        "g": "c06c156ddb36634e",
+        "name": "Dashboard-Settings-Data-Out",
+        "mode": "link",
+        "links": [
+            "87a73731e478e29a"
+        ],
+        "x": 515,
+        "y": 1400,
+        "wires": []
     },
     {
         "id": "02dd5257a29af5a6",
@@ -12064,103 +12445,234 @@
         "wires": []
     },
     {
-        "id": "5da0f98c22c6e3ad",
-        "type": "http request",
+        "id": "inject_startup_v2",
+        "type": "inject",
         "z": "44f1a774d989bad2",
-        "g": "f01abbb6cacd7fc3",
-        "name": "POST",
-        "method": "POST",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://www.smartphoton.ch/jkbms-endpoint.php",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 730,
-        "y": 140,
+        "g": "3eae94408690a564",
+        "name": "Au démarrage",
+        "props": [],
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": true,
+        "onceDelay": "15",
+        "topic": "",
+        "x": 240,
+        "y": 160,
         "wires": [
             [
-                "e49dd8137a9b4be7"
+                "c0a1550183f24e9b"
             ]
         ]
     },
     {
-        "id": "e49dd8137a9b4be7",
-        "type": "debug",
+        "id": "exec_test_os",
+        "type": "exec",
         "z": "44f1a774d989bad2",
-        "g": "f01abbb6cacd7fc3",
-        "name": "debug 11",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 140,
-        "wires": []
+        "g": "3eae94408690a564",
+        "command": "uname -s 2>nul || echo Windows",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "2",
+        "winHide": true,
+        "oldrc": false,
+        "name": "Test OS basique",
+        "x": 620,
+        "y": 180,
+        "wires": [
+            [
+                "switch_os"
+            ],
+            [],
+            []
+        ]
     },
     {
-        "id": "73134f5234c91520",
+        "id": "switch_os",
+        "type": "switch",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "name": "Windows ou Linux?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "Windows",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "set_windows"
+            ],
+            [
+                "exec_detect_linux_detail"
+            ]
+        ]
+    },
+    {
+        "id": "set_windows",
+        "type": "change",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "name": "Windows détecté",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Windows",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "parse_env_v2"
+            ]
+        ]
+    },
+    {
+        "id": "exec_detect_linux_detail",
+        "type": "exec",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "command": "([ -n \"$SUPERVISOR_TOKEN\" ] || [ -n \"$HASSIO_TOKEN\" ] || [ -f /etc/hassio.json ] || [ -d /usr/share/hassio ]) && echo 'HAOS' || ([ -f /.dockerenv ] && echo 'Docker') || echo 'Linux'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "3",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Détail Linux",
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "parse_env_v2"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "parse_env_v2",
         "type": "function",
         "z": "44f1a774d989bad2",
-        "g": "f01abbb6cacd7fc3",
-        "name": "bip",
-        "func": "// Transforme en JSON pur\nmsg.payload = {\"bip\": \"bip\"};\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\nreturn msg;\n",
+        "g": "3eae94408690a564",
+        "name": "Analyse environnement",
+        "func": "const inputEnv = msg.payload.toString().trim();\n\nlet configPath;\nlet statusColor;\nlet bip;\n\nswitch(inputEnv) {\n    case 'HAOS':\n        configPath = '/data/options.json';\n        msg.environment = 'Home Assistant OS';\n        bip = 1;\n        statusColor = 'green';\n        break;\n    case 'Docker':\n        configPath = '/data/options.json';\n        msg.environment = 'Docker (autre)';\n        bip = 2;\n        statusColor = 'blue';\n        break;\n    case 'Linux':\n        configPath = '/data/options.json';\n        msg.environment = 'Linux barebone';\n        bip = 3;\n        statusColor = 'yellow';\n        break;\n    case 'Windows':\n        configPath = 'C:\\\\data\\\\options.json';\n        msg.environment = 'Windows';\n        bip = 4;\n        statusColor = 'purple';\n        break;\n    default:\n        configPath = './data/options.json';\n        msg.environment = 'Inconnu';\n        bip = 5;\n        statusColor = 'red';\n}\n\nmsg.filename = configPath;\nmsg.payload = {\"bip\": String(bip)};\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\nnode.status({fill:statusColor, shape:\"dot\", text: msg.environment});\nreturn msg;",
         "outputs": 1,
-        "timeout": 0,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 140,
+        "x": 730,
+        "y": 300,
         "wires": [
             [
-                "5da0f98c22c6e3ad"
+                "file_read_v2",
+                "72f87905871f38b0",
+                "7d18ea54123e1414"
             ]
         ]
     },
     {
-        "id": "f6373e9f00aa1a65",
-        "type": "inject",
+        "id": "file_read_v2",
+        "type": "file in",
         "z": "44f1a774d989bad2",
-        "g": "f01abbb6cacd7fc3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 250,
-        "y": 140,
+        "d": true,
+        "g": "3eae94408690a564",
+        "name": "Lit options.json",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 700,
+        "y": 380,
         "wires": [
             [
-                "1893baf4911090f5"
+                "parse_json_v2"
             ]
         ]
     },
     {
-        "id": "1893baf4911090f5",
+        "id": "parse_json_v2",
+        "type": "json",
+        "z": "44f1a774d989bad2",
+        "d": true,
+        "g": "3eae94408690a564",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 870,
+        "y": 380,
+        "wires": [
+            [
+                "debug_config_v2"
+            ]
+        ]
+    },
+    {
+        "id": "debug_config_v2",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "d": true,
+        "g": "3eae94408690a564",
+        "name": "Config chargée",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1080,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "72f87905871f38b0",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "name": "OS type",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c0a1550183f24e9b",
         "type": "switch",
         "z": "44f1a774d989bad2",
-        "g": "f01abbb6cacd7fc3",
+        "g": "3eae94408690a564",
         "name": "bip permis ?",
         "property": "Send_bip",
         "propertyType": "global",
@@ -12176,11 +12688,362 @@
         "repair": false,
         "outputs": 2,
         "x": 430,
-        "y": 140,
+        "y": 160,
         "wires": [
             [
-                "73134f5234c91520"
+                "exec_test_os"
             ],
+            []
+        ]
+    },
+    {
+        "id": "7d18ea54123e1414",
+        "type": "http request",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "name": "POST",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://www.smartphoton.ch/jkbms-endpoint.php",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 970,
+        "y": 300,
+        "wires": [
+            [
+                "4c19e94f627591cd"
+            ]
+        ]
+    },
+    {
+        "id": "4c19e94f627591cd",
+        "type": "debug",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "name": "debug 21",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4b5571fbcfbfbc8c",
+        "type": "inject",
+        "z": "44f1a774d989bad2",
+        "g": "3eae94408690a564",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "exec_test_os"
+            ]
+        ]
+    },
+    {
+        "id": "90589e2e759450b0",
+        "type": "link in",
+        "z": "e046a6ce6457b012",
+        "g": "f382b31e2c58e8c3",
+        "name": "Dashboard-Live-Data-In",
+        "links": [
+            "8756d698a33880b8"
+        ],
+        "x": 345,
+        "y": 380,
+        "wires": [
+            [
+                "72858cb8135ecca1"
+            ]
+        ]
+    },
+    {
+        "id": "72858cb8135ecca1",
+        "type": "function",
+        "z": "e046a6ce6457b012",
+        "g": "f382b31e2c58e8c3",
+        "name": "Dynamique dashboard",
+        "func": "// Récupérer l'adresse du BMS depuis la variable globale\nconst bmsAddress = global.get('slaveAddress-Trame3') || 'BMS-Unknown';\n\n// Extraire les données de tension des cellules\nconst cellVoltages = [];\nfor (let i = 1; i <= 16; i++) {\n    const key = `Cell_${i}_volt_V`;\n    if (msg.payload[key] !== undefined) {\n        cellVoltages.push({\n            cell: i,\n            voltage: parseFloat(msg.payload[key]).toFixed(3)\n        });\n    }\n}\n\n// Calculer min, max et moyenne des tensions\nconst voltages = cellVoltages.map(c => parseFloat(c.voltage));\nconst minVoltage = Math.min(...voltages);\nconst maxVoltage = Math.max(...voltages);\nconst avgVoltage = (voltages.reduce((a, b) => a + b, 0) / voltages.length).toFixed(3);\nconst voltageBalance = (maxVoltage - minVoltage).toFixed(3);\n\n// Extraire les données de température\nconst temperatures = [\n    { name: 'MOS', value: msg.payload.Mos_temp_T },\n    { name: 'Sonde 1', value: msg.payload.Sonde_1_temp_T },\n    { name: 'Sonde 2', value: msg.payload.Sonde_2_temp_T },\n    { name: 'Sonde 3', value: msg.payload.Sonde_3_temp_T },\n    { name: 'Sonde 4', value: msg.payload.Sonde_4_temp_T }\n].filter(t => t.value !== undefined);\n\nconst maxTemp = Math.max(...temperatures.map(t => t.value));\nconst minTemp = Math.min(...temperatures.map(t => t.value));\n\n// Construire l'objet formaté pour le dashboard\nconst formattedData = {\n    bmsAddress: bmsAddress,\n    timestamp: new Date().toISOString(),\n    \n    // Tension globale\n    tensionTotale: {\n        value: msg.payload.Tension_Totale_volt_V,\n        unit: 'V'\n    },\n    \n    // Courant\n    courantTotal: {\n        value: msg.payload.Courant_total_A,\n        unit: 'A'\n    },\n    \n    // Puissance\n    puissance: {\n        value: msg.payload.Puissance_Totale_W,\n        unit: 'W'\n    },\n    \n    // État de charge\n    soc: {\n        value: msg.payload.SOC_pourcentage_P,\n        unit: '%'\n    },\n    \n    // État de santé\n    soh: {\n        value: msg.payload.SOH_pourcentage_P,\n        unit: '%'\n    },\n    \n    // Capacité\n    capacite: {\n        restante: msg.payload.Capacite_restante_Ah,\n        totale: msg.payload.Capacite_batterie_Ah,\n        unit: 'Ah'\n    },\n    \n    // Cellules\n    cellules: {\n        count: cellVoltages.length,\n        voltages: cellVoltages,\n        minVoltage: minVoltage,\n        maxVoltage: maxVoltage,\n        avgVoltage: avgVoltage,\n        balance: voltageBalance // Différence V entre la plus haute et plus basse\n    },\n    \n    // Températures\n    temperatures: {\n        sensors: temperatures,\n        max: maxTemp,\n        min: minTemp\n    },\n    \n    // États des switchs\n    switches: {\n        charge: msg.payload.Switch_Charge_B === 1,\n        decharge: msg.payload.Switch_Decharge_B === 1,\n        balance: msg.payload.Switch_Balance_B === 1,\n        heating: msg.payload.Heating_B === 1\n    },\n    \n    // Équilibrage\n    balance: {\n        courant: msg.payload.Balance_courant_A,\n        action: msg.payload.Balance_Action_B === 1,\n        unit: 'A'\n    },\n    \n    // Cycles et runtime\n    maintenance: {\n        nombreCycles: msg.payload.Nombre_Cycle_N,\n        capaciteCycles: msg.payload.Cycle_Capacite_Ah,\n        runtimeTotal: msg.payload.Total_runtime_S,\n        runtimeHours: (msg.payload.Total_runtime_S / 3600).toFixed(2)\n    }\n};\n\n// Passer les données formatées au message\nmsg.payload = formattedData;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 380,
+        "wires": [
+            [
+                "6c3251dbb536e412"
+            ]
+        ]
+    },
+    {
+        "id": "6c3251dbb536e412",
+        "type": "switch",
+        "z": "e046a6ce6457b012",
+        "g": "f382b31e2c58e8c3",
+        "name": "Trier par BMS Address",
+        "property": "payload.bmsAddress",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 760,
+        "y": 380,
+        "wires": [
+            [
+                "4669a15e5fbce50a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "41569635140450b8",
+        "type": "link in",
+        "z": "e046a6ce6457b012",
+        "g": "76fabc0223d5e539",
+        "name": "Dashboard-Static-Data-In",
+        "links": [
+            "32f3c0d652235f1c"
+        ],
+        "x": 195,
+        "y": 100,
+        "wires": [
+            [
+                "3f54927a8562ef8c"
+            ]
+        ]
+    },
+    {
+        "id": "3f54927a8562ef8c",
+        "type": "function",
+        "z": "e046a6ce6457b012",
+        "g": "76fabc0223d5e539",
+        "name": "Statique dashboard",
+        "func": "// Récupérer l'adresse du BMS\nconst bmsAddress = global.get('slaveAddress-Trame1') || '1';\nconst d = msg.payload;\n\n// Calcul de l'uptime\nconst days = Math.floor(d.Uptime_S / (24 * 3600));\nconst hours = Math.floor((d.Uptime_S % (24 * 3600)) / 3600);\n\n// Construire l'objet formaté complet\nmsg.payload = {\n    bmsAddress: bmsAddress,\n    timestamp: new Date().toISOString(),\n    modele: d.BMS_A,\n    serie: d.SerialNb_N,\n    marque: d.Brand_A,\n    firmware: d.FW_A,\n    software: d.SW_N,\n    powerCount: d.Power_count_N,\n    uptime: days + \"j \" + hours + \"h\",\n    dateFab: d.Manufacturing_date_N,\n    buzzer: {\n        trigger: d.LCD_buzzer_trigger_value_N,\n        release: d.LCD_buzzer_release_value_N\n    },\n    params: {\n        chargeV: d.Request_Charge_voltage_Time_H,\n        floatV: d.Request_Float_voltage_Time_H,\n        canProt: d.CAN_protocol_number_N\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "88076e010f936d8b"
+            ]
+        ]
+    },
+    {
+        "id": "88076e010f936d8b",
+        "type": "switch",
+        "z": "e046a6ce6457b012",
+        "g": "76fabc0223d5e539",
+        "name": "Trier par BMS Address",
+        "property": "payload.bmsAddress",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "09f010af7c5e1992"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4669a15e5fbce50a",
+        "type": "ui-template",
+        "z": "e046a6ce6457b012",
+        "g": "f382b31e2c58e8c3",
+        "group": "group_bms1",
+        "page": "",
+        "ui": "",
+        "name": "BMS 1 - COMPLET BLEU",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "format": "<div v-if=\"msg && msg.payload\" style=\"font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);min-height:100vh;padding:20px;margin:-20px\">\n    <div style=\"max-width:1400px;margin:0 auto\">\n        \n        <div style=\"color:#fff;margin-bottom:20px;display:flex;justify-content:center;align-items:baseline;gap:20px\">\n            <h1 style=\"font-size:2em;margin:0\">⚡ BMS #1</h1>\n            <span style=\"opacity:.9;font-size:1.1em;font-weight:300\">\n                Dernière lecture: {{ new Date(msg.payload.timestamp).toLocaleDateString('fr-FR') }} {{ new Date(msg.payload.timestamp).toLocaleTimeString('fr-FR') }}\n            </span>\n        </div>\n\n        <div style=\"display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:30px\">\n            <div v-for=\"(val, label) in {\n                'Tension':   {v:msg.payload.tensionTotale.value, min:40, max:60, u:'V'},\n                'Courant':   {v:Math.abs(msg.payload.courantTotal.value), min:0, max:200, u:'A'},\n                'Puissance': {v:Math.abs(msg.payload.puissance.value), min:0, max:6000, u:'W'}\n            }\" style=\"background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:15px; padding:15px; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.2)\">\n                <div style=\"color:#ddd;font-size:.8em;font-weight:700;text-transform:uppercase\">{{label}}</div>\n                <div style=\"position:relative;height:80px;margin-top:10px\">\n                    <svg viewBox=\"0 0 100 55\" style=\"width:100%;height:100%\">\n                        <path d=\"M 10 50 A 40 40 0 0 1 90 50\" fill=\"none\" stroke=\"rgba(255,255,255,0.2)\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n                        <path d=\"M 10 50 A 40 40 0 0 1 90 50\" fill=\"none\" stroke=\"#60a5fa\" \n                              stroke-width=\"8\" stroke-linecap=\"round\" \n                              :style=\"{ strokeDasharray: (Math.max(0, Math.min((val.v - val.min) / (val.max - val.min), 1)) * 126) + ', 126' }\" \n                              style=\"transition: stroke-dasharray 0.5s ease\"/>\n                    </svg>\n                    <div style=\"position:absolute;bottom:0;width:100%;font-size:1.4em;font-weight:800;color:#fff\">\n                        {{val.v.toFixed(label==='Puissance'?0:2)}}<span style=\"font-size:0.6em;margin-left:2px\">{{val.u}}</span>\n                    </div>\n                </div>\n            </div>\n\n            <div style=\"background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:15px; padding:15px; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.2); display:flex; flex-direction:column; justify-content:center\">\n                <div style=\"color:#ddd;font-size:.8em;font-weight:700;text-transform:uppercase;margin-bottom:10px\">SOC</div>\n                <div style=\"display:flex;align-items:center;justify-content:center;gap:12px\">\n                    <div style=\"position:relative;width:45px;height:22px;border:2px solid #fff;border-radius:5px;padding:2px\">\n                        <div :style=\"{width:msg.payload.soc.value+'%',background:msg.payload.soc.value<20?'#ef4444':(msg.payload.soc.value<50?'#f59e0b':'#10b981')}\" style=\"height:100%;border-radius:1px;transition:width .5s\"></div>\n                        <div style=\"position:absolute;right:-6px;top:4px;width:4px;height:10px;background:#fff;border-radius:0 2px 2px 0\"></div>\n                    </div>\n                    <div style=\"font-size:2em;font-weight:800;color:#fff\">{{msg.payload.soc.value}}%</div>\n                </div>\n            </div>\n        </div>\n\n        <div style=\"margin-bottom:30px\">\n            <h2 style=\"color:#fff;font-size:1.4em;margin-bottom:15px;border-left:4px solid #fff;padding-left:15px\">Détail des Cellules</h2>\n            <div style=\"display:grid;grid-template-columns:repeat(8,1fr);gap:10px\">\n                <div v-for=\"cell in msg.payload.cellules.voltages\" :key=\"cell.cell\" \n                     :style=\"{background:(function(){\n                        const cellVoltage = parseFloat(cell.voltage);\n                        const voltages = msg.payload.cellules.voltages.map(c => parseFloat(c.voltage));\n                        const minVoltage = Math.min(...voltages);\n                        const maxVoltage = Math.max(...voltages);\n                        \n                        if(cellVoltage === maxVoltage) return 'rgba(96, 165, 250, 0.4)'; // Bleu\n                        if(cellVoltage === minVoltage) return 'rgba(239, 68, 68, 0.4)';  // Rouge\n                        if(Math.abs(cellVoltage - parseFloat(msg.payload.cellules.avgVoltage)) > 0.02) return 'rgba(255,193,7,0.3)'; // Jaune\n                        return 'rgba(255,255,255,0.1)'; // Normal\n                     })()}\" \n                     style=\"backdrop-filter:blur(5px); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px 2px; text-align:center; color:#fff\">\n                    <div style=\"font-size:.7em;color:#ddd\">C{{cell.cell}}</div>\n                    <div style=\"font-size:1.3em;font-weight:800\">{{parseFloat(cell.voltage).toFixed(3)}}</div>\n                </div>\n            </div>\n        </div>\n\n        <!-- Section réorganisée en 3 colonnes -->\n        <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:30px\">\n            <!-- Températures - réduite à 1 colonne -->\n            <div style=\"background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:20px; color:#fff\">\n                <h3 style=\"margin:0 0 15px 0;color:#fff;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:10px\">🌡️ Températures</h3>\n                <div v-for=\"temp in msg.payload.temperatures.sensors\" style=\"display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.1)\">\n                    <span>{{temp.name}}</span><b style=\"color:#60a5fa\">{{temp.value.toFixed(1)}}°C</b>\n                </div>\n            </div>\n\n            <!-- États Commandes - réduit à 1 colonne -->\n            <div style=\"background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:20px; color:#fff\">\n                <h3 style=\"margin:0 0 15px 0;color:#fff;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:10px\">🔌 États Commandes</h3>\n                <div v-for=\"(val, key) in msg.payload.switches\" style=\"display:flex;align-items:center;padding:8px 0\">\n                    <div :style=\"{background:val?'#10b981':'#ef4444'}\" style=\"width:12px;height:12px;border-radius:50%;margin-right:10px;box-shadow:0 0 8px rgba(0,0,0,0.3)\"></div>\n                    <span style=\"text-transform:capitalize\">{{key}}: <b>{{val?'ON':'OFF'}}</b></span>\n                </div>\n            </div>\n\n            <!-- Widget Ko-fi - 1 colonne -->\n            <div style=\"background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:20px; display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px\">\n                <div style=\"color:#fff;font-size:1.2em;font-weight:600\">Support me on Ko-fi</div>\n                <a href='https://ko-fi.com/Y8Y3YHYZP' target='_blank' style=\"display:flex;justify-content:center\"><img height='60' style='border:0px;height:60px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>\n            </div>\n        </div>\n\n        <div style=\"background:rgba(255,255,255,0.1); backdrop-filter:blur(15px); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center; color:#fff\">\n            <div v-for=\"(v, k) in {\n                'CYCLES':msg.payload.maintenance.nombreCycles, \n                'SOH':msg.payload.soh.value+'%', \n                'CAPACITÉ':msg.payload.capacite.restante+'Ah', \n                'RUNTIME':(function(){\n                    const hours = msg.payload.maintenance.runtimeHours;\n                    const days = Math.floor(hours / 24);\n                    const hrs = Math.floor(hours % 24);\n                    const mins = Math.round((hours % 1) * 60);\n                    return days + 'D-' + String(hrs).padStart(2,'0') + 'H-' + String(mins).padStart(2,'0') + 'M';\n                })()\n            }\">\n                <div style=\"color:#ddd;font-size:.8em\">{{k}}</div>\n                <div style=\"font-weight:700;font-size:1.3em\">{{v}}</div>\n            </div>\n        </div>\n    </div>\n</div>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1010,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09f010af7c5e1992",
+        "type": "ui-template",
+        "z": "e046a6ce6457b012",
+        "g": "76fabc0223d5e539",
+        "group": "group_static",
+        "page": "",
+        "ui": "",
+        "name": "BMS 1 - STATIQUE BLEU",
+        "order": 1,
+        "width": 6,
+        "height": 11,
+        "format": "<div v-if=\"msg && msg.payload\" style=\"background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);border-radius:15px;padding:15px;font-family:'Segoe UI',sans-serif;min-height:100%\">\n    <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:15px\">\n        <!-- Section Configuration - 1ère colonne -->\n        <div style=\"background:rgba(255,255,255,0.3); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.3); border-radius:12px; padding:20px; box-shadow:0 8px 32px rgba(0,0,0,0.1)\">\n            <h2 style=\"margin:0 0 15px 0; border-bottom:2px solid rgba(0,0,0,0.1); padding-bottom:10px; color:#000; font-size:1.4em\">♒ BMS #1 - Configuration</h2>\n            <div v-for=\"(val, label) in {\n                'Modèle': msg.payload.modele,\n                'Série': msg.payload.serie,\n                'Firmware': msg.payload.firmware,\n                'Software': msg.payload.software,\n                'Démarrages': msg.payload.powerCount,\n                'Uptime': msg.payload.uptime,\n                'Date Fab.': msg.payload.dateFab,\n                'Charge Req': msg.payload.params.chargeV+'V',\n                'Buzzer ON': msg.payload.buzzer.trigger+'%',\n                'Buzzer OFF': msg.payload.buzzer.release+'%'\n            }\" style=\"display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.05); color:#000\">\n                <span style=\"font-weight:600; opacity:0.7\">{{label}}</span>\n                <span style=\"font-weight:800\">{{val}}</span>\n            </div>\n        </div>\n\n        <!-- Section Ko-fi - 2ème colonne -->\n        <div style=\"background:rgba(255,255,255,0.3); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.3); border-radius:12px; padding:20px; box-shadow:0 8px 32px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:center; align-items:center; gap:15px\">\n            <h2 style=\"margin:0; border-bottom:2px solid rgba(0,0,0,0.1); padding-bottom:10px; color:#000; font-size:1.4em; width:100%; text-align:center\">☕ Support</h2>\n            <div style=\"color:#000; font-size:1.2em; font-weight:600\">Support me on Ko-fi</div>\n            <a href='https://ko-fi.com/Y8Y3YHYZP' target='_blank' style=\"display:flex;justify-content:center\"><img height='60' style='border:0px;height:60px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>\n        </div>\n    </div>\n</div>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 890,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1dc7d19597d60885",
+        "type": "function",
+        "z": "e046a6ce6457b012",
+        "g": "3909cc6b3670d838",
+        "name": "Formatage Settings BMS",
+        "func": "// Récupération de l'ID du BMS\nconst bmsId = msg.payload.Device_address_N || \"1\";\n\n// On attache l'ID au message pour le switch\nmsg.bmsAddress = bmsId.toString();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "73a9586798828b06"
+            ]
+        ]
+    },
+    {
+        "id": "73a9586798828b06",
+        "type": "switch",
+        "z": "e046a6ce6457b012",
+        "g": "3909cc6b3670d838",
+        "name": "Trier Settings par BMS",
+        "property": "bmsAddress",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "020632fc8339b4f3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "87a73731e478e29a",
+        "type": "link in",
+        "z": "e046a6ce6457b012",
+        "g": "3909cc6b3670d838",
+        "name": "Dashboard-Settings-Data-In",
+        "links": [
+            "96189c0a78b84915"
+        ],
+        "x": 255,
+        "y": 240,
+        "wires": [
+            [
+                "1dc7d19597d60885"
+            ]
+        ]
+    },
+    {
+        "id": "020632fc8339b4f3",
+        "type": "ui-template",
+        "z": "e046a6ce6457b012",
+        "g": "3909cc6b3670d838",
+        "group": "6af349ba04c1ad8a",
+        "page": "",
+        "ui": "",
+        "name": "BMS 1 - SETTINGS BLEU",
+        "order": 1,
+        "width": "12",
+        "height": "10",
+        "format": "<div v-if=\"msg && msg.payload\" style=\"font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);min-height:100vh;padding:20px;margin:-20px\">\n    <div style=\"max-width:1400px;margin:0 auto\">\n        \n        <div style=\"color:#fff;margin-bottom:20px;display:flex;justify-content:center;align-items:baseline;gap:20px;text-shadow: 0 2px 4px rgba(0,0,0,0.2)\">\n            <h1 style=\"font-size:2em;margin:0\">⚙️ Settings BMS #1</h1>\n            <span style=\"opacity:.9;font-size:1em;font-weight:300\">Lecture seule</span>\n        </div>\n\n        <div style=\"display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:20px\">\n            \n            <div style=\"background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.3); border-radius:15px; padding:15px; box-shadow:0 8px 32px rgba(0,0,0,0.15)\">\n                <h3 style=\"color:#000;border-bottom:2px solid rgba(0,0,0,0.1);padding-bottom:5px;margin:0 0 10px 0\">⚡ Tensions Cellules</h3>\n                <table style=\"width:100%;font-size:0.85em;border-collapse:collapse;color:#000\">\n                    <tr v-for=\"(val, key) in {\n                        'Overvoltage Prot.': msg.payload.cell_voltage_overvoltage_protection_V + 'V',\n                        'Overvoltage Recov.': msg.payload.cell_voltage_overvoltage_recovery_V + 'V',\n                        'Undervoltage Prot.': msg.payload.cell_voltage_undervoltage_protection_V + 'V',\n                        'Undervoltage Recov.': msg.payload.cell_voltage_undervoltage_recovery_V + 'V',\n                        'Request Charge': msg.payload.cell_request_charge_voltage_V + 'V',\n                        'Float Voltage': msg.payload.cell_request_float_voltage_V + 'V',\n                        'Smart Sleep': msg.payload.smart_sleep_voltage_V + 'V'\n                    }\" style=\"border-bottom:1px solid rgba(0,0,0,0.05)\">\n                        <td style=\"padding:6px 0;opacity:0.7;font-weight:600\">{{key}}</td>\n                        <td style=\"padding:6px 0;text-align:right;font-weight:800\">{{val}}</td>\n                    </tr>\n                </table>\n            </div>\n\n            <div style=\"background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.3); border-radius:15px; padding:15px; box-shadow:0 8px 32px rgba(0,0,0,0.15)\">\n                <h3 style=\"color:#000;border-bottom:2px solid rgba(0,0,0,0.1);padding-bottom:5px;margin:0 0 10px 0\">🔌 Courant & Protections</h3>\n                <table style=\"width:100%;font-size:0.85em;border-collapse:collapse;color:#000\">\n                    <thead><tr style=\"opacity:0.6;font-size:0.8em\"><th align=\"left\">Paramètre</th><th align=\"right\">Valeur</th><th align=\"right\">Délai</th></tr></thead>\n                    <tr style=\"border-bottom:1px solid rgba(0,0,0,0.05)\">\n                        <td style=\"padding:6px 0;font-weight:600\">Overcurrent Charge</td>\n                        <td align=\"right\" style=\"font-weight:800\">{{msg.payload.max_charge_current_A}}A</td>\n                        <td align=\"right\" style=\"color:#92400e;font-weight:700\">{{msg.payload.charge_overcurrent_protection_delay_S}}s</td>\n                    </tr>\n                    <tr style=\"border-bottom:1px solid rgba(0,0,0,0.05)\">\n                        <td style=\"padding:6px 0;font-weight:600\">Overcurrent Disch.</td>\n                        <td align=\"right\" style=\"font-weight:800\">{{msg.payload.max_discharge_current_S}}A</td>\n                        <td align=\"right\" style=\"color:#92400e;font-weight:700\">{{msg.payload.discharge_overcurrent_protection_delay_S}}s</td>\n                    </tr>\n                    <tr v-for=\"(val, key) in {\n                        'Max Balance Current': msg.payload.max_balance_current_A + 'A',\n                        'Balance Start': msg.payload.balance_starting_voltage_V + 'V',\n                        'Balance Trigger': msg.payload.balance_trigger_voltage_V + 'V'\n                    }\" style=\"border-bottom:1px solid rgba(0,0,0,0.05)\">\n                        <td style=\"padding:6px 0;opacity:0.7;font-weight:600\">{{key}}</td>\n                        <td colspan=\"2\" align=\"right\" style=\"font-weight:800\">{{val}}</td>\n                    </tr>\n                </table>\n            </div>\n\n            <div style=\"background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.3); border-radius:15px; padding:15px; box-shadow:0 8px 32px rgba(0,0,0,0.15)\">\n                <h3 style=\"color:#000;border-bottom:2px solid rgba(0,0,0,0.1);padding-bottom:5px;margin:0 0 10px 0\">🌡️ Temp. & Système</h3>\n                <table style=\"width:100%;font-size:0.85em;border-collapse:collapse;color:#000\">\n                    <tr v-for=\"(val, key) in {\n                        'Charge High/Recov': msg.payload.charge_overtemperature_protection_T + ' / ' + msg.payload.charge_overtemperature_protection_recovery_T + '°C',\n                        'Discharge High/Recov': msg.payload.discharge_overtemperature_protection_T + ' / ' + msg.payload.discharge_overtemperature_protection_recovery_T + '°C',\n                        'Capacité Nominale': msg.payload.total_battery_capacity_Ah + ' Ah',\n                        'Nombre Cellules': msg.payload.cell_count_N\n                    }\" style=\"border-bottom:1px solid rgba(0,0,0,0.05)\">\n                        <td style=\"padding:6px 0;opacity:0.7;font-weight:600\">{{key}}</td>\n                        <td align=\"right\" style=\"font-weight:800\">{{val}}</td>\n                    </tr>\n                </table>\n                <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px\">\n                    <div v-for=\"(val, key) in {'Charge':msg.payload.charging_switch_B, 'Discharge':msg.payload.discharging_switch_B, 'Equilibrage':msg.payload.balance_switch_B}\" \n                         :style=\"{background:val?'#10b981':'#ef4444'}\" style=\"padding:8px;border-radius:8px;text-align:center;color:white;font-weight:bold;font-size:0.75em;box-shadow: 0 2px 4px rgba(0,0,0,0.2)\">\n                        {{key}}\n                    </div>\n                </div>\n            </div>\n\n            <div style=\"background:rgba(255,255,255,0.25); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.3); border-radius:15px; padding:15px; box-shadow:0 8px 32px rgba(0,0,0,0.15); display:flex; flex-direction:column; justify-content:center; align-items:center; gap:15px\">\n                <h3 style=\"color:#000;border-bottom:2px solid rgba(0,0,0,0.1);padding-bottom:5px;margin:0; width:100%;text-align:center\">☕ Support</h3>\n                <div style=\"color:#000; font-size:1.2em; font-weight:600\">Support me on Ko-fi</div>\n                <a href='https://ko-fi.com/Y8Y3YHYZP' target='_blank' style=\"display:flex;justify-content:center\"><img height='60' style='border:0px;height:60px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>\n            </div>\n\n        </div>\n    </div>\n</div>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 960,
+        "y": 240,
+        "wires": [
             []
         ]
     }

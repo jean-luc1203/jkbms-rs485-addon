@@ -112,6 +112,11 @@ You can find them in this [directory](https://github.com/jean-luc1203/jkbms-rs48
 
 This configuration is quite complex and may not work depending on the hardware/settings.
 
+## 💻 Windows Standalone Version  (not yet distributed)
+
+A standalone version for Windows is available for those who do not use Home Assistant.
+
+👉 [Download and view documentation](./standalone/README-Windows.md)
 
 
 ## Installation
@@ -128,20 +133,6 @@ This configuration is quite complex and may not work depending on the hardware/s
 1. Clone this repository in the `/addons/` folder of your Home Assistant installation
 2. Reload the add-ons
 3. Install and configure
-
-
-## 🚀 Standalone Docker (new option, december 2025)
-
-Run your JK-BMS RS485 & CAN **independently from HAOS** via Docker!
-
-✅ For Home Assistant in Docker or environments without Supervisor  
-✅ Automatic options configuration via `envoptions.js`  
-✅ Ready-to-use Dockerfile + complete documentation  
-
-**👉 [Docker Installation](standalone/README.md)**
-
-*Community contribution - Thanks to the contributor SergeyYmb. !*
-
 
 ## Use
 

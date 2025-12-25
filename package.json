@@ -13,10 +13,8 @@
     "bcryptjs": "*",
     "js-yaml": "*",
     "node-red": "*",
-    "node-red-contrib-modbus": "*",
     "node-red-node-serialport": "*",
     "node-red-contrib-tcp-client2":"*",
-    "node-red-contrib-simple-gate":"*",
     "node-red-contrib-buffer-parser":"*"
   },
   "engines": {

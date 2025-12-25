@@ -1,3 +1,18 @@
+## v3.4.1 - 25-12-2025
+
+### 🐞 Corrections (Bugfix)
+Various bug fixes
+
+## ⚡️ Enhancements
+
+Preparation of a **standalone version** that could run on Windows or Linux without Home Assistant and without installing other software.
+
+**It is not finished yet!**
+
+Still a lot of work to be done to implement this option.
+
+- 3 dashboards are ready: 1 for live data, 1 for setups, and 1 for static information.
+
 ## v3.3.13 - 10-12-2025
 
 ### ⚡️ Enhancements
