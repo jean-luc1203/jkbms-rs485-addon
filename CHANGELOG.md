@@ -4,7 +4,15 @@
 
 Correction of values for `switch_discharge` and `switch_charge` when a **BMS is in Master mode (0000)**
 
-The values are now displayed. 
+<img width="474" height="156" alt="image" src="https://github.com/user-attachments/assets/ffbb5b7f-a52c-4526-b819-6bd46d9cc137" />
+
+to 
+
+<img width="386" height="181" alt="image" src="https://github.com/user-attachments/assets/57db4c2c-9218-4345-8934-fc0bee59830b" />
+
+
+
+The values are now correctly displayed. 
 ![Issue](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/73#issuecomment-3691696725)
 
 ##  ____________________________________________________________________
@@ -740,4 +748,5 @@ Modification config.yaml
 ## 1.0.0
 
 - Module construction le 06-06-2025
+
 
