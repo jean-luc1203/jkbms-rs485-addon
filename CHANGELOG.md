@@ -1,3 +1,14 @@
+## v3.4.2 - 26-12-2025
+
+### 🐞 Corrections (Bugfix)
+
+Correction of values for `switch_discharge` and `switch_charge when a `**BMS is in Master mode (0000)**
+The values are now displayed. 
+![Issue](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/73#issuecomment-3691696725)
+
+##  ____________________________________________________________________
+
+
 ## v3.4.1 - 25-12-2025
 
 ### 🐞 Corrections (Bugfix)
@@ -12,6 +23,10 @@ Preparation of a **standalone version** that could run on Windows or Linux witho
 Still a lot of work to be done to implement this option.
 
 - 3 dashboards are ready: 1 for live data, 1 for setups, and 1 for static information.
+
+
+##  ____________________________________________________________________
+
 
 ## v3.3.13 - 10-12-2025
 
