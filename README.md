@@ -55,6 +55,18 @@ To activate Listen mode, set the parameter
 ⚠️ For the moment only stick with FTDI, CH340, or CP2102 chip that will be recognized as ttyUSBx are compatible.
 Those that create an interface of type ttyACM0 are not functional ⚠️
 
+## 🌼 Connection without using a USB port 🌼
+
+Thanks to ![CidiRome](https://github.com/CidiRome)
+
+There is another option for connecting the RJ45-RS485 port of the JK's BMS. 
+
+This can be done via a transceiver connected to the GPIO ports of a Raspberry Pi.
+
+<img width="744" height="275" alt="image" src="https://github.com/user-attachments/assets/99fe72a2-d58d-49c3-bbcc-a53ee8d58199" />
+
+Here are the ![steps](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions/78#discussioncomment-15392481) to follow to achieve this
+
 ## Configuration
 ---
 ## <u>Fields on the configuration tab</u>
