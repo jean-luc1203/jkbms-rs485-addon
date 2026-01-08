@@ -1,5 +1,5 @@
 {
-  "name": "Smartphoton JK-BMS RS485 & CAN Home Assistant Addon",
+  "name": "Smartphoton JK-BMS RS485 & CAN HAOS Addon / DEV version",
   "udev": true,
   "url": "https://github.com/jean-luc1203/jkbms-rs485-addon/tree/development",
   "maintainer": "Smartphoton - Jean-Luc Martinelli - JLM - 2025"
