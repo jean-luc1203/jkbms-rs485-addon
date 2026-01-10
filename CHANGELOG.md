@@ -17,6 +17,7 @@ The frames coming from these gateways are poorly ordered, broken or mixed up.
 
 <img width="327" height="324" alt="image" src="https://github.com/user-attachments/assets/02e3f43d-bc81-4060-b050-7fcbcccd8ed2" />
 
+<img width="297" height="256" alt="image" src="https://github.com/user-attachments/assets/bf40efec-307b-4a32-926e-cade18f0f220" />
 
 -----------------------------------------------
 
