@@ -2,15 +2,23 @@
 
 ### 🐞 Corrections (Bugfix)
 
+[Issue#80](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/80)
 # A complete overhaul of the section that processes **TCP/IP gateway** data.
 
 The frames coming from these gateways are poorly ordered, broken or mixed up.
 
 	I had to reconstruct them before processing them for decryption.
 
-
 #### ⚠️  Normally, no changes should be noticed by those using the USB adapter.
 
+-----------------------------------------------
+
+<img width="225" height="653" alt="image" src="https://github.com/user-attachments/assets/80efd86e-6b9c-4526-9129-779bdc628d37" />
+
+<img width="327" height="324" alt="image" src="https://github.com/user-attachments/assets/02e3f43d-bc81-4060-b050-7fcbcccd8ed2" />
+
+
+-----------------------------------------------
 
 
 ## v3.4.2 - 26-12-2025
