@@ -1,3 +1,18 @@
+## v3.5.1 - 09-01-2026
+
+### 🐞 Corrections (Bugfix)
+
+# A complete overhaul of the section that processes **TCP/IP gateway** data.
+
+The frames coming from these gateways are poorly ordered, broken or mixed up.
+
+	I had to reconstruct them before processing them for decryption.
+
+
+#### ⚠️  Normally, no changes should be noticed by those using the USB adapter.
+
+
+
 ## v3.4.2 - 26-12-2025
 
 ### 🐞 Corrections (Bugfix)
@@ -748,5 +763,6 @@ Modification config.yaml
 ## 1.0.0
 
 - Module construction le 06-06-2025
+
 
 
