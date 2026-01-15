@@ -1,3 +1,27 @@
+## v3.5.2 - 15-01-2026
+## ⚡️ Enhancements
+
+#### Optimisation of the number of topics sent to the MQTT Broker
+Indeed, for 2 BMS measured over 60 seconds:
+
+📊 **Before and after comparison**
+
+| Metric | BEFORE (Non-optimised setup) | AFTER Phase 1 (Optimised setup) | Gain |
+| :--- | :--- | :--- | :--- |
+| Messages total/60s | ~4600 | 2000 | -57% |
+| Overall average | 75-77 msg/s | 33.67 msg/s | ÷ 2.3 |
+| BMS_master | 39 msg/s | 17 msg/s | ÷ 2.3 |
+| BMS_2 | 37 msg/s | 16.66 msg/s | ÷ 2.2 |
+
+I have reduced the number of setup frames sent. 
+They are now only sent when the module starts up and when a setup is modified.
+### This results in a **2.3x reduction** in the number of topics sent. 
+The broker will appreciate this 👍
+Data frames are still sent at a rate of 4 seconds.
+
+##  ____________________________________________________________________
+
+
 ## v3.5.1 - 09-01-2026
 
 ### 🐞 Corrections (Bugfix)
