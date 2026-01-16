@@ -394,8 +394,8 @@
         ],
         "x": 48,
         "y": 693,
-        "w": 944,
-        "h": 694
+        "w": 1044,
+        "h": 654
     },
     {
         "id": "6c19eb9e84cdf38b",
@@ -821,7 +821,7 @@
             "92b1d01fa81c4af0"
         ],
         "x": 54,
-        "y": 1439,
+        "y": 1399,
         "w": 1012,
         "h": 142
     },
@@ -938,6 +938,31 @@
         "y": 199,
         "w": 892,
         "h": 82
+    },
+    {
+        "id": "b8f757348251b45f",
+        "type": "group",
+        "z": "7eba58462314a0d7",
+        "name": "Compteur de topics",
+        "style": {
+            "stroke": "#001f60",
+            "label": true,
+            "color": "#001f60"
+        },
+        "nodes": [
+            "mqtt_counter_function",
+            "mqtt_start_measure",
+            "mqtt_reset_counter",
+            "mqtt_reset_function",
+            "mqtt_delay_60s",
+            "mqtt_report_inject",
+            "mqtt_report_function",
+            "4886839020cf6c05"
+        ],
+        "x": 54,
+        "y": 1599,
+        "w": 932,
+        "h": 222
     },
     {
         "id": "646f282c0dd63a6e",
@@ -1157,12 +1182,15 @@
             "2773a8c67764f19a",
             "01565a6abef1f0a8",
             "62299fe8aa268603",
-            "5f8f25a1c5cd69f6"
+            "5f8f25a1c5cd69f6",
+            "8a4cee58df9b48e5",
+            "d2ad6d72e70947f2",
+            "95ab9c0fd1d859a4"
         ],
         "x": 74,
         "y": 1159,
-        "w": 792,
-        "h": 202
+        "w": 992,
+        "h": 162
     },
     {
         "id": "a1697c874f4c5e2d",
@@ -1186,11 +1214,14 @@
             "34aa954d066715d4",
             "aa3df0b5914b5eef",
             "d40d5fc3b0703a4d",
-            "cf92448b72d763fb"
+            "cf92448b72d763fb",
+            "9a8afdcbcfe17a9d",
+            "c0fcce3718f91922",
+            "754e3302b77a1cfe"
         ],
         "x": 74,
         "y": 919,
-        "w": 792,
+        "w": 992,
         "h": 202
     },
     {
@@ -1305,31 +1336,6 @@
         "y": 919,
         "w": 652,
         "h": 164.5
-    },
-    {
-        "id": "b8f757348251b45f",
-        "type": "group",
-        "z": "7eba58462314a0d7",
-        "name": "Compteur de topics",
-        "style": {
-            "stroke": "#001f60",
-            "label": true,
-            "color": "#001f60"
-        },
-        "nodes": [
-            "mqtt_counter_function",
-            "mqtt_start_measure",
-            "mqtt_reset_counter",
-            "mqtt_reset_function",
-            "mqtt_delay_60s",
-            "mqtt_report_inject",
-            "mqtt_report_function",
-            "4886839020cf6c05"
-        ],
-        "x": 54,
-        "y": 1639,
-        "w": 932,
-        "h": 222
     },
     {
         "id": "6e1abcbcc6ebb714",
@@ -8095,7 +8101,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 240,
-        "y": 1280,
+        "y": 1240,
         "wires": []
     },
     {
@@ -8108,7 +8114,7 @@
             "1bb4998cb85dda4e"
         ],
         "x": 115,
-        "y": 1240,
+        "y": 1200,
         "wires": [
             [
                 "bc098ac8e7c2a80e",
@@ -8132,8 +8138,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 760,
-        "y": 1240,
+        "x": 960,
+        "y": 1200,
         "wires": []
     },
     {
@@ -8150,8 +8156,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
-        "y": 1200,
+        "x": 960,
+        "y": 1240,
         "wires": []
     },
     {
@@ -8168,8 +8174,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
-        "y": 1280,
+        "x": 430,
+        "y": 1240,
         "wires": []
     },
     {
@@ -8185,8 +8191,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 1240,
+        "x": 740,
+        "y": 1200,
         "wires": [
             [
                 "b8c6447a9aadb290",
@@ -8726,13 +8732,13 @@
         "setTopic": true,
         "outputs": 1,
         "x": 240,
-        "y": 1240,
+        "y": 1200,
         "wires": [
             [
                 "6ac6b1debaf96f4e",
-                "e3768062bfabfaf0",
                 "01565a6abef1f0a8",
-                "62299fe8aa268603"
+                "62299fe8aa268603",
+                "8a4cee58df9b48e5"
             ]
         ]
     },
@@ -8750,7 +8756,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
+        "x": 430,
         "y": 1040,
         "wires": []
     },
@@ -9181,9 +9187,9 @@
         "wires": [
             [
                 "d0b96287555baddd",
-                "4716f48d98903bbc",
                 "d40d5fc3b0703a4d",
-                "aa3df0b5914b5eef"
+                "aa3df0b5914b5eef",
+                "9a8afdcbcfe17a9d"
             ]
         ]
     },
@@ -9200,7 +9206,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 740,
         "y": 1000,
         "wires": [
             [
@@ -9216,7 +9222,7 @@
         "z": "7eba58462314a0d7",
         "g": "a1697c874f4c5e2d",
         "name": "debug 20",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9224,8 +9230,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
-        "y": 980,
+        "x": 960,
+        "y": 1040,
         "wires": []
     },
     {
@@ -9243,8 +9249,8 @@
         "correl": "",
         "expiry": "",
         "broker": "56f7b2737cce493b",
-        "x": 760,
-        "y": 1020,
+        "x": 960,
+        "y": 1000,
         "wires": []
     },
     {
@@ -9863,7 +9869,7 @@
             "8eea8a8ef9220c22"
         ],
         "x": 205,
-        "y": 1320,
+        "y": 1280,
         "wires": []
     },
     {
@@ -9879,7 +9885,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 420,
         "y": 960,
         "wires": [
             []
@@ -9899,7 +9905,7 @@
         "finalize": "",
         "libs": [],
         "x": 200,
-        "y": 1480,
+        "y": 1440,
         "wires": [
             [
                 "c61f13fa51886e67",
@@ -9922,7 +9928,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 150,
-        "y": 1540,
+        "y": 1500,
         "wires": []
     },
     {
@@ -9931,7 +9937,7 @@
         "z": "7eba58462314a0d7",
         "g": "a3a21b2242312efd",
         "name": "debug 5",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9939,7 +9945,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 960,
-        "y": 1480,
+        "y": 1440,
         "wires": []
     },
     {
@@ -9948,7 +9954,7 @@
         "z": "7eba58462314a0d7",
         "g": "a3a21b2242312efd",
         "name": "TRAITEMENT DES ALARMES",
-        "func": "// ====== TRAITEMENT DES ALARMES (NOUVEAU PAYLOAD) - version 2 sorties ======\n\nconst p = msg.payload;\n\n// ------------------------------------------------------------------\n// VALIDATION\nif (!p || typeof p.error_code !== \"number\") {\n    node.error(\"Invalid payload: error_code missing\");\n    return null;\n}\n\nif (typeof msg.bms_numero !== \"number\") {\n    node.error(\"Invalid message: bms_numero missing or not a number\");\n    return null;\n}\n\n// ------------------------------------------------------------------\n// DÉTERMINATION DU BMS (master / esclave)\nlet bmsName;\nlet bmsId;\n\nif (msg.bms_numero === 0) {\n    // BMS master\n    bmsName = \"BMS_master\";\n    bmsId = 0;\n} else {\n    // BMS esclave\n    bmsId = msg.bms_numero;\n    bmsName = `BMS_${bmsId}`;\n}\n\n// ------------------------------------------------------------------\n// CONVERSION AU FORMAT INTERNE\nconst hasAlarms = p.error_code !== 0;\nconst alarmCount = (p.errors && hasAlarms) ? p.errors.length : 0;\n\nconst alarmData = {\n    bms_id: bmsId,\n    has_alarms: hasAlarms,\n    alarm_count: alarmCount,\n    active_alarms: (p.errors && hasAlarms)\n        ? p.errors.map(e => ({ description: e }))\n        : [],\n    alarm_details: {\n        status: hasAlarms\n            ? \"🚨 BMS Alarm Alert\"\n            : \"No BMS alarms\"\n    }\n};\n\n// Mise à disposition pour les nœuds suivants\nmsg.alarms = alarmData;\nmsg.bms_name = bmsName;\nmsg.bms_id = bmsId;\n\n// ------------------------------------------------------------------\n// DISCOVERY / MQTT\nconst discoveryKey = `discoverySent_ALARMS_${bmsName}`;\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\n\nconst baseTopic = bmsName;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceID = `${bmsName}_device`;\n\n// ------------------------------------------------------------------\nfunction buildDiscovery() {\n    const m = [];\n\n    m.push({\n        topic: `${discoveryPrefix}/binary_sensor/${deviceID}/alarm_active/config`,\n        payload: {\n            name: `${bmsName} Alarm Active`,\n            unique_id: `${deviceID}_alarm_active`,\n            state_topic: `${baseTopic}/alarm/active`,\n            payload_on: \"ON\",\n            payload_off: \"OFF\",\n            device_class: \"problem\",\n            icon: \"mdi:alert-circle\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    m.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/visual_status/config`,\n        payload: {\n            name: `${bmsName} Visual Status`,\n            unique_id: `${deviceID}_visual_status`,\n            state_topic: `${baseTopic}/alarm/visual_status`,\n            icon: \"mdi:gauge\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    m.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_status/config`,\n        payload: {\n            name: `${bmsName} Alarm Status`,\n            unique_id: `${deviceID}_alarm_status`,\n            state_topic: `${baseTopic}/alarm/status`,\n            icon: \"mdi:text-box-outline\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    m.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_list/config`,\n        payload: {\n            name: `${bmsName} Alarm List`,\n            unique_id: `${deviceID}_alarm_list`,\n            state_topic: `${baseTopic}/alarm/list`,\n            icon: \"mdi:format-list-bulleted\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    return m;\n}\n\n// ------------------------------------------------------------------\nfunction buildState() {\n    const out = [];\n\n    out.push({\n        topic: `${baseTopic}/alarm/active`,\n        payload: alarmData.has_alarms ? \"ON\" : \"OFF\",\n        retain: true\n    });\n\n    out.push({\n        topic: `${baseTopic}/alarm/visual_status`,\n        payload: alarmData.has_alarms\n            ? `🚨 ${alarmData.alarm_count} alarme(s)`\n            : \"✅ No alarm\",\n        retain: true\n    });\n\n    out.push({\n        topic: `${baseTopic}/alarm/status`,\n        payload: alarmData.alarm_details.status,\n        retain: true\n    });\n\n    out.push({\n        topic: `${baseTopic}/alarm/list`,\n        payload: alarmData.active_alarms.length > 0\n            ? alarmData.active_alarms.map(a => a.description).join(\", \")\n            : \"No alarms\",\n        retain: true\n    });\n\n    return out;\n}\n\n// ------------------------------------------------------------------\n// PRÉPARATION DES SORTIES\nconst mqttMsgs = [];\n\nif (!discoveryAlreadySent) {\n    mqttMsgs.push(...buildDiscovery());\n    flow.set(discoveryKey, true);\n}\n\nmqttMsgs.push(...buildState());\n\n// ------------------------------------------------------------------\n// SORTIES\n// sortie 1 = messages MQTT\n// sortie 2 = msg enrichi (msg.alarms, msg.bms_name, msg.bms_id)\nreturn [ mqttMsgs, msg ];\n",
+        "func": "// ====== TRAITEMENT DES ALARMES - VERSION OPTIMISÉE ======\n// ✓ Envoi au démarrage\n// ✓ Envoi UNIQUEMENT si changement d'état\n// ✓ Économie massive de messages MQTT\n\nconst p = msg.payload;\n\n// ------------------------------------------------------------------\n// VALIDATION\nif (!p || typeof p.error_code !== \"number\") {\n    node.error(\"Invalid payload: error_code missing\");\n    return null;\n}\n\nif (typeof msg.bms_numero !== \"number\") {\n    node.error(\"Invalid message: bms_numero missing or not a number\");\n    return null;\n}\n\n// ------------------------------------------------------------------\n// DÉTERMINATION DU BMS (master / esclave)\nlet bmsName;\nlet bmsId;\n\nif (msg.bms_numero === 0) {\n    bmsName = \"BMS_master\";\n    bmsId = 0;\n} else {\n    bmsId = msg.bms_numero;\n    bmsName = `BMS_${bmsId}`;\n}\n\n// ------------------------------------------------------------------\n// CLÉS DE STOCKAGE POUR DÉTECTION DE CHANGEMENT\nconst discoveryKey = `discoverySent_ALARMS_${bmsName}`;\nconst lastAlarmStateKey = `lastAlarmState_${bmsName}`;\n\nconst discoveryAlreadySent = flow.get(discoveryKey) || false;\nconst lastAlarmState = flow.get(lastAlarmStateKey) || null;\n\n// ------------------------------------------------------------------\n// CONVERSION AU FORMAT INTERNE\nconst hasAlarms = p.error_code !== 0;\nconst alarmCount = (p.errors && hasAlarms) ? p.errors.length : 0;\n\nconst alarmData = {\n    bms_id: bmsId,\n    has_alarms: hasAlarms,\n    alarm_count: alarmCount,\n    active_alarms: (p.errors && hasAlarms)\n        ? p.errors.map(e => ({ description: e }))\n        : [],\n    alarm_details: {\n        status: hasAlarms\n            ? \"🚨 BMS Alarm Alert\"\n            : \"No BMS alarms\"\n    }\n};\n\n// ------------------------------------------------------------------\n// DÉTECTION DE CHANGEMENT\n// On crée une signature de l'état actuel pour comparaison\nconst currentStateSignature = JSON.stringify({\n    error_code: p.error_code,\n    errors: p.errors || []\n});\n\nconst hasChanged = (lastAlarmState !== currentStateSignature);\n\n// ------------------------------------------------------------------\n// SI AUCUN CHANGEMENT ET DÉJÀ ENVOYÉ → ON SORT\nif (!hasChanged && discoveryAlreadySent) {\n    node.debug(`⊘ Alarmes ${bmsName}: Aucun changement (error_code: ${p.error_code})`);\n    \n    // Mise à disposition pour les nœuds suivants (sortie 2)\n    msg.alarms = alarmData;\n    msg.bms_name = bmsName;\n    msg.bms_id = bmsId;\n    \n    // Sortie 1 = vide (pas de MQTT), Sortie 2 = msg enrichi\n    return [null, msg];\n}\n\n// ------------------------------------------------------------------\n// IL Y A UN CHANGEMENT OU C'EST LE 1ER ENVOI\nif (hasChanged) {\n    if (lastAlarmState === null) {\n        node.warn(`✓ Alarmes ${bmsName}: INITIAL (error_code: ${p.error_code})`);\n    } else {\n        node.warn(`✓ Alarmes ${bmsName}: CHANGEMENT détecté ! (${p.error_code === 0 ? 'Alarmes effacées' : alarmCount + ' alarme(s)'})`);\n    }\n}\n\n// Sauvegarder le nouvel état\nflow.set(lastAlarmStateKey, currentStateSignature);\n\n// Mise à disposition pour les nœuds suivants\nmsg.alarms = alarmData;\nmsg.bms_name = bmsName;\nmsg.bms_id = bmsId;\n\n// ------------------------------------------------------------------\n// DISCOVERY / MQTT\nconst baseTopic = bmsName;\nconst discoveryPrefix = \"homeassistant\";\nconst deviceID = `${bmsName}_device`;\n\n// ------------------------------------------------------------------\nfunction buildDiscovery() {\n    const m = [];\n\n    m.push({\n        topic: `${discoveryPrefix}/binary_sensor/${deviceID}/alarm_active/config`,\n        payload: {\n            name: `${bmsName} Alarm Active`,\n            unique_id: `${deviceID}_alarm_active`,\n            state_topic: `${baseTopic}/alarm/active`,\n            payload_on: \"ON\",\n            payload_off: \"OFF\",\n            device_class: \"problem\",\n            icon: \"mdi:alert-circle\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    m.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/visual_status/config`,\n        payload: {\n            name: `${bmsName} Visual Status`,\n            unique_id: `${deviceID}_visual_status`,\n            state_topic: `${baseTopic}/alarm/visual_status`,\n            icon: \"mdi:gauge\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    m.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_status/config`,\n        payload: {\n            name: `${bmsName} Alarm Status`,\n            unique_id: `${deviceID}_alarm_status`,\n            state_topic: `${baseTopic}/alarm/status`,\n            icon: \"mdi:text-box-outline\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    m.push({\n        topic: `${discoveryPrefix}/sensor/${deviceID}/alarm_list/config`,\n        payload: {\n            name: `${bmsName} Alarm List`,\n            unique_id: `${deviceID}_alarm_list`,\n            state_topic: `${baseTopic}/alarm/list`,\n            icon: \"mdi:format-list-bulleted\",\n            device: {\n                identifiers: [deviceID],\n                name: bmsName\n            }\n        },\n        retain: true\n    });\n\n    return m;\n}\n\n// ------------------------------------------------------------------\nfunction buildState() {\n    const out = [];\n\n    out.push({\n        topic: `${baseTopic}/alarm/active`,\n        payload: alarmData.has_alarms ? \"ON\" : \"OFF\",\n        retain: true\n    });\n\n    out.push({\n        topic: `${baseTopic}/alarm/visual_status`,\n        payload: alarmData.has_alarms\n            ? `🚨 ${alarmData.alarm_count} alarme(s)`\n            : \"✅ No alarm\",\n        retain: true\n    });\n\n    out.push({\n        topic: `${baseTopic}/alarm/status`,\n        payload: alarmData.alarm_details.status,\n        retain: true\n    });\n\n    out.push({\n        topic: `${baseTopic}/alarm/list`,\n        payload: alarmData.active_alarms.length > 0\n            ? alarmData.active_alarms.map(a => a.description).join(\", \")\n            : \"No alarms\",\n        retain: true\n    });\n\n    return out;\n}\n\n// ------------------------------------------------------------------\n// PRÉPARATION DES SORTIES\nconst mqttMsgs = [];\n\nif (!discoveryAlreadySent) {\n    mqttMsgs.push(...buildDiscovery());\n    flow.set(discoveryKey, true);\n}\n\nmqttMsgs.push(...buildState());\n\n// ------------------------------------------------------------------\n// SORTIES\n// sortie 1 = messages MQTT (seulement si changement)\n// sortie 2 = msg enrichi (msg.alarms, msg.bms_name, msg.bms_id) - TOUJOURS\nreturn [mqttMsgs, msg];",
         "outputs": 2,
         "timeout": 0,
         "noerr": 0,
@@ -9956,7 +9962,7 @@
         "finalize": "",
         "libs": [],
         "x": 530,
-        "y": 1480,
+        "y": 1440,
         "wires": [
             [
                 "582e23a67b8ce434",
@@ -9977,7 +9983,7 @@
         "z": "7eba58462314a0d7",
         "g": "a3a21b2242312efd",
         "name": "AGRÉGATION GLOBALE",
-        "func": "// ===== AGRÉGATION GLOBALE DES ALARMES (OPTION B ROBUSTE) =====\n\nconst alarmData = msg.alarms;\n\nif (!alarmData || alarmData.bms_id === undefined || alarmData.bms_id === null) {\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\nconst now = Date.now();\n\n// Nombre de BMS esclaves (hors master)\nconst TOTAL_BMS = global.get(\"nb_jkbms\") || 4;\n\n// Durée max (ms) sans message avant exclusion du calcul\nconst TIMEOUT_MS = 15000;\n\n// Enregistrement état + timestamp\nflow.set(`bms_alarm_state_${bmsId}`, {\n    has_alarm: alarmData.has_alarms,\n    alarm_count: alarmData.alarm_count,\n    last_seen: now\n});\n\n// Calcul état global\nlet globalHas = false;\n\nfor (let i = 0; i <= TOTAL_BMS; i++) {\n    const s = flow.get(`bms_alarm_state_${i}`);\n    if (!s) continue;\n\n    // Ignore BMS muet depuis trop longtemps\n    if ((now - s.last_seen) > TIMEOUT_MS) continue;\n\n    if (s.has_alarm) {\n        globalHas = true;\n        break;\n    }\n}\n\n// MQTT / HA\nconst discoveryPrefix = \"homeassistant\";\nconst globalDeviceID = \"BMS_GLOBAL_device\";\nconst messages = [];\n\n// Discovery (une fois)\nif (!flow.get(\"discoverySent_GLOBAL_ALARM\")) {\n    messages.push({\n        topic: `${discoveryPrefix}/binary_sensor/${globalDeviceID}/alarm_active/config`,\n        payload: {\n            name: \"BMS Global Alarm\",\n            unique_id: `${globalDeviceID}_alarm_active`,\n            state_topic: \"BMS_GLOBAL/alarm/state\",\n            payload_on: \"ON\",\n            payload_off: \"OFF\",\n            device_class: \"problem\",\n            icon: \"mdi:battery-alert\",\n            device: {\n                identifiers: [globalDeviceID],\n                name: \"BMS Global\"\n            }\n        },\n        retain: true\n    });\n\n    flow.set(\"discoverySent_GLOBAL_ALARM\", true);\n}\n// node.warn(flow.get(`bms_alarm_state_1`));\n\n// Publication état global\nmessages.push({\n    topic: \"BMS_GLOBAL/alarm/state\",\n    payload: globalHas ? \"ON\" : \"OFF\",\n    retain: true\n});\n\nreturn [messages];\n",
+        "func": "// ===== GLOBAL ALARM AGGREGATION - OPTIMISED VERSION =====\n// ✓ Sent at start-up\n// ✓ Sent ONLY if global status changes\n// ✓ Massive savings in MQTT messages\n\nconst alarmData = msg.alarms;\nif (!alarmData || alarmData.bms_id === undefined || alarmData.bms_id === null) {\n    return null;\n}\n\nconst bmsId = alarmData.bms_id;\nconst now = Date.now();\n\n// Nombre de BMS esclaves (hors master)\nconst TOTAL_BMS = global.get(\"nb_jkbms\") || 4;\n\n// Durée max (ms) sans message avant exclusion du calcul\nconst TIMEOUT_MS = 15000;\n\n// ------------------------------------------------------------------\n// ENREGISTREMENT ÉTAT + TIMESTAMP POUR CE BMS\nflow.set(`bms_alarm_state_${bmsId}`, {\n    has_alarm: alarmData.has_alarms,\n    alarm_count: alarmData.alarm_count,\n    last_seen: now\n});\n\n// ------------------------------------------------------------------\n// CALCUL ÉTAT GLOBAL\nlet globalHasAlarm = false;\nlet activeAlarmsList = []; // Pour debug/logs\n\nfor (let i = 0; i <= TOTAL_BMS; i++) {\n    const s = flow.get(`bms_alarm_state_${i}`);\n    if (!s) continue;\n    \n    // Ignore BMS muet depuis trop longtemps\n    if ((now - s.last_seen) > TIMEOUT_MS) continue;\n    \n    if (s.has_alarm) {\n        globalHasAlarm = true;\n        activeAlarmsList.push(`BMS_${i === 0 ? 'master' : i}`);\n    }\n}\n\n// ------------------------------------------------------------------\n// DÉTECTION DE CHANGEMENT\nconst lastGlobalStateKey = \"lastGlobalAlarmState\";\nconst lastGlobalState = flow.get(lastGlobalStateKey);\n\nconst currentGlobalState = globalHasAlarm ? \"ON\" : \"OFF\";\nconst hasChanged = (lastGlobalState !== currentGlobalState);\n\n// ------------------------------------------------------------------\n// SI AUCUN CHANGEMENT ET DÉJÀ ENVOYÉ → ON SORT\nif (!hasChanged && lastGlobalState !== null) {\n    node.debug(`⊘ GLOBAL alarm: No change (state: ${currentGlobalState})`);\n    return null;\n}\n\n// ------------------------------------------------------------------\n// IL Y A UN CHANGEMENT OU C'EST LE 1ER ENVOI\nif (hasChanged) {\n    if (lastGlobalState === null) {\n        node.warn(`✓ GLOBAL alarm: INITIAL (${currentGlobalState})`);\n    } else {\n        if (globalHasAlarm) {\n            node.warn(`🚨 GLOBAL alarm: ON (BMS concerned: ${activeAlarmsList.join(', ')})`);\n        } else {\n            node.warn(`✅ GLOBAL alarm: OFF (all alarms cleared)`);\n        }\n    }\n}\n\n// Sauvegarder le nouvel état\nflow.set(lastGlobalStateKey, currentGlobalState);\n\n// ------------------------------------------------------------------\n// MQTT / HOME ASSISTANT\nconst discoveryPrefix = \"homeassistant\";\nconst globalDeviceID = \"BMS_GLOBAL_device\";\nconst messages = [];\n\n// ------------------------------------------------------------------\n// DISCOVERY (une fois)\nif (!flow.get(\"discoverySent_GLOBAL_ALARM\")) {\n    messages.push({\n        topic: `${discoveryPrefix}/binary_sensor/${globalDeviceID}/alarm_active/config`,\n        payload: {\n            name: \"BMS Global Alarm\",\n            unique_id: `${globalDeviceID}_alarm_active`,\n            state_topic: \"BMS_GLOBAL/alarm/state\",\n            payload_on: \"ON\",\n            payload_off: \"OFF\",\n            device_class: \"problem\",\n            icon: \"mdi:battery-alert\",\n            device: {\n                identifiers: [globalDeviceID],\n                name: \"BMS Global\"\n            }\n        },\n        retain: true\n    });\n    \n    flow.set(\"discoverySent_GLOBAL_ALARM\", true);\n    node.warn(\"✓ Discovery GLOBAL ALARM sent\");\n}\n\n// ------------------------------------------------------------------\n// PUBLICATION ÉTAT GLOBAL (only if changed)\nmessages.push({\n    topic: \"BMS_GLOBAL/alarm/state\",\n    payload: currentGlobalState,\n    retain: true\n});\n\nreturn [messages];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -9985,7 +9991,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 1540,
+        "y": 1500,
         "wires": [
             [
                 "3f01427254d074d7",
@@ -9999,7 +10005,7 @@
         "z": "7eba58462314a0d7",
         "g": "a3a21b2242312efd",
         "name": "debug 9",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -10007,7 +10013,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 960,
-        "y": 1540,
+        "y": 1500,
         "wires": []
     },
     {
@@ -10026,7 +10032,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 800,
-        "y": 1480,
+        "y": 1440,
         "wires": []
     },
     {
@@ -10045,7 +10051,7 @@
         "expiry": "",
         "broker": "56f7b2737cce493b",
         "x": 800,
-        "y": 1540,
+        "y": 1500,
         "wires": []
     },
     {
@@ -10067,7 +10073,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 350,
-        "y": 1540,
+        "y": 1500,
         "wires": [
             [
                 "568cf4c923b7c5bd"
@@ -10155,7 +10161,7 @@
         "type": "debug",
         "z": "7eba58462314a0d7",
         "g": "b75a55c2aaa3b2b6",
-        "name": "adresse dans trame",
+        "name": "No de trame DATA",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -10164,8 +10170,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
-        "y": 1320,
+        "x": 450,
+        "y": 1280,
         "wires": []
     },
     {
@@ -10173,7 +10179,7 @@
         "type": "debug",
         "z": "7eba58462314a0d7",
         "g": "a1697c874f4c5e2d",
-        "name": "adresse dans trame",
+        "name": "No de trame SETUP",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -10182,7 +10188,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
+        "x": 460,
         "y": 1080,
         "wires": []
     },
@@ -10201,7 +10207,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 1680,
+        "y": 1640,
         "wires": []
     },
     {
@@ -10217,7 +10223,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 210,
-        "y": 1740,
+        "y": 1700,
         "wires": [
             [
                 "mqtt_reset_function"
@@ -10237,7 +10243,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 180,
-        "y": 1780,
+        "y": 1740,
         "wires": [
             [
                 "mqtt_reset_function"
@@ -10258,7 +10264,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 1760,
+        "y": 1720,
         "wires": [
             [
                 "mqtt_delay_60s"
@@ -10284,7 +10290,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 660,
-        "y": 1760,
+        "y": 1720,
         "wires": [
             [
                 "mqtt_report_function"
@@ -10304,7 +10310,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 190,
-        "y": 1820,
+        "y": 1780,
         "wires": [
             [
                 "mqtt_report_function"
@@ -10325,7 +10331,7 @@
         "finalize": "",
         "libs": [],
         "x": 890,
-        "y": 1820,
+        "y": 1780,
         "wires": []
     },
     {
@@ -10339,7 +10345,7 @@
             "5f8f25a1c5cd69f6"
         ],
         "x": 475,
-        "y": 1680,
+        "y": 1640,
         "wires": [
             [
                 "mqtt_counter_function"
@@ -10356,8 +10362,8 @@
         "links": [
             "4886839020cf6c05"
         ],
-        "x": 595,
-        "y": 960,
+        "x": 915,
+        "y": 1080,
         "wires": []
     },
     {
@@ -10370,8 +10376,126 @@
         "links": [
             "4886839020cf6c05"
         ],
-        "x": 585,
+        "x": 915,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "9a8afdcbcfe17a9d",
+        "type": "function",
+        "z": "7eba58462314a0d7",
+        "g": "a1697c874f4c5e2d",
+        "name": "FILTRE DE VALIDATION BMS",
+        "func": "// ========== FILTRE DE VALIDATION BMS_NUMERO ==========\n// À placer APRÈS buffer-parser, AVANT les nœuds de traitement\n// Valide que msg.bms_numero est entre 0 et 15\n// Bloque et signale toute valeur invalide\n\nconst bmsNumero = msg.bms_numero;\n\n// ------------------------------------------------------------------\n// VALIDATION TYPE\nif (bmsNumero === undefined || bmsNumero === null) {\n    node.error(`❌ BMS_NUMERO INVALIDE: valeur manquante (undefined/null)`, msg);\n    node.warn(`Payload reçu: ${JSON.stringify(msg.payload)}`);\n    return null; // Bloque le message\n}\n\n// Conversion en nombre si c'est une string\nlet bmsNum;\nif (typeof bmsNumero === \"string\") {\n    bmsNum = parseInt(bmsNumero, 10);\n    if (isNaN(bmsNum)) {\n        node.error(`❌ BMS_NUMERO INVALIDE: string non numérique \"${bmsNumero}\"`, msg);\n        return null;\n    }\n    // Correction automatique\n    msg.bms_numero = bmsNum;\n    node.warn(`⚠️ BMS_NUMERO converti: \"${bmsNumero}\" → ${bmsNum}`);\n} else if (typeof bmsNumero === \"number\") {\n    if (isNaN(bmsNumero)) {\n        node.error(`❌ BMS_NUMERO INVALIDE: NaN`, msg);\n        return null;\n    }\n    bmsNum = bmsNumero;\n} else {\n    node.error(`❌ BMS_NUMERO INVALIDE: type incorrect (${typeof bmsNumero})`, msg);\n    return null;\n}\n\n// ------------------------------------------------------------------\n// VALIDATION PLAGE (0 à 15)\nif (bmsNum < 0 || bmsNum > 15) {\n    node.error(`❌ BMS_NUMERO HORS LIMITES: ${bmsNum} (attendu: 0-15)`, msg);\n    node.warn(`Payload reçu: ${JSON.stringify(msg.payload)}`);\n    return null; // Bloque le message\n}\n\n// ------------------------------------------------------------------\n// VALIDATION ENTIER\nif (!Number.isInteger(bmsNum)) {\n    node.error(`❌ BMS_NUMERO INVALIDE: nombre décimal ${bmsNum} (attendu: entier)`, msg);\n    return null;\n}\n\n// ------------------------------------------------------------------\n// ✅ VALIDATION OK\n// Compteur de validation (optionnel, pour statistiques)\nconst validCountKey = `valid_bms_count_${bmsNum}`;\nlet validCount = flow.get(validCountKey) || 0;\nvalidCount++;\nflow.set(validCountKey, validCount);\n\n// Log détaillé toutes les 100 validations par BMS (pour ne pas polluer)\nif (validCount % 100 === 0) {\n    const bmsName = bmsNum === 0 ? \"master\" : bmsNum;\n    node.debug(`✓ BMS_${bmsName}: ${validCount} messages validés`);\n}\n\n// Message valide, on le laisse passer\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1000,
+        "wires": [
+            [
+                "4716f48d98903bbc",
+                "c0fcce3718f91922",
+                "754e3302b77a1cfe"
+            ]
+        ]
+    },
+    {
+        "id": "c0fcce3718f91922",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "g": "a1697c874f4c5e2d",
+        "name": "Trame Setup",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "754e3302b77a1cfe",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "g": "a1697c874f4c5e2d",
+        "name": "No de trame SETUP",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "bms_numero",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "8a4cee58df9b48e5",
+        "type": "function",
+        "z": "7eba58462314a0d7",
+        "g": "b75a55c2aaa3b2b6",
+        "name": "FILTRE DE VALIDATION BMS",
+        "func": "// ========== FILTRE DE VALIDATION BMS_NUMERO ==========\n// À placer APRÈS buffer-parser, AVANT les nœuds de traitement\n// Valide que msg.bms_numero est entre 0 et 15\n// Bloque et signale toute valeur invalide\n\nconst bmsNumero = msg.bms_numero;\n\n// ------------------------------------------------------------------\n// VALIDATION TYPE\nif (bmsNumero === undefined || bmsNumero === null) {\n    node.error(`❌ BMS_NUMERO INVALIDE: valeur manquante (undefined/null)`, msg);\n    node.warn(`Payload reçu: ${JSON.stringify(msg.payload)}`);\n    return null; // Bloque le message\n}\n\n// Conversion en nombre si c'est une string\nlet bmsNum;\nif (typeof bmsNumero === \"string\") {\n    bmsNum = parseInt(bmsNumero, 10);\n    if (isNaN(bmsNum)) {\n        node.error(`❌ BMS_NUMERO INVALIDE: string non numérique \"${bmsNumero}\"`, msg);\n        return null;\n    }\n    // Correction automatique\n    msg.bms_numero = bmsNum;\n    node.warn(`⚠️ BMS_NUMERO converti: \"${bmsNumero}\" → ${bmsNum}`);\n} else if (typeof bmsNumero === \"number\") {\n    if (isNaN(bmsNumero)) {\n        node.error(`❌ BMS_NUMERO INVALIDE: NaN`, msg);\n        return null;\n    }\n    bmsNum = bmsNumero;\n} else {\n    node.error(`❌ BMS_NUMERO INVALIDE: type incorrect (${typeof bmsNumero})`, msg);\n    return null;\n}\n\n// ------------------------------------------------------------------\n// VALIDATION PLAGE (0 à 15)\nif (bmsNum < 0 || bmsNum > 15) {\n    node.error(`❌ BMS_NUMERO HORS LIMITES: ${bmsNum} (attendu: 0-15)`, msg);\n    node.warn(`Payload reçu: ${JSON.stringify(msg.payload)}`);\n    return null; // Bloque le message\n}\n\n// ------------------------------------------------------------------\n// VALIDATION ENTIER\nif (!Number.isInteger(bmsNum)) {\n    node.error(`❌ BMS_NUMERO INVALIDE: nombre décimal ${bmsNum} (attendu: entier)`, msg);\n    return null;\n}\n\n// ------------------------------------------------------------------\n// ✅ VALIDATION OK\n// Compteur de validation (optionnel, pour statistiques)\nconst validCountKey = `valid_bms_count_${bmsNum}`;\nlet validCount = flow.get(validCountKey) || 0;\nvalidCount++;\nflow.set(validCountKey, validCount);\n\n// Log détaillé toutes les 100 validations par BMS (pour ne pas polluer)\nif (validCount % 100 === 0) {\n    const bmsName = bmsNum === 0 ? \"master\" : bmsNum;\n    node.debug(`✓ BMS_${bmsName}: ${validCount} messages validés`);\n}\n\n// Message valide, on le laisse passer\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
         "y": 1200,
+        "wires": [
+            [
+                "e3768062bfabfaf0",
+                "d2ad6d72e70947f2",
+                "95ab9c0fd1d859a4"
+            ]
+        ]
+    },
+    {
+        "id": "d2ad6d72e70947f2",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "g": "b75a55c2aaa3b2b6",
+        "name": "Trame Data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "95ab9c0fd1d859a4",
+        "type": "debug",
+        "z": "7eba58462314a0d7",
+        "g": "b75a55c2aaa3b2b6",
+        "name": "No de trame DATA",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "bms_numero",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1280,
         "wires": []
     },
     {

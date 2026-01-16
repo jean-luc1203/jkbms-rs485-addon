@@ -1,3 +1,36 @@
+## v3.5.3 - 16-01-2026
+## ⚡️ Enhancements
+#### Optimisation of the number of alarm messages sent per second
+
+**BEFORE** Over 60 seconds with 2 BMS:  
+*30 messages / 60s = 0.5 msg/s EVEN IF NOTHING CHANGES*
+
+
+**AFTER** optimisation Over 60 seconds with 2 BMS (normal scenario, no alarms): 
+*2 messages / 60s = 0.03 msg/s   Reduction: ÷ 15! (from 30 to 2 messages)*
+
+If an alarm appears on a BMS:
+
+*Timeline:
+  Overall status OFF → 0 messages
+  BMS_2 alarm ON → Aggregation detects: OFF → ON → 1 message 🚨
+  Status remains ON   → 0 messages
+  BMS_2 alarm OFF → Aggregation detects: ON → OFF → 1 message ✅*
+
+##📈 **TOTAL summary** with all optimisations in versions **v3.5.2 & v3.5.3**
+## Final result: **75 msg/s → ~33.5 msg/s (÷ 2.2)** 🎉
+
+The Broker will appreciate this 💪 . 
+This will be even more noticeable as the number of BMSs increases.
+
+##Other changes.
+
+Filters added for invalid BMS numbers. Only the following should remain:
+BMS_master, BMS_1 to BMS_15
+
+##  ____________________________________________________________________
+
+
 ## v3.5.2 - 15-01-2026
 ## ⚡️ Enhancements
 
