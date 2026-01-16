@@ -28,6 +28,8 @@ This will be even more noticeable as the number of BMSs increases.
 Filters added for invalid BMS numbers. Only the following should remain:
 BMS_master, BMS_1 to BMS_15
 
+<img width="389" height="249" alt="image" src="https://github.com/user-attachments/assets/6975e234-4126-4221-8713-fa07c81c9d4b" />
+
 ##  ____________________________________________________________________
 
 
