@@ -1,21 +1,24 @@
-name: FAQ Generator
+name: Generate FAQ from closed issues
 
 on:
   issues:
     types: [closed]
+  schedule:
+    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:
-  generate:
+  generate-faq:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: read
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       
-      - name: Generate FAQ from issues
+      - name: Generate FAQ
         uses: actions/github-script@v7
         with:
           script: |
@@ -32,17 +35,20 @@ jobs:
             });
             
             const categories = {
-              hardware: { title: 'Hardware & Connections', icon: '🔌', issues: [] },
-              config: { title: 'Configuration', icon: '⚙️', issues: [] },
-              mqtt: { title: 'MQTT & Integrations', icon: '📡', issues: [] },
-              gateway: { title: 'IP Gateway', icon: '🌐', issues: [] },
-              can: { title: 'CAN Bus', icon: '🔌', issues: [] },
-              errors: { title: 'Common Errors', icon: '🐛', issues: [] },
-              other: { title: 'Other Questions', icon: '❓', issues: [] }
+              hardware: { title: '🔌 Hardware & Connections', issues: [] },
+              config: { title: '⚙️ Configuration', issues: [] },
+              mqtt: { title: '📡 MQTT & Integrations', issues: [] },
+              gateway: { title: '🌐 IP Gateway', issues: [] },
+              can: { title: '🔌 CAN Bus', issues: [] },
+              errors: { title: '🐛 Common Errors', issues: [] },
+              other: { title: '❓ Other Questions', issues: [] }
             };
             
             issues.forEach(issue => {
-              const text = (issue.title + ' ' + (issue.body || '')).toLowerCase();
+              const title = issue.title.toLowerCase();
+              const body = (issue.body || '').toLowerCase();
+              const text = title + ' ' + body;
+              
               let category = 'other';
               
               if (text.match(/ttyusb|ttyacm|usb|port|cable|rs485|converter|adapter|wiring|led/)) {
@@ -53,77 +59,73 @@ jobs:
                 category = 'gateway';
               } else if (text.match(/can|canbus/)) {
                 category = 'can';
-              } else if (text.match(/config|yaml|parameter|settings|mode|master|listen|broadcasting/)) {
+              } else if (text.match(/config|yaml|parameter|settings|mode|master|listen/)) {
                 category = 'config';
-              } else if (text.match(/error|bug|crash|fail|timeout|crc|modbus|invalid|range/)) {
+              } else if (text.match(/error|bug|crash|fail|timeout|crc|modbus/)) {
                 category = 'errors';
               }
               
+              const solution = issue.comments > 0 ? '[View solution](' + issue.html_url + ')' : 'Auto-resolved';
+              
               categories[category].issues.push({
                 title: issue.title,
+                url: issue.html_url,
                 number: issue.number,
                 comments: issue.comments,
                 reactions: issue.reactions.total_count,
-                url: issue.html_url
+                solution: solution,
+                closed_at: issue.closed_at
               });
             });
             
-            const date = new Date().toISOString().split('T')[0];
-            let faq = '# 📚 FAQ - JKBMS RS485 Addon\n\n';
-            faq += '> 🤖 Automatically generated from resolved issues\n';
-            faq += '> Last update: ' + date + '\n';
-            faq += '> Total resolved issues: ' + issues.length + '\n\n';
-            faq += '## 🔍 Quick Navigation\n\n';
+            const today = new Date().toISOString().split('T')[0];
+            let faqContent = '# 📚 Automatic FAQ - JKBMS RS485\n\n';
+            faqContent += '> 🤖 This FAQ is automatically generated from resolved issues.\n';
+            faqContent += '> Last update: ' + today + '\n\n';
+            faqContent += '## 🔍 Quick Navigation\n\n';
             
             for (const [key, cat] of Object.entries(categories)) {
-              if (cat.issues.length > 0) {
-                faq += '- [' + cat.icon + ' ' + cat.title + ' (' + cat.issues.length + ')](#' + key + ')\n';
-              }
+              faqContent += '- [' + cat.title + '](#' + key + ')\n';
             }
-            faq += '\n---\n\n';
             
-            for (const [key, cat] of Object.entries(categories)) {
-              if (cat.issues.length === 0) continue;
+            faqContent += '\n---\n\n';
+
+            for (const [key, category] of Object.entries(categories)) {
+              if (category.issues.length === 0) continue;
               
-              faq += '## ' + cat.icon + ' ' + cat.title + ' {#' + key + '}\n\n';
+              faqContent += '## ' + category.title + '\n\n';
               
-              cat.issues
+              category.issues
                 .sort((a, b) => (b.reactions + b.comments) - (a.reactions + a.comments))
-                .slice(0, 15)
+                .slice(0, 10)
                 .forEach(issue => {
-                  faq += '### ' + issue.title + '\n\n';
-                  faq += '**[Issue #' + issue.number + '](' + issue.url + ')** | ';
-                  faq += '💬 ' + issue.comments + ' comments | ';
-                  faq += '👍 ' + issue.reactions + ' reactions\n\n';
-                  faq += '[📖 View full discussion and solution](' + issue.url + ')\n\n';
-                  faq += '---\n\n';
+                  faqContent += '### ' + issue.title + '\n\n';
+                  faqContent += '**Issue #' + issue.number + '** | ';
+                  faqContent += '💬 ' + issue.comments + ' comments | ';
+                  faqContent += '👍 ' + issue.reactions + ' reactions\n\n';
+                  faqContent += issue.solution + '\n\n';
+                  faqContent += '---\n\n';
                 });
             }
             
-            faq += '## 💡 Your question is not listed here?\n\n';
-            faq += '1. 🔍 [Search all issues](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/issues?q=is%3Aissue)\n';
-            faq += '2. 💬 [Ask in Discussions](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/discussions)\n';
-            faq += '3. 🐛 [Create a new issue](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/issues/new/choose)\n\n';
-            faq += '## 🆘 Priority Support\n\n';
-            faq += 'Need urgent help with guaranteed response time?\n\n';
-            faq += '- 💬 **Community Support** (free): 3-7 days response via GitHub\n';
-            faq += '- 💎 **Supporter** ($5/month): 48h response + Discord access\n';
-            faq += '- 👔 **Pro Support** ($25/month): 24h response + remote assistance\n\n';
-            faq += '👉 [Get priority support on Ko-fi](https://ko-fi.com/Y8Y3YHYZP)\n\n';
-            faq += '---\n\n';
-            faq += '*This FAQ is automatically updated when issues are closed with "resolved" or "question" labels.*\n';
+            faqContent += '\n## 💡 Your question is not here?\n\n';
+            faqContent += '1. **Search in [all issues](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/issues?q=is%3Aissue)**\n';
+            faqContent += '2. **Ask in [Discussions](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/discussions)**\n';
+            faqContent += '3. **Create a [new issue](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/issues/new/choose)** using the template\n\n';
+            faqContent += '## 🆘 Priority Support\n\n';
+            faqContent += 'Need urgent help (response < 24h)?\n\n';
+            faqContent += '👉 [Priority Support on Ko-fi](https://ko-fi.com/Y8Y3YHYZP)\n\n';
+            faqContent += '---\n\n';
+            faqContent += '*FAQ automatically generated from closed issues - Contribute by resolving issues!*\n';
+
+            fs.writeFileSync('FAQ.md', faqContent);
             
-            fs.writeFileSync('FAQ.md', faq);
-            console.log('Generated FAQ with ' + issues.length + ' issues');
+            console.log('FAQ generated successfully');
       
       - name: Commit FAQ
         run: |
-          git config user.name "FAQ Bot"
-          git config user.email "actions@github.com"
+          git config --local user.email "action@github.com"
+          git config --local user.name "FAQ Bot"
           git add FAQ.md
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "🤖 Update FAQ from resolved issues"
-            git push
-          fi
+          git commit -m "Auto-update FAQ from resolved issues" || echo "No changes"
+          git push || echo "Nothing to push"
