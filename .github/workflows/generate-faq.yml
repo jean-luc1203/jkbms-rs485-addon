@@ -65,9 +65,7 @@ jobs:
                 category = 'errors';
               }
               
-              const solution = issue.comments > 0 ? 
-                `[View solution](${issue.html_url})` : 
-                'Auto-resolved';
+              const solution = issue.comments > 0 ? '[View solution](' + issue.html_url + ')' : 'Auto-resolved';
               
               categories[category].issues.push({
                 title: issue.title,
@@ -80,56 +78,45 @@ jobs:
               });
             });
             
-            let faqContent = `# 📚 Automatic FAQ - JKBMS RS485
-
-> 🤖 This FAQ is automatically generated from resolved issues.
-> Last update: ${new Date().toISOString().split('T')[0]}
-
-## 🔍 Quick Navigation
-
-${Object.entries(categories).map(([key, cat]) => 
-  `- [${cat.title}](#${key})`
-).join('\n')}
-
----
-
-`;
+            const today = new Date().toISOString().split('T')[0];
+            let faqContent = '# 📚 Automatic FAQ - JKBMS RS485\n\n';
+            faqContent += '> 🤖 This FAQ is automatically generated from resolved issues.\n';
+            faqContent += '> Last update: ' + today + '\n\n';
+            faqContent += '## 🔍 Quick Navigation\n\n';
+            
+            for (const [key, cat] of Object.entries(categories)) {
+              faqContent += '- [' + cat.title + '](#' + key + ')\n';
+            }
+            
+            faqContent += '\n---\n\n';
 
             for (const [key, category] of Object.entries(categories)) {
               if (category.issues.length === 0) continue;
               
-              faqContent += `## ${category.title}\n\n`;
+              faqContent += '## ' + category.title + '\n\n';
               
               category.issues
                 .sort((a, b) => (b.reactions + b.comments) - (a.reactions + a.comments))
                 .slice(0, 10)
                 .forEach(issue => {
-                  faqContent += `### ${issue.title}\n\n`;
-                  faqContent += `**Issue #${issue.number}** | `;
-                  faqContent += `💬 ${issue.comments} comments | `;
-                  faqContent += `👍 ${issue.reactions} reactions\n\n`;
-                  faqContent += `${issue.solution}\n\n`;
-                  faqContent += `---\n\n`;
+                  faqContent += '### ' + issue.title + '\n\n';
+                  faqContent += '**Issue #' + issue.number + '** | ';
+                  faqContent += '💬 ' + issue.comments + ' comments | ';
+                  faqContent += '👍 ' + issue.reactions + ' reactions\n\n';
+                  faqContent += issue.solution + '\n\n';
+                  faqContent += '---\n\n';
                 });
             }
             
-            faqContent += `
-## 💡 Your question is not here?
-
-1. **Search in [all issues](https://github.com/${context.repo.owner}/${context.repo.repo}/issues?q=is%3Aissue)**
-2. **Ask in [Discussions](https://github.com/${context.repo.owner}/${context.repo.repo}/discussions)**
-3. **Create a [new issue](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/new/choose)** using the template
-
-## 🆘 Priority Support
-
-Need urgent help (response < 24h)?
-
-👉 [Priority Support on Ko-fi](https://ko-fi.com/Y8Y3YHYZP)
-
----
-
-*FAQ automatically generated from closed issues - Contribute by resolving issues!*
-`;
+            faqContent += '\n## 💡 Your question is not here?\n\n';
+            faqContent += '1. **Search in [all issues](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/issues?q=is%3Aissue)**\n';
+            faqContent += '2. **Ask in [Discussions](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/discussions)**\n';
+            faqContent += '3. **Create a [new issue](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/issues/new/choose)** using the template\n\n';
+            faqContent += '## 🆘 Priority Support\n\n';
+            faqContent += 'Need urgent help (response < 24h)?\n\n';
+            faqContent += '👉 [Priority Support on Ko-fi](https://ko-fi.com/Y8Y3YHYZP)\n\n';
+            faqContent += '---\n\n';
+            faqContent += '*FAQ automatically generated from closed issues - Contribute by resolving issues!*\n';
 
             fs.writeFileSync('FAQ.md', faqContent);
             
