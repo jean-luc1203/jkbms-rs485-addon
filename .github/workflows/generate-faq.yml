@@ -1,0 +1,49 @@
+name: Generate FAQ
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-faq:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: read
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Generate FAQ
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              labels: 'resolved,question',
+              per_page: 100
+            });
+            
+            let faq = '# FAQ - JKBMS RS485\n\n';
+            faq += 'Auto-generated on ' + new Date().toISOString().split('T')[0] + '\n\n';
+            
+            issues.forEach(issue => {
+              faq += '## ' + issue.title + '\n\n';
+              faq += '**Issue #' + issue.number + '** - ';
+              faq += issue.comments + ' comments\n\n';
+              faq += '[View solution](' + issue.html_url + ')\n\n';
+              faq += '---\n\n';
+            });
+            
+            fs.writeFileSync('FAQ.md', faq);
+      
+      - name: Commit
+        run: |
+          git config user.name "FAQ Bot"
+          git config user.email "bot@github.com"
+          git add FAQ.md
+          git commit -m "Update FAQ" || true
+          git push || true
