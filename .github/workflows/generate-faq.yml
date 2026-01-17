@@ -173,5 +173,9 @@ Your contributions make this FAQ better for everyone! ❤️
           git config --local user.email "action@github.com"
           git config --local user.name "FAQ Bot"
           git add FAQ.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-update FAQ from resolved issues"
-          git push
+          if ! git diff --quiet || ! git diff --staged --quiet; then
+            git commit -m "🤖 Auto-update FAQ from resolved issues"
+            git push
+          else
+            echo "No changes to commit"
+          fi
