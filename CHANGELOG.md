@@ -10,7 +10,7 @@ enables/disables the ability to modify BMS settings.
 This is to prevent unwanted and unintended modifications.
 This entity acts on all BMS devices.
 
-<img width="1029" height="619" alt="image" src="https://github.com/user-attachments/assets/7f5a1bda-b878-4762-93e0-31ea0b8ac057" />
+<img width="829" height="419" alt="image" src="https://github.com/user-attachments/assets/7f5a1bda-b878-4762-93e0-31ea0b8ac057" />
 
 
 ##  _______________________________________________________
