@@ -247,11 +247,13 @@
             "54b01d2a7d5b9841",
             "1c9fa4df6d24ab3c",
             "14c2982fd6b4b10b",
-            "c2a965eb88a133a6"
+            "c2a965eb88a133a6",
+            "15158255ae839c2f",
+            "ea25979a61fb5aa4"
         ],
-        "x": 54,
+        "x": 34,
         "y": 419,
-        "w": 932,
+        "w": 952,
         "h": 1562
     },
     {
@@ -425,7 +427,7 @@
             "8bcf0e0b17b0565f"
         ],
         "x": 34,
-        "y": 979,
+        "y": 1099,
         "w": 492,
         "h": 282
     },
@@ -963,6 +965,30 @@
         "y": 1599,
         "w": 932,
         "h": 222
+    },
+    {
+        "id": "e02448dff6912e08",
+        "type": "group",
+        "z": "b1ca67b21089b915",
+        "name": "Définir la possibilité de modifier ou pas les paramètres. Utile si modification involontaire",
+        "style": {
+            "stroke": "#3f93cf",
+            "label": true,
+            "color": "#001f60"
+        },
+        "nodes": [
+            "a98e57da56934018",
+            "011221c821374d55",
+            "97bb39525dcab9ab",
+            "04ca17e26d0f0e39",
+            "7bd52840efc58463",
+            "acceb0a1a6bd19d8",
+            "d0af43a236098201"
+        ],
+        "x": 14,
+        "y": 831,
+        "w": 1032,
+        "h": 170
     },
     {
         "id": "646f282c0dd63a6e",
@@ -2173,7 +2199,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 1020,
+        "y": 1140,
         "wires": [
             [
                 "84db6ed2a0945bdd"
@@ -2201,7 +2227,7 @@
         "to": "",
         "reg": false,
         "x": 320,
-        "y": 1020,
+        "y": 1140,
         "wires": [
             []
         ]
@@ -2229,7 +2255,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             [
                 "b38da9cc0fe45944"
@@ -2257,7 +2283,7 @@
         "to": "",
         "reg": false,
         "x": 320,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             []
         ]
@@ -2285,7 +2311,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             [
                 "567fe9a7f3910323"
@@ -2313,7 +2339,7 @@
         "to": "",
         "reg": false,
         "x": 370,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -2341,7 +2367,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 1140,
+        "y": 1260,
         "wires": [
             [
                 "9d3d9cd9d0aaf884"
@@ -2369,7 +2395,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 1140,
+        "y": 1260,
         "wires": [
             []
         ]
@@ -2532,7 +2558,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 1180,
+        "y": 1300,
         "wires": [
             [
                 "4a6179de378fa7c5"
@@ -2560,7 +2586,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 1180,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -2588,7 +2614,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 1220,
+        "y": 1340,
         "wires": [
             [
                 "8bcf0e0b17b0565f"
@@ -2616,7 +2642,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 1220,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -2752,6 +2778,161 @@
         "y": 740,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a98e57da56934018",
+        "type": "mqtt out",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "MQTT Discovery - Boolean",
+        "topic": "homeassistant/switch/BMS_GLOBAL_device/authorize_modify_settings/config",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 460,
+        "y": 872,
+        "wires": []
+    },
+    {
+        "id": "011221c821374d55",
+        "type": "inject",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "Authorize Modify Settings",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "{\"name\":\"Authorize Modify Settings\",\"unique_id\":\"BMS_GLOBAL_device_authorize_modify_settings\",\"state_topic\":\"BMS_GLOBAL/authorize_modify_settings/state\",\"command_topic\":\"BMS_GLOBAL/authorize_modify_settings/set\",\"payload_on\":\"true\",\"payload_off\":\"false\",\"state_on\":\"true\",\"state_off\":\"false\",\"icon\":\"mdi:shield-lock\",\"device\":{\"identifiers\":[\"BMS_GLOBAL_device\"],\"name\":\"BMS Global\"},\"retain\":true}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 880,
+        "wires": [
+            [
+                "a98e57da56934018",
+                "d0af43a236098201"
+            ]
+        ]
+    },
+    {
+        "id": "97bb39525dcab9ab",
+        "type": "mqtt out",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "Publier State",
+        "topic": "BMS_GLOBAL/authorize_modify_settings/state",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "56f7b2737cce493b",
+        "x": 690,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "04ca17e26d0f0e39",
+        "type": "mqtt in",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "Écouter commandes",
+        "topic": "BMS_GLOBAL/authorize_modify_settings/set",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "56f7b2737cce493b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 960,
+        "wires": [
+            [
+                "97bb39525dcab9ab",
+                "acceb0a1a6bd19d8"
+            ]
+        ]
+    },
+    {
+        "id": "7bd52840efc58463",
+        "type": "debug",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "acceb0a1a6bd19d8",
+        "type": "change",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "Authorize_Modify_Settings",
+        "rules": [
+            {
+                "t": "set",
+                "p": "Authorize_Modify_Settings",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 920,
+        "wires": [
+            [
+                "7bd52840efc58463"
+            ]
+        ]
+    },
+    {
+        "id": "d0af43a236098201",
+        "type": "function",
+        "z": "b1ca67b21089b915",
+        "g": "e02448dff6912e08",
+        "name": "function 5",
+        "func": "// Vérifier si la variable globale existe déjà\nconst currentValue = global.get(\"Authorize_Modify_Settings\");\n\n// Si la variable n'existe pas (undefined ou null), l'initialiser à true\nif (currentValue === undefined || currentValue === null) {\n    global.set(\"Authorize_Modify_Settings\", true);\n    node.warn(\"✓ Authorize_Modify_Settings initialisée à TRUE (première utilisation)\");\n    \n    // Publier l'état initial sur MQTT\n    msg.payload = \"true\";\n    msg.topic = \"BMS_GLOBAL/authorize_modify_settings/state\";\n    msg.retain = true;\n    \n    return msg;\n} else {\n    // La variable existe déjà, ne pas l'écraser\n    node.warn(`⊘ Authorize_Modify_Settings existe déjà (valeur: ${currentValue}) - pas de modification`);\n    \n    // Publier l'état existant sur MQTT pour synchroniser\n    msg.payload = currentValue ? \"true\" : \"false\";\n    msg.topic = \"BMS_GLOBAL/authorize_modify_settings/state\";\n    msg.retain = true;\n    \n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 920,
+        "wires": [
+            [
+                "acceb0a1a6bd19d8",
+                "97bb39525dcab9ab"
+            ]
         ]
     },
     {
@@ -6921,11 +7102,11 @@
         "links": [
             "81acf21e86521b86"
         ],
-        "x": 95,
-        "y": 620,
+        "x": 105,
+        "y": 500,
         "wires": [
             [
-                "0f8129c7962fb889"
+                "15158255ae839c2f"
             ]
         ]
     },
@@ -8018,6 +8199,54 @@
         "statusType": "auto",
         "x": 870,
         "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "15158255ae839c2f",
+        "type": "switch",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "Authorize_Modify_Settings ?",
+        "property": "Authorize_Modify_Settings",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "0f8129c7962fb889"
+            ],
+            [
+                "ea25979a61fb5aa4"
+            ]
+        ]
+    },
+    {
+        "id": "ea25979a61fb5aa4",
+        "type": "debug",
+        "z": "348d851bc48bb663",
+        "g": "0bbb61cb5f6504ae",
+        "name": "faux",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 190,
+        "y": 640,
         "wires": []
     },
     {

@@ -1,3 +1,17 @@
+## v3.5.4 - 24-01-2026
+## ⚡️ Enhancements
+#### Addition of an Authorization/Prohibition Switch entity to modify settings
+
+In the Global BMS device, this switch: 
+- switch.bms_global_authorize_modify_settings (ON / OFF)
+
+enables/disables the ability to modify BMS settings. 
+
+This is to prevent unwanted and unintended modifications.
+This entity acts on all BMS devices.
+
+##  _______________________________________________________
+
 ## v3.5.3 - 16-01-2026
 ## ⚡️ Enhancements
 #### Optimisation of the number of alarm messages sent per second
