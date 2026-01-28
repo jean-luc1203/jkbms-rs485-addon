@@ -1,6 +1,6 @@
 ## v3.5.5 - 28-01-2026
 ## ⚡️ Enhancements
-#### Add Charging Float Mode" switch control
+### Add Charging Float Mode" switch control
 
 - Charging Float Mode on a JK-BMS is used to manage a float charge once the battery is full.
 
@@ -19,6 +19,11 @@
 - reduce cell stress,
 
 - improve battery life (especially when stationary).
+
+<img width="527" height="60" alt="image" src="https://github.com/user-attachments/assets/37d11e26-1e5b-4634-aef8-567239e8a026" />
+
+Issue ![#95](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/95)
+
 
 ### 🐞 Corrections (Bugfix)
 The switch created in v3.5.4 did not function correctly in certain situations.
