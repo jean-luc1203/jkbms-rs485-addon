@@ -1,3 +1,30 @@
+## v3.5.5 - 28-01-2026
+## ⚡️ Enhancements
+#### Add Charging Float Mode" switch control
+
+- Charging Float Mode on a JK-BMS is used to manage a float charge once the battery is full.
+
+👉 In concrete terms:
+
+- When the target end-of-charge voltage is reached,
+
+- the BMS cuts off and then temporarily re-authorises charging to maintain the battery at a stable voltage,
+
+- instead of leaving it constantly on charge..
+
+🎯 Main objective:
+
+- avoid overload,
+
+- reduce cell stress,
+
+- improve battery life (especially when stationary).
+
+### 🐞 Corrections (Bugfix)
+The switch created in v3.5.4 did not function correctly in certain situations.
+
+##  _______________________________________________________
+
 ## v3.5.4 - 24-01-2026
 ## ⚡️ Enhancements
 #### Addition of an Authorization/Prohibition Switch entity to modify settings
