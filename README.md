@@ -1,3 +1,13 @@
+---
+⭐ **If this add-on is useful to you, please star this repository!**  
+It helps other Home Assistant users discover this project.
+
+[![GitHub stars](https://img.shields.io/github/stars/jean-luc1203/jkbms-rs485-addon?style=social)](https://github.com/jean-luc1203/jkbms-rs485-addon/stargazers)
+[![Active installations](https://img.shields.io/badge/active_installations-1100+-brightgreen)](https://github.com/jean-luc1203/jkbms-rs485-addon)
+[![Community Forum](https://img.shields.io/badge/community-forum-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions)
+[![Reddit](https://img.shields.io/badge/reddit-r%2Fhomeassistant-orange)](https://www.reddit.com/r/homeassistant/)
+---
+
 # Smartphoton JK-BMS RS485 & CAN Bus Add-on
 
 > **1,500+ installations** · **40+ daily clones** · **Community-driven development**
