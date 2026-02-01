@@ -1,3 +1,22 @@
+## v3.5.6 - 01-02-2026
+## 🐞 Corrections (Bugfix)
+### Correction of temperature probe values in broadcasting mode
+
+Correspondence between the RS485 module and the JK-bluetooth application:
+ 
+- capt.1 = T1
+- capt.2 = T2
+- capt.3 = T5
+- capt.4 = T3
+- MOS = MOS
+
+> **1,690+ installations** · **40+ daily clones** · **Community-driven development**
+
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP) [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
+
+
+##  _______________________________________________________
+
 ## v3.5.5 - 28-01-2026
 ## ⚡️ Enhancements
 ### Add Charging Float Mode" switch control

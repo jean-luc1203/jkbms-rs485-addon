@@ -986,6 +986,30 @@
         "h": 40
     },
     {
+        "id": "59fa7c5229b9a3ca",
+        "type": "group",
+        "z": "b1ca67b21089b915",
+        "name": "Permettre ou pas la modification des divers paramètres de manière globale",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true,
+            "color": "#001f60"
+        },
+        "nodes": [
+            "f85ec6f280d417c8",
+            "084b5411c2930d46",
+            "e51ebb7da483ddc5",
+            "48d67b4d6604e25c",
+            "64c2dcda71747c88",
+            "aadc31ca2b57275c",
+            "553c38d00967e77e"
+        ],
+        "x": 14,
+        "y": 891,
+        "w": 1092,
+        "h": 170
+    },
+    {
         "id": "646f282c0dd63a6e",
         "type": "group",
         "z": "2e99fd421b434bcb",
@@ -1358,30 +1382,6 @@
         "y": 919,
         "w": 652,
         "h": 164.5
-    },
-    {
-        "id": "59fa7c5229b9a3ca",
-        "type": "group",
-        "z": "b1ca67b21089b915",
-        "name": "Permettre ou pas la modification des divers paramètres de manière globale",
-        "style": {
-            "stroke": "#0070c0",
-            "label": true,
-            "color": "#001f60"
-        },
-        "nodes": [
-            "f85ec6f280d417c8",
-            "084b5411c2930d46",
-            "e51ebb7da483ddc5",
-            "48d67b4d6604e25c",
-            "64c2dcda71747c88",
-            "aadc31ca2b57275c",
-            "553c38d00967e77e"
-        ],
-        "x": 14,
-        "y": 891,
-        "w": 1092,
-        "h": 170
     },
     {
         "id": "6e1abcbcc6ebb714",
@@ -9028,7 +9028,7 @@
             {
                 "type": "int16le",
                 "name": "Sonde_3_temp_T",
-                "offset": 254,
+                "offset": 258,
                 "length": 1,
                 "offsetbit": 0,
                 "scale": "/10",
@@ -9037,7 +9037,7 @@
             {
                 "type": "int16le",
                 "name": "Sonde_4_temp_T",
-                "offset": 258,
+                "offset": 256,
                 "length": 1,
                 "offsetbit": 0,
                 "scale": "/10",
