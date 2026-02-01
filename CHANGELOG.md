@@ -2,6 +2,9 @@
 ## 🐞 Corrections (Bugfix)
 ### Correction of temperature probe values in broadcasting mode
 
+[Issue #91](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/91)
+
+
 Correspondence between the RS485 module and the JK-bluetooth application:
  
 - capt.1 = T1
