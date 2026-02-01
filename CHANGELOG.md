@@ -10,7 +10,7 @@ Correspondence between the RS485 module and the JK-bluetooth application:
 - capt.1 = T1
 - capt.2 = T2
 - capt.3 = T5
-- capt.4 = T3
+- capt.4 = T4
 - MOS = MOS
 
 > **1,690+ installations** · **40+ daily clones** · **Community-driven development**
