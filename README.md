@@ -165,6 +165,15 @@ BMS units appear automatically as devices in MQTT integration:
 
 ![MQTT Devices](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-in-MQTT-devices.png)
 
+### ⛑ Here is a list of all topics that are created automatically.
+MQTT Topics Structure - JK-BMS Add-on
+The JK-BMS add-on publishes three categories of data via MQTT
+1. Live Data
+2. Configuration Parameters (Settings)
+3. Static Specifications
+
+All topics are described in the documentation ![here](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/mqtt_topics_documentation.md) !
+
 ### Rich Entity Set
 Full sensor coverage for monitoring and automation:
 
