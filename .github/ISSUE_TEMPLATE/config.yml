@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: "📖 FAQ"
+    url: "https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/FAQ.md"
+    about: "Frequently asked questions and common issues"
+  - name: "📘 Documentation (README)"
+    url: "https://github.com/jean-luc1203/jkbms-rs485-addon#readme"
+    about: "Installation, configuration and detailed description of the add-on"
+  - name: "💬 Community forum (FR)"
+    url: "https://smartphoton.ch/forum/thread-916.html"
+    about: "Community support and discussions in French"

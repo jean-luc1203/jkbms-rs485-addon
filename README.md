@@ -237,6 +237,27 @@ For general questions and community support, visit our [Discussions](https://git
 
 ---
 
+## 🆘 Having an issue? Choose the right template!
+
+When opening a new issue, please **select one of these templates** (required):
+
+| Template | When to use | Example |
+|----------|-------------|---------|
+| **🐛 Bug report** | Something is **broken** or crashes | "No data received", "CRC errors", "Add-on crashes" |
+| **❓ Question/Support** | **Installation help** or **configuration** | "How do I connect via TCP gateway?", "Entities unavailable" |
+| **✨ Feature request** | You have an **idea** for improvement | "Add diagnostic sensors", "Support JBD BMS" |
+
+**Why templates?** They help me understand your setup quickly and give you the fastest possible help. 🙏
+
+**Before opening:**
+1. Read [FAQ.md](FAQ.md) ✅
+2. Check existing issues (use search) 🔍
+3. Try the [Diagnostic Dashboard](#diagnostic-dashboard) if no data is received 📊
+
+**Pro tip:** Include a screenshot of your **Diagnostic Dashboard** (if available) — it shows me instantly if it's a connection problem! 🚀
+
+---
+
 ## 👨‍💻 Credits
 
 **Development:** Jean-Luc Martinelli (JLM)  

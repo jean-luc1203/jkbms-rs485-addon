@@ -1,0 +1,86 @@
+name: "❓ Question / Support"
+description: "Get help with installation, configuration or general usage"
+title: "[SUPPORT] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👋 Welcome!
+
+        Thanks for using the JK-BMS RS485 add-on and taking the time to open a support request.
+
+        To help you as efficiently as possible, it really helps if you can first:
+        1. Read the **README** (installation, configuration, known limitations)
+        2. Read the **FAQ.md** (most common questions and issues)
+        3. Quickly search through existing open and closed issues
+
+        If you still need help after that, no problem — please fill in the details below.
+
+  - type: checkboxes
+    id: quick_checks
+    attributes:
+      label: "Quick checks (optional but very helpful)"
+      description: "Tick what you have already tried"
+      options:
+        - label: "I have read the README"
+        - label: "I have read the FAQ.md"
+        - label: "I have searched in existing issues"
+        - label: "This is my first install of the add-on"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Your setup"
+      description: "Describe your environment so we understand your context"
+      placeholder: |
+        Example:
+        - Using the IP gateway?
+        - JK-BMS Firmware V15 or 19 ?
+        - Adapter type ?  RS485 USB (CH340 /dev/serial/by-id/usb-xxxxxxx-port0 )
+        - Add-on version: v3.x ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "What is the issue?"
+      description: "Describe what you expected and what actually happens"
+      placeholder: |
+        Example:
+        - I expected to see live values in Home Assistant
+        - The add-on starts without errors but entities stay unavailable
+        - I have already tried restarting the add-on and Home Assistant
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs (if possible)"
+      description: "Copy any relevant log lines from the add-on (you can anonymize hostnames/IPs)"
+      render: shell
+      placeholder: |
+        Example:
+        [INFO] Add-on started...
+        [DEBUG] Connected to /dev/ttyUSB0 @ 115200 baud
+        ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: config
+    attributes:
+      label: "Configuration (optional)"
+      description: "Share your configuration (you can remove sensitive information)"
+      render: yaml
+      placeholder: |
+        Example:
+        jkbms_rs485:
+          port: /dev/ttyUSB0
+          baudrate: 115200
+          bms_count: 2
+
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for providing these details — it really helps reduce the back-and-forth and lets us focus directly on solving your problem. 🙏

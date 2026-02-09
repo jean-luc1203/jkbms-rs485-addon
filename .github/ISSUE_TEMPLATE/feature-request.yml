@@ -1,0 +1,53 @@
+name: "✨ Feature request"
+description: "Suggest an idea or improvement for the JK-BMS RS485 add-on"
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature request
+
+        Thanks for taking the time to suggest an improvement!
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe the feature"
+      description: "What would you like the add-on to do?"
+      placeholder: |
+        Example:
+        - Add a diagnostic MQTT sensor for communication health
+        - Support a new JK-BMS frame or mode
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Why is this useful?"
+      description: "Explain the use case and why it would help you (and possibly others)."
+      placeholder: |
+        Example:
+        - It would make debugging much easier when the RS485 link is unstable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives you've considered"
+      description: "Have you tried other workarounds or solutions?"
+      placeholder: |
+        Example:
+        - I currently use a custom MQTT sensor and manual Lovelace cards.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional context"
+      description: "Any extra details, screenshots, or references."
+      placeholder: |
+        Links to related projects, forum threads, screenshots, etc.
