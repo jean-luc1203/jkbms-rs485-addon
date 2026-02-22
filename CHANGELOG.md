@@ -5,7 +5,7 @@
 [Issue #107](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/107)
 
 ### Correction of the "expected SensorDeviceClass"
-[Issue #102](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/102
+[Issue #102](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/102)
 
 
 ##  _______________________________________________________
