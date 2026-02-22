@@ -1,3 +1,16 @@
+## v3.5.7 - 2-02-2026
+## 🐞 Corrections (Bugfix)
+
+### Correction of the logic to allow Charge/Discharge/Balance switching 
+[Issue #107](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/107)
+
+### Correction of the "expected SensorDeviceClass"
+[Issue #102](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/102
+
+
+##  _______________________________________________________
+
+
 ## v3.5.6 - 01-02-2026
 ## 🐞 Corrections (Bugfix)
 ### Correction of temperature probe values in broadcasting mode
