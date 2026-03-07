@@ -77,10 +77,18 @@ Direct CAN bus broadcasting via the second RJ45 connector.
 ## 🛠️ Installation
 
 ### Via Home Assistant Add-on Store
-1. Add this repository: `https://github.com/jean-luc1203/jkbms-rs485-addon`
-2. Install "Smartphoton_JKBMS RS485 Home Assistant Addon"
-3. Configure your settings
-4. Start the add-on
+- Settings
+- Apps
+- Choose "Add App", when you do this three dots appear in the upper right hand side
+- Go to github.com
+- Find the jkbms-rs485-add on 
+- Click on the 3 dots and choose repository
+- Copy and past the ip location from the browser address bar and paste into the repository name
+
+  `https://github.com/jean-luc1203/jkbms-rs485-addon`
+- Proceed with install
+- Configure your settings
+- Start the add-on
 
 ### Docker Standalone *(New! December 2025)*
 Run **independently from HAOS** via Docker!  
