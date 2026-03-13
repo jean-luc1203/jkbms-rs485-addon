@@ -192,7 +192,7 @@ Full sensor coverage for monitoring and automation:
 
 If you experience communication issues with the RS485 broadcast mode, please consult the troubleshooting guide:
 
-👉 [Troubleshooting Guide](docs/jkbms_rs485_troubleshooting_enhanced.md)
+👉 [Troubleshooting Guide](/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
 
 ---
 ## 🤝 Support This Project
