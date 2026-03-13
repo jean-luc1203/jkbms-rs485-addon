@@ -188,7 +188,13 @@ Full sensor coverage for monitoring and automation:
 ![Available Entities](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-entities.png)
 
 ---
+## Troubleshooting
 
+If you experience communication issues with the RS485 broadcast mode, please consult the troubleshooting guide:
+
+👉 [Troubleshooting Guide](docs/troubleshooting.md)
+
+---
 ## 🤝 Support This Project
 
 This add-on is **developed and maintained by one person** in their free time.
