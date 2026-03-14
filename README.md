@@ -10,7 +10,7 @@ It helps other Home Assistant users discover this project.
 
 # Smartphoton JK-BMS RS485 & CAN Bus Add-on
 
-> **1,500+ installations** · **40+ daily clones** · **Community-driven development**
+> **2700+ installations** · **40+ daily clones** · **Community-driven development**
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP) [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
@@ -194,7 +194,10 @@ If you experience communication issues with the RS485 broadcast mode, please con
 
 👉 [Troubleshooting Guide](/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
 
----
+Exemple of live information:
+
+<img width="600" height="500" alt="image" src="https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/images/TROUBLESHOOTING-exemple.png" />
+
 ## 🤝 Support This Project
 
 This add-on is **developed and maintained by one person** in their free time.
