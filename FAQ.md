@@ -1,7 +1,7 @@
 # 📚 Automatic FAQ - JKBMS RS485
 
 > 🤖 This FAQ is automatically generated from resolved issues.
-> Last update: 2026-03-10
+> Last update: 2026-03-15
 
 ## 🔍 Quick Navigation
 
