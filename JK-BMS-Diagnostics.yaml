@@ -1,0 +1,263 @@
+views:
+  - title: JK-BMS Diagnostics
+    path: jk-bms-diagnostics
+    icon: mdi:stethoscope
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: JK-BMS RS485 Health
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.jk_bms_aggregator_jkbms_health
+                    name: Communication health
+              - type: conditional
+                conditions:
+                  - entity: sensor.jk_bms_aggregator_jkbms_health
+                    state: healthy
+                card:
+                  type: markdown
+                  content: >
+                    ## ✅ Bus healthy
+
+                    The JK-BMS communication is active and frames are being
+                    received normally.
+
+                    **Reason:** `{{
+                    state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                    'health_reason') or 'healthy' }}`
+              - type: conditional
+                conditions:
+                  - entity: sensor.jk_bms_aggregator_jkbms_health
+                    state: degraded
+                card:
+                  type: markdown
+                  content: >
+                    ## ⚠️ Bus degraded
+
+                    Communication is still active, but timing, framing or frame
+                    reconstruction is outside the expected range.
+
+                    **Reason:** `{{
+                    state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                    'health_reason') or 'degraded' }}`
+              - type: conditional
+                conditions:
+                  - entity: sensor.jk_bms_aggregator_jkbms_health
+                    state: no_serial_data
+                card:
+                  type: markdown
+                  content: >
+                    ## ❌ No communication
+
+                    No valid frames have been received recently.
+
+                    **Reason:** `{{
+                    state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                    'health_reason') or 'no_serial_data' }}`
+              - type: markdown
+                title: Live Transport
+                content: >
+                  **Transport:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'transport') }}`  
+
+                  **Mode:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health', 'mode')
+                  }}`  
+
+                  **Status:** `{{
+                  states('sensor.jk_bms_aggregator_jkbms_health') }}`
+              - type: markdown
+                title: Live Timing
+                content: >
+                  **Serial age:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'serial_age_s') }} s`  
+
+                  **Buffers / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'buffers_30s') }}`  
+
+                  **Bytes / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'bytes_30s') }}`  
+
+                  **Bytes per buffer avg / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'bytes_per_buffer_avg_30s') }}`
+              - type: markdown
+                title: Live Framing Quality
+                content: >
+                  **Frame candidates / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'frame_candidates_30s') }}`  
+
+                  **Frames emitted / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'frames_emitted_30s') }}`  
+
+                  **Frame yield ratio:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'frame_yield_ratio') }}`  
+
+                  **Short buffers / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'short_buffers_30s') }}`  
+
+                  **Multi-header buffers / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'multi_header_buffers_30s') }}`
+              - type: markdown
+                title: Live Buffer Sizes
+                content: >
+                  **Last length:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'last_len') }}`  
+
+                  **Average length / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'avg_len_30s') }}`  
+
+                  **Maximum length / 30s:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'max_len_30s') }}`
+              - type: markdown
+                title: BMS Presence
+                content: >
+                  **Detected BMS:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'detected_bms') or 0 }}`  
+
+                  **Detected list:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'detected_bms_list') or 'none' }}`
+              - type: markdown
+                title: Diagnostic Flags
+                content: >
+                  **Health reason:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'health_reason') or 'n/a' }}`  
+
+                  **Health flags:** `{{
+                  state_attr('sensor.jk_bms_aggregator_jkbms_health',
+                  'health_flags_text') or 'none' }}`
+          - type: vertical-stack
+            cards:
+              - type: markdown
+                title: Healthy Reference Values
+                content: >
+                  **Typical healthy values for 3 to 5 JK-BMS in broadcast mode**
+
+
+                  **Global rules**
+
+                  - Status: `healthy`
+
+                  - Serial age: `< 0.35 s`
+
+                  - Average length / 30s: `90 – 150`
+
+                  - Maximum length / 30s: `308 – 319`
+
+                  - Detected BMS: `close to expected installed count`
+
+
+                  **3 to 5 BMS general reference**
+
+                  - Buffers / 30s: `60 – 120`
+
+                  - Bytes / 30s: `9000 – 20000`
+
+                  - Bytes per buffer avg / 30s: `90 – 150`
+
+                  - Frame candidates / 30s: `60 – 140`
+
+                  - Frames emitted / 30s: `80 – 200`
+
+                  - Frame yield ratio: `0.70 – 1.60`
+
+                  - Short buffers / 30s: `30 – 90`
+
+                  - Multi-header buffers / 30s: `10 – 60`
+
+
+                  **Notes**
+
+                  - `frame_yield_ratio > 1` can be normal when one received
+                  buffer contains multiple valid frames
+
+                  - `multi_header_buffers_30s` is often expected in multi-BMS
+                  broadcast mode
+
+                  - `short_buffers_30s` alone is not a fault indicator
+              - type: markdown
+                title: Interpretation Guide
+                content: >
+                  **How to read the counters**
+
+
+                  - **detected_bms**: estimated number of distinct JK-BMS seen
+                  recently
+
+                  - **detected_bms_list**: list of detected BMS identifiers seen
+                  during the recent window
+
+                  - **frames_emitted_30s**: number of valid frames actually
+                  emitted by the framer
+
+                  - **frame_yield_ratio**: ratio between emitted valid frames
+                  and frame candidates
+
+                  - **bytes_per_buffer_avg_30s**: average payload size per
+                  received serial/TCP buffer
+
+                  - **health_reason**: main interpreted reason for current bus
+                  state
+
+                  - **health_flags_text**: extra diagnostic hints when something
+                  looks abnormal
+              - type: markdown
+                title: Quick Reading Rules
+                content: |
+                  **Simple rules**
+
+                  - low `serial_age_s` + good `frames_emitted_30s`
+                    → bus is active
+
+                  - `frame_yield_ratio` between `0.70` and `1.60`
+                    → usually normal in broadcast mode
+
+                  - `frame_yield_ratio > 1`
+                    → possible when one received buffer contains multiple valid frames
+
+                  - high `multi_header_buffers_30s`
+                    → often normal with several JK-BMS in broadcast mode
+
+                  - low `detected_bms`
+                    → one BMS may be silent or missing from the recent window
+              - type: markdown
+                title: Troubleshooting Hints
+                content: >
+                  **Typical patterns**
+
+
+                  - `serial_age_s` high + low `frames_emitted_30s`
+                    → missing or stalled communication
+
+                  - high `short_buffers_30s` + very low
+                  `bytes_per_buffer_avg_30s`
+                    → excessive fragmentation, possible USB/serial instability
+
+                  - high `multi_header_buffers_30s` but status still healthy
+                    → often normal with several JK-BMS in broadcast mode
+
+                  - low `frame_yield_ratio`
+                    → framer receives data, but too few valid frames are reconstructed
+
+                  - `detected_bms` lower than expected installed count
+                    → one or more BMS may be missing, silent, or not seen in the recent window
+    type: sidebar
+
