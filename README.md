@@ -194,8 +194,6 @@ If you experience communication issues with the RS485 broadcast mode, please con
 
 👉 [Troubleshooting Guide](/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
 
-<img width="600" height="500" alt="image" src="https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/images/TROUBLESHOOTING-exemple.png" />
-
 ## 📊 RS485 Diagnostic Dashboard
 
 A ready-to-use diagnostic dashboard is available to monitor RS485 communication quality.
@@ -215,11 +213,11 @@ A ready-to-use diagnostic dashboard is available to monitor RS485 communication 
 3. Click **⋮ → Raw configuration editor**
 4. Copy/paste the content of:
 
-`dashboards/jk_bms_rs485_diagnostics_dashboard.yaml`
+`jk_bms_rs485_diagnostics_dashboard.yaml`
 
-### Preview
+### Preview of RS485 Diagnostic]
 
-![RS485 Diagnostic](images/rs485_diag_preview.png)
+<img width="900" height="577" alt="rs485_diag_preview png" src="https://github.com/user-attachments/assets/6b822c31-f14a-41cc-8e58-789cbd8760f6" />
 
 ### Notes
 
