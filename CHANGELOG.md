@@ -77,7 +77,7 @@ The system is now stricter when parsing frames:
 
 ### TCP Reconnection Watchdog
 
-Improved reliability when using RS485 over IP gateways:
+👀 Improved reliability when using RS485 over IP gateways:
 
 - Detects absence of data for more than 2 minutes
 - Automatically forces TCP reconnect
