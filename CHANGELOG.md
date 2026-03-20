@@ -1,3 +1,115 @@
+## v3.6.6 - 2026-03-16
+
+## ⚡ Enhancements
+
+### RS485 Bus Quality Monitoring (NEW)
+
+A new diagnostic panel has been added to help users evaluate the quality and stability of their RS485 bus in real time.
+
+- Added live counters for:
+  - frame rate
+  - buffer sizes
+  - frame reconstruction efficiency (yield ratio)
+  - serial latency
+  - detected BMS devices
+- Provides a clear communication health status
+- Helps identify:
+  - unstable wiring
+  - overloaded bus (too many BMS)
+  - gateway issues
+  - frame fragmentation problems
+
+👉 This is especially useful for broadcast setups and multi-BMS installations.
+
+### 📊 RS485 Diagnostic Dashboard
+
+A ready-to-use Home Assistant dashboard is now available to visualize RS485 communication health and diagnostics.
+
+- Displays real-time bus activity, framing quality, and BMS detection
+- Includes interpretation guides and troubleshooting hints
+- Designed for broadcast and multi-BMS installations
+
+📥 Dashboard file:
+`dashboards/jk_bms_rs485_diagnostics_dashboard.yaml`
+
+<img width="527" height="400" alt="RS485 Diagnostic Dashboard" src="https://github.com/jean-luc1203/jkbms-rs485-addon-DEVeloppment/blob/main/images/new-rs485-counters.png" />
+
+---
+
+## v3.6.4 - 2026-03-14
+
+## ⚡ Major Improvements
+
+### RS485 Broadcast Framer (CORE CHANGE)
+
+Introduced a software framer that reconstructs valid JK-BMS frames from raw RS485/TCP streams.
+
+- Cleanly separates:
+  - Modbus requests
+  - JK-BMS replies
+- Handles fragmented and mixed TCP buffers
+- Prevents decoder stalls in broadcast mode
+- Significantly improves reliability on complex installations
+
+⚠️ **Important change**  
+The system is now stricter when parsing frames:
+- Invalid or corrupted frames are ignored
+- This improves data reliability
+- It may also reveal underlying RS485 issues that were previously hidden
+
+👉 If you notice missing data after update, check the new diagnostics panel.
+
+### RS485 Diagnostics & Health Metrics
+
+- Added new topic: `BMS_GLOBAL/health`
+- Provides:
+  - real-time bus activity
+  - framing efficiency
+  - communication health status
+- Designed to support troubleshooting and large installations
+
+📘 Documentation:  
+[Enhanced RS485 troubleshooting guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
+
+### Stability & Upgrade Safety
+
+- Fixed crashes caused by persisted Node-RED Buffer objects:
+  - `{type:"Buffer",data:[...]}`
+- Added automatic normalization of restored binary context
+- Improved compatibility with Node-RED restarts and updates
+- Ensures safe upgrades for long-running systems
+
+### TCP Reconnection Watchdog
+
+Improved reliability when using RS485 over IP gateways:
+
+- Detects absence of data for more than 2 minutes
+- Automatically forces TCP reconnect
+- Prevents silent connection freezes
+
+Updated parameters:
+- `indefiniteRetries: true`
+- `maxRetries: 10`
+- `retryDelay: 5000ms`
+
+👉 Ensures persistent reconnection in unstable network environments.
+
+Related issue:  
+[Issue #110](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/110)
+
+---
+
+## 🧠 Notes for Advanced Users
+
+- Large broadcast installations (6+ BMS) should monitor:
+  - yield ratio
+  - serial latency
+  - detected BMS stability
+- The new framer improves accuracy but reduces tolerance to invalid frames
+
+##  _______________________________________________________
+
+
 ## v3.5.7 - 2-02-2026
 ## 🐞 Corrections (Bugfix)
 
