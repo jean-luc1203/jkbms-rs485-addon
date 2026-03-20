@@ -188,7 +188,7 @@ Full sensor coverage for monitoring and automation:
 ![Available Entities](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-entities.png)
 
 ---
-## Troubleshooting
+## Troubleshooting & 📊 RS485 Diagnostic Dashboard
 
 If you experience communication issues with the RS485 broadcast mode, please consult the troubleshooting guide:
 
@@ -197,6 +197,37 @@ If you experience communication issues with the RS485 broadcast mode, please con
 Exemple of live information:
 
 <img width="600" height="500" alt="image" src="https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/images/TROUBLESHOOTING-exemple.png" />
+
+## 📊 RS485 Diagnostic Dashboard
+
+A ready-to-use diagnostic dashboard is available to monitor RS485 communication quality.
+
+### Features
+
+- Real-time communication health status
+- Frame reconstruction efficiency (yield ratio)
+- Serial/TCP buffer analysis
+- BMS detection tracking
+- Built-in interpretation and troubleshooting guide
+
+### Installation
+
+1. Go to **Home Assistant → Dashboards**
+2. Click **Edit Dashboard**
+3. Click **⋮ → Raw configuration editor**
+4. Copy/paste the content of:
+
+`dashboards/jk_bms_rs485_diagnostics_dashboard.yaml`
+
+### Preview
+
+![RS485 Diagnostic](images/rs485_diag_preview.png)
+
+### Notes
+
+- Requires MQTT Discovery enabled
+- Entities are automatically created by the addon
+- Starting from v3.6.4, RS485 frame parsing is stricter and may expose existing communication issues that were previously hidden
 
 ## 🤝 Support This Project
 
