@@ -196,7 +196,7 @@ If you experience communication issues with the RS485 broadcast mode, please con
 
 ## 📊 RS485 Diagnostic Dashboard
 
-A ready-to-use diagnostic dashboard is available to monitor RS485 communication quality.
+A ready-to-use diagnostic ![dashboard](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jk_bms_rs485_diagnostics_dashboard.yaml) is available to monitor RS485 communication quality.
 
 ### Features
 
