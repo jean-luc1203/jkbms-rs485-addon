@@ -23,14 +23,14 @@ A new diagnostic panel has been added to help users evaluate the quality and sta
 
 ### 📊 RS485 Diagnostic Dashboard
 
-A ready-to-use Home Assistant dashboard is now available to visualize RS485 communication health and diagnostics.
+A ready-to-use Home Assistant ![dashboard](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jk_bms_rs485_diagnostics_dashboard.yaml) is now available to visualize RS485 communication health and diagnostics.
 
 - Displays real-time bus activity, framing quality, and BMS detection
 - Includes interpretation guides and troubleshooting hints
 - Designed for broadcast and multi-BMS installations
 
 📥 Dashboard file:
-`dashboards/jk_bms_rs485_diagnostics_dashboard.yaml`
+`Documentation/jk_bms_rs485_diagnostics_dashboard.yaml`
 
 <img width="527" height="400" alt="RS485 Diagnostic Dashboard" src="https://github.com/jean-luc1203/jkbms-rs485-addon-DEVeloppment/blob/main/images/new-rs485-counters.png" />
 
