@@ -194,8 +194,6 @@ If you experience communication issues with the RS485 broadcast mode, please con
 
 👉 [Troubleshooting Guide](/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
 
-Exemple of live information:
-
 <img width="600" height="500" alt="image" src="https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/images/TROUBLESHOOTING-exemple.png" />
 
 ## 📊 RS485 Diagnostic Dashboard
