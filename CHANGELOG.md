@@ -1,5 +1,8 @@
 ## v3.6.6 - 2026-03-16
 
+### ⚠️ Please back up your module before updating ⚠️
+**This version includes major changes, so there may be some unexpected effects**
+
 ## ⚡ Enhancements
 
 ### RS485 Bus Quality Monitoring (NEW)
