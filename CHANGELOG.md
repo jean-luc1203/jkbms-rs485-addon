@@ -29,7 +29,7 @@ A ready-to-use [Dashboard](https://github.com/jean-luc1203/jkbms-rs485-addon/blo
 - Includes interpretation guides and troubleshooting hints
 - Designed for broadcast and multi-BMS installations
 
-<img width="552" height="472" alt="image" src="https://github.com/user-attachments/assets/468178f8-9106-4891-9d1a-0b429dda4745" />
+<img width="752" height="572" alt="image" src="https://github.com/user-attachments/assets/468178f8-9106-4891-9d1a-0b429dda4745" />
 ---
 
 ## v3.6.4 - 2026-03-14
