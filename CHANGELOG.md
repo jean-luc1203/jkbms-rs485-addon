@@ -1,7 +1,55 @@
-## v3.6.6 - 2026-03-16
+## v3.6.15 - 2026-04-02
 
-### ⚠️ Please back up your module before updating ⚠️
-**This version includes major changes, so there may be some unexpected effects**
+### 📦 – Enhanced network interface detection
+- Enhanced network interface detection for the standalone dashboard URL generation. 
+
+  The flow now automatically finds a valid external IPv4 address instead of relying on a fixed interface name.
+
+### 📦 – Fixed MQTT runtime status
+- Fixed MQTT runtime status logging to correctly distinguish `⚠️ disconnected` from `✅ connected` when parsing broker status messages.
+
+Example in the module log:
+
+- 2 Apr 17:04:35 - [warn] [function:MQTT status to HAOS log] ❌ MQTT broker disconnected [MQTT Broker]
+- 2 Apr 17:04:48 - [warn] [function:MQTT status to HAOS log] ⚠️ MQTT broker reconnecting [MQTT Broker]
+- 2 Apr 17:04:48 - [info] [mqtt-broker:56f7b2737cce493b] Connected to broker: mqtt://core-mosquitto.local.hass.io:1883
+- 2 Apr 17:04:48 - [warn] [function:MQTT status to HAOS log] ✅ MQTT broker connected [MQTT Broker]
+
+## v3.6.10 - 2026-03-21
+
+### 📦 Changelog – RS485 Polling Interval (non-broadcast mode)
+## ✨ New Feature
+
+- Added a new configuration option: 
+ ` non_broadcasting_data_interval_s`
+ 
+This allows users to control the polling interval for data interval when broadcasting mode is disabled.
+
+
+|  🚀 Behavior Summary||
+| ------------ | ------------ |
+| Mode  | Behavior  |
+|  Broadcasting ON |No change   |
+| Broadcasting OFF| Data interval = user-defined
+
+⚠️ Notes
+
+- Minimum supported value: 1 seconds
+- Maximum supported value: 30 seconds
+- Default value: 1 second
+Uses dynamic scheduling instead of fixed inject → more flexible & scalable
+
+💡 Why this change
+
+- Avoid hardcoded polling intervals
+- Improve performance tuning depending on:   **number of BMS on the RS485 Bus**
+- network latency (TCP / RS485 gateway)
+- system load (HAOS / Node-RED)
+
+##  _______________________________________________________
+
+
+## v3.6.6 - 2026-03-16
 
 ## ⚡ Enhancements
 
@@ -26,13 +74,17 @@ A new diagnostic panel has been added to help users evaluate the quality and sta
 
 ### 📊 RS485 Diagnostic Dashboard
 
-A ready-to-use [Dashboard](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jk_bms_rs485_diagnostics_dashboard.yaml) file 📥  for Home Assistant is now available to visualize RS485 communication health and diagnostics.
+A ready-to-use Home Assistant dashboard is now available to visualize RS485 communication health and diagnostics.
 
 - Displays real-time bus activity, framing quality, and BMS detection
 - Includes interpretation guides and troubleshooting hints
 - Designed for broadcast and multi-BMS installations
 
-<img width="752" height="572" alt="image" src="https://github.com/user-attachments/assets/468178f8-9106-4891-9d1a-0b429dda4745" />
+📥 Dashboard file:
+`dashboards/jk_bms_rs485_diagnostics_dashboard.yaml`
+
+<img width="527" height="400" alt="RS485 Diagnostic Dashboard" src="https://github.com/jean-luc1203/jkbms-rs485-addon-DEVeloppment/blob/main/images/new-rs485-counters.png" />
+
 ---
 
 ## v3.6.4 - 2026-03-14
@@ -80,7 +132,7 @@ The system is now stricter when parsing frames:
 
 ### TCP Reconnection Watchdog
 
-👀 Improved reliability when using RS485 over IP gateways:
+Improved reliability when using RS485 over IP gateways:
 
 - Detects absence of data for more than 2 minutes
 - Automatically forces TCP reconnect

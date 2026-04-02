@@ -1,38 +1,42 @@
 ---
 configuration:
-  # JK-BMS Configuration Section
+  # Sekcja konfiguracji JK-BMS
   jkbms_path:
-    name: "🟪 JK-BMS → Ścieżka Portu Szeregowego"
+    name: "🟪 JK-BMS → Ścieżka portu szeregowego"
     description: "Ścieżka do portu szeregowego, do którego podłączony jest JK-BMS (Menu: Ustawienia-Sprzęt-Cały sprzęt)."
     
   jkbms_count:
-    name: "🟪 JK-BMS → Liczba Modułów BMS"
-    description: "Liczba modułów JK-BMS do odpytywania. Muszą być podłączone do magistrali RS485 (wartość: od 1 do 15)."
+    name: "🟪 JK-BMS → Liczba modułów BMS"
+    description: "Liczba modułów JK-BMS do odpytania. Muszą być podłączone do magistrali RS485 (wartość: od 1 do 15)."
     
   use_gateway:
-    name: "🟨 JK-BMS → Użyj Bramki TCP"
+    name: "🟨 JK-BMS → Użyj bramki TCP"
     description: "Włącz komunikację przez bramkę IP (TCP Gateway) zamiast lokalnego portu szeregowego."
     
   gateway_ip_port:
-    name: "🟨 JK-BMS → Adres IP + port Bramki"
-    description: "Adres IP + port bramki sieciowej do zdalnego dostępu do JK-BMS (np.: 192.168.1.100:500)."
+    name: "🟨 JK-BMS → Adres IP bramki + Port"
+    description: "Adres IP + port bramki sieciowej dla zdalnego dostępu do JK-BMS (np. 192.168.1.100:5000)."
     
   communication_debug:
-    name: "🔴 JK-BMS → Debug Komunikacji"
-    description: "Włącz szczegółowe wyświetlanie logów komunikacji (do diagnostyki lub wsparcia)."
+    name: "🔴 JK-BMS → Debugowanie komunikacji"
+    description: "Włącz szczegółowe wyświetlanie logów komunikacji (do celów diagnostycznych lub wsparcia)."
     
   bms_broadcasting:
-    name: "🔴 JK-BMS → Transmisja BMS"
-    description: "W tym trybie BMS publikuje zagregowane dane o sobie. Musi być Masterem (przełącz na 0000)."
+    name: "🔴 JK-BMS → Rozgłaszanie BMS (Broadcasting)"
+    description: "W tym trybie BMS samodzielnie publikuje zagregowane dane. Musi być ustawiony jako Master (przełącznik na 0000)."
+
+  non_broadcasting_data_interval_s:
+    name: "⏱️ JK-BMS → Interwał danych bez rozgłaszania (s)"
+    description: "Opóźnienie między cyklami odpytywania danych, gdy tryb rozgłaszania BMS jest wyłączony. Dopuszczalny zakres: od 1 do 30 sekund."
     
   CAN_bus_usage:
-    name: "🔴 JK-BMS → Użycie Magistrali CAN"
-    description: "Włącz komunikację i transmisję danych na magistrali CAN (jeśli podłączona fizycznie)."
+    name: "🔴 JK-BMS → Użycie magistrali CAN"
+    description: "Włącz komunikację i transmisję danych na magistrali CAN (jeśli jest podłączona fizycznie)."
 
-  # MQTT Configuration Section
+  # Sekcja konfiguracji MQTT
   mqttadresse_port: 
-    name: "🚩 MQTT → Adres + port Brokera"
-    description: "Adres + port brokera MQTT (np.: core-mosquitto.local.hass.io:1883 lub lokalny IP + port)."
+    name: "🚩 MQTT → Adres brokera + Port"
+    description: "Adres brokera MQTT + port (np. core-mosquitto.local.hass.io:1883 lub lokalny adres IP + port)."
     
   mqttuser:
     name: "🚩 MQTT → Nazwa użytkownika"
@@ -41,7 +45,7 @@ configuration:
   mqttpass:
     name: "🚩 MQTT → Hasło"
     description: "Hasło powiązane z użytkownikiem MQTT."
-    
+
   Send_bip:
-    name: „📊 Dodatek użytkowania”
-    description: „Zezwól na wysyłanie sygnału dźwiękowego podczas uruchamiania. Żadne dane prywatne nie są przekazywane. Przetwarzanie jest zgodne z RODO”
+    name: "📊 Korzystanie z dodatku"
+    description: "Włącz sygnał dźwiękowy (beep) przy uruchamianiu. Żadne prywatne dane nie są przesyłane. Przetwarzanie jest zgodne z RODO (GDPR)."

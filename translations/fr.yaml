@@ -1,38 +1,42 @@
 ---
 configuration:
-  # JK-BMS Configuration Section
+  # Section de configuration du JK-BMS
   jkbms_path:
-    name: "🟪 JK-BMS → Chemin du Port Série"
-    description: "Chemin vers le port série où le JK-BMS est connecté (Menu: Paramètres-Matériel-Tout le matériel)."
+    name: "🟪 JK-BMS → Chemin du port série"
+    description: "Chemin vers le port série où le JK-BMS est connecté (Menu : Paramètres-Matériel-Tout le matériel)."
     
   jkbms_count:
-    name: "🟪 JK-BMS → Nombre de Modules BMS"
-    description: "Nombre de modules JK-BMS à interroger. Ils doivent être connectés au bus RS485 (valeur: 1 à 15)."
+    name: "🟪 JK-BMS → Nombre de modules BMS"
+    description: "Nombre de modules JK-BMS à interroger. Ils doivent être connectés au bus RS485 (valeur : 1 à 15)."
     
   use_gateway:
-    name: "🟨 JK-BMS → Utiliser une Passerelle TCP"
-    description: "Activer la communication via une passerelle IP (TCP Gateway) au lieu du port série local."
+    name: "🟨 JK-BMS → Utiliser une passerelle TCP"
+    description: "Activer la communication via une passerelle IP (Passerelle TCP) au lieu du port série local."
     
   gateway_ip_port:
-    name: "🟨 JK-BMS → Adresse IP + port de la Passerelle"
-    description: "Adresse IP + port de la passerelle réseau pour accéder au JK-BMS à distance (ex: 192.168.1.100:500)."
+    name: "🟨 JK-BMS → Adresse IP de la passerelle + Port"
+    description: "Adresse IP + port de la passerelle réseau pour l'accès à distance au JK-BMS (ex: 192.168.1.100:5000)."
     
   communication_debug:
-    name: "🔴 JK-BMS → Debug Communication"
-    description: "Activer l'affichage détaillé des logs de communication (pour diagnostic ou support)."
+    name: "🔴 JK-BMS → Débogage de la communication"
+    description: "Activer l'affichage détaillé des journaux de communication (pour le diagnostic ou le support)."
     
   bms_broadcasting:
-    name: "🔴 JK-BMS → Diffusion BMS"
-    description: "Dans ce mode, le BMS publie les données agrégées de lui-même. Il doit être Master (basculer sur 0000)."
+    name: "🔴 JK-BMS → Diffusion BMS (Broadcasting)"
+    description: "Dans ce mode, le BMS publie lui-même les données agrégées. Il doit être configuré en Maître (commutateur sur 0000)."
+
+  non_broadcasting_data_interval_s:
+    name: "⏱️ JK-BMS → Intervalle de données hors diffusion (s)"
+    description: "Délai entre chaque cycle d'interrogation des données lorsque le mode diffusion du BMS est désactivé. Plage autorisée : 1 à 30 secondes."
     
   CAN_bus_usage:
-    name: "🔴 JK-BMS → Utilisation Bus CAN"
-    description: "Activer la communication et transmission de données sur le bus CAN (si connecté physiquement)."
+    name: "🔴 JK-BMS → Utilisation du bus CAN"
+    description: "Activer la communication et la transmission de données sur le bus CAN (si connecté physiquement)."
 
-  # MQTT Configuration Section
+  # Section de configuration MQTT
   mqttadresse_port: 
-    name: "🚩 MQTT → Adresse + port du Broker"
-    description: "Adresse + port du broker MQTT (ex: core-mosquitto.local.hass.io:1883 ou IP locale + port)."
+    name: "🚩 MQTT → Adresse du Broker + Port"
+    description: "Adresse du broker MQTT + port (ex: core-mosquitto.local.hass.io:1883 ou IP locale + port)."
     
   mqttuser:
     name: "🚩 MQTT → Nom d'utilisateur"
@@ -43,5 +47,5 @@ configuration:
     description: "Mot de passe associé à l'utilisateur MQTT."
 
   Send_bip:
-    name: "📊 Addon utilisation"
-    description: "Permettre l'envoi d'un bip au démarrage. Aucune donnée privée n'est transmise. Le traitement est en conforme à la RGPD"
+    name: "📊 Utilisation de l'Add-on"
+    description: "Activer l'envoi d'un bip au démarrage. Aucune donnée privée n'est transmise. Le traitement est conforme au RGPD."

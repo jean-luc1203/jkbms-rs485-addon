@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.6.6
+version: 3.6.15
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://domosimple.eu/forum/thread-917.html
@@ -41,6 +41,7 @@ options:
   gateway_ip_port: "192.168.1.100:5000"
   communication_debug: false
   bms_broadcasting: false
+  non_broadcasting_data_interval_s: 3
   CAN_bus_usage: false
 
   # MQTT Configuration
@@ -59,6 +60,7 @@ schema:
   gateway_ip_port: str?
   communication_debug: bool
   bms_broadcasting: bool
+  non_broadcasting_data_interval_s: float(1,30)
   CAN_bus_usage: bool
 
   # MQTT Configuration

@@ -24,6 +24,11 @@ configuration:
   bms_broadcasting:
     name: "🔴 JK-BMS → BMS Broadcasting"
     description: "In this mode, the BMS publishes aggregated data by itself. It must be Master (switch to 0000)."
+
+
+  non_broadcasting_data_interval_s:
+    name: "⏱️ JK-BMS → Non-broadcasting data interval (s)"
+    description: "Delay between each data polling cycle when BMS broadcasting mode is disabled. Allowed range: 1 to 30 seconds."
     
   CAN_bus_usage:
     name: "🔴 JK-BMS → CAN Bus Usage"
