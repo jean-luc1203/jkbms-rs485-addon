@@ -10,7 +10,24 @@ It helps other Home Assistant users discover this project.
 
 # Smartphoton JK-BMS RS485 & CAN Bus Add-on
 
-> **2700+ installations** · **40+ daily clones** · **Community-driven development**
+> **4000+ installations** · **50+ daily clones** · **Community-driven development**
+
+## 🚀 Major Upgrade: Variable Cell Count Support (1S to 16S) - 2026-04-05
+
+The add-on now supports **battery packs with any cell count from 1S to 16S**.
+
+> **No more wrong cell delta values on non-16S packs.**
+
+### ✅ What this improves
+- Correct support for **4S, 8S, 15S, 16S** and all other supported pack sizes from **1 to 16 cells**
+- Accurate **cell min / max / average / delta** calculations
+- Automatic exclusion of **unused cell slots**
+- Better dashboard accuracy
+- More reliable automations and diagnostics
+
+### Why this matters
+Until now, many users with non-16-cell battery packs could see incorrect cell statistics because unused cell slots were still present in the frame layout.  
+This new feature makes the addon **cell-count aware**, which is a major improvement for real-world installations.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP) [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
@@ -26,13 +43,15 @@ This add-on transforms your Home Assistant into a complete BMS control center - 
 - PB2A16S20P / PB2A16S15P
 - PB1A16S15P / PB1A16S10P  
 - All models with FW:19
+- **Variable cell-count battery packs from 1S to 16S**
 
 ---
 
-## ⚡ Key Features (v3.0.0)
+## ⚡ Key Features
 
 | Feature | Description |
 |---------|-------------|
+| 🆕 **Variable Cell Count Support** | Automatically adapts to battery packs from 1S to 16S using the BMS-reported `cell_count_N` |
 | 🎛️ **Full Configuration UI** | Change BMS settings directly from Home Assistant |
 | 🔌 **Multiple Connectivity** | RS485 USB, RS485 Ethernet/WiFi Gateway, CAN Bus |
 | 📊 **Multi-BMS Support** | Manage up to 15 BMS units simultaneously |
@@ -48,6 +67,8 @@ This add-on transforms your Home Assistant into a complete BMS control center - 
 The add-on queries each BMS (addresses 1-15) via RS485 to retrieve all data.  
 **Full control** - modify parameters directly from the software.
 
+✅ Supports packs from **1S to 16S** with automatic cell-count-aware calculations.
+
 ```yaml
 bms_broadcasting: false
 ```
@@ -55,6 +76,8 @@ bms_broadcasting: false
 ### 2️⃣ Listening Mode  
 One BMS acts as the RS485 master (DIP switches: 0000).  
 **Read-only mode** - ideal when your inverter requires one BMS to be the bus master.
+
+✅ Supports packs from **1S to 16S** with automatic cell-count-aware calculations.
 
 ```yaml
 bms_broadcasting: true
@@ -173,9 +196,17 @@ BMS units appear automatically as devices in MQTT integration:
 
 ![MQTT Devices](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-in-MQTT-devices.png)
 
+### Automatic Cell-Count-Aware Calculations
+The add-on automatically reads the real cell count reported by the BMS and adjusts cell analysis accordingly.
+
+This means:
+- no more incorrect cell delta values on non-16S packs
+- correct min / max / average calculations on 4S, 8S, 15S and other supported pack sizes
+- better accuracy for diagnostics, dashboards and automations
+
 ### ⛑ Here is a list of all topics that are created automatically.
-MQTT Topics Structure - JK-BMS Add-on
-The JK-BMS add-on publishes three categories of data via MQTT
+MQTT Topics Structure - JK-BMS Add-on  
+The JK-BMS add-on publishes three categories of data via MQTT:
 1. Live Data
 2. Configuration Parameters (Settings)
 3. Static Specifications
@@ -188,6 +219,7 @@ Full sensor coverage for monitoring and automation:
 ![Available Entities](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-entities.png)
 
 ---
+
 ## Troubleshooting & 📊 RS485 Diagnostic Dashboard
 
 If you experience communication issues with the RS485 broadcast mode, please consult the troubleshooting guide:
@@ -199,7 +231,6 @@ If you experience communication issues with the RS485 broadcast mode, please con
 A ready-to-use diagnostic ![dashboard](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jk_bms_rs485_diagnostics_dashboard.yaml) is available to monitor RS485 communication quality.
 
 ### Features
-
 - Real-time communication health status
 - Frame reconstruction efficiency (yield ratio)
 - Serial/TCP buffer analysis
@@ -207,7 +238,6 @@ A ready-to-use diagnostic ![dashboard](https://github.com/jean-luc1203/jkbms-rs4
 - Built-in interpretation and troubleshooting guide
 
 ### Installation
-
 1. Go to **Home Assistant → Dashboards**
 2. Click **Edit Dashboard**
 3. Click **⋮ → Raw configuration editor**
@@ -215,12 +245,11 @@ A ready-to-use diagnostic ![dashboard](https://github.com/jean-luc1203/jkbms-rs4
 
 `jk_bms_rs485_diagnostics_dashboard.yaml`
 
-### Preview of RS485 Diagnostic]
+### Preview of RS485 Diagnostic
 
 <img width="900" height="577" alt="rs485_diag_preview png" src="https://github.com/user-attachments/assets/6b822c31-f14a-41cc-8e58-789cbd8760f6" />
 
 ### Notes
-
 - Requires MQTT Discovery enabled
 - Entities are automatically created by the addon
 - Starting from v3.6.4, RS485 frame parsing is stricter and may expose existing communication issues that were previously hidden
@@ -237,7 +266,7 @@ This add-on is **developed and maintained by one person** in their free time.
 
 ### Development Impact
 Your support directly enables:
-- 🏪 Purchase of the latest JK-BMS upon release. To ensure compatibility 
+- 🏪 Purchase of the latest JK-BMS upon release. To ensure compatibility
 - ✨ New features (CAN bus support was community-funded!)
 - 🐛 Bug fixes and maintenance
 - 📚 Documentation improvements
@@ -253,7 +282,7 @@ Your support directly enables:
 
 ### Upcoming Features
 - [ ] Alarm management for Broadcasting mode
-- [ ] Alarm management for CAN mode  
+- [ ] Alarm management for CAN mode
 - [ ] Enhanced multi-gateway support
 - [ ] Advanced cell balancing analytics
 - [ ] Historical data export tools
@@ -271,9 +300,9 @@ See [CHANGELOG.md](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/C
 ## 🐛 Issues & Feature Requests
 ## Support
 
-⚠️ Given the success of this add-on, I can no longer guarantee responses as quickly as  before.
+⚠️ Given the success of this add-on, I can no longer guarantee responses as quickly as before.
 
-### Please read this first [!FAQ]( https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/FAQ.md) before opening an “issue”
+### Please read this first [!FAQ](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/FAQ.md) before opening an issue
 
 ❇️ To report problems or request features, use [GitHub issues](https://github.com/jean-luc1203/jkbms-rs485-addon/issues).
 

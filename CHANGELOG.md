@@ -1,3 +1,12 @@
+## v3.7.0 - 2026-04-05
+### Variable Cell Count Support (1S to 16S) 🥳
+
+- Added major support for variable cell-count battery packs (1S to 16S) 
+- The addon now automatically detects the real number of cells reported by the BMS (`cell_count_N`) and adjusts cell voltage calculations accordingly.
+- This ensures correct min/max/average/delta values on 4S, 8S, 15S and all other supported configurations up to 16S.
+
+##  _______________________________________________________
+
 ## v3.6.15 - 2026-04-02
 
 ### 📦 – Enhanced network interface detection
@@ -14,6 +23,8 @@ Example in the module log:
 - 2 Apr 17:04:48 - [warn] [function:MQTT status to HAOS log] ⚠️ MQTT broker reconnecting [MQTT Broker]
 - 2 Apr 17:04:48 - [info] [mqtt-broker:56f7b2737cce493b] Connected to broker: mqtt://core-mosquitto.local.hass.io:1883
 - 2 Apr 17:04:48 - [warn] [function:MQTT status to HAOS log] ✅ MQTT broker connected [MQTT Broker]
+
+##  _______________________________________________________
 
 ## v3.6.10 - 2026-03-21
 
