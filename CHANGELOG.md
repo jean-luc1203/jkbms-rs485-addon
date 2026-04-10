@@ -1,13 +1,13 @@
 ## v3.7.4 - 2026-04-08
-### 🐞  Bug Fix
-- Fixed invalid MQTT discovery for the `Heating` entity, removing repeated Home Assistant log errors.
-    [Issue 83](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/83#issuecomment-4186019644)
-
-### Improvements Gateway TCP watchdog (A/B failover): 
+### 🚀  Improvements
 
 - Added a watchdog for TCP gateway communication in master Modbus mode, with automatic reconnection after   communication loss.
 - Monitors the TCP connection to the IP/Wifi gateway and automatically switches between two TCP slots (A→B→A) if no data is received for 2 minutes. 
 After 4 consecutive failovers without response, the gateway is declared unreachable and the switching stops. All events are logged at [warn] level in the add-on journal.
+
+### 🐞  Bug Fix
+- Fixed invalid MQTT discovery for the `Heating` entity, removing repeated Home Assistant log errors.
+    [Issue 83](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/83#issuecomment-4186019644)
 
 ### various:
 - Bip function updated in preparation for the upcoming premium version.
