@@ -10,7 +10,7 @@ It helps other Home Assistant users discover this project.
 
 # Smartphoton JK-BMS RS485 & CAN Bus Add-on
 
-> **4000+ installations** · **50+ daily clones** · **Community-driven development**
+> **4200+ installations** · **50+ daily clones** · **Community-driven development**
 
 ## 🚀 Major Upgrade: Variable Cell Count Support (1S to 16S) - 2026-04-05
 
