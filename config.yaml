@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.7.4
+version: 3.7.6
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://domosimple.eu/forum/thread-917.html
@@ -12,9 +12,6 @@ homeassistant: 2025.10.1
 arch:
   - aarch64
   - amd64
-  - armhf
-  - armv7
-  - i386
 privileged:
   - NET_ADMIN
   - SYS_RAWIO

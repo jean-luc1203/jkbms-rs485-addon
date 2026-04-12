@@ -12,28 +12,28 @@ WORKDIR /opt
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
-RUN \
-    apk add --no-cache --virtual .build-dependencies \
+RUN apk update \
+    && apk add --no-cache --upgrade \
+        musl \
+        musl-utils \
+        musl-dev \
+    && apk add --no-cache --virtual .build-dependencies \
         build-base \
         linux-headers \
         py3-pip \
         python3-dev \
-    \
-
     && apk add --no-cache \
         git \
         icu-data-full \
         nginx \
-		nodejs \
-		npm \
+        nodejs \
+        npm \
         openssh-client \
         patch \
         can-utils \
         iproute2 \
         bash \
         mosquitto-clients \
-    \
-
     && npm config set fetch-timeout 300000 \
     && npm config set fetch-retry-mintimeout 20000 \
     && npm config set fetch-retry-maxtimeout 120000 \
@@ -49,13 +49,10 @@ RUN \
         --fetch-retry-mintimeout=20000 \
         --fetch-retry-maxtimeout=120000 \
     && npm rebuild --build-from-source @serialport/bindings-cpp \
-    \
     && npm cache clear --force \
-    \
-    && echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
-    \
+    && echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
     && apk del --no-cache --purge .build-dependencies \
-    && rm -fr \
+    && rm -rf \
         /etc/nginx \
         /root/.cache \
         /root/.npm \
@@ -84,7 +81,7 @@ ARG BUILD_REF
 ARG BUILD_REPOSITORY
 ARG BUILD_VERSION
 
-ENV VERSION ${BUILD_VERSION}
+ENV VERSION=${BUILD_VERSION}
 
 # Labels
 LABEL \
