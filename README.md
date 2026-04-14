@@ -96,7 +96,7 @@ Direct CAN bus broadcasting via the second RJ45 connector.
 ![Hardware Connection Guide](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.gif)
 
 ---
-## ⚠️ Important Safety Note ⚠️
+## 💢 Important Safety Note 
 
 This add-on is designed for monitoring, automation and energy optimization.
 It should not be the only safety layer of an electrical installation.
@@ -105,7 +105,7 @@ A failure of Home Assistant, Node-RED, MQTT, USB/RS485 communication or the host
 
 Please ensure your installation keeps safe fallback behavior, hardware protections, and conservative default settings even if this add-on stops working or loses communication.
 
-See [SAFETY.md](SAFETY.md) for more details and recommended fail-safe design principles.
+⚠️ See [SAFETY.md](SAFETY.md) for more details and recommended fail-safe design principles.
 
 ---
 ## 🛠️ Installation
