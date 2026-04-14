@@ -1,4 +1,4 @@
-# Safety
+# 💢 Safety
 
 ## Purpose of this project
 
