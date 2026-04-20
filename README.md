@@ -7,10 +7,11 @@ It helps other Home Assistant users discover this project.
 [![Community Forum](https://img.shields.io/badge/community-forum-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions)
 [![Reddit](https://img.shields.io/badge/reddit-r%2Fhomeassistant-orange)](https://www.reddit.com/r/homeassistant/)
 ---
+❗️ Personal/non-commercial use permitted; business/professional/commercial use requires a separate commercial license.
 
 # Smartphoton JK-BMS RS485 & CAN Bus Add-on
 
-> **4200+ installations** · **50+ daily clones** · **Community-driven development**
+> **4800+ installations** · **50+ daily clones** · **Community-driven development**
 
 ## 🚀 Major Upgrade: Variable Cell Count Support (1S to 16S) - 2026-04-05
 
