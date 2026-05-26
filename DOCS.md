@@ -272,6 +272,25 @@ You can see a short live demonstration on my Youtube [channel](https://www.youtu
 ---
 ## Other options
 ---
+### Option: `Node-RED authentication`
+
+The Node-RED editor and HTTP endpoints (port 1891) can be protected with
+basic authentication via the `auth_username` and `auth_password` options:
+
+- **Both set** — the password is hashed with bcrypt on each startup and
+  applied to the editor (`adminAuth`), HTTP-In nodes (`httpNodeAuth`),
+  and static-file routes (`httpStaticAuth`). A confirmation line is
+  written to the add-on log.
+- **Either blank** — Node-RED starts with no authentication and a
+  warning banner is logged. Port 1891 is exposed directly on your LAN,
+  so leaving it open is **not recommended**.
+
+A per-install `credentialSecret` (used by Node-RED to encrypt credentials
+inside flows) is generated automatically on first launch and persisted to
+`/data/credential-secret` (mode 0600). It survives restarts and is unique
+to your installation.
+
+---
 ### Option: `Log Level`
 The `log_level` option controls the level of log output by the addon and can
 be changed to be more or less verbose, which might be useful when you are

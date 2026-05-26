@@ -46,6 +46,15 @@ configuration:
     name: "🚩 MQTT → Password"
     description: "Password associata all'utente MQTT."
 
+  # Node-RED Auth Configuration Section
+  auth_username:
+    name: "🔐 Node-RED → Editor Username"
+    description: "Username for the Node-RED editor (port 1891) and HTTP endpoints. Leave blank to start Node-RED with no authentication (a warning will be logged)."
+
+  auth_password:
+    name: "🔐 Node-RED → Editor Password"
+    description: "Password for the Node-RED editor and HTTP endpoints. Also protects /endpoint/* and static files. Leave blank to disable authentication (not recommended — port 1891 is reachable on the LAN)."
+
   Send_bip:
     name: "📊 Utilizzo Add-on"
     description: "Abilita l'invio di un segnale acustico (beep) all'avvio. Non viene trasmesso alcun dato privato. Il trattamento è conforme al GDPR."

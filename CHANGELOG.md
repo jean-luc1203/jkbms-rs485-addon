@@ -1,3 +1,19 @@
+## v3.7.7 — Security: per-install Node-RED credentials
+
+### 🔒 Security
+- Removed hardcoded Node-RED editor / HTTP credentials and `credentialSecret` from the public image. All installs previously shared the same default user and bcrypt hash, allowing anyone with image access to log into any install on port 1891.
+
+### ✨ Added
+- Add-on options `auth_username` and `auth_password` to configure Node-RED editor / HTTP endpoint credentials. Hashed with bcrypt at startup and applied to `adminAuth`, `httpNodeAuth`, and `httpStaticAuth`.
+- Per-install random `credentialSecret`, generated once and persisted to `/data/credential-secret` (0600).
+
+### ⬆️  Upgrade notes
+- The previous default login no longer works.
+- If `auth_username` or `auth_password` is left blank, Node-RED starts with **no authentication** and a warning is logged to the add-on log. Set both options to enable authentication — recommended, since port 1891 is exposed on the LAN.
+- Encrypted MQTT credentials are not affected: this add-on rewrites `flows.json` from the template on every restart, and MQTT credentials are read from add-on options at runtime.
+
+##  _______________________________________________________
+
 ## v3.7.6 - 2026-04-12
 ### 🐞  Bug Fix
 - Remove the serial port compilation to avoid version conflict issues on ARM64/aarch64
