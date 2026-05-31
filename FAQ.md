@@ -1,7 +1,7 @@
 # 📚 Automatic FAQ - JKBMS RS485
 
 > 🤖 This FAQ is automatically generated from resolved issues.
-> Last update: 2026-05-24
+> Last update: 2026-05-31
 
 ## 🔍 Quick Navigation
 
@@ -49,19 +49,19 @@
 
 ---
 
+### port speed 115800 or 115200
+
+**Issue #69** | 💬 10 comments | 👍 0 reactions
+
+[View solution](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/69)
+
+---
+
 ### Question regarding V19H documentation
 
 **Issue #55** | 💬 10 comments | 👍 0 reactions
 
 [View solution](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/55)
-
----
-
-### port speed 115800 or 115200
-
-**Issue #69** | 💬 8 comments | 👍 0 reactions
-
-[View solution](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/69)
 
 ---
 
