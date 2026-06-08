@@ -3,6 +3,18 @@
 This image allows you to run the **JK-BMS-RS485 & CAN bus** as standalone container alongside **Home Assistant Docker** installation (without the Supervisor).  
 The image embeds the original Node-RED core implementation of the add-on and exposes its configuration via Docker environment variables.
 
+## Security note
+
+The standalone Docker image launches Node-RED with `--userDir /data` and no
+`--settings`, so **no authentication is enforced on port 1880**. This matches
+the upstream Node-RED Docker image. Put the container behind a reverse proxy
+with authentication, or bind it to a private network, before exposing it.
+
+The Home Assistant add-on path (separate from this standalone image) supports
+per-install Node-RED credentials via the `auth_username` and `auth_password`
+options. Wiring the same behaviour into the standalone path is a known
+follow-up.
+
 ## Build the Docker image
 
 ### Local build

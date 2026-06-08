@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.7.6
+version: 3.7.7
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://domosimple.eu/forum/thread-917.html
@@ -46,6 +46,10 @@ options:
   mqttuser: "username"
   mqttpass: "password"
 
+  # Node-RED Auth Configuration
+  auth_username: ""
+  auth_password: ""
+
   # Telemetry
   Send_bip: true
 
@@ -64,6 +68,10 @@ schema:
   mqttadresse_port: str?
   mqttuser: str?
   mqttpass: password?
+
+  # Node-RED Auth Configuration
+  auth_username: str?
+  auth_password: password?
 
   # Telemetry
   Send_bip: bool
