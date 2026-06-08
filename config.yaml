@@ -1,8 +1,8 @@
 ---
 name: "JK-BMS wired management"
-version: 3.7.6
-slug: "smartphoton_jkbms"
-description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
+version: 3.9.1
+slug: "smartphoton_jkbms_dev"
+description: JK-BMS Management via RS485 DEV
 url: https://domosimple.eu/forum/thread-917.html
 ingress: false
 ingress_stream: false
@@ -49,6 +49,20 @@ options:
   # Telemetry
   Send_bip: true
 
+  # ============================================================
+  # 👑 PREMIUM
+  # ============================================================
+  premium_section: "────────── PREMIUM ──────────"
+  premium_key: ""
+
+  # ============================================================
+  # 🎨 DASHBOARD
+  # ============================================================
+  dashboard_section: "────────── DASHBOARD ──────────"
+  dashboard_custom_cards_installed: false
+  dashboard_language: "fr"
+  dashboard_mode: "legacy"
+
 schema:
   # JK-BMS Configuration
   jkbms_path: str
@@ -65,6 +79,13 @@ schema:
   mqttuser: str?
   mqttpass: password?
 
+  premium_section: str?
+  premium_key: str?
+
+  dashboard_section: str?
+  dashboard_custom_cards_installed: bool
+  dashboard_language: list(fr|en)
+  dashboard_mode: list(legacy|html|both)
+
   # Telemetry
   Send_bip: bool
-
