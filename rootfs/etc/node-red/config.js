@@ -6,6 +6,15 @@ const fs = require("fs");
 const options = JSON.parse(fs.readFileSync("/data/options.json", "utf8"));
 const bcrypt = require("bcryptjs");
 
+config.functionGlobalContext = {
+  ...(config.functionGlobalContext || {}),
+  crypto: require("crypto"),
+  fs: require("fs"),
+  path: require("path")
+};
+
+config.functionExternalModules = true;
+
 if ("theme" in options && options.theme !== "default") {
   config.editorTheme.theme = options.theme;
 }
@@ -25,10 +34,10 @@ config.flowFilePretty = true;
 
 config.contextStorage = {
   default: {
-    module: 'localfilesystem',
+    module: "localfilesystem",
     config: {
-      dir: '/config/smartphoton_jkbms/global-variables',
-      flushInterval: '5'
+      dir: "/config/smartphoton_jkbms/global-variables",
+      flushInterval: "5"
     }
   }
 };
