@@ -1,3 +1,55 @@
+##  4.1.0 - 2026-06-07
+
+### 🚀 Premium Dashboard System
+A new Premium Dashboard system has been introduced, giving users more flexibility in how their dashboards are generated and displayed.
+### 🎨 Dashboard Modes
+Users can now choose between three dashboard modes directly from the add-on configuration:
+Legacy → Generates only the classic Home Assistant Lovelace dashboards.
+HTML → Generates only the new Smart Energy Premium HTML dashboard.
+Both → Generates both the classic Lovelace dashboards and the new HTML dashboard simultaneously.
+This allows users to keep their preferred interface while exploring the new generation dashboard experience.
+### 🔑 Premium Features
+Premium users now benefit from:
+Automatic dashboard generation.
+Advanced Smart Energy Premium HTML interface.
+Enhanced mobile-friendly experience.
+Interactive historical charts.
+Real-time battery monitoring.
+Improved system visualization and navigation.
+Future premium dashboard enhancements and new features.
+### 📱 New Smart HTML Dashboard
+The new HTML dashboard provides:
+Modern responsive design for desktop and mobile devices.
+Live battery monitoring.
+Detailed battery subviews.
+Interactive historical graphs.
+Broadcasting mode support.
+Automatic language support (English / French).
+Improved performance and navigation.
+### ⚙️ Compatibility
+Existing users can continue using the classic Lovelace dashboards without any changes by selecting Legacy mode. The new dashboard system is fully backward compatible with previous installations.
+###  Improvements
+Improved dashboard generation workflow.
+Better mobile responsiveness.
+Enhanced broadcasting mode support.
+Automatic dashboard synchronization.
+Multiple dashboard generation modes available from configuration.
+
+## v3.8.5 - 2026-04-19
+🐞 Bug Fix
+
+Fixed MQTT discovery for device_address entity: renamed from Device_address_N to bms_Device_address_N to generate correct entity_id number.bms_1_bms_device_address instead of number.bms_1_device_address
+
+##  _______________________________________________________
+
+## v3.8.3 - 2026-04-17
+📦 - Enhanced
+
+Implementation of the Premium version by Tapion69
+Automatic addition of custom dashboards
+
+##  _______________________________________________________
+
 ## v3.7.6 - 2026-04-12
 ### 🐞  Bug Fix
 - Remove the serial port compilation to avoid version conflict issues on ARM64/aarch64
