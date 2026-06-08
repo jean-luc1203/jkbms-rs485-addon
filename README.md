@@ -30,7 +30,9 @@ The add-on now supports **battery packs with any cell count from 1S to 16S**.
 Until now, many users with non-16-cell battery packs could see incorrect cell statistics because unused cell slots were still present in the frame layout.  
 This new feature makes the addon **cell-count aware**, which is a major improvement for real-world installations.
 
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP) [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP) [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/ncp/payment/PSQPALQJT9UBW)
+
+
 
 ---
 
