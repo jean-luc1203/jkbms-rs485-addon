@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management"
-version: 3.9.1
+version: 4.1.0
 slug: "smartphoton_jkbms_dev"
 description: JK-BMS Management via RS485 DEV
 url: https://domosimple.eu/forum/thread-917.html
