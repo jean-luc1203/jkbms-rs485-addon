@@ -2,7 +2,7 @@
 It helps other Home Assistant users discover this project and supports future development.
 
 [![GitHub stars](https://img.shields.io/github/stars/jean-luc1203/jkbms-rs485-addon?style=social)](https://github.com/jean-luc1203/jkbms-rs485-addon/stargazers)
-[![Active installations](https://img.shields.io/badge/active_installations-4800+-brightgreen)](https://github.com/jean-luc1203/jkbms-rs485-addon)
+[![Active installations](https://img.shields.io/badge/active_installations-7500+-brightgreen)](https://github.com/jean-luc1203/jkbms-rs485-addon)
 [![Daily clones](https://img.shields.io/badge/daily_clones-50+-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon)
 [![Community Forum](https://img.shields.io/badge/community-forum-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Compatible-41BDF5)](https://www.home-assistant.io/)
