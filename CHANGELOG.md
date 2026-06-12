@@ -1,5 +1,3 @@
-##  4.1.0 - 2026-06-07
-
 ## Smart JK-BMS RS485 Add-on v4.1.3
 
 ### Improvements
@@ -15,6 +13,7 @@
 * Fixed several dashboard refresh and navigation issues.
 * Improved overall user experience on desktop and mobile devices.
 
+##  4.1.0 - 2026-06-07
 
 ### 🚀 Premium Dashboard System
 A new Premium Dashboard system has been introduced, giving users more flexibility in how their dashboards are generated and displayed.
