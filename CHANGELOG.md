@@ -1,3 +1,30 @@
+### JK-BMS RS485 Add-on v4.1.4
+
+#### 🚀 New Features
+
+* Added support for the new **Smart Energy Premium multi-dashboard system**.
+* Automatic detection of existing premium dashboards (JK-BMS, Voltronic, Finance).
+* Automatic integration of JK-BMS into a shared dashboard environment.
+* Dynamic menu generation based on installed SmartPhoton modules.
+
+#### 🔧 Improvements
+
+* Shared dashboard index management improved.
+* Existing dashboard modules are preserved during new module installations.
+* Better compatibility between JK-BMS, Voltronic and Smart Energy Finance premium dashboards.
+* Active dashboard view is now preserved during automatic menu refreshes.
+
+#### 🐞 Fixes
+
+* Fixed dashboard menu duplication in multi-module environments.
+* Fixed cases where a newly installed module could overwrite an existing premium dashboard.
+* Fixed module detection and shared navigation synchronization issues.
+
+#### 💡 Result
+
+Users can now combine multiple SmartPhoton premium modules (JK-BMS, Voltronic, Finance, and future modules) into a single unified dashboard while keeping independent installation and automatic integration.
+
+
 ## Smart JK-BMS RS485 Add-on v4.1.3
 
 ### Improvements
