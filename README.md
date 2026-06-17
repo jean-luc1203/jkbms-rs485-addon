@@ -118,8 +118,6 @@ No manual dashboard maintenance.
 
 The add-on automatically creates dashboards based on the installed Smartphoton modules and the selected configuration.
 
-![Smart Energy Premium JK Dashboard](images/jk.png)
-
 ---
 
 ## 🖥️ Available Dashboard Modes
@@ -131,6 +129,8 @@ The Legacy dashboard uses native Home Assistant Lovelace cards.
 It is ideal for users who prefer the traditional Home Assistant interface and want dashboards directly integrated into HA.
 
 ### 🌐 Modern HTML Dashboard
+
+![Smart Energy Premium JK Dashboard](images/jk.png)
 
 The Modern HTML dashboard provides a responsive, professional and mobile-friendly interface.
 
