@@ -1,3 +1,11 @@
+**Changelog 4.1.5**
+
+**Stability improvements**
+- Stabilized the Smart Energy dashboard navigation.
+- Fixed an issue where opening a battery and entering a sub-view could automatically return to the main page after about 15 seconds.
+- Improved the shared dashboard index so active modules are no longer reloaded unnecessarily during background scans.
+- Fixed the JK-BMS menu label display to prevent broken/truncated characters from appearing.
+
 ### JK-BMS RS485 Add-on v4.1.4
 
 #### 🚀 New Features
