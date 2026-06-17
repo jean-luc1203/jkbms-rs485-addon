@@ -118,6 +118,8 @@ No manual dashboard maintenance.
 
 The add-on automatically creates dashboards based on the installed Smartphoton modules and the selected configuration.
 
+![Smart Energy Premium JK Dashboard](images/jk.png)
+
 ---
 
 ## 🖥️ Available Dashboard Modes
