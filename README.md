@@ -27,13 +27,12 @@ It transforms Home Assistant into a complete battery monitoring and energy manag
 
 ---
 
-## Community & Support
-
+Community & Support
 Need help, want to report a bug, request a feature, or share your setup?
 
 Join the official Simply Home Energy Discord community:
 
-🔗 https://discord.gg/nwVmvxYJa5
+🔗 DISCORD_INVITE_LINK
 
 Connect with other users, get support, discuss new features, and stay informed about the latest updates.
 
