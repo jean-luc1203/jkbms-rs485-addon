@@ -141,6 +141,8 @@ It is ideal for users who prefer the traditional Home Assistant interface and wa
 
 ### 🌐 Modern HTML Dashboard
 
+![Smart Energy Premium House Dashboard](images/house.png)
+
 ![Smart Energy Premium JK Dashboard](images/jk.png)
 
 The Modern HTML dashboard provides a responsive, professional and mobile-friendly interface.
