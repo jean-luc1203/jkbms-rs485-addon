@@ -1,4 +1,4 @@
-# Changelog — v4.1.6
+# Changelog — v4.1.7
 
 ## 🏠 Smart Energy Premium House Dashboard
 
