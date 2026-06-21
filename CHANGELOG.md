@@ -6,7 +6,7 @@ This release introduces the **Smart Energy Premium House Dashboard** directly in
 
 It provides a modern and fully configurable visual overview of your complete energy system from one central dashboard.
 
-![Smart Energy Premium House Dashboard](images/house.png)
+![Smart Energy Premium House Dashboard](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon-DEVeloppment/main/images/house.png)
 
 ### ✨ New Features
 
