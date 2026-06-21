@@ -1,3 +1,89 @@
+# Changelog — v4.1.6
+
+## 🏠 Smart Energy Premium House Dashboard
+
+This release introduces the **Smart Energy Premium House Dashboard** directly inside the JK-BMS add-on.
+
+It provides a modern and fully configurable visual overview of your complete energy system from one central dashboard.
+
+![Smart Energy Premium House Dashboard](images/house.png)
+
+### ✨ New Features
+
+- New **Smart Energy Premium House Dashboard** integrated into the JK-BMS add-on.
+- Central visual overview of:
+  - Solar production
+  - Home consumption
+  - Grid import / export
+  - Battery charging and discharging
+  - Battery SOC, voltage, current and power
+  - Inverter information
+  - Vehicle energy
+  - Pool energy
+  - Weather and solar forecast
+
+### ⚙️ Fully Configurable Sensors
+
+All displayed sensors can be configured directly from the dashboard settings:
+
+- Solar sensors
+- Home consumption sensors
+- Grid sensors
+- Battery sensors
+- Inverter sensors
+- Vehicle sensors
+- Pool sensors
+- Weather sensors
+- Solar forecast sensors
+- Custom sensors
+
+This allows the dashboard to adapt to many different Home Assistant installations and energy systems.
+
+### ⚡ Configurable Shortcuts
+
+The dashboard now supports configurable shortcuts for:
+
+- Home devices
+- Inverter settings
+- Custom options
+
+Each shortcut can include:
+
+- Custom icon
+- Custom label
+- Main Home Assistant entity
+- Optional secondary status entity
+- Popup controls
+- Climate controls
+- Switch controls
+- Number controls
+- Select controls
+- Status display
+
+Desktop mode displays shortcut icons directly in the top bar.
+
+Mobile mode displays up to five shortcuts in the top bar, with additional shortcuts available through the `+` button.
+
+### 📊 Improved History Charts
+
+- Dynamic chart scales based on sensor minimum and maximum values.
+- Instant value displayed in the top-right corner of history cards.
+- Improved visibility for power, voltage, current, temperature and energy history.
+
+### 🌍 Language Support
+
+The dashboard automatically follows the language selected in the add-on configuration:
+
+- French
+- English
+
+### 📱 Desktop and Mobile Optimized
+
+- Dedicated responsive mobile layout.
+- Improved shortcut display on smartphones.
+- Mobile popup for additional shortcuts.
+- Optimized dashboard navigation and controls for touch screens.
+
 **Changelog 4.1.5**
 
 **Stability improvements**
