@@ -8,7 +8,7 @@ It provides a modern and fully configurable visual overview of your complete ene
 
 ## Smart Energy Premium House Dashboard:
 
-<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/067f1e7c-3023-4d32-bb39-10ed7a0254f0" />
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/067f1e7c-3023-4d32-bb39-10ed7a0254f0" />
 
 
 
