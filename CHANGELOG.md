@@ -6,7 +6,10 @@ This release introduces the **Smart Energy Premium House Dashboard** directly in
 
 It provides a modern and fully configurable visual overview of your complete energy system from one central dashboard.
 
-![Smart Energy Premium House Dashboard](images/house.png)
+## Smart Energy Premium House Dashboard:
+
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/067f1e7c-3023-4d32-bb39-10ed7a0254f0" />
+
 
 
 ### ✨ New Features
