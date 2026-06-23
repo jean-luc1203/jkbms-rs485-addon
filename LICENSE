@@ -1,9 +1,47 @@
-## License
+# License
 
-This project is licensed under the PolyForm Noncommercial License 1.0.0.
+Copyright (c) 2026 Simply Home Energy / Jean-Luc Martinelli
 
-You may use, study, and modify this software for personal, hobbyist, research, and other noncommercial purposes.
+Project: SmartPhoton JK-BMS RS485 & CAN Bus Add-on
 
-Any commercial, professional, integrator, installer, client-delivery, or company use requires a separate commercial license from the author.
+This repository uses a **source-available, non-commercial licensing model**.
 
-For commercial licensing, contact: [ton email]
+Unless a file explicitly states otherwise, the community add-on source code in this repository is licensed under the:
+
+**PolyForm Noncommercial License 1.0.0**
+
+Official license text:
+https://polyformproject.org/licenses/noncommercial/1.0.0
+
+SPDX identifier:
+`PolyForm-Noncommercial-1.0.0`
+
+## Summary
+
+You may use, study, modify and run this software for private, personal, hobbyist, educational, research and other non-commercial purposes.
+
+Commercial, professional, installer, integrator, reseller, company or client-delivery use requires a separate commercial license or written authorization from Simply Home Energy / SmartPhoton.
+
+## Important clarification
+
+This repository is **not licensed under the MIT License**, unless a specific file explicitly says so.
+
+Any previous README text mentioning MIT should be considered obsolete for the current version of the repository. Older copies of the project remain governed by the license that applied at the time they were obtained.
+
+## Premium components
+
+Premium dashboards, Premium dashboard templates, Premium HTML interface, Premium assets, Premium generation logic, license validation logic and commercial SmartPhoton dashboard ecosystem components are not granted for commercial reuse under the community license.
+
+They are governed by `PREMIUM_LICENSE.md` and, for business/professional use, by `COMMERCIAL_LICENSE.md`.
+
+## Commercial licensing
+
+For commercial licensing, installer use, integration into a paid service, redistribution, resale or professional deployment, contact:
+
+domosimple@gmail.com
+
+See:
+
+- `LICENSING.md`
+- `PREMIUM_LICENSE.md`
+- `COMMERCIAL_LICENSE.md`
