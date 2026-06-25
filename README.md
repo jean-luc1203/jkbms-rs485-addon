@@ -113,7 +113,7 @@ This improves reliability on installations where serial data can arrive fragment
 
 ### Improved RS485 / Modbus handling
 
-The communication layer is stricter and more robust, with better frame parsing, diagnostics and interpretation.
+The cation layer is stricter and more robust, with better frame parsing, diagnostics and interpretation.
 
 ### Multi-BMS improvements
 
@@ -613,6 +613,18 @@ Your support directly enables:
 - Dashboard improvements
 - Hardware compatibility testing
 - Community support
+
+---
+
+## Community & Support
+
+Need help, want to report a bug, request a feature, or share your setup?
+
+Join the official Simply Home Energy Discord community:
+
+🔗 [DISCORD_INVITE_LINK](https://discord.gg/nwVmvxYJa5)
+
+Connect with other users, get support, discuss new features, and stay informed about the latest updates.
 
 ---
 
