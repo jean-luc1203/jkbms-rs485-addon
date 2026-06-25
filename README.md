@@ -113,7 +113,7 @@ This improves reliability on installations where serial data can arrive fragment
 
 ### Improved RS485 / Modbus handling
 
-The cation layer is stricter and more robust, with better frame parsing, diagnostics and interpretation.
+The communication layer is stricter and more robust, with better frame parsing, diagnostics and interpretation.
 
 ### Multi-BMS improvements
 
