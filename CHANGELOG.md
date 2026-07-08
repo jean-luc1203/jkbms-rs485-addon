@@ -1,5 +1,11 @@
-# Changelog — v4.1.7
+##  4.1.8 - 2026-07-08
+#### 🐞 Fixes
 
+- Incorrect baud rate for the serial port
+- Incorrect path retrieved from global variables
+- Minor fix in the premium dashboard
+
+# v4.1.7
 ## 🏠 Smart Energy Premium House Dashboard
 
 This release introduces the **Smart Energy Premium House Dashboard** directly inside the JK-BMS add-on.
