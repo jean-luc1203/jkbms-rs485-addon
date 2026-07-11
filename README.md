@@ -15,7 +15,7 @@ It helps other Home Assistant users discover the project and supports future dev
 
 > **8,300+ installations worldwide** · **67 countries** · **Community-driven development** · **Professional Home Assistant integration**
 
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/s/b704b5561d)
 [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/ncp/payment/PSQPALQJT9UBW)
 
 **SmartPhoton JK-BMS** is a professional Home Assistant add-on for monitoring, controlling and integrating JK-BMS battery management systems through:
