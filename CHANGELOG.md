@@ -7,6 +7,9 @@
 - Improved detection of missing BMS, timeouts, latency, framing and polling stability.
 - Corrected false alarms caused by short or concatenated serial/TCP buffers, which are now treated as normal transport behaviour when frames are reconstructed correctly.
 
+<img width="586" height="623" alt="image" src="https://github.com/user-attachments/assets/56d041ba-db1a-4a17-b652-d3cb3cdf3c9e" />
+
+
 ##  4.1.9 - 2026-07-11
 
 ##  4.1.8 - 2026-07-08
