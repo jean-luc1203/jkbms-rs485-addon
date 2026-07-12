@@ -84,7 +84,7 @@ Premium dashboards are designed for users who want a clean, professional and rea
 | Home Assistant entities | ✅ Yes | ✅ Yes |
 | Multi-BMS monitoring | ✅ Yes | ✅ Yes |
 | Alarm monitoring | ✅ Yes | ✅ Yes |
-| Diagnostics and watchdog | ✅ Yes | ✅ Yes |
+| Unified communication diagnostics | ✅ Yes | ✅ Yes |
 | Legacy dashboard generation | Limited / manual | ✅ Automatic |
 | Modern HTML dashboard | ❌ No | ✅ Yes |
 | Dynamic module menus | ❌ No | ✅ Yes |
@@ -99,37 +99,43 @@ Premium dashboards are optional. They are intended for users who want a ready-to
 
 ## Main improvements in recent versions
 
-Recent development focused on reliability, real-world multi-BMS installations and better Home Assistant integration.
+Recent development focused on communication reliability, real-world multi-BMS installations and faster troubleshooting.
 
-### Data stability
+### More reliable frame reconstruction
 
-The add-on now provides much more stable and reliable data in Home Assistant.
+The communication layer now rebuilds frames split across several serial or TCP reads and separates multiple frames received in the same buffer.
 
-### Frame reconstruction
+This improves reliability with USB-RS485 adapters and RS485-to-TCP gateways without treating normal transport fragmentation as a communication fault.
 
-The add-on can rebuild RS485 / Modbus frames even when data chunks arrive out of order.
+### Unified communication diagnostics
 
-This improves reliability on installations where serial data can arrive fragmented, delayed or mixed in unexpected order.
+The same diagnostic system now supports both RS485 architectures:
 
-### Improved RS485 / Modbus handling
+- **Active Polling**: SmartPhoton acts as RS485 master and polls each configured BMS.
+- **Broadcast**: one JK-BMS acts as RS485 master while SmartPhoton listens to the bus.
 
-The communication layer is stricter and more robust, with better frame parsing, diagnostics and interpretation.
+The operating mode is detected automatically and the dashboard displays only the relevant counters.
 
-### Multi-BMS improvements
+### Health score and incident memory
 
-The add-on is designed for installations with one or many JK-BMS units, including larger battery systems.
+The diagnostics provide:
 
-### MQTT Discovery improvements
+- a clear `healthy`, `degraded` or `communication_error` state;
+- a communication quality score from `0` to `100`;
+- a readable explanation of the current condition;
+- persistent memory of the worst incident observed.
 
-Devices and entities are created automatically in Home Assistant through MQTT Discovery.
+Active Polling diagnostics include requests, responses, latency, timeouts, polling cycles and per-BMS health. Broadcast diagnostics include serial freshness, buffers, bytes, frame reconstruction and detected BMS units.
 
-### Safer broadcasting mode
+Normal transport patterns such as short buffers or several frame headers in one buffer are shown as informational observations when valid frames are reconstructed correctly, preventing false alarms.
 
-When the add-on is used in listening / broadcasting mode, settings are shown as read-only where direct editing would not be safe or technically valid.
+### Multi-BMS and MQTT Discovery improvements
 
-### Diagnostics and watchdog logic
+The add-on supports installations with one or many JK-BMS units, while devices and entities are created automatically in Home Assistant through MQTT Discovery.
 
-Improved health indicators help detect communication problems, stale data, buffer issues and RS485 instability.
+### Safer Broadcast mode
+
+When SmartPhoton is listening to a BMS-controlled RS485 bus, settings are shown as read-only where direct editing would not be safe or technically valid.
 
 ---
 
@@ -179,7 +185,7 @@ Supported JK-BMS models include:
 | Native Home Assistant integration | Devices and entities created automatically through MQTT Discovery |
 | MQTT compatible | Works with Home Assistant and any MQTT-compatible system |
 | Alarm monitoring | Comprehensive alarm monitoring and status reporting |
-| Diagnostics and watchdog | Helps detect communication issues and stale data |
+| Unified communication diagnostics | Adaptive Active Polling / Broadcast diagnostics with health score, incident memory and per-BMS analysis |
 | Premium dashboard system | Automatic generation of professional dashboards |
 | Modern HTML dashboard | Responsive interface for desktop, tablet and smartphone |
 | Legacy Lovelace dashboard | Traditional Home Assistant dashboard generation |
@@ -299,11 +305,9 @@ The dynamic menu system adapts to the modules installed on the Home Assistant sy
 
 ## Three operating modes
 
-### 1️⃣ Master mode
+### 1️⃣ Active Polling — SmartPhoton RS485 Master
 
-The add-on queries each BMS directly through RS485.
-
-This mode provides full monitoring and full configuration access.
+SmartPhoton queries each configured BMS directly through RS485.
 
 ```yaml
 bms_broadcasting: false
@@ -312,20 +316,17 @@ bms_broadcasting: false
 Available features:
 
 - Read live BMS data
-- Modify BMS settings
-- Monitor alarms
-- Monitor cells
-- Monitor temperatures
-- Use full Home Assistant integration
+- Modify BMS settings when supported
+- Monitor alarms, cells and temperatures
+- Detect responding or missing BMS units
+- Measure response latency, timeouts and complete polling cycles
+- Display individual communication health for each BMS
 
 ---
 
-### 2️⃣ Listening / broadcasting mode
+### 2️⃣ Broadcast — JK-BMS RS485 Master
 
-One BMS acts as the RS485 master.  
-The add-on listens to the RS485 traffic and publishes available data to Home Assistant.
-
-This mode is useful when an inverter or another device must remain the bus master.
+One JK-BMS acts as the RS485 master and SmartPhoton listens passively to the bus.
 
 ```yaml
 bms_broadcasting: true
@@ -336,10 +337,11 @@ Available features:
 - Read-only monitoring
 - Multi-BMS data reception
 - Home Assistant MQTT publishing
-- Dashboard compatibility
+- Detection of received BMS units
+- Analysis of serial/TCP buffers and reconstructed frames
 - Safer settings handling
 
-In this mode, settings may be displayed as read-only because the add-on is not directly controlling the BMS bus.
+In this mode, SmartPhoton can confirm which BMS units were detected, but it may not know how many units were expected unless that information is configured elsewhere.
 
 ---
 
@@ -547,36 +549,39 @@ The add-on provides extensive Home Assistant entities for monitoring and automat
 
 ---
 
-## RS485 diagnostic dashboard
+## Unified RS485 diagnostic dashboard
 
-If you experience communication issues with RS485, use the diagnostic dashboard.
+The diagnostic dashboard now supports both **Active Polling** and **Broadcast** modes with one adaptive interface.
 
-[Troubleshooting Guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
-
-A ready-to-use diagnostic dashboard is available here:
-
-[RS485 Diagnostic Dashboard YAML](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jk_bms_rs485_diagnostics_dashboard.yaml)
+- [Communication Troubleshooting Guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
+- [How to Send Diagnostic Statistics](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/How_to_Send_JK-BMS_Diagnostic_Statistics.md)
+- [Unified Diagnostic Dashboard YAML](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/JK-BMS-Unified-Diagnostics-v14.yaml)
 
 ### Diagnostic features
 
-- Real-time communication health status
-- Frame reconstruction efficiency
-- Serial/TCP buffer analysis
-- BMS detection tracking
-- Built-in interpretation and troubleshooting help
+- Automatic detection of Active Polling or Broadcast mode
+- Global communication state and quality score from `0` to `100`
+- Readable diagnosis and persistent incident memory
+- Requests, responses, latency, timeouts and polling-cycle analysis in Active Polling mode
+- Per-BMS communication health and missing-BMS detection in Active Polling mode
+- Serial/TCP buffer, framing and detected-BMS analysis in Broadcast mode
+- Separation between real diagnostic faults and normal transport observations
+- Automatic hiding of counters that do not apply to the active mode
 
 ### Installation
 
 1. Go to **Home Assistant → Dashboards**
 2. Click **Edit Dashboard**
 3. Open the raw configuration editor
-4. Copy and paste the diagnostic YAML file content
+4. Copy and paste the unified diagnostic YAML file content
 
 ### Notes
 
-- Requires MQTT Discovery enabled
-- Entities are automatically created by the add-on
-- Starting from v3.6.4, RS485 frame parsing is stricter and may expose existing communication issues that were previously hidden
+- MQTT Discovery must be enabled
+- The main diagnostic entity is normally `sensor.jk_bms_aggregator_jkbms_health`
+- The exact entity ID may vary slightly depending on the installation
+- `many_short_buffers` and `high_multi_header_concat` are informational observations when complete valid frames continue to be reconstructed
+- The current communication state has priority over the numerical score
 
 ---
 
@@ -659,8 +664,10 @@ Before opening a new issue, please:
 
 1. Read the [FAQ](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/FAQ.md)
 2. Check existing issues
-3. Try the RS485 Diagnostic Dashboard if no data is received
-4. Include screenshots and logs when possible
+3. Open the Unified RS485 Diagnostic Dashboard
+4. Include screenshots of both the **Overview** and **Advanced** diagnostic pages
+5. Include the diagnostic entity attributes or the complete `BMS_GLOBAL/health` MQTT payload
+6. Follow the [diagnostic statistics guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/How_to_Send_JK-BMS_Diagnostic_Statistics.md)
 
 Use GitHub Issues for:
 

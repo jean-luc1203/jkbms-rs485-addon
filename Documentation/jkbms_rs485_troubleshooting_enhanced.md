@@ -1,378 +1,325 @@
+# JK-BMS RS485 Communication Diagnostics – Troubleshooting Guide
 
-# JK-BMS RS485 Broadcast – Troubleshooting Guide
+This guide explains the unified SmartPhoton / Node-RED communication diagnostics for JK-BMS installations.
 
-This document helps diagnose communication issues when using **JK-BMS in RS485 broadcast mode** with the SmartPhoton / Node-RED integration.
+The diagnostic system supports both RS485 architectures:
 
-The module publishes diagnostic metrics that allow users to quickly determine whether the **RS485 bus**, **serial adapter**, or **BMS communication** is working correctly.
+- **Broadcast mode**: one JK-BMS is configured as Master and SmartPhoton listens to the bus.
+- **Active Polling mode**: SmartPhoton acts as RS485 master and polls each configured BMS.
 
----
-
-# Where to See the Diagnostic Counters
-
-## Home Assistant (recommended)
-
-The integration automatically creates a sensor via MQTT discovery.
-
-Entity:
-
-```
-sensor.jk_bms_rs485_module_jkbms_health
-```
-
-To view the metrics:
-
-1. Open **Home Assistant**
-2. Go to **Developer Tools**
-3. Select **States**
-4. Search for:
-
-```
-sensor.jk_bms_rs485_module_jkbms_health
-```
-
-All diagnostic counters appear as **attributes** of the sensor.
-
-These values update every **30 seconds**.
+The active mode is detected automatically. The same Home Assistant dashboard adapts its counters and explanations without requiring manual configuration.
 
 ---
+
+# Where to See the Diagnostics
+
+## Home Assistant dashboard
+
+Two views are available:
+
+- **JK-BMS Communication Overview**  
+  Installer-oriented summary with health state, score, explanation and incident memory.
+
+- **JK-BMS Advanced Diagnostics**  
+  Detailed counters for the currently active communication mode.
+
+Only the relevant Broadcast or Active Polling sections are displayed.
+
+## Home Assistant entity
+
+The diagnostic sensor is created through MQTT discovery:
+
+```text
+sensor.jk_bms_aggregator_jkbms_health
+```
+
+Its attributes contain the detailed counters, health reason, score, detected BMS and incident history.
 
 ## MQTT
 
-The raw health message is published on:
+The raw health payload is published on:
 
-```
+```text
 BMS_GLOBAL/health
 ```
 
-Example payload:
-
-```json
-{
- "status":"healthy",
- "serial_age_s":0.038,
- "buffers_30s":137,
- "frame_candidates_30s":137,
- "short_buffers_30s":105,
- "multi_header_buffers_30s":16,
- "last_len":11,
- "avg_len_30s":82,
- "max_len_30s":319,
- "bytes_30s":11187,
- "transport":"serial",
- "mode":"broadcast"
-}
-```
-
-You can inspect it using:
-
-- MQTT Explorer
-- Node-RED debug node
-- mosquitto_sub
-
 Example:
 
-```
+```bash
 mosquitto_sub -t BMS_GLOBAL/health -v
 ```
 
+The topic can also be inspected with MQTT Explorer or a Node-RED debug node.
+
 ---
 
-# How the JK-BMS Broadcast Bus Works
+# Health Model
 
-The JK-BMS master continuously scans the RS485 bus.
+The primary communication state is:
 
-Communication cycle:
+| State | Meaning |
+|---|---|
+| `healthy` | Communication is operating normally |
+| `degraded` | Communication is still working but one or more indicators are outside the normal range |
+| `communication_error` | Communication is lost or no longer reliable |
 
-```
-Master Poll → Slave Response
-```
+A complementary score from **0 to 100** gives a quick indication of communication quality.
 
-Example sequence:
+The state always has priority over the score. The score is intended to help compare the severity of incidents, not replace the diagnosis.
 
-```
-[Poll BMS 1] → [Reply BMS 1]
-[Poll BMS 2] → [Reply BMS 2]
-[Poll BMS 3] → [Reply BMS 3]
+The system also stores an incident history:
+
+- worst score observed;
+- worst explanation;
+- worst internal reason code;
+- worst diagnostic flags;
+- incident count.
+
+This allows troubleshooting even after communication has returned to normal.
+
+---
+
+# Broadcast Mode
+
+In Broadcast mode, one JK-BMS is configured as the RS485 Master. It scans the bus and exchanges data with the other BMS units while SmartPhoton listens passively.
+
+Typical sequence:
+
+```text
+BMS Master poll → Slave response
+BMS Master poll → Slave response
 ...
-[Poll BMS 15]
 ```
 
-Typical timing:
+The dashboard focuses on framing and transport quality.
 
+## Main Broadcast counters
+
+### `serial_age_s`
+
+Time since the latest serial data was received.
+
+A continuously low value confirms that the bus is alive. A steadily increasing value indicates that serial traffic has stopped.
+
+### `buffers_30s`
+
+Number of serial read buffers received during the last 30 seconds.
+
+This value depends on the serial driver, adapter and operating system. It should remain reasonably stable for a given installation.
+
+### `bytes_30s`
+
+Total number of serial bytes received during the last 30 seconds.
+
+A sudden drop can indicate missing replies, a stopped BMS Master or a disconnected RS485 link.
+
+### `frame_candidates_30s`
+
+Number of recognizable frame candidates found in the incoming stream.
+
+A candidate is not necessarily equal to one serial buffer because a buffer may contain part of a frame or several complete frames.
+
+### `frames_emitted_30s`
+
+Number of complete valid frames reconstructed and emitted by the framer.
+
+### `Frames emitted per candidate`
+
+Average number of complete frames extracted from each candidate.
+
+This value can legitimately be greater than `1.00` when one input buffer contains multiple complete frames. It is not an efficiency percentage.
+
+### `short_buffers_30s`
+
+Number of small serial buffers.
+
+Many short buffers are common with some USB-RS485 adapters, TCP gateways and serial drivers. They are not considered a fault when complete valid frames are reconstructed correctly.
+
+### `multi_header_buffers_30s`
+
+Number of buffers containing more than one recognizable frame header.
+
+This usually means that several frames were grouped into one serial read. It is normal when the framer separates them correctly.
+
+### Detected BMS
+
+Broadcast mode shows:
+
+- **Detected BMS**
+- **Detected BMS list**
+
+Because SmartPhoton is only listening, it can confirm which BMS units were observed but cannot always know how many BMS units should have been present.
+
+The healthy explanation therefore deliberately states:
+
+```text
+All detected broadcast BMS are communicating normally
 ```
-Poll interval ≈ 200–300 ms
-Full bus scan ≈ 3–4 seconds
-```
+
+It does not claim that every expected BMS is present unless an expected count is known elsewhere.
 
 ---
 
-# RS485 Bus Topology
+# Active Polling Mode
 
-Typical recommended wiring:
+In Active Polling mode, SmartPhoton is the RS485 master and sends requests to each configured BMS.
 
-```
-         RS485 BUS
- ─────────────────────────────
+Typical sequence:
 
-   Master BMS
-        │
-        │
-   ─────┴─────────────────────────
-        │
-      BMS #1
-        │
-      BMS #2
-        │
-      BMS #3
-        │
-      BMS #4
-        │
-      BMS #5
+```text
+SmartPhoton request → BMS response
+SmartPhoton request → BMS response
+...
 ```
 
-Recommendations:
+Because the module knows the configured BMS list, it can identify responding and missing units directly.
 
-- Use **twisted pair**
-- Keep bus **linear (no star topology)**
-- Use **termination resistor at bus ends**
-- Only **one BMS configured as master**
+## Main Active Polling counters
+
+### Requests and responses
+
+- requests sent;
+- responses received;
+- valid responses;
+- timeouts;
+- transaction success ratio.
+
+A healthy installation should show valid responses matching the expected requests, with no recurring timeouts.
+
+### Request / response latency
+
+- average response time;
+- maximum response time;
+- age of the latest valid response.
+
+These values help identify a slow adapter, overloaded TCP gateway or unstable RS485 bus.
+
+### Polling cycles
+
+- current cycle state;
+- current cycle progress;
+- complete cycles;
+- average cycle duration;
+- maximum cycle duration;
+- pending transactions.
+
+A complete cycle means that every configured BMS has been polled successfully.
+
+### Per-BMS health
+
+The dashboard displays an individual card for each configured BMS, including:
+
+- state;
+- successful responses;
+- timeout count;
+- age of the latest valid response.
+
+This makes it possible to distinguish a global RS485 failure from a problem affecting only one BMS.
 
 ---
 
-# Diagnostic Metrics Explained
+# Diagnostic Flags and Informational Observations
 
-## status
+The dashboard separates two different concepts.
 
-Overall communication health.
+## Diagnostic flags
 
-| Value | Meaning |
-|------|--------|
-healthy | Serial communication active |
-degraded | Communication slower than expected |
-no_serial_data | No serial data received |
+These indicate a real communication problem and may reduce the health score.
+
+Examples include:
+
+- repeated timeouts;
+- missing configured BMS;
+- stale serial data;
+- invalid or incomplete communication cycles;
+- poor response success ratio.
+
+## Informational observations
+
+These describe the way the transport delivers data but do not indicate a fault by themselves.
+
+Current examples:
+
+```text
+many_short_buffers
+high_multi_header_concat
+```
+
+These observations do not reduce the score when the framer continues to reconstruct valid complete frames.
+
+This distinction prevents false alarms caused by normal serial or TCP buffering behaviour.
 
 ---
 
-# serial_age_s
+# Reference Healthy Results
 
-Time since the last serial frame was received.
+The following values are examples from validated tests, not universal limits.
 
-Example:
+## Active Polling, 2 BMS
 
+```text
+Health score: 100 / 100
+Timeouts: 0
+Average response latency: approximately 230 ms
+Complete polling cycle: approximately 6 s
+Continuous operation: more than 10 hours
 ```
-serial_age_s = 0.038
+
+## Broadcast, 2 BMS
+
+```text
+Health score: 100 / 100
+Serial age: below 0.2 s
+Buffers / 30 s: approximately 136
+Bytes / 30 s: approximately 11,000
+Frame candidates / 30 s: approximately 136
+Frames emitted / 30 s: approximately 152
+Short buffers / 30 s: approximately 104
+Multi-header buffers / 30 s: approximately 16
+Frames emitted per candidate: approximately 1.12
 ```
 
-Meaning the last frame arrived **38 ms ago**.
-
-| Range | Interpretation |
-|------|---------------|
-0 – 0.3 s | Normal |
-0.3 – 1 s | Bus slower |
->1 s | Possible problem |
->5 s | Communication lost |
+The absolute values will vary with the number of BMS units, adapter type, transport and polling configuration. Stability and consistency are more important than matching these exact numbers.
 
 ---
 
-# buffers_30s
-
-Number of serial buffers received during the last **30 seconds**.
-
-Example:
-
-```
-buffers_30s = 137
-```
-
-Typical healthy system:
-
-```
-130 – 140 buffers / 30 seconds
-```
-
-Low values may indicate that the **master stopped polling**.
-
----
-
-# frame_candidates_30s
-
-Number of buffers containing recognizable frame signatures.
-
-Includes:
-
-- Modbus polls
-- JK-BMS reply headers
-
-Healthy system:
-
-```
-frame_candidates_30s ≈ buffers_30s
-```
-
-Lower values may indicate **corrupted serial data**.
-
----
-
-# short_buffers_30s
-
-Small serial buffers (typically Modbus poll frames).
-
-Typical poll size:
-
-```
-11 bytes
-```
-
-Typical value:
-
-```
-90 – 110
-```
-
-These correspond to the master scanning slave addresses.
-
----
-
-# multi_header_buffers_30s
-
-Buffers containing **multiple frames**.
-
-Example:
-
-```
-poll + reply inside the same serial buffer
-```
-
-Typical value:
-
-```
-10 – 20
-```
-
-High values may indicate **serial fragmentation**.
-
----
-
-# last_len
-
-Size of the most recent buffer received.
-
-Typical values:
-
-```
-11 bytes → Modbus poll
-300–320 bytes → JK-BMS reply
-```
-
----
-
-# avg_len_30s
-
-Average buffer size over 30 seconds.
-
-Example:
-
-```
-avg_len_30s = 75
-```
-
-Typical range:
-
-```
-60 – 90
-```
-
-This represents the mixture of **poll frames** and **reply frames**.
-
----
-
-# max_len_30s
-
-Largest buffer size observed.
-
-Typical value:
-
-```
-300 – 320 bytes
-```
-
-If this drops significantly, **JK replies may not be received correctly**.
-
----
-
-# bytes_30s
-
-Total serial traffic received during the last 30 seconds.
-
-Example:
-
-```
-bytes_30s = 11187
-```
-
-Equivalent to:
-
-```
-≈ 370 bytes per second
-```
-
-Compared to serial capacity:
-
-```
-115200 baud ≈ 11520 bytes/s
-```
-
-Bus usage is therefore only **~3% of the available bandwidth**.
-
-Typical range:
-
-```
-9000 – 12000 bytes / 30 seconds
-```
-
----
-
-# Typical Healthy System
-
-A normal installation typically shows values close to:
-
-```
-status = healthy
-serial_age_s < 0.2
-buffers_30s ≈ 136
-short_buffers_30s ≈ 100
-multi_header_buffers_30s ≈ 15
-avg_len_30s ≈ 70–80
-bytes_30s ≈ 10000
-```
-
----
-
-# Common Problems and Causes
-
-| Symptom | Likely Cause |
-|-------|--------------|
-serial_age_s > 1 | Serial connection lost |
-buffers_30s drops | Master BMS stopped polling |
-bytes_30s very low | Missing BMS replies |
-avg_len_30s very small | Replies not decoded |
-multi_header_buffers very high | Serial fragmentation |
+# Common Symptoms
+
+| Symptom | Likely interpretation |
+|---|---|
+| `serial_age_s` keeps increasing | Serial traffic has stopped |
+| `bytes_30s` suddenly drops | Missing replies or disconnected bus |
+| No detected BMS in Broadcast mode | No valid JK-BMS frames are being received |
+| One configured BMS is missing in Active Polling | Address, wiring or BMS-specific communication fault |
+| Timeouts increase continuously | Unstable RS485 bus, wrong address, slow gateway or disconnected BMS |
+| Response latency rises sharply | Congested TCP gateway, serial adapter delay or bus instability |
+| Polling cycles remain incomplete | One or more BMS units are not completing their transactions |
+| Many short buffers with healthy valid frames | Normal transport fragmentation |
+| Many multi-header buffers with healthy valid frames | Normal frame concatenation |
+| Score is 100 with informational observations | Communication is healthy; observations are not penalties |
 
 ---
 
 # Basic Troubleshooting Checklist
 
-1. Check **RS485 wiring**
-2. Verify **USB‑RS485 adapter**
-3. Confirm baudrate = **115200**
-4. Ensure only **one JK‑BMS master**
-5. Check **termination resistors**
+1. Confirm the operating mode shown by the dashboard.
+2. Verify that only one device is acting as RS485 master.
+3. Confirm the RS485 baud rate is `115200`.
+4. Check A/B polarity and common reference wiring.
+5. Use a linear RS485 bus rather than a star topology.
+6. Check termination at the two physical ends of the bus.
+7. Compare configured BMS addresses with the detected or responding list.
+8. Observe whether the counters remain stable for several minutes.
+9. Disconnect one BMS intentionally to confirm that the diagnostic detects the failure.
+10. Restore the connection and verify that the current state returns to healthy while the incident remains recorded.
 
 ---
 
 # Recommended Tools
 
+- SmartPhoton JK-BMS Communication Overview
+- SmartPhoton JK-BMS Advanced Diagnostics
 - Home Assistant Developer Tools
 - MQTT Explorer
-- Node‑RED debug nodes
-- mosquitto_sub
+- Node-RED debug nodes
+- `mosquitto_sub`

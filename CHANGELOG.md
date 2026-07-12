@@ -1,3 +1,14 @@
+##  4.1.10 - 2026-07-12
+## Improved JK-BMS communication diagnostics
+
+- Added a unified diagnostic system for both **Broadcast** and **Active Polling** modes.
+- The dashboard now detects the communication mode automatically and shows only the relevant counters.
+- Added a global health status, quality score and persistent incident memory to simplify troubleshooting.
+- Improved detection of missing BMS, timeouts, latency, framing and polling stability.
+- Corrected false alarms caused by short or concatenated serial/TCP buffers, which are now treated as normal transport behaviour when frames are reconstructed correctly.
+
+##  4.1.9 - 2026-07-11
+
 ##  4.1.8 - 2026-07-08
 #### 🐞 Fixes
 

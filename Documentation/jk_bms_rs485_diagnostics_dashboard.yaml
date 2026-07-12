@@ -1,187 +1,279 @@
 views:
-  - title: JK-BMS Diagnostics
-    path: jk-bms-diagnostics
-    icon: mdi:stethoscope
-    type: sidebar
+- title: Overview
+  path: jk-bms-overview
+  icon: mdi:heart-pulse
+  type: panel
+  cards:
+  - type: vertical-stack
     cards:
-      - type: horizontal-stack
+    - type: markdown
+      content: '# JK-BMS Communication Overview
+
+
+        **SmartPhoton Unified Communication Diagnostics · UI v1.1**'
+    - type: horizontal-stack
+      cards:
+      - type: entities
+        title: JK-BMS Communication
+        show_header_toggle: false
+        entities:
+        - entity: sensor.jk_bms_aggregator_jkbms_health
+          name: Communication health
+      - type: markdown
+        title: Overall Communication Summary
+        content: "## {% set st = states('sensor.jk_bms_aggregator_jkbms_health') %}{% if st == 'healthy' %}\U0001F7E2 **HEALTHY**{% elif st == 'degraded' %}\U0001F7E0 **DEGRADED**{% else %}\U0001F534 **COMMUNICATION ERROR**{% endif %}\n\n**Communication quality:** {% set s = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_score') %}{% if s is none %}⚪ **Starting**{% elif s >= 95 %}\U0001F7E2 **Excellent — {{ s }} / 100**{% elif s >= 90 %}\U0001F7E2 **Good — {{ s }} / 100**{% elif s >= 70 %}\U0001F7E0 **Fair — {{ s }} / 100**{% elif s >= 40 %}\U0001F534 **Poor — {{ s }} / 100**{% else %}\U0001F534 **Critical — {{ s }} / 100**{% endif %}  \n\n**Operating mode:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'mode') or 'unknown' }}`  \n\n**Transport:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'transport') or 'unknown' }}`  \n\n{% set mode = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'mode') or 'unknown' %}{% if mode == 'broadcast' %}**Detected BMS:**\
+          \ `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms') or 0 }}`{% else %}**BMS responding:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'responding_bms') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'responding_bms') is not none else 'n/a' }}` / `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'configured_bms') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'configured_bms') is not none else 'n/a' }}`{% endif %}  \n\n**Monitoring since:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'monitoring_uptime_human') or '0s' }}`"
+    - type: horizontal-stack
+      cards:
+      - type: markdown
+        title: Current Diagnostic
+        content: "**State:** {% set st = states('sensor.jk_bms_aggregator_jkbms_health') %}{% if st == 'healthy' %}\U0001F7E2 **HEALTHY**{% elif st == 'degraded' %}\U0001F7E0 **DEGRADED**{% else %}\U0001F534 **COMMUNICATION ERROR**{% endif %}  \n\n**Explanation:**  \n{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason_text') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'n/a' }}  \n\n{% set raw = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_flags') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_flags_text') or [] %}{% set flags = raw.split(',') if raw is string else raw %}{% set info_names = ['many_short_buffers', 'high_multi_header_concat'] %}{% set ns = namespace(diag=[], info=[]) %}{% for flag in flags %}{% set f = flag | trim %}{% if f and f != 'none' %}{% if f in info_names %}{% set ns.info = ns.info + [f] %}{% else %}{% set ns.diag = ns.diag + [f] %}{% endif %}{% endif %}{% endfor %}**Diagnostic flags:**\
+          \ `{{ ns.diag | join(', ') if ns.diag else 'none' }}`  \n\n**Informational observations:** `{{ ns.info | join(', ') if ns.info else 'none' }}`"
+      - type: markdown
+        title: Incident Memory
+        content: "**Current score:** {% set s = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_score') %}{% if s is none %}⚪ `starting`{% elif s >= 95 %}\U0001F7E2 `{{ s }} / 100`{% elif s >= 80 %}\U0001F7E0 `{{ s }} / 100`{% else %}\U0001F534 `{{ s }} / 100`{% endif %}  \n\n**Worst score:** {% set w = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_score') %}{% if w is none %}⚪ `none`{% elif w >= 95 %}\U0001F7E2 `{{ w }} / 100`{% elif w >= 80 %}\U0001F7E0 `{{ w }} / 100`{% else %}\U0001F534 `{{ w }} / 100`{% endif %}  \n\n**Worst observed condition:**  \n{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_reason_text') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_reason') or 'none' }}  \n\n{% set w = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_score') %}{% set raw_wf = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_flags') or state_attr('sensor.jk_bms_aggregator_jkbms_health',\
+          \ 'worst_health_flags_text') or [] %}{% set wflags = raw_wf.split(',') if raw_wf is string else raw_wf %}{% set info_names = ['many_short_buffers', 'high_multi_header_concat'] %}{% set wns = namespace(diag=[], info=[]) %}{% for flag in wflags %}{% set f = flag | trim %}{% if f and f != 'none' %}{% if f in info_names %}{% set wns.info = wns.info + [f] %}{% else %}{% set wns.diag = wns.diag + [f] %}{% endif %}{% endif %}{% endfor %}{% if w is not none and w < 100 %}**Score penalty detail:**  \n{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_score_detail') or 'No stored penalty detail' }}  \n\n**Worst diagnostic flags:** `{{ wns.diag | join(', ') if wns.diag else 'none' }}`  \n\n**Worst informational observations:** `{{ wns.info | join(', ') if wns.info else 'none' }}`{% else %}**Score penalty:** `none`  \n\n**Informational observations:** `{{ wns.info | join(', ') if wns.info else 'none' }}`{% endif %}  \n\n**Recorded incidents:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health',\
+          \ 'health_incident_count') or 0 }}`"
+- title: Advanced
+  path: jk-bms-advanced
+  icon: mdi:stethoscope
+  type: panel
+  cards:
+  - type: vertical-stack
+    cards:
+    - type: markdown
+      content: '# JK-BMS Advanced Diagnostics
+
+
+        **SmartPhoton Unified Communication Diagnostics · UI v1.1**'
+    - type: horizontal-stack
+      cards:
+      - type: markdown
+        title: Current Health
+        content: "**Status:** {% set st = states('sensor.jk_bms_aggregator_jkbms_health') %}{% if st == 'healthy' %}\U0001F7E2 **HEALTHY**{% elif st == 'degraded' %}\U0001F7E0 **DEGRADED**{% else %}\U0001F534 **COMMUNICATION ERROR**{% endif %}  \n\n**Health score:** {% set s = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_score') %}{% if s is none %}⚪ `starting`{% elif s >= 95 %}\U0001F7E2 `{{ s }} / 100`{% elif s >= 80 %}\U0001F7E0 `{{ s }} / 100`{% else %}\U0001F534 `{{ s }} / 100`{% endif %}  \n\n**Quality rating:** `{{ (state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_score_label') or 'starting') | title }}`"
+      - type: markdown
+        title: Mode & Transport
+        content: "**Operating mode:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'mode') or 'unknown' }}`  \n\n**Communication transport:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'transport') or 'unknown' }}`"
+      - type: markdown
+        title: BMS Availability
+        content: "{% set mode = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'mode') or 'unknown' %}{% if mode == 'broadcast' %}**Detected BMS:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms') or 0 }}`  \n\n**Detected list:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms_list') or 'none' }}`{% else %}**Configured BMS:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'configured_bms') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'configured_bms') is not none else 'n/a' }}`  \n\n**Responding BMS:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'responding_bms') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'responding_bms') is not none else 'n/a' }}`  \n\n**Missing BMS:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'missing_bms') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'missing_bms') is not none else 'n/a' }}`{% endif %}"
+      - type: markdown
+        title: Incident History
+        content: "**Worst score:** {% set w = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_score') %}{% if w is none %}⚪ `none`{% elif w >= 95 %}\U0001F7E2 `{{ w }} / 100`{% elif w >= 80 %}\U0001F7E0 `{{ w }} / 100`{% else %}\U0001F534 `{{ w }} / 100`{% endif %}  \n\n{% set w = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_score') %}{% set raw_wf = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_flags') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_flags_text') or [] %}{% set wflags = raw_wf.split(',') if raw_wf is string else raw_wf %}{% set info_names = ['many_short_buffers', 'high_multi_header_concat'] %}{% set wns = namespace(diag=[], info=[]) %}{% for flag in wflags %}{% set f = flag | trim %}{% if f and f != 'none' %}{% if f in info_names %}{% set wns.info = wns.info + [f] %}{% else %}{% set wns.diag = wns.diag + [f] %}{% endif %}{% endif %}{% endfor %}{% if w is not none and w < 100 %}**Score penalty\
+          \ detail:**  \n{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_score_detail') or 'No stored penalty detail' }}  \n\n**Worst diagnostic flags:** `{{ wns.diag | join(', ') if wns.diag else 'none' }}`  \n\n**Worst informational observations:** `{{ wns.info | join(', ') if wns.info else 'none' }}`{% else %}**Score penalty:** `none`  \n\n**Informational observations:** `{{ wns.info | join(', ') if wns.info else 'none' }}`{% endif %}  \n\n**Recorded incidents:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_incident_count') or 0 }}`  \n\n**Monitoring since:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'monitoring_uptime_human') or '0s' }}`"
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: sensor.jk_bms_aggregator_jkbms_health
+        attribute: mode
+        state: active_polling
+      card:
+        type: vertical-stack
         cards:
+        - type: markdown
+          content: '## Active Polling'
+        - type: horizontal-stack
+          cards:
           - type: vertical-stack
             cards:
-              - type: markdown
-                content: >
-                  ⚠️ This diagnostic panel reflects real RS485 communication quality.
-                  Degraded values may indicate wiring, bus load, gateway or fragmentation issues.
-              - type: entities
-                title: JK-BMS RS485 Health
-                show_header_toggle: false
-                entities:
-                  - entity: sensor.jk_bms_aggregator_jkbms_health
-                    name: Communication health
-              - type: conditional
-                conditions:
-                  - entity: sensor.jk_bms_aggregator_jkbms_health
-                    state: healthy
-                card:
-                  type: markdown
-                  content: >
-                    ## ✅ Bus healthy
-
-                    The JK-BMS communication is active and frames are being received normally.
-
-                    **Reason:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'healthy' }}`
-              - type: conditional
-                conditions:
-                  - entity: sensor.jk_bms_aggregator_jkbms_health
-                    state: degraded
-                card:
-                  type: markdown
-                  content: >
-                    ## ⚠️ Bus degraded
-
-                    Communication is still active, but timing, framing or frame reconstruction is outside the expected range.
-
-                    **Reason:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'degraded' }}`
-              - type: conditional
-                conditions:
-                  - entity: sensor.jk_bms_aggregator_jkbms_health
-                    state: no_serial_data
-                card:
-                  type: markdown
-                  content: >
-                    ## ❌ No communication
-
-                    No valid frames have been received recently.
-
-                    **Reason:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'no_serial_data' }}`
-              - type: markdown
-                title: Live Transport
-                content: >
-                  **Transport:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'transport') }}`  
-
-                  **Mode:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'mode') }}`  
-
-                  **Status:** `{{ states('sensor.jk_bms_aggregator_jkbms_health') }}`
-              - type: markdown
-                title: Live Timing
-                content: >
-                  **Serial age:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'serial_age_s') }} s`  
-
-                  **Buffers / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'buffers_30s') }}`  
-
-                  **Bytes / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'bytes_30s') }}`  
-
-                  **Bytes per buffer avg / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'bytes_per_buffer_avg_30s') }}`
-              - type: markdown
-                title: Live Framing Quality
-                content: >
-                  **Frame candidates / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'frame_candidates_30s') }}`  
-
-                  **Frames emitted / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'frames_emitted_30s') }}`  
-
-                  **Frame yield ratio:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'frame_yield_ratio') }}`  
-
-                  **Short buffers / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'short_buffers_30s') }}`  
-
-                  **Multi-header buffers / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'multi_header_buffers_30s') }}`
-              - type: markdown
-                title: Live Buffer Sizes
-                content: >
-                  **Last length:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'last_len') }}`  
-
-                  **Average length / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'avg_len_30s') }}`  
-
-                  **Maximum length / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'max_len_30s') }}`
-              - type: markdown
-                title: BMS Presence
-                content: >
-                  **Detected BMS:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms') or 0 }}`  
-
-                  **Detected list:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms_list') or 'none' }}`
-              - type: markdown
-                title: Diagnostic Flags
-                content: >
-                  **Health reason:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'n/a' }}`  
-
-                  **Health flags:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_flags_text') or 'none' }}`
+            - type: markdown
+              title: Polling Engine
+              content: "**Engine state:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'polling_state') or 'unknown' }}`  \n\n**Current request target:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'current_polling_target') or 'none' }}`  \n\n**Polling rate:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'polling_rate_rps') or 0 }} requests/s`  \n\n**Pending transactions:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'pending_transactions') or 0 }}`"
+            - type: markdown
+              title: Activity (30 s)
+              content: "**Requests sent:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'polls_sent_30s') or 0 }}`  \n\n**Responses received:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'responses_received_30s') or 0 }}`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'valid_responses_30s') or 0 }}`  \n\n**Timeouts:** {% set n = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'timeouts_30s') or 0 %}{% if n == 0 %}\U0001F7E2 `0`{% elif n <= 2 %}\U0001F7E0 `{{ n }}`{% else %}\U0001F534 `{{ n }}`{% endif %}  \n\n**Transaction success:** {% set r = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'response_success_ratio') %}{% set pct = (r * 100) | round(1) if r is not none else none %}{% if pct is none %}⚪ `n/a`{% elif pct >= 95 %}\U0001F7E2 `{{ pct }} %`{% elif pct >= 80 %}\U0001F7E0 `{{ pct }} %`{% else %}\U0001F534 `{{ pct }} %`{% endif %}"
           - type: vertical-stack
             cards:
-              - type: markdown
-                title: Healthy Reference Values
-                content: >
-                  **Typical healthy values for 3 to 5 JK-BMS in broadcast mode**
-
-                  **Global rules**
-
-                  - Status: `healthy`
-                  - Serial age: `< 0.35 s`
-                  - Average length / 30s: `90 – 150`
-                  - Maximum length / 30s: `308 – 319`
-                  - Detected BMS: `close to expected installed count`
-
-                  **3 to 5 BMS general reference**
-
-                  - Buffers / 30s: `60 – 120`
-                  - Bytes / 30s: `9000 – 20000`
-                  - Bytes per buffer avg / 30s: `90 – 150`
-                  - Frame candidates / 30s: `60 – 140`
-                  - Frames emitted / 30s: `80 – 200`
-                  - Frame yield ratio: `0.70 – 1.20 (typical)`
-                  - Short buffers / 30s: `30 – 90`
-                  - Multi-header buffers / 30s: `10 – 60`
-
-                  **Notes**
-
-                  - values above `1.0` may occur when multiple valid frames are extracted from a single received buffer
-                  - `multi_header_buffers_30s` is often expected in multi-BMS broadcast mode
-                  - `short_buffers_30s` alone is not a fault indicator
-              - type: markdown
-                title: Interpretation Guide
-                content: >
-                  **How to read the counters**
-
-                  - **detected_bms**: estimated number of distinct JK-BMS seen recently
-                  - **detected_bms_list**: list of detected BMS identifiers seen during the recent window
-                  - **frames_emitted_30s**: number of valid frames actually emitted by the framer
-                  - **frame_yield_ratio**: ratio between emitted valid frames and frame candidates
-                  - **bytes_per_buffer_avg_30s**: average payload size per received serial/TCP buffer
-                  - **health_reason**: main interpreted reason for current bus state
-                  - **health_flags_text**: extra diagnostic hints when something looks abnormal
-              - type: markdown
-                title: Quick Reading Rules
-                content: |
-                  **Simple rules**
-
-                  - low `serial_age_s` + good `frames_emitted_30s`
-                    → bus is active
-
-                  - `frame_yield_ratio` between `0.70` and `1.20`
-                    → usually normal in broadcast mode
-
-                  - `frame_yield_ratio > 1`
-                    → possible when one received buffer contains multiple valid frames
-
-                  - high `multi_header_buffers_30s`
-                    → often normal with several JK-BMS in broadcast mode
-
-                  - low `detected_bms`
-                    → one BMS may be silent or missing from the recent window
-              - type: markdown
-                title: Troubleshooting Hints
-                content: >
-                  **Typical patterns**
-
-                  - high `serial_age_s` + low `frames_emitted_30s`
-                    → missing or stalled communication
-
-                  - high `short_buffers_30s` + very low `bytes_per_buffer_avg_30s`
-                    → excessive fragmentation, possible USB/serial instability
-
-                  - high `multi_header_buffers_30s` but status still healthy
-                    → often normal with several JK-BMS in broadcast mode
-
-                  - low `frame_yield_ratio`
-                    → framer receives data, but too few valid frames are reconstructed
-
-                  - `detected_bms` lower than expected installed count
-                    → one or more BMS may be missing, silent, or not seen in the recent window
+            - type: markdown
+              title: Request / Response Timing
+              content: "**Average request → valid response:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'avg_response_time_ms') or 0 }} ms`  \n\n**Maximum request → valid response:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'max_response_time_ms') or 0 }} ms`  \n\n**Age of last valid response:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'last_valid_response_age_s') or 0 }} s`  \n\n_Measured from request transmission to the matched, validated response._"
+            - type: markdown
+              title: Complete Live Poll Cycles
+              content: "**Completed cycles in 30 s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'complete_poll_cycles_30s') or 0 }}`  \n\n**Cycle rate:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'cycle_rate_per_min') or 0 }} cycles/min`  \n\n**Average complete-cycle duration:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'avg_poll_cycle_time_ms') or 0 }} ms`  \n\n**Longest complete cycle:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'max_poll_cycle_time_ms') or 0 }} ms`"
+          - type: vertical-stack
+            cards:
+            - type: markdown
+              title: Current Cycle
+              content: "**Cycle state:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'current_cycle_state') or 'unknown' }}`  \n\n**Completion:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'current_cycle_summary') or 'n/a' }}`  \n\n**Progress:** `{{ ((state_attr('sensor.jk_bms_aggregator_jkbms_health', 'current_cycle_progress') or 0) * 100) | round(0) }} %`  \n\n**BMS completed in this cycle:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'current_cycle_seen_bms') or 'none' }}`  \n\n**Configured BMS list:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'configured_bms_list') or 'none' }}`"
+            - type: markdown
+              title: Communication Stability
+              content: "**Total timeouts since start:** {% set n = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'total_timeouts') or 0 %}{% if n == 0 %}\U0001F7E2 `0`{% elif n <= 2 %}\U0001F7E0 `{{ n }}`{% else %}\U0001F534 `{{ n }}`{% endif %}  \n\n**Age of last timeout:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'last_timeout_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'last_timeout_age_s') is not none else 'never' }}`  \n\n**Continuous operation without timeout:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'no_timeout_duration_human') or '0s' }}`"
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: sensor.jk_bms_aggregator_jkbms_health
+        attribute: mode
+        state: active_polling
+      card:
+        type: vertical-stack
+        cards:
+        - type: markdown
+          content: '## Per-BMS Health'
+        - type: grid
+          columns: 4
+          square: false
+          cards:
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_1_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_indicator') or '⚪' }} BMS 1\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_1_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_2_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_indicator') or '⚪' }} BMS 2\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_2_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_3_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_indicator') or '⚪' }} BMS 3\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_3_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_4_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_indicator') or '⚪' }} BMS 4\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_4_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_5_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_indicator') or '⚪' }} BMS 5\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_5_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_6_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_indicator') or '⚪' }} BMS 6\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_6_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_7_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_indicator') or '⚪' }} BMS 7\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_7_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_8_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_indicator') or '⚪' }} BMS 8\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_8_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_9_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_indicator') or '⚪' }} BMS 9\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_9_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_10_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_indicator') or '⚪' }} BMS 10\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_10_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_11_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_indicator') or '⚪' }} BMS 11\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_11_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_12_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_indicator') or '⚪' }} BMS 12\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_12_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_13_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_indicator') or '⚪' }} BMS 13\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_13_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_14_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_indicator') or '⚪' }} BMS 14\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_14_last_valid_age_s') is not none else 'n/a' }} s ago`"
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: sensor.jk_bms_aggregator_jkbms_health
+              attribute: per_bms_15_present
+              state: 'yes'
+            card:
+              type: markdown
+              content: "### {{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_indicator') or '⚪' }} BMS 15\n\n**State:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_state') or 'unknown' }}`  \n\n**Success:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_success_pct') or 0 }} %`  \n\n**Valid responses:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_valid') or 0 }}/{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_sent') or 0 }}`  \n\n**Timeouts:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_timeouts') or 0 }}`  \n\n**Last valid:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_last_valid_age_s') if state_attr('sensor.jk_bms_aggregator_jkbms_health', 'per_bms_15_last_valid_age_s') is not none else 'n/a' }} s ago`"
+    - type: conditional
+      conditions:
+      - condition: state
+        entity: sensor.jk_bms_aggregator_jkbms_health
+        attribute: mode
+        state: broadcast
+      card:
+        type: vertical-stack
+        cards:
+        - type: markdown
+          content: '## Broadcast'
+        - type: horizontal-stack
+          cards:
+          - type: markdown
+            title: Live Transport
+            content: "**Transport:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'transport') or 'unknown' }}`  \n\n**Serial age:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'serial_age_s') or 0 }} s`  \n\n**Buffers / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'buffers_30s') or 0 }}`  \n\n**Bytes / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'bytes_30s') or 0 }}`"
+          - type: markdown
+            title: Framing Quality
+            content: "**Frame candidates / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'frame_candidates_30s') or 0 }}`  \n\n**Frames emitted / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'frames_emitted_30s') or 0 }}`  \n\n**Frames emitted per candidate:** {% set r = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'frame_yield_ratio') %}{% if r is none %}⚪ `n/a`{% elif r >= 0.95 %}\U0001F7E2 `{{ r }}`{% elif r >= 0.80 %}\U0001F7E0 `{{ r }}`{% else %}\U0001F534 `{{ r }}`{% endif %}  \n\n**Short buffers / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'short_buffers_30s') or 0 }}`  \n\n**Multi-header buffers / 30s:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'multi_header_buffers_30s') or 0 }}`"
+          - type: markdown
+            title: BMS Presence
+            content: "**Detected BMS:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms') or 0 }}`  \n\n**Detected list:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'detected_bms_list') or 'none' }}`"
+    - type: markdown
+      content: '## Support Details'
+    - type: markdown
+      title: Current and Worst Diagnostic
+      content: "**Current explanation:**  \n{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason_text') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'n/a' }}  \n\n**Current internal code:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_reason') or 'n/a' }}`  \n\n{% set raw = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_flags') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_flags_text') or [] %}{% set flags = raw.split(',') if raw is string else raw %}{% set info_names = ['many_short_buffers', 'high_multi_header_concat'] %}{% set ns = namespace(diag=[], info=[]) %}{% for flag in flags %}{% set f = flag | trim %}{% if f and f != 'none' %}{% if f in info_names %}{% set ns.info = ns.info + [f] %}{% else %}{% set ns.diag = ns.diag + [f] %}{% endif %}{% endif %}{% endfor %}**Current diagnostic flags:** `{{ ns.diag | join(', ') if ns.diag else 'none' }}`  \n\n**Current informational observations:** `{{\
+        \ ns.info | join(', ') if ns.info else 'none' }}`  \n\n**Worst explanation:**  \n{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_reason_text') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_reason') or 'none' }}  \n\n**Worst internal code:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_reason') or 'none' }}`  \n\n{% set raw_wf = state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_flags') or state_attr('sensor.jk_bms_aggregator_jkbms_health', 'worst_health_flags_text') or [] %}{% set wflags = raw_wf.split(',') if raw_wf is string else raw_wf %}{% set info_names = ['many_short_buffers', 'high_multi_header_concat'] %}{% set wns = namespace(diag=[], info=[]) %}{% for flag in wflags %}{% set f = flag | trim %}{% if f and f != 'none' %}{% if f in info_names %}{% set wns.info = wns.info + [f] %}{% else %}{% set wns.diag = wns.diag + [f] %}{% endif %}{% endif %}{% endfor %}**Worst diagnostic flags:** `{{ wns.diag\
+        \ | join(', ') if wns.diag else 'none' }}`  \n\n**Worst informational observations:** `{{ wns.info | join(', ') if wns.info else 'none' }}`  \n\n**Recorded incidents:** `{{ state_attr('sensor.jk_bms_aggregator_jkbms_health', 'health_incident_count') or 0 }}`"
