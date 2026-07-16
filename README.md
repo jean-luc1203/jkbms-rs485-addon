@@ -13,7 +13,7 @@ It helps other Home Assistant users discover the project and supports future dev
 
 # SmartPhoton JK-BMS RS485 & CAN Bus Add-on
 
-> **8,300+ installations worldwide** · **67 countries** · **Community-driven development** · **Professional Home Assistant integration**
+> **10'000+ installations worldwide** · **Community-driven development** · **Professional Home Assistant integration**
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/s/b704b5561d)
 [![Donate with PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/ncp/payment/PSQPALQJT9UBW)
