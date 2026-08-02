@@ -82,9 +82,14 @@ services:
       # mqttpass: password?
       - MQTTPASS=super_secret_password
 
-    # RS485 USB adapter exposed to container
-    devices:
-      - "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
+    # Live view of the host's /dev directory tree. This exposes ALL host device names
+    # and grants read/write permissions for USB-serial devices only (major 188 = ttyUSB*).
+    # Such approach allows handling USB re-enumeration automatically (e.g. ttyUSB0 → ttyUSB1, caused by EMI).
+    # (see alternative device binding in the section below)
+    volumes:
+      - /dev:/dev
+    device_cgroup_rules:
+      - "c 188:* rw"
 
     # Add "dialout" group to allow read/write access to serial ports like RS485 USB device
     # Check group name by command like "ls -l /dev/ttyUSB0"
@@ -94,4 +99,15 @@ services:
     # Node-RED web UI (optional, for debuggin)
     ports:
       - "1880:1880"
+```
+
+### Alternative device binding (requires container restart after USB re-enumeration)
+
+```yaml
+services:
+  jkbms-rs485:
+    ...
+    # RS485 USB adapter is directly exposed to the container
+    devices:
+      - "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
 ```
