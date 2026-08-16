@@ -605,7 +605,6 @@ This add-on is developed and maintained in free time.
 If this project saves you time or money, please consider supporting future development.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
-[![PayPal](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/paypal.png)](https://www.paypal.com/donate/?hosted_button_id=864NCUWH4VJ8N)
 
 ### Development impact
 
