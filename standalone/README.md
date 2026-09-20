@@ -43,7 +43,26 @@ docker buildx build \
 
 > **Note:** Environment variable names are derived from the original add-on schema declared in `config.yaml`.
 
+To give persistence to the /data and /config directories of the container, both docker volumes must be created.
+A new script, dashboard_sync.js, called dashboard_sync_docker.js, has been created because the supervisor websocket does not exist. In this case, the environment variables SUPERVISOR_TOKEN and WS_URL must be defined.
+
+To create the SUPERVISOR_TOKEN, a Long-lived access token must be created in the Home Assistant user profile.
+
+To enable websocket communication with Home Assistant, support must be added to the configuration.yaml file.
 ```yaml
+websocket_api:
+
+```
+In this case, the WS_URL that must be defined is:
+```yaml
+   - WS_URL=ws://homeassistant:8123/api/websocket
+
+If you create premium dashboards, the files in /config/www in the container  must be manually copied to the <config HA>/www directory.
+```
+```yaml
+volumes:
+  jkbms_data:
+  jkbms_config:
 services:
   jkbms-rs485:
     # Note: when using a locally built image, {registry}/{owner} can be omitted
@@ -87,6 +106,8 @@ services:
     # Such approach allows handling USB re-enumeration automatically (e.g. ttyUSB0 → ttyUSB1, caused by EMI).
     # (see alternative device binding in the section below)
     volumes:
+      - jkbms_data:/data
+      - jkbms_config:/config
       - /dev:/dev
     device_cgroup_rules:
       - "c 188:* rw"

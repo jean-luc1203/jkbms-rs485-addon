@@ -2,9 +2,11 @@
 FROM node:20-alpine
 
 # Create directories and set ownership to existing node user
-RUN mkdir -p /usr/src/node-red /data \
+RUN mkdir -p /usr/src/node-red /data /config /etc/node-red \
     && chown -R node:node /data \
-    && chown -R node:node /usr/src/node-red
+    && chown -R node:node /usr/src/node-red \
+    && chown -R node:node /config \
+    && chown -R node:node /etc/node-red 
 
 # Set working directory
 WORKDIR /usr/src/node-red
@@ -52,6 +54,8 @@ COPY rootfs/etc/node-red/config.js \
      rootfs/etc/node-red/flows.json \
      rootfs/etc/node-red/settings.js \
      /data/
+
+COPY rootfs/etc/node-red/dashboard_sync_docker.js /etc/node-red/dashboard_sync.js
 
 # Env variables
 ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
