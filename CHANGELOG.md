@@ -1,3 +1,16 @@
+## 4.1.11 — 2026-10-01
+
+### Fix
+- Fixed Premium dashboard BMS mapping in Broadcasting mode.
+- Correct handling of installations using `BMS_master` with slave addresses such as `BMS_1`, `BMS_2`, etc.
+- Dashboard now follows the BMS addresses actually detected from SETUP frames.
+- Discovery reset logic updated accordingly.
+
+### Compatibility
+- Existing Broadcasting installations remain supported.
+- Non-Broadcasting mode (active polling) is unchanged.
+- No changes to RS485, MQTT topics, CAN bus or BMS write logic.
+
 ##  4.1.10 - 2026-07-12
 ## Improved JK-BMS communication diagnostics
 
