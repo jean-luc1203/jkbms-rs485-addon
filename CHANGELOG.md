@@ -8,7 +8,7 @@
 
 ### Compatibility
 - Existing Broadcasting installations remain supported.
-- Non-Broadcasting mode (active polling) is unchanged.
+- Non-Broadcasting mode is unchanged.
 - No changes to RS485, MQTT topics, CAN bus or BMS write logic.
 
 ##  4.1.10 - 2026-07-12
