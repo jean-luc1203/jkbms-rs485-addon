@@ -1,3 +1,28 @@
+## 4.1.12 — 2026-10-09
+
+### Added
+- DRY1 and DRY2 live contact status as Home Assistant MQTT binary sensors in Legacy Active Polling and Broadcasting.
+- In Legacy Active Polling: writable DRY1/DRY2 trigger source selectors (codes 00–14), plus four trigger/release threshold controls.
+- Targeted BMS STATIC readback after a configuration write, confirming the device value rather than optimistically updating MQTT states.
+
+### Reliability and compatibility
+- Modbus FC16 register updates preserve adjacent parameters sharing registers (including LCD buzzer and UART settings).
+- Duplicate-write suppression, pending-write timeouts and write authorization checks.
+- DRY settings are not exposed for editing in Broadcasting; live contact monitoring remains available.
+- Existing Legacy communication paths and v4.1.11 Broadcasting address mapping are retained.
+
+### Field tests
+- JK Bluetooth application confirmed DRY1/DRY2 source changes and DRY trigger thresholds.
+- DRY1 physical relay operation confirmed using a multimeter.
+- LCD buzzer configuration preserved during DRY1 writes with buzzer source set to OFF.
+- Broadcasting startup and both DRY contact sensors confirmed on BMS_master and BMS_2 after clearing MQTT Discovery.
+- Fast targeted STATIC confirmations generally below 3 seconds in repeated field tests.
+
+### Known limitations
+- Active Polling requires consecutive physical addresses beginning at 1. Non-consecutive addresses such as 1 and 3 remain unsupported.
+- Direct MQTT injection protection in Broadcasting and every possible trigger source/firmware combination were not exhaustively field-tested.
+- Source-specific interpretation of raw threshold values may vary by firmware.
+
 ## 4.1.11 — 2026-10-01
 
 ### Fix
