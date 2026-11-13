@@ -17,7 +17,7 @@ if (actualSha256 !== expectedSha256) {
     throw new Error('Refusing to patch a flows.json other than the verified Legacy 4.1.12 baseline: ' + actualSha256);
 }
 const nodes = JSON.parse(original.toString('utf8'));
-const patches = JSON.parse(fs.readFileSync('/etc/node-red/issue166-functions.json', 'utf8'));
+const patches = JSON.parse(fs.readFileSync(path.join(__dirname, 'issue166-functions.json'), 'utf8'));
 if (!Array.isArray(nodes) || nodes.length !== 590 || Object.keys(patches).length !== 8) {
     throw new Error('Unexpected source flow structure or incomplete patch set');
 }
