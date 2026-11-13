@@ -100,3 +100,17 @@ test('isolated add-on startup applies the patch as one shell command',()=>{
   assert(script.includes(patchCall), 'startup must call the patcher before launching Node-RED');
   assert(!script.includes('flows.json ' + String.fromCharCode(92, 92)), 'startup must not use an accidental doubled shell backslash');
 });
+
+test('live single-addon port 1891 is consistent without changing the Legacy flow URL',()=>{
+  const root = path.join(__dirname, '..');
+  const configYaml = fs.readFileSync(path.join(root, 'config.yaml'),'utf8');
+  const configJs = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/config.js'),'utf8');
+  const dockerfile = fs.readFileSync(path.join(root, 'Dockerfile'),'utf8');
+  const patcher = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
+  assert.match(configYaml, /"1891\\/tcp": 1891/);
+  assert.match(configJs, /config\\.uiPort = 1891;/);
+  assert.match(dockerfile, /127\\.0\\.0\\.1:1891/);
+  assert(!patcher.includes("':1892/endpoint/dashboard/'"), 'patcher must not redirect the dashboard to 1892');
+  const urlNode = byId.get('a91bfb41bf5699ef');
+  assert(urlNode && urlNode.func.includes(':1891/endpoint/dashboard/'), 'generated dashboard must retain original port');
+});
