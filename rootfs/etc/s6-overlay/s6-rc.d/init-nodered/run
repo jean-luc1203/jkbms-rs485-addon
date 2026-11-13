@@ -6,47 +6,53 @@
 # ==============================================================================
 
 # Assure que la configuration existe
-if ! bashio::fs.directory_exists '/config/smartphoton_jkbms/'; then
-    mkdir -p /config/smartphoton_jkbms/nodes \
+if ! bashio::fs.directory_exists '/config/smartphoton_jkbms_fix166/'; then
+    mkdir -p /config/smartphoton_jkbms_fix166/nodes \
         || bashio::exit.nok "Failed to create node-red configuration directory"
 
     # Copie les fichiers modèles
-    cp /etc/node-red/flows.json /config/smartphoton_jkbms/
-    cp /etc/node-red/settings.js /config/smartphoton_jkbms/
+    cp /etc/node-red/flows.json /config/smartphoton_jkbms_fix166/
+    cp /etc/node-red/settings.js /config/smartphoton_jkbms_fix166/
 
     # Création d'un ID de flow aléatoire
     id=$(node -e "console.log((1+Math.random()*4294967295).toString(16));")
-    sed -i "s/%%ID%%/${id}/" "/config/smartphoton_jkbms/flows.json"
+    sed -i "s/%%ID%%/${id}/" "/config/smartphoton_jkbms_fix166/flows.json"
 fi
 
 # Vérification de version
-if ! bashio::fs.file_exists '/config/smartphoton_jkbms/version'; then
-    touch /config/smartphoton_jkbms/version
+if ! bashio::fs.file_exists '/config/smartphoton_jkbms_fix166/version'; then
+    touch /config/smartphoton_jkbms_fix166/version
     VERSION=$(bashio::addon.version)
     bashio::log.info "Module Addon Version number: ${VERSION}"
-    echo $VERSION >> /config/smartphoton_jkbms/version
-    chmod 775 /config/smartphoton_jkbms/version
+    echo $VERSION >> /config/smartphoton_jkbms_fix166/version
+    chmod 775 /config/smartphoton_jkbms_fix166/version
     bashio::log.info "${VERSION}"
 else
-    VERSIONOLD=$(cat /config/smartphoton_jkbms/version)
+    VERSIONOLD=$(cat /config/smartphoton_jkbms_fix166/version)
     VERSION=$(bashio::addon.version)
     if [ $VERSIONOLD != $VERSION ]; then
         bashio::log.info "Mise a jour de la nouvelle version"
         bashio::log.info "Module Addon Version number: ${VERSION}"
-        if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
-            rm /config/smartphoton_jkbms/flows.backup
+        if bashio::fs.file_exists '/config/smartphoton_jkbms_fix166/flows.backup'; then
+            rm /config/smartphoton_jkbms_fix166/flows.backup
         fi
-        mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
-        cp /etc/node-red/flows.json /config/smartphoton_jkbms/
+        mv /config/smartphoton_jkbms_fix166/flows.json /config/smartphoton_jkbms_fix166/flows.backup
+        cp /etc/node-red/flows.json /config/smartphoton_jkbms_fix166/
     fi
 fi
 
 # Remplace le fichier flows par celui d'origine
-if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
-    rm /config/smartphoton_jkbms/flows.backup
+if bashio::fs.file_exists '/config/smartphoton_jkbms_fix166/flows.backup'; then
+    rm /config/smartphoton_jkbms_fix166/flows.backup
 fi
-mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
-cp /etc/node-red/flows.json /config/smartphoton_jkbms/
+mv /config/smartphoton_jkbms_fix166/flows.json /config/smartphoton_jkbms_fix166/flows.backup
+cp /etc/node-red/flows.json /config/smartphoton_jkbms_fix166/
+
+# Apply ISSUE166 fixes only in this isolated addon namespace.
+# Fail closed: do not start Node-RED with unpatched flows.
+node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json \\
+    /config/smartphoton_jkbms_fix166/flows.json \\
+    || bashio::exit.nok "Issue166 test flow patch failed"
 
 # Désinstallation des packages Node-RED conflictuels
 cd /config || bashio::exit.nok "Could not change directory to Node-RED"
