@@ -29,13 +29,13 @@ for (const [id, func] of Object.entries(patches)) {
     }
     n.func = func;
 }
-// Test add-on uses 1892; do not change the unrelated base64 HTML payloads.
+// Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
+// Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
 if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
-    throw new Error('Could not locate test dashboard URL');
+    throw new Error('Could not locate original Legacy dashboard URL');
 }
-urlNode.func = urlNode.func.replace(':1891/endpoint/dashboard/', ':1892/endpoint/dashboard/');
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions, isolated dashboard port 1892');
+console.log('Issue #166 test patch applied: eight functions, Legacy dashboard port 1891');
