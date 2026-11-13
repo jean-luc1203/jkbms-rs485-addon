@@ -1,3 +1,11 @@
+## 4.1.13-dev166.4 — 2026-11-13 (EXPERIMENTAL BRANCH ONLY)
+
+- Issue #166: passive integrity telemetry in the Broadcast RS485 Framer.
+- Count checksum matches/mismatches of the 300-byte JK payload independently of the optional 8-byte Modbus ACK CRC.
+- Collect non-blocking length/type histograms, compact anomalies, and one summary log per minute.
+- **No new frame rejection, no changes to routing, no changes to the original Legacy 4.1.12 installed release.**
+- Supervised live test: use only while the original Legacy add-on is stopped. The experimental add-on shares port 1891 and production MQTT topics.
+
 ## 4.1.12 — 2026-10-09
 
 ### Added
