@@ -107,9 +107,9 @@ test('live single-addon port 1891 is consistent without changing the Legacy flow
   const configJs = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/config.js'),'utf8');
   const dockerfile = fs.readFileSync(path.join(root, 'Dockerfile'),'utf8');
   const patcher = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
-  assert.match(configYaml, /"1891\\/tcp": 1891/);
-  assert.match(configJs, /config\\.uiPort = 1891;/);
-  assert.match(dockerfile, /127\\.0\\.0\\.1:1891/);
+  assert(configYaml.includes('"1891/tcp": 1891'), 'addon port mapping must be 1891');
+  assert(configJs.includes('config.uiPort = 1891;'), 'Node-RED listener must use 1891');
+  assert(dockerfile.includes('127.0.0.1:1891'), 'health check must use 1891');
   assert(!patcher.includes("':1892/endpoint/dashboard/'"), 'patcher must not redirect the dashboard to 1892');
   const urlNode = byId.get('a91bfb41bf5699ef');
   assert(urlNode && urlNode.func.includes(':1891/endpoint/dashboard/'), 'generated dashboard must retain original port');
