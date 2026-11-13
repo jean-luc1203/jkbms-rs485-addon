@@ -1,0 +1,27 @@
+name: Issue 166 Legacy regression
+on:
+  push:
+    branches:
+      - fix/issue-166-broadcast-ghost-bms
+  pull_request:
+    paths:
+      - 'rootfs/etc/node-red/issue166-*'
+      - 'rootfs/etc/node-red/flows.json'
+      - 'tests/issue166-*'
+      - '.github/workflows/issue166-regression.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Construct patched Legacy flows for test
+        run: node rootfs/etc/node-red/issue166-apply.cjs rootfs/etc/node-red/flows.json /tmp/issue166-flows.json
+      - name: Verify JSON and regression suite
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('/tmp/issue166-flows.json','utf8'))"
+          ISSUE166_FLOWS=/tmp/issue166-flows.json node --test tests/issue166-ghost-bms.test.cjs
