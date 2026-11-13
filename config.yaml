@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS Legacy TEST - Issue 166"
-version: 4.1.13-dev166.2
+version: 4.1.13-dev166.3
 slug: "smartphoton_jkbms_fix166"
 description: Isolated test build for issue 166 (not production)
 url: https://domosimple.eu/forum/thread-917.html
@@ -16,9 +16,9 @@ privileged:
   - NET_ADMIN
   - SYS_RAWIO
 ports:
-  "1892/tcp": 1892
+  "1891/tcp": 1891
 ports_description:
-  "1892/tcp": Test web interface
+  "1891/tcp": Test web interface
 hassio_api: true
 hassio_role: manager
 homeassistant_api: true
