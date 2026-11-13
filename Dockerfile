@@ -70,7 +70,7 @@ RUN chmod +x \
 
 # Health check
 HEALTHCHECK --start-period=10m \
-    CMD curl --fail http://127.0.0.1:1891 || exit 1
+    CMD curl --fail http://127.0.0.1:1892 || exit 1
 
 # Build arguments
 ARG BUILD_ARCH
