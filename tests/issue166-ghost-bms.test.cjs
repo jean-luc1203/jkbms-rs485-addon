@@ -94,3 +94,9 @@ test('legacy active polling alarm publisher guards BMS IDs > 15',()=>{
   for(const id of [-488,16,327680,1.5]) assert.equal(r.call({alarms:{bms_id:id}}),null);
   assert.equal(r.flow.keys().length,0);
 });
+test('isolated add-on startup applies the patch as one shell command',()=>{
+  const script = fs.readFileSync(path.join(__dirname, '..', 'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'), 'utf8');
+  const patchCall = 'node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json /config/smartphoton_jkbms_fix166/flows.json || bashio::exit.nok "Issue166 test flow patch failed"';
+  assert(script.includes(patchCall), 'startup must call the patcher before launching Node-RED');
+  assert(!script.includes('flows.json ' + String.fromCharCode(92, 92)), 'startup must not use an accidental doubled shell backslash');
+});
