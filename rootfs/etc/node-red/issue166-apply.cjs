@@ -31,7 +31,7 @@ for (const [id, func] of Object.entries(patches)) {
 }
 // Instrument the existing Broadcast Framer without changing its routing.
 const framer166 = byId.get('3328d11cbeec411c');
-const framerAnchor166 = 'if (frames.length > 0) {\\n    let s = flow.get("diag_serial_stats")';
+const framerAnchor166 = 'if (frames.length > 0) {\n    let s = flow.get("diag_serial_stats")';
 const integritySnippet166 = fs.readFileSync(path.join(__dirname, 'issue166-integrity-snippet.js'), 'utf8');
 if (!framer166 || framer166.type !== 'function' ||
     framer166.func.split(framerAnchor166).length !== 2 ||
@@ -41,7 +41,7 @@ if (!framer166 || framer166.type !== 'function' ||
 }
 framer166.func = framer166.func.replace(
     framerAnchor166,
-    'if (frames.length > 0) {\\n' + integritySnippet166 + '\\n    let s = flow.get("diag_serial_stats")'
+    'if (frames.length > 0) {\n' + integritySnippet166 + '\n    let s = flow.get("diag_serial_stats")'
 );
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
