@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+'use strict';
+// ISSUE #166: apply the minimal validated Node-RED function changes at addon
+// startup, leaving the 4.1.12 reference flows.json unchanged in Git.
+const fs = require('node:fs');
+const crypto = require('node:crypto');
+const path = require('node:path');
+
+const [sourcePath, targetPath] = process.argv.slice(2);
+if (!sourcePath || !targetPath || path.resolve(sourcePath) === path.resolve(targetPath)) {
+    throw new Error('Usage: issue166-apply.cjs SOURCE_FLOWS TARGET_FLOWS (paths must differ)');
+}
+const expectedSha256 = 'b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6';
+const original = fs.readFileSync(sourcePath);
+const actualSha256 = crypto.createHash('sha256').update(original).digest('hex');
+if (actualSha256 !== expectedSha256) {
+    throw new Error('Refusing to patch a flows.json other than the verified Legacy 4.1.12 baseline: ' + actualSha256);
+}
+const nodes = JSON.parse(original.toString('utf8'));
+const patches = JSON.parse(fs.readFileSync('/etc/node-red/issue166-functions.json', 'utf8'));
+if (!Array.isArray(nodes) || nodes.length !== 590 || Object.keys(patches).length !== 8) {
+    throw new Error('Unexpected source flow structure or incomplete patch set');
+}
+const byId = new Map(nodes.map(n => [n.id, n]));
+for (const [id, func] of Object.entries(patches)) {
+    const n = byId.get(id);
+    if (!n || n.type !== 'function' || typeof func !== 'string') {
+        throw new Error('Missing function node or invalid patch for ' + id);
+    }
+    n.func = func;
+}
+// Test add-on uses 1892; do not change the unrelated base64 HTML payloads.
+const urlNode = byId.get('a91bfb41bf5699ef');
+if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
+    throw new Error('Could not locate test dashboard URL');
+}
+urlNode.func = urlNode.func.replace(':1891/endpoint/dashboard/', ':1892/endpoint/dashboard/');
+const staged = targetPath + '.issue166.tmp';
+fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
+fs.renameSync(staged, targetPath);
+console.log('Issue #166 test patch applied: eight functions, isolated dashboard port 1892');
