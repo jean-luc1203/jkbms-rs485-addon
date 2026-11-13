@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status: development / NOT validated on a physical RS485 installation.**
+**Status:** DEV166.3 starts and receives Master + BMS_2 in supervised real RS485-2 Broadcasting on HAOS Onduleur; **the DEV166.4 passive observer has not yet been validated on live frames**.
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.3`
+- version: `4.1.13-dev166.4`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -34,11 +34,33 @@ Fixed the test add-on startup script which used two trailing shell backslashes. 
 
 Restore the original Legacy Node-RED port 1891 across add-on metadata, Node-RED, health check and dashboard URL. The experimental add-on replaces the stopped Legacy add-on on the same HAOS production host for a supervised real-RS485 test; it must not run concurrently with the official Legacy add-on. The separate flow/config directory remains unchanged.
 
+## Update note (dev166.4) — passive integrity monitoring
+
+The observer is injected into the original Broadcast RS485 Framer, **after its existing frame extraction and before message emission**. It is wrapped in try/catch and does not drop, modify, reorder, or delay any frame. The eight prior corrections remain unchanged. The original 4.1.12 flows.json SHA is still verified.
+
+It tracks each emitted JK-BMS reply in persistent Node-RED flow context key `issue166_integrity_passive`. Counts are cumulative across restarts unless the corresponding Node-RED context is cleared.
+
+- `frames`, `types`, `lengths`: observed frames, DATA/SETUP distribution and up to 16 distinct lengths
+- `checksum.ok/bad/unavailable`: JK 300-byte payload checksum, computed as sum(bytes 0..298) modulo 256 versus byte 299; unavailable on candidates shorter than 300
+- `ack_crc.ok/bad/unavailable`: CRC16/MODBUS of bytes 300..305 versus 306..307, **only when the candidate is exactly 308 bytes**. Does NOT validate the JK 300-byte body
+- `ack_shape_bad`: unexpected ACK layout; may be a framing or protocol variation
+- `samples`: up to eight compact recent integrity anomalies (type, length, expected/received value), **not raw battery data**
+
+The observer logs `ISSUE166_INTEGRITY_PASSIVE` once at first received frame, then approximately every 60 seconds while frames continue arriving:
+
+```bash
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 | grep -F ISSUE166_INTEGRITY_PASSIVE
+```
+
+To read diagnostics without a long log, inspect the Node-RED flow context key `issue166_integrity_passive` through the Node-RED context sidebar. The first logged sample covers only one or a few frames; subsequent samples are more representative. Some legitimate transmission formats may differ from 308 bytes, so don't interpret an isolated mismatch as proof of BMS corruption.
+
+**No rejection threshold is enabled.** Checksum validation for the DATA/SETUP contents is separate from the CRC of the optional trailing Modbus acknowledgment.
+
 ## Patch application
 
 The GitHub repository still contains the exact, **unmodified** 4.1.12 `flows.json` source. Uploading that 4.9 MB file through the connected GitHub interface was not possible.
 
-Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
+Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity observer to the existing Broadcast Framer, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
 
 A missing patch, an unexpected base SHA, or an absent target node must stop startup: the test add-on must never silently run unpatched flows.
 
@@ -71,7 +93,7 @@ A GitHub Actions workflow performs the same verification on pushes to this branc
 
 ## Required go/no-go before PR
 
-1. Automated tests all pass and generated flow parses successfully.
+1. Automated tests (including untouched data path on good/bad checksum and CRC samples) all pass and generated flow parses successfully.
 2. Experimental add-on starts on HAOS Onduleur only while the official Legacy add-on is stopped; no startup/RangeError exceptions.
 3. Broadcasting real/simulated valid BMS data still updates expected Home Assistant entities and alarms.
 4. Invalid identifiers / truncated or desynchronized frames create no new MQTT retained topics or HA ghost devices.
