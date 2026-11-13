@@ -22,7 +22,7 @@ if ("theme" in options && options.theme !== "default") {
 config.debugUseColors = false;
 config.flowFile = "flows.json";
 config.nodesDir = "/config/smartphoton_jkbms_fix166/nodes";
-config.uiPort = 1892;
+config.uiPort = 1891;
 config.userDir = "/config/smartphoton_jkbms_fix166/";
 config.httpNodeRoot = "/endpoint";
 
