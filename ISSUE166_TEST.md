@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.1`
+- version: `4.1.13-dev166.2`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - dedicated Node-RED/web port: `1892`
 
@@ -25,6 +25,10 @@ https://github.com/jean-luc1203/jkbms-rs485-addon#fix/issue-166-broadcast-ghost-
 Refresh the app store and select **JK-BMS Legacy TEST - Issue 166**, not the production version. Configure a test RS485 interface or test TCP gateway and your test broker.
 
 If the branch URL conflicts with an existing repository registration, install a local copy of the branch via Home Assistant's `local_apps` / `addons` share instead.
+
+## Update note (dev166.2)
+
+Fixed the test add-on startup script which used two trailing shell backslashes. The patch itself applied, but shell then attempted to execute `flows.json` as a command and stopped with `Permission denied` (exit 126). The new startup command is a single line. No production changes.
 
 ## Patch application
 
