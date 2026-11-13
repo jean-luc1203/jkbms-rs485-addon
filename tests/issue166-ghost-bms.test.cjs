@@ -114,3 +114,80 @@ test('live single-addon port 1891 is consistent without changing the Legacy flow
   const urlNode = byId.get('a91bfb41bf5699ef');
   assert(urlNode && urlNode.func.includes(':1891/endpoint/dashboard/'), 'generated dashboard must retain original port');
 });
+
+function integrityFrame166(type=1, length=308) {
+  const b = Buffer.alloc(length);
+  b.set([0x55, 0xAA, 0xEB, 0x90, type]);
+  if (length >= 300) {
+    b[299] = b.subarray(0, 299).reduce((sum, v) => (sum + v) & 0xFF, 0);
+  }
+  if (length === 308) {
+    // Independent known reference CRCs: CRC16/MODBUS(00 10 16 1E 00 01)=0x5664,
+    // and CRC16/MODBUS(00 10 16 20 00 01)=0x9A05.
+    b.set(type === 1
+      ? [0x00, 0x10, 0x16, 0x1E, 0x00, 0x01, 0x64, 0x56]
+      : [0x00, 0x10, 0x16, 0x20, 0x00, 0x01, 0x05, 0x9A], 300);
+  }
+  return b;
+}
+function flushIntegrityFrames166(r, framesToSend, firstChunk=0) {
+  const payload = Buffer.concat([...framesToSend, Buffer.from([0x55, 0xAA, 0xEB, 0x90, 0x02])]);
+  if (firstChunk > 0) {
+    assert.equal(r.call({payload:payload.subarray(0, firstChunk)}), null);
+    return r.call({payload:payload.subarray(firstChunk)});
+  }
+  return r.call({payload});
+}
+test('passive JK checksum and ACK CRC: correct SETUP/DATA remain unchanged',()=>{
+  const r = runner('3328d11cbeec411c');
+  const setup = integrityFrame166(1), data = integrityFrame166(2);
+  const out = flushIntegrityFrames166(r, [setup,data], 120);
+  assert.deepEqual(out[0].map(x=>x.payload.payload), [setup,data]);
+  const d = r.flow.get('issue166_integrity_passive');
+  assert.equal(d.frames,2);
+  assert.deepEqual(d.types,{data:1,setup:1,other:0});
+  assert.equal(d.lengths['308'],2);
+  assert.deepEqual(d.checksum,{ok:2,bad:0,unavailable:0});
+  assert.deepEqual(d.ack_crc,{ok:2,bad:0,unavailable:0});
+  assert.equal(d.ack_shape_bad,0);
+  assert.equal(d.samples.length,0);
+});
+test('passive observer reports corrupted JK body without rejecting or changing frame',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=integrityFrame166(2);
+  b[80]^=0x04; // after checksum was set; deliberately corrupt content
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const d=r.flow.get('issue166_integrity_passive');
+  assert.equal(d.checksum.bad,1);
+  assert.equal(d.ack_crc.ok,1);
+  assert.equal(d.samples[0].kind,'jk_checksum');
+});
+test('passive observer reports bad ACK CRC without rejecting or changing frame',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=integrityFrame166(1); b[307]^=0x01;
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const d=r.flow.get('issue166_integrity_passive');
+  assert.equal(d.checksum.ok,1);
+  assert.equal(d.ack_crc.bad,1);
+  assert.equal(d.samples[0].kind,'ack_crc');
+});
+test('passive observer classifies short framed candidates as untestable, not rejected',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=integrityFrame166(2,290);
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const d=r.flow.get('issue166_integrity_passive');
+  assert.equal(d.frames,1);
+  assert.equal(d.checksum.unavailable,1);
+  assert.equal(d.ack_crc.unavailable,1);
+  assert.equal(d.lengths['290'],1);
+});
+test('no legacy flow route or filter changed by passive observer',()=>{
+  const framer = byId.get('3328d11cbeec411c');
+  assert(framer.func.includes('ISSUE166_INTEGRITY_PASSIVE'));
+  assert.deepEqual(framer.wires,[['11433c3013581838','a6586b831a80a15b']]);
+  assert.equal(framer.outputs,1);
+  assert(!framer.func.includes('return null; // integrity rejection'));
+});
