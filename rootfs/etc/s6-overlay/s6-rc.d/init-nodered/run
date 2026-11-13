@@ -50,9 +50,7 @@ cp /etc/node-red/flows.json /config/smartphoton_jkbms_fix166/
 
 # Apply ISSUE166 fixes only in this isolated addon namespace.
 # Fail closed: do not start Node-RED with unpatched flows.
-node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json \\
-    /config/smartphoton_jkbms_fix166/flows.json \\
-    || bashio::exit.nok "Issue166 test flow patch failed"
+node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json /config/smartphoton_jkbms_fix166/flows.json || bashio::exit.nok "Issue166 test flow patch failed"
 
 # Désinstallation des packages Node-RED conflictuels
 cd /config || bashio::exit.nok "Could not change directory to Node-RED"
