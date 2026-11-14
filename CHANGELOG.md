@@ -1,3 +1,11 @@
+## 4.1.13-dev166.10 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Identify dropped Active Polling alarm requests on real BMS_1+BMS_2: generated `Trame-Alarmes-BMS` seen before shared Node-RED `100ms` rate limiter, never after; limiter actually set to 1 msg/s with `drop=true`.
+- Change only the test build's shared TCP limiter to queue instead of drop, preserving 1 msg/s rate; rename node to reflect actual behavior.
+- Count Active Polling gateway requests after rate limit, rather than upstream; preserve serial Active Polling diagnostic path.
+- Regression tests verify queue and transport wiring, no Broadcast behavioral changes, and that alarm polls are counted only downstream in gateway mode.
+- No real-hardware acceptance yet. No fix yet for potential global polling address -> MQTT misattribution or Active Polling strict rejection.
+
 ## 4.1.13-dev166.9 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Prepare Active Polling compatibility validation; no change in the original data path.
