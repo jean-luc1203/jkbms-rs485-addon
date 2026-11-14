@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed real BMS Master (address 0) with strictly alternating DATA/SETUP, while BMS_2 (address 2) showed a growing DATA excess. DEV166.6 is code/CI-tested but not yet live-validated.**
+**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed Master (0) with strict DATA/SETUP alternation while BMS_2 (2) showed a DATA excess. DEV166.6 measured 26 DATA overwritten from BMS_2 out of 94 DATA at 10:29 on 2026-11-14, with zero cross-BMS pairings among 162 paired messages. DEV166.7 changes DATA dispatch and is code-tested but not yet validated on live hardware.**
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.6`
+- version: `4.1.13-dev166.7`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -115,11 +115,40 @@ ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
 
 **Interpretation:** A difference in cumulative poll/response counts alone is not proof of physical loss, especially for the Master which is not addressed by the 1..15 poll recognizer. If `pairs_cross_address > 0`, we have directly observed a misassociation in the unchanged decoder. Do not enable active frame re-association without a separate design/test phase.
 
+## Update note (dev166.7) — immediate per-BMS DATA routing (behavior change)
+
+**First behavior-changing experiment** on this branch after passive DEV166.4–166.6.
+
+For standard 308-byte JK-BMS DATA replies with a recognized Modbus ACK trailer, the decoder now:
+- Reads the BMS address directly from byte 300, accepts 0..15.
+- Verifies the 8-byte ACK structure, expected DATA register 0x1620, and CRC16 of bytes 300..305 **as evidence for the trailer address only**. (The ACK CRC does not cover the JK body.)
+- Immediately emits each DATA with `bms_type="data"`, `bms_numero=<validated trailer address>`, preserving `payload`, `_hex`, `_frameLength`, `_frameSource` and the original legacy `bms_adresse` field. DATA no longer needs to wait for a later SETUP.
+- Leaves SETUP extraction and publication based on bytes 270–273 unchanged, including earlier #166 range checks.
+- Avoids mixing legacy pending DATA into directly identified DATA. Clears obsolete pre-upgrade legacy `pendingData` and expires fallback queue entries after 12 seconds. Any fallback timestamp is stripped before downstream publication.
+
+If a DATA reply does **not** have a trustworthy standard 308-byte ACK trailer (including wrong ACK CRC), it still takes the old single-`pendingData` pairing path for backward compatibility. This path remains a **known residual weakness**: it may overwrite an earlier fallback DATA or associate it with a later SETUP. `ISSUE166_PAIRING_PASSIVE` consequently now monitors *only fallback pairings*, not the directly routed DATA. In contrast, the new `ISSUE1667_ROUTING` statistics include all valid direct DATA, all SETUP, fallback DATA and fallback pairs by address.
+
+**User-requested CRC scope:** Full JK-body checksum validation and any strict rejection of globally corrupt frames are **deferred** to a later DEV. The ACK CRC is used only to choose a reliable BMS identity for the new routing. Therefore, this release is not claimed to solve all ghost-entity causes.
+
+Check after installation:
+
+```bash
+ha apps info cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E '^(state|version):'
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E 'ISSUE1667_ROUTING|ISSUE166_(INTEGRITY|SEQUENCE|FRAMING)_PASSIVE|RangeError|OUT_OF_RANGE|observer error' |
+  tail -n 12
+```
+
+Expected on this two-pack installation: `issue1667_routing.by_address["0"].direct_data` and `["2"].direct_data` rise regularly; `legacy_fallback_data` and `pending_cleared_on_direct` remain zero in normal 308-byte operation. The `SEQUENCE_PASSIVE` observer will continue to show the underlying DATA>SETUP excess from BMS_2, but it should no longer cause lost DATA in the decoder. The old historical `PAIRING_PASSIVE` series is not directly comparable across this upgrade.
+
+**Important:** This experiment changes live MQTT data cadence; do not run concurrently with the official Legacy add-on on port 1891 and shared MQTT topics. If the update affects readings, restore the previously working 4.1.13-dev166.6 experimental build or stop the test add-on and restart the official 4.1.12 (never both together).
+
 ## Patch application
 
 The GitHub repository still contains the exact, **unmodified** 4.1.12 `flows.json` source. Uploading that 4.9 MB file through the connected GitHub interface was not possible.
 
-Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address, framing and poll observers to the existing Broadcast Framer, adds the passive pairing audit to the patched decoder, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
+Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address, framing and poll observers to the existing Broadcast Framer, adds the passive pairing audit and direct DATA identity routing to the patched decoder, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
 
 A missing patch, an unexpected base SHA, or an absent target node must stop startup: the test add-on must never silently run unpatched flows.
 
