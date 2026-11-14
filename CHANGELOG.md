@@ -1,3 +1,14 @@
+## 4.1.13-dev166.9 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Prepare Active Polling compatibility validation; no change in the original data path.
+- Instrument the existing STATIC (0x161C), SETUP (0x161E) and DATA (0x1620) response validators with passive checksum, ACK CRC, frame-length and reply-address diagnostics.
+- Add passive FC03 alarm reply diagnostics: CRC16, 9-byte shape, Modbus slave address and request correlation.
+- Identify risk: original Active Polling publishers use mutable global polling addresses rather than response-validated addresses. Response delay may cause a wrong MQTT BMS attribution.
+- New `ISSUE1669_ACTIVE_PASSIVE` and `ISSUE1669_ALARM_PASSIVE` counters, with bounded anomaly samples.
+- Differential regression tests confirm the original response validators return identical messages for valid and malformed samples.
+- No Active Polling rejection is enabled in this version. DEV166.8 strict Broadcast gating remains unchanged; official Legacy 4.1.12 main remains unchanged.
+- Requires a separate emulator/HAOS TEST session before any Active Polling fix or broad release.
+
 ## 4.1.13-dev166.8 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Add strict Broadcast decoder gate for standard 308-byte JK-BMS replies: validate JK sum8 body checksum (0..298 vs 299), Modbus 8-byte ACK layout and CRC16, and SETUP identity/ACK address agreement.
