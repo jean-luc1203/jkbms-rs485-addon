@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 is code/CI-tested but not yet live-validated on this installation.**
+**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed real BMS Master (address 0) with strictly alternating DATA/SETUP, while BMS_2 (address 2) showed a growing DATA excess. DEV166.6 is code/CI-tested but not yet live-validated.**
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.5`
+- version: `4.1.13-dev166.6`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -88,11 +88,38 @@ Look especially for the addresses `0` and `2` under `by_address`, `setup_id.mism
 
 **No new CRC/checksum rejection. No extra MQTT discovery cleanup. No production Legacy changes.**
 
+## Update note (dev166.6) — per-register polls and actual decoder pairing audit
+
+The original Node-RED function logic is **unchanged**. Two bounded, passive observers now operate on the already-extracted Modbus requests and directly on the existing DATA/SETUP decoder decisions:
+
+- `ISSUE166_POLL_PASSIVE` (Framer): validated 11-byte Modbus requests classified by register `0x161E` (SETUP), `0x1620` (DATA), `other`, and destination address. Fields: `total`, `setup_161e`, `data_1620`, `by_address`, `last_polls`. This counts only requests *recognized by the existing Framer*; missed/fragmented polls cannot be reconstructed by this observer.
+- `ISSUE166_PAIRING_PASSIVE` (decoder): `data_received`, `setup_received`, `data_overwritten`, `setup_without_pending`, `pairs`, `pairs_match`, `pairs_cross_address`, `pairs_untrusted_data_address`, `setup_ack_mismatch`, `setup_ack_untrusted`, `by_address`, `recent_anomalies`. It examines the current `pendingData` **just before the decoder replaces it on DATA** or assigns its BMS number **on the following SETUP**. It does **not** change those operations. An address derived from the JK frame trailer is trusted for matching only if BOTH the JK checksum and the Modbus trailer CRC, expected register, shape, address range, and type are valid.
+
+`pairs_cross_address` counts cases where the original decoder actually assigns a queued DATA to a SETUP of **another BMS**; `data_overwritten` separately counts earlier pending DATA displaced by another DATA. `setup_without_pending` records SETUP messages with nothing in the decoder's single pending slot. Recent anomalies are compact bounded samples, not full battery frames.
+
+All four/five observers produce summaries about once every 60 seconds and use separate persistent flow context keys. DEV166.4/DEV166.5 existing counters remain untouched. New counters begin at first invocation. No extra rejection, no MQTT changes, no automatic adoption of trailer address for decoding.
+
+```bash
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E 'ISSUE166_(POLL|PAIRING|SEQUENCE|FRAMING|INTEGRITY)_PASSIVE' |
+  tail -n 10
+```
+
+For focused comparison, also use:
+
+```bash
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E 'ISSUE166_(POLL|PAIRING)_PASSIVE' |
+  tail -n 4
+```
+
+**Interpretation:** A difference in cumulative poll/response counts alone is not proof of physical loss, especially for the Master which is not addressed by the 1..15 poll recognizer. If `pairs_cross_address > 0`, we have directly observed a misassociation in the unchanged decoder. Do not enable active frame re-association without a separate design/test phase.
+
 ## Patch application
 
 The GitHub repository still contains the exact, **unmodified** 4.1.12 `flows.json` source. Uploading that 4.9 MB file through the connected GitHub interface was not possible.
 
-Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address and framing observers to the existing Broadcast Framer, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
+Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address, framing and poll observers to the existing Broadcast Framer, adds the passive pairing audit to the patched decoder, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
 
 A missing patch, an unexpected base SHA, or an absent target node must stop startup: the test add-on must never silently run unpatched flows.
 
