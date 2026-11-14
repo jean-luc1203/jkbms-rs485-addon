@@ -1,3 +1,12 @@
+## 4.1.13-dev166.5 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Issue #166: count global DATA/SETUP ordering **and per validated Modbus ACK address** (0..15).
+- Cross-check SETUP identity bytes 270..273 against the validated ACK trailer address (CRC16 + shape + register type).
+- Measure input/emitted/discarded bytes, short false headers, buffer trims and Modbus polls in the original Broadcast Framer.
+- Diagnose the historical vulnerability where fragmented short Modbus polls can be skipped; **no transport/parser behavior change in this release**.
+- All previous DEV166.4 checksum/CRC observation and ghost-ID filters retained.
+- **Passive only**: no additional rejection, frame reassociation, MQTT topic changes, or modifications to the official Legacy add-on.
+
 ## 4.1.13-dev166.4 — 2026-11-13 (EXPERIMENTAL BRANCH ONLY)
 
 - Issue #166: passive integrity telemetry in the Broadcast RS485 Framer.
