@@ -441,7 +441,7 @@ test('DEV166.7 immediate DATA dispatch uses verified ACK identity even if last p
   assert.equal(out.bms_numero,2);
   assert.equal(out.bms_adresse,15); // legacy diagnostic field still unchanged
   assert.deepEqual(out.payload,frameWithAckAddress166(2,2));
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,'2');
   assert.equal(r.flow.get('issue1667_routing').direct_data,1);
 });
@@ -454,7 +454,7 @@ test('DEV166.7 multiple consecutive DATA frames from BMS_2 are all published',()
   }
   assert.equal(r.flow.get('issue1667_routing').direct_data,70);
   assert.equal(r.flow.get('issue1667_routing').by_address['2'].direct_data,70);
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   assert.equal(r.flow.get('issue1667_routing').legacy_fallback_data,0);
   assert.equal(r.flow.get('issue1667_routing').pending_cleared_on_direct,0);
 });
@@ -471,7 +471,7 @@ test('DEV166.7 interleaved Master and BMS_2 DATA/SETUP do not overwrite or misas
     const out=r.call(decoderInput166(s.type,s.address,15));
     assert(out && !Array.isArray(out),'direct DATA or one SETUP expected');
     observed.push([out.bms_type,out.bms_numero]);
-    assert.equal(r.context.get('jkbms_pending_data'),null);
+    assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   }
   assert.deepEqual(observed,[
     ['data',2],['data',0],['data',2],['data',2],
@@ -492,7 +492,7 @@ test('DEV166.7 SETUP remains independent, including SETUP-only and setup ID from
   assert.equal(out.bms_adresse,15);
   assert.equal(r.flow.get('issue1667_routing').setup,1);
   assert.equal(r.flow.get('issue1667_routing').legacy_fallback_pair,0);
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
 });
 test('DEV166.7 bad ACK CRC preserves legacy fallback; no blanket CRC frame filter',()=>{
   const r=runner(ids.decoder);
@@ -509,7 +509,7 @@ test('DEV166.7 bad ACK CRC preserves legacy fallback; no blanket CRC frame filte
   assert.equal(d.direct_data,0);
   assert.equal(d.legacy_fallback_data,1);
   assert.equal(d.legacy_fallback_pair,1);
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
 });
 test('DEV166.7 no whole-JK-frame checksum filtering is introduced yet',()=>{
   const r=runner(ids.decoder);
@@ -529,7 +529,7 @@ test('DEV166.7 removes legacy pending from old releases before a SETUP can relab
   const out=r.call(decoderInput166(1,2));
   assert.equal(out.bms_type,'setup');
   assert.equal(out.bms_numero,2);
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   assert.equal(r.flow.get('issue1667_routing').stale_pending_cleared,1);
 });
 test('DEV166.7 untrusted legacy pending is cleared before next direct DATA',()=>{
@@ -539,7 +539,7 @@ test('DEV166.7 untrusted legacy pending is cleared before next direct DATA',()=>
   assert(r.context.get('jkbms_pending_data'));
   const out=r.call(decoderInput166(2,0));
   assert.equal(out.bms_numero,0);
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   const setup=r.call(decoderInput166(1,0));
   assert.equal(setup.bms_type,'setup');
   const d=r.flow.get('issue1667_routing');
@@ -552,6 +552,6 @@ test('DEV166.7 rejected short DATA and invalid SETUP keep previous #166 safeguar
   assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:b,slave:2}}),null);
   const bad=frameWithAckAddress166(1,2,327680);
   assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}}),null);
-  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   assert.equal(r.flow.get('issue1667_routing'),undefined);
 });
