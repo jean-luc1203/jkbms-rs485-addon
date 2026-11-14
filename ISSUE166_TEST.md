@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed Master (0) with strict DATA/SETUP alternation while BMS_2 (2) showed a DATA excess. DEV166.6 measured 26 DATA overwritten from BMS_2 out of 94 DATA at 10:29 on 2026-11-14, with zero cross-BMS pairings among 162 paired messages. DEV166.7 changes DATA dispatch and is code-tested but not yet validated on live hardware.**
+**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed Master (0) with strict DATA/SETUP alternation while BMS_2 (2) showed a DATA excess. DEV166.6 measured 26 DATA overwritten from BMS_2 out of 94 DATA at 10:29 on 2026-11-14, with zero cross-BMS pairings among 162 paired messages. DEV166.7 now runs on live hardware with Master and BMS_2 dashboards reported coherent by the operator; 69,111 emitted frames had zero JK checksum/Modbus ACK CRC errors at 11:17 on 2026-11-14. DEV166.8 introduces strict rejection of invalid Broadcast replies; **not yet live-tested**.**
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.7`
+- version: `4.1.13-dev166.8`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -144,11 +144,49 @@ Expected on this two-pack installation: `issue1667_routing.by_address["0"].direc
 
 **Important:** This experiment changes live MQTT data cadence; do not run concurrently with the official Legacy add-on on port 1891 and shared MQTT topics. If the update affects readings, restore the previously working 4.1.13-dev166.6 experimental build or stop the test add-on and restart the official 4.1.12 (never both together).
 
+## Update note (dev166.8) — strict integrity gate, experimental 308-byte profile
+
+**This release adds rejection, not just observation.** The filter runs in the **Broadcast decoder only**, before either DATA or SETUP can update MQTT/Home Assistant. It leaves the Framer's extraction and diagnostic counters, 11-byte Modbus request messages, Active Polling, and the original Legacy 4.1.12 flow unchanged.
+
+For the directly observed **308-byte** reply profile:
+
+1. Check JK header `55 AA EB 90` and frame type `0x01` (SETUP) or `0x02` (DATA).
+2. Check **sum8 over bytes 0..298** against byte 299 (validates the JK body, NOT cryptographically).
+3. Check ACK shape at 300..305 (`[address,10,16,1E|20,00,01]`), address in 0..15 and register consistent with the JK frame type.
+4. Check **CRC16/MODBUS on bytes 300..305** against the little-endian CRC at 306..307. This only protects the ACK, not the 300-byte JK body.
+5. For SETUP, independently validate its 32-bit LE identity in bytes 270..273 and require agreement with the ACK address. A plausible but different BMS ID is rejected.
+6. Reject the reply **before entering the decoder** if any check fails, and clear any stale pending fallback DATA to avoid future wrong association.
+
+A native **300-byte** reply with correct JK sum8 is accepted **without claiming an ACK CRC check** (there is no ACK). Its DATA still uses the legacy compatibility fallback and may have the known pairing limitation. Unsupported lengths including **310-byte padded formats** are rejected in this *experimental* strict profile: these variants may be genuine on other JK hardware and MUST be qualified before any general release.
+
+The gate emits one `ISSUE1668_INTEGRITY_GATE` summary about every 60 s using flow key `issue1668_integrity_gate`:
+- `seen`, `accepted_308`, `accepted_300_no_ack`, `rejected`
+- `reasons`: `jk_checksum`, `ack_crc`, `ack_shape`, `ack_register`, `setup_ack_mismatch`, `unsupported_length`, etc.
+- `recent_rejections`: up to 8 compact entries containing timestamp, reason, frame type/length; never full payloads.
+
+The existing `ISSUE166_INTEGRITY_PASSIVE` counter runs **upstream** of this gate and may therefore count damaged replies even though no MQTT update is published. Use both diagnostics to confirm detection and rejection:
+
+```bash
+ha apps info cd4dd3d7_smartphoton_jkbms_fix166 | grep -E '^(state|version):'
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E 'ISSUE1668_INTEGRITY_GATE|ISSUE1667_ROUTING|ISSUE166_INTEGRITY_PASSIVE|RangeError|OUT_OF_RANGE|observer error' |
+  tail -n 12
+```
+
+Expected on this user's real Master+BMS_2 bus: `accepted_308` and `issue1667_routing.direct_data` increase, with `accepted_300_no_ack=0`, `rejected=0` under normal clean traffic; known corrupt unit-test samples are rejected. Compare the two per-address direct DATA counters and the HA dashboard after updating.
+
+**Important boundaries:**
+- A sum8 checksum is weak: coordinated byte modifications can cancel each other, so not every corruption can be detected. Neither checksum nor CRC certifies physical wire integrity end-to-end.
+- A 308-byte frame missing entirely before the Framer is outside this gate's detection.
+- A rejected reply means an individual reading may not update; the gate does not replace it with stale readings or toggle MQTT availability.
+- Do not deploy this strict profile broadly until 300/308/310 variants and other firmware are tested. This is **not** the final release for issue #166.
+- The owner should maintain 4.1.13-dev166.7 as a known-good fallback, and never run test and production add-ons simultaneously (same MQTT topics and port 1891).
+
 ## Patch application
 
 The GitHub repository still contains the exact, **unmodified** 4.1.12 `flows.json` source. Uploading that 4.9 MB file through the connected GitHub interface was not possible.
 
-Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address, framing and poll observers to the existing Broadcast Framer, adds the passive pairing audit and direct DATA identity routing to the patched decoder, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
+Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address, framing and poll observers to the existing Broadcast Framer, adds the passive pairing audit, direct DATA identity routing, and strict Broadcast integrity gate to the patched decoder, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
 
 A missing patch, an unexpected base SHA, or an absent target node must stop startup: the test add-on must never silently run unpatched flows.
 
