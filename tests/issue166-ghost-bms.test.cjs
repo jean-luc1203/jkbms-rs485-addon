@@ -896,3 +896,71 @@ test('DEV166.9 reproduces existing Active Polling MQTT wrong-address risk under 
     assert(!state.some(x=>x.topic.startsWith('BMS_1/')));
   }
 });
+
+
+test('DEV166.10 TCP Active Polling queues alarm collision and preserves 1 msg/s budget',()=>{
+  const rate=byId.get('2e3b52cb867e1b1a');
+  const after=byId.get('f16610d1a9b36cc0');
+  const route=byId.get('a9d54c61db2740f0');
+  assert.equal(rate.type,'delay');
+  assert.equal(rate.pauseType,'rate');
+  assert.equal(rate.rate,'1');
+  assert.equal(rate.nbRateUnits,'1');
+  assert.equal(rate.rateUnits,'second');
+  assert.equal(rate.drop,false,'rate limiter must QUEUE (not discard) alarm messages');
+  assert.deepEqual(rate.wires,[[after.id]]);
+  assert.deepEqual(after.wires,[[route.id]]);
+  assert.equal(after.type,'function');
+  assert.equal(after.z,rate.z);
+  assert.equal(after.func.includes('diag_active_polling_stats'),true);
+  // Neither the two TCP requests nor the rest of the transport are modified.
+  assert.deepEqual(route.wires,[['b90f87fb8568461a'],['3e5a55e0cf2a0f5d']]);
+});
+test('DEV166.10 gateway diagnostics are absent BEFORE queue, recorded AFTER queue',()=>{
+  const upstream=runner('54c0f2403ae8bc7c');
+  upstream.global.set('bms_broadcasting',false);
+  upstream.global.set('use_gateway',true);
+  for(const [topic,id] of [
+    ['Trame-3-dynamiques',1],['Trame-Alarmes-BMS',1]
+  ]){
+    const msg={topic,payload:Buffer.from([id,topic.includes('Alarmes')?3:0x10])};
+    assert.strictEqual(upstream.call(msg),msg);
+  }
+  assert.equal(upstream.flow.get('diag_active_polling_stats'),undefined,
+    'do not count gateway messages before rate limiting');
+  const r=runner('f16610d1a9b36cc0');
+  r.global.set('bms_broadcasting',false);
+  r.global.set('use_gateway',true);
+  const data={topic:'Trame-3-dynamiques',payload:Buffer.from([1,0x10])};
+  const alarm={topic:'Trame-Alarmes-BMS',payload:Buffer.from([2,0x03])};
+  assert.strictEqual(r.call(data),data);
+  assert.strictEqual(r.call(alarm),alarm);
+  assert.equal(data.diag_frame_type,'live');
+  assert.equal(alarm.diag_frame_type,'alarms');
+  assert.equal(alarm.diag_slave_id,2);
+  const s=r.flow.get('diag_active_polling_stats');
+  assert.equal(s.polls_sent_30s,2);
+  assert.equal(s.polls_by_frame_30s.live,1);
+  assert.equal(s.polls_by_frame_30s.alarms,1);
+  assert.equal(Object.values(s.pending).length,2);
+  assert.notEqual(data.diag_tx_id,alarm.diag_tx_id);
+});
+test('DEV166.10 serial Active Polling still counts at original diagnostics node',()=>{
+  const r=runner('54c0f2403ae8bc7c');
+  r.global.set('bms_broadcasting',false);
+  r.global.set('use_gateway',false);
+  const msg={topic:'Trame-Alarmes-BMS',payload:Buffer.from([2,0x03])};
+  assert.strictEqual(r.call(msg),msg);
+  assert.equal(r.flow.get('diag_active_polling_stats').polls_by_frame_30s.alarms,1);
+  assert.equal(msg.diag_slave_id,2);
+});
+test('DEV166.10 no diagnostic changes for Broadcasting on either transport',()=>{
+  for(const id of ['54c0f2403ae8bc7c','f16610d1a9b36cc0']){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',true);
+    r.global.set('use_gateway',true);
+    const msg={topic:'Trame-Alarmes-BMS',payload:Buffer.from([1,3])};
+    assert.strictEqual(r.call(msg),msg);
+    assert.equal(r.flow.get('diag_active_polling_stats'),undefined);
+  }
+});
