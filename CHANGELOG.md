@@ -1,3 +1,12 @@
+## 4.1.13-dev166.12 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Live DEV166.11 two-BMS Active Polling recovered after one-minute gateway RJ45 outage; 419/419 strict checks accepted at 18:51, no wrong-address MQTT publication.
+- Identified a separate legacy Broadcast `node-red-contrib-tcp-client2` watchdog falsely acting after Active Polling gateway recovery, with unsupported `action:'disconnect'`.
+- Restrict this Broadcast watchdog to `bms_broadcasting:true` AND `use_gateway:true`.
+- For Broadcast TCP silence exceeding 120 s, use documented tcp-client2 `action:'close'`, followed by the original 2-s delay and `action:'connect'`.
+- Leave Active Polling A/B failover watchdog, its request nodes, DEV166.10 TCP queue, DEV166.11 strict address identity and DEV166.8 Broadcast integrity gate unchanged.
+- Automated watchdog modes/actions/topology tests pass. Physical Broadcast watchdog reconnection still requires separate real-hardware validation.
+
 ## 4.1.13-dev166.11 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Enforce a strict 308-byte JK checksum, ACK CRC16 and register/address check for Active Polling DATA, SETUP and STATIC responses; SETUP body address must match ACK.
