@@ -966,33 +966,171 @@ test('DEV166.10 no diagnostic changes for Broadcasting on either transport',()=>
 });
 
 
-test('TEMP16611 source inspection for identity flow',()=>{
-  const ids=['653aafd0b7ddd759','48f37794d0d7b8bf','4941e347ccb9499c',
-    'b02adbe3a64e64f2','9856865237a421b7','cd6a9e296046d78e',
-    'f9ee21cf4d13a9f4','54c0f2403ae8bc7c','f16610d1a9b36cc0',
-    'a9d54c61db2740f0','44588e9ab8f432c4'];
-  for(const id of ids){
-    const n=byId.get(id);
-    console.log('INSPECT16611',id,JSON.stringify({
-      name:n?.name,type:n?.type,wires:n?.wires,z:n?.z,
-      func:n?.func?.slice(0,11000)
-    }));
+
+test('DEV166.11 trusted ACK identity overrides mutable global poll address',()=>{
+  for(const [id,globalKey] of [
+    ['653aafd0b7ddd759','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','slaveAddress-Trame1']
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',false);
+    r.global.set(globalKey,2); // another BMS is being polled
+    r.global.set('jk_cell_count',16);
+    const out=r.call({
+      bms_numero:1,_issue16611_reply_bms:1,
+      payload:{SOC_P:55,Cell_1_volt_V:3.2,Device_address_N:1,BMS_A:'JK'}
+    });
+    assert(Array.isArray(out?.[0]) && out[0].length>0);
+    const states=out[0].filter(x=>x.topic.startsWith('BMS_'));
+    assert(states.length>0);
+    assert(states.every(x=>x.topic.startsWith('BMS_1/')),
+      'all state topics must follow the verified BMS_1 response');
+    assert(!states.some(x=>x.topic.startsWith('BMS_2/')));
+    const count=r.flow.get('issue16611_mqtt_gate');
+    assert.equal(count.by_kind[id==='653aafd0b7ddd759'?'data':
+      id==='48f37794d0d7b8bf'?'setup':'static'].accepted,1);
   }
-  const relates=flows.filter(n=>
-    /trame|mqtt|alarm|poll|tcp|diag/i.test(n.name||'') &&
-    (n.z===byId.get('b02adbe3a64e64f2').z ||
-    n.z===byId.get('f9ee21cf4d13a9f4').z ||
-    n.z===byId.get('a9d54c61db2740f0').z)).map(n=>({
-      id:n.id,name:n.name,type:n.type,z:n.z,wires:n.wires
-    }));
-  console.log('INSPECT16611 TOPOLOGY',JSON.stringify(relates).slice(0,25000));
 });
-
-
-test('TEMP16611 exact source inspection',()=>{
-  for(const id of ['b02adbe3a64e64f2','9856865237a421b7','cd6a9e296046d78e',
-      'f9ee21cf4d13a9f4','54c0f2403ae8bc7c','44588e9ab8f432c4']){
-    const n=byId.get(id);
-    console.log('INSPECT16611ENC '+id+' '+encodeURIComponent(n.func));
+test('DEV166.11 prevents MQTT state and discovery on untrusted identity',()=>{
+  for(const [id,globalKey] of [
+    ['653aafd0b7ddd759','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','slaveAddress-Trame1']
+  ]){
+    for(const [extra,expected] of [
+      [{bms_numero:1},'missing_or_invalid_verified_id'],
+      [{_issue16611_reply_bms:1.5,bms_numero:1},'missing_or_invalid_verified_id'],
+      [{_issue16611_reply_bms:16,bms_numero:16},'missing_or_invalid_verified_id'],
+      [{_issue16611_reply_bms:1,bms_numero:2},'verified_id_conflict']
+    ]){
+      const r=runner(id);
+      r.global.set('bms_broadcasting',false);
+      r.global.set(globalKey,2);
+      assert.equal(r.call({payload:{SOC_P:90,Heating_B:1},...extra}),null);
+      assert.equal(r.flow.get('issue16611_mqtt_gate').reasons[expected],1);
+      assert(!r.flow.keys().some(k=>k.startsWith('discoverySent_')),
+        'untrusted BMS must not create discovery state');
+    }
+  }
+});
+test('DEV166.11 validates DATA, SETUP, STATIC JK replies by true ACK address',()=>{
+  for(const [id,type,reg,kind] of [
+    ['b02adbe3a64e64f2',2,0x20,'data'],
+    ['9856865237a421b7',1,0x1e,'setup'],
+    ['cd6a9e296046d78e',3,0x1c,'static']
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',false);
+    r.global.set('slaveAddress-Trame3',2);
+    r.global.set('slaveAddress-Trame2',2);
+    r.global.set('slaveAddress-Trame1',2);
+    const b=activeFrame1669(type,1,reg);
+    const msg={payload:b,diag_slave_id:1,topic:'test'};
+    assert.strictEqual(r.call(msg),msg);
+    assert.equal(msg._issue16611_reply_bms,1);
+    assert.equal(msg.bms_numero,1);
+    const g=r.flow.get('issue16611_active_gate');
+    assert.equal(g.seen,1);
+    assert.equal(g.accepted,1);
+    assert.equal(g.by_kind[kind].accepted,1);
+    assert.equal(g.by_address['1'],1);
+    assert.equal(g.rejected,0);
+  }
+});
+test('DEV166.11 strict JK gate rejects wrong type, length, body sum, ACK CRC and register',()=>{
+  const cases=[
+    ['length',b=>b.subarray(0,300),'jk_length'],
+    ['checksum',b=>{b[80]^=1;return b},'jk_checksum'],
+    ['crc',b=>{b[306]^=1;return b},'ack_crc16'],
+    ['register',b=>{b[303]=0x1e;return b},'ack_shape_register'],
+    ['type',b=>{b[4]=1;return b},'jk_header_type'],
+    ['address',b=>{
+       b[300]=16;
+       let crc=0xffff;
+       for(let i=300;i<306;i++){
+         crc^=b[i];
+         for(let j=0;j<8;j++)crc=(crc&1)?(crc>>>1)^0xA001:crc>>>1;
+       }
+       b[306]=crc&255;b[307]=crc>>>8;
+       return b;
+     },'address_range']
+  ];
+  for(const [name,modify,reason] of cases){
+    const r=runner('b02adbe3a64e64f2');
+    r.global.set('bms_broadcasting',false);
+    const b=modify(activeFrame1669(2,1,0x20));
+    assert.equal(r.call({payload:b,topic:'test'}),null,name);
+    assert.equal(r.flow.get('issue16611_active_gate').reasons[reason],1,name);
+  }
+});
+test('DEV166.11 SETUP body ID cannot differ from CRC-validated ACK address',()=>{
+  const r=runner('9856865237a421b7');
+  r.global.set('bms_broadcasting',false);
+  const b=activeFrame1669(1,2,0x1e);
+  b.writeUInt32LE(1,270);
+  let sum=0;for(let i=0;i<299;i++)sum=(sum+b[i])&255;
+  b[299]=sum;
+  assert.equal(r.call({payload:b,diag_slave_id:2}),null);
+  assert.equal(r.flow.get('issue16611_active_gate').reasons.setup_id_vs_ack,1);
+});
+test('DEV166.11 rejects matched CRC when the request targeted another BMS',()=>{
+  for(const [id,type,reg] of [
+    ['b02adbe3a64e64f2',2,0x20],
+    ['9856865237a421b7',1,0x1e],
+    ['cd6a9e296046d78e',3,0x1c]
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',false);
+    const b=activeFrame1669(type,1,reg);
+    assert.equal(r.call({payload:b,diag_slave_id:2}),null);
+    const g=r.flow.get('issue16611_active_gate');
+    assert.equal(g.reasons.request_reply_mismatch,1);
+  }
+});
+test('DEV166.11 alarm FC03 9-byte reply is validated and owns its BMS identity',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  r.global.set('bms_broadcasting',false);
+  const b=alarmFrame1669(2,0x20);
+  const msg={topic:'Trame-Alarmes-BMS',payload:b,diag_slave_id:2};
+  assert.strictEqual(r.call(msg),msg);
+  assert.equal(msg.alarms.bms_id,2);
+  assert.equal(msg._issue16611_reply_bms,2);
+  assert.equal(msg.alarms.raw_value,0x20);
+  const g=r.flow.get('issue16611_active_gate');
+  assert.equal(g.by_kind.alarm.accepted,1);
+  assert.equal(g.rejected,0);
+});
+test('DEV166.11 corrupt or cross-address alarms cannot reach MQTT',()=>{
+  for(const [modify,reason] of [
+    [b=>{b[8]^=1;return b},'alarm_crc16'],
+    [b=>{b[1]=0x04;return b},'alarm_fc03_shape'],
+    [b=>b.subarray(0,7),'alarm_length'],
+    [b=>b,'request_reply_mismatch']
+  ]){
+    const r=runner('f9ee21cf4d13a9f4');
+    r.global.set('bms_broadcasting',false);
+    const b=modify(alarmFrame1669(1,0x2));
+    const msg={topic:'Trame-Alarmes-BMS',payload:b,
+      diag_slave_id:reason==='request_reply_mismatch'?2:1};
+    assert.equal(r.call(msg),null);
+    assert.equal(r.flow.get('issue16611_active_gate').reasons[reason],1);
+    assert.equal(msg.alarms,undefined);
+  }
+});
+test('DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged',()=>{
+  for(const [id,type,reg] of [
+    ['b02adbe3a64e64f2',2,0x20],
+    ['9856865237a421b7',1,0x1e],
+    ['cd6a9e296046d78e',3,0x1c]
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',true);
+    const b=activeFrame1669(type,1,reg);b[299]^=1;
+    const msg={payload:b,topic:'test'};
+    assert.strictEqual(r.call(msg),msg,
+      'strict Active gate must not change validation in Broadcasting');
+    assert.equal(msg._issue16611_reply_bms,undefined);
+    assert.equal(r.flow.get('issue16611_active_gate'),undefined);
   }
 });
