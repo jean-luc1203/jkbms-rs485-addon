@@ -92,6 +92,51 @@ injectFramer166(
     sequenceSnippet166 + '\n    let s = flow.get("diag_serial_stats")',
     'sequence/address observer'
 );
+// DEV166.6: register-specific request counts, from validated Framer output only.
+const pollSnippet166 = fs.readFileSync(
+    path.join(__dirname, 'issue166-poll-snippet.js'), 'utf8'
+);
+if (!pollSnippet166.includes('ISSUE166_POLL_PASSIVE')) {
+    throw new Error('Issue166 poll diagnostics snippet missing or invalid');
+}
+injectFramer166(
+    '    let s = flow.get("diag_serial_stats")',
+    pollSnippet166 + '\n    let s = flow.get("diag_serial_stats")',
+    'per-address Modbus poll register counter'
+);
+
+// DEV166.6: audit the decoder's EXISTING pairing decisions without changing them.
+const decoder166 = byId.get('86a0f48a516a10b6');
+const pairingSnippet166 = fs.readFileSync(
+    path.join(__dirname, 'issue166-pairing-snippet.js'), 'utf8'
+);
+if (!decoder166 || decoder166.type !== 'function' ||
+    !pairingSnippet166.includes('ISSUE166_PAIRING_PASSIVE')) {
+    throw new Error('Issue166 pairing diagnostics prerequisites missing');
+}
+function injectDecoder166(anchor, replacement, label) {
+    if (decoder166.func.split(anchor).length !== 2) {
+        throw new Error('Issue166 decoder diagnostic anchor changed: ' + label);
+    }
+    decoder166.func = decoder166.func.replace(anchor, replacement);
+}
+injectDecoder166(
+    'let outputFrames = [];',
+    'let outputFrames = [];\n' + pairingSnippet166,
+    'passive pairing helper'
+);
+injectDecoder166(
+    '        // On mémorise la data, en attente de la setup suivante',
+    '        issue166AuditPairing("data", frame, pendingData, null);\n' +
+    '        // On mémorise la data, en attente de la setup suivante',
+    'before pendingData overwrite'
+);
+injectDecoder166(
+    '        refreshDetectedBms(normalizedId);',
+    '        issue166AuditPairing("setup", frame, pendingData, bmsNumber);\n' +
+    '        refreshDetectedBms(normalizedId);',
+    'before pendingData/setup pairing'
+);
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -101,4 +146,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + passive integrity / sequencing / framing observers, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + passive integrity / sequencing / framing / polls / pairing observers, Legacy dashboard port 1891');
