@@ -137,6 +137,73 @@ injectDecoder166(
     '        refreshDetectedBms(normalizedId);',
     'before pendingData/setup pairing'
 );
+// DEV166.7: assign reliable per-frame DATA identities from the Modbus trailer.
+// No whole-frame strict checksum/CRC gate is introduced in this version.
+const directRoutingSnippet166 = fs.readFileSync(
+    path.join(__dirname, 'issue166-direct-routing-snippet.js'), 'utf8'
+);
+if (!directRoutingSnippet166.includes('ISSUE1667_ROUTING') ||
+    !directRoutingSnippet166.includes('function issue1667DataAddress(')) {
+    throw new Error('Issue166 direct DATA routing snippet missing or invalid');
+}
+injectDecoder166(
+    'let outputFrames = [];',
+    'let outputFrames = [];\n' + directRoutingSnippet166,
+    'direct DATA address resolver and counters'
+);
+// The pre-existing global pendingData may survive an add-on update. Never
+// reassign pre-DEV166.7 stale bytes to a different BMS after this upgrade.
+injectDecoder166(
+    '// Le Framer met son objet dans msg.payload',
+    'if (pendingData && (!Number.isFinite(pendingData._issue1667_fallback_ts) ||\n' +
+    '    Date.now() - pendingData._issue1667_fallback_ts > 12000 ||\n' +
+    '    Date.now() < pendingData._issue1667_fallback_ts)) {\n' +
+    '    issue1667RouteEvent("stale_pending_cleared", null, null);\n' +
+    '    pendingData = null;\n' +
+    '    context.set(pendingDataKey, null);\n' +
+    '}\n\n// Le Framer met son objet dans msg.payload',
+    'stale pending compatibility'
+);
+injectDecoder166(
+    '        issue166AuditPairing("data", frame, pendingData, null);',
+    '        const directId1667 = issue1667DataAddress(frame);\n' +
+    '        if (directId1667 !== null) {\n' +
+    '            if (pendingData) {\n' +
+    '                issue1667RouteEvent("pending_cleared_on_direct", directId1667, null);\n' +
+    '                pendingData = null;\n' +
+    '                context.set(pendingDataKey, null);\n' +
+    '            }\n' +
+    '            refreshDetectedBms(normalizeBmsIdentifier(directId1667));\n' +
+    '            issue1667RouteEvent("direct_data", directId1667, null);\n' +
+    '            return {\n' +
+    '                payload: Buffer.from(frame),\n' +
+    '                bms_adresse: framed.slave !== undefined ? framed.slave : "master",\n' +
+    '                bms_type: "data",\n' +
+    '                bms_numero: directId1667,\n' +
+    '                _frameSource: "JK-BMS",\n' +
+    '                _frameLength: frame.length,\n' +
+    '                _hex: framed.hex || frame.toString("hex")\n' +
+    '            };\n' +
+    '        }\n' +
+    '        issue1667RouteEvent("legacy_fallback_data", null, {length: frame.length});\n' +
+    '        issue166AuditPairing("data", frame, pendingData, null);',
+    'DATA route before single pending legacy fallback'
+);
+injectDecoder166(
+    '            _frameSource: "JK-BMS",\n            _frameLength: frame.length,\n            _hex: framed.hex || frame.toString("hex")\n        };\n\n        context.set(pendingDataKey, pendingData);',
+    '            _frameSource: "JK-BMS",\n            _frameLength: frame.length,\n            _hex: framed.hex || frame.toString("hex"),\n' +
+    '            _issue1667_fallback_ts: Date.now()\n        };\n\n        context.set(pendingDataKey, pendingData);',
+    'bounded legacy fallback pending lifetime'
+);
+injectDecoder166(
+    '        issue166AuditPairing("setup", frame, pendingData, bmsNumber);',
+    '        issue1667RouteEvent("setup", bmsNumber, null);\n' +
+    '        if (pendingData) {\n' +
+    '            issue1667RouteEvent("legacy_fallback_pair", bmsNumber, null);\n' +
+    '            issue166AuditPairing("setup", frame, pendingData, bmsNumber);\n' +
+    '        }',
+    'SETUP emission and fallback-only pairing audit'
+);
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -146,4 +213,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + passive integrity / sequencing / framing / polls / pairing observers, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + direct DATA routing + passive integrity / sequence / framing / polling diagnostics, Legacy dashboard port 1891');
