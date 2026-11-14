@@ -1,3 +1,13 @@
+## 4.1.13-dev166.11 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Enforce a strict 308-byte JK checksum, ACK CRC16 and register/address check for Active Polling DATA, SETUP and STATIC responses; SETUP body address must match ACK.
+- Validate 9-byte Modbus FC03 alarm reply shape, CRC and BMS address before alarm decoding/publication.
+- Require verified response-address metadata at the three Active Polling MQTT publishers. Remove use of mutable global poll-loop BMS identity from this mode. No implicit fallback: absent or mismatching metadata is rejected.
+- Record `ISSUE16611_ACTIVE_GATE` and `ISSUE16611_MQTT_IDENTITY` counters for live verification.
+- Reproduce delayed-response BMS_1/global-BMS_2 in tests and assert MQTT topics remain correctly attributed to BMS_1.
+- Retain DEV166.10 queued TCP alarm fix and DEV166.8 strict Broadcast gate unchanged. Legacy official main remains unchanged.
+- All acceptance is currently automated; real-hardware validation of DEV166.11 is REQUIRED before external/public release.
+
 ## 4.1.13-dev166.10 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Identify dropped Active Polling alarm requests on real BMS_1+BMS_2: generated `Trame-Alarmes-BMS` seen before shared Node-RED `100ms` rate limiter, never after; limiter actually set to 1 msg/s with `drop=true`.
