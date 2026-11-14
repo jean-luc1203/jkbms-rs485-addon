@@ -198,6 +198,8 @@ Original 4.1.12 Active Polling has separate FC16 write/poll loops for STATIC (re
 
 Regression tests include BMS_1/BMS_2 mismatch, valid DATA/SETUP/STATIC samples, mutated CRC and body checksum, short SETUP/STATIC samples, valid and corrupted alarm replies, and differential comparisons with unmodified validator outputs.
 
+An additional non-mutating regression test **runs all three original Active Polling MQTT publishers** with a synthetic delayed BMS_1 reply while `slaveAddress-Trame1/2/3` points to BMS_2. It confirms the outgoing state topics are `BMS_2/...` instead of `BMS_1/...`. This directly reproduces the legacy attribution weakness at the publisher level. No production-data incident is claimed; the test is intentionally failing-by-design at the behavioral level but asserting current behavior in CI until the future fix is implemented.
+
 **Do not run this active-polling lab test on the production Onduleur installation** (one live Master address 0 and another BMS address 2). Recommended next step:
 1. Keep production `4.1.13-dev166.8` running as the verified baseline. The 166.9 commit does not automatically update any running add-on.
 2. Start a separate HAOS TEST or container environment and use the existing Raspberry Pi JK-BMS TCP emulator (`192.168.0.175:5032` has been used for two simulated BMS, after verifying emulator current configuration and reachable address range).
