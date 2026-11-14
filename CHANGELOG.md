@@ -1,3 +1,14 @@
+## 4.1.13-dev166.7 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Issue #166: eliminate normal BMS_2 DATA overwrites by immediately routing each standard 308-byte DATA using its verified Modbus ACK trailer address (0..15).
+- Preserve SETUP processing and existing Node-RED downstream message fields, including `bms_numero` and `bms_adresse`.
+- Retain the Legacy single pending DATA fallback for unrecognized/nonstandard frames, without converting checksum/CRC diagnostics into global frame rejection.
+- Clear stale pre-upgrade pending bytes; bound fallback queue age to 12 seconds.
+- New per-address `ISSUE1667_ROUTING` counters for direct DATA, SETUP, fallback and pending cleanup.
+- The older `ISSUE166_PAIRING_PASSIVE` observer now covers fallback pairings only.
+- Strict JK-body checksum and general CRC-based filtering explicitly deferred.
+- Official Legacy 4.1.12 production source unchanged; live MQTT cadence will change in the isolated test build.
+
 ## 4.1.13-dev166.6 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Issue #166: passive accounting of valid Modbus polls for 0x161E (SETUP) and 0x1620 (DATA), separately for each destination BMS.
