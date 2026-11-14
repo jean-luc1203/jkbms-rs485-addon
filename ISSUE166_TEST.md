@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed Master (0) with strict DATA/SETUP alternation while BMS_2 (2) showed a DATA excess. DEV166.6 measured 26 DATA overwritten from BMS_2 out of 94 DATA at 10:29 on 2026-11-14, with zero cross-BMS pairings among 162 paired messages. DEV166.7 now runs on live hardware with Master and BMS_2 dashboards reported coherent by the operator; 69,111 emitted frames had zero JK checksum/Modbus ACK CRC errors at 11:17 on 2026-11-14. DEV166.8 strict rejection has been activated on the real two-BMS installation: at 2026-11-14 16:12 CET, 185 / 185 replies passed the gate, 0 rejected, while both BMS data counters grew. DEV166.9 adds **passive** Active Polling diagnostics, not yet simulator-/HAOS-tested.**
+**Status (2026-11-14):** DEV166.11 real-hardware Active Polling with two JK-BMS (addresses 1 and 2) completed a one-minute RJ45 gateway outage/recovery: at 18:51, 419/419 frames had been accepted by the strict gate (0 rejects), with 240 DATA replies (120 per BMS), 36 SETUP, 24 STATIC, 119 alarm; MQTT publisher accepted every DATA/SETUP/STATIC. Two transport circuits coexist. The gateway Active Polling path recovered on its own. A separate *Broadcast tcp-client2* watchdog fired at 18:50:14 with `Unrecognized action: disconnect`; DEV166.12 isolates that watchdog by mode and replaces this unsupported command. **DEV166.12 is automated-test-only until the next HAOS and Broadcasting physical checks.**
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.11`
+- version: `4.1.13-dev166.12`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -181,6 +181,49 @@ Expected on this user's real Master+BMS_2 bus: `accepted_308` and `issue1667_rou
 - A rejected reply means an individual reading may not update; the gate does not replace it with stale readings or toggle MQTT availability.
 - Do not deploy this strict profile broadly until 300/308/310 variants and other firmware are tested. This is **not** the final release for issue #166.
 - The owner should maintain 4.1.13-dev166.7 as a known-good fallback, and never run test and production add-ons simultaneously (same MQTT topics and port 1891).
+
+## DEV166.12 — isolated TCP watchdogs and supported tcp-client2 control
+
+### Real-hardware finding (DEV166.11 RJ45 test, 2026-11-14)
+
+The operator disconnected the Waveshare gateway Ethernet at ~18:48 and restored it at ~18:49. LED traffic returned 5–10 seconds later. Active Polling A/B resumed, with strict Active gate counters rising from 316 (18:47) to 349 (18:49:11) to 419 (18:51:11), all accepted and attributed correctly. However, at 18:50:14 an unrelated legacy watchdog in another flow emitted:
+
+```text
+[function:Watchdog – check timeout] Watchdog: no data since 136s → reconnexion forcée
+[tcp-client:JK BMS TCP] [WARNING]: Unrecognized action: disconnect
+```
+
+The two transports are separate:
+- Active Polling gateway uses `TCP Request A` and `TCP Request B`, plus `Watchdog - failover A/B` in flow `3e191029bf5e8209`, tracking `lastDataTs_master`.
+- Broadcasting gateway uses independent `JK BMS TCP` node (`node-red-contrib-tcp-client2`) in flow `aec15389f6a9ed83`, tracking `lastDataTs`. Its watchdog was not scoped to the Broadcasting transport, and used unsupported `action:'disconnect'`.
+- `node-red-contrib-tcp-client2` documented dynamic actions are `connect`, `close` and `write`. Source: https://flows.nodered.org/node/node-red-contrib-tcp-client2
+
+### Experimental code change
+
+`issue166-apply.cjs` changes only the *Broadcast tcp-client2* function `0827976bdeec2605`, with strict baseline assertions on function text, exact wires, tcp-client2 node config and 2-second delay. It now:
+- Runs **only** when both `global.get('bms_broadcasting') === true` and `global.get('use_gateway') === true`. In Active Polling, or serial mode, stale `lastDataTs` cannot trigger any TCP action or mutate watchdog state.
+- Preserves the 120-second silent-connection timeout, last-data reset and the 2-second reconnection delay. Uses `action:'close'` followed by `action:'connect'`.
+- Emits identifiable `ISSUE16612_TCP_WATCHDOG` warnings on Broadcasting timeouts.
+- Leaves the Active Polling `Watchdog - failover A/B`, `TCP Request A/B`, DEV166.10 queuing and DEV166.11 reply identity gate unchanged.
+- Keeps official Legacy 4.1.12 production unchanged. Tests use the isolated add-on only.
+
+**Important limitation:** automated tests assert Node-RED function behavior and topology, but cannot reproduce tcp-client2 socket close/reconnect execution. A physical Broadcast-TCP disconnection/reconnection test is needed before public release; recovery of Active Polling alone does not prove recovery of Broadcasting.
+
+### DEV166.12 test protocol
+
+1. Ensure official Legacy 4.1.12 stays stopped, and only the isolated add-on accesses the gateway.
+2. Update and start `4.1.13-dev166.12`, preserving Active Polling on JK-BMS addresses 1 and 2.
+3. Confirm DATA/SETUP/STATIC/alarm strict gate totals grow for BMS 1 and 2, zero unexpected rejected frames and zero MQTT identity rejections.
+4. Repeat a brief controlled RJ45 interruption only if desired; after 2–3 minutes from reconnection confirm resumed DATA and alarms. Specifically check that **neither** `ISSUE16612_TCP_WATCHDOG` nor `Unrecognized action: disconnect` appears while `bms_broadcasting:false`.
+5. When returning to real-hardware Broadcasting testing, perform a separate prolonged silence test to verify that `action:'close'` and `action:'connect'` operate correctly with the actual tcp-client2 runtime. Do not claim Broadcast watchdog recovery validated until this step.
+
+Log command:
+
+```sh
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -Ei 'ISSUE16612_TCP_WATCHDOG|ISSUE16611_ACTIVE_GATE|ISSUE16611_MQTT_IDENTITY|ISSUE1669_ALARM_PASSIVE|Unrecognized action|RangeError' |
+  tail -n 20
+```
 
 ## DEV166.11 — strict Active Polling identity (EXPERIMENTAL)
 
