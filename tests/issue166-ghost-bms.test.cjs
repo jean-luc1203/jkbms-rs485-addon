@@ -29,6 +29,17 @@ function frame(type, id, size=308) {
   const b=Buffer.alloc(size);
   b.set([0x55,0xaa,0xeb,0x90,type]);
   if(type===1 && size>273) b.writeUInt32LE(id>>>0,270);
+  if(size>=300) b[299]=b.subarray(0,299).reduce((sum,v)=>(sum+v)&255,0);
+  if(size===308 && (type===1 || type===2)){
+    const ackAddress = id>=0 && id<=15 ? id : 2;
+    b.set([ackAddress,0x10,0x16,type===1?0x1E:0x20,0,1],300);
+    let crc=0xFFFF;
+    for(let k=300;k<306;k++){
+      crc^=b[k];
+      for(let bit=0;bit<8;bit++)crc=(crc&1)?(crc>>>1)^0xA001:(crc>>>1);
+    }
+    b[306]=crc&255;b[307]=crc>>>8;
+  }
   return { payload: {topic:'broadcast/jkbms_reply',payload:b,slave:2} };
 }
 test('BMS addresses master, 1, 2, 15 are preserved',()=>{
@@ -38,26 +49,34 @@ test('BMS addresses master, 1, 2, 15 are preserved',()=>{
     assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,id===0?'master':String(id));
   }
 });
-test('one valid DATA frame is paired with next valid SETUP',()=>{
+test('standard DATA is published immediately and not relabeled by next SETUP',()=>{
   const r=runner(ids.decoder);
-  assert.equal(r.call(frame(2,0)),null);
-  const out=r.call(frame(1,2));
-  assert.deepEqual(out[0].map(m=>m.bms_numero),[2,2]);
+  const data=r.call(frame(2,0));
+  assert.equal(data.bms_numero,0);
+  assert.equal(data.bms_type,'data');
+  const setup=r.call(frame(1,2));
+  assert.equal(setup.bms_numero,2);
+  assert.equal(setup.bms_type,'setup');
 });
 test('phantom BMS uint32 IDs never reach the DATA or SETUP branches',()=>{
   for(const id of [16,513,1280,327680,370147559,4294967295]){
     const r=runner(ids.decoder);
-    r.call(frame(2,0));
     assert.equal(r.call(frame(1,id)),null);
     assert.equal(r.flow.get('diag_serial_stats'),undefined);
-    assert.equal(r.context.get('jkbms_pending_data'),null);
+    assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
+    const g=r.flow.get('issue1668_integrity_gate');
+    assert.equal(g.rejected,1);
   }
 });
-test('short DATA/SETUP frames are rejected before buffer parsers',()=>{
+test('strict gate rejects truncated DATA/SETUP before buffer parsers',()=>{
   const r=runner(ids.decoder);
-  for(const n of [6,169,273,281]) assert.equal(r.call(frame(2,0,n)),null);
-  for(const n of [6,169,273,280,283]) assert.equal(r.call(frame(1,0,n)),null);
-  assert.equal(r.call(frame(1,0,284)).bms_type,'setup');
+  for(const n of [6,169,273,281,290,299])
+    assert.equal(r.call(frame(2,0,n)),null);
+  for(const n of [6,169,273,280,283,284,299,307,310])
+    assert.equal(r.call(frame(1,0,n)),null);
+  assert.equal(r.call(frame(1,0,300)).bms_type,'setup');
+  assert.equal(r.call(frame(1,0,308)).bms_type,'setup');
+  assert.equal(r.flow.get('issue1668_integrity_gate').rejected,15);
 });
 test('alarm extraction and alarm publishing reject all invalid identifiers',()=>{
   for(const id of [-488,16,327680,null,undefined,NaN,1.5,'2xyz','']){
@@ -494,31 +513,32 @@ test('DEV166.7 SETUP remains independent, including SETUP-only and setup ID from
   assert.equal(r.flow.get('issue1667_routing').legacy_fallback_pair,0);
   assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
 });
-test('DEV166.7 bad ACK CRC preserves legacy fallback; no blanket CRC frame filter',()=>{
+test('DEV166.8 strict gate blocks CRC-invalid DATA without legacy fallback',()=>{
   const r=runner(ids.decoder);
-  const b=frameWithAckAddress166(2,2);
-  b[307]^=1;
+  const b=frameWithAckAddress166(2,2); b[307]^=1;
   assert.equal(r.call({payload:{
     topic:'broadcast/jkbms_reply',payload:b,slave:2
   }}),null);
-  assert(r.context.get('jkbms_pending_data'));
+  assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
   const out=r.call(decoderInput166(1,2));
-  assert.deepEqual(out[0].map(m=>m.bms_numero),[2,2]);
-  assert.deepEqual(out[0][0].payload,b);
-  const d=r.flow.get('issue1667_routing');
-  assert.equal(d.direct_data,0);
-  assert.equal(d.legacy_fallback_data,1);
-  assert.equal(d.legacy_fallback_pair,1);
-  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
-});
-test('DEV166.7 no whole-JK-frame checksum filtering is introduced yet',()=>{
-  const r=runner(ids.decoder);
-  const bad=frameWithAckAddress166(2,2);
-  bad[80]^=0x04;
-  const out=r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}});
-  // Deferred strict checksum checks: trailer address is still correctly verified.
+  assert.equal(out.bms_type,'setup');
   assert.equal(out.bms_numero,2);
-  assert.deepEqual(out.payload,bad);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.rejected,1);
+  assert.equal(d.reasons.ack_crc,1);
+  assert.equal(d.accepted_308,1);
+});
+test('DEV166.8 strict gate blocks damaged JK body even when ACK CRC is valid',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);bad[80]^=0x04;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.reasons.jk_checksum,1);
+  assert.equal(d.rejected,1);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
 });
 test('DEV166.7 removes legacy pending from old releases before a SETUP can relabel it',()=>{
   const r=runner(ids.decoder);
@@ -532,19 +552,22 @@ test('DEV166.7 removes legacy pending from old releases before a SETUP can relab
   assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   assert.equal(r.flow.get('issue1667_routing').stale_pending_cleared,1);
 });
-test('DEV166.7 untrusted legacy pending is cleared before next direct DATA',()=>{
+test('DEV166.8 rejected DATA cannot create pending and next direct DATA is unaffected',()=>{
   const r=runner(ids.decoder);
   const bad=frameWithAckAddress166(2,2);bad[307]^=1;
-  assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}}),null);
-  assert(r.context.get('jkbms_pending_data'));
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
   const out=r.call(decoderInput166(2,0));
   assert.equal(out.bms_numero,0);
-  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
   const setup=r.call(decoderInput166(1,0));
   assert.equal(setup.bms_type,'setup');
   const d=r.flow.get('issue1667_routing');
-  assert.equal(d.pending_cleared_on_direct,1);
-  assert.equal(d.legacy_fallback_data,1);
+  assert.equal(d.pending_cleared_on_direct,0);
+  assert.equal(d.legacy_fallback_data,0);
+  assert.equal(r.flow.get('issue1668_integrity_gate').rejected,1);
 });
 test('DEV166.7 rejected short DATA and invalid SETUP keep previous #166 safeguards',()=>{
   const r=runner(ids.decoder);
