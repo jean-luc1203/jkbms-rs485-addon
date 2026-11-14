@@ -204,6 +204,15 @@ injectDecoder166(
     '        }',
     'SETUP emission and fallback-only pairing audit'
 );
+injectDecoder166(
+    '        if (pendingData) {\n            pendingData.bms_numero = bmsNumber;',
+    '        if (pendingData) {\n' +
+    '            // DEV166.7 internal fallback metadata must not enter downstream.\n' +
+    '            delete pendingData._issue1667_fallback_ts;\n' +
+    '            pendingData.bms_numero = bmsNumber;',
+    'remove internal timestamp from published Legacy fallback DATA'
+);
+
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
