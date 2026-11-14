@@ -1,3 +1,14 @@
+## 4.1.13-dev166.8 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Add strict Broadcast decoder gate for standard 308-byte JK-BMS replies: validate JK sum8 body checksum (0..298 vs 299), Modbus 8-byte ACK layout and CRC16, and SETUP identity/ACK address agreement.
+- Reject invalid replies before DATA/SETUP MQTT publication; clear stale pending DATA on rejection.
+- Accept native 300-byte JK replies with verified sum8, explicitly recording that Modbus ACK CRC is unavailable.
+- Reject unsupported lengths, including a possibly legitimate 310-byte padded variant, **in this isolated experimental profile only**. Broad release requires per-firmware verification.
+- New `ISSUE1668_INTEGRITY_GATE` counters: allowed 308, allowed 300, rejects by reason with bounded diagnostic samples.
+- Retain DEV166.7 direct BMS identification and all earlier passive counters.
+- No change to 11-byte Modbus requests, Active Polling logic or official Legacy 4.1.12.
+- Protocol limitation: a two-byte compensating change may evade 8-bit additive checksum; checks do not establish cryptographic integrity.
+
 ## 4.1.13-dev166.7 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Issue #166: eliminate normal BMS_2 DATA overwrites by immediately routing each standard 308-byte DATA using its verified Modbus ACK trailer address (0..15).
