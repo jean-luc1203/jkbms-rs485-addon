@@ -213,6 +213,36 @@ injectDecoder166(
     'remove internal timestamp from published Legacy fallback DATA'
 );
 
+// DEV166.8: strict body checksum and ACK CRC gate, BEFORE the Broadcast
+// decoder can queue/publish any data. Modbus polls and Active Polling untouched.
+const strictGateSnippet166 = fs.readFileSync(
+    path.join(__dirname, 'issue166-strict-gate-snippet.js'), 'utf8'
+);
+if (!strictGateSnippet166.includes('ISSUE1668_INTEGRITY_GATE') ||
+    !strictGateSnippet166.includes('function issue1668CheckReply(')) {
+    throw new Error('Issue166 strict gate snippet missing or invalid');
+}
+injectDecoder166(
+    'let outputFrames = [];',
+    'let outputFrames = [];\n' + strictGateSnippet166,
+    'strict Broadcast integrity helpers'
+);
+injectDecoder166(
+    'if (framed.topic === "broadcast/jkbms_reply") {',
+    'if (framed.topic === "broadcast/jkbms_reply") {\n' +
+    '    const result1668 = issue1668CheckReply(frame);\n' +
+    '    issue1668GateRecord(result1668);\n' +
+    '    if (!result1668.ok) {\n' +
+    '        // A rejected frame must not leave an older DATA to be falsely\n' +
+    '        // paired with a later SETUP. No MQTT payload is emitted.\n' +
+    '        if (pendingData) {\n' +
+    '            pendingData = null;\n' +
+    '            context.set(pendingDataKey, null);\n' +
+    '        }\n' +
+    '        return null;\n' +
+    '    }',
+    'strict gate before any Broadcast DATA or SETUP processing'
+);
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -222,4 +252,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + direct DATA routing + passive integrity / sequence / framing / polling diagnostics, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + direct DATA routing + strict Broadcast integrity gate + passive diagnostics, Legacy dashboard port 1891');
