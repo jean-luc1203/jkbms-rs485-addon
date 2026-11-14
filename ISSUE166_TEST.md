@@ -222,6 +222,19 @@ The two transports are separate:
 
 **Limits:** This confirms Active Polling's live Ethernet recovery and watchdog isolation only on the NB114 + two real JK-BMS test setup. It **does not** demonstrate `tcp-client2` Broadcasting reconnect using the newly supported `close`/delay/`connect` path, nor guarantee behavior on other BMS firmware or RS485-TCP adapters. No production Legacy update is authorized from this test alone.
 
+### Physical acceptance — DEV166.12 Broadcasting TCP watchdog (2026-11-14, NB114 gateway)
+
+User ran the isolated add-on `4.1.13-dev166.12` in **Broadcasting** on the NB114 RS485/RS232/RS422↔Ethernet gateway, with physical JK BMS Master (0) and BMS_2 (2). The user supplied command-line log excerpts spanning 19:45:27–19:59:26 on 2026-11-14, around a deliberate approximately 3-minute Ethernet disconnect/reconnect test.
+
+Evidence:
+- 19:48:17 — `ISSUE1668_INTEGRITY_GATE`: 3024 seen, 3024 accepted_308, zero rejected. `ISSUE1667_ROUTING` at same time: `direct_data=10628`, addresses Master 5314 and BMS_2 5313, BMS_1 1 (historical).
+- **19:51:07 — `ISSUE16612_TCP_WATCHDOG broadcast gateway: no data since 128s; close then reconnect`**. This is the intended Broadcast-only watchdog firing after the existing 120s threshold. No `Unrecognized action: disconnect` appears in the log extract.
+- 19:54:11 — `ISSUE166_FRAMING_PASSIVE` resumes, showing `jk_frames=28973`. At 19:54:13 `ISSUE1668_INTEGRITY_GATE` reaches 3068 accepted and 0 rejected. By 19:59:26 it reaches **3370 accepted_308 / 3370 seen / 0 rejected**, a gain of **302** after 19:54:13.
+- Address resolution between 19:54:13 and 19:59:26: Master `direct_data` 5325→5405 (**+80**), BMS_2 5324→5404 (**+80**), BMS_1 stays 1 (**+0**). The direct/legacy fallback values remained 0 for fallback and stale pairing events.
+- Broadcast framer cumulative `discarded_bytes` rose from 44 at 19:48:27 to 55 by 19:55:11 (**+11**, during recovery; the source of discarded bytes is not proven). `accounting_errors=0` and strict integrity rejections stayed zero.
+
+**Verdict: SUCCESS for watchdog triggering, automatic communication recovery, integrity and address separation on this test setup.** The log proves that the watchdog emitted its close-then-reconnect path and normal traffic resumed without restarting the add-on. It does **not** explicitly acknowledge successful execution of the underlying tcp-client2 socket `close` and `connect` actions as separate events; nor does it distinguish whether reconnect would have happened without that watchdog. No further modifications to DEV166.12 were justified by this test. Official Legacy 4.1.12 remains unchanged. Compatibility with other gateways, firmware, and repeated outage conditions is not yet established.
+
 ### DEV166.12 test protocol
 
 1. Ensure official Legacy 4.1.12 stays stopped, and only the isolated add-on accesses the gateway.
