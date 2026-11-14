@@ -1136,28 +1136,85 @@ test('DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged',(
 });
 
 
-test('DEV16612_TEMP inspect gateway watchdog topology and mode',()=>{
-  const targets=['ca2e41c5da775228','83178e5db35c9862','0827976bdeec2605',
-    '93d3ab93bb815c8d','32876ca350d40cd8','ab2c8f93200ca93a',
-    '37e339e27ad5e37d','eb8a2ce9ac5b36bd','c1aa340c29ca05db',
-    'a9d54c61db2740f0','b90f87fb8568461a','3e5a55e0cf2a0f5d'];
-  const group=new Set();
-  const seed=['ca2e41c5da775228','b90f87fb8568461a'];
-  for(const id of seed){const n=byId.get(id);group.add(n.z);}
-  for(const id of targets){
-    const n=byId.get(id);
-    if(!n){console.log('AUDIT16612 MISSING '+id);continue;}
-    console.log('AUDIT16612 NODE '+id+' '+JSON.stringify(n).slice(0,21000));
+test('DEV166.12 Broadcast watchdog is isolated from Active Polling TCP A/B',()=>{
+  const w=byId.get('0827976bdeec2605');
+  const tcp=byId.get('ca2e41c5da775228');
+  const active=byId.get('eb8a2ce9ac5b36bd');
+  assert.equal(w.type,'function');
+  assert.equal(w.name,'DEV166.12 Watchdog Broadcast TCP only');
+  assert.equal(tcp.type,'tcp-client');
+  assert.equal(tcp.actionType,'msg');
+  assert.equal(tcp.action,'action');
+  assert.deepEqual(w.wires,[[tcp.id],['ab2c8f93200ca93a']]);
+  assert.equal(active.name,'Watchdog - failover A/B');
+  assert(active.func.includes("lastDataTs_master"));
+  assert.deepEqual(active.wires,[['0126fd2cac5ff1b4']]);
+  assert.equal(active.func.includes("action: 'close'"),false);
+});
+test('DEV166.12 no stale Broadcast watchdog action in Active Polling gateway mode',()=>{
+  const r=runner('0827976bdeec2605');
+  r.global.set('use_gateway',true);
+  r.global.set('bms_broadcasting',false);
+  r.flow.set('lastDataTs',Date.now()-136000);
+  const stale=r.flow.get('lastDataTs');
+  assert.equal(r.call({payload:'tick'}),null);
+  assert.equal(r.flow.get('lastDataTs'),stale,
+    'inactive Broadcast watchdog must not mutate its last-alive time');
+});
+test('DEV166.12 no Broadcast watchdog action in serial or uninitialized mode',()=>{
+  for(const [broadcast,gateway] of [[true,false],[false,false],[undefined,true],[undefined,undefined]]){
+    const r=runner('0827976bdeec2605');
+    r.global.set('bms_broadcasting',broadcast);
+    r.global.set('use_gateway',gateway);
+    r.flow.set('lastDataTs',Date.now()-136000);
+    assert.equal(r.call({}),null);
   }
-  for(const n of flows){
-    const edges=(n.wires||[]).flat();
-    if(targets.includes(n.id)||
-       edges.some(id=>targets.includes(id))||
-       (group.has(n.z) && ['tcp in','tcp out','tcp request','tcp-client','link in','link out'].includes(n.type))){
-      console.log('AUDIT16612 EDGE '+JSON.stringify({
-        id:n.id,name:n.name,type:n.type,z:n.z,wires:n.wires,links:n.links,
-        mode:n.mode,server:n.server,host:n.host,port:n.port
-      }));
-    }
-  }
+});
+test('DEV166.12 Broadcast TCP timeout emits supported close then connect',()=>{
+  const r=runner('0827976bdeec2605');
+  r.global.set('use_gateway',true);
+  r.global.set('bms_broadcasting',true);
+  r.global.set('gateway_ip','192.168.0.131');
+  r.global.set('gateway_port',8887);
+  r.flow.set('lastDataTs',Date.now()-136000);
+  const out=r.call({payload:'tick'});
+  assert(Array.isArray(out) && out.length===2);
+  assert.deepEqual(out[0],{
+    action:'close',host:'192.168.0.131',port:8887
+  });
+  assert.deepEqual(out[1],{payload:'reconnect'});
+  assert.equal(r.flow.get('lastDataTs'),0);
+  assert.equal(r.call({}),null,'stale watchdog cannot repeatedly send close');
+  const delay=byId.get('ab2c8f93200ca93a');
+  const connect=byId.get('32876ca350d40cd8');
+  assert.equal(delay.pauseType,'delay');
+  assert.equal(delay.timeout,'2');
+  assert.equal(delay.timeoutUnits,'seconds');
+  assert.deepEqual(delay.wires,[[connect.id]]);
+  assert.deepEqual(connect.wires,[['ca2e41c5da775228']]);
+  const connectMsg=runner(connect.id);
+  connectMsg.global.set('gateway_ip','192.168.0.131');
+  connectMsg.global.set('gateway_port',8887);
+  assert.deepEqual(connectMsg.call({payload:'reconnect'}),{
+    action:'connect',host:'192.168.0.131',port:8887
+  });
+});
+test('DEV166.12 Broadcast watchdog does not intervene while fresh data arrive',()=>{
+  const r=runner('0827976bdeec2605');
+  r.global.set('use_gateway',true);
+  r.global.set('bms_broadcasting',true);
+  r.flow.set('lastDataTs',Date.now()-30000);
+  assert.equal(r.call({payload:'tick'}),null);
+  assert(r.flow.get('lastDataTs')>0);
+});
+test('DEV166.12 original Broadcast watchdog no longer sends unsupported disconnect',()=>{
+  const w=byId.get('0827976bdeec2605');
+  assert(!w.func.includes("action: 'disconnect'"));
+  assert(w.func.includes("action: 'close'"));
+  assert(w.func.includes("ISSUE16612_TCP_WATCHDOG"));
+  assert(w.func.includes("global.get('bms_broadcasting') !== true"));
+  assert(w.func.includes("global.get('use_gateway') !== true"));
+  const reset=byId.get('83178e5db35c9862');
+  assert(reset.func.includes("flow.set('lastDataTs', Date.now())"));
+  assert.deepEqual(byId.get('ca2e41c5da775228').wires[0].includes(reset.id),true);
 });
