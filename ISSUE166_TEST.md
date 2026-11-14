@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status:** DEV166.3 starts and receives Master + BMS_2 in supervised real RS485-2 Broadcasting on HAOS Onduleur; **the DEV166.4 passive observer has not yet been validated on live frames**.
+**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 is code/CI-tested but not yet live-validated on this installation.**
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.4`
+- version: `4.1.13-dev166.5`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -56,11 +56,43 @@ To read diagnostics without a long log, inspect the Node-RED flow context key `i
 
 **No rejection threshold is enabled.** Checksum validation for the DATA/SETUP contents is separate from the CRC of the optional trailing Modbus acknowledgment.
 
+## Update note (dev166.5) — passive sequence/address and framing diagnostics
+
+This update adds **only instrumentation**. It does not change the 4.1.12 Framer's extraction, the existing decoder's DATA-to-following-SETUP association, error handling, output ordering, BMS IDs, MQTT topics, or dashboard. The existing DEV166.4 integrity observer remains active.
+
+New persistent Node-RED flow context keys, starting a new series at first use:
+
+1. `issue166_sequence_passive` — one `ISSUE166_SEQUENCE_PASSIVE` log about every 60 seconds while JK frames arrive.
+   - `types`, `transitions`: global sequence transitions (`setup->data`, `data->setup`, `setup->setup`, `data->data`)
+   - `by_address`: same DATA/SETUP counts and transitions **per address 0..15**, derived only from the 8-byte Modbus trailer if its CRC, structure, and expected DATA/SETUP register are all valid. Do **not** infer per-BMS loss from global transitions on a bus with multiple devices
+   - `ack_untrusted`, `ack_address_invalid`, `ack_type_mismatch`: the trailer is not usable as an address (or conflicts with the JK frame type)
+   - `setup_id.checked/match_ack/mismatch_ack/invalid`: cross-check of SETUP BMS number from bytes 270..273 (uint32 LE) against validated ACK trailer address
+   - `last_anomalies`: up to 8 compact, non-payload mismatch samples.
+2. `issue166_framing_passive` — one `ISSUE166_FRAMING_PASSIVE` log about every 60 seconds after at least one JK reply is extracted.
+   - `input_calls`, `input_bytes`, `emitted_bytes`, `jk_frames`, `modbus_polls`, `poll_by_slave`: observed inbound buffers and successfully emitted objects
+   - `discarded_bytes`: bytes abandoned by the Framer, from strict byte conservation (`bytes before parsing - emitted bytes - retained bytes`)
+   - `discard_calls`, `short_header_candidates`, `buffer_trims`, `trim_bytes`, `accounting_errors`, `buffer_retained`, `buffer_retained_max`: mechanisms and retained buffer length
+   - `last_events`: up to 8 compact examples of discards/trims.
+
+**Important limitations:** `discarded_bytes` shows local Framer skips and trimming, **not** RS485 packets lost upstream before they reached Node-RED. This version does not detect a completely missing SETUP without comparing cadence/sequence. The Framer has a pre-existing limitation: a Modbus poll split across multiple input buffers can be skipped; DEV166.5 measures this but **does not fix** it. A trailer address is treated as a protocol hypothesis to validate against SETUP identity; it is not yet used to associate DATA frames or publish MQTT.
+
+To inspect the three summaries:
+
+```bash
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E 'ISSUE166_(INTEGRITY|SEQUENCE|FRAMING)_PASSIVE' |
+  tail -n 9
+```
+
+Look especially for the addresses `0` and `2` under `by_address`, `setup_id.mismatch_ack`, repeated same-type transitions **per address**, and nonzero `discarded_bytes`. The former `issue166_integrity_passive` counters should continue cumulatively; the two new observers start their own counters at initial use.
+
+**No new CRC/checksum rejection. No extra MQTT discovery cleanup. No production Legacy changes.**
+
 ## Patch application
 
 The GitHub repository still contains the exact, **unmodified** 4.1.12 `flows.json` source. Uploading that 4.9 MB file through the connected GitHub interface was not possible.
 
-Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity observer to the existing Broadcast Framer, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
+Instead, the isolated add-on invokes `issue166-apply.cjs` *before Node-RED starts*. It verifies the base flow's SHA-256, replaces exactly eight identified function nodes using `issue166-functions.json`, adds the passive integrity, sequence/address and framing observers to the existing Broadcast Framer, preserves the original dashboard URL on port 1891, then writes the generated flow **only** to the dedicated test config directory.
 
 A missing patch, an unexpected base SHA, or an absent target node must stop startup: the test add-on must never silently run unpatched flows.
 
@@ -93,7 +125,7 @@ A GitHub Actions workflow performs the same verification on pushes to this branc
 
 ## Required go/no-go before PR
 
-1. Automated tests (including untouched data path on good/bad checksum and CRC samples) all pass and generated flow parses successfully.
+1. Automated tests (including a byte-for-byte Framer differential comparison against unmodified 4.1.12 on a fragmented/noisy sample) all pass and generated flow parses successfully.
 2. Experimental add-on starts on HAOS Onduleur only while the official Legacy add-on is stopped; no startup/RangeError exceptions.
 3. Broadcasting real/simulated valid BMS data still updates expected Home Assistant entities and alarms.
 4. Invalid identifiers / truncated or desynchronized frames create no new MQTT retained topics or HA ghost devices.
