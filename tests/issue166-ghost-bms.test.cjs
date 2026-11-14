@@ -191,3 +191,123 @@ test('no legacy flow route or filter changed by passive observer',()=>{
   assert.equal(framer.outputs,1);
   assert(!framer.func.includes('return null; // integrity rejection'));
 });
+
+function frameWithAckAddress166(type, address, setupId=address) {
+  const b=integrityFrame166(type);
+  if(type===1) b.writeUInt32LE(setupId,270);
+  b[300]=address;
+  const crcByTypeAndAddr={
+    1:{0:[0x64,0x56],2:[0x65,0xb4]},
+    2:{0:[0x05,0x9a],2:[0x04,0x78]}
+  };
+  const pair=crcByTypeAndAddr[type]?.[address];
+  assert(pair, 'use independently calculated Modbus CRC reference');
+  b[306]=pair[0];b[307]=pair[1];
+  b[299]=b.subarray(0,299).reduce((s,v)=>(s+v)&255,0);
+  return b;
+}
+test('DEV166.5 passive sequence counts per-BMS interleaving without altering frames',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=[
+    frameWithAckAddress166(1,0),
+    frameWithAckAddress166(1,2),
+    frameWithAckAddress166(2,0),
+    frameWithAckAddress166(2,2),
+    frameWithAckAddress166(2,0),
+    frameWithAckAddress166(2,2),
+    frameWithAckAddress166(1,0),
+    frameWithAckAddress166(1,2)
+  ];
+  const out=flushIntegrityFrames166(r,b,180);
+  assert.deepEqual(out[0].map(x=>x.payload.payload),b);
+  const q=r.flow.get('issue166_sequence_passive');
+  assert.equal(q.frames,8);
+  assert.deepEqual(q.types,{data:4,setup:4,other:0});
+  assert.equal(q.ack_untrusted,0);
+  assert.equal(q.setup_id.match_ack,4);
+  assert.equal(q.setup_id.mismatch_ack,0);
+  assert.equal(q.by_address['0'].data,2);
+  assert.equal(q.by_address['0'].setup,2);
+  assert.equal(q.by_address['0'].transitions['data->data'],1);
+  assert.equal(q.by_address['2'].data,2);
+  assert.equal(q.by_address['2'].setup,2);
+  assert.equal(q.by_address['2'].transitions['data->data'],1);
+  assert.equal(q.transitions['setup->setup'],2);
+  assert.equal(q.transitions['data->data'],2);
+  assert.equal(r.flow.get('issue166_integrity_passive').checksum.bad,0);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.jk_frames,8);
+  assert.equal(p.discarded_bytes,0);
+  assert.equal(p.accounting_errors,0);
+});
+test('DEV166.5 passive observer detects SETUP identity vs ACK conflict without blocking',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=frameWithAckAddress166(1,2,14);
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const q=r.flow.get('issue166_sequence_passive');
+  assert.equal(q.setup_id.checked,1);
+  assert.equal(q.setup_id.mismatch_ack,1);
+  assert.equal(q.last_anomalies[0].kind,'setup_id_vs_ack');
+  assert.equal(r.flow.get('issue166_integrity_passive').checksum.ok,1);
+});
+test('DEV166.5 invalid ACK CRC cannot be trusted for address, but frame is unchanged',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=frameWithAckAddress166(2,2);b[307]^=0x01;
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const q=r.flow.get('issue166_sequence_passive');
+  assert.equal(q.ack_untrusted,1);
+  assert.deepEqual(q.by_address,{});
+  assert.equal(q.types.data,1);
+  assert.equal(r.flow.get('issue166_integrity_passive').ack_crc.bad,1);
+});
+test('DEV166.5 Framer accounts for discarded noise prefix without losing valid replies',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=frameWithAckAddress166(1,0);
+  const payload=Buffer.concat([Buffer.from([0x44,0x33,0x22]),b,
+    Buffer.from([0x55,0xAA,0xEB,0x90,0x01])]);
+  const out=r.call({payload});
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.discarded_bytes,3);
+  assert.equal(p.short_header_candidates,0);
+  assert.equal(p.discard_calls,1);
+  assert.equal(p.buffer_retained,5);
+  assert.equal(p.input_bytes,p.emitted_bytes+p.discarded_bytes+p.buffer_retained);
+});
+test('DEV166.5 Framer detects rejected short candidate, still emits following good frames',()=>{
+  const r=runner('3328d11cbeec411c');
+  const valid=frameWithAckAddress166(2,2);
+  const bogus=Buffer.from([0x55,0xAA,0xEB,0x90,0x00,0x00,0x11]);
+  const out=r.call({payload:Buffer.concat([bogus,valid,Buffer.from([0x55,0xAA,0xEB,0x90])])});
+  assert.deepEqual(out[0][0].payload.payload,valid);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.discarded_bytes,7);
+  assert.equal(p.short_header_candidates,1);
+  assert.equal(p.accounting_errors,0);
+});
+test('DEV166.5 Framer records no-frame buffer trim without changing subsequent decoding',()=>{
+  const r=runner('3328d11cbeec411c');
+  const large=Buffer.concat([Buffer.from([0x55,0xAA,0xEB,0x90]),Buffer.alloc(16500)]);
+  assert.equal(r.call({payload:large}),null);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.buffer_trims,1);
+  assert.equal(p.trim_bytes,large.length-4096);
+  assert.equal(p.discarded_bytes,large.length-4096);
+  assert.equal(p.buffer_retained,4096);
+  assert.equal(p.accounting_errors,0);
+  const b=frameWithAckAddress166(1,0);
+  const out=r.call({payload:Buffer.concat([b,Buffer.from([0x55,0xAA,0xEB,0x90])])});
+  assert.deepEqual(out[0][0].payload.payload,b);
+  assert.equal(r.flow.get('issue166_framing_passive').accounting_errors,0);
+});
+test('DEV166.5 framing counts bytes discarded even when no complete frame exists',()=>{
+  const r=runner('3328d11cbeec411c');
+  assert.equal(r.call({payload:Buffer.from([0x13,0x37,0x42])}),null);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.input_calls,1);
+  assert.equal(p.input_bytes,3);
+  assert.equal(p.discarded_bytes,3);
+  assert.equal(p.jk_frames,0);
+});
