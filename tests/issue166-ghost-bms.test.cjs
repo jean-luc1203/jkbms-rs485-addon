@@ -233,7 +233,8 @@ test('DEV166.5 passive sequence counts per-BMS interleaving without altering fra
   assert.equal(q.by_address['2'].setup,2);
   assert.equal(q.by_address['2'].transitions['data->data'],1);
   assert.equal(q.transitions['setup->setup'],2);
-  assert.equal(q.transitions['data->data'],2);
+  // Global DATA->DATA includes interleaved BMS messages (not individual BMS losses).
+  assert.equal(q.transitions['data->data'],3);
   assert.equal(r.flow.get('issue166_integrity_passive').checksum.bad,0);
   const p=r.flow.get('issue166_framing_passive');
   assert.equal(p.jk_frames,8);
