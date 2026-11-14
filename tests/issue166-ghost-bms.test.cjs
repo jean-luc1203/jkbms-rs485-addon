@@ -711,3 +711,162 @@ test('DEV166.8 malicious-but-checksummed two-byte mutation exposes sum8 limitati
   // This is a protocol limitation, not a claim of cryptographic integrity.
   assert.equal(r.flow.get('issue1668_integrity_gate').accepted_308,1);
 });
+
+
+function activeFrame1669(type,address,register) {
+  const b=Buffer.alloc(308);
+  b.set([0x55,0xAA,0xEB,0x90,type],0);
+  if(type===1)b.writeUInt32LE(address,270);
+  let sum=0;
+  for(let i=0;i<299;i++)sum=(sum+b[i])&255;
+  b[299]=sum;
+  b.set([address,0x10,0x16,register,0,1],300);
+  let crc=0xFFFF;
+  for(let i=300;i<306;i++){
+    crc^=b[i];
+    for(let j=0;j<8;j++)crc=crc&1?(crc>>>1)^0xA001:crc>>>1;
+  }
+  b[306]=crc&255;b[307]=crc>>>8;
+  return b;
+}
+function alarmFrame1669(address,alarmValue=0) {
+  const b=Buffer.alloc(9);
+  b[0]=address;b[1]=0x03;b[2]=4;
+  b.writeUInt32BE(alarmValue>>>0,3);
+  let crc=0xFFFF;
+  for(let i=0;i<7;i++){
+    crc^=b[i];
+    for(let j=0;j<8;j++)crc=crc&1?(crc>>>1)^0xA001:crc>>>1;
+  }
+  b.writeUInt16LE(crc,7);
+  return b;
+}
+test('DEV166.9 passive Active Polling validator observes 308 DATA and leaves routing unchanged',()=>{
+  const r=runner('b02adbe3a64e64f2');
+  r.global.set('slaveAddress-Trame3',1);
+  const b=activeFrame1669(2,1,0x20);
+  const msg={payload:b,topic:'Trame-3-dynamiques'};
+  assert.strictEqual(r.call(msg),msg);
+  const d=r.flow.get('issue1669_active_passive');
+  assert.equal(d.seen,1);
+  assert.equal(d.by_type.data.seen,1);
+  assert.equal(d.by_type.data.length_308,1);
+  assert.equal(d.by_type.data.jk_checksum_ok,1);
+  assert.equal(d.by_type.data.ack_crc_ok,1);
+  assert.equal(d.by_type.data.ack_register_bad,0);
+  assert.equal(d.by_type.data.address_vs_global_mismatch,0);
+  assert.equal(d.by_type.data.by_ack_address['1'],1);
+});
+test('DEV166.9 passive detects late DATA for BMS_1 while global polling is at BMS_2',()=>{
+  const r=runner('b02adbe3a64e64f2');
+  r.global.set('slaveAddress-Trame3',2);
+  const b=activeFrame1669(2,1,0x20);
+  const msg={payload:b,topic:'Trame-3-dynamiques'};
+  assert.strictEqual(r.call(msg),msg); // OBSERVER MUST NOT REASSIGN/DROP
+  const d=r.flow.get('issue1669_active_passive');
+  assert.equal(d.by_type.data.by_ack_address['1'],1);
+  assert.equal(d.by_type.data.address_vs_global_mismatch,1);
+  assert.equal(d.by_type.data.ack_crc_bad,0);
+  assert.equal(d.last_anomalies[0].reason,'ack_vs_global');
+});
+test('DEV166.9 recognizes valid static 0x161C and setup 0x161E separately',()=>{
+  const st=runner('cd6a9e296046d78e');
+  const b1=activeFrame1669(0,1,0x1c);
+  assert.strictEqual(st.call({payload:b1,topic:'Trame-1-statiques'}).payload,b1);
+  assert.equal(st.flow.get('issue1669_active_passive').by_type.static.ack_crc_ok,1);
+  assert.equal(st.flow.get('issue1669_active_passive').by_type.static.ack_register_bad,0);
+  const se=runner('9856865237a421b7');
+  const b2=activeFrame1669(1,1,0x1e);
+  assert.strictEqual(se.call({payload:b2,topic:'Trame-2-setup'}).payload,b2);
+  assert.equal(se.flow.get('issue1669_active_passive').by_type.setup.ack_crc_ok,1);
+  assert.equal(se.flow.get('issue1669_active_passive').by_type.setup.setup_id_mismatch,0);
+});
+test('DEV166.9 SETUP wrong declared address is observed, original header check preserved',()=>{
+  const r=runner('9856865237a421b7');
+  const b=activeFrame1669(1,1,0x1e);
+  b.writeUInt32LE(2,270);
+  // Recalculate JK body checksum: the frame remains internally consistent.
+  let sum=0;
+  for(let i=0;i<299;i++)sum=(sum+b[i])&255;
+  b[299]=sum;
+  const msg={payload:b,topic:'Trame-2-setup'};
+  assert.strictEqual(r.call(msg),msg);
+  const d=r.flow.get('issue1669_active_passive').by_type.setup;
+  assert.equal(d.setup_id_mismatch,1);
+  assert.equal(d.jk_checksum_bad,0);
+});
+test('DEV166.9 measures truncated setup/static while original validators still pass headers',()=>{
+  for(const [id,type] of [
+    ['9856865237a421b7','setup'],
+    ['cd6a9e296046d78e','static']]){
+    const r=runner(id);
+    const b=Buffer.from([0x55,0xaa,0xeb,0x90,type==='setup'?1:0]);
+    const msg={payload:b,topic:'Trame-2-setup'};
+    assert.strictEqual(r.call(msg),msg);
+    const d=r.flow.get('issue1669_active_passive').by_type[type];
+    assert.equal(d.short_for_parser,1);
+    assert.equal(d.other_length,1);
+    assert.equal(d.jk_checksum_unavailable,1);
+  }
+});
+test('DEV166.9 detects bad checksum AND CRC of Active Polling DATA without rejecting',()=>{
+  const r=runner('b02adbe3a64e64f2');
+  const b=activeFrame1669(2,2,0x20);
+  b[70]^=1;b[307]^=1;
+  const msg={payload:b,topic:'Trame-3-dynamiques'};
+  assert.strictEqual(r.call(msg),msg);
+  const d=r.flow.get('issue1669_active_passive').by_type.data;
+  assert.equal(d.jk_checksum_bad,1);
+  assert.equal(d.ack_crc_bad,1);
+  assert.equal(d.length_308,1);
+});
+test('DEV166.9 alarm observer records correct FC03 CRC and address without altering alarm output',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  const b=alarmFrame1669(2,4);
+  const out=r.call({topic:'Trame-Alarmes-BMS',payload:b});
+  assert.equal(out.bms_numero,2);
+  assert.equal(out.alarms.raw_value,4);
+  const d=r.flow.get('issue1669_alarm_passive');
+  assert.equal(d.seen,1);
+  assert.equal(d.valid_format,1);
+  assert.equal(d.by_address['2'],1);
+  assert.equal(d.bad_crc,0);
+});
+test('DEV166.9 observes bad alarm CRC and spoofed request identity without changing decoder',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  const b=alarmFrame1669(1,0);
+  b[8]^=1;
+  const out=r.call({topic:'Trame-Alarmes-BMS',payload:b,diag_slave_id:2});
+  assert.equal(out.bms_numero,1);
+  const d=r.flow.get('issue1669_alarm_passive');
+  assert.equal(d.bad_crc,1);
+  assert.equal(d.address_vs_request_mismatch,1);
+  assert.equal(d.valid_format,0);
+  assert.equal(d.last_anomalies[0].address,1);
+});
+test('DEV166.9 Active Polling observers do not modify original validator return values',()=>{
+  const baseline=JSON.parse(fs.readFileSync(path.join(
+    __dirname,'..','rootfs/etc/node-red/flows.json'),'utf8'));
+  for(const [id,mode] of [
+    ['b02adbe3a64e64f2','data'],
+    ['9856865237a421b7','setup'],
+    ['cd6a9e296046d78e','static']]){
+    const n=baseline.find(x=>x.id===id);
+    const fn=new Function('msg','Buffer','node','flow','context','global',n.func);
+    const oldFlow=store(),oldContext=store(),oldGlobal=store();
+    const testRunner=runner(id);
+    const samples=[
+      activeFrame1669(mode==='data'?2:mode==='setup'?1:0,1,
+        mode==='data'?0x20:mode==='setup'?0x1e:0x1c),
+      Buffer.from([0x55,0xaa,0xeb,0x90,mode==='data'?2:mode==='setup'?1:0]),
+      Buffer.from([1,2,3]),
+      Buffer.alloc(1)
+    ];
+    for(const b of samples){
+      const msg1={payload:Buffer.from(b),topic:'test'};
+      const msg2={payload:Buffer.from(b),topic:'test'};
+      assert.deepEqual(testRunner.call(msg1),
+        fn(msg2,Buffer,{warn(){},error(){}},oldFlow,oldContext,oldGlobal));
+    }
+  }
+});
