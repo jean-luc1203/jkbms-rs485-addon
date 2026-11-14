@@ -1,3 +1,12 @@
+## 4.1.13-dev166.6 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
+
+- Issue #166: passive accounting of valid Modbus polls for 0x161E (SETUP) and 0x1620 (DATA), separately for each destination BMS.
+- Passive audit inside the existing decoder: count DATA overwritten before any SETUP, SETUP without pending DATA, correctly paired DATA and DATA assigned to another BMS's SETUP.
+- Independently verify JK checksum and trailer CRC/format before trusting diagnostic address comparisons.
+- New `ISSUE166_POLL_PASSIVE` and `ISSUE166_PAIRING_PASSIVE` log summaries approximately once per minute.
+- Differential unit tests confirm unchanged decoder output and pending context.
+- **No actual pair reconstruction, filtering, MQTT routing or official Legacy 4.1.12 change.**
+
 ## 4.1.13-dev166.5 — 2026-11-14 (EXPERIMENTAL BRANCH ONLY)
 
 - Issue #166: count global DATA/SETUP ordering **and per validated Modbus ACK address** (0..15).
