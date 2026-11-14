@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.10`
+- version: `4.1.13-dev166.11`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -181,6 +181,44 @@ Expected on this user's real Master+BMS_2 bus: `accepted_308` and `issue1667_rou
 - A rejected reply means an individual reading may not update; the gate does not replace it with stale readings or toggle MQTT availability.
 - Do not deploy this strict profile broadly until 300/308/310 variants and other firmware are tested. This is **not** the final release for issue #166.
 - The owner should maintain 4.1.13-dev166.7 as a known-good fallback, and never run test and production add-ons simultaneously (same MQTT topics and port 1891).
+
+## DEV166.11 — strict Active Polling identity (EXPERIMENTAL)
+
+**Baseline:** DEV166.10 was real-hardware validated on the two JK-BMS at Active Polling addresses 1 and 2. The TCP limiter queue restored FC03 alarms; at 2026-11-14 17:55 CET, the alarm observer saw 41 valid CRC replies, 20 for BMS_1 and 21 for BMS_2, no address mismatch. A later 30-second window had 4/4 valid transactions, zero pending and zero recent timeouts. This is the reference for the DEV166.11 A/B comparison.
+
+**New strict Active Polling checks (only when `bms_broadcasting:false`):**
+
+- DATA: 308-byte JK reply with header `55 AA EB 90 02`, JK sum8 body checksum, ACK `<addr> 10 16 20 00 01 <CRC16 LE>`, address 1..15. 
+- SETUP: 308-byte JK reply with type 01, register 0x161E, valid checksums/ACK, AND setup body uint32LE at 270..273 equal to CRC-verified ACK address.
+- STATIC: 308-byte JK reply with type 03, register 0x161C, valid checksums/ACK, address 1..15.
+- FC03 alarms: 9 bytes `<addr> 03 04 <4 bytes> <CRC16 LE>`, valid Modbus CRC, address 1..15.
+- All four reject an explicitly available `msg.diag_slave_id` that disagrees with the validated response address, even if CRCs are valid. When `diag_slave_id` is absent, identity is still derived strictly from the valid response.
+- The guard stamps `msg._issue16611_reply_bms` and `msg.bms_numero` with the validated response address, for use downstream.
+- The three Active Polling DATA/SETUP/STATIC MQTT publishers now **require** `msg._issue16611_reply_bms` and reject absent, non-integer/out-of-range or conflicting identities. They NEVER fall back to mutable `slaveAddress-Trame1/2/3` when `bms_broadcasting:false`. Discovery and retained state cannot be created from unidentified responses. Alarm MQTT uses the original decoder's ID, now protected by the strict alarm gate.
+- The strict gate does not alter Broadcast mode; DEV166.8 Broadcast behavior and DEV166.10 TCP request queue are unchanged. Serial Active Polling uses the same identity checks.
+
+**Important compatibility boundary:** 308-byte JK replies and 9-byte FC03 replies are proven for the current test setup only. The strict gate intentionally rejects other lengths; test additional hardware/firmware variants before including it in a general Legacy release. JK sum8 is a weak, non-cryptographic checksum: some balanced corruptions can evade it. The Modbus ACK CRC covers the ACK, not the JK body.
+
+**Diagnostics:**
+
+```sh
+ha apps info cd4dd3d7_smartphoton_jkbms_fix166 | grep -E '^(state|version):'
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 | \
+  grep -E 'ISSUE16611_(ACTIVE_GATE|MQTT_IDENTITY)|ISSUE1669_(ACTIVE|ALARM)_PASSIVE|RangeError|observer error' | tail -n 15
+```
+
+`ISSUE16611_ACTIVE_GATE`: `seen`, `accepted`, `rejected`, `by_kind`, `reasons`, `by_address` and bounded `recent_rejections`. 
+`ISSUE16611_MQTT_IDENTITY`: publisher `by_kind` accepted/rejected and `reasons` (`missing_or_invalid_verified_id`, `verified_id_conflict`). Missing trusted identity after a buffer-parser indicates a propagation issue; the publisher **must not** silently use a global ID.
+
+**Required live acceptance before broad release:**
+
+1. Only the isolated test add-on running against the gateway; official Legacy 4.1.12 stopped. Keep BMS_1, BMS_2 in Active Polling.
+2. Confirm incrementing DATA, SETUP, STATIC and alarm counters for both BMS. Verify real MQTT/HA values and discovery names on BMS_1 vs BMS_2, especially after reconnecting the gateway and restarting the add-on.
+3. Confirm `ISSUE16611_ACTIVE_GATE.rejected=0` and no `ISSUE16611_MQTT_IDENTITY` rejections during ordinary valid traffic. A zero mismatch counter in the earlier passive logs alone does NOT prove MQTT metadata propagation through buffer-parser.
+4. Confirm healthy rolling diagnostic stats and stable 1 request/s TCP queue. If replies are validated by the gate but none reach MQTT, **STOP** this experimental version and inspect the metadata-preservation path. Do not disable the publisher's fail-closed guard as a workaround.
+5. Active Polling global-address misattribution test is now expected to assert BMS_1 MQTT topics on a valid delayed BMS_1 reply even when `slaveAddress-TrameN=2`.
+
+The official Legacy 4.1.12 remains untouched. DEV166.10 is preserved as a Git commit on this development branch history; recovery to that build requires an explicit branch/version rollback procedure (not merely stopping and restarting a new version).
 
 ## DEV166.10 — real-hardware discovery: TCP alarm polls dropped at shared rate limiter
 
