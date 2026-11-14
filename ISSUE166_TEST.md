@@ -209,6 +209,19 @@ The two transports are separate:
 
 **Important limitation:** automated tests assert Node-RED function behavior and topology, but cannot reproduce tcp-client2 socket close/reconnect execution. A physical Broadcast-TCP disconnection/reconnection test is needed before public release; recovery of Active Polling alone does not prove recovery of Broadcasting.
 
+### Physical acceptance — DEV166.12 Active Polling, NB114 Ethernet interruption (2026-11-14)
+
+**Operator-provided evidence:** gateway model is **NB114 Data Transfer Unit RS485/232/422 to Ethernet**, with a separate DC-IN supply visibly connected; the RJ45 was unplugged at ~19:10 and restored at ~19:11. This test disconnects the Ethernet link while the gateway appears separately powered; it is not a verified power-cycle of the gateway. The isolated add-on reported `state: started`, `version: 4.1.13-dev166.12`.
+
+- At **19:09:22**, `ISSUE16611_ACTIVE_GATE`: 1043 accepted / 1043 seen / 0 rejected, `by_address` 525 / 518.
+- At **19:11:10**, one eight-byte message with topic `Trame-Alarmes-BMS` was received and rejected: `reason: alarm_length`, `address:1`. The passive observer described `length`, `function` and `byte_count` anomalies; the bytes were not captured, so the precise origin of the eight-byte message is **unknown**. This rejected frame was *not* published. `bad_crc:0` is not a CRC pass for a non-nine-byte alarm.
+- At **19:15:11**, `ISSUE16611_ACTIVE_GATE`: 1207 seen, 1206 accepted, 1 rejected; `by_kind`: static 70/70, setup 105/105, data 688/688, alarms 343 accepted of 344 seen. Last anomaly stayed `alarm_length:1`, no second rejection or address mismatch.
+- At **19:15:11**, `ISSUE16611_MQTT_IDENTITY`: all 70 static, 105 setup and 688 DATA reached their MQTT publishers, zero MQTT identity rejects; DATA `BMS_1=345`, `BMS_2=343`. The original passive alarm observer showed 805 observed / 804 valid, addresses BMS_1=402, BMS_2=402.
+- The supplied logs cover 19:08–19:15 and show **no** `ISSUE16612_TCP_WATCHDOG`, `Unrecognized action: disconnect`, or `RangeError` in this time range. Thus the spurious **Broadcast** watchdog did not fire under Active Polling during this physical test.
+- Unlike DEV166.11's previous RJ45 test, **DEV166.12 passes the mode-isolation acceptance**, and automatic gateway link recovery with both BMS was observed after reconnection.
+
+**Limits:** This confirms Active Polling's live Ethernet recovery and watchdog isolation only on the NB114 + two real JK-BMS test setup. It **does not** demonstrate `tcp-client2` Broadcasting reconnect using the newly supported `close`/delay/`connect` path, nor guarantee behavior on other BMS firmware or RS485-TCP adapters. No production Legacy update is authorized from this test alone.
+
 ### DEV166.12 test protocol
 
 1. Ensure official Legacy 4.1.12 stays stopped, and only the isolated add-on accesses the gateway.
