@@ -381,3 +381,143 @@ test('DEV166.5 observes historical fragmented Modbus poll loss without correctin
   assert.equal(intact.flow.get('issue166_framing_passive').modbus_polls,1);
   assert.equal(intact.flow.get('issue166_framing_passive').discarded_bytes,0);
 });
+
+function modbusPoll166(address, register) {
+  assert([0x161E,0x1620].includes(register));
+  const b=Buffer.from([address,0x10,register>>8,register&255,0,1,2,0,0,0,0]);
+  let crc=0xFFFF;
+  for(let i=0;i<9;i++){
+    crc^=b[i];
+    for(let bit=0;bit<8;bit++){
+      crc=(crc&1)?(crc>>>1)^0xA001:crc>>>1;
+    }
+  }
+  b[9]=crc&0xFF;b[10]=crc>>>8;
+  return b;
+}
+test('DEV166.6 poll registers counted independently by Modbus destination',()=>{
+  const r=runner('3328d11cbeec411c');
+  const polls=[
+    modbusPoll166(2,0x161E),
+    modbusPoll166(2,0x1620),
+    modbusPoll166(2,0x1620),
+    modbusPoll166(3,0x161E)
+  ];
+  const out=r.call({payload:Buffer.concat(polls)});
+  assert.deepEqual(out[0].map(f=>f.payload.payload),polls);
+  const d=r.flow.get('issue166_poll_register_passive');
+  assert.equal(d.total,4);
+  assert.equal(d.setup_161e,2);
+  assert.equal(d.data_1620,2);
+  assert.equal(d.other,0);
+  assert.deepEqual(d.by_address['2'],{
+    total:3,setup_161e:1,data_1620:2,other:0
+  });
+  assert.deepEqual(d.by_address['3'],{
+    total:1,setup_161e:1,data_1620:0,other:0
+  });
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.discarded_bytes,0);
+  assert.equal(p.modbus_polls,4);
+});
+test('DEV166.6 pairing auditor records matched DATA and SETUP without output changes',()=>{
+  const r=runner(ids.decoder);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,2),slave:2
+  }}),null);
+  const result=r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(1,2),slave:2
+  }});
+  assert.deepEqual(result[0].map(m=>m.bms_numero),[2,2]);
+  const d=r.flow.get('issue166_pairing_passive');
+  assert.equal(d.data_received,1);
+  assert.equal(d.setup_received,1);
+  assert.equal(d.data_overwritten,0);
+  assert.equal(d.pairs_match,1);
+  assert.equal(d.pairs_cross_address,0);
+  assert.equal(d.setup_ack_mismatch,0);
+  assert.equal(d.pairs_untrusted_data_address,0);
+  assert.equal(d.by_address['2'].matched_pairs,1);
+});
+test('DEV166.6 pairing auditor detects cross-BMS assignment but retains legacy output',()=>{
+  const r=runner(ids.decoder);
+  r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,0),slave:0
+  }});
+  const result=r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(1,2),slave:2
+  }});
+  // Existing decoder's known behavior is deliberately unchanged here.
+  assert.deepEqual(result[0].map(m=>m.bms_numero),[2,2]);
+  const d=r.flow.get('issue166_pairing_passive');
+  assert.equal(d.pairs,1);
+  assert.equal(d.pairs_cross_address,1);
+  assert.equal(d.pairs_match,0);
+  assert.equal(d.recent_anomalies[0].kind,'cross_bms_pair');
+  assert.equal(d.recent_anomalies[0].real_data_address,0);
+  assert.equal(d.recent_anomalies[0].assigned_setup_id,2);
+  assert.equal(d.by_address['0'].cross_pairs_as_data_source,1);
+  assert.equal(d.by_address['2'].cross_pairs_as_setup_destination,1);
+});
+test('DEV166.6 pairing auditor observes overwrites and SETUP without pending DATA',()=>{
+  const r=runner(ids.decoder);
+  // SETUP with no DATA in queue
+  const setup=frameWithAckAddress166(1,2);
+  const first=r.call({payload:{topic:'broadcast/jkbms_reply',payload:setup,slave:2}});
+  assert.equal(first.bms_numero,2);
+  r.call({payload:{topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,0),slave:0}});
+  r.call({payload:{topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,2),slave:2}});
+  const last=r.call({payload:{topic:'broadcast/jkbms_reply',payload:setup,slave:2}});
+  assert.deepEqual(last[0].map(x=>x.bms_numero),[2,2]);
+  const d=r.flow.get('issue166_pairing_passive');
+  assert.equal(d.setup_without_pending,1);
+  assert.equal(d.data_overwritten,1);
+  assert.equal(d.pairs_match,1);
+  assert.equal(d.pairs_cross_address,0);
+  assert.equal(d.by_address['0'].data_overwritten,1);
+  assert.equal(d.recent_anomalies[0].kind,'pending_data_overwrite');
+});
+test('DEV166.6 does not trust DATA address with an invalid checksum',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2);
+  b[75]^=1;
+  r.call({payload:{topic:'broadcast/jkbms_reply',payload:b,slave:2}});
+  const out=r.call({payload:{topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(1,2),slave:2}});
+  assert.equal(out[0][0].bms_numero,2);
+  const d=r.flow.get('issue166_pairing_passive');
+  assert.equal(d.pairs_untrusted_data_address,1);
+  assert.equal(d.pairs_match,0);
+  assert.equal(d.pairs_cross_address,0);
+});
+test('DEV166.6 differential: patched decoder output and pending state unchanged',()=>{
+  const patches=JSON.parse(fs.readFileSync(path.join(__dirname,'..','rootfs/etc/node-red/issue166-functions.json'),'utf8'));
+  const baseline=patches[ids.decoder];
+  assert(typeof baseline==='string');
+  const fn=new Function('msg','Buffer','node','flow','context','global',baseline);
+  const baselineFlow=store(),baselineContext=store(),baselineGlobal=store();
+  const mockNode={warn(){},error(){},debug(){}};
+  const instrumented=runner(ids.decoder);
+  const steps=[
+    {type:2,address:0},
+    {type:2,address:2},
+    {type:1,address:2},
+    {type:1,address:0},
+    {type:2,address:0},
+    {type:1,address:0},
+    {type:2,address:2},
+    {type:1,address:2}
+  ];
+  for(const s of steps){
+    const input=frameWithAckAddress166(s.type,s.address);
+    const msg=()=>({payload:{topic:'broadcast/jkbms_reply',
+      payload:Buffer.from(input),slave:s.address}});
+    const expected=fn(msg(),Buffer,mockNode,baselineFlow,baselineContext,baselineGlobal);
+    const actual=instrumented.call(msg());
+    assert.deepEqual(actual,expected);
+    assert.deepEqual(instrumented.context.get('jkbms_pending_data'),
+      baselineContext.get('jkbms_pending_data'));
+    assert.equal(instrumented.flow.get('diag_serial_stats')?.detected_bms_list,
+      baselineFlow.get('diag_serial_stats')?.detected_bms_list);
+  }
+  assert(instrumented.flow.get('issue166_pairing_passive'));
+});
