@@ -578,3 +578,136 @@ test('DEV166.7 rejected short DATA and invalid SETUP keep previous #166 safeguar
   assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
   assert.equal(r.flow.get('issue1667_routing'),undefined);
 });
+
+
+test('DEV166.8 valid BMS_0 / BMS_2 responses still dispatch with original exact buffers',()=>{
+  const r=runner(ids.decoder);
+  for(const addr of [0,2,15]){
+    const data=frame(addr===0?2:2,addr).payload.payload;
+    const out=r.call({payload:{topic:'broadcast/jkbms_reply',payload:data,slave:8}});
+    assert(out);
+    assert.equal(out.bms_type,'data');
+    assert.equal(out.bms_numero,addr);
+    assert.deepEqual(out.payload,data);
+    const setup=frame(1,addr).payload.payload;
+    const cfg=r.call({payload:{topic:'broadcast/jkbms_reply',payload:setup,slave:8}});
+    assert.equal(cfg.bms_type,'setup');
+    assert.equal(cfg.bms_numero,addr);
+    assert.deepEqual(cfg.payload,setup);
+  }
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.seen,6);
+  assert.equal(d.accepted_308,6);
+  assert.equal(d.rejected,0);
+  assert.equal(r.flow.get('issue1667_routing').direct_data,3);
+});
+test('DEV166.8 rejects SETUP ID 2 when valid ACK indicates BMS_0',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(1,0,2);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:0
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.reasons.setup_ack_mismatch,1);
+  assert.equal(r.flow.get('diag_serial_stats'),undefined);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
+});
+test('DEV166.8 detects 308-byte ACK with wrong Modbus register despite valid CRC',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);
+  // Convert 0x1620 DATA ACK into 0x161E SETUP ACK, with a valid new CRC.
+  const goodSetup=frameWithAckAddress166(1,2);
+  bad.set(goodSetup.subarray(303,308),303);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  assert.equal(r.flow.get('issue1668_integrity_gate').reasons.ack_register,1);
+});
+test('DEV166.8 rejects changed BMS ACK address even with re-computed CRC if SETUP disagrees',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(1,2,0);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.reasons.setup_ack_mismatch,1);
+});
+test('DEV166.8 rejects unsupported 310 byte padded RS485 profile pending qualification',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2);
+  const padded=Buffer.concat([b.subarray(0,300),Buffer.from([0]),
+    b.subarray(300),Buffer.from([0])]);
+  assert.equal(padded.length,310);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:padded,slave:2
+  }}),null);
+  assert.equal(r.flow.get('issue1668_integrity_gate').reasons.unsupported_length,1);
+});
+test('DEV166.8 allows checksum-valid bare 300-byte JK SETUP but records CRC absent',()=>{
+  const r=runner(ids.decoder);
+  const bare=frame(1,2,300).payload.payload;
+  const out=r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bare,slave:2
+  }});
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.accepted_300_no_ack,1);
+  assert.equal(d.accepted_308,0);
+  assert.equal(d.rejected,0);
+});
+test('DEV166.8 strict gate runs ONLY for Broadcast replies, not Modbus polls',()=>{
+  const r=runner(ids.decoder);
+  const poll=modbusPoll166(2,0x161E);
+  const out=r.call({payload:{
+    topic:'broadcast/modbus_poll',payload:poll,slave:2
+  }});
+  assert.equal(out.bms_type,'requete');
+  assert.equal(out.bms_adresse,2);
+  assert.deepEqual(out.payload,poll);
+  assert.equal(r.flow.get('issue1668_integrity_gate'),undefined);
+});
+test('DEV166.8 rejected corrupt frame clears prior fallback pending to avoid misassociation',()=>{
+  const r=runner(ids.decoder);
+  const pending=frameWithAckAddress166(2,0);
+  r.context.set('jkbms_pending_data',{
+    payload:pending,bms_type:'data',bms_adresse:0,
+    _issue1667_fallback_ts:Date.now()
+  });
+  const invalid=frameWithAckAddress166(1,2);
+  invalid[75]^=1;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:invalid,slave:2
+  }}),null);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  const out=r.call(decoderInput166(1,2));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  assert.equal(r.flow.get('issue1668_integrity_gate').reasons.jk_checksum,1);
+});
+test('DEV166.8 single-byte mutations in different body positions are all rejected',()=>{
+  for(const type of [1,2]){
+    for(const pos of [6,80,134,270,298]){
+      const r=runner(ids.decoder);
+      const bad=frameWithAckAddress166(type,2);
+      bad[pos]^=1;
+      assert.equal(r.call({payload:{
+        topic:'broadcast/jkbms_reply',payload:bad,slave:2
+      }}),null);
+      assert.equal(r.flow.get('issue1668_integrity_gate').reasons.jk_checksum,1);
+    }
+  }
+});
+test('DEV166.8 malicious-but-checksummed two-byte mutation exposes sum8 limitation',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2);
+  // +1 and -1 modulo 256 leave additive checksum unchanged.
+  b[6]=1;b[7]=255;
+  const out=r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:b,slave:2
+  }});
+  assert.equal(out.bms_type,'data');
+  assert.equal(out.bms_numero,2);
+  // This is a protocol limitation, not a claim of cryptographic integrity.
+  assert.equal(r.flow.get('issue1668_integrity_gate').accepted_308,1);
+});
