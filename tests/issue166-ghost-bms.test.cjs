@@ -964,3 +964,26 @@ test('DEV166.10 no diagnostic changes for Broadcasting on either transport',()=>
     assert.equal(r.flow.get('diag_active_polling_stats'),undefined);
   }
 });
+
+
+test('TEMP16611 source inspection for identity flow',()=>{
+  const ids=['653aafd0b7ddd759','48f37794d0d7b8bf','4941e347ccb9499c',
+    'b02adbe3a64e64f2','9856865237a421b7','cd6a9e296046d78e',
+    'f9ee21cf4d13a9f4','54c0f2403ae8bc7c','f16610d1a9b36cc0',
+    'a9d54c61db2740f0','44588e9ab8f432c4'];
+  for(const id of ids){
+    const n=byId.get(id);
+    console.log('INSPECT16611',id,JSON.stringify({
+      name:n?.name,type:n?.type,wires:n?.wires,z:n?.z,
+      func:n?.func?.slice(0,11000)
+    }));
+  }
+  const relates=flows.filter(n=>
+    /trame|mqtt|alarm|poll|tcp|diag/i.test(n.name||'') &&
+    (n.z===byId.get('b02adbe3a64e64f2').z ||
+    n.z===byId.get('f9ee21cf4d13a9f4').z ||
+    n.z===byId.get('a9d54c61db2740f0').z)).map(n=>({
+      id:n.id,name:n.name,type:n.type,z:n.z,wires:n.wires
+    }));
+  console.log('INSPECT16611 TOPOLOGY',JSON.stringify(relates).slice(0,25000));
+});
