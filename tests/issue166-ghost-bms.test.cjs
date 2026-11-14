@@ -870,3 +870,29 @@ test('DEV166.9 Active Polling observers do not modify original validator return 
     }
   }
 });
+
+
+test('DEV166.9 reproduces existing Active Polling MQTT wrong-address risk under delayed response',()=>{
+  for(const [id,globalKey] of [
+    ['653aafd0b7ddd759','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','slaveAddress-Trame1']
+  ]){
+    const n=byId.get(id);
+    assert(n?.func,'Active Polling MQTT publisher must exist: '+id);
+    const fn=new Function('msg','Buffer','node','flow','context','global',n.func);
+    const fl=store(),cx=store(),gl=store();
+    gl.set(globalKey,2); // Polling has moved to BMS_2
+    gl.set('jk_cell_count',16);
+    const output=fn({
+      bms_numero:1, // Delayed actual reply belongs to BMS_1
+      payload:{SOC_P:55,Cell_1_volt_V:3.2,Device_address_N:1,BMS_A:'JK'}
+    },Buffer,{warn(){},error(){},debug(){}},fl,cx,gl);
+    assert(Array.isArray(output?.[0]) && output[0].length>0);
+    const state=output[0].filter(x=>x.topic.startsWith('BMS_'));
+    assert(state.length>0);
+    assert(state.every(x=>x.topic.startsWith('BMS_2/')),
+      'Currently these publishers use mutable global instead of response ID');
+    assert(!state.some(x=>x.topic.startsWith('BMS_1/')));
+  }
+});
