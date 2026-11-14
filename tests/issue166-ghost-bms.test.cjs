@@ -987,3 +987,12 @@ test('TEMP16611 source inspection for identity flow',()=>{
     }));
   console.log('INSPECT16611 TOPOLOGY',JSON.stringify(relates).slice(0,25000));
 });
+
+
+test('TEMP16611 exact source inspection',()=>{
+  for(const id of ['b02adbe3a64e64f2','9856865237a421b7','cd6a9e296046d78e',
+      'f9ee21cf4d13a9f4','54c0f2403ae8bc7c','44588e9ab8f432c4']){
+    const n=byId.get(id);
+    console.log('INSPECT16611ENC '+id+' '+encodeURIComponent(n.func));
+  }
+});
