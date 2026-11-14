@@ -1134,18 +1134,3 @@ test('DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged',(
     assert.equal(r.flow.get('issue16611_active_gate'),undefined);
   }
 });
-
-test('INSPECT ISSUE166 watchdog graph temporary',()=>{
-  for (const n of flows) {
-    const nm=String(n.name||'');
-    const fun=String(n.func||'');
-    if (/watchdog|JK BMS TCP|tcp client/i.test(nm) ||
-        /Watchdog: no data since|reconnexion forcée/i.test(fun)) {
-      console.log('WATCH166 ' + JSON.stringify({
-        id:n.id,name:n.name,type:n.type,z:n.z,
-        wires:n.wires,server:n.server,action:n.action,
-        func:fun.slice(0,18000)
-      }));
-    }
-  }
-});
