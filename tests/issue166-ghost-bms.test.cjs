@@ -338,13 +338,14 @@ test('DEV166.5 differential test: exact same frame outputs and retained buffers 
     Buffer.from([0x55,0xaa,0xeb,0x90,1])
   ]);
   const sizes=[1,2,3,7,23,41,64,108,159,278,313,376,50,75,19,1024];
-  let p=0,i=0;
+  let p=0,i=0, expectedPolls=0;
   while(p<stream.length) {
     const n=sizes[i++%sizes.length],buf=stream.subarray(p,p+n);
     p+=buf.length;
     const expected=before.call({payload:buf});
     const actual=after.call({payload:buf});
     assert.deepEqual(actual,expected,'frame outputs differ on input chunk '+i);
+    if (expected) expectedPolls += expected[0].filter(f=>f.payload.topic==='broadcast/modbus_poll').length;
     assert.deepEqual(after.flow.get('rs485_buffer'),before.flow.get('rs485_buffer'));
     assert.equal(after.flow.get('last_modbus_slave_broadcast'),
       before.flow.get('last_modbus_slave_broadcast'));
@@ -353,8 +354,30 @@ test('DEV166.5 differential test: exact same frame outputs and retained buffers 
   }
   const framing=after.flow.get('issue166_framing_passive');
   assert(framing);
-  assert(framing.modbus_polls>=2);
+  // Fragmented Modbus polls may be skipped by the ORIGINAL Framer.
+  // The passive observer must count actual emissions, not assume two polls arrive intact.
+  assert.equal(framing.modbus_polls,expectedPolls);
   assert(framing.jk_frames>=3);
   assert(framing.discarded_bytes>0);
   assert.equal(framing.accounting_errors,0);
+});
+
+test('DEV166.5 observes historical fragmented Modbus poll loss without correcting it',()=>{
+  const r=runner('3328d11cbeec411c');
+  const poll=Buffer.from([0x02,0x10,0x16,0x20,0,1,2,0,0,0xC2,0x01]);
+  // No JK header; current Framer cannot retain incomplete 11-byte poll.
+  assert.equal(r.call({payload:poll.subarray(0,4)}),null);
+  assert.equal(r.call({payload:poll.subarray(4)}),null);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.modbus_polls,0);
+  assert.equal(p.discarded_bytes,11);
+  assert.equal(p.input_bytes,11);
+  assert.equal(p.buffer_retained,0);
+  // Same bytes in one call are recognized, proving segmentation is decisive.
+  const intact=runner('3328d11cbeec411c');
+  const out=intact.call({payload:poll});
+  assert.equal(out[0].length,1);
+  assert.equal(out[0][0].payload.topic,'broadcast/modbus_poll');
+  assert.equal(intact.flow.get('issue166_framing_passive').modbus_polls,1);
+  assert.equal(intact.flow.get('issue166_framing_passive').discarded_bytes,0);
 });
