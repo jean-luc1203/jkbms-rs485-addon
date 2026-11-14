@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.9`
+- version: `4.1.13-dev166.10`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -181,6 +181,27 @@ Expected on this user's real Master+BMS_2 bus: `accepted_308` and `issue1667_rou
 - A rejected reply means an individual reading may not update; the gate does not replace it with stale readings or toggle MQTT availability.
 - Do not deploy this strict profile broadly until 300/308/310 variants and other firmware are tested. This is **not** the final release for issue #166.
 - The owner should maintain 4.1.13-dev166.7 as a known-good fallback, and never run test and production add-ons simultaneously (same MQTT topics and port 1891).
+
+## DEV166.10 — real-hardware discovery: TCP alarm polls dropped at shared rate limiter
+
+On 2026-11-14, with the real two JK BMS switched to Active Polling (addresses 1 and 2), DEV166.9 passive diagnostics showed 308-byte DATA/SETUP/STATIC replies (no observed integrity or address errors). However, no FC03 alarm replies reached the TCP debug or `ISSUE1669_ALARM_PASSIVE`. The real-time Node-RED debug capture at 17:44–17:45 confirmed:
+
+- `Trame-Alarmes-BMS` is generated and visible at the **input** of the TCP rate limiter.
+- The same topic is **never seen at the output** across multiple periods.
+- DATA/SETUP/STATIC all appear at the output.
+- Original node `2e3b52cb867e1b1a`, misleadingly named `100ms`, is actually configured as `pauseType=rate`, `rate=1`, `nbRateUnits=1`, `rateUnits=second`, `drop=true`. When a DATA and an ALARM poll arrive close together, the alarm is discarded before the TCP Request nodes.
+- Original upstream `Diag Poll Sent` counted the alarm requests *before* the limiter, causing false "sent" statistics, unmatched pending requests and timeouts. This does not establish that all old 510 timeouts were caused by this path.
+
+**Change in DEV166.10 (EXPERIMENTAL TEST ONLY):**
+- Shared TCP rate limiter retains **one message per second** but sets `drop=false` (Node-RED queues excess messages instead of discarding). Node renamed `TCP queue 1 msg/s - DATA + alarmes`.
+- New function `DEV166.10 Diag TX après limiteur` (ID `f16610d1a9b36cc0`) is between rate limiter and `Route TCP slot A/B`. It records `diag_tx_id`, `diag_slave_id`, `diag_poll_ts` and updates diagnostics when a message is released from the limiter and passed to TCP routing.
+- Original upstream `Diag Poll Sent` bypasses diagnostics for gateway traffic only; remains unchanged for Serial Active Polling. This is a bookkeeping fix, **not proof that the network send completed**.
+- No modifications to the JK-BMS frame formats, CRC handling, Broadcast strict integrity gate or MQTT BMS identity mapping. An independent Active Polling address misattribution weakness remains open.
+- The configured request rate on the user's two-BMS system was far below 1/sec on average (roughly 20–25 requests/minute), which makes queuing a reasonable test strategy. **The queue is not guaranteed to remain bounded under overload**; do not generalize this directly to arbitrary numbers of BMS.
+
+**Test protocol on real hardware:** Do not run two add-ons against the same gateway simultaneously. Install DEV166.10 from the experimental branch using `ha apps update cd4dd3d7_smartphoton_jkbms_fix166` and retain configuration for Active Polling addresses 1 and 2. Once running, watch for `Trame-Alarmes-BMS` **after** the limiter, and ideally 9-byte FC03 reply at TCP debug, then nonzero `ISSUE1669_ALARM_PASSIVE`. Compare `diag_active_polling_stats.polls_by_frame_30s.alarms`, `valid_by_frame_30s.alarms`, timeouts and `pending` after a fresh start. Confirm DATA/SETUP/STATIC still update both BMS. If the request passes but no response appears, inspect TCP, actual BMS FC03 0x12A0 support, CRC, and response routing. On test failure, stop and revert to last known good experimental version; do not modify official Legacy 4.1.12.
+
+Automated tests verify the generated node wiring, queue configuration, and upstream/downstream diagnostic behavior; they do **not** execute the actual Node-RED delay or TCP request runtime. Live validation is mandatory.
 
 ## Update note (dev166.9) — passive Active Polling validation (NO behavior change)
 
