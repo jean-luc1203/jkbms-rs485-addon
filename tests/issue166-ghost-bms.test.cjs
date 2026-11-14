@@ -1,0 +1,1253 @@
+// Regression suite for ISSUE #166, requires no external Node-RED dependencies.
+'use strict';
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const file = process.env.ISSUE166_FLOWS || path.join(__dirname, '..', 'rootfs/etc/node-red/flows.json');
+const flows = JSON.parse(fs.readFileSync(file, 'utf8'));
+const byId = new Map(flows.map(n => [n.id, n]));
+const ids = {
+  decoder: '86a0f48a516a10b6', extract: '74eab2ca3f15f736',
+  alarms: '7d0985c839cd5ee2', data: '39f7fd7720e246a1',
+  setup: '2321fa6d9d473fda', filter2: 'cd93ba9fcfb28703',
+  filter3: '4d1b9f8913f7f7f8', pollAlarm: '44588e9ab8f432c4'
+};
+function store() {
+  const data = new Map();
+  return { get(k) { return data.get(k); }, set(k,v) {data.set(k,v);}, keys() {return [...data.keys()]} };
+}
+function runner(id) {
+  const source = byId.get(id);
+  assert(source && source.func);
+  const fn = new Function('msg','Buffer','node','flow','context','global',source.func);
+  const flow = store(), context = store(), global = store();
+  const node = { warn() {}, error() {}, debug() {} };
+  return { call(m) {return fn(m,Buffer,node,flow,context,global)}, flow, context, global };
+}
+function frame(type, id, size=308) {
+  const b=Buffer.alloc(size);
+  b.set([0x55,0xaa,0xeb,0x90,type]);
+  if(type===1 && size>273) b.writeUInt32LE(id>>>0,270);
+  if(size>=300) b[299]=b.subarray(0,299).reduce((sum,v)=>(sum+v)&255,0);
+  if(size===308 && (type===1 || type===2)){
+    const ackAddress = id>=0 && id<=15 ? id : 2;
+    b.set([ackAddress,0x10,0x16,type===1?0x1E:0x20,0,1],300);
+    let crc=0xFFFF;
+    for(let k=300;k<306;k++){
+      crc^=b[k];
+      for(let bit=0;bit<8;bit++)crc=(crc&1)?(crc>>>1)^0xA001:(crc>>>1);
+    }
+    b[306]=crc&255;b[307]=crc>>>8;
+  }
+  return { payload: {topic:'broadcast/jkbms_reply',payload:b,slave:2} };
+}
+test('BMS addresses master, 1, 2, 15 are preserved',()=>{
+  for(const id of [0,1,2,15]){
+    const r=runner(ids.decoder),out=r.call(frame(1,id));
+    assert.equal(out.bms_numero,id);
+    assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,id===0?'master':String(id));
+  }
+});
+test('standard DATA is published immediately and not relabeled by next SETUP',()=>{
+  const r=runner(ids.decoder);
+  const data=r.call(frame(2,0));
+  assert.equal(data.bms_numero,0);
+  assert.equal(data.bms_type,'data');
+  const setup=r.call(frame(1,2));
+  assert.equal(setup.bms_numero,2);
+  assert.equal(setup.bms_type,'setup');
+});
+test('phantom BMS uint32 IDs never reach the DATA or SETUP branches',()=>{
+  for(const id of [16,513,1280,327680,370147559,4294967295]){
+    const r=runner(ids.decoder);
+    assert.equal(r.call(frame(1,id)),null);
+    assert.equal(r.flow.get('diag_serial_stats'),undefined);
+    assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
+    const g=r.flow.get('issue1668_integrity_gate');
+    assert.equal(g.rejected,1);
+  }
+});
+test('strict gate rejects truncated DATA/SETUP before buffer parsers',()=>{
+  const r=runner(ids.decoder);
+  for(const n of [6,169,273,281,290,299])
+    assert.equal(r.call(frame(2,0,n)),null);
+  for(const n of [6,169,273,280,283,284,299,307,310])
+    assert.equal(r.call(frame(1,0,n)),null);
+  assert.equal(r.call(frame(1,0,300)).bms_type,'setup');
+  assert.equal(r.call(frame(1,0,308)).bms_type,'setup');
+  assert.equal(r.flow.get('issue1668_integrity_gate').rejected,15);
+});
+test('alarm extraction and alarm publishing reject all invalid identifiers',()=>{
+  for(const id of [-488,16,327680,null,undefined,NaN,1.5,'2xyz','']){
+    const e=runner(ids.extract),p=runner(ids.alarms);
+    assert.equal(e.call({bms_numero:id,payload:Buffer.alloc(308)}),null);
+    assert.deepEqual(p.call({bms_numero:id,payload:{error_code:0,errors:[]}}),[null,null]);
+    assert.equal(p.flow.keys().length,0);
+  }
+});
+test('valid alarm identifier 2 publishes exactly four config and four state topics',()=>{
+  const p=runner(ids.alarms),out=p.call({bms_numero:2,payload:{error_code:0,errors:[]}});
+  assert.equal(out[0].length,8);
+  assert(out[0].every(x=>x.topic.toLowerCase().includes('bms_2')));
+});
+test('invalid identifiers cannot create DATA/Heating/SETUP MQTT entities',()=>{
+  for(const id of [-488,16,327680,undefined,null,'','2abc']){
+    for(const key of ['data','setup']){
+      const r=runner(ids[key]);
+      assert.equal(r.call({bms_numero:id,payload:{}}),null);
+      assert.equal(r.flow.keys().length,0);
+      assert.equal(r.global.keys().length,0);
+    }
+  }
+});
+test('both existing BMS validation filters reject strings with trailing junk',()=>{
+  for(const key of ['filter2','filter3']){
+    const r=runner(ids[key]);
+    for(const id of ['14junk','1.5','0x04','16','']) assert.equal(r.call({bms_numero:id,payload:{}}),null);
+    assert.equal(r.call({bms_numero:'2',payload:{}}).bms_numero,2);
+  }
+});
+test('legacy active polling alarm publisher guards BMS IDs > 15',()=>{
+  const r=runner(ids.pollAlarm);
+  for(const id of [-488,16,327680,1.5]) assert.equal(r.call({alarms:{bms_id:id}}),null);
+  assert.equal(r.flow.keys().length,0);
+});
+test('official Legacy startup applies the patch as one shell command',()=>{
+  const script = fs.readFileSync(path.join(__dirname, '..', 'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'), 'utf8');
+  const patchCall = 'node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json /config/smartphoton_jkbms/flows.json || bashio::exit.nok "Issue166 production RC flow patch failed"';
+  assert(script.includes(patchCall), 'startup must call the patcher before launching Node-RED');
+  assert(!script.includes('flows.json ' + String.fromCharCode(92, 92)), 'startup must not use an accidental doubled shell backslash');
+});
+
+test('live single-addon port 1891 is consistent without changing the Legacy flow URL',()=>{
+  const root = path.join(__dirname, '..');
+  const configYaml = fs.readFileSync(path.join(root, 'config.yaml'),'utf8');
+  const configJs = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/config.js'),'utf8');
+  const dockerfile = fs.readFileSync(path.join(root, 'Dockerfile'),'utf8');
+  const patcher = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
+  assert(configYaml.includes('"1891/tcp": 1891'), 'addon port mapping must be 1891');
+  assert(configJs.includes('config.uiPort = 1891;'), 'Node-RED listener must use 1891');
+  assert(dockerfile.includes('127.0.0.1:1891'), 'health check must use 1891');
+  assert(!patcher.includes("':1892/endpoint/dashboard/'"), 'patcher must not redirect the dashboard to 1892');
+  const urlNode = byId.get('a91bfb41bf5699ef');
+  assert(urlNode && urlNode.func.includes(':1891/endpoint/dashboard/'), 'generated dashboard must retain original port');
+});
+
+function integrityFrame166(type=1, length=308) {
+  const b = Buffer.alloc(length);
+  b.set([0x55, 0xAA, 0xEB, 0x90, type]);
+  if (length >= 300) {
+    b[299] = b.subarray(0, 299).reduce((sum, v) => (sum + v) & 0xFF, 0);
+  }
+  if (length === 308) {
+    // Independent known reference CRCs: CRC16/MODBUS(00 10 16 1E 00 01)=0x5664,
+    // and CRC16/MODBUS(00 10 16 20 00 01)=0x9A05.
+    b.set(type === 1
+      ? [0x00, 0x10, 0x16, 0x1E, 0x00, 0x01, 0x64, 0x56]
+      : [0x00, 0x10, 0x16, 0x20, 0x00, 0x01, 0x05, 0x9A], 300);
+  }
+  return b;
+}
+function flushIntegrityFrames166(r, framesToSend, firstChunk=0) {
+  const payload = Buffer.concat([...framesToSend, Buffer.from([0x55, 0xAA, 0xEB, 0x90, 0x02])]);
+  if (firstChunk > 0) {
+    assert.equal(r.call({payload:payload.subarray(0, firstChunk)}), null);
+    return r.call({payload:payload.subarray(firstChunk)});
+  }
+  return r.call({payload});
+}
+test('passive JK checksum and ACK CRC: correct SETUP/DATA remain unchanged',()=>{
+  const r = runner('3328d11cbeec411c');
+  const setup = integrityFrame166(1), data = integrityFrame166(2);
+  const out = flushIntegrityFrames166(r, [setup,data], 120);
+  assert.deepEqual(out[0].map(x=>x.payload.payload), [setup,data]);
+  const d = r.flow.get('issue166_integrity_passive');
+  assert.equal(d.frames,2);
+  assert.deepEqual(d.types,{data:1,setup:1,other:0});
+  assert.equal(d.lengths['308'],2);
+  assert.deepEqual(d.checksum,{ok:2,bad:0,unavailable:0});
+  assert.deepEqual(d.ack_crc,{ok:2,bad:0,unavailable:0});
+  assert.equal(d.ack_shape_bad,0);
+  assert.equal(d.samples.length,0);
+});
+test('passive observer reports corrupted JK body without rejecting or changing frame',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=integrityFrame166(2);
+  b[80]^=0x04; // after checksum was set; deliberately corrupt content
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const d=r.flow.get('issue166_integrity_passive');
+  assert.equal(d.checksum.bad,1);
+  assert.equal(d.ack_crc.ok,1);
+  assert.equal(d.samples[0].kind,'jk_checksum');
+});
+test('passive observer reports bad ACK CRC without rejecting or changing frame',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=integrityFrame166(1); b[307]^=0x01;
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const d=r.flow.get('issue166_integrity_passive');
+  assert.equal(d.checksum.ok,1);
+  assert.equal(d.ack_crc.bad,1);
+  assert.equal(d.samples[0].kind,'ack_crc');
+});
+test('passive observer classifies short framed candidates as untestable, not rejected',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=integrityFrame166(2,290);
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const d=r.flow.get('issue166_integrity_passive');
+  assert.equal(d.frames,1);
+  assert.equal(d.checksum.unavailable,1);
+  assert.equal(d.ack_crc.unavailable,1);
+  assert.equal(d.lengths['290'],1);
+});
+test('no legacy flow route or filter changed by passive observer',()=>{
+  const framer = byId.get('3328d11cbeec411c');
+  assert(framer.func.includes('ISSUE166_INTEGRITY_PASSIVE'));
+  assert.deepEqual(framer.wires,[['11433c3013581838','a6586b831a80a15b']]);
+  assert.equal(framer.outputs,1);
+  assert(!framer.func.includes('return null; // integrity rejection'));
+});
+
+function frameWithAckAddress166(type, address, setupId=address) {
+  const b=integrityFrame166(type);
+  if(type===1) b.writeUInt32LE(setupId,270);
+  b[300]=address;
+  const crcByTypeAndAddr={
+    1:{0:[0x64,0x56],2:[0x65,0xb4]},
+    2:{0:[0x05,0x9a],2:[0x04,0x78]}
+  };
+  const pair=crcByTypeAndAddr[type]?.[address];
+  assert(pair, 'use independently calculated Modbus CRC reference');
+  b[306]=pair[0];b[307]=pair[1];
+  b[299]=b.subarray(0,299).reduce((s,v)=>(s+v)&255,0);
+  return b;
+}
+test('DEV166.5 passive sequence counts per-BMS interleaving without altering frames',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=[
+    frameWithAckAddress166(1,0),
+    frameWithAckAddress166(1,2),
+    frameWithAckAddress166(2,0),
+    frameWithAckAddress166(2,2),
+    frameWithAckAddress166(2,0),
+    frameWithAckAddress166(2,2),
+    frameWithAckAddress166(1,0),
+    frameWithAckAddress166(1,2)
+  ];
+  const out=flushIntegrityFrames166(r,b,180);
+  assert.deepEqual(out[0].map(x=>x.payload.payload),b);
+  const q=r.flow.get('issue166_sequence_passive');
+  assert.equal(q.frames,8);
+  assert.deepEqual(q.types,{data:4,setup:4,other:0});
+  assert.equal(q.ack_untrusted,0);
+  assert.equal(q.setup_id.match_ack,4);
+  assert.equal(q.setup_id.mismatch_ack,0);
+  assert.equal(q.by_address['0'].data,2);
+  assert.equal(q.by_address['0'].setup,2);
+  assert.equal(q.by_address['0'].transitions['data->data'],1);
+  assert.equal(q.by_address['2'].data,2);
+  assert.equal(q.by_address['2'].setup,2);
+  assert.equal(q.by_address['2'].transitions['data->data'],1);
+  assert.equal(q.transitions['setup->setup'],2);
+  // Global DATA->DATA includes interleaved BMS messages (not individual BMS losses).
+  assert.equal(q.transitions['data->data'],3);
+  assert.equal(r.flow.get('issue166_integrity_passive').checksum.bad,0);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.jk_frames,8);
+  assert.equal(p.discarded_bytes,0);
+  assert.equal(p.accounting_errors,0);
+});
+test('DEV166.5 passive observer detects SETUP identity vs ACK conflict without blocking',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=frameWithAckAddress166(1,2,14);
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const q=r.flow.get('issue166_sequence_passive');
+  assert.equal(q.setup_id.checked,1);
+  assert.equal(q.setup_id.mismatch_ack,1);
+  assert.equal(q.last_anomalies[0].kind,'setup_id_vs_ack');
+  assert.equal(r.flow.get('issue166_integrity_passive').checksum.ok,1);
+});
+test('DEV166.5 invalid ACK CRC cannot be trusted for address, but frame is unchanged',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=frameWithAckAddress166(2,2);b[307]^=0x01;
+  const out=flushIntegrityFrames166(r,[b]);
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const q=r.flow.get('issue166_sequence_passive');
+  assert.equal(q.ack_untrusted,1);
+  assert.deepEqual(q.by_address,{});
+  assert.equal(q.types.data,1);
+  assert.equal(r.flow.get('issue166_integrity_passive').ack_crc.bad,1);
+});
+test('DEV166.5 Framer accounts for discarded noise prefix without losing valid replies',()=>{
+  const r=runner('3328d11cbeec411c');
+  const b=frameWithAckAddress166(1,0);
+  const payload=Buffer.concat([Buffer.from([0x44,0x33,0x22]),b,
+    Buffer.from([0x55,0xAA,0xEB,0x90,0x01])]);
+  const out=r.call({payload});
+  assert.deepEqual(out[0][0].payload.payload,b);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.discarded_bytes,3);
+  assert.equal(p.short_header_candidates,0);
+  assert.equal(p.discard_calls,1);
+  assert.equal(p.buffer_retained,5);
+  assert.equal(p.input_bytes,p.emitted_bytes+p.discarded_bytes+p.buffer_retained);
+});
+test('DEV166.5 Framer detects rejected short candidate, still emits following good frames',()=>{
+  const r=runner('3328d11cbeec411c');
+  const valid=frameWithAckAddress166(2,2);
+  const bogus=Buffer.from([0x55,0xAA,0xEB,0x90,0x00,0x00,0x11]);
+  const out=r.call({payload:Buffer.concat([bogus,valid,Buffer.from([0x55,0xAA,0xEB,0x90])])});
+  assert.deepEqual(out[0][0].payload.payload,valid);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.discarded_bytes,7);
+  assert.equal(p.short_header_candidates,1);
+  assert.equal(p.accounting_errors,0);
+});
+test('DEV166.5 Framer records no-frame buffer trim without changing subsequent decoding',()=>{
+  const r=runner('3328d11cbeec411c');
+  const large=Buffer.concat([Buffer.from([0x55,0xAA,0xEB,0x90]),Buffer.alloc(16500)]);
+  assert.equal(r.call({payload:large}),null);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.buffer_trims,1);
+  assert.equal(p.trim_bytes,large.length-4096);
+  assert.equal(p.discarded_bytes,large.length-4096);
+  assert.equal(p.buffer_retained,4096);
+  assert.equal(p.accounting_errors,0);
+  const b=frameWithAckAddress166(1,0);
+  const out=r.call({payload:Buffer.concat([b,Buffer.from([0x55,0xAA,0xEB,0x90])])});
+  assert.deepEqual(out[0][0].payload.payload,b);
+  assert.equal(r.flow.get('issue166_framing_passive').accounting_errors,0);
+});
+test('DEV166.5 framing counts bytes discarded even when no complete frame exists',()=>{
+  const r=runner('3328d11cbeec411c');
+  assert.equal(r.call({payload:Buffer.from([0x13,0x37,0x42])}),null);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.input_calls,1);
+  assert.equal(p.input_bytes,3);
+  assert.equal(p.discarded_bytes,3);
+  assert.equal(p.jk_frames,0);
+});
+
+test('DEV166.5 differential test: exact same frame outputs and retained buffers as Legacy 4.1.12 Framer',()=>{
+  const original=JSON.parse(fs.readFileSync(
+    path.join(__dirname,'..','rootfs/etc/node-red/flows.json'),'utf8'));
+  const framerBaseline=original.find(n=>n.id==='3328d11cbeec411c');
+  assert(framerBaseline?.func);
+  function rawRunner166(func) {
+    const fn=new Function('msg','Buffer','node','flow','context','global',func);
+    const flow=store(),context=store(),global=store();
+    const node={warn(){},error(){},debug(){}};
+    return {call(msg){return fn(msg,Buffer,node,flow,context,global)},flow};
+  }
+  const before=rawRunner166(framerBaseline.func);
+  const after=rawRunner166(byId.get('3328d11cbeec411c').func);
+  const poll2=Buffer.from([0x02,0x10,0x16,0x20,0,1,2,0,0,0xC2,0x01]);
+  const poll1=Buffer.from([0x01,0x10,0x16,0x1E,0,1,2,0,0,0xD2,0x2F]);
+  const setup2=frameWithAckAddress166(1,2);
+  const data2=frameWithAckAddress166(2,2);
+  const badAck=Buffer.from(frameWithAckAddress166(2,0));badAck[307]^=0x03;
+  const bogus=Buffer.from([0x55,0xaa,0xeb,0x90,0,0,0]);
+  const stream=Buffer.concat([
+    Buffer.from([0x13,0x37,0x42]), poll2, data2,
+    bogus, setup2, poll1, badAck, setup2,
+    Buffer.from([0x55,0xaa,0xeb,0x90,1])
+  ]);
+  const sizes=[1,2,3,7,23,41,64,108,159,278,313,376,50,75,19,1024];
+  let p=0,i=0, expectedPolls=0;
+  while(p<stream.length) {
+    const n=sizes[i++%sizes.length],buf=stream.subarray(p,p+n);
+    p+=buf.length;
+    const expected=before.call({payload:buf});
+    const actual=after.call({payload:buf});
+    assert.deepEqual(actual,expected,'frame outputs differ on input chunk '+i);
+    if (expected) expectedPolls += expected[0].filter(f=>f.payload.topic==='broadcast/modbus_poll').length;
+    assert.deepEqual(after.flow.get('rs485_buffer'),before.flow.get('rs485_buffer'));
+    assert.equal(after.flow.get('last_modbus_slave_broadcast'),
+      before.flow.get('last_modbus_slave_broadcast'));
+    // first_ts is initialized with Date.now() in each independently executed
+    // reference Framer: a one-millisecond difference is not a flow regression.
+    const beforeStats = {...(before.flow.get('diag_serial_stats') || {})};
+    const afterStats = {...(after.flow.get('diag_serial_stats') || {})};
+    delete beforeStats.first_ts;
+    delete afterStats.first_ts;
+    assert.deepEqual(afterStats, beforeStats);
+  }
+  const framing=after.flow.get('issue166_framing_passive');
+  assert(framing);
+  // Fragmented Modbus polls may be skipped by the ORIGINAL Framer.
+  // The passive observer must count actual emissions, not assume two polls arrive intact.
+  assert.equal(framing.modbus_polls,expectedPolls);
+  assert(framing.jk_frames>=3);
+  assert(framing.discarded_bytes>0);
+  assert.equal(framing.accounting_errors,0);
+});
+
+test('DEV166.5 observes historical fragmented Modbus poll loss without correcting it',()=>{
+  const r=runner('3328d11cbeec411c');
+  const poll=Buffer.from([0x02,0x10,0x16,0x20,0,1,2,0,0,0xC2,0x01]);
+  // No JK header; current Framer cannot retain incomplete 11-byte poll.
+  assert.equal(r.call({payload:poll.subarray(0,4)}),null);
+  assert.equal(r.call({payload:poll.subarray(4)}),null);
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.modbus_polls,0);
+  assert.equal(p.discarded_bytes,11);
+  assert.equal(p.input_bytes,11);
+  assert.equal(p.buffer_retained,0);
+  // Same bytes in one call are recognized, proving segmentation is decisive.
+  const intact=runner('3328d11cbeec411c');
+  const out=intact.call({payload:poll});
+  assert.equal(out[0].length,1);
+  assert.equal(out[0][0].payload.topic,'broadcast/modbus_poll');
+  assert.equal(intact.flow.get('issue166_framing_passive').modbus_polls,1);
+  assert.equal(intact.flow.get('issue166_framing_passive').discarded_bytes,0);
+});
+
+function modbusPoll166(address, register) {
+  assert([0x161E,0x1620].includes(register));
+  const b=Buffer.from([address,0x10,register>>8,register&255,0,1,2,0,0,0,0]);
+  let crc=0xFFFF;
+  for(let i=0;i<9;i++){
+    crc^=b[i];
+    for(let bit=0;bit<8;bit++){
+      crc=(crc&1)?(crc>>>1)^0xA001:crc>>>1;
+    }
+  }
+  b[9]=crc&0xFF;b[10]=crc>>>8;
+  return b;
+}
+test('DEV166.6 poll registers counted independently by Modbus destination',()=>{
+  const r=runner('3328d11cbeec411c');
+  const polls=[
+    modbusPoll166(2,0x161E),
+    modbusPoll166(2,0x1620),
+    modbusPoll166(2,0x1620),
+    modbusPoll166(3,0x161E)
+  ];
+  const out=r.call({payload:Buffer.concat(polls)});
+  assert.deepEqual(out[0].map(f=>f.payload.payload),polls);
+  const d=r.flow.get('issue166_poll_register_passive');
+  assert.equal(d.total,4);
+  assert.equal(d.setup_161e,2);
+  assert.equal(d.data_1620,2);
+  assert.equal(d.other,0);
+  assert.deepEqual(d.by_address['2'],{
+    total:3,setup_161e:1,data_1620:2,other:0
+  });
+  assert.deepEqual(d.by_address['3'],{
+    total:1,setup_161e:1,data_1620:0,other:0
+  });
+  const p=r.flow.get('issue166_framing_passive');
+  assert.equal(p.discarded_bytes,0);
+  assert.equal(p.modbus_polls,4);
+});
+
+function decoderInput166(type,address,source=address,setupId=address) {
+  return {payload:{
+    topic:'broadcast/jkbms_reply',
+    payload:frameWithAckAddress166(type,address,setupId),
+    slave:source
+  }};
+}
+test('DEV166.7 immediate DATA dispatch uses verified ACK identity even if last poll slave differs',()=>{
+  const r=runner(ids.decoder);
+  const out=r.call(decoderInput166(2,2,15));
+  assert(out);
+  assert.equal(out.bms_type,'data');
+  assert.equal(out.bms_numero,2);
+  assert.equal(out.bms_adresse,15); // legacy diagnostic field still unchanged
+  assert.deepEqual(out.payload,frameWithAckAddress166(2,2));
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+  assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,'2');
+  assert.equal(r.flow.get('issue1667_routing').direct_data,1);
+});
+test('DEV166.7 multiple consecutive DATA frames from BMS_2 are all published',()=>{
+  const r=runner(ids.decoder);
+  for(let i=0;i<70;i++){
+    const out=r.call(decoderInput166(2,2,15));
+    assert.equal(out.bms_numero,2);
+    assert.equal(out.bms_type,'data');
+  }
+  assert.equal(r.flow.get('issue1667_routing').direct_data,70);
+  assert.equal(r.flow.get('issue1667_routing').by_address['2'].direct_data,70);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+  assert.equal(r.flow.get('issue1667_routing').legacy_fallback_data,0);
+  assert.equal(r.flow.get('issue1667_routing').pending_cleared_on_direct,0);
+});
+test('DEV166.7 interleaved Master and BMS_2 DATA/SETUP do not overwrite or misassociate',()=>{
+  const r=runner(ids.decoder);
+  const steps=[
+    {type:2,address:2},{type:2,address:0},
+    {type:2,address:2},{type:2,address:2},
+    {type:1,address:0},{type:1,address:2},
+    {type:2,address:0},{type:1,address:0}
+  ];
+  const observed=[];
+  for(const s of steps){
+    const out=r.call(decoderInput166(s.type,s.address,15));
+    assert(out && !Array.isArray(out),'direct DATA or one SETUP expected');
+    observed.push([out.bms_type,out.bms_numero]);
+    assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+  }
+  assert.deepEqual(observed,[
+    ['data',2],['data',0],['data',2],['data',2],
+    ['setup',0],['setup',2],['data',0],['setup',0]
+  ]);
+  const d=r.flow.get('issue1667_routing');
+  assert.equal(d.direct_data,5);
+  assert.equal(d.setup,3);
+  assert.equal(d.legacy_fallback_data,0);
+  assert.equal(d.legacy_fallback_pair,0);
+  assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,'master, 2');
+});
+test('DEV166.7 SETUP remains independent, including SETUP-only and setup ID from payload',()=>{
+  const r=runner(ids.decoder);
+  const out=r.call(decoderInput166(1,2,15));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  assert.equal(out.bms_adresse,15);
+  assert.equal(r.flow.get('issue1667_routing').setup,1);
+  assert.equal(r.flow.get('issue1667_routing').legacy_fallback_pair,0);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+});
+test('DEV166.8 strict gate blocks CRC-invalid DATA without legacy fallback',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2); b[307]^=1;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:b,slave:2
+  }}),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
+  const out=r.call(decoderInput166(1,2));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.rejected,1);
+  assert.equal(d.reasons.ack_crc,1);
+  assert.equal(d.accepted_308,1);
+});
+test('DEV166.8 strict gate blocks damaged JK body even when ACK CRC is valid',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);bad[80]^=0x04;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.reasons.jk_checksum,1);
+  assert.equal(d.rejected,1);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
+});
+test('DEV166.7 removes legacy pending from old releases before a SETUP can relabel it',()=>{
+  const r=runner(ids.decoder);
+  r.context.set('jkbms_pending_data',{
+    payload:frameWithAckAddress166(2,0),
+    bms_type:'data',bms_adresse:0
+  });
+  const out=r.call(decoderInput166(1,2));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+  assert.equal(r.flow.get('issue1667_routing').stale_pending_cleared,1);
+});
+test('DEV166.8 rejected DATA cannot create pending and next direct DATA is unaffected',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);bad[307]^=1;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
+  const out=r.call(decoderInput166(2,0));
+  assert.equal(out.bms_numero,0);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null,null);
+  const setup=r.call(decoderInput166(1,0));
+  assert.equal(setup.bms_type,'setup');
+  const d=r.flow.get('issue1667_routing');
+  assert.equal(d.pending_cleared_on_direct,0);
+  assert.equal(d.legacy_fallback_data,0);
+  assert.equal(r.flow.get('issue1668_integrity_gate').rejected,1);
+});
+test('DEV166.7 rejected short DATA and invalid SETUP keep previous #166 safeguards',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2).subarray(0,281);
+  assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:b,slave:2}}),null);
+  const bad=frameWithAckAddress166(1,2,327680);
+  assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}}),null);
+  assert.equal(r.context.get('jkbms_pending_data') ?? null, null);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
+});
+
+
+test('DEV166.8 valid BMS_0 / BMS_2 responses still dispatch with original exact buffers',()=>{
+  const r=runner(ids.decoder);
+  for(const addr of [0,2,15]){
+    const data=frame(addr===0?2:2,addr).payload.payload;
+    const out=r.call({payload:{topic:'broadcast/jkbms_reply',payload:data,slave:8}});
+    assert(out);
+    assert.equal(out.bms_type,'data');
+    assert.equal(out.bms_numero,addr);
+    assert.deepEqual(out.payload,data);
+    const setup=frame(1,addr).payload.payload;
+    const cfg=r.call({payload:{topic:'broadcast/jkbms_reply',payload:setup,slave:8}});
+    assert.equal(cfg.bms_type,'setup');
+    assert.equal(cfg.bms_numero,addr);
+    assert.deepEqual(cfg.payload,setup);
+  }
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.seen,6);
+  assert.equal(d.accepted_308,6);
+  assert.equal(d.rejected,0);
+  assert.equal(r.flow.get('issue1667_routing').direct_data,3);
+});
+test('DEV166.8 rejects SETUP ID 2 when valid ACK indicates BMS_0',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(1,0,2);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:0
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.reasons.setup_ack_mismatch,1);
+  assert.equal(r.flow.get('diag_serial_stats'),undefined);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
+});
+test('DEV166.8 detects 308-byte ACK with wrong Modbus register despite valid CRC',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);
+  // Convert 0x1620 DATA ACK into 0x161E SETUP ACK, with a valid new CRC.
+  const goodSetup=frameWithAckAddress166(1,2);
+  bad.set(goodSetup.subarray(303,308),303);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  assert.equal(r.flow.get('issue1668_integrity_gate').reasons.ack_register,1);
+});
+test('DEV166.8 rejects changed BMS ACK address even with re-computed CRC if SETUP disagrees',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(1,2,0);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bad,slave:2
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.reasons.setup_ack_mismatch,1);
+});
+test('DEV166.8 rejects unsupported 310 byte padded RS485 profile pending qualification',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2);
+  const padded=Buffer.concat([b.subarray(0,300),Buffer.from([0]),
+    b.subarray(300),Buffer.from([0])]);
+  assert.equal(padded.length,310);
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:padded,slave:2
+  }}),null);
+  assert.equal(r.flow.get('issue1668_integrity_gate').reasons.unsupported_length,1);
+});
+test('DEV166.8 allows checksum-valid bare 300-byte JK SETUP but records CRC absent',()=>{
+  const r=runner(ids.decoder);
+  const bare=frame(1,2,300).payload.payload;
+  const out=r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:bare,slave:2
+  }});
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.accepted_300_no_ack,1);
+  assert.equal(d.accepted_308,0);
+  assert.equal(d.rejected,0);
+});
+test('DEV166.8 strict gate runs ONLY for Broadcast replies, not Modbus polls',()=>{
+  const r=runner(ids.decoder);
+  const poll=modbusPoll166(2,0x161E);
+  const out=r.call({payload:{
+    topic:'broadcast/modbus_poll',payload:poll,slave:2
+  }});
+  assert.equal(out.bms_type,'requete');
+  assert.equal(out.bms_adresse,2);
+  assert.deepEqual(out.payload,poll);
+  assert.equal(r.flow.get('issue1668_integrity_gate'),undefined);
+});
+test('DEV166.8 rejected corrupt frame clears prior fallback pending to avoid misassociation',()=>{
+  const r=runner(ids.decoder);
+  const pending=frameWithAckAddress166(2,0);
+  r.context.set('jkbms_pending_data',{
+    payload:pending,bms_type:'data',bms_adresse:0,
+    _issue1667_fallback_ts:Date.now()
+  });
+  const invalid=frameWithAckAddress166(1,2);
+  invalid[75]^=1;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:invalid,slave:2
+  }}),null);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  const out=r.call(decoderInput166(1,2));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  assert.equal(r.flow.get('issue1668_integrity_gate').reasons.jk_checksum,1);
+});
+test('DEV166.8 single-byte mutations in different body positions are all rejected',()=>{
+  for(const type of [1,2]){
+    for(const pos of [6,80,134,270,298]){
+      const r=runner(ids.decoder);
+      const bad=frameWithAckAddress166(type,2);
+      bad[pos]^=1;
+      assert.equal(r.call({payload:{
+        topic:'broadcast/jkbms_reply',payload:bad,slave:2
+      }}),null);
+      assert.equal(r.flow.get('issue1668_integrity_gate').reasons.jk_checksum,1);
+    }
+  }
+});
+test('DEV166.8 malicious-but-checksummed two-byte mutation exposes sum8 limitation',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2);
+  // +1 and -1 modulo 256 leave additive checksum unchanged.
+  b[6]=1;b[7]=255;
+  const out=r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:b,slave:2
+  }});
+  assert.equal(out.bms_type,'data');
+  assert.equal(out.bms_numero,2);
+  // This is a protocol limitation, not a claim of cryptographic integrity.
+  assert.equal(r.flow.get('issue1668_integrity_gate').accepted_308,1);
+});
+
+
+function activeFrame1669(type,address,register) {
+  const b=Buffer.alloc(308);
+  b.set([0x55,0xAA,0xEB,0x90,type],0);
+  if(type===1)b.writeUInt32LE(address,270);
+  let sum=0;
+  for(let i=0;i<299;i++)sum=(sum+b[i])&255;
+  b[299]=sum;
+  b.set([address,0x10,0x16,register,0,1],300);
+  let crc=0xFFFF;
+  for(let i=300;i<306;i++){
+    crc^=b[i];
+    for(let j=0;j<8;j++)crc=crc&1?(crc>>>1)^0xA001:crc>>>1;
+  }
+  b[306]=crc&255;b[307]=crc>>>8;
+  return b;
+}
+function alarmFrame1669(address,alarmValue=0) {
+  const b=Buffer.alloc(9);
+  b[0]=address;b[1]=0x03;b[2]=4;
+  b.writeUInt32BE(alarmValue>>>0,3);
+  let crc=0xFFFF;
+  for(let i=0;i<7;i++){
+    crc^=b[i];
+    for(let j=0;j<8;j++)crc=crc&1?(crc>>>1)^0xA001:crc>>>1;
+  }
+  b.writeUInt16LE(crc,7);
+  return b;
+}
+test('DEV166.9 passive Active Polling validator observes 308 DATA and leaves routing unchanged',()=>{
+  const r=runner('b02adbe3a64e64f2');
+  r.global.set('slaveAddress-Trame3',1);
+  const b=activeFrame1669(2,1,0x20);
+  const msg={payload:b,topic:'Trame-3-dynamiques'};
+  assert.strictEqual(r.call(msg),msg);
+  const d=r.flow.get('issue1669_active_passive');
+  assert.equal(d.seen,1);
+  assert.equal(d.by_type.data.seen,1);
+  assert.equal(d.by_type.data.length_308,1);
+  assert.equal(d.by_type.data.jk_checksum_ok,1);
+  assert.equal(d.by_type.data.ack_crc_ok,1);
+  assert.equal(d.by_type.data.ack_register_bad,0);
+  assert.equal(d.by_type.data.address_vs_global_mismatch,0);
+  assert.equal(d.by_type.data.by_ack_address['1'],1);
+});
+test('DEV166.9 passive detects late DATA for BMS_1 while global polling is at BMS_2',()=>{
+  const r=runner('b02adbe3a64e64f2');
+  r.global.set('slaveAddress-Trame3',2);
+  const b=activeFrame1669(2,1,0x20);
+  const msg={payload:b,topic:'Trame-3-dynamiques'};
+  assert.strictEqual(r.call(msg),msg); // OBSERVER MUST NOT REASSIGN/DROP
+  const d=r.flow.get('issue1669_active_passive');
+  assert.equal(d.by_type.data.by_ack_address['1'],1);
+  assert.equal(d.by_type.data.address_vs_global_mismatch,1);
+  assert.equal(d.by_type.data.ack_crc_bad,0);
+  assert.equal(d.last_anomalies[0].reason,'ack_vs_global');
+});
+test('DEV166.9 recognizes valid static 0x161C and setup 0x161E separately',()=>{
+  const st=runner('cd6a9e296046d78e');
+  const b1=activeFrame1669(0,1,0x1c);
+  assert.strictEqual(st.call({payload:b1,topic:'Trame-1-statiques'}).payload,b1);
+  assert.equal(st.flow.get('issue1669_active_passive').by_type.static.ack_crc_ok,1);
+  assert.equal(st.flow.get('issue1669_active_passive').by_type.static.ack_register_bad,0);
+  const se=runner('9856865237a421b7');
+  const b2=activeFrame1669(1,1,0x1e);
+  assert.strictEqual(se.call({payload:b2,topic:'Trame-2-setup'}).payload,b2);
+  assert.equal(se.flow.get('issue1669_active_passive').by_type.setup.ack_crc_ok,1);
+  assert.equal(se.flow.get('issue1669_active_passive').by_type.setup.setup_id_mismatch,0);
+});
+test('DEV166.9 SETUP wrong declared address is observed, original header check preserved',()=>{
+  const r=runner('9856865237a421b7');
+  const b=activeFrame1669(1,1,0x1e);
+  b.writeUInt32LE(2,270);
+  // Recalculate JK body checksum: the frame remains internally consistent.
+  let sum=0;
+  for(let i=0;i<299;i++)sum=(sum+b[i])&255;
+  b[299]=sum;
+  const msg={payload:b,topic:'Trame-2-setup'};
+  assert.strictEqual(r.call(msg),msg);
+  const d=r.flow.get('issue1669_active_passive').by_type.setup;
+  assert.equal(d.setup_id_mismatch,1);
+  assert.equal(d.jk_checksum_bad,0);
+});
+test('DEV166.9 measures truncated setup/static while original validators still pass headers',()=>{
+  for(const [id,type] of [
+    ['9856865237a421b7','setup'],
+    ['cd6a9e296046d78e','static']]){
+    const r=runner(id);
+    const b=Buffer.from([0x55,0xaa,0xeb,0x90,type==='setup'?1:0]);
+    const msg={payload:b,topic:'Trame-2-setup'};
+    assert.strictEqual(r.call(msg),msg);
+    const d=r.flow.get('issue1669_active_passive').by_type[type];
+    assert.equal(d.short_for_parser,1);
+    assert.equal(d.other_length,1);
+    assert.equal(d.jk_checksum_unavailable,1);
+  }
+});
+test('DEV166.9 detects bad checksum AND CRC of Active Polling DATA without rejecting',()=>{
+  const r=runner('b02adbe3a64e64f2');
+  const b=activeFrame1669(2,2,0x20);
+  b[70]^=1;b[307]^=1;
+  const msg={payload:b,topic:'Trame-3-dynamiques'};
+  assert.strictEqual(r.call(msg),msg);
+  const d=r.flow.get('issue1669_active_passive').by_type.data;
+  assert.equal(d.jk_checksum_bad,1);
+  assert.equal(d.ack_crc_bad,1);
+  assert.equal(d.length_308,1);
+});
+test('DEV166.9 alarm observer records correct FC03 CRC and address without altering alarm output',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  const b=alarmFrame1669(2,4);
+  const out=r.call({topic:'Trame-Alarmes-BMS',payload:b});
+  assert.equal(out.bms_numero,2);
+  assert.equal(out.alarms.raw_value,4);
+  const d=r.flow.get('issue1669_alarm_passive');
+  assert.equal(d.seen,1);
+  assert.equal(d.valid_format,1);
+  assert.equal(d.by_address['2'],1);
+  assert.equal(d.bad_crc,0);
+});
+test('DEV166.9 observes bad alarm CRC and spoofed request identity without changing decoder',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  const b=alarmFrame1669(1,0);
+  b[8]^=1;
+  const out=r.call({topic:'Trame-Alarmes-BMS',payload:b,diag_slave_id:2});
+  assert.equal(out.bms_numero,1);
+  const d=r.flow.get('issue1669_alarm_passive');
+  assert.equal(d.bad_crc,1);
+  assert.equal(d.address_vs_request_mismatch,1);
+  assert.equal(d.valid_format,0);
+  assert.equal(d.last_anomalies[0].address,1);
+});
+test('DEV166.9 Active Polling observers do not modify original validator return values',()=>{
+  const baseline=JSON.parse(fs.readFileSync(path.join(
+    __dirname,'..','rootfs/etc/node-red/flows.json'),'utf8'));
+  for(const [id,mode] of [
+    ['b02adbe3a64e64f2','data'],
+    ['9856865237a421b7','setup'],
+    ['cd6a9e296046d78e','static']]){
+    const n=baseline.find(x=>x.id===id);
+    const fn=new Function('msg','Buffer','node','flow','context','global',n.func);
+    const oldFlow=store(),oldContext=store(),oldGlobal=store();
+    const testRunner=runner(id);
+    const samples=[
+      activeFrame1669(mode==='data'?2:mode==='setup'?1:0,1,
+        mode==='data'?0x20:mode==='setup'?0x1e:0x1c),
+      Buffer.from([0x55,0xaa,0xeb,0x90,mode==='data'?2:mode==='setup'?1:0]),
+      Buffer.from([1,2,3]),
+      Buffer.alloc(1)
+    ];
+    for(const b of samples){
+      const msg1={payload:Buffer.from(b),topic:'test'};
+      const msg2={payload:Buffer.from(b),topic:'test'};
+      assert.deepEqual(testRunner.call(msg1),
+        fn(msg2,Buffer,{warn(){},error(){}},oldFlow,oldContext,oldGlobal));
+    }
+  }
+});
+
+
+test('DEV166.9 reproduces existing Active Polling MQTT wrong-address risk under delayed response',()=>{
+  for(const [id,globalKey] of [
+    ['653aafd0b7ddd759','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','slaveAddress-Trame1']
+  ]){
+    const n=byId.get(id);
+    assert(n?.func,'Active Polling MQTT publisher must exist: '+id);
+    const fn=new Function('msg','Buffer','node','flow','context','global',n.func);
+    const fl=store(),cx=store(),gl=store();
+    gl.set(globalKey,2); // Polling has moved to BMS_2
+    gl.set('jk_cell_count',16);
+    const output=fn({
+      bms_numero:1, // Delayed actual reply belongs to BMS_1
+      payload:{SOC_P:55,Cell_1_volt_V:3.2,Device_address_N:1,BMS_A:'JK'}
+    },Buffer,{warn(){},error(){},debug(){}},fl,cx,gl);
+    assert(Array.isArray(output?.[0]) && output[0].length>0);
+    const state=output[0].filter(x=>x.topic.startsWith('BMS_'));
+    assert(state.length>0);
+    assert(state.every(x=>x.topic.startsWith('BMS_2/')),
+      'Currently these publishers use mutable global instead of response ID');
+    assert(!state.some(x=>x.topic.startsWith('BMS_1/')));
+  }
+});
+
+
+test('DEV166.10 TCP Active Polling queues alarm collision and preserves 1 msg/s budget',()=>{
+  const rate=byId.get('2e3b52cb867e1b1a');
+  const after=byId.get('f16610d1a9b36cc0');
+  const route=byId.get('a9d54c61db2740f0');
+  assert.equal(rate.type,'delay');
+  assert.equal(rate.pauseType,'rate');
+  assert.equal(rate.rate,'1');
+  assert.equal(rate.nbRateUnits,'1');
+  assert.equal(rate.rateUnits,'second');
+  assert.equal(rate.drop,false,'rate limiter must QUEUE (not discard) alarm messages');
+  assert.deepEqual(rate.wires,[[after.id]]);
+  assert.deepEqual(after.wires,[[route.id]]);
+  assert.equal(after.type,'function');
+  assert.equal(after.z,rate.z);
+  assert.equal(after.func.includes('diag_active_polling_stats'),true);
+  // Neither the two TCP requests nor the rest of the transport are modified.
+  assert.deepEqual(route.wires,[['b90f87fb8568461a'],['3e5a55e0cf2a0f5d']]);
+});
+test('DEV166.10 gateway diagnostics are absent BEFORE queue, recorded AFTER queue',()=>{
+  const upstream=runner('54c0f2403ae8bc7c');
+  upstream.global.set('bms_broadcasting',false);
+  upstream.global.set('use_gateway',true);
+  for(const [topic,id] of [
+    ['Trame-3-dynamiques',1],['Trame-Alarmes-BMS',1]
+  ]){
+    const msg={topic,payload:Buffer.from([id,topic.includes('Alarmes')?3:0x10])};
+    assert.strictEqual(upstream.call(msg),msg);
+  }
+  assert.equal(upstream.flow.get('diag_active_polling_stats'),undefined,
+    'do not count gateway messages before rate limiting');
+  const r=runner('f16610d1a9b36cc0');
+  r.global.set('bms_broadcasting',false);
+  r.global.set('use_gateway',true);
+  const data={topic:'Trame-3-dynamiques',payload:Buffer.from([1,0x10])};
+  const alarm={topic:'Trame-Alarmes-BMS',payload:Buffer.from([2,0x03])};
+  assert.strictEqual(r.call(data),data);
+  assert.strictEqual(r.call(alarm),alarm);
+  assert.equal(data.diag_frame_type,'live');
+  assert.equal(alarm.diag_frame_type,'alarms');
+  assert.equal(alarm.diag_slave_id,2);
+  const s=r.flow.get('diag_active_polling_stats');
+  assert.equal(s.polls_sent_30s,2);
+  assert.equal(s.polls_by_frame_30s.live,1);
+  assert.equal(s.polls_by_frame_30s.alarms,1);
+  assert.equal(Object.values(s.pending).length,2);
+  assert.notEqual(data.diag_tx_id,alarm.diag_tx_id);
+});
+test('DEV166.10 serial Active Polling still counts at original diagnostics node',()=>{
+  const r=runner('54c0f2403ae8bc7c');
+  r.global.set('bms_broadcasting',false);
+  r.global.set('use_gateway',false);
+  const msg={topic:'Trame-Alarmes-BMS',payload:Buffer.from([2,0x03])};
+  assert.strictEqual(r.call(msg),msg);
+  assert.equal(r.flow.get('diag_active_polling_stats').polls_by_frame_30s.alarms,1);
+  assert.equal(msg.diag_slave_id,2);
+});
+test('DEV166.10 no diagnostic changes for Broadcasting on either transport',()=>{
+  for(const id of ['54c0f2403ae8bc7c','f16610d1a9b36cc0']){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',true);
+    r.global.set('use_gateway',true);
+    const msg={topic:'Trame-Alarmes-BMS',payload:Buffer.from([1,3])};
+    assert.strictEqual(r.call(msg),msg);
+    assert.equal(r.flow.get('diag_active_polling_stats'),undefined);
+  }
+});
+
+
+
+test('DEV166.11 trusted ACK identity overrides mutable global poll address',()=>{
+  for(const [id,globalKey] of [
+    ['653aafd0b7ddd759','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','slaveAddress-Trame1']
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',false);
+    r.global.set(globalKey,2); // another BMS is being polled
+    r.global.set('jk_cell_count',16);
+    const out=r.call({
+      bms_numero:1,_issue16611_reply_bms:1,
+      payload:{SOC_P:55,Cell_1_volt_V:3.2,Device_address_N:1,BMS_A:'JK'}
+    });
+    assert(Array.isArray(out?.[0]) && out[0].length>0);
+    const states=out[0].filter(x=>x.topic.startsWith('BMS_'));
+    assert(states.length>0);
+    assert(states.every(x=>x.topic.startsWith('BMS_1/')),
+      'all state topics must follow the verified BMS_1 response');
+    assert(!states.some(x=>x.topic.startsWith('BMS_2/')));
+    const count=r.flow.get('issue16611_mqtt_gate');
+    assert.equal(count.by_kind[id==='653aafd0b7ddd759'?'data':
+      id==='48f37794d0d7b8bf'?'setup':'static'].accepted,1);
+  }
+});
+test('DEV166.11 prevents MQTT state and discovery on untrusted identity',()=>{
+  for(const [id,globalKey] of [
+    ['653aafd0b7ddd759','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','slaveAddress-Trame1']
+  ]){
+    for(const [extra,expected] of [
+      [{bms_numero:1},'missing_or_invalid_verified_id'],
+      [{_issue16611_reply_bms:1.5,bms_numero:1},'missing_or_invalid_verified_id'],
+      [{_issue16611_reply_bms:16,bms_numero:16},'missing_or_invalid_verified_id'],
+      [{_issue16611_reply_bms:1,bms_numero:2},'verified_id_conflict']
+    ]){
+      const r=runner(id);
+      r.global.set('bms_broadcasting',false);
+      r.global.set(globalKey,2);
+      assert.equal(r.call({payload:{SOC_P:90,Heating_B:1},...extra}),null);
+      assert.equal(r.flow.get('issue16611_mqtt_gate').reasons[expected],1);
+      assert(!r.flow.keys().some(k=>k.startsWith('discoverySent_')),
+        'untrusted BMS must not create discovery state');
+    }
+  }
+});
+test('DEV166.11 validates DATA, SETUP, STATIC JK replies by true ACK address',()=>{
+  for(const [id,type,reg,kind] of [
+    ['b02adbe3a64e64f2',2,0x20,'data'],
+    ['9856865237a421b7',1,0x1e,'setup'],
+    ['cd6a9e296046d78e',3,0x1c,'static']
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',false);
+    r.global.set('slaveAddress-Trame3',2);
+    r.global.set('slaveAddress-Trame2',2);
+    r.global.set('slaveAddress-Trame1',2);
+    const b=activeFrame1669(type,1,reg);
+    const msg={payload:b,diag_slave_id:1,topic:'test'};
+    assert.strictEqual(r.call(msg),msg);
+    assert.equal(msg._issue16611_reply_bms,1);
+    assert.equal(msg.bms_numero,1);
+    const g=r.flow.get('issue16611_active_gate');
+    assert.equal(g.seen,1);
+    assert.equal(g.accepted,1);
+    assert.equal(g.by_kind[kind].accepted,1);
+    assert.equal(g.by_address['1'],1);
+    assert.equal(g.rejected,0);
+  }
+});
+test('DEV166.11 strict JK gate rejects wrong type, length, body sum, ACK CRC and register',()=>{
+  const cases=[
+    ['length',b=>b.subarray(0,300),'jk_length'],
+    ['checksum',b=>{b[80]^=1;return b},'jk_checksum'],
+    ['crc',b=>{b[306]^=1;return b},'ack_crc16'],
+    ['register',b=>{b[303]=0x1e;return b},'ack_shape_register'],
+    ['type',b=>{b[4]=1;return b},'jk_header_type'],
+    ['address',b=>{
+       b[300]=16;
+       let crc=0xffff;
+       for(let i=300;i<306;i++){
+         crc^=b[i];
+         for(let j=0;j<8;j++)crc=(crc&1)?(crc>>>1)^0xA001:crc>>>1;
+       }
+       b[306]=crc&255;b[307]=crc>>>8;
+       return b;
+     },'address_range']
+  ];
+  for(const [name,modify,reason] of cases){
+    const r=runner('b02adbe3a64e64f2');
+    r.global.set('bms_broadcasting',false);
+    const b=modify(activeFrame1669(2,1,0x20));
+    assert.equal(r.call({payload:b,topic:'test'}),null,name);
+    assert.equal(r.flow.get('issue16611_active_gate').reasons[reason],1,name);
+  }
+});
+test('DEV166.11 SETUP body ID cannot differ from CRC-validated ACK address',()=>{
+  const r=runner('9856865237a421b7');
+  r.global.set('bms_broadcasting',false);
+  const b=activeFrame1669(1,2,0x1e);
+  b.writeUInt32LE(1,270);
+  let sum=0;for(let i=0;i<299;i++)sum=(sum+b[i])&255;
+  b[299]=sum;
+  assert.equal(r.call({payload:b,diag_slave_id:2}),null);
+  assert.equal(r.flow.get('issue16611_active_gate').reasons.setup_id_vs_ack,1);
+});
+test('DEV166.11 rejects matched CRC when the request targeted another BMS',()=>{
+  for(const [id,type,reg] of [
+    ['b02adbe3a64e64f2',2,0x20],
+    ['9856865237a421b7',1,0x1e],
+    ['cd6a9e296046d78e',3,0x1c]
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',false);
+    const b=activeFrame1669(type,1,reg);
+    assert.equal(r.call({payload:b,diag_slave_id:2}),null);
+    const g=r.flow.get('issue16611_active_gate');
+    assert.equal(g.reasons.request_reply_mismatch,1);
+  }
+});
+test('DEV166.11 alarm FC03 9-byte reply is validated and owns its BMS identity',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  r.global.set('bms_broadcasting',false);
+  const b=alarmFrame1669(2,0x20);
+  const msg={topic:'Trame-Alarmes-BMS',payload:b,diag_slave_id:2};
+  assert.strictEqual(r.call(msg),msg);
+  assert.equal(msg.alarms.bms_id,2);
+  assert.equal(msg._issue16611_reply_bms,2);
+  assert.equal(msg.alarms.raw_value,0x20);
+  const g=r.flow.get('issue16611_active_gate');
+  assert.equal(g.by_kind.alarm.accepted,1);
+  assert.equal(g.rejected,0);
+});
+test('DEV166.11 corrupt or cross-address alarms cannot reach MQTT',()=>{
+  for(const [modify,reason] of [
+    [b=>{b[8]^=1;return b},'alarm_crc16'],
+    [b=>{b[1]=0x04;return b},'alarm_fc03_shape'],
+    [b=>b.subarray(0,7),'alarm_length'],
+    [b=>b,'request_reply_mismatch']
+  ]){
+    const r=runner('f9ee21cf4d13a9f4');
+    r.global.set('bms_broadcasting',false);
+    const b=modify(alarmFrame1669(1,0x2));
+    const msg={topic:'Trame-Alarmes-BMS',payload:b,
+      diag_slave_id:reason==='request_reply_mismatch'?2:1};
+    assert.equal(r.call(msg),null);
+    assert.equal(r.flow.get('issue16611_active_gate').reasons[reason],1);
+    assert.equal(msg.alarms,undefined);
+  }
+});
+test('DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged',()=>{
+  for(const [id,type,reg] of [
+    ['b02adbe3a64e64f2',2,0x20],
+    ['9856865237a421b7',1,0x1e],
+    ['cd6a9e296046d78e',3,0x1c]
+  ]){
+    const r=runner(id);
+    r.global.set('bms_broadcasting',true);
+    const b=activeFrame1669(type,1,reg);b[299]^=1;
+    const msg={payload:b,topic:'test'};
+    assert.strictEqual(r.call(msg),msg,
+      'strict Active gate must not change validation in Broadcasting');
+    assert.equal(msg._issue16611_reply_bms,undefined);
+    assert.equal(r.flow.get('issue16611_active_gate'),undefined);
+  }
+});
+
+
+test('DEV166.12 Broadcast watchdog is isolated from Active Polling TCP A/B',()=>{
+  const w=byId.get('0827976bdeec2605');
+  const tcp=byId.get('ca2e41c5da775228');
+  const active=byId.get('eb8a2ce9ac5b36bd');
+  assert.equal(w.type,'function');
+  assert.equal(w.name,'DEV166.12 Watchdog Broadcast TCP only');
+  assert.equal(tcp.type,'tcp-client');
+  assert.equal(tcp.actionType,'msg');
+  assert.equal(tcp.action,'action');
+  assert.deepEqual(w.wires,[[tcp.id],['ab2c8f93200ca93a']]);
+  assert.equal(active.name,'Watchdog - failover A/B');
+  assert(active.func.includes("lastDataTs_master"));
+  assert.deepEqual(active.wires,[['0126fd2cac5ff1b4']]);
+  assert.equal(active.func.includes("action: 'close'"),false);
+});
+test('DEV166.12 no stale Broadcast watchdog action in Active Polling gateway mode',()=>{
+  const r=runner('0827976bdeec2605');
+  r.global.set('use_gateway',true);
+  r.global.set('bms_broadcasting',false);
+  r.flow.set('lastDataTs',Date.now()-136000);
+  const stale=r.flow.get('lastDataTs');
+  assert.equal(r.call({payload:'tick'}),null);
+  assert.equal(r.flow.get('lastDataTs'),stale,
+    'inactive Broadcast watchdog must not mutate its last-alive time');
+});
+test('DEV166.12 no Broadcast watchdog action in serial or uninitialized mode',()=>{
+  for(const [broadcast,gateway] of [[true,false],[false,false],[undefined,true],[undefined,undefined]]){
+    const r=runner('0827976bdeec2605');
+    r.global.set('bms_broadcasting',broadcast);
+    r.global.set('use_gateway',gateway);
+    r.flow.set('lastDataTs',Date.now()-136000);
+    assert.equal(r.call({}),null);
+  }
+});
+test('DEV166.12 Broadcast TCP timeout emits supported close then connect',()=>{
+  const r=runner('0827976bdeec2605');
+  r.global.set('use_gateway',true);
+  r.global.set('bms_broadcasting',true);
+  r.global.set('gateway_ip','192.168.0.131');
+  r.global.set('gateway_port',8887);
+  r.flow.set('lastDataTs',Date.now()-136000);
+  const out=r.call({payload:'tick'});
+  assert(Array.isArray(out) && out.length===2);
+  assert.deepEqual(out[0],{
+    action:'close',host:'192.168.0.131',port:8887
+  });
+  assert.deepEqual(out[1],{payload:'reconnect'});
+  assert.equal(r.flow.get('lastDataTs'),0);
+  assert.equal(r.call({}),null,'stale watchdog cannot repeatedly send close');
+  const delay=byId.get('ab2c8f93200ca93a');
+  const connect=byId.get('32876ca350d40cd8');
+  assert.equal(delay.pauseType,'delay');
+  assert.equal(delay.timeout,'2');
+  assert.equal(delay.timeoutUnits,'seconds');
+  assert.deepEqual(delay.wires,[[connect.id]]);
+  assert.deepEqual(connect.wires,[['ca2e41c5da775228']]);
+  const connectMsg=runner(connect.id);
+  connectMsg.global.set('gateway_ip','192.168.0.131');
+  connectMsg.global.set('gateway_port',8887);
+  assert.deepEqual(connectMsg.call({payload:'reconnect'}),{
+    action:'connect',host:'192.168.0.131',port:8887
+  });
+});
+test('DEV166.12 Broadcast watchdog does not intervene while fresh data arrive',()=>{
+  const r=runner('0827976bdeec2605');
+  r.global.set('use_gateway',true);
+  r.global.set('bms_broadcasting',true);
+  r.flow.set('lastDataTs',Date.now()-30000);
+  assert.equal(r.call({payload:'tick'}),null);
+  assert(r.flow.get('lastDataTs')>0);
+});
+test('DEV166.12 original Broadcast watchdog no longer sends unsupported disconnect',()=>{
+  const w=byId.get('0827976bdeec2605');
+  assert(!w.func.includes("action: 'disconnect'"));
+  assert(w.func.includes("action: 'close'"));
+  assert(w.func.includes("ISSUE16612_TCP_WATCHDOG"));
+  assert(w.func.includes("global.get('bms_broadcasting') !== true"));
+  assert(w.func.includes("global.get('use_gateway') !== true"));
+  const reset=byId.get('83178e5db35c9862');
+  assert(reset.func.includes("flow.set('lastDataTs', Date.now())"));
+  assert.deepEqual(byId.get('ca2e41c5da775228').wires[0].includes(reset.id),true);
+});
+
+test('RC packaging retains production slug, options, paths and legacy baseline',()=>{
+  const root=path.join(__dirname,'..');
+  const config=fs.readFileSync(path.join(root,'config.yaml'),'utf8');
+  const settings=fs.readFileSync(path.join(root,'rootfs/etc/node-red/config.js'),'utf8');
+  const startup=fs.readFileSync(path.join(root,'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'),'utf8');
+  const patcher=fs.readFileSync(path.join(root,'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
+  const crypto=require('node:crypto');
+  const baseline=fs.readFileSync(path.join(root,'rootfs/etc/node-red/flows.json'));
+  assert(config.includes('name: "JK-BMS wired management"'));
+  assert(config.includes('version: 4.1.13-rc1'));
+  assert(config.includes('slug: "smartphoton_jkbms"'));
+  assert(config.includes('jkbms_path: str'));
+  assert(config.includes('bms_broadcasting: bool'));
+  assert(config.includes('gateway_ip_port: str?'));
+  assert(settings.includes('/config/smartphoton_jkbms/settings.js'));
+  assert(settings.includes('config.userDir = "/config/smartphoton_jkbms/"'));
+  assert(startup.includes('/config/smartphoton_jkbms/flows.json'));
+  assert(!startup.includes('smartphoton_jkbms_fix166'));
+  assert(!startup.includes('1892'));
+  assert(patcher.includes('b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6'));
+  assert.equal(crypto.createHash('sha256').update(baseline).digest('hex'),
+    'b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6');
+});
+test('RC serial and gateway Active Polling share strict identity checks, not an unverified global',()=>{
+  const n=byId.get('b02adbe3a64e64f2');
+  assert(n.func.includes("global.get('bms_broadcasting') === false"));
+  const p=byId.get('653aafd0b7ddd759');
+  assert(p.func.includes("msg._issue16611_reply_bms"));
+  assert(p.func.includes("missing_or_invalid_verified_id"));
+  // Running the serial transport in Active Polling still uses this same path.
+  // This proves code coverage only; physical USB remains untested.
+});
