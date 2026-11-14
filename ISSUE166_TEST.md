@@ -1,6 +1,6 @@
 # Legacy issue #166 — isolated test add-on
 
-**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed Master (0) with strict DATA/SETUP alternation while BMS_2 (2) showed a DATA excess. DEV166.6 measured 26 DATA overwritten from BMS_2 out of 94 DATA at 10:29 on 2026-11-14, with zero cross-BMS pairings among 162 paired messages. DEV166.7 now runs on live hardware with Master and BMS_2 dashboards reported coherent by the operator; 69,111 emitted frames had zero JK checksum/Modbus ACK CRC errors at 11:17 on 2026-11-14. DEV166.8 introduces strict rejection of invalid Broadcast replies; **not yet live-tested**.**
+**Status:** DEV166.4 ran overnight on HAOS Onduleur with two real JK-BMS: **62,371 emitted 308-byte replies, zero JK checksum errors, zero Modbus ACK CRC errors, zero ACK shape errors** through 2026-11-14 09:19 CET. **DEV166.5 observed Master (0) with strict DATA/SETUP alternation while BMS_2 (2) showed a DATA excess. DEV166.6 measured 26 DATA overwritten from BMS_2 out of 94 DATA at 10:29 on 2026-11-14, with zero cross-BMS pairings among 162 paired messages. DEV166.7 now runs on live hardware with Master and BMS_2 dashboards reported coherent by the operator; 69,111 emitted frames had zero JK checksum/Modbus ACK CRC errors at 11:17 on 2026-11-14. DEV166.8 strict rejection has been activated on the real two-BMS installation: at 2026-11-14 16:12 CET, 185 / 185 replies passed the gate, 0 rejected, while both BMS data counters grew. DEV166.9 adds **passive** Active Polling diagnostics, not yet simulator-/HAOS-tested.**
 Base: published Legacy **4.1.12** (`rootfs/etc/node-red/flows.json`, SHA-256 `b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6`).
 Issue: https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166
 
@@ -10,7 +10,7 @@ This branch exposes a **separate** Home Assistant add-on:
 
 - name: `JK-BMS Legacy TEST - Issue 166`
 - slug: `smartphoton_jkbms_fix166`
-- version: `4.1.13-dev166.8`
+- version: `4.1.13-dev166.9`
 - dedicated Node-RED config: `/config/smartphoton_jkbms_fix166`
 - Node-RED/web port: `1891` (same as Legacy; never run both add-ons concurrently)
 
@@ -181,6 +181,39 @@ Expected on this user's real Master+BMS_2 bus: `accepted_308` and `issue1667_rou
 - A rejected reply means an individual reading may not update; the gate does not replace it with stale readings or toggle MQTT availability.
 - Do not deploy this strict profile broadly until 300/308/310 variants and other firmware are tested. This is **not** the final release for issue #166.
 - The owner should maintain 4.1.13-dev166.7 as a known-good fallback, and never run test and production add-ons simultaneously (same MQTT topics and port 1891).
+
+## Update note (dev166.9) — passive Active Polling validation (NO behavior change)
+
+The **Broadcast** strict integrity gate, DATA direct routing, and existing diagnostics from DEV166.8 remain intact. The official Legacy 4.1.12 baseline remains unchanged. **There are NO new Active Polling rejects, MQTT topic changes, or repairs to global-address publishing in DEV166.9.**
+
+Original 4.1.12 Active Polling has separate FC16 write/poll loops for STATIC (request register 0x161C), SETUP (0x161E), DATA (0x1620), plus FC03 alarm polling (0x12A0). The three existing validators check header; DATA additionally checks length == 308. SETUP and STATIC do not enforce parser minimum length. The three MQTT publishers select BMS ID from global `slaveAddress-Trame1/2/3`, NOT a response-matched BMS ID. A delayed response may therefore be attributed incorrectly. The 4.1.12 alarm decoder reads the address from the reply but does not perform its Modbus CRC check.
+
+**DEV166.9 instruments, without changing output:**
+- `Vérifie Trame 1` (STATIC), `Vérifie Trame 2` (SETUP), `Vérifie Trame 3` (DATA): each counts frame lengths, whether too short for its parser, JK sum8 body checksum, ACK CRC16, ACK shape/register, SETUP-ID/ACK disagreement, ACK address vs global loop address, and ACK address vs `msg.diag_slave_id` (when available). The register/type/shape assumptions are **hypotheses to verify** against emulator and actual devices, not grounds for rejection.
+- `trt. réponse alarmes`: counts FC03 alarm response size (expected 9), function code, count 4, CRC16 on 7 bytes, address range 1..15, and request/response disagreement. **Only observes**, no alarm publish changes.
+- Summaries roughly every 60 seconds:
+  - `ISSUE1669_ACTIVE_PASSIVE` context key `issue1669_active_passive`
+  - `ISSUE1669_ALARM_PASSIVE` context key `issue1669_alarm_passive`
+- A mismatch with the global polling address is **not automatically proof of a real wrong publication**: diagnostic fields might be delayed or absent. It does expose a risk worth eliminating after matching request/response, and the original publisher is known to use this global address.
+
+Regression tests include BMS_1/BMS_2 mismatch, valid DATA/SETUP/STATIC samples, mutated CRC and body checksum, short SETUP/STATIC samples, valid and corrupted alarm replies, and differential comparisons with unmodified validator outputs.
+
+**Do not run this active-polling lab test on the production Onduleur installation** (one live Master address 0 and another BMS address 2). Recommended next step:
+1. Keep production `4.1.13-dev166.8` running as the verified baseline. The 166.9 commit does not automatically update any running add-on.
+2. Start a separate HAOS TEST or container environment and use the existing Raspberry Pi JK-BMS TCP emulator (`192.168.0.175:5032` has been used for two simulated BMS, after verifying emulator current configuration and reachable address range).
+3. Configure Active Polling only in the test add-on, `bms_broadcasting:false`, `use_gateway:true`, an appropriate `jkbms_count` and `gateway_ip_port` from the simulator. Use an **isolated MQTT broker/discovery namespace** to avoid duplicate or retained production devices.
+4. Verify `ISSUE1669_ACTIVE_PASSIVE` and `ISSUE1669_ALARM_PASSIVE` counters while switching simulator addresses and inducing delayed/partial responses in the isolated lab.
+5. After observing real frame profiles and behavior, design a separate **DEV166.10 active identity fix and strict validation** with new regression tests; do not silently repurpose the already live-tested DEV166.8 behavior.
+
+Example test logs:
+
+```bash
+ha apps info cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E '^(state|version):'
+ha apps logs cd4dd3d7_smartphoton_jkbms_fix166 |
+  grep -E 'ISSUE1669_(ACTIVE|ALARM)_PASSIVE|RangeError|OUT_OF_RANGE|observer error' |
+  tail -n 12
+```
 
 ## Patch application
 
