@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS Legacy TEST - Issue 166"
-version: 4.1.13-dev166.5
+version: 4.1.13-dev166.6
 slug: "smartphoton_jkbms_fix166"
 description: Isolated test build for issue 166 (not production)
 url: https://domosimple.eu/forum/thread-917.html
