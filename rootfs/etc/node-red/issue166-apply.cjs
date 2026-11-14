@@ -343,6 +343,71 @@ const tcpTxDiagNode16610 = {
 tcpRouter16610.x = 955;
 nodes.push(tcpTxDiagNode16610);
 byId.set(txDiagId16610, tcpTxDiagNode16610);
+// DEV166.11: reject malformed Active Polling responses BEFORE parser;
+// carry authenticated Modbus reply address through the original msg.
+const strictActive16611 = fs.readFileSync(
+    path.join(__dirname, 'issue166-active-strict-snippet.js'), 'utf8'
+);
+const mqttActive16611 = fs.readFileSync(
+    path.join(__dirname, 'issue166-active-mqtt-snippet.js'), 'utf8'
+);
+if (!strictActive16611.includes('ISSUE16611_ACTIVE_GATE') ||
+    !strictActive16611.includes('function issue16611Identity(') ||
+    !mqttActive16611.includes('ISSUE16611_MQTT_IDENTITY') ||
+    !mqttActive16611.includes('missing_or_invalid_verified_id')) {
+    throw new Error('Issue166.11 strict identity code missing');
+}
+for (const [id16611,kind16611,anchor16611] of [
+    ['cd6a9e296046d78e','static','if (checkHeader(msg.payload)) {'],
+    ['9856865237a421b7','setup','if (checkHeader(msg.payload)) {'],
+    ['b02adbe3a64e64f2','data','if (checkBuffer(msg.payload)) {']
+]) {
+    const n16611 = byId.get(id16611);
+    if (!n16611 || n16611.type !== 'function' ||
+        n16611.func.split(anchor16611).length !== 2) {
+        throw new Error('Issue166.11 validator anchor mismatch: '+id16611);
+    }
+    n16611.func = n16611.func.replace(
+        anchor16611,
+        strictActive16611.replaceAll('__KIND16611__',kind16611) +
+        '\n' + anchor16611
+    );
+}
+const alarmAnchor16611 = 'if (msg.topic !== "Trame-Alarmes-BMS") {';
+if (alarmDecoder1669.func.split(alarmAnchor16611).length !== 2)
+    throw new Error('Issue166.11 alarm decode anchor mismatch');
+alarmDecoder1669.func = alarmDecoder1669.func.replace(
+    alarmAnchor16611,
+    strictActive16611.replaceAll('__KIND16611__','alarm') +
+    '\n' + alarmAnchor16611
+);
+// All three Active Polling MQTT publishers use mutable global loop addresses
+// in 4.1.12. Replace only the initial address selection, not their MQTT
+// discovery/state payload builders.
+for (const [id16611,kind16611,globalKey16611] of [
+    ['653aafd0b7ddd759','data','slaveAddress-Trame3'],
+    ['48f37794d0d7b8bf','setup','slaveAddress-Trame2'],
+    ['4941e347ccb9499c','static','slaveAddress-Trame1']
+]) {
+    const n16611 = byId.get(id16611);
+    if (!n16611 || n16611.type !== 'function' ||
+        !n16611.func.slice(0,450).includes(
+            'global.get("' + globalKey16611 + '")') ||
+        n16611.func.slice(0,550).split(
+            'const slaveIdNumber = ').length !== 2) {
+        throw new Error('Issue166.11 publisher anchor mismatch: '+id16611);
+    }
+    const prefix16611 =
+        n16611.func.match(/^[\s\S]{0,550}?const slaveIdNumber = [^\n]+;\n/);
+    if (!prefix16611 ||
+        !prefix16611[0].includes('global.get("' + globalKey16611 + '")')) {
+        throw new Error('Issue166.11 publisher header mismatch: '+id16611);
+    }
+    n16611.func = mqttActive16611
+        .replaceAll('__KIND16611__',kind16611)
+        .replaceAll('__GLOBAL16611__',globalKey16611) +
+        '\n' + n16611.func.slice(prefix16611[0].length);
+}
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -352,4 +417,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + strict Broadcast gate + Active Polling audits + queued TCP alarms, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + Broadcast gate + queued TCP alarms + strict Active reply identity, Legacy dashboard port 1891');
