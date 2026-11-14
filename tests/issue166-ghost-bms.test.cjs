@@ -349,8 +349,13 @@ test('DEV166.5 differential test: exact same frame outputs and retained buffers 
     assert.deepEqual(after.flow.get('rs485_buffer'),before.flow.get('rs485_buffer'));
     assert.equal(after.flow.get('last_modbus_slave_broadcast'),
       before.flow.get('last_modbus_slave_broadcast'));
-    assert.deepEqual(after.flow.get('diag_serial_stats'),
-      before.flow.get('diag_serial_stats'));
+    // first_ts is initialized with Date.now() in each independently executed
+    // reference Framer: a one-millisecond difference is not a flow regression.
+    const beforeStats = {...(before.flow.get('diag_serial_stats') || {})};
+    const afterStats = {...(after.flow.get('diag_serial_stats') || {})};
+    delete beforeStats.first_ts;
+    delete afterStats.first_ts;
+    assert.deepEqual(afterStats, beforeStats);
   }
   const framing=after.flow.get('issue166_framing_passive');
   assert(framing);
@@ -420,104 +425,133 @@ test('DEV166.6 poll registers counted independently by Modbus destination',()=>{
   assert.equal(p.discarded_bytes,0);
   assert.equal(p.modbus_polls,4);
 });
-test('DEV166.6 pairing auditor records matched DATA and SETUP without output changes',()=>{
+
+function decoderInput166(type,address,source=address,setupId=address) {
+  return {payload:{
+    topic:'broadcast/jkbms_reply',
+    payload:frameWithAckAddress166(type,address,setupId),
+    slave:source
+  }};
+}
+test('DEV166.7 immediate DATA dispatch uses verified ACK identity even if last poll slave differs',()=>{
   const r=runner(ids.decoder);
-  assert.equal(r.call({payload:{
-    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,2),slave:2
-  }}),null);
-  const result=r.call({payload:{
-    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(1,2),slave:2
-  }});
-  assert.deepEqual(result[0].map(m=>m.bms_numero),[2,2]);
-  const d=r.flow.get('issue166_pairing_passive');
-  assert.equal(d.data_received,1);
-  assert.equal(d.setup_received,1);
-  assert.equal(d.data_overwritten,0);
-  assert.equal(d.pairs_match,1);
-  assert.equal(d.pairs_cross_address,0);
-  assert.equal(d.setup_ack_mismatch,0);
-  assert.equal(d.pairs_untrusted_data_address,0);
-  assert.equal(d.by_address['2'].matched_pairs,1);
+  const out=r.call(decoderInput166(2,2,15));
+  assert(out);
+  assert.equal(out.bms_type,'data');
+  assert.equal(out.bms_numero,2);
+  assert.equal(out.bms_adresse,15); // legacy diagnostic field still unchanged
+  assert.deepEqual(out.payload,frameWithAckAddress166(2,2));
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,'2');
+  assert.equal(r.flow.get('issue1667_routing').direct_data,1);
 });
-test('DEV166.6 pairing auditor detects cross-BMS assignment but retains legacy output',()=>{
+test('DEV166.7 multiple consecutive DATA frames from BMS_2 are all published',()=>{
   const r=runner(ids.decoder);
-  r.call({payload:{
-    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,0),slave:0
-  }});
-  const result=r.call({payload:{
-    topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(1,2),slave:2
-  }});
-  // Existing decoder's known behavior is deliberately unchanged here.
-  assert.deepEqual(result[0].map(m=>m.bms_numero),[2,2]);
-  const d=r.flow.get('issue166_pairing_passive');
-  assert.equal(d.pairs,1);
-  assert.equal(d.pairs_cross_address,1);
-  assert.equal(d.pairs_match,0);
-  assert.equal(d.recent_anomalies[0].kind,'cross_bms_pair');
-  assert.equal(d.recent_anomalies[0].real_data_address,0);
-  assert.equal(d.recent_anomalies[0].assigned_setup_id,2);
-  assert.equal(d.by_address['0'].cross_pairs_as_data_source,1);
-  assert.equal(d.by_address['2'].cross_pairs_as_setup_destination,1);
+  for(let i=0;i<70;i++){
+    const out=r.call(decoderInput166(2,2,15));
+    assert.equal(out.bms_numero,2);
+    assert.equal(out.bms_type,'data');
+  }
+  assert.equal(r.flow.get('issue1667_routing').direct_data,70);
+  assert.equal(r.flow.get('issue1667_routing').by_address['2'].direct_data,70);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.flow.get('issue1667_routing').legacy_fallback_data,0);
+  assert.equal(r.flow.get('issue1667_routing').pending_cleared_on_direct,0);
 });
-test('DEV166.6 pairing auditor observes overwrites and SETUP without pending DATA',()=>{
+test('DEV166.7 interleaved Master and BMS_2 DATA/SETUP do not overwrite or misassociate',()=>{
   const r=runner(ids.decoder);
-  // SETUP with no DATA in queue
-  const setup=frameWithAckAddress166(1,2);
-  const first=r.call({payload:{topic:'broadcast/jkbms_reply',payload:setup,slave:2}});
-  assert.equal(first.bms_numero,2);
-  r.call({payload:{topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,0),slave:0}});
-  r.call({payload:{topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(2,2),slave:2}});
-  const last=r.call({payload:{topic:'broadcast/jkbms_reply',payload:setup,slave:2}});
-  assert.deepEqual(last[0].map(x=>x.bms_numero),[2,2]);
-  const d=r.flow.get('issue166_pairing_passive');
-  assert.equal(d.setup_without_pending,1);
-  assert.equal(d.data_overwritten,1);
-  assert.equal(d.pairs_match,1);
-  assert.equal(d.pairs_cross_address,0);
-  assert.equal(d.by_address['0'].data_overwritten,1);
-  assert.equal(d.recent_anomalies[0].kind,'pending_data_overwrite');
+  const steps=[
+    {type:2,address:2},{type:2,address:0},
+    {type:2,address:2},{type:2,address:2},
+    {type:1,address:0},{type:1,address:2},
+    {type:2,address:0},{type:1,address:0}
+  ];
+  const observed=[];
+  for(const s of steps){
+    const out=r.call(decoderInput166(s.type,s.address,15));
+    assert(out && !Array.isArray(out),'direct DATA or one SETUP expected');
+    observed.push([out.bms_type,out.bms_numero]);
+    assert.equal(r.context.get('jkbms_pending_data'),null);
+  }
+  assert.deepEqual(observed,[
+    ['data',2],['data',0],['data',2],['data',2],
+    ['setup',0],['setup',2],['data',0],['setup',0]
+  ]);
+  const d=r.flow.get('issue1667_routing');
+  assert.equal(d.direct_data,5);
+  assert.equal(d.setup,3);
+  assert.equal(d.legacy_fallback_data,0);
+  assert.equal(d.legacy_fallback_pair,0);
+  assert.equal(r.flow.get('diag_serial_stats').detected_bms_list,'master, 2');
 });
-test('DEV166.6 does not trust DATA address with an invalid checksum',()=>{
+test('DEV166.7 SETUP remains independent, including SETUP-only and setup ID from payload',()=>{
+  const r=runner(ids.decoder);
+  const out=r.call(decoderInput166(1,2,15));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  assert.equal(out.bms_adresse,15);
+  assert.equal(r.flow.get('issue1667_routing').setup,1);
+  assert.equal(r.flow.get('issue1667_routing').legacy_fallback_pair,0);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+});
+test('DEV166.7 bad ACK CRC preserves legacy fallback; no blanket CRC frame filter',()=>{
   const r=runner(ids.decoder);
   const b=frameWithAckAddress166(2,2);
-  b[75]^=1;
-  r.call({payload:{topic:'broadcast/jkbms_reply',payload:b,slave:2}});
-  const out=r.call({payload:{topic:'broadcast/jkbms_reply',payload:frameWithAckAddress166(1,2),slave:2}});
-  assert.equal(out[0][0].bms_numero,2);
-  const d=r.flow.get('issue166_pairing_passive');
-  assert.equal(d.pairs_untrusted_data_address,1);
-  assert.equal(d.pairs_match,0);
-  assert.equal(d.pairs_cross_address,0);
+  b[307]^=1;
+  assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:b,slave:2
+  }}),null);
+  assert(r.context.get('jkbms_pending_data'));
+  const out=r.call(decoderInput166(1,2));
+  assert.deepEqual(out[0].map(m=>m.bms_numero),[2,2]);
+  assert.deepEqual(out[0][0].payload,b);
+  const d=r.flow.get('issue1667_routing');
+  assert.equal(d.direct_data,0);
+  assert.equal(d.legacy_fallback_data,1);
+  assert.equal(d.legacy_fallback_pair,1);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
 });
-test('DEV166.6 differential: patched decoder output and pending state unchanged',()=>{
-  const patches=JSON.parse(fs.readFileSync(path.join(__dirname,'..','rootfs/etc/node-red/issue166-functions.json'),'utf8'));
-  const baseline=patches[ids.decoder];
-  assert(typeof baseline==='string');
-  const fn=new Function('msg','Buffer','node','flow','context','global',baseline);
-  const baselineFlow=store(),baselineContext=store(),baselineGlobal=store();
-  const mockNode={warn(){},error(){},debug(){}};
-  const instrumented=runner(ids.decoder);
-  const steps=[
-    {type:2,address:0},
-    {type:2,address:2},
-    {type:1,address:2},
-    {type:1,address:0},
-    {type:2,address:0},
-    {type:1,address:0},
-    {type:2,address:2},
-    {type:1,address:2}
-  ];
-  for(const s of steps){
-    const input=frameWithAckAddress166(s.type,s.address);
-    const msg=()=>({payload:{topic:'broadcast/jkbms_reply',
-      payload:Buffer.from(input),slave:s.address}});
-    const expected=fn(msg(),Buffer,mockNode,baselineFlow,baselineContext,baselineGlobal);
-    const actual=instrumented.call(msg());
-    assert.deepEqual(actual,expected);
-    assert.deepEqual(instrumented.context.get('jkbms_pending_data'),
-      baselineContext.get('jkbms_pending_data'));
-    assert.equal(instrumented.flow.get('diag_serial_stats')?.detected_bms_list,
-      baselineFlow.get('diag_serial_stats')?.detected_bms_list);
-  }
-  assert(instrumented.flow.get('issue166_pairing_passive'));
+test('DEV166.7 no whole-JK-frame checksum filtering is introduced yet',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);
+  bad[80]^=0x04;
+  const out=r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}});
+  // Deferred strict checksum checks: trailer address is still correctly verified.
+  assert.equal(out.bms_numero,2);
+  assert.deepEqual(out.payload,bad);
+});
+test('DEV166.7 removes legacy pending from old releases before a SETUP can relabel it',()=>{
+  const r=runner(ids.decoder);
+  r.context.set('jkbms_pending_data',{
+    payload:frameWithAckAddress166(2,0),
+    bms_type:'data',bms_adresse:0
+  });
+  const out=r.call(decoderInput166(1,2));
+  assert.equal(out.bms_type,'setup');
+  assert.equal(out.bms_numero,2);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.flow.get('issue1667_routing').stale_pending_cleared,1);
+});
+test('DEV166.7 untrusted legacy pending is cleared before next direct DATA',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);bad[307]^=1;
+  assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}}),null);
+  assert(r.context.get('jkbms_pending_data'));
+  const out=r.call(decoderInput166(2,0));
+  assert.equal(out.bms_numero,0);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  const setup=r.call(decoderInput166(1,0));
+  assert.equal(setup.bms_type,'setup');
+  const d=r.flow.get('issue1667_routing');
+  assert.equal(d.pending_cleared_on_direct,1);
+  assert.equal(d.legacy_fallback_data,1);
+});
+test('DEV166.7 rejected short DATA and invalid SETUP keep previous #166 safeguards',()=>{
+  const r=runner(ids.decoder);
+  const b=frameWithAckAddress166(2,2).subarray(0,281);
+  assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:b,slave:2}}),null);
+  const bad=frameWithAckAddress166(1,2,327680);
+  assert.equal(r.call({payload:{topic:'broadcast/jkbms_reply',payload:bad,slave:2}}),null);
+  assert.equal(r.context.get('jkbms_pending_data'),null);
+  assert.equal(r.flow.get('issue1667_routing'),undefined);
 });
