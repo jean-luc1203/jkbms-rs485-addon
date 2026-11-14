@@ -408,6 +408,59 @@ for (const [id16611,kind16611,globalKey16611] of [
         .replaceAll('__GLOBAL16611__',globalKey16611) +
         '\n' + n16611.func.slice(prefix16611[0].length);
 }
+// DEV166.12: isolate the legacy tcp-client2 watchdog to the
+// Broadcasting-over-gateway transport. The separate Active Polling
+// request A/B transport already has its own watchdog and must not cause
+// a stale broadcast-client timer to intervene after a link interruption.
+//
+// Verified node-red-contrib-tcp-client2 actions are 'close' and 'connect',
+// never 'disconnect'. Preserve the existing 2-second reconnect delay.
+const broadcastWatchdog16612 = byId.get('0827976bdeec2605');
+const broadcastTcp16612 = byId.get('ca2e41c5da775228');
+const broadcastDelay16612 = byId.get('ab2c8f93200ca93a');
+const broadcastReconnect16612 = byId.get('32876ca350d40cd8');
+const activeWatchdog16612 = byId.get('eb8a2ce9ac5b36bd');
+const baselineTimeout16612 = 'const TIMEOUT_MS = 120000; // 2 min sans données → reconnexion';
+const baselineAction16612 = "action: 'disconnect',";
+const baselineWarn16612 = "node.warn('Watchdog: no data since ' + Math.round(elapsed/1000) + 's → reconnexion forcée');";
+if (!broadcastWatchdog16612 ||
+    broadcastWatchdog16612.type !== 'function' ||
+    broadcastWatchdog16612.func.split(baselineTimeout16612).length !== 2 ||
+    broadcastWatchdog16612.func.split(baselineAction16612).length !== 2 ||
+    broadcastWatchdog16612.func.split(baselineWarn16612).length !== 2 ||
+    JSON.stringify(broadcastWatchdog16612.wires) !==
+      JSON.stringify([['ca2e41c5da775228'],['ab2c8f93200ca93a']]) ||
+    !broadcastTcp16612 ||
+    broadcastTcp16612.type !== 'tcp-client' ||
+    broadcastTcp16612.actionType !== 'msg' ||
+    broadcastTcp16612.action !== 'action' ||
+    !broadcastDelay16612 ||
+    broadcastDelay16612.type !== 'delay' ||
+    broadcastDelay16612.pauseType !== 'delay' ||
+    broadcastDelay16612.timeout !== '2' ||
+    broadcastDelay16612.timeoutUnits !== 'seconds' ||
+    JSON.stringify(broadcastDelay16612.wires) !==
+      JSON.stringify([['32876ca350d40cd8']]) ||
+    !broadcastReconnect16612 ||
+    broadcastReconnect16612.type !== 'function' ||
+    !broadcastReconnect16612.func.includes("action: 'connect'") ||
+    !activeWatchdog16612 ||
+    activeWatchdog16612.type !== 'function' ||
+    !activeWatchdog16612.func.includes("lastDataTs_master")) {
+    throw new Error('Issue166.12 watchdog baseline topology or tcp-client2 mismatch');
+}
+broadcastWatchdog16612.func = broadcastWatchdog16612.func
+    .replace(baselineTimeout16612,
+        "// DEV166.12: this tcp-client2 watchdog is for gateway Broadcasting ONLY.\n" +
+        "if (global.get('bms_broadcasting') !== true ||\n" +
+        "    global.get('use_gateway') !== true) return null;\n\n" +
+        baselineTimeout16612)
+    .replace(baselineAction16612,"action: 'close',")
+    .replace(baselineWarn16612,
+        "node.warn('ISSUE16612_TCP_WATCHDOG broadcast gateway: no data since ' +" +
+        " Math.round(elapsed/1000) + 's; close then reconnect');");
+broadcastWatchdog16612.name =
+    'DEV166.12 Watchdog Broadcast TCP only';
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -417,4 +470,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + Broadcast gate + queued TCP alarms + strict Active reply identity, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + strict Broadcast/Active identity + TCP queue + isolated Broadcast watchdog, Legacy dashboard port 1891');
