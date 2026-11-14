@@ -243,6 +243,44 @@ injectDecoder166(
     '    }',
     'strict gate before any Broadcast DATA or SETUP processing'
 );
+// DEV166.9: Active Polling AUDIT ONLY. No modification of legacy validators
+// or MQTT publications; route decisions remain the 4.1.12 baseline.
+const activeSnippet1669 = fs.readFileSync(
+    path.join(__dirname, 'issue166-active-passive-snippet.js'), 'utf8'
+);
+const alarmSnippet1669 = fs.readFileSync(
+    path.join(__dirname, 'issue166-active-alarm-snippet.js'), 'utf8'
+);
+if (!activeSnippet1669.includes('ISSUE1669_ACTIVE_PASSIVE') ||
+    !alarmSnippet1669.includes('ISSUE1669_ALARM_PASSIVE')) {
+    throw new Error('Issue166.9 active polling passive snippets missing');
+}
+for (const [id1669, kind1669, anchor1669] of [
+    ['cd6a9e296046d78e', 'static', 'if (checkHeader(msg.payload)) {'],
+    ['9856865237a421b7', 'setup', 'if (checkHeader(msg.payload)) {'],
+    ['b02adbe3a64e64f2', 'data', 'if (checkBuffer(msg.payload)) {']
+]) {
+    const n1669 = byId.get(id1669);
+    if (!n1669 || n1669.type !== 'function' ||
+        n1669.func.split(anchor1669).length !== 2) {
+        throw new Error('Issue166.9 validator anchor mismatch: ' + id1669);
+    }
+    const snippet1669 = activeSnippet1669.replace(
+        '__KIND1669__', kind1669
+    );
+    n1669.func = n1669.func.replace(
+        anchor1669, snippet1669 + '\n' + anchor1669
+    );
+}
+const alarmDecoder1669 = byId.get('f9ee21cf4d13a9f4');
+const alarmAnchor1669 = 'if (msg.topic !== "Trame-Alarmes-BMS") {';
+if (!alarmDecoder1669 || alarmDecoder1669.type !== 'function' ||
+    alarmDecoder1669.func.split(alarmAnchor1669).length !== 2) {
+    throw new Error('Issue166.9 alarm decoder anchor mismatch');
+}
+alarmDecoder1669.func = alarmDecoder1669.func.replace(
+    alarmAnchor1669, alarmSnippet1669 + '\n' + alarmAnchor1669
+);
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -252,4 +290,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + direct DATA routing + strict Broadcast integrity gate + passive diagnostics, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + strict Broadcast integrity gate + passive Active Polling audits, Legacy dashboard port 1891');
