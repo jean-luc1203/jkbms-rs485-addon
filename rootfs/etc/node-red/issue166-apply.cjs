@@ -281,6 +281,68 @@ if (!alarmDecoder1669 || alarmDecoder1669.type !== 'function' ||
 alarmDecoder1669.func = alarmDecoder1669.func.replace(
     alarmAnchor1669, alarmSnippet1669 + '\n' + alarmAnchor1669
 );
+// DEV166.10: queue Active Polling TCP requests instead of silently
+// discarding alarm requests that collide with a DATA request.
+// Move gateway TX diagnostics after this rate limit so queued/dropped requests
+// are NOT counted as dispatched prematurely. Keep serial diagnostics unchanged.
+const tcpRate16610 = byId.get('2e3b52cb867e1b1a');
+const upstreamTxDiag16610 = byId.get('54c0f2403ae8bc7c');
+const tcpRouter16610 = byId.get('a9d54c61db2740f0');
+const txDiagId16610 = 'f16610d1a9b36cc0';
+if (!tcpRate16610 || tcpRate16610.type !== 'delay' ||
+    tcpRate16610.pauseType !== 'rate' ||
+    tcpRate16610.rate !== '1' ||
+    tcpRate16610.nbRateUnits !== '1' ||
+    tcpRate16610.rateUnits !== 'second' ||
+    tcpRate16610.drop !== true ||
+    JSON.stringify(tcpRate16610.wires) !==
+      JSON.stringify([['a9d54c61db2740f0']]) ||
+    !upstreamTxDiag16610 ||
+    upstreamTxDiag16610.type !== 'function' ||
+    !tcpRouter16610 || tcpRouter16610.type !== 'function' ||
+    byId.has(txDiagId16610)) {
+    throw new Error('Issue166.10 gateway rate-limit baseline mismatch');
+}
+const diagGate16610 =
+    'if (global.get("bms_broadcasting") === true) {';
+if (upstreamTxDiag16610.func.split(diagGate16610).length !== 2 ||
+    !upstreamTxDiag16610.func.includes(
+        's.polls_by_frame_30s[frameType]')) {
+    throw new Error('Issue166.10 TX diagnostics anchor mismatch');
+}
+// Only the gateway is rerouted: the serial path stays in its original node.
+const gatewayTxDiagFunc16610 = upstreamTxDiag16610.func;
+upstreamTxDiag16610.func = upstreamTxDiag16610.func.replace(
+    diagGate16610,
+    'if (global.get("bms_broadcasting") === true || ' +
+        'global.get("use_gateway") === true) {'
+);
+// Node-RED delay in rate-limit mode: drop=false queues excess messages.
+// A live frame every ~3s plus an alarm request every ~5s is comfortably
+// below the 1 msg/s limiter observed on the two-BMS test installation.
+tcpRate16610.drop = false;
+tcpRate16610.name = 'TCP queue 1 msg/s - DATA + alarmes';
+tcpRate16610.wires = [[txDiagId16610]];
+const tcpTxDiagNode16610 = {
+    id: txDiagId16610,
+    type: 'function',
+    z: tcpRate16610.z,
+    g: tcpRate16610.g,
+    name: 'DEV166.10 Diag TX après limiteur',
+    func: gatewayTxDiagFunc16610,
+    outputs: 1,
+    timeout: 0,
+    noerr: 0,
+    initialize: '',
+    finalize: '',
+    libs: [],
+    x: 705,
+    y: 440,
+    wires: [['a9d54c61db2740f0']]
+};
+tcpRouter16610.x = 955;
+nodes.push(tcpTxDiagNode16610);
+byId.set(txDiagId16610, tcpTxDiagNode16610);
 // Preserve the original Legacy 1891 dashboard URL for single-addon live testing.
 // Fail closed if the expected baseline URL is absent.
 const urlNode = byId.get('a91bfb41bf5699ef');
@@ -290,4 +352,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + strict Broadcast integrity gate + passive Active Polling audits, Legacy dashboard port 1891');
+console.log('Issue #166 test patch applied: eight functions + strict Broadcast gate + Active Polling audits + queued TCP alarms, Legacy dashboard port 1891');
