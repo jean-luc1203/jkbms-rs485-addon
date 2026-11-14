@@ -312,3 +312,49 @@ test('DEV166.5 framing counts bytes discarded even when no complete frame exists
   assert.equal(p.discarded_bytes,3);
   assert.equal(p.jk_frames,0);
 });
+
+test('DEV166.5 differential test: exact same frame outputs and retained buffers as Legacy 4.1.12 Framer',()=>{
+  const original=JSON.parse(fs.readFileSync(
+    path.join(__dirname,'..','rootfs/etc/node-red/flows.json'),'utf8'));
+  const framerBaseline=original.find(n=>n.id==='3328d11cbeec411c');
+  assert(framerBaseline?.func);
+  function rawRunner166(func) {
+    const fn=new Function('msg','Buffer','node','flow','context','global',func);
+    const flow=store(),context=store(),global=store();
+    const node={warn(){},error(){},debug(){}};
+    return {call(msg){return fn(msg,Buffer,node,flow,context,global)},flow};
+  }
+  const before=rawRunner166(framerBaseline.func);
+  const after=rawRunner166(byId.get('3328d11cbeec411c').func);
+  const poll2=Buffer.from([0x02,0x10,0x16,0x20,0,1,2,0,0,0xC2,0x01]);
+  const poll1=Buffer.from([0x01,0x10,0x16,0x1E,0,1,2,0,0,0xD2,0x2F]);
+  const setup2=frameWithAckAddress166(1,2);
+  const data2=frameWithAckAddress166(2,2);
+  const badAck=Buffer.from(frameWithAckAddress166(2,0));badAck[307]^=0x03;
+  const bogus=Buffer.from([0x55,0xaa,0xeb,0x90,0,0,0]);
+  const stream=Buffer.concat([
+    Buffer.from([0x13,0x37,0x42]), poll2, data2,
+    bogus, setup2, poll1, badAck, setup2,
+    Buffer.from([0x55,0xaa,0xeb,0x90,1])
+  ]);
+  const sizes=[1,2,3,7,23,41,64,108,159,278,313,376,50,75,19,1024];
+  let p=0,i=0;
+  while(p<stream.length) {
+    const n=sizes[i++%sizes.length],buf=stream.subarray(p,p+n);
+    p+=buf.length;
+    const expected=before.call({payload:buf});
+    const actual=after.call({payload:buf});
+    assert.deepEqual(actual,expected,'frame outputs differ on input chunk '+i);
+    assert.deepEqual(after.flow.get('rs485_buffer'),before.flow.get('rs485_buffer'));
+    assert.equal(after.flow.get('last_modbus_slave_broadcast'),
+      before.flow.get('last_modbus_slave_broadcast'));
+    assert.deepEqual(after.flow.get('diag_serial_stats'),
+      before.flow.get('diag_serial_stats'));
+  }
+  const framing=after.flow.get('issue166_framing_passive');
+  assert(framing);
+  assert(framing.modbus_polls>=2);
+  assert(framing.jk_frames>=3);
+  assert(framing.discarded_bytes>0);
+  assert.equal(framing.accounting_errors,0);
+});
