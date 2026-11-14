@@ -1134,3 +1134,30 @@ test('DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged',(
     assert.equal(r.flow.get('issue16611_active_gate'),undefined);
   }
 });
+
+
+test('DEV16612_TEMP inspect gateway watchdog topology and mode',()=>{
+  const targets=['ca2e41c5da775228','83178e5db35c9862','0827976bdeec2605',
+    '93d3ab93bb815c8d','32876ca350d40cd8','ab2c8f93200ca93a',
+    '37e339e27ad5e37d','eb8a2ce9ac5b36bd','c1aa340c29ca05db',
+    'a9d54c61db2740f0','b90f87fb8568461a','3e5a55e0cf2a0f5d'];
+  const group=new Set();
+  const seed=['ca2e41c5da775228','b90f87fb8568461a'];
+  for(const id of seed){const n=byId.get(id);group.add(n.z);}
+  for(const id of targets){
+    const n=byId.get(id);
+    if(!n){console.log('AUDIT16612 MISSING '+id);continue;}
+    console.log('AUDIT16612 NODE '+id+' '+JSON.stringify(n).slice(0,21000));
+  }
+  for(const n of flows){
+    const edges=(n.wires||[]).flat();
+    if(targets.includes(n.id)||
+       edges.some(id=>targets.includes(id))||
+       (group.has(n.z) && ['tcp in','tcp out','tcp request','tcp-client','link in','link out'].includes(n.type))){
+      console.log('AUDIT16612 EDGE '+JSON.stringify({
+        id:n.id,name:n.name,type:n.type,z:n.z,wires:n.wires,links:n.links,
+        mode:n.mode,server:n.server,host:n.host,port:n.port
+      }));
+    }
+  }
+});
