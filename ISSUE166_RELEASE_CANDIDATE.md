@@ -25,7 +25,7 @@
 | TCP Active Polling (NB114, BMS_1 + BMS_2) | DATA, SETUP, STATIC, alarms valid; 1 min RJ45 outage; recovered; one 8-byte alarm message correctly rejected | Yes |
 | Serial USB Broadcasting | **Validated on physical JK-BMS (15 Nov):** isolated DEV166.12 add-on, USB CH340 by-id serial opened at 115200 8N1; Master (0) + BMS_2 (2) Discovery/DATA; gate 46908→46970 accepted in 60s (+62), rejected 0; direct DATA Master 16910→16925 (+15), BMS_2 16909→16925 (+16); BMS_1 unchanged at 1 (historical). | Functions/framing tests |
 
-| Serial USB Active Polling | **Not yet performed after these changes** | Functions/identity tests only |
+| Serial USB Active Polling | **Validated on physical JK-BMS (15 Nov):** DEV166.12, USB CH340, `use_gateway=false` and `bms_broadcasting=false`; 08:36:03–08:37:04 strict gate 1400→1436 accepted (+36) and 1→1 rejected (no new rejects), BMS_1 703→721, BMS_2 697→715; MQTT DATA 798→818, SETUP 122→126, STATIC 82→84, no MQTT identity rejects. | Functions/identity tests |
 | Other gateways, JK firmwares, 300-byte variants | Not broadly validated | Synthetic vectors only |
 
 **A green CI is necessary but not sufficient to merge**. The 308-byte Active Polling strict format may be incompatible with serial firmware returning a different validated format. USB/serial acceptance in a separate test environment is a release blocker; consider early opt-in beta feedback before the general release.
@@ -38,6 +38,14 @@ At 08:29:30/31, initial SETUP for Master and BMS_2 were published (80 MQTT messa
 
 No physical USB **Active Polling** trial has yet been shown. This remains a GO/NO-GO release criterion. The test on the isolated DEV166.12 startup namespace also does not replace a physical upgrade check with the production RC packaging before a broad public release.
 
+### USB Active Polling evidence and stale Master reset messages (2026-11-15)
+
+At 08:36:01, the experimental add-on reported `global use_gateway=false` and `global bms_broadcasting=false`; `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0` opened successfully at 115200 8N1. Both real BMS, address 1 and 2, were active, with DATA/SETUP/STATIC and alarms flowing. At 08:36:03, the persistent `ISSUE16611_ACTIVE_GATE` state reported 1401 seen / 1400 accepted / 1 rejected (historical `alarm_length`, timestamp 14 Nov 19:11), by address BMS_1=703 BMS_2=697. At 08:37:04, it reported 1437 seen / 1436 accepted / 1 rejected. **Deltas: 36 new replies accepted, 0 new rejects, 18 accepted per BMS; DATA +20, SETUP +4, STATIC +2, alarms +10.** MQTT accepted +20 DATA, +4 SETUP, +2 STATIC, and still had no identity rejections. The uploaded dashboard screenshot showed both JK-BMS 1 and JK-BMS 2 with measurements.
+
+One misleading log at 08:36:10 read `Setup flags reset: Master + BMS_1, BMS_2`, followed by `Discovery reset ... Master + BMS_1, BMS_2`, **although Active Polling no longer has a Master**. Inspection of the stock Legacy 4.1.12 `Reset discovery flags (auto nb_jkbms)` and `Init flags for discovery` functions shows they unconditionally reset **Master's internal discovery flags** and write `Master +` in the log for both modes. This is *not* proof of a new Master device, and neither the active integrity gate nor the MQTT identity counters showed a new Master response. It is a pre-existing reset/log semantic, not yet fixed by this candidate. Historic Master retained MQTT discovery, if any, is a separate cleanup concern after intentional DIP readdressing. Do not mistake these reset messages for a physical third BMS.
+
+These proofs are from the **isolated DEV166.12 runtime**, whose patcher is incorporated into the production RC branch. They do not substitute for final end-to-end installation of the RC package, nor multi-firmware field validation.
+
 ## Release checklist (GO / NO-GO)
 
 - [x] Isolated TCP Broadcasting validated on two real JK BMS and NB114.
@@ -46,7 +54,7 @@ No physical USB **Active Polling** trial has yet been shown. This remains a GO/N
 - [x] Production slug, path, options and port preserved in RC packaging.
 - [x] CI of the exact production RC passes (including packaging): 76/76 tests passed in GitHub Actions #43630605293.
 - [x] Serial USB Broadcasting validated on physical JK BMS (isolated DEV166.12, CH340, Master + BMS_2, 15 Nov 08:29–08:31).
-- [ ] Serial USB Active Polling validated on physical JK BMS.
+- [x] Serial USB Active Polling validated on physical JK BMS (isolated DEV166.12, CH340, BMS_1 + BMS_2, 15 Nov 08:36–08:37).
 - [ ] Confirm legitimate alternative 300/308-byte variants are not silently rejected in the field (or document unsupported profiles).
 - [ ] Review log verbosity and retained MQTT cleanup guidance.
 - [ ] Version bump from 4.1.13-rc1 to 4.1.13, final changelog, tag and publish only after explicit GO.
