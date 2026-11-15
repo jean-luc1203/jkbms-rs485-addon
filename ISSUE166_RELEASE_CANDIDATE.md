@@ -54,6 +54,19 @@ One misleading log at 08:36:10 read `Setup flags reset: Master + BMS_1, BMS_2`, 
 
 These proofs are from the **isolated DEV166.12 runtime**, whose patcher is incorporated into the production RC branch. They do not substitute for final end-to-end installation of the RC package, nor multi-firmware field validation.
 
+### RC2 physical packaging acceptance — 2026-11-15 09:13–09:14 CET
+
+After restoring the executable bit on the s6 launcher, the operator successfully updated the separately installed RC repository addon `db6e584d_smartphoton_jkbms` to `4.1.13-rc2` on HAOS. `state: started`, and the logs show:
+- `init-nodered` and `nodered` started; `Issue #166 test patch applied` (legacy patcher diagnostic message retained).
+- Node-RED uses **production config namespace** `/config/smartphoton_jkbms/` and dashboard port 1891.
+- `use_gateway=false`, `bms_broadcasting=false`; serial USB by-id `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0` opened at 115200 8N1.
+- MQTT broker connected at 09:14:01. First static response BMS_1 passed `ISSUE16611_ACTIVE_GATE` and MQTT identity gate (1 seen/accepted; 0 rejected). BMS_1 and BMS_2 reported alive; alarm Discovery for both BMS was logged.
+- Initial `/dev/JKBMS-Fake` open error was followed by successful change to the actual USB port; not a startup failure.
+- **Premium not yet tested:** the RC2 app reports `premium.key_configured=false` and `premium init: status=missing_key, active=false`. Each Supervisor addon has independently stored options even though both repos use the same internal `/config/smartphoton_jkbms/` directory. The license install ID in RC2 must be verified before testing Premium.
+- The RC2 addon is a *separate Supervisor slug/repository* from the official 4.1.12, despite sharing the same inside-container configuration directory. This proves a live **packaging/startup smoke test**, but **does not prove the official in-place Supervisor upgrade**. The shared on-disk config is mutated on each start; the original Legacy directory was backed up by the operator before testing.
+
+**Pending acceptance:** run RC2 for several minutes and compare freshly increasing DATA/SETUP/STATIC/alarm gates and MQTT identity counters for both addresses, test Premium activation and confirm configuration compatibility. Final production in-place upgrade semantics remain to be validated. No stable merge or GitHub Release yet.
+
 ## Release checklist (GO / NO-GO)
 
 - [x] Isolated TCP Broadcasting validated on two real JK BMS and NB114.
