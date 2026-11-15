@@ -4,7 +4,7 @@
 
 ## RC2 packaging correction (15 Nov 2026)
 
-The first physical installation of **4.1.13-rc2** stopped before Node-RED initialization with `s6-rc-oneshot-run: fatal: unable to exec /etc/s6-overlay/s6-rc.d/init-nodered/run: Permission denied` (exit 126). Investigation of the exact Git tree proved `init-nodered/run` had mode `100644` in the initial RC1 packaging, while main Legacy 4.1.12 uses `100755`. The startup script content itself was not the cause. The executable Git mode was restored to `100755`, and a GitHub Actions prerequisite now checks both the Git index mode and `test -x`. This change is specific to the release candidate packaging, not the issue #166 communication logic.
+The first physical installation of **4.1.13-rc1** stopped before Node-RED initialization with `s6-rc-oneshot-run: fatal: unable to exec /etc/s6-overlay/s6-rc.d/init-nodered/run: Permission denied` (exit 126). Investigation of the exact Git tree proved `init-nodered/run` had mode `100644` in the initial RC1 packaging, while main Legacy 4.1.12 uses `100755`. The startup script content itself was not the cause. The executable Git mode was restored to `100755`, and a GitHub Actions prerequisite now checks both the Git index mode and `test -x`. This change is specific to the release candidate packaging, not the issue #166 communication logic.
 
 The version is now `4.1.13-rc2` so Home Assistant rebuilds the add-on instead of reusing its installed broken RC1 image. **The existing branch URL `release/legacy-4.1.13-rc1` remains intentionally unchanged to preserve the test repository's installation identity.** It now serves RC2.
 
