@@ -8,7 +8,7 @@ The first physical installation of **4.1.13-rc1** stopped before Node-RED initia
 
 The version is now `4.1.13-rc2` so Home Assistant rebuilds the add-on instead of reusing its installed broken RC1 image. **The existing branch URL `release/legacy-4.1.13-rc1` remains intentionally unchanged to preserve the test repository's installation identity.** It now serves RC2.
 
-RC2 has not yet been re-run on the physical HAOS VM. The official Legacy 4.1.12 production addon remains untouched.
+RC2 has since been installed and run successfully on the physical HAOS VM in USB Active Polling mode, including live Premium activation (see acceptance sections below). The official Legacy 4.1.12 production addon remains unchanged and stopped.
 
 ## What changes compared with v4.1.12
 
@@ -22,7 +22,7 @@ RC2 has not yet been re-run on the physical HAOS VM. The official Legacy 4.1.12 
 
 - Production add-on name, slug `smartphoton_jkbms`, port 1891, config path `/config/smartphoton_jkbms/`, YAML options/schema, Dockerfile, MQTT discovery topics and entity identifiers stay unchanged.
 - Keep the original exact Legacy 4.1.12 `rootfs/etc/node-red/flows.json` **unchanged** in Git; build the corrected flow via deterministic startup patcher with SHA-256 baseline preflight. This prevents accidental compatibility changes to unrelated nodes. The existing Legacy startup already overwrites user-edited flows; this release does not change that policy.
-- Release tag/version for stable publication would be **4.1.13**, not this RC1. No tag or GitHub Release is created with this candidate.
+- Release tag/version for stable publication would be **4.1.13**, not this RC2. No tag or GitHub Release is created with this candidate.
 - Legacy cannot automatically delete retained erroneous BMS_<number> MQTT topics created by old versions. Users may need to clean old phantom retained topics and stale HA devices after updating. Do not indiscriminately clear broker retained data.
 
 ## Evidence / limits
@@ -44,7 +44,7 @@ The test HAOS VM had USB path `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0`
 
 At 08:29:30/31, initial SETUP for Master and BMS_2 were published (80 MQTT messages each); DATA Discovery followed for both (67 sensors each), and the operator's dashboard showed both BMS tabs with cell voltages and temperatures. Between 08:29:54 and 08:30:54, `ISSUE1668_INTEGRITY_GATE` grew from 46908 to 46970 accepted (62 more) with no rejections; `ISSUE1667_ROUTING` Master direct DATA grew 16910→16925, BMS_2 16909→16925; BMS_1 stayed at 1. Framer and passive aggregate metrics persisted across restarts and include earlier TCP modes, so only the deltas after serial was opened provide new USB evidence. This is a successful **Broadcasting USB** functional acceptance on this hardware.
 
-No physical USB **Active Polling** trial has yet been shown. This remains a GO/NO-GO release criterion. The test on the isolated DEV166.12 startup namespace also does not replace a physical upgrade check with the production RC packaging before a broad public release.
+USB **Active Polling** was subsequently validated with the isolated DEV166.12 and later with the RC2 production-compatible package. These tests use two known physical JK-BMS devices; a wide hardware/firmware compatibility claim would still be premature.
 
 ### USB Active Polling evidence and stale Master reset messages (2026-11-15)
 
@@ -62,10 +62,26 @@ After restoring the executable bit on the s6 launcher, the operator successfully
 - `use_gateway=false`, `bms_broadcasting=false`; serial USB by-id `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0` opened at 115200 8N1.
 - MQTT broker connected at 09:14:01. First static response BMS_1 passed `ISSUE16611_ACTIVE_GATE` and MQTT identity gate (1 seen/accepted; 0 rejected). BMS_1 and BMS_2 reported alive; alarm Discovery for both BMS was logged.
 - Initial `/dev/JKBMS-Fake` open error was followed by successful change to the actual USB port; not a startup failure.
-- **Premium not yet tested:** the RC2 app reports `premium.key_configured=false` and `premium init: status=missing_key, active=false`. Each Supervisor addon has independently stored options even though both repos use the same internal `/config/smartphoton_jkbms/` directory. The license install ID in RC2 must be verified before testing Premium.
+- The initial RC2 startup at 09:13 had `premium.key_configured=false` and `status=missing_key` because the new Supervisor add-on entry had independent options. **At 09:17 the operator installed a valid SPV2 key and Premium became `active:true`, `status:active`, `validation_status:valid`; premium dashboards were observed operational.** Do not publish the user's license or credentials in release documentation.
 - The RC2 addon is a *separate Supervisor slug/repository* from the official 4.1.12, despite sharing the same inside-container configuration directory. This proves a live **packaging/startup smoke test**, but **does not prove the official in-place Supervisor upgrade**. The shared on-disk config is mutated on each start; the original Legacy directory was backed up by the operator before testing.
 
-**Pending acceptance:** run RC2 for several minutes and compare freshly increasing DATA/SETUP/STATIC/alarm gates and MQTT identity counters for both addresses, test Premium activation and confirm configuration compatibility. Final production in-place upgrade semantics remain to be validated. No stable merge or GitHub Release yet.
+**Acceptance update:** RC2's DATA/SETUP/STATIC/alarm integrity and MQTT identity counters rose for both physical BMS without rejections; Premium activation and dashboard generation were confirmed by the operator (details below). Final production in-place Supervisor upgrade semantics remain to be validated; installing RC2 as a separately registered repository is not equivalent to upgrading the official add-on. No stable merge or GitHub Release yet.
+
+### RC2 Premium and two-BMS USB acceptance — 2026-11-15 09:17–09:18 CET
+
+The operator installed a Premium license in the RC2 add-on settings and restarted the add-on. The 09:17:04 logs verified `premium.key_configured=true`, SPV2 `active:true`, `status:active`, `validation_status:valid`, `tier:premium`, and the expected features including `multi_bms:true`, `dashboard_premium:true`, `csv_export:true`, `cycles_soh:true`, `cell_details:true`, `advanced_info:true`. The operator independently confirmed that the dashboards were created and supplied a screenshot of the functional JK-BMS_1/JK-BMS_2 dashboard. The license value itself is intentionally **not** included in this document.
+
+USB Active Polling with CH340 at 115200 8N1 was confirmed by startup flags `use_gateway=false`, `bms_broadcasting=false` and the serial-by-id open event.
+
+- At 09:17:06, `ISSUE16611_ACTIVE_GATE`: 103 seen / 103 accepted / **0 rejected**; `by_address` BMS_1=53, BMS_2=50; `by_kind` static=7, setup=9, data=58, alarm=29.
+- At 09:18:07, `ISSUE16611_ACTIVE_GATE`: 139 seen / 139 accepted / **0 rejected**; BMS_1=71, BMS_2=68; static=9, setup=13, data=78, alarm=39.
+- Observed deltas: **+36 accepted responses, 0 new rejects; +18 BMS_1 and +18 BMS_2**, comprising +2 static, +4 setup, +20 DATA, +10 alarm.
+- `ISSUE16611_MQTT_IDENTITY`: at 09:18:07 9 static, 13 setup and 78 DATA had reached the MQTT publisher gates, **zero identity rejects**. Alarms at 09:18:08 were 40/40 format-valid and balanced 20/20 by address.
+- The user observed functional dashboards and reported successful Premium creation/activation. A complete dashboard feature-by-feature audit and unrelated product configurations were not carried out.
+
+Non-blocking pre-existing observations: a brief `/dev/JKBMS-Fake` startup open failure is followed immediately by correct serial port opening; the discovery initialization log always mentions Master in Active Polling, despite actual reply identities 1 and 2. Some `ISSUE166_FRAMING_PASSIVE` diagnostics are emitted even in Active Polling and include 317-byte samples; they are passive observers, **not** evidence of rejected legitimate Active Polling frames in the strict gate. Consider reducing verbose experimental diagnostics before the public stable version.
+
+**RC2 smoke-test verdict: PASS for startup, two-BMS USB Active Polling, verified message identity, Premium license initialization and dashboards.** It remains a separate Supervisor add-on with the same internal configuration directory, so it does not prove a true in-place update path or broad third-party firmware compatibility.
 
 ## Release checklist (GO / NO-GO)
 
@@ -76,8 +92,10 @@ After restoring the executable bit on the s6 launcher, the operator successfully
 - [x] CI of the exact production RC passes (including packaging): 76/76 tests passed in GitHub Actions #43630605293.
 - [x] Serial USB Broadcasting validated on physical JK BMS (isolated DEV166.12, CH340, Master + BMS_2, 15 Nov 08:29–08:31).
 - [x] Serial USB Active Polling validated on physical JK BMS (isolated DEV166.12, CH340, BMS_1 + BMS_2, 15 Nov 08:36–08:37).
-- [ ] Confirm legitimate alternative 300/308-byte variants are not silently rejected in the field (or document unsupported profiles).
-- [ ] Review log verbosity and retained MQTT cleanup guidance.
+- [ ] Confirm/document support limits for legitimate alternative 300/308-byte variants across other firmware/gateways; current physical coverage is one NB114 and one CH340 with two JK-BMS.
+- [ ] Review log verbosity (especially experimental passive observer reports) and retained MQTT cleanup guidance.
+- [x] RC2 installed and booted successfully on HAOS; validated USB Active Polling, 0 strict or MQTT identity rejects, SPV2 Premium active and dashboards created.
+- [ ] Assess the exact in-place Supervisor upgrade path from official Legacy 4.1.12 to 4.1.13 (the separate repo RC2 did not exercise it).
 - [ ] Version bump from 4.1.13-rc2 to 4.1.13, final changelog, tag and publish only after explicit GO.
 
 **Rollback:** keep v4.1.12 source/release tag available. Rolling back the add-on does not automatically delete retained MQTT topics created earlier. Create an HA backup before changing production.
