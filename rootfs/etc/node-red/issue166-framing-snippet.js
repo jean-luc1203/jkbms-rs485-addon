@@ -74,9 +74,10 @@ try {
         });
     }
     flow.set(framingKey166, p166);
-    if (p166.jk_frames > 0 && (!p166.last_report_ts ||
+    if (global.get('communication_debug') === true &&
+        p166.jk_frames > 0 && (!p166.last_report_ts ||
         framingNow166 - p166.last_report_ts >= 60000)) {
-        node.warn("ISSUE166_FRAMING_PASSIVE " + JSON.stringify({
+        node.log("ISSUE166_FRAMING_PASSIVE " + JSON.stringify({
             input_calls: p166.input_calls,
             input_bytes: p166.input_bytes,
             emitted_bytes: p166.emitted_bytes,

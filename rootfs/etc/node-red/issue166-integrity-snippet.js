@@ -88,9 +88,9 @@ try {
 
     // Immediate initial baseline and at most one summary per 60 s thereafter.
     // These are OBSERVATIONS, not alarms and never change the data path.
-    if (d166.frames > 0 &&
+    if (global.get('communication_debug') === true && d166.frames > 0 &&
         (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000)) {
-        node.warn("ISSUE166_INTEGRITY_PASSIVE " + JSON.stringify({
+        node.log("ISSUE166_INTEGRITY_PASSIVE " + JSON.stringify({
             frames: d166.frames,
             types: d166.types,
             lengths: d166.lengths,

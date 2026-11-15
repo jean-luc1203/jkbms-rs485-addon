@@ -110,7 +110,8 @@ try {
         }
     }
     flow.set(sequenceKey166, q166);
-    if (q166.frames && (!q166.last_report_ts ||
+    if (global.get('communication_debug') === true &&
+        q166.frames && (!q166.last_report_ts ||
         sequenceNow166 - q166.last_report_ts >= 60000)) {
         const perAddress166 = {};
         for (const [addr166, a166] of Object.entries(q166.by_address)) {
@@ -123,7 +124,7 @@ try {
                 data_setup: a166.transitions["data->setup"]
             };
         }
-        node.warn("ISSUE166_SEQUENCE_PASSIVE " + JSON.stringify({
+        node.log("ISSUE166_SEQUENCE_PASSIVE " + JSON.stringify({
             frames: q166.frames,
             types: q166.types,
             transitions: q166.transitions,

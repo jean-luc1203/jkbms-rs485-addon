@@ -36,9 +36,9 @@ try {
         if (p166.last_polls.length > 8) p166.last_polls.shift();
     }
     flow.set(key166, p166);
-    if (p166.total > 0 &&
+    if (global.get('communication_debug') === true && p166.total > 0 &&
         (!p166.last_report_ts || now166 - p166.last_report_ts >= 60000)) {
-        node.warn("ISSUE166_POLL_PASSIVE " + JSON.stringify({
+        node.log("ISSUE166_POLL_PASSIVE " + JSON.stringify({
             total: p166.total,
             setup_161e: p166.setup_161e,
             data_1620: p166.data_1620,
