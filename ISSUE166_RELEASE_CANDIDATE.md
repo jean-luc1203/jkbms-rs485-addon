@@ -23,11 +23,20 @@
 | --- | --- | --- |
 | TCP Broadcasting (NB114, Master + BMS_2) | Normal traffic + 3 min RJ45 outage; watchdog invoked after 128s; recovered; 3370 valid and 0 rejects at 19:59 | Yes |
 | TCP Active Polling (NB114, BMS_1 + BMS_2) | DATA, SETUP, STATIC, alarms valid; 1 min RJ45 outage; recovered; one 8-byte alarm message correctly rejected | Yes |
-| Serial USB Broadcasting | **Not yet performed after these changes** | Functions/framing tests only |
+| Serial USB Broadcasting | **Validated on physical JK-BMS (15 Nov):** isolated DEV166.12 add-on, USB CH340 by-id serial opened at 115200 8N1; Master (0) + BMS_2 (2) Discovery/DATA; gate 46908→46970 accepted in 60s (+62), rejected 0; direct DATA Master 16910→16925 (+15), BMS_2 16909→16925 (+16); BMS_1 unchanged at 1 (historical). | Functions/framing tests |
+
 | Serial USB Active Polling | **Not yet performed after these changes** | Functions/identity tests only |
 | Other gateways, JK firmwares, 300-byte variants | Not broadly validated | Synthetic vectors only |
 
 **A green CI is necessary but not sufficient to merge**. The 308-byte Active Polling strict format may be incompatible with serial firmware returning a different validated format. USB/serial acceptance in a separate test environment is a release blocker; consider early opt-in beta feedback before the general release.
+
+### USB Broadcasting evidence and configuration discrepancy (2026-11-15)
+
+The test HAOS VM had USB path `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0`. The operator pasted options containing `use_gateway: true`, **but the add-on's actual startup log at 08:29:20 reported `global use_gateway=false`** and `global bms_broadcasting=true`. At 08:29:20 the physical serial port opened successfully at 115200 baud 8N1, replacing a transient `/dev/JKBMS-Fake` startup warning. The physical data path was therefore **USB-RS485 Broadcasting**, not TCP, during that logged run.
+
+At 08:29:30/31, initial SETUP for Master and BMS_2 were published (80 MQTT messages each); DATA Discovery followed for both (67 sensors each), and the operator's dashboard showed both BMS tabs with cell voltages and temperatures. Between 08:29:54 and 08:30:54, `ISSUE1668_INTEGRITY_GATE` grew from 46908 to 46970 accepted (62 more) with no rejections; `ISSUE1667_ROUTING` Master direct DATA grew 16910→16925, BMS_2 16909→16925; BMS_1 stayed at 1. Framer and passive aggregate metrics persisted across restarts and include earlier TCP modes, so only the deltas after serial was opened provide new USB evidence. This is a successful **Broadcasting USB** functional acceptance on this hardware.
+
+No physical USB **Active Polling** trial has yet been shown. This remains a GO/NO-GO release criterion. The test on the isolated DEV166.12 startup namespace also does not replace a physical upgrade check with the production RC packaging before a broad public release.
 
 ## Release checklist (GO / NO-GO)
 
@@ -35,8 +44,8 @@
 - [x] Isolated TCP Active Polling validated on two real JK BMS and NB114.
 - [x] Ethernet disconnection/recovery validated in both modes.
 - [x] Production slug, path, options and port preserved in RC packaging.
-- [ ] CI of the exact production RC passes (including packaging).
-- [ ] Serial USB Broadcasting validated on physical JK BMS.
+- [x] CI of the exact production RC passes (including packaging): 76/76 tests passed in GitHub Actions #43630605293.
+- [x] Serial USB Broadcasting validated on physical JK BMS (isolated DEV166.12, CH340, Master + BMS_2, 15 Nov 08:29–08:31).
 - [ ] Serial USB Active Polling validated on physical JK BMS.
 - [ ] Confirm legitimate alternative 300/308-byte variants are not silently rejected in the field (or document unsupported profiles).
 - [ ] Review log verbosity and retained MQTT cleanup guidance.
