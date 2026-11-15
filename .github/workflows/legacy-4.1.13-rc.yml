@@ -20,6 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Verify s6 service launcher executable Git mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCRIPT=rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
+          test -x "$SCRIPT"
+          MODE="$(git ls-files --stage -- "$SCRIPT" | awk '{ print $1 }')"
+          test "$MODE" = "100755" || { echo "Wrong Git mode: $MODE (expected 100755)" >&2; exit 1; }
+          echo "s6 launcher executable: $MODE"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
