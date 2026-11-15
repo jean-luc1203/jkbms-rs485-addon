@@ -1,6 +1,18 @@
-# SmartPhoton JK-BMS Legacy 4.1.13 — release candidate RC2
+# SmartPhoton JK-BMS Legacy 4.1.13 — release candidate RC3
 
 **Status: DRAFT / NOT PUBLISHED.** This PR is a production-packaging candidate only. Keep it unmerged until the acceptance checklist is complete. Official production remains v4.1.12.
+
+## RC3 — quieter experimental diagnostics (15 Nov 2026)
+
+The RC2 hardware test confirmed valid USB Active Polling and Premium dashboard operation. Review of its logs revealed eleven Issue #166 passive/strict counter summaries emitted as **WARN every 60 seconds**, even when no errors occurred. RC3 keeps the same safety gates and statistics, but makes *periodic summary logging* conditional on the existing `communication_debug: true` option; those summaries now use INFO-level `node.log`. When the option is false, counters continue updating without repetitive log spam.
+
+**The critical warning path remains active even with debug disabled.** Invalid Broadcast responses emit `ISSUE1668_REJECT`; invalid Active Polling responses emit `ISSUE16611_REJECT`; invalid MQTT identity metadata emits `ISSUE16611_MQTT_REJECT`. Each emits at most one warning per minute per family while incrementing every rejection count. The Broadcast TCP watchdog continues to warn on real timeouts, and observer exceptions are not hidden. Neither wire framing, Modbus CRC calculations, verified BMS identity assignment, MQTT topics nor alarms decoding were changed for RC3.
+
+Startup banner now says `Issue #166 Legacy patch applied` instead of the experimental `test patch`. The long-standing temporary `/dev/JKBMS-Fake` error during initial serial node setup is left untouched (the actual USB port opens correctly just afterward); unrelated Legacy discovery messages are also unchanged.
+
+**Diagnostic support procedure:** enable `communication_debug` briefly in add-on options and restart, gather `ISSUE166*` INFO summaries; disable debugging afterward for normal use. Automatic deletion of previously retained phantom BMS MQTT topics is deliberately not included.
+
+**Validation:** 81/81 regression tests pass in GitHub Actions. RC3 has **not yet been installed or physically verified** on the HAOS test VM; the operator's RC2 remains running until explicitly upgraded. The existing repository branch URL stays `release/legacy-4.1.13-rc1` to preserve the separate test add-on identity; its version is now `4.1.13-rc3`.
 
 ## RC2 packaging correction (15 Nov 2026)
 
@@ -93,9 +105,10 @@ Non-blocking pre-existing observations: a brief `/dev/JKBMS-Fake` startup open f
 - [x] Serial USB Broadcasting validated on physical JK BMS (isolated DEV166.12, CH340, Master + BMS_2, 15 Nov 08:29–08:31).
 - [x] Serial USB Active Polling validated on physical JK BMS (isolated DEV166.12, CH340, BMS_1 + BMS_2, 15 Nov 08:36–08:37).
 - [ ] Confirm/document support limits for legitimate alternative 300/308-byte variants across other firmware/gateways; current physical coverage is one NB114 and one CH340 with two JK-BMS.
-- [ ] Review log verbosity (especially experimental passive observer reports) and retained MQTT cleanup guidance.
+- [x] Clean up repetitive experimental WARN summaries behind `communication_debug`, retain rate-limited rejection warnings; validate on RC3 hardware after upgrade.
+- [ ] Document selective manual cleanup of old retained phantom MQTT topics, without changing them automatically.
 - [x] RC2 installed and booted successfully on HAOS; validated USB Active Polling, 0 strict or MQTT identity rejects, SPV2 Premium active and dashboards created.
 - [ ] Assess the exact in-place Supervisor upgrade path from official Legacy 4.1.12 to 4.1.13 (the separate repo RC2 did not exercise it).
-- [ ] Version bump from 4.1.13-rc2 to 4.1.13, final changelog, tag and publish only after explicit GO.
+- [ ] Version bump from 4.1.13-rc3 to 4.1.13, final changelog, tag and publish only after explicit GO.
 
 **Rollback:** keep v4.1.12 source/release tag available. Rolling back the add-on does not automatically delete retained MQTT topics created earlier. Create an HA backup before changing production.

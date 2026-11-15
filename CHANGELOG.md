@@ -1,3 +1,10 @@
+## 4.1.13-rc3 — 2026-11-15 (DRAFT, NOT PUBLISHED)
+
+- Clean up experimental Issue #166 log noise: routine PASSIVE/GATE/MQTT summary diagnostics from eleven function families now emit INFO only when the existing `communication_debug: true` option is enabled. Per-BMS counters remain available internally; checksum, identity, routing and frame rejection behavior is unchanged.
+- Important rejection events remain WARN: `ISSUE1668_REJECT` (Broadcast), `ISSUE16611_REJECT` (Active replies) and `ISSUE16611_MQTT_REJECT` (MQTT identity); no more than one warning per minute per family, without losing rejection counts.
+- Real watchdog warnings and observer errors remain visible. Correct the startup banner wording from "test patch" to "Legacy patch".
+- RC3 tests extend automated coverage to 81 regression cases. Candidate not yet field-tested on HAOS; original Legacy production still v4.1.12.
+
 ## 4.1.13-rc2 — 2026-11-14 (DRAFT, NOT PUBLISHED)
 
 Production-packaging candidate for Issue #166 (RC2 restores executable mode 100755 to s6 init-nodered/run, previously 100644 in RC1; CI now checks this), incorporating the experimental DEV166.12 corrections without changing the official add-on slug, Node-RED config namespace, exposed port or YAML schema. Includes verified-address Broadcast routing, strict integrity gates, Active Polling MQTT identity protection, queued TCP alarm requests and Broadcasting watchdog isolation. Validated on NB114 TCP hardware in both modes; **USB serial hardware acceptance is outstanding**. Do not merge as a stable public release until RC checklist is complete.
