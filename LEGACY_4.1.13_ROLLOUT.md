@@ -58,4 +58,4 @@ The operator must perform these steps on their HAOS VM; the GitHub connector can
 ## Separate follow-up, not part of 4.1.13
 
 - Legacy 30-second MQTT Discovery re-publication behavior: #191.
-- Selective manual retained cleanup of old phantom MQTT topics: see `RELEASE_NOTES_4.1.13_DRAFT.md`.
+- Selective manual retained cleanup of old phantom MQTT topics: see `RELEASE_NOTES_4.1.13.md`.
