@@ -1,13 +1,37 @@
-## 4.1.13-rc3 — 2026-11-15 (DRAFT, NOT PUBLISHED)
+## 4.1.13 — 2026-11-15
 
-- Clean up experimental Issue #166 log noise: routine PASSIVE/GATE/MQTT summary diagnostics from eleven function families now emit INFO only when the existing `communication_debug: true` option is enabled. Per-BMS counters remain available internally; checksum, identity, routing and frame rejection behavior is unchanged.
-- Important rejection events remain WARN: `ISSUE1668_REJECT` (Broadcast), `ISSUE16611_REJECT` (Active replies) and `ISSUE16611_MQTT_REJECT` (MQTT identity); no more than one warning per minute per family, without losing rejection counts.
-- Real watchdog warnings and observer errors remain visible. Correct the startup banner wording from "test patch" to "Legacy patch".
-- RC3 tests extend automated coverage to 81 regression cases. Candidate not yet field-tested on HAOS; original Legacy production still v4.1.12.
+> **IMPORTANT — BACK UP HOME ASSISTANT BEFORE UPDATING.** Create a **full Home Assistant backup** that includes the JK-BMS Legacy add-on and its Supervisor-managed options. Keep a copy outside Home Assistant when possible. Retain the previous 4.1.12 backup in case a firmware-specific reply format is not supported by the stricter validation. A GitHub release is not by itself a one-click HAOS rollback.
+>
+> For the first restart, verify the configured serial `/dev/serial/by-id/...` path or TCP gateway, BMS count, Broadcasting/Active Polling mode, MQTT connectivity, alarms, Premium license and dashboards. Only run **one** JK-BMS Legacy/test add-on at a time on the same RS485 port/gateway.
 
-## 4.1.13-rc2 — 2026-11-14 (DRAFT, NOT PUBLISHED)
+### Corrected — BMS identity and phantom devices ([#166](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/166))
+- Reject malformed or out-of-range JK-BMS reply identifiers **before** publishing MQTT/Home Assistant Discovery or alarm messages.
+- Route Broadcasting DATA/SETUP according to validated Modbus reply identity instead of mutable global or pending polling state, preventing BMS data being assigned to another pack.
+- Strengthen integrity validation: JK body checksums, Modbus CRC16, supported reply lengths, register/function/address consistency and SETUP internal BMS identity where applicable.
+- In Active Polling, verify DATA, SETUP, STATIC and 9-byte FC03 alarm replies, including requested-versus-reported BMS address. Do not publish unverified identities.
 
-Production-packaging candidate for Issue #166 (RC2 restores executable mode 100755 to s6 init-nodered/run, previously 100644 in RC1; CI now checks this), incorporating the experimental DEV166.12 corrections without changing the official add-on slug, Node-RED config namespace, exposed port or YAML schema. Includes verified-address Broadcast routing, strict integrity gates, Active Polling MQTT identity protection, queued TCP alarm requests and Broadcasting watchdog isolation. Validated on NB114 TCP hardware in both modes; **USB serial hardware acceptance is outstanding**. Do not merge as a stable public release until RC checklist is complete.
+### Corrected — communication and recovery
+- Fix the **TCP Active Polling** rate limiter dropping alarm polling requests silently. Queue requests without raising the gateway's configured polling rate.
+- Fix the legacy **TCP Broadcasting** watchdog: run only in Broadcasting gateway mode and use supported tcp-client2 `close` / `connect` actions instead of unsupported `disconnect`. See also [#165](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/165).
+- Recover properly from network interruptions on tested Ethernet gateway hardware without creating phantom BMS identities.
+
+### Logs and diagnostics
+- Reduce repetitive Issue #166 diagnostic summaries during normal operation. Enable existing `communication_debug: true` only temporarily when troubleshooting; detailed counters then appear at INFO level.
+- Actual bad frames, rejected MQTT identities and watchdog issues still generate warnings, rate-limited to prevent flooding. Invalid frames remain rejected, not silently accepted.
+
+### Verified compatibility
+- Real hardware: **two JK-BMS**, NB114 RS485/Ethernet and CH340 USB-RS485; **Broadcasting and Active Polling** validated in both transports. TCP disconnect/reconnection tested; a malformed 8-byte alarm reply was correctly rejected.
+- Premium SPV2 license and two-BMS dashboards tested in HAOS with the candidate.
+- Automated acceptance: **81 regression tests + 2 startup/migration simulations**, all passed. The startup simulation covered upgrading an existing 4.1.12 Node-RED directory and a fresh install.
+- Production add-on slug, options, MQTT identities and the dashboard port `1891` are preserved.
+
+### Important limits / existing behaviors
+- Frame validation is intentionally strict: the observed Active Polling profile uses 308-byte DATA/SETUP/STATIC replies and 9-byte FC03 alarms. Not every possible JK-BMS firmware or third-party gateway has been tested. If a previously working device stops reporting, **do not disable checks blindly**: collect sanitized logs with `communication_debug` enabled, plus BMS model/firmware/transport, and report them on GitHub.
+- Previously retained MQTT topics and HA devices from phantom BMS identities **are not automatically deleted**. Remove only verified orphaned topics; never bulk-clear `homeassistant/#`.
+- Legacy's pre-existing periodic MQTT Discovery republishing is **not changed**; optimization is tracked separately in [#191](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/191).
+- The original Legacy startup behavior overwrites its flow at each start; manually customized flows should be backed up separately.
+
+**Before upgrading:** full HA backup first. The [v4.1.12 source release](https://github.com/jean-luc1203/jkbms-rs485-addon/releases/tag/v4.1.12) remains available, but downgrading on HAOS may require restoring a backup rather than selecting an older version in the UI.
 
 ## 4.1.12 — 2026-10-09
 
