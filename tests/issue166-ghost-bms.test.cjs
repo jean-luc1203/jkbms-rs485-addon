@@ -1228,7 +1228,7 @@ test('RC packaging retains production slug, options, paths and legacy baseline',
   const crypto=require('node:crypto');
   const baseline=fs.readFileSync(path.join(root,'rootfs/etc/node-red/flows.json'));
   assert(config.includes('name: "JK-BMS wired management"'));
-  assert(config.includes('version: 4.1.13-rc1'));
+  assert(config.includes('version: 4.1.13-rc2'));
   assert(config.includes('slug: "smartphoton_jkbms"'));
   assert(config.includes('jkbms_path: str'));
   assert(config.includes('bms_broadcasting: bool'));
