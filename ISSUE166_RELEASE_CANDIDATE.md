@@ -95,6 +95,14 @@ Non-blocking pre-existing observations: a brief `/dev/JKBMS-Fake` startup open f
 
 **RC2 smoke-test verdict: PASS for startup, two-BMS USB Active Polling, verified message identity, Premium license initialization and dashboards.** It remains a separate Supervisor add-on with the same internal configuration directory, so it does not prove a true in-place update path or broad third-party firmware compatibility.
 
+### RC3 field check and Legacy discovery republish finding (2026-11-15 09:35–09:50 CET)
+
+The test HAOS VM successfully updated from RC2 to **4.1.13-rc3** (`state: started`). The uploaded full startup/runtime log verifies the patch banner, serial USB by-id opened at 115200 8N1, `use_gateway=false`, `bms_broadcasting=false`, MQTT broker reconnected, both BMS alive and SPV2 Premium `active:true`/`validation_status:valid`. The operator's dashboard screenshot shows JK-BMS_1 and JK-BMS_2. The full 14-minute log has **no repetitive ISSUE166 WARN/summary messages** with `communication_debug=false`. No evidence of new malformed replies appears in this excerpt (the absence of detailed summaries with debug disabled does not by itself quantify rejection counts).
+
+**Separate pre-existing Legacy MQTT inefficiency, not an Issue #166 regression:** the uploaded full log contains 58 `Discovery alarmes envoyé` warnings and 29 `SerialNb ... is alive` warnings over ~14 min, plus three periodic setup-reset warnings. Inspection of the original, unchanged Legacy 4.1.12 `flows.json` identifies inject node `672c03b924abb0e2` with `repeat:"30"`, `once:true`, `onceDelay:"3"`, connected to five separate functions that clear `discoverySent_BMS_*`, `discoverySent_SETUP_BMS_*`, `discoverySent_STATIC_BMS_*`, `discoverySent_ALARMS_BMS_*` and `discoverySent_GLOBAL_ALARM_*` on each injection. Alarm publisher `44588e9ab8f432c4` sends **four retained Discovery config MQTT messages per BMS** when its flag is cleared, in addition to alarm states. Hence 58 observed alarm-discovery republish notices imply **232 alarm Discovery configuration messages** over this excerpt, not just repetitive logging. Other Discovery categories may also republish; their volume has not yet been quantified.
+
+Changing that inject cadence or state-reset strategy changes Home Assistant MQTT discovery recovery semantics, so **RC3 deliberately does not alter it**. A separate review and regression test of discovery lifecycle, broker restart handling and retained topics should precede any traffic optimization. The repeated `SerialNb` / alarm-discovery WARN messages could be demoted independently without changing MQTT publication behavior, but doing only that would hide the underlying republish traffic. Keep production unchanged pending the decision.
+
 ## Release checklist (GO / NO-GO)
 
 - [x] Isolated TCP Broadcasting validated on two real JK BMS and NB114.
@@ -106,6 +114,7 @@ Non-blocking pre-existing observations: a brief `/dev/JKBMS-Fake` startup open f
 - [x] Serial USB Active Polling validated on physical JK BMS (isolated DEV166.12, CH340, BMS_1 + BMS_2, 15 Nov 08:36–08:37).
 - [ ] Confirm/document support limits for legitimate alternative 300/308-byte variants across other firmware/gateways; current physical coverage is one NB114 and one CH340 with two JK-BMS.
 - [x] Clean up repetitive experimental WARN summaries behind `communication_debug`, retain rate-limited rejection warnings; validate on RC3 hardware after upgrade.
+- [ ] Review the pre-existing 30-second forced Discovery flag reset across DATA/SETUP/STATIC/ALARMS/GLOBAL and consider a separate, tested MQTT discovery lifecycle fix. Do not silently change it as part of logging cleanup.
 - [ ] Document selective manual cleanup of old retained phantom MQTT topics, without changing them automatically.
 - [x] RC2 installed and booted successfully on HAOS; validated USB Active Polling, 0 strict or MQTT identity rejects, SPV2 Premium active and dashboards created.
 - [ ] Assess the exact in-place Supervisor upgrade path from official Legacy 4.1.12 to 4.1.13 (the separate repo RC2 did not exercise it).
