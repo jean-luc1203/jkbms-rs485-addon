@@ -1,6 +1,6 @@
-## 4.1.13-rc1 — 2026-11-14 (DRAFT, NOT PUBLISHED)
+## 4.1.13-rc2 — 2026-11-14 (DRAFT, NOT PUBLISHED)
 
-Production-packaging candidate for Issue #166, incorporating the experimental DEV166.12 corrections without changing the official add-on slug, Node-RED config namespace, exposed port or YAML schema. Includes verified-address Broadcast routing, strict integrity gates, Active Polling MQTT identity protection, queued TCP alarm requests and Broadcasting watchdog isolation. Validated on NB114 TCP hardware in both modes; **USB serial hardware acceptance is outstanding**. Do not merge as a stable public release until RC checklist is complete.
+Production-packaging candidate for Issue #166 (RC2 restores executable mode 100755 to s6 init-nodered/run, previously 100644 in RC1; CI now checks this), incorporating the experimental DEV166.12 corrections without changing the official add-on slug, Node-RED config namespace, exposed port or YAML schema. Includes verified-address Broadcast routing, strict integrity gates, Active Polling MQTT identity protection, queued TCP alarm requests and Broadcasting watchdog isolation. Validated on NB114 TCP hardware in both modes; **USB serial hardware acceptance is outstanding**. Do not merge as a stable public release until RC checklist is complete.
 
 ## 4.1.12 — 2026-10-09
 
