@@ -103,6 +103,18 @@ The test HAOS VM successfully updated from RC2 to **4.1.13-rc3** (`state: starte
 
 Changing that inject cadence or state-reset strategy changes Home Assistant MQTT discovery recovery semantics, so **RC3 deliberately does not alter it**. A separate review and regression test of discovery lifecycle, broker restart handling and retained topics should precede any traffic optimization. The repeated `SerialNb` / alarm-discovery WARN messages could be demoted independently without changing MQTT publication behavior, but doing only that would hide the underlying republish traffic. Keep production unchanged pending the decision.
 
+### Final release migration rehearsal (2026-11-15)
+
+The exact `rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run` script was executed in an isolated Linux temp-config simulation for:
+1. an existing `4.1.12` Node-RED configuration with user-specific `settings.js`, `flows_cred.json`, local nodes and runtime config markers; and
+2. a fresh add-on installation.
+
+The test rewrites **only absolute test paths** (never the actual code or logic being exercised), mocks the `bashio::` API, and uses the production 4.1.12 `flows.json` plus the actual Issue166 patcher. It asserts that the corrected flow starts on both scenarios and that existing credentials/settings are not deleted on the upgrade. A second boot also succeeds. It explicitly observes the inherited behavior that the stale local `/config/smartphoton_jkbms/version` file stays at 4.1.12 — this is not the Supervisor version. Both migration tests passed and the original 81 Issue166 regression tests passed **on the same CI run**: https://github.com/jean-luc1203/jkbms-rs485-addon/actions/runs/43699114738
+
+Backup source frozen at branch [`backup/legacy-4.1.12-before-4.1.13`](https://github.com/jean-luc1203/jkbms-rs485-addon/tree/backup/legacy-4.1.12-before-4.1.13) pointing to `d52e1578f0ba6238862c8f5dc11fcc0992b17b6a`. All rollout and rollback operator steps are in [`LEGACY_4.1.13_ROLLOUT.md`](LEGACY_4.1.13_ROLLOUT.md).
+
+**Still not verified:** the real Supervisor's *in-place update on official repository ID 6020d92d*. That operation cannot be run in isolation while official `main` still advertises 4.1.12. Updating `main` would make 4.1.13 available to all subscribed users. Do not label this simulation as a physical in-place Supervisor update; require an actual full Home Assistant backup and an explicit global publication decision.
+
 ## Release checklist (GO / NO-GO)
 
 - [x] Isolated TCP Broadcasting validated on two real JK BMS and NB114.
@@ -117,7 +129,8 @@ Changing that inject cadence or state-reset strategy changes Home Assistant MQTT
 - [ ] Review the pre-existing 30-second forced Discovery flag reset across DATA/SETUP/STATIC/ALARMS/GLOBAL and consider a separate, tested MQTT discovery lifecycle fix. Do not silently change it as part of logging cleanup.
 - [ ] Document selective manual cleanup of old retained phantom MQTT topics, without changing them automatically.
 - [x] RC2 installed and booted successfully on HAOS; validated USB Active Polling, 0 strict or MQTT identity rejects, SPV2 Premium active and dashboards created.
-- [ ] Assess the exact in-place Supervisor upgrade path from official Legacy 4.1.12 to 4.1.13 (the separate repo RC2 did not exercise it).
+- [x] Simulate real s6 Legacy 4.1.12→4.1.13 RC startup and fresh install against isolated configuration: 2/2 integration tests pass, settings/credentials survive.
+- [ ] Actual official Supervisor in-place upgrade with a full backup and the real `6020d92d` add-on (cannot happen before public main update).
 - [ ] Version bump from 4.1.13-rc3 to 4.1.13, final changelog, tag and publish only after explicit GO.
 
 **Rollback:** keep v4.1.12 source/release tag available. Rolling back the add-on does not automatically delete retained MQTT topics created earlier. Create an HA backup before changing production.
