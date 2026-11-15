@@ -1,6 +1,6 @@
 # SmartPhoton JK-BMS Legacy 4.1.13 — release candidate RC3
 
-**Status: DRAFT / NOT PUBLISHED.** This PR is a production-packaging candidate only. Keep it unmerged until the acceptance checklist is complete. Official production remains v4.1.12.
+**Historical RC validation record.** This document records the 4.1.13 development and physical acceptance tests before stable release. For end-user upgrade/backup guidance see [RELEASE_NOTES_4.1.13.md](RELEASE_NOTES_4.1.13.md) and [LEGACY_4.1.13_ROLLOUT.md](LEGACY_4.1.13_ROLLOUT.md).
 
 ## RC3 — quieter experimental diagnostics (15 Nov 2026)
 
@@ -131,6 +131,6 @@ Backup source frozen at branch [`backup/legacy-4.1.12-before-4.1.13`](https://gi
 - [x] RC2 installed and booted successfully on HAOS; validated USB Active Polling, 0 strict or MQTT identity rejects, SPV2 Premium active and dashboards created.
 - [x] Simulate real s6 Legacy 4.1.12→4.1.13 RC startup and fresh install against isolated configuration: 2/2 integration tests pass, settings/credentials survive.
 - [ ] Actual official Supervisor in-place upgrade with a full backup and the real `6020d92d` add-on (cannot happen before public main update).
-- [ ] Version bump from 4.1.13-rc3 to 4.1.13, final changelog, tag and publish only after explicit GO.
+- [x] Stable version 4.1.13, backup-first changelog and final public release notes prepared. Official publication approved by repository owner; the tag and GitHub Release are created by a gated push-to-main workflow after the exact final tests pass.
 
 **Rollback:** keep v4.1.12 source/release tag available. Rolling back the add-on does not automatically delete retained MQTT topics created earlier. Create an HA backup before changing production.
