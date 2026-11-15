@@ -22,8 +22,14 @@ function runner(id) {
   assert(source && source.func);
   const fn = new Function('msg','Buffer','node','flow','context','global',source.func);
   const flow = store(), context = store(), global = store();
-  const node = { warn() {}, error() {}, debug() {} };
-  return { call(m) {return fn(m,Buffer,node,flow,context,global)}, flow, context, global };
+  const warnings=[], infos=[];
+  const node = {
+    warn(message) {warnings.push(String(message));},
+    log(message) {infos.push(String(message));},
+    error() {}, debug() {}
+  };
+  return {call(m) {return fn(m,Buffer,node,flow,context,global)},
+    flow,context,global,warnings,infos};
 }
 function frame(type, id, size=308) {
   const b=Buffer.alloc(size);
@@ -1228,7 +1234,7 @@ test('RC packaging retains production slug, options, paths and legacy baseline',
   const crypto=require('node:crypto');
   const baseline=fs.readFileSync(path.join(root,'rootfs/etc/node-red/flows.json'));
   assert(config.includes('name: "JK-BMS wired management"'));
-  assert(config.includes('version: 4.1.13-rc2'));
+  assert(config.includes('version: 4.1.13-rc3'));
   assert(config.includes('slug: "smartphoton_jkbms"'));
   assert(config.includes('jkbms_path: str'));
   assert(config.includes('bms_broadcasting: bool'));
@@ -1250,4 +1256,79 @@ test('RC serial and gateway Active Polling share strict identity checks, not an 
   assert(p.func.includes("missing_or_invalid_verified_id"));
   // Running the serial transport in Active Polling still uses this same path.
   // This proves code coverage only; physical USB remains untested.
+});
+
+test('RC3 quiet by default: Broadcast gate and routing counters still update',()=>{
+  const r=runner(ids.decoder);
+  assert.equal(r.call(frame(1,2)).bms_numero,2);
+  assert.equal(r.call(frame(2,2)).bms_numero,2);
+  assert.equal(r.flow.get('issue1668_integrity_gate').accepted_308,2);
+  assert.equal(r.flow.get('issue1667_routing').direct_data,1);
+  assert.equal(r.warnings.some(x=>x.startsWith('ISSUE1668_INTEGRITY_GATE ') ||
+    x.startsWith('ISSUE1667_ROUTING ')),false);
+  assert.equal(r.infos.length,0);
+  r.global.set('communication_debug',true);
+  assert.equal(r.call(frame(1,2)).bms_numero,2);
+  assert(r.infos.some(x=>x.startsWith('ISSUE1668_INTEGRITY_GATE ')));
+  assert(r.infos.some(x=>x.startsWith('ISSUE1667_ROUTING ')));
+});
+test('RC3 invalid Broadcast frame warns even with debug disabled; warnings throttled',()=>{
+  const r=runner(ids.decoder);
+  const bad=frameWithAckAddress166(2,2);bad[307]^=1;
+  for(let i=0;i<2;i++)assert.equal(r.call({payload:{
+    topic:'broadcast/jkbms_reply',payload:Buffer.from(bad),slave:2
+  }}),null);
+  const d=r.flow.get('issue1668_integrity_gate');
+  assert.equal(d.rejected,2);
+  assert.equal(d.reasons.ack_crc,2);
+  assert.equal(r.warnings.filter(x=>x.startsWith('ISSUE1668_REJECT ')).length,1);
+  assert.equal(r.infos.length,0);
+});
+test('RC3 Active gate quiet on valid replies, warns on malformed alarms',()=>{
+  const r=runner('f9ee21cf4d13a9f4');
+  r.global.set('bms_broadcasting',false);
+  const ok={topic:'Trame-Alarmes-BMS',payload:alarmFrame1669(1,0x20),diag_slave_id:1};
+  assert.strictEqual(r.call(ok),ok);
+  assert.equal(r.infos.length,0);
+  assert(!r.warnings.some(x=>x.startsWith('ISSUE16611_ACTIVE_GATE ')));
+  const bad=alarmFrame1669(1,0x20).subarray(0,8);
+  for(let i=0;i<2;i++){
+    assert.equal(r.call({topic:'Trame-Alarmes-BMS',
+      payload:bad,diag_slave_id:1}),null);
+  }
+  assert.equal(r.flow.get('issue16611_active_gate').rejected,2);
+  assert.equal(r.warnings.filter(x=>x.startsWith('ISSUE16611_REJECT ')).length,1);
+  r.global.set('communication_debug',true);
+  const next={topic:'Trame-Alarmes-BMS',payload:alarmFrame1669(2,0x20),diag_slave_id:2};
+  assert.strictEqual(r.call(next),next);
+  assert(r.infos.some(x=>x.startsWith('ISSUE16611_ACTIVE_GATE ')));
+  assert(r.infos.some(x=>x.startsWith('ISSUE1669_ALARM_PASSIVE ')));
+});
+test('RC3 MQTT identity rejection warned without verbose counters',()=>{
+  const r=runner('653aafd0b7ddd759');
+  r.global.set('bms_broadcasting',false);
+  for(let i=0;i<2;i++)
+    assert.equal(r.call({bms_numero:1,payload:{SOC_P:25}}),null);
+  assert.equal(r.flow.get('issue16611_mqtt_gate').by_kind.data.rejected,2);
+  assert.equal(r.warnings.filter(x=>x.startsWith('ISSUE16611_MQTT_REJECT ')).length,1);
+  assert.equal(r.infos.length,0);
+});
+test('RC3 all eleven observer/gate periodic summaries require communication_debug',()=>{
+  const pathRoot=path.join(__dirname,'..','rootfs/etc/node-red');
+  const snips=[
+    'issue166-framing-snippet.js','issue166-integrity-snippet.js',
+    'issue166-sequence-snippet.js','issue166-poll-snippet.js',
+    'issue166-pairing-snippet.js','issue166-active-passive-snippet.js',
+    'issue166-active-alarm-snippet.js','issue166-direct-routing-snippet.js',
+    'issue166-strict-gate-snippet.js','issue166-active-strict-snippet.js',
+    'issue166-active-mqtt-snippet.js'
+  ];
+  for(const name of snips){
+    const src=fs.readFileSync(path.join(pathRoot,name),'utf8');
+    assert(src.includes("global.get('communication_debug') === true"),name);
+    assert(src.includes('node.log('),name);
+  }
+  const patcher=fs.readFileSync(path.join(pathRoot,'issue166-apply.cjs'),'utf8');
+  assert(patcher.includes('Issue #166 Legacy patch applied'));
+  assert(!patcher.includes('Issue #166 test patch applied'));
 });

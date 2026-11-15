@@ -470,4 +470,4 @@ if (!urlNode || !urlNode.func.includes(':1891/endpoint/dashboard/')) {
 const staged = targetPath + '.issue166.tmp';
 fs.writeFileSync(staged, JSON.stringify(nodes, null, 2), 'utf8');
 fs.renameSync(staged, targetPath);
-console.log('Issue #166 test patch applied: eight functions + strict Broadcast/Active identity + TCP queue + isolated Broadcast watchdog, Legacy dashboard port 1891');
+console.log('Issue #166 Legacy patch applied: eight functions + strict Broadcast/Active identity + TCP queue + isolated Broadcast watchdog, Legacy dashboard port 1891');
