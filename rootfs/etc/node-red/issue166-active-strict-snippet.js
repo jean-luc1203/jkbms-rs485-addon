@@ -90,10 +90,19 @@ function issue16611GateStats(kind, verdict) {
         });
         if (state.recent_rejections.length > 8)
             state.recent_rejections.shift();
+        const rejectNow166 = Date.now();
+        if (!state.last_reject_warn_ts ||
+            rejectNow166 - state.last_reject_warn_ts >= 60000) {
+            node.warn('ISSUE16611_REJECT ' + JSON.stringify({
+                kind:kind, reason:verdict.reason, rejected_total:state.rejected
+            }));
+            state.last_reject_warn_ts = rejectNow166;
+        }
     }
     const now = Date.now();
-    if (!state.last_report_ts || now-state.last_report_ts>=60000) {
-        node.warn('ISSUE16611_ACTIVE_GATE ' + JSON.stringify({
+    if (global.get('communication_debug') === true &&
+        (!state.last_report_ts || now-state.last_report_ts>=60000)) {
+        node.log('ISSUE16611_ACTIVE_GATE ' + JSON.stringify({
             seen:state.seen,accepted:state.accepted,
             rejected:state.rejected,by_kind:state.by_kind,
             reasons:state.reasons,by_address:state.by_address,

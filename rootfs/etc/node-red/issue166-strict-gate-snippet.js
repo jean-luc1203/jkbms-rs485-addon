@@ -88,11 +88,21 @@ function issue1668GateRecord(result166) {
                 len:result166.len || null, type:result166.type || null
             });
             if (d166.recent_rejections.length > 8) d166.recent_rejections.shift();
+            // Retain every rejection in state, but rate-limit operator warnings.
+            if (!d166.last_reject_warn_ts ||
+                now166 - d166.last_reject_warn_ts >= 60000) {
+                node.warn("ISSUE1668_REJECT " + JSON.stringify({
+                    reason:reason166, length:result166.len ?? null,
+                    type:result166.type ?? null, rejected_total:d166.rejected
+                }));
+                d166.last_reject_warn_ts = now166;
+            }
         }
         flow.set(key166,d166);
         // Summary first frame, then every 60 s; no raw frames or battery data.
-        if (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000) {
-            node.warn("ISSUE1668_INTEGRITY_GATE " + JSON.stringify({
+        if (global.get('communication_debug') === true &&
+            (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000)) {
+            node.log("ISSUE1668_INTEGRITY_GATE " + JSON.stringify({
                 seen:d166.seen, accepted_308:d166.accepted_308,
                 accepted_300_no_ack:d166.accepted_300_no_ack,
                 rejected:d166.rejected, reasons:d166.reasons,

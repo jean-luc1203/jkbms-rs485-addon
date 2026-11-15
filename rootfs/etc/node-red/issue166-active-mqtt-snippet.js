@@ -19,8 +19,16 @@ function issue16611PublishStat(ok,reason,id) {
         s.reasons[reason] = (s.reasons[reason] || 0)+1;
     }
     const now = Date.now();
-    if (!s.last_report_ts || now-s.last_report_ts>=60000) {
-        node.warn('ISSUE16611_MQTT_IDENTITY ' + JSON.stringify({
+    if (!ok && (!s.last_reject_warn_ts ||
+        now - s.last_reject_warn_ts >= 60000)) {
+        node.warn('ISSUE16611_MQTT_REJECT ' + JSON.stringify({
+            kind:kind,reason:reason,rejected_total:s.by_kind[kind].rejected
+        }));
+        s.last_reject_warn_ts = now;
+    }
+    if (global.get('communication_debug') === true &&
+        (!s.last_report_ts || now-s.last_report_ts>=60000)) {
+        node.log('ISSUE16611_MQTT_IDENTITY ' + JSON.stringify({
             by_kind:s.by_kind,reasons:s.reasons
         }));
         s.last_report_ts = now;
