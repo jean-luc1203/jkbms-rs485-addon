@@ -141,9 +141,10 @@ try {
             state1669.last_anomalies.shift();
     }
     flow.set(diagKey1669,state1669);
-    if (!state1669.last_report_ts ||
-        current1669 - state1669.last_report_ts >= 60000) {
-        node.warn("ISSUE1669_ACTIVE_PASSIVE " + JSON.stringify({
+    if (global.get('communication_debug') === true &&
+        (!state1669.last_report_ts ||
+        current1669 - state1669.last_report_ts >= 60000)) {
+        node.log("ISSUE1669_ACTIVE_PASSIVE " + JSON.stringify({
             seen:state1669.seen,by_type:state1669.by_type,
             last_anomalies:state1669.last_anomalies.slice(-3)
         }));

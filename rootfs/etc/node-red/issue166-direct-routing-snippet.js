@@ -56,8 +56,9 @@ function issue1667RouteEvent(event166, addr166, extra166) {
             if (d166.recent_events.length > 8) d166.recent_events.shift();
         }
         flow.set(key166, d166);
-        if (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000) {
-            node.warn("ISSUE1667_ROUTING " + JSON.stringify({
+        if (global.get('communication_debug') === true &&
+            (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000)) {
+            node.log("ISSUE1667_ROUTING " + JSON.stringify({
                 direct_data: d166.direct_data,
                 legacy_fallback_data: d166.legacy_fallback_data,
                 setup: d166.setup,

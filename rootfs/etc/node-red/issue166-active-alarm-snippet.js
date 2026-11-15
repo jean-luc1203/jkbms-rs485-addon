@@ -66,8 +66,9 @@ try {
                 a1669.last_anomalies.shift();
         }
         flow.set(key1669,a1669);
-        if (!a1669.last_report_ts || now1669 - a1669.last_report_ts >= 60000) {
-            node.warn("ISSUE1669_ALARM_PASSIVE " + JSON.stringify({
+        if (global.get('communication_debug') === true &&
+            (!a1669.last_report_ts || now1669 - a1669.last_report_ts >= 60000)) {
+            node.log("ISSUE1669_ALARM_PASSIVE " + JSON.stringify({
                 seen:a1669.seen,valid_format:a1669.valid_format,
                 bad_length:a1669.bad_length,bad_function:a1669.bad_function,
                 bad_byte_count:a1669.bad_byte_count,bad_crc:a1669.bad_crc,

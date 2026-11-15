@@ -127,8 +127,9 @@ function issue166AuditPairing(kind166, current166, previousPending166, setupId16
         }
 
         flow.set(k166, d166);
-        if (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000) {
-            node.warn("ISSUE166_PAIRING_PASSIVE " + JSON.stringify({
+        if (global.get('communication_debug') === true &&
+            (!d166.last_report_ts || now166 - d166.last_report_ts >= 60000)) {
+            node.log("ISSUE166_PAIRING_PASSIVE " + JSON.stringify({
                 data_received: d166.data_received,
                 setup_received: d166.setup_received,
                 data_overwritten: d166.data_overwritten,
