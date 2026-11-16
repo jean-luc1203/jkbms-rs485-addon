@@ -48,11 +48,9 @@ fi
 mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
 cp /etc/node-red/flows.json /config/smartphoton_jkbms/
 
-# Legacy 4.1.13-rc1: apply the validated Issue #166 correction to the
-# pristine 4.1.12 flow before Node-RED starts. The patcher checks the
-# exact reference SHA-256 and fails closed if the baseline is unexpected.
-# Keep the normal production slug and persisted /config namespace.
-node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json /config/smartphoton_jkbms/flows.json || bashio::exit.nok "Issue166 production RC flow patch failed"
+# Legacy 4.1.14: the bundled flows already contain the released 4.1.13
+# Issue #166 changes; never re-apply the 4.1.12-only Issue166 patch.
+# The Issue #192 Premium HTML correction is applied at Docker build time.
 
 # Désinstallation des packages Node-RED conflictuels
 cd /config || bashio::exit.nok "Could not change directory to Node-RED"

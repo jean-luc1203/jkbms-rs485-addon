@@ -61,6 +61,8 @@ RUN apk update \
 
 # Copy root filesystem
 COPY rootfs /
+COPY issue192_patch.cjs /opt/issue192_patch.cjs
+RUN node /opt/issue192_patch.cjs && rm /opt/issue192_patch.cjs
 
 # Garantir les droits dans l'image Docker
 RUN chmod +x \
