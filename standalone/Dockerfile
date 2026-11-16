@@ -48,7 +48,7 @@ COPY standalone/envoptions.js \
      /usr/src/node-red/
 
 # Copy the core Node-RED implementation of the JKBMS addon
-COPY rootfs/etc/node-red/flows.json \
+COPY --chown=node:node rootfs/etc/node-red/flows.json \
      rootfs/etc/node-red/settings.js \
      /data/
 
@@ -56,8 +56,7 @@ COPY rootfs/etc/node-red/flows.json \
 # Standalone uses /data/flows.json, not /etc/node-red/flows.json.
 COPY --chown=node:node issue192_patch.cjs /usr/src/node-red/issue192_patch.cjs
 RUN node /usr/src/node-red/issue192_patch.cjs /data/flows.json \
-    && rm /usr/src/node-red/issue192_patch.cjs \
-    && chown -R node:node /data
+    && rm /usr/src/node-red/issue192_patch.cjs
 
 # Env variables
 ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
