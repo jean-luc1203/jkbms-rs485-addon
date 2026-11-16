@@ -5,7 +5,12 @@ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'issue192-'));
 const target=path.join(dir,'flows.json');
 try {
   fs.copyFileSync(base,target);
-  cp.execFileSync(process.execPath,[path.resolve(__dirname,'../issue192_patch.cjs'),target]);
+  const patchSource=fs.readFileSync(path.resolve(__dirname,'../issue192_patch.cjs'),'utf8');
+  const patchTemp=path.join(dir,'issue192_patch.cjs');
+  const patched=patchSource.replace("const path = '/etc/node-red/flows.json';", 'const path = '+JSON.stringify(target)+';');
+  assert.notEqual(patched,patchSource,'patch path override missing');
+  fs.writeFileSync(patchTemp,patched);
+  cp.execFileSync(process.execPath,[patchTemp]);
   const flows=JSON.parse(fs.readFileSync(target,'utf8'));
   const source=flows.find(n=>n.id==='c90f119270193bd9').func;
   function render(count,ids,{master=true,stale=[],missing=false}={}){
@@ -44,6 +49,10 @@ try {
   scenarios.push(['no discovery',4,[],{master:false,missing:true},[]]);
   scenarios.push(['all stale',4,[],{master:false,stale:[1,2,3]},[]]);
   scenarios.push(['configured count cap',3,[1,2,3],{},['master',1,2]]);
+  scenarios.push(['secondary disconnected',2,[],{stale:[2]},['master']]);
+  scenarios.push(['secondary returns',2,[2],{},['master',2]]);
+  scenarios.push(['address changed and old retained',2,[4],{stale:[2]},['master',4]]);
+  scenarios.push(['stale master with live slave',2,[4],{master:false,stale:['master']},[4]]);
   let count=0;
   for(const [name,total,ids,opts,expected] of scenarios){
     const result=render(total,ids,opts);
