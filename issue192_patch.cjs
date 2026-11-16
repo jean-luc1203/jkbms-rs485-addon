@@ -48,5 +48,5 @@ if (!home || typeof home.func !== 'string') throw new Error('Home Energy generat
 const oldHome = "if(v==='master')v='1';";
 if (home.func.split(oldHome).length !== 2) throw new Error('home energy master alias: expected exactly one match');
 home.func = home.func.replace(oldHome, "if(v==='master'){packs.add('master');return;}");
-fs.writeFileSync(path, JSON.stringify(flows, null, 2) + '\\n');
+fs.writeFileSync(path, JSON.stringify(flows, null, 2) + '\n');
 console.log('Issue #192 patch applied to', node.id);
