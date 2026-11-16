@@ -7,13 +7,13 @@ const replaceOnce = (from, to, label) => {
   if (node.func.split(from).length !== 2) throw new Error(label + ': expected exactly one match');
   node.func = node.func.replace(from, to);
 };
-replaceOnce(\`const bmsSlotsForHtml = [];
+replaceOnce(`const bmsSlotsForHtml = [];
 if (bmsBroadcastingEnabled) {
     bmsSlotsForHtml.push("master");
     for (let s = 2; s <= bmsTotalCountForHtml; s++) bmsSlotsForHtml.push(s);
 } else {
     for (let s = 1; s <= bmsTotalCountForHtml; s++) bmsSlotsForHtml.push(s);
-}\`, \`// Issue #192: use actual recent SETUP observations, never invented addresses.
+}`, `// Issue #192: use actual recent SETUP observations, never invented addresses.
 const bmsSlotsForHtml = [];
 if (bmsBroadcastingEnabled) {
     const seen = global.get("premium.dashboard_bms_seen");
@@ -32,14 +32,14 @@ if (bmsBroadcastingEnabled) {
     }
 } else {
     for (let s = 1; s <= bmsTotalCountForHtml; s++) bmsSlotsForHtml.push(s);
-}\`, 'server slots');
-replaceOnce(\`  if(configuredMaster){
+}`, 'server slots');
+replaceOnce(`  if(configuredMaster){
     BMS_BROADCASTING = true;
     return configured.sort((a,b)=>bmsSortKey(a)-bmsSortKey(b));
-  }\`, \`  if(BMS_BROADCASTING_FROM_CONFIG){
+  }`, `  if(BMS_BROADCASTING_FROM_CONFIG){
     // Server-generated slots are authoritative, including [] before discovery.
     BMS_BROADCASTING = true;
     return configured.sort((a,b)=>bmsSortKey(a)-bmsSortKey(b));
-  }\`, 'client slots');
+  }`, 'client slots');
 fs.writeFileSync(path, JSON.stringify(flows, null, 2) + '\n');
 console.log('Issue #192 patch applied to', node.id);
