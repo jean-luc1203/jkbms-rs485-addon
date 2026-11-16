@@ -52,12 +52,6 @@ COPY --chown=node:node rootfs/etc/node-red/flows.json \
      rootfs/etc/node-red/settings.js \
      /data/
 
-# Apply the same Issue #192 correction as the HAOS image.
-# Standalone uses /data/flows.json, not /etc/node-red/flows.json.
-COPY --chown=node:node issue192_patch.cjs /usr/src/node-red/issue192_patch.cjs
-RUN node /usr/src/node-red/issue192_patch.cjs /data/flows.json \
-    && rm /usr/src/node-red/issue192_patch.cjs
-
 # Env variables
 ENV NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
     PATH=/usr/src/node-red/node_modules/.bin:${PATH} \
