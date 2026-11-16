@@ -1,3 +1,17 @@
+## 4.1.14 — 2026-11-16
+
+### Corrected — Premium HTML dashboards ([#192](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/192))
+- In JK-BMS Premium HTML, use recently observed Broadcasting SETUP identities instead of assuming the Master is followed by addresses 2 through N. Supports BMS address 1 and non-consecutive addresses without inventing battery slots.
+- Ignore stale observed addresses and cap displayed slots to the configured BMS count. Before discovery, do not substitute fabricated slots.
+- In Home Energy House, keep the Master and slave BMS address 1 distinct when counting batteries.
+- Preserve the production add-on slug, options and dashboard port 1891, and retain the Legacy 4.1.13 identity/integrity fixes.
+
+### Validation and scope
+- JK-BMS Premium HTML checked on an isolated HAOS add-on with Master 0 and secondary BMS at addresses 1, 2, 3 and 4.
+- 17 automated scenarios and 34 server/browser assertions passed; the patch was also applied successfully to a copy of the bundled 590-node flow.
+- The Home Energy correction was checked in source/tests, **not yet validated on HAOS**. A complete Docker build and upgrade test were not performed before merge.
+- TCP gateway reconnection and stale LIVE indications observed during separate testing are **not addressed** by this release.
+
 ## 4.1.13 — 2026-11-15
 
 > **IMPORTANT — BACK UP HOME ASSISTANT BEFORE UPDATING.** Create a **full Home Assistant backup** that includes the JK-BMS Legacy add-on and its Supervisor-managed options. Keep a copy outside Home Assistant when possible. Retain the previous 4.1.12 backup in case a firmware-specific reply format is not supported by the stricter validation. A GitHub release is not by itself a one-click HAOS rollback.
