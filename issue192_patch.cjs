@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = '/etc/node-red/flows.json';
+const path = process.argv[2] || '/etc/node-red/flows.json';
 const flows = JSON.parse(fs.readFileSync(path, 'utf8'));
 const node = flows.find(n => n.id === 'c90f119270193bd9');
 if (!node || typeof node.func !== 'string') throw new Error('Premium generator not found');
