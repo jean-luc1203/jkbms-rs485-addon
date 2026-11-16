@@ -13,6 +13,9 @@ on:
       - '.github/workflows/standalone-regression.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   standalone:
     runs-on: ubuntu-latest
@@ -59,3 +62,32 @@ jobs:
       - name: Cleanup
         if: always()
         run: docker rm -f jkbms-ci 2>/dev/null || true
+      - name: Consolidate canonical flow after successful Docker smoke test
+        if: github.event_name == 'push' && github.ref_name == 'maintenance/legacy-flow-consolidation-docker'
+        run: |
+          test "$(git hash-object rootfs/etc/node-red/flows.json)" = "3467962b30df2ea0d2c4855cccd7ead9d542d913"
+          node issue192_patch.cjs rootfs/etc/node-red/flows.json
+          node - <<'NODE'
+          const fs = require('fs');
+          const flows = JSON.parse(fs.readFileSync('rootfs/etc/node-red/flows.json','utf8'));
+          if(flows.length !== 590) throw Error('Expected 590 nodes');
+          for(const n of flows.filter(n=>n.type==='function')) new Function(n.func);
+          NODE
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('Dockerfile');s=p.read_text()
+          a='COPY issue192_patch.cjs /opt/issue192_patch.cjs\nRUN node /opt/issue192_patch.cjs && rm /opt/issue192_patch.cjs\n'
+          assert s.count(a)==1
+          p.write_text(s.replace(a,''))
+          p=Path('standalone/Dockerfile');s=p.read_text()
+          a=s.index('# Apply the same Issue #192 correction as the HAOS image.')
+          b=s.index('# Env variables',a)
+          p.write_text(s[:a]+s[b:])
+          Path('issue192_patch.cjs').unlink()
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rootfs/etc/node-red/flows.json Dockerfile standalone/Dockerfile issue192_patch.cjs
+          git diff --cached --check
+          git commit -m 'refactor: integrate issue 192 into canonical flows.json'
+          git push origin HEAD:maintenance/legacy-flow-consolidation-docker
