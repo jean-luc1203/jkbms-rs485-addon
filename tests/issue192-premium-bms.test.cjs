@@ -13,6 +13,16 @@ try {
   cp.execFileSync(process.execPath,[patchTemp]);
   const flows=JSON.parse(fs.readFileSync(target,'utf8'));
   const source=flows.find(n=>n.id==='c90f119270193bd9').func;
+  // The Home Energy fallback must not collapse Master 0 and slave address 1.
+  const homeSource=flows.find(n=>n.id==='9612d6721a03dd26').func;
+  assert(homeSource.includes("if(v==='master'){packs.add('master');return;}"),'home energy master identity missing');
+  assert(!homeSource.includes("if(v==='master')v='1';"),'home energy still aliases master to 1');
+  const packAdd=homeSource.match(/function addPack\\(v\\)\\{[\\s\\S]*?\\n  \\}/);
+  assert(packAdd,'home energy addPack not found');
+  const packs=new Set();
+  vm.runInNewContext(packAdd[0]+'\\naddPack("master");addPack("1");addPack("2");', {packs,Number,String,Set},{timeout:1000});
+  assert.deepEqual([...packs].sort(),['1','2','master'],'master and BMS 1 must count separately');
+
   function render(count,ids,{master=true,stale=[],missing=false}={}){
     const now=Date.now(),seen={};
     if(master)seen.master=now;
