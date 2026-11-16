@@ -1,7 +1,7 @@
 ---
-name: "JK-BMS wired management"
-version: 4.1.13
-slug: "smartphoton_jkbms"
+name: "JK-BMS Legacy Issue 192 TEST"
+version: 4.1.13-issue192-test
+slug: "smartphoton_jkbms_issue192"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://domosimple.eu/forum/thread-917.html
 ingress: false
