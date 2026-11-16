@@ -48,9 +48,9 @@ fi
 mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
 cp /etc/node-red/flows.json /config/smartphoton_jkbms/
 
-# Issue #192 test: flows.json already contains the released Legacy 4.1.13
-# changes from Issue #166. Do not re-apply the 4.1.12-only Issue166 patch.
-# The Issue192 Premium HTML correction is applied at Docker build time.
+# Legacy 4.1.14: the bundled flows already contain the released 4.1.13
+# Issue #166 changes; never re-apply the 4.1.12-only Issue166 patch.
+# The Issue #192 Premium HTML correction is applied at Docker build time.
 
 # Désinstallation des packages Node-RED conflictuels
 cd /config || bashio::exit.nok "Could not change directory to Node-RED"
