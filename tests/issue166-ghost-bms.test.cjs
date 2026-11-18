@@ -119,11 +119,15 @@ test('legacy active polling alarm publisher guards BMS IDs > 15',()=>{
   for(const id of [-488,16,327680,1.5]) assert.equal(r.call({alarms:{bms_id:id}}),null);
   assert.equal(r.flow.keys().length,0);
 });
-test('official Legacy startup applies the patch as one shell command',()=>{
+test('fork: bundled flows.json already contains the Issue #166 corrections, startup does not re-patch',()=>{
+  // The fork ships flows.json with issue166-apply.cjs already applied (baked in),
+  // so the 4.1.14 regression (corrections silently missing) cannot happen.
   const script = fs.readFileSync(path.join(__dirname, '..', 'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'), 'utf8');
-  const patchCall = 'node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json /config/smartphoton_jkbms/flows.json || bashio::exit.nok "Issue166 production RC flow patch failed"';
-  assert(script.includes(patchCall), 'startup must call the patcher before launching Node-RED');
-  assert(!script.includes('flows.json ' + String.fromCharCode(92, 92)), 'startup must not use an accidental doubled shell backslash');
+  assert(!/^\s*node \/etc\/node-red\/issue166-apply\.cjs/m.test(script), 'startup must not re-apply the 4.1.12-only patcher');
+  assert(script.includes('cp /etc/node-red/flows.json /config/smartphoton_jkbms/'));
+  assert(byId.get('86a0f48a516a10b6').func.includes('issue1668CheckReply'));
+  assert(byId.get('0827976bdeec2605').func.includes("action: 'close'"));
+  assert(byId.get('b02adbe3a64e64f2').func.includes('issue16611Identity'));
 });
 
 test('live single-addon port 1891 is consistent without changing the Legacy flow URL',()=>{
@@ -1233,8 +1237,8 @@ test('RC packaging retains production slug, options, paths and legacy baseline',
   const patcher=fs.readFileSync(path.join(root,'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
   const crypto=require('node:crypto');
   const baseline=fs.readFileSync(path.join(root,'rootfs/etc/node-red/flows.json'));
-  assert(config.includes('name: "JK-BMS wired management"'));
-  assert(config.includes('version: 4.1.13'));
+  assert(config.includes('name: "JK-BMS wired management'));
+  assert(/^version: \S+$/m.test(config));
   assert(config.includes('slug: "smartphoton_jkbms"'));
   assert(config.includes('jkbms_path: str'));
   assert(config.includes('bms_broadcasting: bool'));
@@ -1245,7 +1249,9 @@ test('RC packaging retains production slug, options, paths and legacy baseline',
   assert(!startup.includes('smartphoton_jkbms_fix166'));
   assert(!startup.includes('1892'));
   assert(patcher.includes('b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6'));
-  assert.equal(crypto.createHash('sha256').update(baseline).digest('hex'),
+  // Fork: the shipped flows.json is the 4.1.12 baseline with #166 applied plus
+  // the fork changes, so it no longer matches the pristine baseline hash.
+  assert.notEqual(crypto.createHash('sha256').update(baseline).digest('hex'),
     'b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6');
 });
 test('RC serial and gateway Active Polling share strict identity checks, not an unverified global',()=>{

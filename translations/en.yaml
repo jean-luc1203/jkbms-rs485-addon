@@ -50,3 +50,7 @@ configuration:
   Send_bip:
     name: "📊 Add-on usage"
     description: "Enable a beep to be sent at start-up. No private data is transmitted. Processing complies with the GDPR."
+
+  dashboard_language:
+    name: "🌐 Language"
+    description: "Language of the Home Assistant entity names and of the built-in dashboard (port 1891): de, en or fr. Entity IDs do not change. Premium dashboards: de is shown as en."

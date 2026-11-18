@@ -1,3 +1,5 @@
+> **Fork Xander2980 (4.2.0):** decoder fixes, more JK-BMS values, English code and German/English/French entity names. See [CHANGELOG.md](CHANGELOG.md). Install: Home Assistant → Add-on Store → ⋮ → Repositories → `https://github.com/Xander2980/jkbms-rs485-addon`.
+
 ⭐ **If this add-on is useful to you, please star this repository!**  
 It helps other Home Assistant users discover the project and supports future development.
 

@@ -49,3 +49,7 @@ configuration:
   Send_bip:
     name: "📊 Utilisation de l'Add-on"
     description: "Activer l'envoi d'un bip au démarrage. Aucune donnée privée n'est transmise. Le traitement est conforme au RGPD."
+
+  dashboard_language:
+    name: "🌐 Langue"
+    description: "Langue des noms d'entités Home Assistant et du tableau de bord intégré (port 1891) : de, en ou fr. Les entity_id ne changent pas. Tableaux Premium : de est affiché en en."

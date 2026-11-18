@@ -2,24 +2,24 @@
 # shellcheck shell=bash
 # ==============================================================================
 # Home Assistant Community Add-on: Node-RED
-# Configure Node-RED avant exécution
+# Prepare Node-RED before start
 # ==============================================================================
 
-# Assure que la configuration existe
+# Make sure the configuration exists
 if ! bashio::fs.directory_exists '/config/smartphoton_jkbms/'; then
     mkdir -p /config/smartphoton_jkbms/nodes \
         || bashio::exit.nok "Failed to create node-red configuration directory"
 
-    # Copie les fichiers modèles
+    # Copy the template files
     cp /etc/node-red/flows.json /config/smartphoton_jkbms/
     cp /etc/node-red/settings.js /config/smartphoton_jkbms/
 
-    # Création d'un ID de flow aléatoire
+    # Random flow id
     id=$(node -e "console.log((1+Math.random()*4294967295).toString(16));")
     sed -i "s/%%ID%%/${id}/" "/config/smartphoton_jkbms/flows.json"
 fi
 
-# Vérification de version
+# Version check
 if ! bashio::fs.file_exists '/config/smartphoton_jkbms/version'; then
     touch /config/smartphoton_jkbms/version
     VERSION=$(bashio::addon.version)
@@ -31,7 +31,7 @@ else
     VERSIONOLD=$(cat /config/smartphoton_jkbms/version)
     VERSION=$(bashio::addon.version)
     if [ $VERSIONOLD != $VERSION ]; then
-        bashio::log.info "Mise a jour de la nouvelle version"
+        bashio::log.info "Updating to the new version"
         bashio::log.info "Module Addon Version number: ${VERSION}"
         if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
             rm /config/smartphoton_jkbms/flows.backup
@@ -41,18 +41,19 @@ else
     fi
 fi
 
-# Remplace le fichier flows par celui d'origine
+# Replace the flows file with the bundled one
 if bashio::fs.file_exists '/config/smartphoton_jkbms/flows.backup'; then
     rm /config/smartphoton_jkbms/flows.backup
 fi
 mv /config/smartphoton_jkbms/flows.json /config/smartphoton_jkbms/flows.backup
 cp /etc/node-red/flows.json /config/smartphoton_jkbms/
 
-# Legacy 4.1.14: the bundled flows already contain the released 4.1.13
-# Issue #166 changes; never re-apply the 4.1.12-only Issue166 patch.
+# Fork 4.2.0: the bundled flows.json already contains the Issue #166 changes
+# (issue166-apply.cjs applied once in the repository); never re-apply the
+# 4.1.12-only Issue166 patch at startup.
 # The Issue #192 Premium HTML correction is applied at Docker build time.
 
-# Désinstallation des packages Node-RED conflictuels
+# Uninstall conflicting Node-RED packages
 cd /config || bashio::exit.nok "Could not change directory to Node-RED"
 if bashio::fs.file_exists "/config/package.json"; then
     npm uninstall \

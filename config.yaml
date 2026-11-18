@@ -1,9 +1,9 @@
 ---
-name: "JK-BMS wired management"
-version: 4.1.14
+name: "JK-BMS wired management (fork Xander2980)"
+version: 4.2.0
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
-url: https://domosimple.eu/forum/thread-917.html
+url: https://github.com/Xander2980/jkbms-rs485-addon
 ingress: false
 ingress_stream: false
 panel_icon: mdi:sitemap
@@ -26,9 +26,13 @@ host_network: true
 auth_api: true
 uart: true
 map:
-  - config:rw
-  - media:rw
-  - share:rw
+  - type: homeassistant_config
+    read_only: false
+    path: /config
+  - type: media
+    read_only: false
+  - type: share
+    read_only: false
 
 options:
   # JK-BMS Configuration
@@ -60,7 +64,7 @@ options:
   # ============================================================
   dashboard_section: "────────── DASHBOARD ──────────"
   dashboard_custom_cards_installed: false
-  dashboard_language: "fr"
+  dashboard_language: "en"
   dashboard_mode: "legacy"
 
 schema:
@@ -84,7 +88,7 @@ schema:
 
   dashboard_section: str?
   dashboard_custom_cards_installed: bool
-  dashboard_language: list(fr|en)
+  dashboard_language: list(de|en|fr)
   dashboard_mode: list(legacy|html|both)
 
   # Telemetry
