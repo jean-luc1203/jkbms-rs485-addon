@@ -1,0 +1,35 @@
+name: Canonical Legacy flow regression
+on:
+  push:
+    branches: [maintenance/legacy-flow-consolidation-docker]
+  pull_request:
+    paths:
+      - 'rootfs/**'
+      - 'tests/**'
+      - 'config.yaml'
+      - 'Dockerfile'
+      - 'standalone/**'
+      - '.github/workflows/legacy-flow-regression.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: test -x rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
+      - run: node --test tests/*.cjs
+      - run: bash -n rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
+      - run: sh -n standalone/entrypoint.sh
+      - name: Build HAOS image (amd64)
+        run: docker build --build-arg BUILD_FROM=ghcr.io/hassio-addons/base:18.1.0 -t legacy-haos:ci .
+      - name: Verify packaged HAOS canonical flow
+        run: |
+          id=$(docker create legacy-haos:ci)
+          trap 'docker rm "$id" >/dev/null' EXIT
+          docker cp "$id:/etc/node-red/flows.json" /tmp/haos-flows.json
+          cmp rootfs/etc/node-red/flows.json /tmp/haos-flows.json

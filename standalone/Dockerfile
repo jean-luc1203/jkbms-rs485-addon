@@ -1,5 +1,5 @@
 # Use the base Node Alpine image
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Create directories and set ownership to existing node user
 RUN mkdir -p /usr/src/node-red /data \
@@ -48,8 +48,7 @@ COPY standalone/envoptions.js \
      /usr/src/node-red/
 
 # Copy the core Node-RED implementation of the JKBMS addon
-COPY rootfs/etc/node-red/config.js \
-     rootfs/etc/node-red/flows.json \
+COPY --chown=node:node rootfs/etc/node-red/flows.json \
      rootfs/etc/node-red/settings.js \
      /data/
 

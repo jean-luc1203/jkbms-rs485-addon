@@ -6,9 +6,9 @@ node /usr/src/node-red/envoptions.js
 
 # Setup handler to stop of child process grasefully
 trap stop SIGINT SIGTERM
-function stop() {
-    kill $CHILD_PID
-    wait $CHILD_PID
+stop() {
+    kill "$CHILD_PID" 2>/dev/null || true
+    wait "$CHILD_PID" 2>/dev/null || true
 }
 
 # Run Node-RED as in original Node-RED docker image
