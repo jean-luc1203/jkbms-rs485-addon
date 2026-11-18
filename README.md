@@ -74,7 +74,7 @@ The dashboards come from the Lovelace card
 **[bms-battery-cells-card-jkbms](https://github.com/Xander2980/bms-battery-cells-card-jkbms)**
 (fork of the BMS Battery Cells Card by jayjojayson). One line of configuration per BMS:
 
-<img width="96%" alt="Three JK-BMS with the JK-BMS card" src="https://raw.githubusercontent.com/Xander2980/bms-battery-cells-card-jkbms/main/docs/jk-dashboard.png" />
+<img width="96%" alt="Three JK-BMS with the JK-BMS card" src="images/fork/card-dashboard.png" />
 
 
 
