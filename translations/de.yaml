@@ -48,4 +48,12 @@ configuration:
 
   Send_bip:
     name: "📊 Add-on Nutzung"
-    description: "Aktiviert einen Signalton beim Start. Es werden keine privaten Daten übertragen. Die Verarbeitung erfolgt gemäß DSGVO."
+    description: "Sendet beim Start und täglich um 15:00 Uhr eine anonyme Nutzungsmeldung an den Server des Original-Projekts (smartphoton.ch): nur eine Kennzahl für das System (HAOS/Docker/Linux/Windows). Kein Ton. Für die Funktion des Add-ons nicht nötig."
+
+  dashboard_language:
+    name: "🌐 Sprache"
+    description: "Sprache der Entitätsnamen in Home Assistant und des eingebauten Dashboards (Port 1891): de, en oder fr. Entity-IDs ändern sich nicht."
+
+  create_dashboard:
+    name: "🧩 Dashboard mit JK-BMS-Karte anlegen"
+    description: "Legt in Home Assistant das Dashboard „JK-BMS“ an (eine Spalte je BMS) mit der Karte custom:bms-battery-cells-card-jkbms. Die Karte vorher über HACS installieren (Repository Xander2980/bms-battery-cells-card-jkbms). Das Dashboard wird bei jedem Start neu geschrieben."

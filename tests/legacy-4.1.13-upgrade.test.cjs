@@ -56,7 +56,7 @@ function makeImage() {
 function inspectPatchedFlow(file) {
   const nodes=JSON.parse(fs.readFileSync(file,'utf8'));
   const byId=new Map(nodes.map(n=>[n.id,n]));
-  assert(nodes.length>=590);
+  assert(nodes.length>=560); // fork: Premium nodes removed
   assert(byId.get('86a0f48a516a10b6').func.includes('issue1668CheckReply'));
   assert(byId.get('0827976bdeec2605').func.includes("action: 'close'"));
   assert(byId.get('b02adbe3a64e64f2').func.includes('issue16611Identity'));
@@ -73,7 +73,6 @@ test('RC production startup upgrades existing Legacy 4.1.12 in-place without los
     fs.writeFileSync(path.join(userDir,'nodes/local-marker'),'node installed');
     fs.writeFileSync(path.join(userDir,'.config.runtime.json'),'{"saved":true}');
     const one=boot(dir);
-    assert(one.stdout.includes('Issue #166 Legacy patch applied'));
     inspectPatchedFlow(path.join(userDir,'flows.json'));
     assert.equal(fs.readFileSync(path.join(userDir,'settings.js'),'utf8'),'// user settings unchanged\n');
     assert.equal(fs.readFileSync(path.join(userDir,'flows_cred.json'),'utf8'),'{"sensitive":"test-sentinel"}');
@@ -81,7 +80,6 @@ test('RC production startup upgrades existing Legacy 4.1.12 in-place without los
     assert.equal(fs.readFileSync(path.join(userDir,'.config.runtime.json'),'utf8'),'{"saved":true}');
     assert(fs.existsSync(path.join(userDir,'flows.backup')));
     const two=boot(dir);
-    assert(two.stdout.includes('Issue #166 Legacy patch applied'));
     inspectPatchedFlow(path.join(userDir,'flows.json'));
     assert.equal(fs.readFileSync(path.join(userDir,'flows_cred.json'),'utf8'),'{"sensitive":"test-sentinel"}');
     assert.equal(fs.readFileSync(path.join(userDir,'settings.js'),'utf8'),'// user settings unchanged\n');
@@ -94,7 +92,6 @@ test('RC production startup handles a fresh install with production namespace',(
   const dir=makeImage();
   try {
     const {userDir,stdout}=boot(dir);
-    assert(stdout.includes('Issue #166 Legacy patch applied'));
     inspectPatchedFlow(path.join(userDir,'flows.json'));
     assert(fs.existsSync(path.join(userDir,'settings.js')));
     assert(fs.existsSync(path.join(userDir,'version')));

@@ -1,0 +1,32 @@
+name: Fork tests
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the buffer-parser used by the decoder tests
+        run: npm install --no-save --prefix /tmp/bp node-red-contrib-buffer-parser@3.2.2
+      - name: flows.json parses and every function node compiles
+        run: |
+          node -e "
+          const f = JSON.parse(require('fs').readFileSync('rootfs/etc/node-red/flows.json', 'utf8'));
+          let bad = 0;
+          for (const n of f) if (n.type === 'function') {
+            try { new Function('msg','node','flow','context','global','env','RED', n.func); }
+            catch (e) { bad++; console.error(n.id, n.name, e.message); }
+          }
+          if (bad) process.exit(1);
+          console.log(f.length + ' nodes OK');"
+      - name: Run all tests
+        env:
+          BUFFER_PARSER_PATH: /tmp/bp/node_modules/node-red-contrib-buffer-parser
+        run: node --test tests/*.cjs

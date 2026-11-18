@@ -49,4 +49,12 @@ configuration:
 
   Send_bip:
     name: "📊 Add-on usage"
-    description: "Enable a beep to be sent at start-up. No private data is transmitted. Processing complies with the GDPR."
+    description: "Sends an anonymous usage ping to the server of the original project (smartphoton.ch) at start and daily at 15:00: only a code for the system type (HAOS/Docker/Linux/Windows). Not a sound. Not needed for the add-on to work."
+
+  dashboard_language:
+    name: "🌐 Language"
+    description: "Language of the Home Assistant entity names and of the built-in dashboard (port 1891): de, en or fr. Entity IDs do not change."
+
+  create_dashboard:
+    name: "🧩 Create dashboard with the JK-BMS card"
+    description: "Creates the Home Assistant dashboard JK-BMS (one column per BMS) using the card custom:bms-battery-cells-card-jkbms. Install the card first via HACS (repository Xander2980/bms-battery-cells-card-jkbms). The dashboard is rewritten on every start."

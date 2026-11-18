@@ -61,10 +61,8 @@ RUN apk update \
 
 # Copy root filesystem
 COPY rootfs /
-COPY issue192_patch.cjs /opt/issue192_patch.cjs
-RUN node /opt/issue192_patch.cjs && rm /opt/issue192_patch.cjs
 
-# Garantir les droits dans l'image Docker
+# Make the service scripts executable
 RUN chmod +x \
     /etc/s6-overlay/s6-rc.d/init-customizations/run \
     /etc/s6-overlay/s6-rc.d/init-customizations/up \
