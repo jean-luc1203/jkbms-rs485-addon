@@ -1,6 +1,6 @@
 ---
 name: "JK-BMS wired management (fork Xander2980)"
-version: 4.2.1
+version: 4.3.0
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
 url: https://github.com/Xander2980/jkbms-rs485-addon
@@ -53,19 +53,10 @@ options:
   # Telemetry
   Send_bip: true
 
-  # ============================================================
-  # 👑 PREMIUM
-  # ============================================================
-  premium_section: "────────── PREMIUM ──────────"
-  premium_key: ""
-
-  # ============================================================
-  # 🎨 DASHBOARD
-  # ============================================================
-  dashboard_section: "────────── DASHBOARD ──────────"
-  dashboard_custom_cards_installed: false
+  # Language of the Home Assistant entity names (de / en / fr)
   dashboard_language: "en"
-  dashboard_mode: "legacy"
+  # Create a Home Assistant dashboard "JK-BMS" with the JK-BMS card
+  create_dashboard: false
 
 schema:
   # JK-BMS Configuration
@@ -83,13 +74,8 @@ schema:
   mqttuser: str?
   mqttpass: password?
 
-  premium_section: str?
-  premium_key: str?
-
-  dashboard_section: str?
-  dashboard_custom_cards_installed: bool
   dashboard_language: list(de|en|fr)
-  dashboard_mode: list(legacy|html|both)
+  create_dashboard: bool
 
   # Telemetry
   Send_bip: bool

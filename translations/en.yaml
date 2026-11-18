@@ -53,4 +53,8 @@ configuration:
 
   dashboard_language:
     name: "🌐 Language"
-    description: "Language of the Home Assistant entity names and of the built-in dashboard (port 1891): de, en or fr. Entity IDs do not change. Premium dashboards: de is shown as en."
+    description: "Language of the Home Assistant entity names and of the built-in dashboard (port 1891): de, en or fr. Entity IDs do not change."
+
+  create_dashboard:
+    name: "🧩 Create dashboard with the JK-BMS card"
+    description: "Creates the Home Assistant dashboard JK-BMS (one column per BMS) using the card custom:bms-battery-cells-card-jkbms. Install the card first via HACS (repository Xander2980/bms-battery-cells-card-jkbms). The dashboard is rewritten on every start."

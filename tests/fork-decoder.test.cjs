@@ -247,13 +247,41 @@ test('entity names follow dashboard_language, entity ids do not', { skip }, () =
 
 test('add-on option parsing accepts de/en/fr', () => {
   const init = byId.get('af582d4d2d8a4a69');
-  for (const [opt, ui, premium] of [['de', 'de', 'en'], ['en', 'en', 'en'], ['fr', 'fr', 'fr']]) {
+  for (const [opt, ui] of [['de', 'de'], ['en', 'en'], ['fr', 'fr'], ['xx', 'en']]) {
     const fn = new Function('msg', 'node', 'flow', 'context', 'global', 'env', init.func);
     const g = store(); g.set('fs', fs);
     const node = { warn() {}, log() {}, error(e) { throw new Error(String(e)); }, status() {} };
     const env = { get: () => '' };
     fn({ payload: { dashboard_language: opt, jkbms_count: 1, mqttadresse_port: 'core-mosquitto:1883' } }, node, store(), store(), g, env);
     assert.equal(g.get('ui.language'), ui);
-    assert.equal(g.get('dashboard.language'), premium, 'Premium dashboards only know en/fr');
+    assert.equal(g.get('dashboard.language'), ui);
   }
+});
+
+test('Premium components are removed', () => {
+  assert.equal(flows.find(n => n.type === 'tab' && /premium/i.test(n.label || '')), undefined);
+  for (const id of ['c90f119270193bd9', 'fb8049485a859112', '4d1804a8717de398']) assert.equal(byId.get(id), undefined);
+  const ids = new Set(flows.map(n => n.id));
+  for (const n of flows) for (const out of n.wires || []) for (const t of out) assert(ids.has(t), `${n.id} wires to missing ${t}`);
+  const cleanup = runFunction('d1fc91e6f90d7cbb', {}).result[0];
+  assert(cleanup.every(m => m.payload === '' && m.retain === true));
+});
+
+test('optional dashboard uses the JK-BMS card for every seen BMS', () => {
+  const written = {};
+  const g = store();
+  g.set('fs', { mkdirSync() {}, writeFileSync(file, data) { written[file] = JSON.parse(data); } });
+  g.set('ui.language', 'de');
+  g.set('nb_jkbms', 3); g.set('bms_broadcasting', true);
+  assert.equal(runFunction('c0de0000dash0002', {}, { global: g }).result, null, 'off by default');
+  g.set('create_dashboard', true);
+  const out = runFunction('c0de0000dash0002', {}, { global: g }).result;
+  const dash = written[out.payload];
+  assert.equal(dash.dashboard_meta.url_path, 'jk-bms');
+  const cards = dash.config.views[0].sections.map(s => s.cards[0]);
+  assert.deepEqual(cards.map(c => c.jk_prefix), ['bms_master', 'bms_1', 'bms_2']);
+  assert(cards.every(c => c.type === 'custom:bms-battery-cells-card-jkbms'));
+  assert.equal(cards[0].title, 'Master-BMS');
+  const exec = byId.get('c0de0000dash0003');
+  assert(exec.command.includes('/config/dashboards/jk_bms_card.json'));
 });

@@ -1,759 +1,149 @@
-> **Fork Xander2980 (4.2.0):** decoder fixes, more JK-BMS values, English code and German/English/French entity names. See [CHANGELOG.md](CHANGELOG.md). Install: Home Assistant → Add-on Store → ⋮ → Repositories → `https://github.com/Xander2980/jkbms-rs485-addon`.
+<p align="center"><img src="images/fork/logo.svg" alt="JK-BMS RS485 add-on" width="420"></p>
 
-⭐ **If this add-on is useful to you, please star this repository!**  
-It helps other Home Assistant users discover the project and supports future development.
+# JK-BMS RS485 add-on for Home Assistant (fork Xander2980)
 
-[![GitHub stars](https://img.shields.io/github/stars/jean-luc1203/jkbms-rs485-addon?style=social)](https://github.com/jean-luc1203/jkbms-rs485-addon/stargazers)
-[![Active installations](https://img.shields.io/badge/active_installations-8300+-brightgreen)](https://github.com/jean-luc1203/jkbms-rs485-addon)
-[![Countries](https://img.shields.io/badge/countries-67+-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon)
-[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Compatible-41BDF5)](https://www.home-assistant.io/)
-[![MQTT](https://img.shields.io/badge/MQTT-Compatible-green)](https://mqtt.org/)
-[![Docker](https://img.shields.io/badge/Docker-Supported-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon/tree/main/standalone)
-[![Community Forum](https://img.shields.io/badge/community-forum-blue)](https://github.com/jean-luc1203/jkbms-rs485-addon/discussions)
+Home Assistant add-on that reads **JK-BMS** battery management systems (JK-PB / "JK02_32S" protocol) over
+**RS485** — USB adapter or RS485-to-Ethernet/Wi-Fi gateway — or **CAN bus**, and publishes everything to
+Home Assistant through **MQTT Discovery**.
 
----
+This is a fork of the [SmartPhoton JK-BMS add-on](https://github.com/jean-luc1203/jkbms-rs485-addon) by
+Jean-Luc Martinelli. It keeps the proven Node-RED engine and adds:
 
-# SmartPhoton JK-BMS RS485 & CAN Bus Add-on
+- **Decoder fixes** checked byte by byte against [syssi/esphome-jk-bms](https://github.com/syssi/esphome-jk-bms)
+- **More values** that the BMS already sends but were not decoded
+- **English code**, and entity names in **German, English or French**
+- The **JK-BMS card** for Home Assistant instead of the Premium dashboards (see below)
+- The Issue #166 corrections built in (they were missing in upstream 4.1.14)
 
-> **10'000+ installations worldwide** · **Community-driven development** · **Professional Home Assistant integration**
-
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/s/b704b5561d)
-
-
-**SmartPhoton JK-BMS** is a professional Home Assistant add-on for monitoring, controlling and integrating JK-BMS battery management systems through:
-
-- **RS485 USB adapters**
-- **RS485 TCP/IP gateways**
-- **CAN Bus**
-- **MQTT Discovery**
-- **Home Assistant dashboards**
-- **Optional SmartPhoton Premium dashboards**
-
-It transforms Home Assistant into a complete battery monitoring and energy management platform with multi-BMS support, advanced diagnostics, alarm management, safer operating modes and automatic dashboard generation.
-
----
-
-## 🎬 Latest video: major update + Premium dashboards
-
-The latest video presents the main improvements made since the previous release and introduces the new SmartPhoton Premium dashboard ecosystem.
-
-▶️ **Watch the update video:**  
-https://youtu.be/IA0ijoGuG54
-
----
-
-## ✨ New: SmartPhoton Premium Dashboards
-
-The biggest visible change is the introduction of **auto-generated SmartPhoton Premium dashboards**.
-
-Premium dashboards are designed for users who want a clean, professional and ready-to-use Home Assistant energy interface without manually building Lovelace cards, YAML dashboards or custom navigation.
-
-### What Premium adds
-
-- Automatic dashboard generation
-- No manual YAML editing
-- No manual Lovelace card creation
-- Modern HTML dashboard
-- Legacy Home Assistant Lovelace dashboard
-- Dynamic module menus
-- Multi-BMS visual overview
-- Individual BMS pages
-- Cell voltage diagnostics
-- Alarm and status views
-- Settings pages with safety-aware read-only behavior
-- French and English dashboard generation
-- SmartPhoton ecosystem integration
-
-### Modern Smart Energy dashboard preview
-
-![Smart Energy Premium House Dashboard](images/house.png)
-
-### JK-BMS Premium dashboard preview
-
-![Smart Energy Premium JK Dashboard](images/jk.png)
-
----
-
-## Free vs Premium
-
-| Area | Free add-on | Premium dashboards |
-|---|---|---|
-| Read JK-BMS data | ✅ Yes | ✅ Yes |
-| RS485 USB support | ✅ Yes | ✅ Yes |
-| RS485 TCP/IP gateway support | ✅ Yes | ✅ Yes |
-| CAN Bus support | ✅ Yes | ✅ Yes |
-| MQTT Discovery | ✅ Yes | ✅ Yes |
-| Home Assistant entities | ✅ Yes | ✅ Yes |
-| Multi-BMS monitoring | ✅ Yes | ✅ Yes |
-| Alarm monitoring | ✅ Yes | ✅ Yes |
-| Unified communication diagnostics | ✅ Yes | ✅ Yes |
-| Legacy dashboard generation | Limited / manual | ✅ Automatic |
-| Modern HTML dashboard | ❌ No | ✅ Yes |
-| Dynamic module menus | ❌ No | ✅ Yes |
-| SmartPhoton ecosystem visual integration | ❌ No | ✅ Yes |
-| Professional ready-to-use interface | Manual work required | ✅ Automatic |
-
-The free add-on remains fully usable for monitoring and integrating JK-BMS systems into Home Assistant.
-
-Premium dashboards are optional. They are intended for users who want a ready-to-use professional interface and who want to support the long-term development of the project.
-
----
-
-## Main improvements in recent versions
-
-Recent development focused on communication reliability, real-world multi-BMS installations and faster troubleshooting.
-
-### More reliable frame reconstruction
-
-The communication layer now rebuilds frames split across several serial or TCP reads and separates multiple frames received in the same buffer.
-
-This improves reliability with USB-RS485 adapters and RS485-to-TCP gateways without treating normal transport fragmentation as a communication fault.
-
-### Unified communication diagnostics
-
-The same diagnostic system now supports both RS485 architectures:
-
-- **Active Polling**: SmartPhoton acts as RS485 master and polls each configured BMS.
-- **Broadcast**: one JK-BMS acts as RS485 master while SmartPhoton listens to the bus.
-
-The operating mode is detected automatically and the dashboard displays only the relevant counters.
-
-### Health score and incident memory
-
-The diagnostics provide:
-
-- a clear `healthy`, `degraded` or `communication_error` state;
-- a communication quality score from `0` to `100`;
-- a readable explanation of the current condition;
-- persistent memory of the worst incident observed.
-
-Active Polling diagnostics include requests, responses, latency, timeouts, polling cycles and per-BMS health. Broadcast diagnostics include serial freshness, buffers, bytes, frame reconstruction and detected BMS units.
-
-Normal transport patterns such as short buffers or several frame headers in one buffer are shown as informational observations when valid frames are reconstructed correctly, preventing false alarms.
-
-### Multi-BMS and MQTT Discovery improvements
-
-The add-on supports installations with one or many JK-BMS units, while devices and entities are created automatically in Home Assistant through MQTT Discovery.
-
-### Safer Broadcast mode
-
-When SmartPhoton is listening to a BMS-controlled RS485 bus, settings are shown as read-only where direct editing would not be safe or technically valid.
-
----
-
-## What is this add-on?
-
-SmartPhoton JK-BMS is a professional-grade monitoring and control solution for JK-BMS battery management systems.
-
-It provides:
-
-- Real-time battery monitoring
-- Multi-BMS management
-- Home Assistant MQTT Discovery
-- RS485 USB communication
-- RS485 TCP/IP gateway support
-- CAN Bus support
-- Alarm monitoring
-- Direct configuration from Home Assistant when technically safe
-- Optional Premium dashboard generation
-- Modular integration with the SmartPhoton ecosystem
-
-No expensive proprietary software is required.
-
----
-
-## Supported BMS models
-
-Supported JK-BMS models include:
-
-- PB2A16S20P
-- PB2A16S15P
-- PB1A16S15P
-- PB1A16S10P
-- PB2A16S30P
-- All compatible models with firmware 14, 15 or 19
-- Battery packs from **1S to 16S**
-
----
-
-## ⚡ Key features
-
-| Feature | Description |
-|---|---|
-| Variable cell count support | Automatically adapts to battery packs from 1S to 16S |
-| Full configuration UI | Change BMS settings directly from Home Assistant when supported |
-| Multiple connectivity options | RS485 USB, RS485 Ethernet/WiFi gateway and CAN Bus |
-| Multi-BMS support | Manage up to 15 BMS units simultaneously |
-| Native Home Assistant integration | Devices and entities created automatically through MQTT Discovery |
-| MQTT compatible | Works with Home Assistant and any MQTT-compatible system |
-| Alarm monitoring | Comprehensive alarm monitoring and status reporting |
-| Unified communication diagnostics | Adaptive Active Polling / Broadcast diagnostics with health score, incident memory and per-BMS analysis |
-| Premium dashboard system | Automatic generation of professional dashboards |
-| Modern HTML dashboard | Responsive interface for desktop, tablet and smartphone |
-| Legacy Lovelace dashboard | Traditional Home Assistant dashboard generation |
-| Multi-language dashboard | Automatic French or English dashboard generation |
-| Modular architecture | Compatible with other SmartPhoton energy modules |
-| Docker standalone support | Can run independently from Home Assistant OS |
-
----
-
-## Major upgrade: variable cell count support
-
-The add-on supports battery packs with any cell count from **1S to 16S**.
-
-> No more wrong cell delta values on non-16S packs.
-
-### What this improves
-
-- Correct support for 4S, 8S, 15S, 16S and other supported pack sizes
-- Accurate cell minimum, maximum, average and delta calculations
-- Automatic exclusion of unused cell slots
-- Better dashboard accuracy
-- More reliable automations and diagnostics
-
-### Why this matters
-
-Many real installations do not use exactly 16 cells.  
-Without cell-count-aware logic, unused cell slots can distort cell statistics and create misleading dashboard values.
-
-This feature makes the add-on more accurate for real-world battery installations.
-
----
-
-## Available dashboard modes
-
-Premium users can choose between two dashboard systems.
-
-### 1. Legacy Lovelace dashboard
-
-The Legacy dashboard uses native Home Assistant Lovelace cards.
-
-It is ideal for users who prefer the traditional Home Assistant interface and want dashboards directly integrated into HA.
-
-### 2. Modern HTML dashboard
-
-The Modern HTML dashboard provides a responsive, professional and mobile-friendly interface.
-
-It is designed for:
-
-- Desktop computers
-- Tablets
-- Smartphones
-
-Features include:
-
-- Modern energy visualizations
-- Fast navigation
-- Responsive layout
-- Mobile-optimized views
-- Advanced battery visualization
-- Historical charts
-- Alarm monitoring
-- Multi-BMS overview
-- Dynamic module menus
-
-### Both dashboards
-
-Premium users can generate:
-
-- Legacy Lovelace only
-- Modern HTML only
-- Both dashboards simultaneously
-
-This allows each user to keep the interface that best fits their Home Assistant setup.
-
----
-
-## Multi-language dashboard support
-
-Dashboards can be generated automatically in the language selected in the add-on configuration.
-
-Currently supported:
-
-- English
-- French
-
----
-
-## SmartPhoton / Simply Home Energy ecosystem
-
-SmartPhoton JK-BMS is part of a larger ecosystem for Home Assistant energy management.
-
-Compatible or planned SmartPhoton modules include:
-
-- SmartPhoton JK-BMS
-- [Pylontech / Pelio](https://github.com/jean-luc1203/Pylontech-rs232-haos)
-- SmartPhoton Victron
-- SmartPhoton Voltronic
-- SmartPhoton Kostal
-- Smart Energy Finance
-- SmartPhoton HTML Dashboard
-
-Together, these modules can provide a unified view of:
-
-- Battery packs
-- BMS status
-- Inverters
-- Solar production
-- Grid import / export
-- Energy flows
-- Financial savings
-- System diagnostics
-- Alarms and warnings
-
-The dynamic menu system adapts to the modules installed on the Home Assistant system.
-
----
-
-## Three operating modes
-
-### 1️⃣ Active Polling — SmartPhoton RS485 Master
-
-SmartPhoton queries each configured BMS directly through RS485.
-
-```yaml
-bms_broadcasting: false
-```
-
-Available features:
-
-- Read live BMS data
-- Modify BMS settings when supported
-- Monitor alarms, cells and temperatures
-- Detect responding or missing BMS units
-- Measure response latency, timeouts and complete polling cycles
-- Display individual communication health for each BMS
-
----
-
-### 2️⃣ Broadcast — JK-BMS RS485 Master
-
-One JK-BMS acts as the RS485 master and SmartPhoton listens passively to the bus.
-
-```yaml
-bms_broadcasting: true
-```
-
-Available features:
-
-- Read-only monitoring
-- Multi-BMS data reception
-- Home Assistant MQTT publishing
-- Detection of received BMS units
-- Analysis of serial/TCP buffers and reconstructed frames
-- Safer settings handling
-
-In this mode, SmartPhoton can confirm which BMS units were detected, but it may not know how many units were expected unless that information is configured elsewhere.
-
----
-
-### 3️⃣ CAN Bus mode
-
-CAN Bus mode uses the second RJ45 connector of compatible JK-BMS units.
-
-This mode is designed for direct CAN Bus communication and autonomous broadcast operation.
-
----
-
-## See it in action
-
-### Control panel
-
-![Control Panel Animation](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JK-BMS-Screenshot-15-11-2025.gif)
-
-### Hardware connection guide
-
-![Hardware Connection Guide](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/Fonctionnement-LED-cable-rs485.gif)
-
----
-
-## Important safety note
-
-This add-on is designed for monitoring, automation and energy optimization.
-
-It must **not** be the only safety layer of an electrical installation.
-
-A failure of Home Assistant, Node-RED, MQTT, USB/RS485 communication, TCP/IP gateway communication or the host system should not be able, by itself, to create a critical power situation.
-
-Please ensure your installation keeps safe fallback behavior, hardware protections and conservative default settings even if this add-on stops working or loses communication.
-
-⚠️ See [SAFETY.md](SAFETY.md) for more details and recommended fail-safe design principles.
+No Premium licence, no licence server, no telemetry needed.
 
 ---
 
 ## Installation
 
-### Via Home Assistant Add-on Store
+1. Home Assistant → **Settings → Add-ons → Add-on Store → ⋮ → Repositories**
+2. Add `https://github.com/Xander2980/jkbms-rs485-addon`
+3. Install **JK-BMS wired management (fork Xander2980)**
+4. Fill in the options (see below) and start the add-on
 
-1. Open Home Assistant
-2. Go to **Settings**
-3. Go to **Add-ons**
-4. Open the **Add-on Store**
-5. Click the three dots in the upper-right corner
-6. Select **Repositories**
-7. Add the repository URL:
+> Coming from the upstream add-on: stop it first. Both use `/config/smartphoton_jkbms` and the same
+> MQTT discovery ids, so the existing entities, history and dashboards are taken over unchanged.
+> Make a backup before switching.
 
-```text
-https://github.com/jean-luc1203/jkbms-rs485-addon
+Docker without Home Assistant OS: see [standalone/README.md](standalone/README.md).
+
+## Options
+
+| Option | Description | Example |
+|---|---|---|
+| `jkbms_path` | USB serial port (Settings → System → Hardware → All hardware, `ttyUSB…`) | `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0` |
+| `jkbms_count` | Number of BMS (1–15) | `3` |
+| `use_gateway` | Use an RS485 TCP gateway instead of USB | `true` |
+| `gateway_ip_port` | Gateway address and port | `192.168.1.100:5000` |
+| `bms_broadcasting` | `true`: a JK-BMS is the RS485 master, the add-on only listens. `false`: the add-on polls every BMS (settings can be changed) | `true` |
+| `non_broadcasting_data_interval_s` | Polling interval without broadcasting (1–30 s) | `3` |
+| `CAN_bus_usage` | Read the BMS via CAN bus | `false` |
+| `mqttadresse_port`, `mqttuser`, `mqttpass` | MQTT broker | `core-mosquitto:1883` |
+| `dashboard_language` | Language of the entity names and of the built-in dashboard: `de`, `en`, `fr` | `de` |
+| `create_dashboard` | Create the Home Assistant dashboard **JK-BMS** with the JK-BMS card | `false` |
+| `communication_debug` | Detailed communication logs | `false` |
+| `Send_bip` | Anonymous start counter of the upstream project | `false` |
+
+USB adapters: FTDI, CH340 and CP2102 work; adapters that show up as `ttyACM0` are not recommended.
+Tested gateways: [images/Modbus-Gateway](images/Modbus-Gateway).
+
+### Operating modes
+
+- **Broadcast** (`bms_broadcasting: true`): one JK-BMS is the RS485 master (address 0000) and asks the
+  others; the add-on listens. Read only — change settings in the JK app.
+- **Active polling** (`bms_broadcasting: false`): the add-on is the RS485 master and polls each BMS.
+  Settings can be written from Home Assistant where the BMS supports it.
+- **CAN bus** (`CAN_bus_usage: true`): second RJ45 port of compatible JK-BMS.
+
+---
+
+## JK-BMS card
+
+The dashboards come from the Lovelace card
+**[bms-battery-cells-card-jkbms](https://github.com/Xander2980/bms-battery-cells-card-jkbms)**
+(fork of the BMS Battery Cells Card by jayjojayson). One line of configuration per BMS:
+
+```yaml
+type: custom:bms-battery-cells-card-jkbms
+jk_prefix: bms_master        # bms_master, bms_1, bms_2, ...
+title: Master BMS
+show_detailed_view: true
+show_status: true
+balance_led: true
 ```
 
-8. Install the add-on
-9. Configure your settings
-10. Start the add-on
+With `jk_prefix` the card finds all cells, cell resistances and sensors of the add-on by itself:
+voltage, signed power, current, SOC/SOH, alarms, charge phase, all five temperature sensors,
+balancer status (charging / discharging balancer), balance current, charger plugged in, precharge,
+heating, battery type and a banner while a protection release timer runs.
+
+**Install the card:** HACS → ⋮ → Custom repositories → `https://github.com/Xander2980/bms-battery-cells-card-jkbms`,
+type *Dashboard* → install → reload the browser.
+
+**Ready-made dashboard:** set the option `create_dashboard: true`. Two minutes after the start the add-on
+creates the dashboard **JK-BMS** in the sidebar with one card per BMS it sees on the bus. The add-on owns
+this dashboard and rewrites it on every start — build your own dashboard if you want to edit it.
 
 ---
 
-## Docker standalone
+## What the add-on publishes
 
-SmartPhoton JK-BMS can also run independently from Home Assistant OS using Docker.
+Per BMS (`BMS_master`, `BMS_1`, …) about 150 entities, for example:
 
-This is useful for:
+- **Live:** cell voltages and resistances, battery voltage, current, power (signed and unsigned), SOC, SOH,
+  remaining/nominal capacity, cycles, MOSFET and 5 temperature sensors, balancing and balancer status,
+  balance current, charge/discharge MOSFET, precharge, heating and heating current, charger plugged in,
+  charge phase (bulk/absorption/float), protection release timers, emergency and smart-sleep countdown,
+  PCL module, battery type, number of log entries, dry contacts
+- **Settings:** all protection thresholds and delays, RCV/RFV, balancing, heating start/stop temperature,
+  precharge time, smart sleep, display, float mode and further switches of register 0x1114
+- **Device info:** model, firmware, serial number, uptime, power-on count
+- **Alarms:** active alarms per BMS and a global alarm across all BMS
 
-- Home Assistant Core installations
-- Docker-based Home Assistant installations
-- Linux servers
-- Virtual machines
-- Advanced deployments
+Entity ids follow `sensor.bms_<id>_bms_<key>`, e.g. `sensor.bms_1_bms_cell_7_volt`.
+Durations are `duration` sensors in seconds. The display names follow `dashboard_language`.
 
-[Docker Installation Guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/standalone/README.md)
-
-Thanks to community contributor **@SergeyYmb**.
+Built-in Node-RED dashboard (live, device info, settings): `http://<home-assistant>:1891/dashboard`.
 
 ---
 
-## Configuration
+## Fixes compared to upstream 4.1.14
 
-| Parameter | Description | Example |
+| Problem | Effect | Fixed |
 |---|---|---|
-| `path` | USB serial port path | `/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0` |
-| `nb_jkbms` | Number of BMS units | `1` to `15` |
-| `use_gateway` | Enable TCP/IP gateway mode | `true` / `false` |
-| `gateway_ip` | Gateway IP address | `192.168.1.100` |
-| `gateway_port` | Gateway port | `502` |
-| `bms_broadcasting` | Enable listening mode | `true` / `false` |
-| `mqttaddress` | MQTT broker address | `192.168.1.50` |
-| `mqttport` | MQTT broker port | `1883` |
-| `mqttuser` | MQTT username | `homeassistant` |
-| `mqttpass` | MQTT password | `"your_password"` |
+| Balancer byte divided by 100 | "Balancing" never turned on | ✅ plus balancer status text |
+| Byte 200 called `Switch_Balance` | it is the precharge flag | ✅ `Precharging`, old entity removed |
+| Register 0x1114 bits shifted by one | smart sleep / PCL / timed stored data showed the wrong bit | ✅ |
+| Writing smart sleep / PCL / timed stored data | cleared all other switches of 0x1114 (heating, display, float mode, RS485/CAN port) | ✅ read-modify-write |
+| Battery type read from the wrong byte | never published | ✅ |
+| Issue #166 corrections missing | phantom BMS devices from broken frames possible | ✅ built in |
 
-### USB adapter tip
-
-Find your USB path in:
-
-**Home Assistant → Settings → System → Hardware → All Hardware**
-
-Look for a `ttyUSB` device.
-
-Compatible adapters:
-
-- FTDI
-- CH340
-- CP2102
-
-Not recommended:
-
-- Adapters creating `ttyACM0` interfaces
+Details: [CHANGELOG.md](CHANGELOG.md). Tests: `node --test tests/*.cjs` (CI: *Fork tests*).
 
 ---
 
-## TCP/IP gateway support
+## Safety
 
-You can connect your BMS remotely using an RS485 Ethernet or WiFi gateway in transparent mode.
+The add-on is for monitoring and automation. It must **not** be the only safety layer of a battery
+installation: a failure of Home Assistant, MQTT or the RS485 link must never lead to an unsafe state.
+See [SAFETY.md](SAFETY.md).
 
-This is useful when:
+## Documentation
 
-- The Home Assistant server is far from the batteries
-- USB cabling is not practical
-- Multiple installations need remote access
-- The BMS cabinet is in another room or building
+- [DOCS.md](DOCS.md) — add-on documentation (cable, alarms, MQTT)
+- [Documentation/](Documentation) — RS485 and CAN protocol notes, diagnostics dashboard, cable assembly
+- [FAQ.md](FAQ.md)
 
-✅ Tested gateways are documented here:
+## Credits and licence
 
-[View compatible gateway models](https://github.com/jean-luc1203/jkbms-rs485-addon/tree/main/images/Modbus-Gateway)
+- Original add-on: **SmartPhoton JK-BMS** by Jean-Luc Martinelli (JLM) — <https://github.com/jean-luc1203/jkbms-rs485-addon>
+- Protocol reference: [syssi/esphome-jk-bms](https://github.com/syssi/esphome-jk-bms)
+- Card: fork of [jayjojayson/bms-battery-cells-card](https://github.com/jayjojayson/bms-battery-cells-card)
 
----
-
-## Advanced alarm management
-
-The add-on monitors many JK-BMS alarm types.
-
-Examples include:
-
-- Battery overvoltage
-- Battery undervoltage
-- Cell overvoltage
-- Cell undervoltage
-- Charge overcurrent
-- Discharge overcurrent
-- Overtemperature
-- Undertemperature
-- Cell imbalance
-- Communication problems
-
-### Home Assistant alarm entities
-
-The add-on creates dedicated alarm entities:
-
-- Active alarm count
-- Alarm details
-- Affected BMS identification
-- Global binary sensor for automation triggers
-
-[Complete alarm reference table](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/Alarmes-description.md)
-
-Alarm management is currently available in Master mode.  
-Broadcasting and CAN alarm support are planned.
-
----
-
-## Home Assistant integration
-
-### MQTT Discovery
-
-BMS units appear automatically as devices inside the Home Assistant MQTT integration.
-
-![MQTT Devices](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-in-MQTT-devices.png)
-
----
-
-### Automatic cell-count-aware calculations
-
-The add-on reads the real cell count reported by the BMS and adjusts cell analysis accordingly.
-
-This means:
-
-- No more incorrect cell delta values on non-16S packs
-- Correct min, max and average calculations
-- Correct support for 4S, 8S, 15S and 16S packs
-- Better accuracy for dashboards, diagnostics and automations
-
----
-
-### MQTT topics
-
-The JK-BMS add-on publishes three main categories of MQTT data:
-
-1. Live data
-2. Configuration parameters
-3. Static specifications
-
-All topics are documented here:
-
-[MQTT Topics Documentation](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/mqtt_topics_documentation.md)
-
----
-
-### Rich entity set
-
-The add-on provides extensive Home Assistant entities for monitoring and automation.
-
-![Available Entities](https://raw.githubusercontent.com/jean-luc1203/jkbms-rs485-addon/main/images/JKBMS-entities.png)
-
----
-
-## Unified RS485 diagnostic dashboard
-
-The diagnostic dashboard now supports both **Active Polling** and **Broadcast** modes with one adaptive interface.
-
-- [Communication Troubleshooting Guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/jkbms_rs485_troubleshooting_enhanced.md)
-- [How to Send Diagnostic Statistics](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/How_to_Send_JK-BMS_Diagnostic_Statistics.md)
-- [Unified Diagnostic Dashboard YAML](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/JK-BMS-Unified-Diagnostics-v14.yaml)
-
-### Diagnostic features
-
-- Automatic detection of Active Polling or Broadcast mode
-- Global communication state and quality score from `0` to `100`
-- Readable diagnosis and persistent incident memory
-- Requests, responses, latency, timeouts and polling-cycle analysis in Active Polling mode
-- Per-BMS communication health and missing-BMS detection in Active Polling mode
-- Serial/TCP buffer, framing and detected-BMS analysis in Broadcast mode
-- Separation between real diagnostic faults and normal transport observations
-- Automatic hiding of counters that do not apply to the active mode
-
-### Installation
-
-1. Go to **Home Assistant → Dashboards**
-2. Click **Edit Dashboard**
-3. Open the raw configuration editor
-4. Copy and paste the unified diagnostic YAML file content
-
-### Notes
-
-- MQTT Discovery must be enabled
-- The main diagnostic entity is normally `sensor.jk_bms_aggregator_jkbms_health`
-- The exact entity ID may vary slightly depending on the installation
-- `many_short_buffers` and `high_multi_header_concat` are informational observations when complete valid frames continue to be reconstructed
-- The current communication state has priority over the numerical score
-
----
-
-## 🇩🇪 German users
-
-Many SmartPhoton JK-BMS installations are located in Germany.
-
-This add-on is suitable for Home Assistant users who want to monitor one or more JK-BMS battery packs through RS485, TCP/IP gateway or CAN Bus, with MQTT Discovery and optional Premium dashboard generation.
-
-Kurz gesagt:
-
-> **JK-BMS RS485 Add-on für Home Assistant**  
-> Mehrere JK-BMS über RS485, TCP/IP Gateway oder CAN Bus auslesen, mit MQTT Discovery und optionalen Premium-Dashboards.
-
----
-
-## Support this project
-
-This add-on is developed and maintained in free time.
-
-If this project saves you time or money, please consider supporting future development.
-
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y3YHYZP)
-
-### Development impact
-
-Your support directly enables:
-
-- Purchase of the latest JK-BMS hardware for compatibility testing
-- New features
-- Bug fixes
-- Documentation improvements
-- Dashboard improvements
-- Hardware compatibility testing
-- Community support
-
----
-
-## Community & Support
-
-Need help, want to report a bug, request a feature, or share your setup?
-
-Join the official Simply Home Energy Discord community:
-
-🔗 [DISCORD_INVITE_LINK](https://discord.gg/nwVmvxYJa5)
-
-Connect with other users, get support, discuss new features, and stay informed about the latest updates.
-
----
-
-## Roadmap
-
-Upcoming or planned features:
-
-- Alarm management for broadcasting mode
-- Alarm management for CAN mode
-- Enhanced multi-gateway support
-- Advanced cell balancing analytics
-- Historical data export tools
-- Additional SmartPhoton dashboard modules
-- Extended Premium dashboard features
-- Deeper SmartPhoton ecosystem integration
-
-Development velocity depends on community support, available time and hardware access.
-
----
-
-## Changelog
-
-See [CHANGELOG.md](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/CHANGELOG.md) for version history.
-
----
-
-## Issues and feature requests
-
-Given the success of this add-on, response times may vary.
-
-Before opening a new issue, please:
-
-1. Read the [FAQ](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/FAQ.md)
-2. Check existing issues
-3. Open the Unified RS485 Diagnostic Dashboard
-4. Include screenshots of both the **Overview** and **Advanced** diagnostic pages
-5. Include the diagnostic entity attributes or the complete `BMS_GLOBAL/health` MQTT payload
-6. Follow the [diagnostic statistics guide](https://github.com/jean-luc1203/jkbms-rs485-addon/blob/main/Documentation/How_to_Send_JK-BMS_Diagnostic_Statistics.md)
-
-Use GitHub Issues for:
-
-- Bug reports
-- Installation help
-- Configuration problems
-- Feature requests
-
-For general questions and community help, use GitHub Discussions.
-
----
-
-## Choose the right issue template
-
-| Template | When to use | Example |
-|---|---|---|
-| Bug report | Something is broken or crashes | No data received, CRC errors, add-on crashes |
-| ❓ Question / Support | Installation or configuration help | How do I connect via TCP gateway? |
-| ✨ Feature request | You have an idea for improvement | Add support for another BMS |
-
-Why templates matter:
-
-They help understand your setup quickly and provide faster support.
-
-Pro tip: include a screenshot of the Diagnostic Dashboard whenever possible.
-
----
-
-## License model
-
-This project uses a mixed licensing model to keep the add-on accessible to private Home Assistant users while protecting the professional and Premium work from unauthorized commercial reuse.
-
-### Community add-on
-
-The community add-on is available for private, personal and non-commercial Home Assistant use.
-
-Private users may install and use the add-on in their own Home Assistant installations.
-
-### Premium dashboard system
-
-The Premium dashboard system, Premium dashboard templates, Premium HTML interface, Premium assets, Premium generation logic, license validation logic and commercial SmartPhoton dashboard ecosystem are protected components.
-
-They may not be copied, redistributed, resold, rebranded, integrated into a commercial product, offered as part of a paid installation service, or used by a company without a valid Premium or commercial license.
-
-### Commercial, professional and installer use
-
-Business, professional, installer, reseller, integrator or commercial use requires a separate commercial license or written authorization from Simply Home Energy / SmartPhoton.
-
-This includes, but is not limited to:
-
-- selling installations based on this work
-- bundling this add-on or Premium dashboards in a commercial offer
-- reusing the Premium dashboards for customers
-- modifying and reselling the Premium interface
-- integrating the Premium system into another product or service
-- using the project as part of a professional energy monitoring offer
-
-### Important note
-
-If parts of this repository are explicitly released under a separate open-source license, those files remain governed by that license.
-
-Premium files, Premium assets and commercial dashboard components are not granted for commercial reuse unless a separate Premium or commercial license has been issued.
-
-For commercial licensing, contact the project maintainer.
-
----
-
-## Credits
-
-**Development:** Jean-Luc Martinelli (JLM)  
-**Dashboard design and Premium visual ecosystem:** John  
-**Inspiration:** Nolak's work for SmartPhoton  
-**Docker contributor:** @SergeyYmb  
-**Community:** Supporters, testers and Home Assistant users
-
----
-
-## Star history
-
-If this project is useful to you, please leave a star.
-
-It helps other Home Assistant users discover the project and motivates continued development.
-
-[![GitHub stars](https://img.shields.io/github/stars/jean-luc1203/jkbms-rs485-addon?style=social)](https://github.com/jean-luc1203/jkbms-rs485-addon/stargazers)
-
----
-
-**Made with ❤️ for the Home Assistant community**
+The community add-on is licensed under the **PolyForm Noncommercial License 1.0.0** (see [LICENSE](LICENSE)):
+free for private, non-commercial use. This fork contains no Premium components.

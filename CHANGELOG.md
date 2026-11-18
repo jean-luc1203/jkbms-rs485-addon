@@ -1,3 +1,15 @@
+## 4.3.0 (fork Xander2980) — 2026-11-18
+
+### Removed — Premium
+- Premium dashboards, Premium HTML generators, licence check (`premium init`, `PREMIUM STORAGE INIT`) and the Premium diagnostic entities. On start the add-on deletes the former Premium entities (`Premium Install ID / Active / Status / Tier`) with empty retained discovery messages.
+- Options `premium_key`, `dashboard_mode`, `dashboard_custom_cards_installed` and the section labels. `issue192_patch.cjs` (Premium HTML patch) and its test.
+
+### Added — JK-BMS card
+- Option `create_dashboard` (default off): creates the Home Assistant dashboard **JK-BMS** (`/jk-bms`) with one `custom:bms-battery-cells-card-jkbms` card per BMS seen on the bus. Requires the card from HACS (`Xander2980/bms-battery-cells-card-jkbms`, version 2.1 shows all new values).
+
+### Changed
+- README rewritten for the fork (English).
+
 ## 4.2.1 (fork Xander2980) — 2026-11-18
 
 - Charging float mode (register 0x1114 bit 9) is now also decoded on the broadcast setup path, so `switch.<bms>_bms_charging_floating_mode` gets a state.

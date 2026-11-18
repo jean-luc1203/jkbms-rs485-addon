@@ -52,4 +52,8 @@ configuration:
 
   dashboard_language:
     name: "🌐 Langue"
-    description: "Langue des noms d'entités Home Assistant et du tableau de bord intégré (port 1891) : de, en ou fr. Les entity_id ne changent pas. Tableaux Premium : de est affiché en en."
+    description: "Langue des noms d'entités Home Assistant et du tableau de bord intégré (port 1891) : de, en ou fr. Les entity_id ne changent pas."
+
+  create_dashboard:
+    name: "🧩 Créer le tableau de bord avec la carte JK-BMS"
+    description: "Crée le tableau de bord Home Assistant « JK-BMS » (une colonne par BMS) avec la carte custom:bms-battery-cells-card-jkbms. Installez d'abord la carte via HACS (dépôt Xander2980/bms-battery-cells-card-jkbms). Le tableau est réécrit à chaque démarrage."
