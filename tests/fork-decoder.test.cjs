@@ -285,3 +285,19 @@ test('optional dashboard uses the JK-BMS card for every seen BMS', () => {
   const exec = byId.get('c0de0000dash0003');
   assert(exec.command.includes('/config/dashboards/jk_bms_card.json'));
 });
+
+test('durations are readable and localised', () => {
+  for (const [lang, phase, runtime] of [
+    ['de', '2 Min. 44 s', '123 T 4 Std.'],
+    ['en', '2 min 44 s', '123 d 4 h'],
+    ['fr', '2 min 44 s', '123 j 4 h'],
+  ]) {
+    for (const id of ['39f7fd7720e246a1', '653aafd0b7ddd759']) {
+      const g = store(); g.set('ui.language', lang); g.set('bms_broadcasting', true); g.set('slaveAddress-Trame3', 1);
+      const msgs = runFunction(id, { payload: { charge_status_time_S: 164, Total_runtime_S: 123 * 86400 + 4 * 3600 + 120, Heating_B: 0 }, bms_numero: 1 }, { global: g }).result[0];
+      const get = k => msgs.find(m => m.topic === 'BMS_1/' + k)?.payload;
+      assert.equal(get('charge_status_time_formatted'), phase, id + ' ' + lang);
+      assert.equal(get('Total_runtime_formatted'), runtime, id + ' ' + lang);
+    }
+  }
+});

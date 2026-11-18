@@ -1,3 +1,7 @@
+## 4.3.1 (fork Xander2980) — 2026-11-18
+
+- Readable, localised durations for `charge_status_time_formatted` and `Total_runtime_formatted` (e.g. `2 Min. 44 s`, `123 T 4 Std.` in German, `2 min 44 s` / `123 d 4 h` in English) instead of `2M44S` / `123D4H2M`.
+
 ## 4.3.0 (fork Xander2980) — 2026-11-18
 
 ### Removed — Premium
