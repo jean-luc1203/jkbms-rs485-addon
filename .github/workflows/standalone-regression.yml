@@ -8,13 +8,12 @@ on:
     paths:
       - 'standalone/**'
       - 'rootfs/etc/node-red/flows.json'
-      - 'issue192_patch.cjs'
       - 'package.json'
       - '.github/workflows/standalone-regression.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   standalone:
@@ -26,17 +25,12 @@ jobs:
         run: sh -n standalone/entrypoint.sh
       - name: Build standalone image
         run: docker build --pull -f standalone/Dockerfile -t jkbms-standalone:ci .
-      - name: Check that Issue 192 is integrated in the image
+      - name: Verify packaged standalone canonical flow
         run: |
-          docker run --rm --entrypoint node jkbms-standalone:ci -e '
-            const fs = require("fs");
-            const flows = JSON.parse(fs.readFileSync("/data/flows.json","utf8"));
-            const premium = flows.find(n=>n.id==="c90f119270193bd9");
-            const home = flows.find(n=>n.id==="9612d6721a03dd26");
-            if (!premium?.func.includes("premium.dashboard_bms_seen")) process.exit(1);
-            if (!home?.func.includes("packs.add(\x27master\x27)")) process.exit(2);
-            console.log("Issue #192 standalone flow: PASS");
-          '
+          id=$(docker create jkbms-standalone:ci)
+          trap 'docker rm "$id" >/dev/null' EXIT
+          docker cp "$id:/data/flows.json" /tmp/standalone-flows.json
+          cmp rootfs/etc/node-red/flows.json /tmp/standalone-flows.json
       - name: Check standalone configuration generation
         run: |
           docker run --rm --entrypoint node -e MQTTADRESSE_PORT=127.0.0.1:1883 jkbms-standalone:ci /usr/src/node-red/envoptions.js
@@ -62,32 +56,3 @@ jobs:
       - name: Cleanup
         if: always()
         run: docker rm -f jkbms-ci 2>/dev/null || true
-      - name: Consolidate canonical flow after successful Docker smoke test
-        if: github.event_name == 'push' && github.ref_name == 'maintenance/legacy-flow-consolidation-docker'
-        run: |
-          test "$(git hash-object rootfs/etc/node-red/flows.json)" = "3467962b30df2ea0d2c4855cccd7ead9d542d913"
-          node issue192_patch.cjs rootfs/etc/node-red/flows.json
-          node - <<'NODE'
-          const fs = require('fs');
-          const flows = JSON.parse(fs.readFileSync('rootfs/etc/node-red/flows.json','utf8'));
-          if(flows.length !== 590) throw Error('Expected 590 nodes');
-          for(const n of flows.filter(n=>n.type==='function')) new Function(n.func);
-          NODE
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('Dockerfile');s=p.read_text()
-          a='COPY issue192_patch.cjs /opt/issue192_patch.cjs\nRUN node /opt/issue192_patch.cjs && rm /opt/issue192_patch.cjs\n'
-          assert s.count(a)==1
-          p.write_text(s.replace(a,''))
-          p=Path('standalone/Dockerfile');s=p.read_text()
-          a=s.index('# Apply the same Issue #192 correction as the HAOS image.')
-          b=s.index('# Env variables',a)
-          p.write_text(s[:a]+s[b:])
-          Path('issue192_patch.cjs').unlink()
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rootfs/etc/node-red/flows.json Dockerfile standalone/Dockerfile issue192_patch.cjs
-          git diff --cached --check
-          git commit -m 'refactor: integrate issue 192 into canonical flows.json'
-          git push origin HEAD:maintenance/legacy-flow-consolidation-docker

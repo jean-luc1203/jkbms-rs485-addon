@@ -1,17 +1,7 @@
 'use strict';
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process'),vm=require('node:vm'),assert=require('node:assert/strict');
 const base=path.resolve(__dirname,'../rootfs/etc/node-red/flows.json');
-const dir=fs.mkdtempSync(path.join(os.tmpdir(),'issue192-'));
-const target=path.join(dir,'flows.json');
-try {
-  fs.copyFileSync(base,target);
-  const patchSource=fs.readFileSync(path.resolve(__dirname,'../issue192_patch.cjs'),'utf8');
-  const patchTemp=path.join(dir,'issue192_patch.cjs');
-  const patched=patchSource.replace("const path = '/etc/node-red/flows.json';", 'const path = '+JSON.stringify(target)+';');
-  assert.notEqual(patched,patchSource,'patch path override missing');
-  fs.writeFileSync(patchTemp,patched);
-  cp.execFileSync(process.execPath,[patchTemp]);
-  const flows=JSON.parse(fs.readFileSync(target,'utf8'));
+  const flows=JSON.parse(fs.readFileSync(base,'utf8'));
   const source=flows.find(n=>n.id==='c90f119270193bd9').func;
   // The Home Energy fallback must not collapse Master 0 and slave address 1.
   const homeSource=flows.find(n=>n.id==='9612d6721a03dd26').func;
@@ -68,4 +58,3 @@ try {
     count+=2;console.log('PASS',name);
   }
   console.log('PASS',count,'server+browser assertions');
-} finally {fs.rmSync(dir,{recursive:true,force:true});}
