@@ -21,6 +21,12 @@ No Premium licence, no licence server, no telemetry needed.
 
 ## Installation
 
+Open directly in Home Assistant:
+
+[![Add the repository to your Home Assistant](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FXander2980%2Fjkbms-rs485-addon)
+
+Or by hand:
+
 1. Home Assistant → **Settings → Add-ons → Add-on Store → ⋮ → Repositories**
 2. Add `https://github.com/Xander2980/jkbms-rs485-addon`
 3. Install **JK-BMS wired management (fork Xander2980)**
@@ -86,7 +92,11 @@ voltage, signed power, current, SOC/SOH, alarms, charge phase, all five temperat
 balancer status (charging / discharging balancer), balance current, charger plugged in, precharge,
 heating, battery type and a banner while a protection release timer runs.
 
-**Install the card:** HACS → ⋮ → Custom repositories → `https://github.com/Xander2980/bms-battery-cells-card-jkbms`,
+**Install the card:**
+
+[![Open the card in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Xander2980&repository=bms-battery-cells-card-jkbms&category=plugin)
+
+or by hand: HACS → ⋮ → Custom repositories → `https://github.com/Xander2980/bms-battery-cells-card-jkbms`,
 type *Dashboard* → install → reload the browser.
 
 **Ready-made dashboard:** set the option `create_dashboard: true`. Two minutes after the start the add-on
