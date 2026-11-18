@@ -8628,6 +8628,15 @@
       },
       {
         "type": "bool",
+        "name": "Charging_Floating_Mode_B",
+        "offset": 283,
+        "length": 1,
+        "offsetbit": 1,
+        "scale": "1",
+        "mask": ""
+      },
+      {
+        "type": "bool",
         "name": "emergency_button_trigger_B",
         "offset": 283,
         "length": 1,

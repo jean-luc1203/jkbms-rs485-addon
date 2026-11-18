@@ -182,8 +182,8 @@ for (const parserId of ['e6750cbf7737dd71', 'e0beba39da568e23']) {
     assert.equal(p.heating_stop_temperature_T, 5);
     assert.equal(p.smart_sleep_delay_H, 24);
     assert.equal(p.discharge_undertemperature_protection_T, -10);
+    assert.equal(p.Charging_Floating_Mode_B, true);
     if (parserId === 'e6750cbf7737dd71') {
-      assert.equal(p.Charging_Floating_Mode_B, true);
       assert.equal(p['0x1114'], 0x0359);
     }
   });

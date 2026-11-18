@@ -1,3 +1,7 @@
+## 4.2.1 (fork Xander2980) — 2026-11-18
+
+- Charging float mode (register 0x1114 bit 9) is now also decoded on the broadcast setup path, so `switch.<bms>_bms_charging_floating_mode` gets a state.
+
 ## 4.2.0 (fork Xander2980) — 2026-11-18
 
 Fork of SmartPhoton JK-BMS Legacy 4.1.14. Private, non-commercial use (PolyForm Noncommercial 1.0.0, see `LICENSE`). Premium dashboards are unchanged.
