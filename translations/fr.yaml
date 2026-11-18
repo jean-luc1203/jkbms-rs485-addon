@@ -48,7 +48,7 @@ configuration:
 
   Send_bip:
     name: "📊 Utilisation de l'Add-on"
-    description: "Activer l'envoi d'un bip au démarrage. Aucune donnée privée n'est transmise. Le traitement est conforme au RGPD."
+    description: "Envoie au démarrage et chaque jour à 15 h un signal d'utilisation anonyme au serveur du projet d'origine (smartphoton.ch) : uniquement un code du type de système (HAOS/Docker/Linux/Windows). Pas de son. Inutile au fonctionnement de l'add-on."
 
   dashboard_language:
     name: "🌐 Langue"

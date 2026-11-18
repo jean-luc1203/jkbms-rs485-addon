@@ -47,7 +47,7 @@ Docker without Home Assistant OS: see [standalone/README.md](standalone/README.m
 | `dashboard_language` | Language of the entity names and of the built-in dashboard: `de`, `en`, `fr` | `de` |
 | `create_dashboard` | Create the Home Assistant dashboard **JK-BMS** with the JK-BMS card | `false` |
 | `communication_debug` | Detailed communication logs | `false` |
-| `Send_bip` | Anonymous start counter of the upstream project | `false` |
+| `Send_bip` | Anonymous usage ping (system type only) to the upstream server smartphoton.ch at start and daily 15:00. Default off in the fork | `false` |
 
 USB adapters: FTDI, CH340 and CP2102 work; adapters that show up as `ttyACM0` are not recommended.
 Tested gateways: [images/Modbus-Gateway](images/Modbus-Gateway).

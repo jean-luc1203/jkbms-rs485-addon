@@ -48,7 +48,7 @@ configuration:
 
   Send_bip:
     name: "📊 Add-on Nutzung"
-    description: "Aktiviert einen Signalton beim Start. Es werden keine privaten Daten übertragen. Die Verarbeitung erfolgt gemäß DSGVO."
+    description: "Sendet beim Start und täglich um 15:00 Uhr eine anonyme Nutzungsmeldung an den Server des Original-Projekts (smartphoton.ch): nur eine Kennzahl für das System (HAOS/Docker/Linux/Windows). Kein Ton. Für die Funktion des Add-ons nicht nötig."
 
   dashboard_language:
     name: "🌐 Sprache"

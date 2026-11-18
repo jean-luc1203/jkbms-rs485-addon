@@ -49,7 +49,7 @@ configuration:
 
   Send_bip:
     name: "📊 Add-on usage"
-    description: "Enable a beep to be sent at start-up. No private data is transmitted. Processing complies with the GDPR."
+    description: "Sends an anonymous usage ping to the server of the original project (smartphoton.ch) at start and daily at 15:00: only a code for the system type (HAOS/Docker/Linux/Windows). Not a sound. Not needed for the add-on to work."
 
   dashboard_language:
     name: "🌐 Language"
