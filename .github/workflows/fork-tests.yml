@@ -29,4 +29,4 @@ jobs:
       - name: Run all tests
         env:
           BUFFER_PARSER_PATH: /tmp/bp/node_modules/node-red-contrib-buffer-parser
-        run: node --test tests/
+        run: node --test tests/*.cjs
