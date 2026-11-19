@@ -17,7 +17,7 @@
     "node-red-contrib-os": "*",
     "node-red-node-serialport": "*",
     "node-red-contrib-tcp-client2":"*",
-    "node-red-contrib-buffer-parser":"*"
+    "node-red-contrib-buffer-parser":"3.2.2"
   },
   "engines": {
     "node": ">=16"

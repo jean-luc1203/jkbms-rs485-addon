@@ -1,3 +1,7 @@
+## 4.1.15-rc2-ro1 — 2026-11-18 (qualification uniquement, lecture seule)
+
+Correctifs cumulatifs #166/#189/#192, validation des acquisitions, identité par BMS, décodeurs, diagnostic de fraîcheur. Commandes de configuration RS485 désactivées dans ce candidat ; CAN à désactiver pour les essais. Voir VALIDATION_RC2_RO1.md. Ne pas installer en production.
+
 ## 4.1.14 — 2026-11-16
 
 ### Corrected — Premium HTML dashboards ([#192](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/192))

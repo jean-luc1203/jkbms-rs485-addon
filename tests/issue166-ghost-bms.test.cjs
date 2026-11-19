@@ -390,15 +390,16 @@ test('DEV166.5 differential test: exact same frame outputs and retained buffers 
   assert.equal(framing.accounting_errors,0);
 });
 
-test('DEV166.5 observes historical fragmented Modbus poll loss without correcting it',()=>{
+test('Issue189 retains fragmented Modbus polls with exact byte accounting',()=>{
   const r=runner('3328d11cbeec411c');
   const poll=Buffer.from([0x02,0x10,0x16,0x20,0,1,2,0,0,0xC2,0x01]);
-  // No JK header; current Framer cannot retain incomplete 11-byte poll.
+  // A partial valid poll prefix is retained until the CRC arrives.
   assert.equal(r.call({payload:poll.subarray(0,4)}),null);
-  assert.equal(r.call({payload:poll.subarray(4)}),null);
+  assert.equal(r.flow.get("issue166_framing_passive").buffer_retained,4);
+  assert.equal(r.call({payload:poll.subarray(4)})[0][0].payload.topic,"broadcast/modbus_poll");
   const p=r.flow.get('issue166_framing_passive');
-  assert.equal(p.modbus_polls,0);
-  assert.equal(p.discarded_bytes,11);
+  assert.equal(p.modbus_polls,1);
+  assert.equal(p.discarded_bytes,0);
   assert.equal(p.input_bytes,11);
   assert.equal(p.buffer_retained,0);
   // Same bytes in one call are recognized, proving segmentation is decisive.
@@ -917,8 +918,10 @@ test('DEV166.10 TCP Active Polling queues alarm collision and preserves 1 msg/s 
   assert.equal(after.type,'function');
   assert.equal(after.z,rate.z);
   assert.equal(after.func.includes('diag_active_polling_stats'),true);
-  // Neither the two TCP requests nor the rest of the transport are modified.
-  assert.deepEqual(route.wires,[['b90f87fb8568461a'],['3e5a55e0cf2a0f5d']]);
+  // RC2-RO inserts a final transport guard without changing the limiter or TCP nodes.
+  assert.deepEqual(route.wires,[['1890000000000004'],['1890000000000005']]);
+  assert.deepEqual(byId.get('1890000000000004').wires,[['b90f87fb8568461a']]);
+  assert.deepEqual(byId.get('1890000000000005').wires,[['3e5a55e0cf2a0f5d']]);
 });
 test('DEV166.10 gateway diagnostics are absent BEFORE queue, recorded AFTER queue',()=>{
   const upstream=runner('54c0f2403ae8bc7c');
@@ -1149,7 +1152,8 @@ test('DEV166.12 Broadcast watchdog is isolated from Active Polling TCP A/B',()=>
   assert.equal(tcp.type,'tcp-client');
   assert.equal(tcp.actionType,'msg');
   assert.equal(tcp.action,'action');
-  assert.deepEqual(w.wires,[[tcp.id],['ab2c8f93200ca93a']]);
+  assert.deepEqual(w.wires,[['1890000000000006'],['ab2c8f93200ca93a']]);
+  assert.deepEqual(byId.get('1890000000000006').wires,[[tcp.id]]);
   assert.equal(active.name,'Watchdog - failover A/B');
   assert(active.func.includes("lastDataTs_master"));
   assert.deepEqual(active.wires,[['0126fd2cac5ff1b4']]);
@@ -1195,7 +1199,8 @@ test('DEV166.12 Broadcast TCP timeout emits supported close then connect',()=>{
   assert.equal(delay.timeout,'2');
   assert.equal(delay.timeoutUnits,'seconds');
   assert.deepEqual(delay.wires,[[connect.id]]);
-  assert.deepEqual(connect.wires,[['ca2e41c5da775228']]);
+  assert.deepEqual(connect.wires,[['1890000000000006']]);
+  assert.deepEqual(byId.get('1890000000000006').wires,[['ca2e41c5da775228']]);
   const connectMsg=runner(connect.id);
   connectMsg.global.set('gateway_ip','192.168.0.131');
   connectMsg.global.set('gateway_port',8887);
@@ -1228,8 +1233,8 @@ test('RC packaging retains production slug, options, paths and canonical flow',(
   const config=fs.readFileSync(path.join(root,'config.yaml'),'utf8');
   const settings=fs.readFileSync(path.join(root,'rootfs/etc/node-red/config.js'),'utf8');
   const startup=fs.readFileSync(path.join(root,'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'),'utf8');
-  assert(config.includes('name: "JK-BMS wired management"'));
-  assert.match(config,/^version: 4\.1\.15-rc1$/m);
+  assert(config.includes('name: "JK-BMS wired management — RC2 TEST RO"'));
+  assert.match(config,/^version: 4\.1\.15-rc2-ro1$/m);
   assert(config.includes('slug: "smartphoton_jkbms"'));
   assert(config.includes('jkbms_path: str'));
   assert(config.includes('bms_broadcasting: bool'));
@@ -1240,7 +1245,7 @@ test('RC packaging retains production slug, options, paths and canonical flow',(
   assert(!startup.includes('smartphoton_jkbms_fix166'));
   assert(!startup.includes('1892'));
   assert(!startup.includes('issue166-apply'));
-  assert.equal(flows.length,591);
+  assert.equal(flows.length,597);
   assert.equal(new Set(flows.map(n=>n.id)).size,flows.length);
   assert(!fs.readdirSync(path.join(root,'rootfs/etc/node-red')).some(n=>/^issue166-/.test(n)));
   for(const name of ['Dockerfile','standalone/Dockerfile']) assert(!fs.readFileSync(path.join(root,name),'utf8').includes('issue192_patch'));

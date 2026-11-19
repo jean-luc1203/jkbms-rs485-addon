@@ -64,6 +64,7 @@ COPY rootfs /
 
 # Garantir les droits dans l'image Docker
 RUN chmod +x \
+    /etc/s6-overlay/s6-rc.d/init-nodered/run \
     /etc/s6-overlay/s6-rc.d/init-customizations/run \
     /etc/s6-overlay/s6-rc.d/init-customizations/up \
     /etc/s6-overlay/s6-rc.d/init-customizations/type

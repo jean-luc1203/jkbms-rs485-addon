@@ -22,7 +22,11 @@ jobs:
         with:
           node-version: '22'
       - run: test -x rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
+      - name: Install real buffer-parser for regression tests
+        run: npm install --ignore-scripts --no-save --prefix /tmp/legacy-parser node-red-contrib-buffer-parser@3.2.2
       - run: node --test tests/*.cjs
+        env:
+          BUFFER_PARSER_PATH: /tmp/legacy-parser/node_modules/node-red-contrib-buffer-parser
       - run: bash -n rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
       - run: sh -n standalone/entrypoint.sh
       - name: Build HAOS image (amd64)
