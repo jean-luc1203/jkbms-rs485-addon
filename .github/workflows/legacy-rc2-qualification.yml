@@ -1,0 +1,121 @@
+name: Legacy RC2 isolated qualification
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [maintenance/legacy-flow-consolidation-docker]
+    paths: ['.ci/legacy-4.1.15-rc2-ro1.patch', '.github/workflows/legacy-rc2-qualification.yml']
+permissions:
+  contents: read
+jobs:
+  qualify:
+    if: github.event.pull_request.head.ref == 'ci/legacy-rc2-ro1-qualification' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct exact tested candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp .ci/legacy-4.1.15-rc2-ro1.patch /tmp/legacy-rc2.patch
+          test "$(git hash-object /tmp/legacy-rc2.patch)" = b79d9d7f1d8a9b294f007d55c70daca3bdba6ee6
+          git checkout --detach 794f161a01b032a8aab82b3d3e151abcc1657c34
+          test "$(git hash-object rootfs/etc/node-red/flows.json)" = 174ae4673b4199c2e048b6bd515ef8a712318f8b
+          git apply --check /tmp/legacy-rc2.patch
+          git apply /tmp/legacy-rc2.patch
+          test "$(git hash-object rootfs/etc/node-red/flows.json)" = ca568cb2dbc603a2f49d4abd57bbce8af9d9d988
+          echo "9a30272818122b309ec0ebc65c915712e37b37f57fc7fb7797d4cc3053056af2  rootfs/etc/node-red/flows.json" | sha256sum -c -
+          git diff --check
+      - name: Run permanent regression tests
+        run: |
+          set -e
+          npm install --ignore-scripts --no-save --prefix /tmp/legacy-parser node-red-contrib-buffer-parser@3.2.2
+          BUFFER_PARSER_PATH=/tmp/legacy-parser/node_modules/node-red-contrib-buffer-parser node --test tests/*.cjs
+          bash -n rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
+          sh -n standalone/entrypoint.sh
+          test -x rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run
+      - name: Build HAOS amd64 and verify embedded flow and parser
+        run: |
+          set -e
+          docker build --build-arg BUILD_FROM=ghcr.io/hassio-addons/base:18.1.0 --build-arg BUILD_VERSION=4.1.15-rc2-ro1 -t legacy-haos:ci .
+          id=$(docker create legacy-haos:ci)
+          trap 'docker rm -f "$id" >/dev/null' EXIT
+          docker cp "$id:/etc/node-red/flows.json" /tmp/haos-flows.json
+          cmp rootfs/etc/node-red/flows.json /tmp/haos-flows.json
+          docker run --rm --network none --entrypoint node legacy-haos:ci -e "if(require('/opt/node_modules/node-red-contrib-buffer-parser/package.json').version !== '3.2.2') process.exit(1)"
+      - name: Build standalone and verify embedded flow and parser
+        run: |
+          set -e
+          docker build --pull -f standalone/Dockerfile -t jkbms-standalone:ci .
+          id=$(docker create jkbms-standalone:ci)
+          trap 'docker rm -f "$id" >/dev/null' EXIT
+          docker cp "$id:/data/flows.json" /tmp/standalone-flows.json
+          cmp rootfs/etc/node-red/flows.json /tmp/standalone-flows.json
+          docker run --rm --network none --entrypoint node jkbms-standalone:ci -e "if(require('/usr/src/node-red/node_modules/node-red-contrib-buffer-parser/package.json').version !== '3.2.2') process.exit(1)"
+      - name: Start Node-RED with isolated MQTT and no hardware
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker network create --internal legacy-ci
+          printf 'listener 1883 0.0.0.0\nallow_anonymous true\npersistence false\n' > /tmp/legacy-mosquitto.conf
+          docker run -d --name legacy-broker --network legacy-ci -v /tmp/legacy-mosquitto.conf:/mosquitto/config/mosquitto.conf:ro eclipse-mosquitto:2
+          docker run -d --name legacy-node-red --network legacy-ci -e MQTTADRESSE_PORT=legacy-broker:1883 -e MQTTUSER= -e MQTTPASS= -e CAN_BUS_USAGE=false -e SEND_BIP=false -e JKBMS_PATH=/dev/JKBMS-Fake jkbms-standalone:ci
+          for i in $(seq 1 60); do
+            if docker exec legacy-node-red node -e "fetch('http://127.0.0.1:1880/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))" && docker logs legacy-node-red 2>&1 | grep -q 'Started flows'; then
+              echo "Node-RED started flows and HTTP: PASS"
+              exit 0
+            fi
+            test "$(docker inspect -f '{{.State.Running}}' legacy-node-red)" = true || exit 1
+            sleep 2
+          done
+          exit 1
+      - name: Package exact candidate source
+        run: |
+          set -e
+          git add -A
+          git -c user.name=legacy-ci -c user.email=legacy-ci@users.noreply.github.com commit -m 'Legacy 4.1.15-rc2-ro1 read-only qualification'
+          git archive --format=zip --prefix=smartphoton_jkbms/ -o /tmp/legacy-4.1.15-rc2-ro1.zip HEAD
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legacy-4.1.15-rc2-ro1-qualified-source
+          path: /tmp/legacy-4.1.15-rc2-ro1.zip
+      - name: Log and clean up isolated containers
+        if: always()
+        run: |
+          docker logs legacy-node-red 2>&1 || true
+          docker rm -f legacy-node-red legacy-broker 2>/dev/null || true
+          docker network rm legacy-ci 2>/dev/null || true
+  prepare-test-branch:
+    needs: qualify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Create exact separate test branch after qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp .ci/legacy-4.1.15-rc2-ro1.patch /tmp/legacy-rc2.patch
+          test "$(git hash-object /tmp/legacy-rc2.patch)" = b79d9d7f1d8a9b294f007d55c70daca3bdba6ee6
+          git checkout --detach 794f161a01b032a8aab82b3d3e151abcc1657c34
+          git apply --check /tmp/legacy-rc2.patch
+          git apply /tmp/legacy-rc2.patch
+          test "$(git hash-object rootfs/etc/node-red/flows.json)" = ca568cb2dbc603a2f49d4abd57bbce8af9d9d988
+          git add -A
+          git -c user.name=legacy-ci -c user.email=legacy-ci@users.noreply.github.com commit -m 'Legacy 4.1.15-rc2-ro1: qualified read-only test source'
+          if git ls-remote --exit-code origin refs/heads/test/legacy-4.1.15-rc2-ro1; then
+            echo 'Test branch exists; refusing to overwrite'
+            exit 1
+          fi
+          git push origin HEAD:refs/heads/test/legacy-4.1.15-rc2-ro1
