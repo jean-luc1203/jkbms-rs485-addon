@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="200" viewBox="0 0 500 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f3b73"/><stop offset="1" stop-color="#0f1f40"/>
+    </linearGradient>
+    <linearGradient id="cell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="192" height="192" rx="40" fill="url(#bg)"/>
+  <rect x="28" y="52" width="132" height="76" rx="13" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+  <rect x="160" y="73" width="13" height="34" rx="5" fill="#e2e8f0"/>
+  <rect x="41" y="65" width="24" height="50" rx="5" fill="url(#cell)"/>
+  <rect x="70" y="65" width="24" height="50" rx="5" fill="url(#cell)"/>
+  <rect x="99" y="65" width="24" height="50" rx="5" fill="url(#cell)"/>
+  <rect x="128" y="65" width="20" height="50" rx="5" fill="#facc15"/>
+  <polyline points="30,158 62,158 75,144 89,172 103,150 116,158 170,158" fill="none" stroke="#38bdf8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="222" y="98" font-family="DejaVu Sans, sans-serif" font-weight="bold" font-size="60" fill="#1f3b73">JK-BMS</text>
+  <text x="224" y="146" font-family="DejaVu Sans, sans-serif" font-size="30" fill="#38bdf8">RS485 · Fork</text>
+</svg>

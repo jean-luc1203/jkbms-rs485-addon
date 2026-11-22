@@ -1,3 +1,53 @@
+## 4.3.2 (fork Xander2980) — 2026-11-18
+
+- `Send_bip`: correct description (it is an anonymous usage ping to smartphoton.ch, not a beep) and default off.
+
+## 4.3.1 (fork Xander2980) — 2026-11-18
+
+- Readable, localised durations for `charge_status_time_formatted` and `Total_runtime_formatted` (e.g. `2 Min. 44 s`, `123 T 4 Std.` in German, `2 min 44 s` / `123 d 4 h` in English) instead of `2M44S` / `123D4H2M`.
+
+## 4.3.0 (fork Xander2980) — 2026-11-18
+
+### Removed — Premium
+- Premium dashboards, Premium HTML generators, licence check (`premium init`, `PREMIUM STORAGE INIT`) and the Premium diagnostic entities. On start the add-on deletes the former Premium entities (`Premium Install ID / Active / Status / Tier`) with empty retained discovery messages.
+- Options `premium_key`, `dashboard_mode`, `dashboard_custom_cards_installed` and the section labels. `issue192_patch.cjs` (Premium HTML patch) and its test.
+
+### Added — JK-BMS card
+- Option `create_dashboard` (default off): creates the Home Assistant dashboard **JK-BMS** (`/jk-bms`) with one `custom:bms-battery-cells-card-jkbms` card per BMS seen on the bus. Requires the card from HACS (`Xander2980/bms-battery-cells-card-jkbms`, version 2.1 shows all new values).
+
+### Changed
+- README rewritten for the fork (English).
+
+## 4.2.1 (fork Xander2980) — 2026-11-18
+
+- Charging float mode (register 0x1114 bit 9) is now also decoded on the broadcast setup path, so `switch.<bms>_bms_charging_floating_mode` gets a state.
+
+## 4.2.0 (fork Xander2980) — 2026-11-18
+
+Fork of SmartPhoton JK-BMS Legacy 4.1.14. Private, non-commercial use (PolyForm Noncommercial 1.0.0, see `LICENSE`). Premium dashboards are unchanged.
+
+> **Back up Home Assistant before installing.** Stop/uninstall the upstream add-on first: both use `/config/smartphoton_jkbms` and the same MQTT discovery ids, so the existing entities are taken over unchanged.
+
+### Fixed — decoder (checked against syssi/esphome-jk-bms, JK02_32S layout)
+- **Balancing never shown:** byte 172 was divided by 100 (values 0 / 0.01 / 0.02), so `Balance_Action` stayed off. Now on whenever the balancer runs; new `Balancer_status` (0 off, 1 charging balancer, 2 discharging balancer) and `Balancer_status_text`.
+- **`Switch_Balance` was the precharge flag** (byte 200). Renamed to `Precharging`; the old entity is removed once via empty retained discovery. New `Balancing` (byte 201).
+- **Register 0x1114 bits shifted by one:** `smart_sleep_switch` read bit 7 (PCL), `disable_pcl_module_switch` read bit 8 (timed stored data), `timed_stored_data_switch` read bit 9 (charging float mode). Now bits 6 / 7 / 8. `display_always_on_switch` returned an array (length 2) in one parser.
+- **Register 0x1114 writes cleared other switches:** smart sleep, PCL and timed-stored-data writes sent only their own bit (clearing heating, display, float mode, RS485/CAN port ...). Now read-modify-write from the cached register value; the write is refused while the register is unknown.
+- `Cell_Type` was read from the wrong byte and never published; replaced by `Battery_type` (byte 275, LFP / Li-ion / LTO).
+- Issue #166 corrections are baked into `flows.json` (4.1.14 shipped without them).
+- `map: config` replaced by `homeassistant_config` (Supervisor deprecation warning).
+
+### Added — values already present in the frames
+- Live: `Temp_sensor_5`, `Charger_plugged`, `PCL_module_state`, `Battery_power` (signed, V × I), protection release timers (discharge/charge overcurrent and short circuit, under-/overvoltage), `Emergency_countdown`, `Smart_sleep_countdown`, `Detail_log_count`, `Temp_sensor_presence`, `Wire_resistance_warning`. Durations are HA `duration` sensors in s (new suffix `_D`).
+- Setup (read-only sensors, no command topic): heating enabled, temperature sensors disabled, port in RS485 mode, special charger, emergency button trigger, dry contact alarm intermittent, discharge OCP 2/3, precharge time, heating start/stop temperature, smart sleep delay, discharge under-temperature protection and recovery.
+
+### Changed — language
+- All code comments, log messages and Node-RED node names are English (Premium dashboard generators excluded).
+- `dashboard_language` accepts `de`, `en`, `fr` (default `en`): Home Assistant entity display names (`rootfs/etc/node-red/entity-labels.json`) and the built-in dashboard on port 1891 (`rootfs/etc/node-red/ui-text.json`). Entity ids and MQTT topics do not change. Premium dashboards only know en/fr; `de` is shown as `en` there.
+
+### Tests
+- New `tests/fork-decoder.test.cjs` runs the real buffer-parser on synthetic frames; packaging tests adapted to the baked-in #166 flow. CI: `.github/workflows/fork-tests.yml`.
+
 ## 4.1.14 — 2026-11-16
 
 ### Corrected — Premium HTML dashboards ([#192](https://github.com/jean-luc1203/jkbms-rs485-addon/issues/192))

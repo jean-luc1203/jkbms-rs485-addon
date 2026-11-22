@@ -1,9 +1,9 @@
 ---
-name: "JK-BMS wired management"
-version: 4.1.14
+name: "JK-BMS wired management (fork Xander2980)"
+version: 4.3.2
 slug: "smartphoton_jkbms"
 description: JK-BMS Management via RS485 & CAN bus or TCP/IP Gateway
-url: https://domosimple.eu/forum/thread-917.html
+url: https://github.com/Xander2980/jkbms-rs485-addon
 ingress: false
 ingress_stream: false
 panel_icon: mdi:sitemap
@@ -26,9 +26,13 @@ host_network: true
 auth_api: true
 uart: true
 map:
-  - config:rw
-  - media:rw
-  - share:rw
+  - type: homeassistant_config
+    read_only: false
+    path: /config
+  - type: media
+    read_only: false
+  - type: share
+    read_only: false
 
 options:
   # JK-BMS Configuration
@@ -47,21 +51,12 @@ options:
   mqttpass: "password"
 
   # Telemetry
-  Send_bip: true
+  Send_bip: false
 
-  # ============================================================
-  # 👑 PREMIUM
-  # ============================================================
-  premium_section: "────────── PREMIUM ──────────"
-  premium_key: ""
-
-  # ============================================================
-  # 🎨 DASHBOARD
-  # ============================================================
-  dashboard_section: "────────── DASHBOARD ──────────"
-  dashboard_custom_cards_installed: false
-  dashboard_language: "fr"
-  dashboard_mode: "legacy"
+  # Language of the Home Assistant entity names (de / en / fr)
+  dashboard_language: "en"
+  # Create a Home Assistant dashboard "JK-BMS" with the JK-BMS card
+  create_dashboard: false
 
 schema:
   # JK-BMS Configuration
@@ -79,13 +74,8 @@ schema:
   mqttuser: str?
   mqttpass: password?
 
-  premium_section: str?
-  premium_key: str?
-
-  dashboard_section: str?
-  dashboard_custom_cards_installed: bool
-  dashboard_language: list(fr|en)
-  dashboard_mode: list(legacy|html|both)
+  dashboard_language: list(de|en|fr)
+  create_dashboard: bool
 
   # Telemetry
   Send_bip: bool
