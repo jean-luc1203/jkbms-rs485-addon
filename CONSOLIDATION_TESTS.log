@@ -1,0 +1,532 @@
+TAP version 13
+# Subtest: BMS addresses master, 1, 2, 15 are preserved
+ok 1 - BMS addresses master, 1, 2, 15 are preserved
+  ---
+  duration_ms: 3.662694
+  type: 'test'
+  ...
+# Subtest: standard DATA is published immediately and not relabeled by next SETUP
+ok 2 - standard DATA is published immediately and not relabeled by next SETUP
+  ---
+  duration_ms: 0.485101
+  type: 'test'
+  ...
+# Subtest: phantom BMS uint32 IDs never reach the DATA or SETUP branches
+ok 3 - phantom BMS uint32 IDs never reach the DATA or SETUP branches
+  ---
+  duration_ms: 4.66284
+  type: 'test'
+  ...
+# Subtest: strict gate rejects truncated DATA/SETUP before buffer parsers
+ok 4 - strict gate rejects truncated DATA/SETUP before buffer parsers
+  ---
+  duration_ms: 0.550399
+  type: 'test'
+  ...
+# Subtest: alarm extraction and alarm publishing reject all invalid identifiers
+ok 5 - alarm extraction and alarm publishing reject all invalid identifiers
+  ---
+  duration_ms: 3.807833
+  type: 'test'
+  ...
+# Subtest: valid alarm identifier 2 publishes exactly four config and four state topics
+ok 6 - valid alarm identifier 2 publishes exactly four config and four state topics
+  ---
+  duration_ms: 0.878072
+  type: 'test'
+  ...
+# Subtest: invalid identifiers cannot create DATA/Heating/SETUP MQTT entities
+ok 7 - invalid identifiers cannot create DATA/Heating/SETUP MQTT entities
+  ---
+  duration_ms: 2.62359
+  type: 'test'
+  ...
+# Subtest: both existing BMS validation filters reject strings with trailing junk
+ok 8 - both existing BMS validation filters reject strings with trailing junk
+  ---
+  duration_ms: 0.841547
+  type: 'test'
+  ...
+# Subtest: legacy active polling alarm publisher guards BMS IDs > 15
+ok 9 - legacy active polling alarm publisher guards BMS IDs > 15
+  ---
+  duration_ms: 0.621295
+  type: 'test'
+  ...
+# Subtest: official Legacy startup copies the canonical flow without a patch
+ok 10 - official Legacy startup copies the canonical flow without a patch
+  ---
+  duration_ms: 0.460794
+  type: 'test'
+  ...
+# Subtest: live single-addon port 1891 is consistent without changing the Legacy flow URL
+ok 11 - live single-addon port 1891 is consistent without changing the Legacy flow URL
+  ---
+  duration_ms: 0.256546
+  type: 'test'
+  ...
+# Subtest: passive JK checksum and ACK CRC: correct SETUP/DATA remain unchanged
+ok 12 - passive JK checksum and ACK CRC: correct SETUP/DATA remain unchanged
+  ---
+  duration_ms: 2.153261
+  type: 'test'
+  ...
+# Subtest: passive observer reports corrupted JK body without rejecting or changing frame
+ok 13 - passive observer reports corrupted JK body without rejecting or changing frame
+  ---
+  duration_ms: 1.725438
+  type: 'test'
+  ...
+# Subtest: passive observer reports bad ACK CRC without rejecting or changing frame
+ok 14 - passive observer reports bad ACK CRC without rejecting or changing frame
+  ---
+  duration_ms: 0.610589
+  type: 'test'
+  ...
+# Subtest: passive observer classifies short framed candidates as untestable, not rejected
+ok 15 - passive observer classifies short framed candidates as untestable, not rejected
+  ---
+  duration_ms: 0.43832
+  type: 'test'
+  ...
+# Subtest: no legacy flow route or filter changed by passive observer
+ok 16 - no legacy flow route or filter changed by passive observer
+  ---
+  duration_ms: 0.103687
+  type: 'test'
+  ...
+# Subtest: DEV166.5 passive sequence counts per-BMS interleaving without altering frames
+ok 17 - DEV166.5 passive sequence counts per-BMS interleaving without altering frames
+  ---
+  duration_ms: 1.362501
+  type: 'test'
+  ...
+# Subtest: DEV166.5 passive observer detects SETUP identity vs ACK conflict without blocking
+ok 18 - DEV166.5 passive observer detects SETUP identity vs ACK conflict without blocking
+  ---
+  duration_ms: 0.341555
+  type: 'test'
+  ...
+# Subtest: DEV166.5 invalid ACK CRC cannot be trusted for address, but frame is unchanged
+ok 19 - DEV166.5 invalid ACK CRC cannot be trusted for address, but frame is unchanged
+  ---
+  duration_ms: 0.338409
+  type: 'test'
+  ...
+# Subtest: DEV166.5 Framer accounts for discarded noise prefix without losing valid replies
+ok 20 - DEV166.5 Framer accounts for discarded noise prefix without losing valid replies
+  ---
+  duration_ms: 0.324529
+  type: 'test'
+  ...
+# Subtest: DEV166.5 Framer detects rejected short candidate, still emits following good frames
+ok 21 - DEV166.5 Framer detects rejected short candidate, still emits following good frames
+  ---
+  duration_ms: 0.23244
+  type: 'test'
+  ...
+# Subtest: DEV166.5 Framer records no-frame buffer trim without changing subsequent decoding
+ok 22 - DEV166.5 Framer records no-frame buffer trim without changing subsequent decoding
+  ---
+  duration_ms: 1.823345
+  type: 'test'
+  ...
+# Subtest: DEV166.5 framing counts bytes discarded even when no complete frame exists
+ok 23 - DEV166.5 framing counts bytes discarded even when no complete frame exists
+  ---
+  duration_ms: 0.213311
+  type: 'test'
+  ...
+# Subtest: DEV166.5 differential test: exact same frame outputs and retained buffers as Legacy 4.1.12 Framer
+ok 24 - DEV166.5 differential test: exact same frame outputs and retained buffers as Legacy 4.1.12 Framer
+  ---
+  duration_ms: 63.897867
+  type: 'test'
+  ...
+# Subtest: DEV166.5 observes historical fragmented Modbus poll loss without correcting it
+ok 25 - DEV166.5 observes historical fragmented Modbus poll loss without correcting it
+  ---
+  duration_ms: 0.311169
+  type: 'test'
+  ...
+# Subtest: DEV166.6 poll registers counted independently by Modbus destination
+ok 26 - DEV166.6 poll registers counted independently by Modbus destination
+  ---
+  duration_ms: 0.348736
+  type: 'test'
+  ...
+# Subtest: DEV166.7 immediate DATA dispatch uses verified ACK identity even if last poll slave differs
+ok 27 - DEV166.7 immediate DATA dispatch uses verified ACK identity even if last poll slave differs
+  ---
+  duration_ms: 0.485661
+  type: 'test'
+  ...
+# Subtest: DEV166.7 multiple consecutive DATA frames from BMS_2 are all published
+ok 28 - DEV166.7 multiple consecutive DATA frames from BMS_2 are all published
+  ---
+  duration_ms: 1.762413
+  type: 'test'
+  ...
+# Subtest: DEV166.7 interleaved Master and BMS_2 DATA/SETUP do not overwrite or misassociate
+ok 29 - DEV166.7 interleaved Master and BMS_2 DATA/SETUP do not overwrite or misassociate
+  ---
+  duration_ms: 0.364398
+  type: 'test'
+  ...
+# Subtest: DEV166.7 SETUP remains independent, including SETUP-only and setup ID from payload
+ok 30 - DEV166.7 SETUP remains independent, including SETUP-only and setup ID from payload
+  ---
+  duration_ms: 0.239441
+  type: 'test'
+  ...
+# Subtest: DEV166.8 strict gate blocks CRC-invalid DATA without legacy fallback
+ok 31 - DEV166.8 strict gate blocks CRC-invalid DATA without legacy fallback
+  ---
+  duration_ms: 0.300393
+  type: 'test'
+  ...
+# Subtest: DEV166.8 strict gate blocks damaged JK body even when ACK CRC is valid
+ok 32 - DEV166.8 strict gate blocks damaged JK body even when ACK CRC is valid
+  ---
+  duration_ms: 0.2058
+  type: 'test'
+  ...
+# Subtest: DEV166.7 removes legacy pending from old releases before a SETUP can relabel it
+ok 33 - DEV166.7 removes legacy pending from old releases before a SETUP can relabel it
+  ---
+  duration_ms: 0.178659
+  type: 'test'
+  ...
+# Subtest: DEV166.8 rejected DATA cannot create pending and next direct DATA is unaffected
+ok 34 - DEV166.8 rejected DATA cannot create pending and next direct DATA is unaffected
+  ---
+  duration_ms: 0.274633
+  type: 'test'
+  ...
+# Subtest: DEV166.7 rejected short DATA and invalid SETUP keep previous \#166 safeguards
+ok 35 - DEV166.7 rejected short DATA and invalid SETUP keep previous \#166 safeguards
+  ---
+  duration_ms: 0.153822
+  type: 'test'
+  ...
+# Subtest: DEV166.8 valid BMS_0 / BMS_2 responses still dispatch with original exact buffers
+ok 36 - DEV166.8 valid BMS_0 / BMS_2 responses still dispatch with original exact buffers
+  ---
+  duration_ms: 0.275535
+  type: 'test'
+  ...
+# Subtest: DEV166.8 rejects SETUP ID 2 when valid ACK indicates BMS_0
+ok 37 - DEV166.8 rejects SETUP ID 2 when valid ACK indicates BMS_0
+  ---
+  duration_ms: 0.145138
+  type: 'test'
+  ...
+# Subtest: DEV166.8 detects 308-byte ACK with wrong Modbus register despite valid CRC
+ok 38 - DEV166.8 detects 308-byte ACK with wrong Modbus register despite valid CRC
+  ---
+  duration_ms: 0.271479
+  type: 'test'
+  ...
+# Subtest: DEV166.8 rejects changed BMS ACK address even with re-computed CRC if SETUP disagrees
+ok 39 - DEV166.8 rejects changed BMS ACK address even with re-computed CRC if SETUP disagrees
+  ---
+  duration_ms: 0.182104
+  type: 'test'
+  ...
+# Subtest: DEV166.8 rejects unsupported 310 byte padded RS485 profile pending qualification
+ok 40 - DEV166.8 rejects unsupported 310 byte padded RS485 profile pending qualification
+  ---
+  duration_ms: 0.220272
+  type: 'test'
+  ...
+# Subtest: DEV166.8 allows checksum-valid bare 300-byte JK SETUP but records CRC absent
+ok 41 - DEV166.8 allows checksum-valid bare 300-byte JK SETUP but records CRC absent
+  ---
+  duration_ms: 0.179481
+  type: 'test'
+  ...
+# Subtest: DEV166.8 strict gate runs ONLY for Broadcast replies, not Modbus polls
+ok 42 - DEV166.8 strict gate runs ONLY for Broadcast replies, not Modbus polls
+  ---
+  duration_ms: 0.140511
+  type: 'test'
+  ...
+# Subtest: DEV166.8 rejected corrupt frame clears prior fallback pending to avoid misassociation
+ok 43 - DEV166.8 rejected corrupt frame clears prior fallback pending to avoid misassociation
+  ---
+  duration_ms: 0.206641
+  type: 'test'
+  ...
+# Subtest: DEV166.8 single-byte mutations in different body positions are all rejected
+ok 44 - DEV166.8 single-byte mutations in different body positions are all rejected
+  ---
+  duration_ms: 0.427804
+  type: 'test'
+  ...
+# Subtest: DEV166.8 malicious-but-checksummed two-byte mutation exposes sum8 limitation
+ok 45 - DEV166.8 malicious-but-checksummed two-byte mutation exposes sum8 limitation
+  ---
+  duration_ms: 0.144548
+  type: 'test'
+  ...
+# Subtest: DEV166.9 passive Active Polling validator observes 308 DATA and leaves routing unchanged
+ok 46 - DEV166.9 passive Active Polling validator observes 308 DATA and leaves routing unchanged
+  ---
+  duration_ms: 0.649558
+  type: 'test'
+  ...
+# Subtest: DEV166.9 passive detects late DATA for BMS_1 while global polling is at BMS_2
+ok 47 - DEV166.9 passive detects late DATA for BMS_1 while global polling is at BMS_2
+  ---
+  duration_ms: 0.619443
+  type: 'test'
+  ...
+# Subtest: DEV166.9 recognizes valid static 0x161C and setup 0x161E separately
+ok 48 - DEV166.9 recognizes valid static 0x161C and setup 0x161E separately
+  ---
+  duration_ms: 0.893185
+  type: 'test'
+  ...
+# Subtest: DEV166.9 SETUP wrong declared address is observed, original header check preserved
+ok 49 - DEV166.9 SETUP wrong declared address is observed, original header check preserved
+  ---
+  duration_ms: 0.493252
+  type: 'test'
+  ...
+# Subtest: DEV166.9 measures truncated setup/static while original validators still pass headers
+ok 50 - DEV166.9 measures truncated setup/static while original validators still pass headers
+  ---
+  duration_ms: 0.675637
+  type: 'test'
+  ...
+# Subtest: DEV166.9 detects bad checksum AND CRC of Active Polling DATA without rejecting
+ok 51 - DEV166.9 detects bad checksum AND CRC of Active Polling DATA without rejecting
+  ---
+  duration_ms: 0.240342
+  type: 'test'
+  ...
+# Subtest: DEV166.9 alarm observer records correct FC03 CRC and address without altering alarm output
+ok 52 - DEV166.9 alarm observer records correct FC03 CRC and address without altering alarm output
+  ---
+  duration_ms: 0.908788
+  type: 'test'
+  ...
+# Subtest: DEV166.9 observes bad alarm CRC and spoofed request identity without changing decoder
+ok 53 - DEV166.9 observes bad alarm CRC and spoofed request identity without changing decoder
+  ---
+  duration_ms: 0.665391
+  type: 'test'
+  ...
+# Subtest: DEV166.9 Active Polling observers do not modify original validator return values
+ok 54 - DEV166.9 Active Polling observers do not modify original validator return values
+  ---
+  duration_ms: 54.069164
+  type: 'test'
+  ...
+# Subtest: DEV166.9 reproduces existing Active Polling MQTT wrong-address risk under delayed response
+ok 55 - DEV166.9 reproduces existing Active Polling MQTT wrong-address risk under delayed response
+  ---
+  duration_ms: 2.599623
+  type: 'test'
+  ...
+# Subtest: DEV166.10 TCP Active Polling queues alarm collision and preserves 1 msg/s budget
+ok 56 - DEV166.10 TCP Active Polling queues alarm collision and preserves 1 msg/s budget
+  ---
+  duration_ms: 0.184919
+  type: 'test'
+  ...
+# Subtest: DEV166.10 gateway diagnostics are absent BEFORE queue, recorded AFTER queue
+ok 57 - DEV166.10 gateway diagnostics are absent BEFORE queue, recorded AFTER queue
+  ---
+  duration_ms: 0.476657
+  type: 'test'
+  ...
+# Subtest: DEV166.10 serial Active Polling still counts at original diagnostics node
+ok 58 - DEV166.10 serial Active Polling still counts at original diagnostics node
+  ---
+  duration_ms: 0.243447
+  type: 'test'
+  ...
+# Subtest: DEV166.10 no diagnostic changes for Broadcasting on either transport
+ok 59 - DEV166.10 no diagnostic changes for Broadcasting on either transport
+  ---
+  duration_ms: 0.255705
+  type: 'test'
+  ...
+# Subtest: DEV166.11 trusted ACK identity overrides mutable global poll address
+ok 60 - DEV166.11 trusted ACK identity overrides mutable global poll address
+  ---
+  duration_ms: 2.27816
+  type: 'test'
+  ...
+# Subtest: DEV166.11 prevents MQTT state and discovery on untrusted identity
+ok 61 - DEV166.11 prevents MQTT state and discovery on untrusted identity
+  ---
+  duration_ms: 0.652923
+  type: 'test'
+  ...
+# Subtest: DEV166.11 validates DATA, SETUP, STATIC JK replies by true ACK address
+ok 62 - DEV166.11 validates DATA, SETUP, STATIC JK replies by true ACK address
+  ---
+  duration_ms: 1.248149
+  type: 'test'
+  ...
+# Subtest: DEV166.11 strict JK gate rejects wrong type, length, body sum, ACK CRC and register
+ok 63 - DEV166.11 strict JK gate rejects wrong type, length, body sum, ACK CRC and register
+  ---
+  duration_ms: 0.704842
+  type: 'test'
+  ...
+# Subtest: DEV166.11 SETUP body ID cannot differ from CRC-validated ACK address
+ok 64 - DEV166.11 SETUP body ID cannot differ from CRC-validated ACK address
+  ---
+  duration_ms: 0.250437
+  type: 'test'
+  ...
+# Subtest: DEV166.11 rejects matched CRC when the request targeted another BMS
+ok 65 - DEV166.11 rejects matched CRC when the request targeted another BMS
+  ---
+  duration_ms: 0.472321
+  type: 'test'
+  ...
+# Subtest: DEV166.11 alarm FC03 9-byte reply is validated and owns its BMS identity
+ok 66 - DEV166.11 alarm FC03 9-byte reply is validated and owns its BMS identity
+  ---
+  duration_ms: 0.618141
+  type: 'test'
+  ...
+# Subtest: DEV166.11 corrupt or cross-address alarms cannot reach MQTT
+ok 67 - DEV166.11 corrupt or cross-address alarms cannot reach MQTT
+  ---
+  duration_ms: 0.495486
+  type: 'test'
+  ...
+# Subtest: DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged
+ok 68 - DEV166.11 leaves broadcasting and preexisting Legacy decoders unchanged
+  ---
+  duration_ms: 0.257248
+  type: 'test'
+  ...
+# Subtest: DEV166.12 Broadcast watchdog is isolated from Active Polling TCP A/B
+ok 69 - DEV166.12 Broadcast watchdog is isolated from Active Polling TCP A/B
+  ---
+  duration_ms: 0.115674
+  type: 'test'
+  ...
+# Subtest: DEV166.12 no stale Broadcast watchdog action in Active Polling gateway mode
+ok 70 - DEV166.12 no stale Broadcast watchdog action in Active Polling gateway mode
+  ---
+  duration_ms: 0.130597
+  type: 'test'
+  ...
+# Subtest: DEV166.12 no Broadcast watchdog action in serial or uninitialized mode
+ok 71 - DEV166.12 no Broadcast watchdog action in serial or uninitialized mode
+  ---
+  duration_ms: 0.15293
+  type: 'test'
+  ...
+# Subtest: DEV166.12 Broadcast TCP timeout emits supported close then connect
+ok 72 - DEV166.12 Broadcast TCP timeout emits supported close then connect
+  ---
+  duration_ms: 0.21277
+  type: 'test'
+  ...
+# Subtest: DEV166.12 Broadcast watchdog does not intervene while fresh data arrive
+ok 73 - DEV166.12 Broadcast watchdog does not intervene while fresh data arrive
+  ---
+  duration_ms: 0.088824
+  type: 'test'
+  ...
+# Subtest: DEV166.12 original Broadcast watchdog no longer sends unsupported disconnect
+ok 74 - DEV166.12 original Broadcast watchdog no longer sends unsupported disconnect
+  ---
+  duration_ms: 0.127702
+  type: 'test'
+  ...
+# Subtest: RC packaging retains production slug, options, paths and canonical flow
+ok 75 - RC packaging retains production slug, options, paths and canonical flow
+  ---
+  duration_ms: 0.683269
+  type: 'test'
+  ...
+# Subtest: RC serial and gateway Active Polling share strict identity checks, not an unverified global
+ok 76 - RC serial and gateway Active Polling share strict identity checks, not an unverified global
+  ---
+  duration_ms: 0.091548
+  type: 'test'
+  ...
+# Subtest: RC3 quiet by default: Broadcast gate and routing counters still update
+ok 77 - RC3 quiet by default: Broadcast gate and routing counters still update
+  ---
+  duration_ms: 0.324789
+  type: 'test'
+  ...
+# Subtest: RC3 invalid Broadcast frame warns even with debug disabled; warnings throttled
+ok 78 - RC3 invalid Broadcast frame warns even with debug disabled; warnings throttled
+  ---
+  duration_ms: 0.272801
+  type: 'test'
+  ...
+# Subtest: RC3 Active gate quiet on valid replies, warns on malformed alarms
+ok 79 - RC3 Active gate quiet on valid replies, warns on malformed alarms
+  ---
+  duration_ms: 0.54455
+  type: 'test'
+  ...
+# Subtest: RC3 MQTT identity rejection warned without verbose counters
+ok 80 - RC3 MQTT identity rejection warned without verbose counters
+  ---
+  duration_ms: 0.136956
+  type: 'test'
+  ...
+# Subtest: RC3 all eleven observer/gate periodic summaries require communication_debug
+ok 81 - RC3 all eleven observer/gate periodic summaries require communication_debug
+  ---
+  duration_ms: 14.65212
+  type: 'test'
+  ...
+# PASS master+1
+# PASS master+2
+# PASS master+3
+# PASS master+4
+# PASS four consecutive
+# PASS four sparse
+# PASS four sparse high
+# PASS stale old address
+# PASS partial discovery
+# PASS master absent
+# PASS no discovery
+# PASS all stale
+# PASS configured count cap
+# PASS secondary disconnected
+# PASS secondary returns
+# PASS address changed and old retained
+# PASS stale master with live slave
+# PASS 34 server+browser assertions
+# Subtest: tests/issue192-premium-bms.test.cjs
+ok 2 - tests/issue192-premium-bms.test.cjs
+  ---
+  duration_ms: 396.901638
+  type: 'test'
+  ...
+# Subtest: RC production startup upgrades existing Legacy 4.1.12 in-place without losing settings/credentials
+ok 83 - RC production startup upgrades existing Legacy 4.1.12 in-place without losing settings/credentials
+  ---
+  duration_ms: 160.360187
+  type: 'test'
+  ...
+# Subtest: RC production startup handles a fresh install with production namespace
+ok 84 - RC production startup handles a fresh install with production namespace
+  ---
+  duration_ms: 140.218778
+  type: 'test'
+  ...
+1..84
+# tests 84
+# suites 0
+# pass 84
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 411.251865

@@ -119,10 +119,10 @@ test('legacy active polling alarm publisher guards BMS IDs > 15',()=>{
   for(const id of [-488,16,327680,1.5]) assert.equal(r.call({alarms:{bms_id:id}}),null);
   assert.equal(r.flow.keys().length,0);
 });
-test('official Legacy startup applies the patch as one shell command',()=>{
+test('official Legacy startup copies the canonical flow without a patch',()=>{
   const script = fs.readFileSync(path.join(__dirname, '..', 'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'), 'utf8');
-  const patchCall = 'node /etc/node-red/issue166-apply.cjs /etc/node-red/flows.json /config/smartphoton_jkbms/flows.json || bashio::exit.nok "Issue166 production RC flow patch failed"';
-  assert(script.includes(patchCall), 'startup must call the patcher before launching Node-RED');
+  assert(!script.includes('issue166-apply'));
+  assert(script.includes('cp /etc/node-red/flows.json /config/smartphoton_jkbms/'));
   assert(!script.includes('flows.json ' + String.fromCharCode(92, 92)), 'startup must not use an accidental doubled shell backslash');
 });
 
@@ -131,11 +131,9 @@ test('live single-addon port 1891 is consistent without changing the Legacy flow
   const configYaml = fs.readFileSync(path.join(root, 'config.yaml'),'utf8');
   const configJs = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/config.js'),'utf8');
   const dockerfile = fs.readFileSync(path.join(root, 'Dockerfile'),'utf8');
-  const patcher = fs.readFileSync(path.join(root, 'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
   assert(configYaml.includes('"1891/tcp": 1891'), 'addon port mapping must be 1891');
   assert(configJs.includes('config.uiPort = 1891;'), 'Node-RED listener must use 1891');
   assert(dockerfile.includes('127.0.0.1:1891'), 'health check must use 1891');
-  assert(!patcher.includes("':1892/endpoint/dashboard/'"), 'patcher must not redirect the dashboard to 1892');
   const urlNode = byId.get('a91bfb41bf5699ef');
   assert(urlNode && urlNode.func.includes(':1891/endpoint/dashboard/'), 'generated dashboard must retain original port');
 });
@@ -1225,16 +1223,13 @@ test('DEV166.12 original Broadcast watchdog no longer sends unsupported disconne
   assert.deepEqual(byId.get('ca2e41c5da775228').wires[0].includes(reset.id),true);
 });
 
-test('RC packaging retains production slug, options, paths and legacy baseline',()=>{
+test('RC packaging retains production slug, options, paths and canonical flow',()=>{
   const root=path.join(__dirname,'..');
   const config=fs.readFileSync(path.join(root,'config.yaml'),'utf8');
   const settings=fs.readFileSync(path.join(root,'rootfs/etc/node-red/config.js'),'utf8');
   const startup=fs.readFileSync(path.join(root,'rootfs/etc/s6-overlay/s6-rc.d/init-nodered/run'),'utf8');
-  const patcher=fs.readFileSync(path.join(root,'rootfs/etc/node-red/issue166-apply.cjs'),'utf8');
-  const crypto=require('node:crypto');
-  const baseline=fs.readFileSync(path.join(root,'rootfs/etc/node-red/flows.json'));
   assert(config.includes('name: "JK-BMS wired management"'));
-  assert(config.includes('version: 4.1.13'));
+  assert.match(config,/^version: 4\.1\.15-rc1$/m);
   assert(config.includes('slug: "smartphoton_jkbms"'));
   assert(config.includes('jkbms_path: str'));
   assert(config.includes('bms_broadcasting: bool'));
@@ -1244,9 +1239,11 @@ test('RC packaging retains production slug, options, paths and legacy baseline',
   assert(startup.includes('/config/smartphoton_jkbms/flows.json'));
   assert(!startup.includes('smartphoton_jkbms_fix166'));
   assert(!startup.includes('1892'));
-  assert(patcher.includes('b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6'));
-  assert.equal(crypto.createHash('sha256').update(baseline).digest('hex'),
-    'b8cc75b3503a6ac089188d1526a2547441893621d33c7a1fbffedba963b5e8d6');
+  assert(!startup.includes('issue166-apply'));
+  assert.equal(flows.length,591);
+  assert.equal(new Set(flows.map(n=>n.id)).size,flows.length);
+  assert(!fs.readdirSync(path.join(root,'rootfs/etc/node-red')).some(n=>/^issue166-/.test(n)));
+  for(const name of ['Dockerfile','standalone/Dockerfile']) assert(!fs.readFileSync(path.join(root,name),'utf8').includes('issue192_patch'));
 });
 test('RC serial and gateway Active Polling share strict identity checks, not an unverified global',()=>{
   const n=byId.get('b02adbe3a64e64f2');
@@ -1314,21 +1311,10 @@ test('RC3 MQTT identity rejection warned without verbose counters',()=>{
   assert.equal(r.infos.length,0);
 });
 test('RC3 all eleven observer/gate periodic summaries require communication_debug',()=>{
-  const pathRoot=path.join(__dirname,'..','rootfs/etc/node-red');
-  const snips=[
-    'issue166-framing-snippet.js','issue166-integrity-snippet.js',
-    'issue166-sequence-snippet.js','issue166-poll-snippet.js',
-    'issue166-pairing-snippet.js','issue166-active-passive-snippet.js',
-    'issue166-active-alarm-snippet.js','issue166-direct-routing-snippet.js',
-    'issue166-strict-gate-snippet.js','issue166-active-strict-snippet.js',
-    'issue166-active-mqtt-snippet.js'
-  ];
-  for(const name of snips){
-    const src=fs.readFileSync(path.join(pathRoot,name),'utf8');
-    assert(src.includes("global.get('communication_debug') === true"),name);
-    assert(src.includes('node.log('),name);
+  const all=flows.filter(n=>n.type==='function').map(n=>n.func).join('\n');
+  for(const marker of ['ISSUE166_FRAMING_PASSIVE','ISSUE166_INTEGRITY_PASSIVE','ISSUE166_SEQUENCE_PASSIVE','ISSUE166_POLL_PASSIVE','ISSUE166_PAIRING_PASSIVE','ISSUE1669_ACTIVE_PASSIVE','ISSUE1669_ALARM_PASSIVE','ISSUE1667_ROUTING','ISSUE1668_INTEGRITY_GATE','ISSUE16611_ACTIVE_GATE','ISSUE16611_MQTT_IDENTITY']) {
+    const nodes=flows.filter(n=>n.func?.includes(marker));
+    assert(nodes.length,marker);
+    for(const n of nodes) {assert(n.func.includes("global.get('communication_debug') === true"),marker); assert(n.func.includes('node.log('),marker);}
   }
-  const patcher=fs.readFileSync(path.join(pathRoot,'issue166-apply.cjs'),'utf8');
-  assert(patcher.includes('Issue #166 Legacy patch applied'));
-  assert(!patcher.includes('Issue #166 test patch applied'));
 });
